@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <div class="eyebrow">Job</div>
+    <h1>{{ job.title or job.topic }}</h1>
+    <p class="lead">{{ job.status }} · {{ job.progress }}%</p>
+  </div>
+  <div class="actions-row">
+    <form method="post" action="/jobs/{{ job.id }}/run" class="inline-form">
+      <button class="btn btn-primary" type="submit">Run pipeline</button>
+    </form>
+    <a class="btn btn-secondary" href="/projects/{{ project.id }}">Project</a>
+  </div>
+</section>
+
+<section class="split-grid">
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Pipeline status</h2>
+    </div>
+    <div class="progress-shell">
+      <div class="progress-bar" style="width: {{ job.progress }}%"></div>
+    </div>
+    <div class="kv-grid">
+      <div><span>Status</span><strong id="job-status">{{ job.status }}</strong></div>
+      <div><span>Ratio</span><strong>{{ job.render_ratio }}</strong></div>
+      <div><span>Avatar</span><strong>{{ job.avatar_mode }}</strong></div>
+      <div><span>Voice</span><strong>{{ job.voice_provider }}</strong></div>
+    </div>
+    <div class="code-block">
+      <h3>Output</h3>
+      <p>{{ job.output_path or 'Waiting for render' }}</p>
+      {% if job.output_path %}
+        <a class="btn btn-secondary" href="/jobs/{{ job.id }}/download">Download video</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Generated script</h2>
+    </div>
+    <div class="code-block">
+      <pre>{{ job.script_text or 'No script yet' }}</pre>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Steps</h2>
+  </div>
+  <div class="card-list">
+    {% for step in steps %}
+      <div class="item-card">
+        <div>
+          <h3>{{ step.step_key }}</h3>
+          <p>{{ step.status }}{% if step.finished_at %} · {{ format_dt(step.finished_at) }}{% endif %}</p>
+        </div>
+        <span class="tag">{{ step.status }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="split-grid">
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Distribution bundle</h2>
+    </div>
+    <pre class="code-block">{{ publish_bundle_json }}</pre>
+  </div>
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Auto refresh</h2>
+    </div>
+    <p class="muted">The page refreshes status every 3 seconds while the job is running.</p>
+    <script>
+      (function () {
+        const jobId = "{{ job.id }}";
+        async function tick() {
+          const res = await fetch(`/api/jobs/${jobId}/status`);
+          if (!res.ok) return;
+          const data = await res.json();
+          document.querySelector(".progress-bar").style.width = `${data.progress}%`;
+          document.getElementById("job-status").textContent = data.status;
+          if (data.status === "completed" || data.status === "failed") return;
+          setTimeout(tick, 3000);
+        }
+        tick();
+      })();
+    </script>
+  </div>
+</section>
+{% endblock %}

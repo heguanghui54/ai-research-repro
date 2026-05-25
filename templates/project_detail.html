@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <div class="eyebrow">Project</div>
+    <h1>{{ project.name }}</h1>
+    <p class="lead">{{ project.description or 'No description yet' }}</p>
+  </div>
+  <a class="btn btn-secondary" href="/dashboard">Back</a>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Generate a video</h2>
+  </div>
+  <form class="form-grid" method="post" action="/projects/{{ project.id }}/jobs">
+    <label class="full">Topic<input type="text" name="topic" placeholder="New theme different from the reference" required></label>
+    <label class="full">Override reference URL<input type="url" name="reference_url" value="{{ project.reference_url }}"></label>
+    <label>Avatar mode
+      <select name="avatar_mode">
+        <option value="cosyvoice">CosyVoice</option>
+        <option value="heygen">HeyGen</option>
+      </select>
+    </label>
+    <label>Voice provider
+      <select name="voice_provider">
+        <option value="deepseek">DeepSeek script</option>
+        <option value="openai">OpenAI Whisper</option>
+      </select>
+    </label>
+    <label>Render ratio
+      <select name="render_ratio">
+        <option value="9:16">9:16</option>
+        <option value="16:9">16:9</option>
+      </select>
+    </label>
+    <label>Autostart
+      <select name="auto_start">
+        <option value="1">Create and start</option>
+        <option value="0">Create only</option>
+      </select>
+    </label>
+    <div class="full actions-row">
+      <button class="btn btn-primary" type="submit">Generate</button>
+    </div>
+  </form>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Publish targets</h2>
+  </div>
+  <form class="form-grid" method="post" action="/projects/{{ project.id }}/targets">
+    <label>Platform
+      <select name="platform">
+        <option value="douyin">Douyin</option>
+        <option value="xiaohongshu">Xiaohongshu</option>
+        <option value="kuaishou">Kuaishou</option>
+        <option value="bilibili">Bilibili</option>
+        <option value="youtube">YouTube</option>
+        <option value="tiktok">TikTok</option>
+        <option value="multipost">MultiPost</option>
+      </select>
+    </label>
+    <label>Account / Handle<input type="text" name="handle" placeholder="account name or handle"></label>
+    <label>Adapter
+      <select name="adapter">
+        <option value="social-auto-upload">social-auto-upload</option>
+        <option value="multipost">MultiPost</option>
+      </select>
+    </label>
+    <label class="full">Extra settings JSON<textarea name="settings_json" rows="4" placeholder='{"tid":249,"account_name":"creator"}'>{}</textarea></label>
+    <div class="full actions-row">
+      <button class="btn btn-primary" type="submit">Add target</button>
+    </div>
+  </form>
+</section>
+
+<section class="split-grid">
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Recent jobs</h2>
+    </div>
+    {% if jobs %}
+      <div class="card-list">
+        {% for job in jobs %}
+          <a class="item-card" href="/jobs/{{ job.id }}">
+            <div>
+              <h3>{{ job.title or job.topic }}</h3>
+              <p>{{ job.status }} · {{ job.progress }}%</p>
+            </div>
+            <span class="tag">{{ job.avatar_mode }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="muted">No jobs yet.</p>
+    {% endif %}
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Distribution targets</h2>
+    </div>
+    {% if targets %}
+      <div class="card-list">
+        {% for target in targets %}
+          <div class="item-card">
+            <div>
+              <h3>{{ target.platform }}</h3>
+              <p>{{ target.handle or 'No handle' }} · {{ target.publish_mode }}</p>
+            </div>
+            <span class="tag">{{ 'On' if target.is_enabled else 'Off' }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="muted">Add publish targets after you connect MultiPost or platform accounts.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

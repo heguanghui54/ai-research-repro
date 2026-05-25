@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Reference to revenue-grade short videos</div>
+    <h1>把一个爆款参考链接，变成一条可批量生产、可一键分发的内容流水线。</h1>
+    <p class="lead">
+      DeepSeek 负责改写结构，CosyVoice / HeyGen 负责数字人播报，FFmpeg 负责自动剪辑，MultiPost 负责分发。
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="/register">Create workspace</a>
+      <a class="btn btn-secondary" href="/login">Sign in</a>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Supabase Postgres</span>
+      <span class="pill">FastAPI</span>
+      <span class="pill">FFmpeg</span>
+      <span class="pill">DeepSeek</span>
+    </div>
+  </div>
+  <aside class="hero-card">
+    <h3>What the MVP covers</h3>
+    <ul class="feature-list">
+      <li>参考视频链接分析</li>
+      <li>同结构不同主题脚本生成</li>
+      <li>数字人口播稿与字幕</li>
+      <li>自动渲染 MP4 与封面</li>
+      <li>多平台分发包导出</li>
+    </ul>
+    <div class="meter">
+      <span>Paid APIs to plan for</span>
+      <strong>{{ stats.paid_apis | join(" · ") }}</strong>
+    </div>
+    <div class="meter alt">
+      <span>Open source anchors</span>
+      <strong>{{ stats.open_source | join(" · ") }}</strong>
+    </div>
+  </aside>
+</section>
+{% endblock %}
+

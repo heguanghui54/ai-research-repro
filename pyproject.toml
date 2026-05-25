@@ -3,17 +3,29 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ai-research-repro"
+name = "viral-studio"
 version = "0.1.0"
-description = "A minimal end-to-end reproduction scaffold for AI Scientist v1 style research agents."
+description = "A full-stack AI video production workbench with Supabase-backed storage and server-rendered UI."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 dependencies = [
-  "numpy>=1.24.0",
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "jinja2>=3.1.0",
+  "python-multipart>=0.0.9",
+  "httpx>=0.27.0",
+  "sqlalchemy>=2.0.0",
+  "psycopg2-binary>=2.9.9",
+  "passlib[bcrypt]>=1.7.4",
+  "python-dotenv>=1.0.1",
+  "pillow>=10.4.0",
+  "yt-dlp>=2024.10.22",
+  "itsdangerous>=2.2.0",
+  "imageio-ffmpeg>=0.6.0",
 ]
 
 [project.scripts]
-ai-research-repro = "ai_research_repro.cli:main"
+viral-studio = "video_studio.main:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

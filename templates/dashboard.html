@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <div class="eyebrow">Workspace</div>
+    <h1>Hello, {{ user.display_name or user.email }}</h1>
+    <p class="lead">This is your command center for reference analysis, video generation, and distribution.</p>
+  </div>
+  <a class="btn btn-primary" href="/projects/new">New project</a>
+</section>
+
+<section class="stats-grid">
+  <div class="stat-card">
+    <span>Projects</span>
+    <strong>{{ projects|length }}</strong>
+  </div>
+  <div class="stat-card">
+    <span>Jobs</span>
+    <strong>{{ jobs|length }}</strong>
+  </div>
+  <div class="stat-card">
+    <span>Integrations</span>
+    <strong>{{ integrations|length }}</strong>
+  </div>
+</section>
+
+<section class="split-grid">
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Projects</h2>
+      <a href="/projects/new">Create</a>
+    </div>
+    {% if projects %}
+      <div class="card-list">
+        {% for project in projects %}
+          <a class="item-card" href="/projects/{{ project.id }}">
+            <div>
+              <h3>{{ project.name }}</h3>
+              <p>{{ project.description or 'No description yet' }}</p>
+            </div>
+            <span class="tag">{{ project.status }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="muted">No project yet. Create one to start the pipeline.</p>
+    {% endif %}
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <h2>Recent jobs</h2>
+    </div>
+    {% if jobs %}
+      <div class="card-list">
+        {% for job in jobs %}
+          <a class="item-card" href="/jobs/{{ job.id }}">
+            <div>
+              <h3>{{ job.title or job.topic }}</h3>
+              <p>{{ job.status }} · {{ job.progress }}%</p>
+            </div>
+            <span class="tag">{{ job.render_ratio }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="muted">No generated video yet.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+

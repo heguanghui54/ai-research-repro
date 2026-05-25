@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <div class="eyebrow">Integrations</div>
+    <h1>Backend API configuration</h1>
+    <p class="lead">Save provider keys per user, then let the pipeline pick them up automatically.</p>
+  </div>
+</section>
+
+<section class="stack">
+  {% for provider, label, placeholder in [
+    ("deepseek", "DeepSeek", "Script / title generation"),
+    ("openai", "OpenAI Whisper", "Transcription"),
+    ("heygen", "HeyGen", "Digital human rendering"),
+    ("multipost", "MultiPost", "Distribution")
+  ] %}
+    {% set item = integrations.get(provider) %}
+    <form class="panel form-grid" method="post" action="/settings/integrations">
+      <input type="hidden" name="provider" value="{{ provider }}">
+      <div class="full panel-head">
+        <h2>{{ label }}</h2>
+        <p class="muted">{{ placeholder }}</p>
+      </div>
+      <label>API key<input type="password" name="api_key" value="{{ item.api_key_enc if item else '' }}"></label>
+      <label>Base URL<input type="text" name="base_url" value="{{ item.base_url if item else '' }}" placeholder="Optional"></label>
+      <label>Model<input type="text" name="model" value="{{ item.model if item else '' }}" placeholder="Optional"></label>
+      <label class="full">Extra settings JSON<textarea name="extra_json" rows="5" placeholder='{"avatar_id":"...","voice_id":"..."}'>{{ item.settings | tojson(indent=2) if item else '{}' }}</textarea></label>
+      <div class="full actions-row">
+        <button class="btn btn-primary" type="submit">Save {{ label }}</button>
+      </div>
+    </form>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <div class="eyebrow">New Project</div>
+    <h1>Create a production workspace</h1>
+    <p class="lead">Capture the niche, reference link, and default distribution targets in one place.</p>
+  </div>
+</section>
+<form class="panel form-grid" method="post">
+  <label>Project name<input type="text" name="name" required></label>
+  <label>Niche<input type="text" name="niche" placeholder="finance / education / SaaS / ecommerce"></label>
+  <label class="full">Description<textarea name="description" rows="5" placeholder="What kind of content do we want to produce?"></textarea></label>
+  <label class="full">Reference URL<input type="url" name="reference_url" placeholder="Paste a viral video link"></label>
+  <label class="full">Target platforms<input type="text" name="target_platforms" value="douyin,xiaohongshu,bilibili,youtube,tiktok"></label>
+  <div class="full actions-row">
+    <button class="btn btn-primary" type="submit">Create project</button>
+    <a class="btn btn-ghost" href="/dashboard">Cancel</a>
+  </div>
+</form>
+{% endblock %}
+

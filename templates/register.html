@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-grid">
+  <div class="auth-copy">
+    <div class="eyebrow">Start building</div>
+    <h1>创建你的工作空间，开始批量生成视频。</h1>
+    <p class="lead">注册后你可以创建项目、粘贴参考链接、生成脚本并自动出片。</p>
+  </div>
+  <form class="panel auth-form" method="post">
+    <h2>Register</h2>
+    {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+    <label>Display name<input type="text" name="display_name" placeholder="Your studio name"></label>
+    <label>Email<input type="email" name="email" required></label>
+    <label>Password<input type="password" name="password" required></label>
+    <button class="btn btn-primary" type="submit">Create account</button>
+    <p class="muted">Already have one? <a href="/login">Sign in</a></p>
+  </form>
+</section>
+{% endblock %}
+

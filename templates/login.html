@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth-grid">
+  <div class="auth-copy">
+    <div class="eyebrow">Welcome back</div>
+    <h1>登录后继续你的短视频流水线。</h1>
+    <p class="lead">项目、任务、集成配置和成片都会跟着你的账号走。</p>
+  </div>
+  <form class="panel auth-form" method="post">
+    <h2>Login</h2>
+    {% if error %}<div class="alert">{{ error }}</div>{% endif %}
+    <label>Email<input type="email" name="email" required></label>
+    <label>Password<input type="password" name="password" required></label>
+    <button class="btn btn-primary" type="submit">Sign in</button>
+    <p class="muted">No account? <a href="/register">Create one</a></p>
+  </form>
+</section>
+{% endblock %}
+
