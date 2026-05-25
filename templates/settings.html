@@ -25,7 +25,9 @@
       <label>API key<input type="password" name="api_key" value="{{ item.api_key_enc if item else '' }}"></label>
       <label>Base URL<input type="text" name="base_url" value="{{ item.base_url if item else '' }}" placeholder="Optional"></label>
       <label>Model<input type="text" name="model" value="{{ item.model if item else '' }}" placeholder="Optional"></label>
-      <label class="full">Extra settings JSON<textarea name="extra_json" rows="5" placeholder='{"avatar_id":"...","voice_id":"..."}'>{{ item.settings | tojson(indent=2) if item else '{}' }}</textarea></label>
+      <label class="full">Extra settings JSON<textarea name="extra_json" rows="5" placeholder='{"avatar_id":"...","voice_id":"..."}'>{{ item.settings | tojson(indent=2) if item else '{}' }}</textarea>
+        <span class="muted">HeyGen 用这里放 `avatar_id` 和 `voice_id`；也可以直接用 `HEYGEN_AVATAR_ID` / `HEYGEN_VOICE_ID` 环境变量。MultiPost 可以放接口所需的补充字段。</span>
+      </label>
       <div class="full actions-row">
         <button class="btn btn-primary" type="submit">Save {{ label }}</button>
       </div>

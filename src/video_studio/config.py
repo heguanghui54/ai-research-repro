@@ -29,6 +29,8 @@ class Settings:
     openai_whisper_model: str = field(default_factory=lambda: _env("OPENAI_WHISPER_MODEL", "whisper-1"))
 
     heygen_api_key: str = field(default_factory=lambda: _env("HEYGEN_API_KEY"))
+    heygen_avatar_id: str = field(default_factory=lambda: _env("HEYGEN_AVATAR_ID"))
+    heygen_voice_id: str = field(default_factory=lambda: _env("HEYGEN_VOICE_ID"))
     multipost_api_base: str = field(default_factory=lambda: _env("MULTIPOST_API_BASE"))
     multipost_api_key: str = field(default_factory=lambda: _env("MULTIPOST_API_KEY"))
 
@@ -42,4 +44,3 @@ class Settings:
 
 settings = Settings()
 settings.ensure_dirs()
-

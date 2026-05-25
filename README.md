@@ -114,10 +114,54 @@ export DEEPSEEK_MODEL="deepseek-chat"
 
 - `DEEPSEEK_API_KEY`
 - `HEYGEN_API_KEY`，如果要启用高质量数字人
-- `HEYGEN_AVATAR_ID` / `HEYGEN_VOICE_ID`，或在应用内 `HeyGen` 集成里写入 `extra settings JSON`
+- `HEYGEN_AVATAR_ID` / `HEYGEN_VOICE_ID`，如果你想直接走环境变量，不想每次都在页面里填
+- 或在应用内 `HeyGen` 集成里写入 `extra settings JSON`
 - `OPENAI_API_KEY`，如果要启用 OpenAI Whisper
 - `MULTIPOST_API_BASE` / `MULTIPOST_API_KEY`，如果要接多平台分发 API
 - `sau` CLI，如果要启用 `social-auto-upload` 发布
+
+## 接入步骤
+
+### 1. HeyGen
+
+1. 在 HeyGen 控制台申请 `HEYGEN_API_KEY`。
+2. 到应用的 `Integrations` 页面，把 `heygen` 的 API key 填进去。
+3. 在同一页的 `Extra settings JSON` 里写入：
+
+```json
+{
+  "avatar_id": "你的 avatar look id",
+  "voice_id": "你的 voice id",
+  "callback_url": ""
+}
+```
+
+4. 你也可以直接把 `HEYGEN_AVATAR_ID` 和 `HEYGEN_VOICE_ID` 放进系统环境变量，代码会优先读页面配置，页面没填时会回退到环境变量。
+5. `avatar_id` 从 `GET /v3/avatars/looks?avatar_type=digital_twin&ownership=private` 或 `GET /v3/avatars/looks` 里取返回的 `id` 字段。
+6. `voice_id` 从 `GET /v3/voices` 里选，优先选你想要的语言和音色。
+7. 如果是 private avatar 并且还没通过授权，先在 HeyGen 完成头像/数字人授权，状态要是 approved 才能用。
+
+### 2. OpenAI Whisper
+
+1. 在 OpenAI 平台申请 `OPENAI_API_KEY`。
+2. 在应用 `Integrations` 页把 `openai` 的 API key 填进去。
+3. `Base URL` 保持默认 `https://api.openai.com/v1`。
+4. `Model` 可以先填 `whisper-1`，如果你想用新模型也可以换成 `gpt-4o-mini-transcribe`。
+5. 如果你不想在页面里填，直接在系统环境变量里设 `OPENAI_API_KEY` 也可以，代码会优先读页面配置，页面没填时回退到环境变量。
+
+### 3. social-auto-upload
+
+1. 先安装 `sau` CLI，并确保终端里能直接运行 `sau --help`。
+2. 用 `sau douyin login --account <account_name>` 之类的命令登录对应平台。
+3. 在项目页的 Publish target 里把 `Adapter` 选成 `social-auto-upload`。
+4. `Account / Handle` 填你登录时用的账号名。
+5. 需要 Bilibili 时，可以在 `Extra settings JSON` 里放 `{"tid": 249}` 之类的参数。
+
+### 4. MultiPost
+
+1. 你可以把它当成 HTTP 分发适配器接到自己的后端。
+2. 在 `Integrations` 页配置 `multipost` 的 `Base URL` 和 `API key`。
+3. 当前仓库里的实现默认把它当成 `/publish` 风格的 JSON API；如果你的实际接口路径不同，把 `src/video_studio/services/distributor.py` 里的地址改成你的真实端点即可。
 
 ## 安全提醒
 

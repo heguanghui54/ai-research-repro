@@ -237,6 +237,33 @@ def list_publish_targets(db: Session, owner_id: str, project_id: Optional[str] =
     return list(db.execute(stmt).scalars().all())
 
 
+def list_publish_jobs(
+    db: Session,
+    owner_id: str,
+    status: Optional[str] = None,
+    limit: int = 100,
+) -> List[PublishJob]:
+    stmt = (
+        select(PublishJob)
+        .join(VideoJob, PublishJob.job_id == VideoJob.id)
+        .where(VideoJob.owner_id == owner_id)
+        .order_by(desc(PublishJob.created_at))
+        .limit(limit)
+    )
+    if status and status != "all":
+        stmt = stmt.where(PublishJob.status == status)
+    return list(db.execute(stmt).scalars().all())
+
+
+def get_publish_job(db: Session, owner_id: str, publish_job_id: str) -> Optional[PublishJob]:
+    stmt = (
+        select(PublishJob)
+        .join(VideoJob, PublishJob.job_id == VideoJob.id)
+        .where(PublishJob.id == publish_job_id, VideoJob.owner_id == owner_id)
+    )
+    return db.execute(stmt).scalar_one_or_none()
+
+
 def upsert_publish_target(
     db: Session,
     owner_id: str,

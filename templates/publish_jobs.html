@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <div class="eyebrow">Publishing</div>
+    <h1>Publish task list</h1>
+    <p class="lead">Track every platform push, inspect failures, and retry without re-running the full video pipeline.</p>
+  </div>
+  <div class="actions-row">
+    <a class="btn btn-secondary" href="/publish-jobs?status=all">All</a>
+    <a class="btn btn-secondary" href="/publish-jobs?status=failed">Failed <span class="tag">{{ failed_count }}</span></a>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Filters</h2>
+    <p class="muted">Current: {{ status }}</p>
+  </div>
+  <div class="pill-row">
+    <a class="pill" href="/publish-jobs?status=all">All</a>
+    <a class="pill" href="/publish-jobs?status=queued">Queued</a>
+    <a class="pill" href="/publish-jobs?status=running">Running</a>
+    <a class="pill" href="/publish-jobs?status=published">Published</a>
+    <a class="pill" href="/publish-jobs?status=failed">Failed</a>
+    <a class="pill" href="/publish-jobs?status=manual">Manual</a>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Tasks</h2>
+    <p class="muted">{{ items|length }} records</p>
+  </div>
+  {% if items %}
+    <div class="card-list">
+      {% for row in items %}
+        {% set pj = row.publish_job %}
+        {% set job = row.job %}
+        {% set target = row.target %}
+        <div class="item-card">
+          <div class="stack-tight">
+            <div class="row-line">
+              <h3>{% if job %}{{ job.title or job.topic }}{% else %}Unknown job{% endif %}</h3>
+              <span class="tag">{{ pj.status }}</span>
+            </div>
+            <p>{% if target %}{{ target.platform }} · {{ target.handle }}{% else %}unknown target{% endif %}</p>
+            <p class="muted">Job: {% if job %}<a href="/jobs/{{ pj.job_id }}">{{ job.title or job.topic }}</a>{% else %}{{ pj.job_id }}{% endif %}</p>
+            {% if pj.error %}
+              <div class="alert">Error: {{ pj.error }}</div>
+            {% endif %}
+            <pre class="code-block">{{ json_dumps(pj.payload, indent=2, ensure_ascii=False) }}</pre>
+          </div>
+          <div class="stack-right">
+            <a class="btn btn-secondary" href="/jobs/{{ pj.job_id }}">Open video</a>
+            {% if pj.status == 'failed' %}
+              <form method="post" action="/publish-jobs/{{ pj.id }}/retry">
+                <button class="btn btn-primary" type="submit">Retry</button>
+              </form>
+            {% endif %}
+            {% if pj.remote_url %}
+              <a class="btn btn-ghost" href="{{ pj.remote_url }}" target="_blank" rel="noreferrer">Remote link</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="muted">No publish tasks yet. Run a video job with publish targets configured.</p>
+  {% endif %}
+</section>
+{% endblock %}

@@ -21,6 +21,20 @@ class DistributionPackage:
     platforms: list[str]
     payload: dict
 
+    @classmethod
+    def from_payload(cls, payload: dict) -> "DistributionPackage":
+        media = payload.get("media") or {}
+        platforms = payload.get("platforms") or []
+        hashtags = payload.get("hashtags") or []
+        title = payload.get("title") or ""
+        description = " | ".join(filter(None, [title, " ".join(hashtags[:6])]))
+        return cls(
+            title=title,
+            description=description,
+            platforms=list(platforms),
+            payload={**payload, "media": media, "platforms": list(platforms), "hashtags": list(hashtags)},
+        )
+
 
 class DistributorClient:
     def __init__(self) -> None:
@@ -94,4 +108,3 @@ class DistributorClient:
         }
         description = " | ".join(filter(None, [title, " ".join(hashtags[:6])]))
         return DistributionPackage(title=title, description=description, platforms=platforms, payload=payload)
-

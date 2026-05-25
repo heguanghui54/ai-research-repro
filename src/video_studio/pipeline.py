@@ -13,7 +13,8 @@ from sqlalchemy import select
 from .config import settings
 from .crud import add_job_step, create_reference_video, get_integration, list_publish_targets, create_publish_job
 from .db import session_scope
-from .models import JobStep, Project, ReferenceVideo, VideoJob
+from .models import JobStep, Project, PublishJob, PublishTarget, ReferenceVideo, VideoJob
+from .services.distributor import DistributionPackage
 from .services.deepseek import DeepSeekClient
 from .services.distributor import DistributorClient
 from .services.ffmpeg import FFmpegRenderer
@@ -104,11 +105,12 @@ class VideoPipeline:
             if job.avatar_mode == "heygen":
                 heygen_cfg = get_integration(db, job.owner_id, "heygen")
                 heygen_payload = (heygen_cfg.settings if heygen_cfg else {}) or {}
-                avatar_id = heygen_payload.get("avatar_id", "").strip()
-                voice_id = heygen_payload.get("voice_id", "").strip()
-                if not (heygen_cfg and heygen_cfg.api_key_enc and avatar_id and voice_id):
+                avatar_id = str(heygen_payload.get("avatar_id") or settings.heygen_avatar_id or "").strip()
+                voice_id = str(heygen_payload.get("voice_id") or settings.heygen_voice_id or "").strip()
+                heygen_api_key = str((heygen_cfg.api_key_enc if heygen_cfg else "") or settings.heygen_api_key or "").strip()
+                if not (heygen_api_key and avatar_id and voice_id):
                     raise RuntimeError("HeyGen is selected but api_key/avatar_id/voice_id are not configured")
-                heygen = HeyGenClient(api_key=heygen_cfg.api_key_enc, base_url=heygen_cfg.base_url or None)
+                heygen = HeyGenClient(api_key=heygen_api_key, base_url=(heygen_cfg.base_url if heygen_cfg else None) or None)
                 video_req = asyncio.run(
                     heygen.create_avatar_video(
                         title=job.title or brief.title,
@@ -197,6 +199,26 @@ class VideoPipeline:
             job.status = "completed"
             job.finished_at = datetime.now(timezone.utc)
             db.commit()
+
+    def retry_publish_job(self, db, publish_job: PublishJob) -> dict:
+        job = db.get(VideoJob, publish_job.job_id)
+        target = db.get(PublishTarget, publish_job.target_id)
+        if not job or not target:
+            raise ValueError("Publish job target or video job no longer exists")
+        if not job.output_path:
+            raise ValueError("Video output is not ready")
+        package = DistributionPackage.from_payload(publish_job.payload or job.publish_bundle or {})
+        publish_job.status = "running"
+        publish_job.error = ""
+        db.commit()
+        result = self._publish_target(db, job, target, package, Path(job.output_path), list(package.platforms or []))
+        publish_job.status = "published" if result.get("status") == "published" else result.get("status", "manual")
+        publish_job.remote_id = str(result.get("remote_id", ""))
+        publish_job.remote_url = str(result.get("remote_url", ""))
+        publish_job.payload = {**(publish_job.payload or {}), "retry_result": result}
+        publish_job.error = str(result.get("error", ""))
+        db.commit()
+        return result
 
     def _publish_to_targets(self, db, job: VideoJob, project: Project, bundle, video_path: Path, hashtags: list[str]) -> list[dict]:
         results: list[dict] = []
@@ -290,8 +312,9 @@ class VideoPipeline:
         downloaded = await self._download_reference_media(reference_url)
         if downloaded:
             whisper_cfg = get_integration(db, owner_id, "openai")
-            if whisper_cfg and whisper_cfg.api_key_enc:
-                whisper = WhisperClient(api_key=whisper_cfg.api_key_enc, base_url=whisper_cfg.base_url or None, model=whisper_cfg.model or None)
+            whisper_api_key = str((whisper_cfg.api_key_enc if whisper_cfg else "") or settings.openai_api_key or "").strip()
+            if whisper_api_key:
+                whisper = WhisperClient(api_key=whisper_api_key, base_url=(whisper_cfg.base_url if whisper_cfg else None) or None, model=(whisper_cfg.model if whisper_cfg else None) or None)
                 transcript = await whisper.transcribe_file(downloaded, prompt=title)
                 transcript_text = transcript.text or transcript_text
                 transcript_json = transcript.raw.get("segments", []) if isinstance(transcript.raw, dict) else []

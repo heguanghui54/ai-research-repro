@@ -27,15 +27,17 @@ from .crud import (
     get_job,
     get_job_steps,
     get_project,
+    get_publish_job,
     list_integrations,
     list_jobs,
     list_projects,
+    list_publish_jobs,
     list_publish_targets,
     upsert_integration,
     upsert_publish_target,
 )
 from .db import Base, SessionLocal, engine
-from .models import AppUser, Integration, Project, PublishTarget, VideoJob
+from .models import AppUser, Integration, Project, PublishJob, PublishTarget, VideoJob
 from .pipeline import VideoPipeline
 from .utils import format_dt
 
@@ -73,6 +75,7 @@ def render(request: Request, template_name: str, **context):
             "user": user,
             "settings": settings,
             "format_dt": format_dt,
+            "json_dumps": json.dumps,
         }
     )
     return templates.TemplateResponse(template_name, context)
@@ -151,6 +154,26 @@ def dashboard(request: Request, db: Session = Depends(get_db)):
         projects=projects,
         jobs=jobs,
         integrations=integrations,
+    )
+
+
+@app.get("/publish-jobs", response_class=HTMLResponse)
+def publish_jobs_page(request: Request, status: str = "all", db: Session = Depends(get_db)):
+    user = require_user(request, db)
+    publish_jobs = list_publish_jobs(db, user.id, status=status, limit=100)
+    items = []
+    for publish_job in publish_jobs:
+        job = db.get(VideoJob, publish_job.job_id)
+        target = db.get(PublishTarget, publish_job.target_id)
+        items.append({"publish_job": publish_job, "job": job, "target": target})
+    failed_count = len(list_publish_jobs(db, user.id, status="failed", limit=1000))
+    return render(
+        request,
+        "publish_jobs.html",
+        user=user,
+        items=items,
+        status=status,
+        failed_count=failed_count,
     )
 
 
@@ -341,6 +364,27 @@ def job_status(request: Request, job_id: str, db: Session = Depends(get_db)):
         "thumbnail_url": job.thumbnail_url,
         "updated_at": format_dt(job.updated_at),
     }
+
+
+@app.post("/publish-jobs/{publish_job_id}/retry")
+def publish_job_retry(request: Request, publish_job_id: str, db: Session = Depends(get_db)):
+    user = require_user(request, db)
+    publish_job = get_publish_job(db, user.id, publish_job_id)
+    if not publish_job:
+        raise HTTPException(status_code=404, detail="Publish job not found")
+    publish_job.status = "queued"
+    publish_job.error = ""
+    db.commit()
+
+    def _retry() -> None:
+        with SessionLocal() as retry_db:
+            retry_pj = get_publish_job(retry_db, user.id, publish_job_id)
+            if not retry_pj:
+                return
+            pipeline.retry_publish_job(retry_db, retry_pj)
+
+    executor.submit(_retry)
+    return _auth_redirect("/publish-jobs?status=failed")
 
 
 @app.get("/settings", response_class=HTMLResponse)

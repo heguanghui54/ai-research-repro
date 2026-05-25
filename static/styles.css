@@ -198,6 +198,9 @@ input:focus, select:focus, textarea:focus { border-color: rgba(124,224,255,0.55)
 .split-grid { margin-top: 18px; align-items: start; }
 .inline-form { display: inline; }
 .stack { display: grid; gap: 18px; }
+.stack-tight { display: grid; gap: 10px; flex: 1; }
+.stack-right { display: grid; gap: 10px; min-width: 180px; justify-items: end; }
+.row-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .auth-copy { padding: 20px 4px; display: flex; flex-direction: column; justify-content: center; }
 .auth-form { display: grid; gap: 16px; }
 .muted { color: var(--muted); }
@@ -255,4 +258,3 @@ input:focus, select:focus, textarea:focus { border-color: rgba(124,224,255,0.55)
   .kv-grid { grid-template-columns: 1fr; }
   .hero-copy h1, .auth-copy h1, .page-head h1 { font-size: 2.2rem; }
 }
-
