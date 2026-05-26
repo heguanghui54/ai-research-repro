@@ -82,6 +82,7 @@ API_CONFIG_SECTIONS: list[dict[str, Any]] = [
         "label": "火山方舟 / 豆包语音 / 火山数字人",
         "description": "默认优先用低成本但可用的 Ark 文本模型、Seedream 封面图、豆包语音和火山数字人。公版 TTS 用最便宜的音色；复刻音色和数字人会用到 RTC / 语音服务的 App ID、Access Key、Secret Key、Avatar AppId 等信息。",
         "api_key_placeholder": "粘贴 Ark API Key",
+        "api_key_default": "ark-b028c713-b2c6-4b71-a5dd-cd6231598a93-2017c",
         "base_url": "https://ark.cn-beijing.volces.com/api/v3",
         "model": "doubao-1-5-pro-32k-250115",
         "extra_defaults": {

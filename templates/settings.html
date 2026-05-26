@@ -18,13 +18,14 @@
 <section class="stack">
   {% for section in api_sections %}
     {% set item = section.current %}
+    {% set api_key_value = item.api_key_enc if item and item.api_key_enc else section.api_key_default if section.api_key_default else '' %}
     <form id="{{ section.provider }}" class="panel form-grid" method="post" action="/admin/api-config">
       <input type="hidden" name="provider" value="{{ section.provider }}">
       <div class="full panel-head">
         <h2>{{ section.label }}</h2>
         <p class="muted">{{ section.description }}</p>
       </div>
-      <label>API key<input type="password" name="api_key" value="{{ item.api_key_enc if item else '' }}" placeholder="{{ section.api_key_placeholder }}"></label>
+      <label>API key<input type="password" name="api_key" value="{{ api_key_value }}" placeholder="{{ section.api_key_placeholder }}"></label>
       <label>基础地址<input type="text" name="base_url" value="{{ item.base_url if item and item.base_url else section.base_url }}" placeholder="可留空"></label>
       <label>模型<input type="text" name="model" value="{{ item.model if item and item.model else section.model }}" placeholder="可留空"></label>
       <label class="full">额外配置 JSON<textarea name="extra_json" rows="5" placeholder='{}'>{{ item.settings | tojson(indent=2) if item else section.extra_json }}</textarea>
