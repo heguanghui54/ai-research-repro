@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
-from textwrap import wrap
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 
+from .fonts import load_cjk_font, wrap_cjk_text_limited
 from ..utils import ensure_path
 
 
@@ -45,33 +45,26 @@ class HeyGenPreviewRenderer:
         draw.ellipse((-120, 120, width * 0.55, height * 0.62), fill=(58, 132, 212))
         draw.ellipse((width * 0.48, height * 0.10, width * 1.15, height * 0.68), fill=(214, 107, 92))
 
-        try:
-            title_font = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 76)
-            body_font = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 40)
-            small_font = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 32)
-        except Exception:
-            title_font = ImageFont.load_default()
-            body_font = ImageFont.load_default()
-            small_font = ImageFont.load_default()
+        title_font = load_cjk_font(50)
+        body_font = load_cjk_font(30)
+        small_font = load_cjk_font(26)
 
         margin = 86
         draw.rounded_rectangle((margin, 84, width - margin, height - 84), radius=46, outline=(255, 255, 255), width=3)
-        draw.rounded_rectangle((margin + 24, 112, margin + 360, 168), radius=22, fill=(24, 41, 66))
-        draw.text((margin + 44, 124), "HEYGEN 预览模式", fill=(124, 224, 255), font=small_font)
+        draw.rounded_rectangle((margin + 24, 112, margin + 300, 164), radius=20, fill=(24, 41, 66))
+        draw.text((margin + 40, 121), "HEYGEN 预览模式", fill=(124, 224, 255), font=small_font)
 
-        y = 220
-        draw.text((margin, y), "即使没有 API，也能先看见", fill=(255, 255, 255), font=title_font)
-        y += 88
-        for chunk in wrap(title, width=16):
+        y = 284
+        for chunk in wrap_cjk_text_limited(title, title_font, width - margin * 2, max_lines=2):
             draw.text((margin, y), chunk, fill=(255, 255, 255), font=title_font)
-            y += 86
+            y += 54
 
-        y += 34
+        y += 28
         draw.text((margin, y), "Hook", fill=(124, 224, 255), font=small_font)
-        y += 44
-        for chunk in wrap(hook, width=24):
+        y += 32
+        for chunk in wrap_cjk_text_limited(hook, body_font, width - margin * 2, max_lines=2):
             draw.text((margin, y), chunk, fill=(235, 245, 255), font=body_font)
-            y += 56
+            y += 40
 
         # Avatar stage
         stage_top = int(height * 0.45)
@@ -94,13 +87,13 @@ class HeyGenPreviewRenderer:
 
         draw.rounded_rectangle((margin + 28, stage_bottom + 26, width - margin - 28, stage_bottom + 156), radius=28, fill=(20, 30, 52))
         draw.text((margin + 48, stage_bottom + 52), "字幕预览", fill=(124, 224, 255), font=small_font)
-        y = stage_bottom + 96
-        for idx, line in enumerate((subtitle_lines or [hook])[:3], start=1):
-            draw.text((margin + 48, y), f"{idx}. {line[:44]}", fill=(245, 248, 252), font=body_font)
-            y += 42
+        y = stage_bottom + 92
+        for idx, line in enumerate((subtitle_lines or [hook])[:2], start=1):
+            for sub_line in wrap_cjk_text_limited(f"{idx}. {line}", body_font, width - margin * 2 - 48, max_lines=2):
+                draw.text((margin + 48, y), sub_line, fill=(245, 248, 252), font=body_font)
+                y += 34
 
         footer = "这是一版模拟效果，接入 HeyGen API 后会变成真实数字人视频"
-        draw.text((margin, height - 150), footer, fill=(220, 226, 235), font=small_font)
+        draw.text((margin, height - 132), footer, fill=(220, 226, 235), font=small_font)
         img.save(output)
         return HeyGenPreviewResult(preview_path=output)
-

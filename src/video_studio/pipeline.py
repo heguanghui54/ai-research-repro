@@ -100,10 +100,12 @@ class VideoPipeline:
                     platform="short-video",
                 )
             )
-            job.title = brief.title
+            title = "MVP 最小闭环" if mvp_mode else brief.title
+            job.title = title
             job.script_text = brief.script
             job.script_json = {
-                "title": brief.title,
+                "title": title,
+                "generated_title": brief.title,
                 "hook": brief.hook,
                 "script": brief.script,
                 "subtitle_lines": brief.subtitle_lines,
@@ -115,6 +117,18 @@ class VideoPipeline:
             self._finish_step(db, job.id, "script-generation", job.script_json)
             job.progress = 38
             db.commit()
+
+            preview_hook = brief.hook
+            preview_subtitle_lines = brief.subtitle_lines or job.script_text.splitlines()
+            if mvp_mode:
+                preview_hook = "先用最少资源跑通一个视频项目。"
+                preview_subtitle_lines = [
+                    "先把最强钩子放在前 3 秒。",
+                    "第二步，用短句和高密度信息拉住注意力。",
+                    "最后先跑通闭环，再谈更精致的效果。",
+                ]
+            render_hook = preview_hook if mvp_mode else brief.hook
+            render_script_lines = preview_subtitle_lines if mvp_mode else (brief.subtitle_lines or job.script_text.splitlines())
 
             render_dir = ensure_path(settings.render_dir / job.id)
             cover_image_path: Optional[Path] = None
@@ -144,7 +158,7 @@ class VideoPipeline:
                         project_name=project.name,
                         topic=job.topic,
                         title=job.title or brief.title,
-                        hook=brief.hook or reference.hook_summary,
+                        hook=preview_hook or reference.hook_summary,
                         script=brief.script,
                     )
                     cover_result = asyncio.run(
@@ -172,8 +186,8 @@ class VideoPipeline:
                 preview_renderer = VolcAvatarPreviewRenderer(render_dir)
                 preview = preview_renderer.build_preview_card(
                     title=job.title or brief.title,
-                    hook=brief.hook,
-                    subtitle_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                    hook=preview_hook,
+                    subtitle_lines=preview_subtitle_lines,
                     ratio=job.render_ratio,
                 )
                 cover_image_path = preview.preview_path
@@ -203,8 +217,8 @@ class VideoPipeline:
                 preview_renderer = VolcAvatarPreviewRenderer(render_dir)
                 preview = preview_renderer.build_preview_card(
                     title=job.title or brief.title,
-                    hook=brief.hook,
-                    subtitle_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                    hook=preview_hook,
+                    subtitle_lines=preview_subtitle_lines,
                     ratio=job.render_ratio,
                 )
                 avatar_thumb = str(preview.preview_path)
@@ -245,7 +259,7 @@ class VideoPipeline:
                 try:
                     avatar_session = avatar_client.test_session(
                         title=job.title or brief.title,
-                        hook=brief.hook or reference.hook_summary,
+                        hook=render_hook or reference.hook_summary,
                         script_text=job.script_text,
                         voice_mode=voice_mode,
                         stop_after=True,
@@ -294,8 +308,8 @@ class VideoPipeline:
                 renderer = FFmpegRenderer(render_dir)
                 render = renderer.render_short_video(
                     title=job.title or brief.title,
-                    hook=brief.hook,
-                    script_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                    hook=render_hook,
+                    script_lines=render_script_lines,
                     audio_path=voice.audio_path,
                     output_name=slugify(job.title or brief.title),
                     ratio=job.render_ratio,
@@ -355,16 +369,16 @@ class VideoPipeline:
                     preview_renderer = HeyGenPreviewRenderer(render_dir)
                     preview = preview_renderer.build_preview_card(
                         title=job.title or brief.title,
-                        hook=brief.hook,
-                        subtitle_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                        hook=preview_hook,
+                        subtitle_lines=preview_subtitle_lines,
                         ratio=job.render_ratio,
                     )
                     voice = VoiceSynthesizer(provider="heygen_preview").synthesize(job.script_text, render_dir, stem="heygen-preview-voice")
                     renderer = FFmpegRenderer(render_dir)
                     render = renderer.render_short_video(
                         title=job.title or brief.title,
-                        hook=brief.hook,
-                        script_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                        hook=render_hook,
+                        script_lines=render_script_lines,
                         audio_path=voice.audio_path,
                         output_name=f"{slugify(job.title or brief.title)}-heygen-preview",
                         ratio=job.render_ratio,
@@ -465,8 +479,8 @@ class VideoPipeline:
                     renderer = FFmpegRenderer(render_dir)
                     render = renderer.render_short_video(
                         title=job.title or brief.title,
-                        hook=brief.hook,
-                        script_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                        hook=render_hook,
+                        script_lines=render_script_lines,
                         audio_path=voice.audio_path,
                         output_name=slugify(job.title or brief.title),
                         ratio=job.render_ratio,
@@ -506,8 +520,8 @@ class VideoPipeline:
                 renderer = FFmpegRenderer(render_dir)
                 render = renderer.render_short_video(
                     title=job.title or brief.title,
-                    hook=brief.hook,
-                    script_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                    hook=render_hook,
+                    script_lines=render_script_lines,
                     audio_path=voice.audio_path,
                     output_name=slugify(job.title or brief.title),
                     ratio=job.render_ratio,
@@ -769,7 +783,7 @@ class VideoPipeline:
     def _finish_step(self, db, job_id: str, step_key: str, detail: dict) -> None:
         step = db.execute(
             select(JobStep).where(JobStep.job_id == job_id, JobStep.step_key == step_key).order_by(JobStep.created_at.desc())
-        ).scalar_one_or_none()
+        ).scalars().first()
         if step is None:
             step = add_job_step(db, job_id, step_key, "done", detail)
         step.status = "done"

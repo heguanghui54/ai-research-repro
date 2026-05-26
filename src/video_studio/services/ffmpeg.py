@@ -5,10 +5,10 @@ import shutil
 import subprocess
 from dataclasses import dataclass
 from pathlib import Path
-from textwrap import wrap
 
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+from PIL import Image, ImageDraw, ImageOps
 
+from .fonts import load_cjk_font, primary_cjk_font_name, wrap_cjk_text
 from ..utils import ensure_path
 
 
@@ -102,38 +102,34 @@ class FFmpegRenderer:
             img = Image.blend(img, overlay, 0.34)
             draw = ImageDraw.Draw(img)
 
-        try:
-            title_font = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 76)
-            body_font = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 42)
-            small_font = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 34)
-        except Exception:
-            title_font = ImageFont.load_default()
-            body_font = ImageFont.load_default()
-            small_font = ImageFont.load_default()
+        title_font = load_cjk_font(76)
+        body_font = load_cjk_font(42)
+        small_font = load_cjk_font(34)
 
         margin = 88
         y = 140
         draw.rounded_rectangle((margin - 24, 84, width - margin + 24, height - 84), radius=48, outline=(255, 255, 255), width=4)
         draw.text((margin, y), "VIRAL STUDIO", fill=(255, 214, 102), font=small_font)
         y += 90
-        for chunk in wrap(title, width=18):
+        for chunk in wrap_cjk_text(title, title_font, width - margin * 2):
             draw.text((margin, y), chunk, fill=(255, 255, 255), font=title_font)
-            y += 88
+            y += 78
 
         y += 36
         draw.text((margin, y), "Hook", fill=(128, 216, 255), font=small_font)
         y += 44
-        for chunk in wrap(hook, width=24):
+        for chunk in wrap_cjk_text(hook, body_font, width - margin * 2):
             draw.text((margin, y), chunk, fill=(235, 245, 255), font=body_font)
-            y += 58
+            y += 54
 
         y += 32
         draw.line((margin, y, width - margin, y), fill=(255, 255, 255, 80), width=3)
         y += 30
         for idx, line in enumerate(lines[:4], start=1):
-            draw.ellipse((margin, y + 10, margin + 16, y + 26), fill=(255, 214, 102))
-            draw.text((margin + 28, y), line[:48], fill=(245, 248, 252), font=body_font)
-            y += 76
+            for sub_line in wrap_cjk_text(f"{idx}. {line}", body_font, width - margin * 2 - 28):
+                draw.ellipse((margin, y + 10, margin + 16, y + 26), fill=(255, 214, 102))
+                draw.text((margin + 28, y), sub_line, fill=(245, 248, 252), font=body_font)
+                y += 56
 
         footer = "Auto-cut · AI script · Digital human ready"
         draw.text((margin, height - 140), footer, fill=(220, 226, 235), font=small_font)
@@ -177,7 +173,7 @@ class FFmpegRenderer:
             "-i",
             str(audio),
             "-vf",
-            f"subtitles={subtitle_path}:force_style='FontSize=24,PrimaryColour=&H00FFFFFF&'",
+            f"subtitles={subtitle_path}:force_style='FontName={primary_cjk_font_name()},FontSize=24,PrimaryColour=&H00FFFFFF&'",
             "-c:v",
             "libx264",
             "-tune",
@@ -248,12 +244,9 @@ class FFmpegRenderer:
         img = Image.new("RGB", (1080, 1920), (12, 18, 34))
         draw = ImageDraw.Draw(img)
         draw.rounded_rectangle((72, 120, 1008, 1800), radius=42, outline=(255, 255, 255), width=4)
-        try:
-            font = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 64)
-        except Exception:
-            font = ImageFont.load_default()
-        draw.text((108, 220), "Seedance 预览", fill=(130, 220, 255), font=font)
-        draw.text((108, 340), title[:24], fill=(255, 255, 255), font=font)
+        draw.text((108, 220), "Seedance 预览", fill=(130, 220, 255), font=load_cjk_font(64))
+        for idx, line in enumerate(wrap_cjk_text(title, load_cjk_font(64), 780)):
+            draw.text((108, 340 + idx * 72), line, fill=(255, 255, 255), font=load_cjk_font(64))
         img.save(path)
 
     def _mux_video_audio(self, output: Path, source_video: Path, audio: Path, subtitles: Path) -> None:
@@ -267,7 +260,7 @@ class FFmpegRenderer:
             "-i",
             str(audio),
             "-vf",
-            f"subtitles={subtitle_path}:force_style='FontSize=24,PrimaryColour=&H00FFFFFF&'",
+            f"subtitles={subtitle_path}:force_style='FontName={primary_cjk_font_name()},FontSize=24,PrimaryColour=&H00FFFFFF&'",
             "-map",
             "0:v:0",
             "-map",
