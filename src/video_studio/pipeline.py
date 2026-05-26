@@ -42,6 +42,8 @@ class VideoPipeline:
             project = db.get(Project, job.project_id)
             if not project:
                 raise ValueError(f"Project not found: {job.project_id}")
+            project_settings = project.settings or {}
+            mvp_mode = bool(project_settings.get("mvp_mode"))
 
             job.status = "running"
             job.started_at = datetime.now(timezone.utc)
@@ -70,12 +72,14 @@ class VideoPipeline:
 
             add_job_step(db, job.id, "script-generation", "running", {"topic": job.topic})
             db.commit()
-            llm_cfg = (
+            llm_cfg = None if mvp_mode else (
                 get_integration(db, job.owner_id, "volcengine")
                 or get_integration(db, job.owner_id, "monica")
                 or get_integration(db, job.owner_id, "deepseek")
             )
-            if llm_cfg and llm_cfg.provider == "volcengine":
+            if mvp_mode:
+                deepseek = DeepSeekClient(api_key=None, base_url=None, model=None)
+            elif llm_cfg and llm_cfg.provider == "volcengine":
                 deepseek = VolcArkClient(
                     api_key=(llm_cfg.api_key_enc if llm_cfg else None) or None,
                     base_url=(llm_cfg.base_url if llm_cfg else None) or None,
@@ -114,7 +118,7 @@ class VideoPipeline:
 
             render_dir = ensure_path(settings.render_dir / job.id)
             cover_image_path: Optional[Path] = None
-            cover_cfg = get_integration(db, job.owner_id, "volcengine") or get_integration(db, job.owner_id, "monica")
+            cover_cfg = None if mvp_mode else (get_integration(db, job.owner_id, "volcengine") or get_integration(db, job.owner_id, "monica"))
             if cover_cfg and cover_cfg.api_key_enc:
                 try:
                     cover_settings = cover_cfg.settings or {}
@@ -164,6 +168,22 @@ class VideoPipeline:
                 except Exception as exc:
                     job.pipeline_state = {**(job.pipeline_state or {}), "cover_image_error": str(exc)}
                     db.commit()
+            elif mvp_mode:
+                preview_renderer = VolcAvatarPreviewRenderer(render_dir)
+                preview = preview_renderer.build_preview_card(
+                    title=job.title or brief.title,
+                    hook=brief.hook,
+                    subtitle_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                    ratio=job.render_ratio,
+                )
+                cover_image_path = preview.preview_path
+                job.pipeline_state = {
+                    **(job.pipeline_state or {}),
+                    "mvp_mode": True,
+                    "cover_image": str(preview.preview_path),
+                    "cover_model": "local-preview",
+                }
+                db.commit()
 
             add_job_step(db, job.id, "voice-generation", "running", {"provider": job.avatar_mode})
             db.commit()
@@ -503,8 +523,8 @@ class VideoPipeline:
                         "video_path": str(render.video_path),
                         "thumbnail_path": str(render.thumbnail_path),
                         "subtitle_path": str(render.subtitle_path),
-                        "poster_path": str(render.poster_path),
-                    },
+                    "poster_path": str(render.poster_path),
+                },
                 )
                 job.progress = 72
                 db.commit()

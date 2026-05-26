@@ -6,7 +6,12 @@
     <h1>你好，{{ user.display_name or user.email }}</h1>
     <p class="lead">这里是你的参考分析、视频生成和分发控制中心。</p>
   </div>
-  <a class="btn btn-primary" href="/projects/new">新建项目</a>
+  <div class="actions-row">
+    <form method="post" action="/mvp/demo" style="display:inline;">
+      <button class="btn btn-primary" type="submit">一键 MVP</button>
+    </form>
+    <a class="btn btn-secondary" href="/projects/new">新建项目</a>
+  </div>
 </section>
 
 <section class="stats-grid">

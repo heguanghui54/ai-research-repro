@@ -257,6 +257,37 @@ def dashboard(request: Request, db: Session = Depends(get_db)):
     )
 
 
+@app.post("/mvp/demo")
+def mvp_demo(request: Request, db: Session = Depends(get_db)):
+    user = require_user(request, db)
+    project = create_project(
+        db,
+        owner_id=user.id,
+        name="MVP 演示项目",
+        description="最少资源跑通一个项目的演示工作区。",
+        reference_url="manual://reference",
+        niche="MVP",
+        target_platforms=[],
+    )
+    project.target_platforms = []
+    project.settings = {**(project.settings or {}), "mvp_mode": True}
+
+    job = create_job(
+        db,
+        owner_id=user.id,
+        project_id=project.id,
+        reference_id=None,
+        topic="先用最少资源跑通一个视频项目",
+        title="",
+        avatar_mode="cosyvoice",
+        voice_provider="deepseek",
+        render_ratio="9:16",
+    )
+    db.commit()
+    executor.submit(pipeline.run, job.id)
+    return _auth_redirect(f"/jobs/{job.id}")
+
+
 @app.get("/publish-jobs", response_class=HTMLResponse)
 def publish_jobs_page(request: Request, status: str = "all", db: Session = Depends(get_db)):
     user = require_user(request, db)
