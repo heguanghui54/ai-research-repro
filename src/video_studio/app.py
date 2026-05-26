@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import time
 import tempfile
 import wave
 from concurrent.futures import ThreadPoolExecutor
@@ -146,6 +147,27 @@ def _normalize_extra_json(raw: str) -> dict:
         return json.loads(raw or "{}")
     except json.JSONDecodeError:
         return {}
+
+
+def _volc_step_label(key: str) -> str:
+    return {
+        "ark": "Ark 文本",
+        "tts_public": "TTS 公版音色",
+        "tts_clone": "TTS 复刻音色",
+        "seedance": "Seedance 视频",
+    }.get(key, key)
+
+
+def _volc_step_order(scope: str) -> list[str]:
+    if scope == "ark":
+        return ["ark"]
+    if scope == "tts_public":
+        return ["tts_public"]
+    if scope == "tts_clone":
+        return ["tts_clone"]
+    if scope == "seedance":
+        return ["seedance"]
+    return ["ark", "tts_public", "tts_clone", "seedance"]
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -734,107 +756,170 @@ async def _test_volcengine_stack(section: dict, run_scope: str = "all") -> dict:
     tts_speaker = str(extra_settings.get("tts_speaker") or settings.volcengine_tts_speaker or "").strip()
     video_model = str(extra_settings.get("video_model") or settings.volcengine_video_model or "doubao-seedance-1-5-pro-251215").strip()
 
-    results = {
-        "ark": {"ok": False, "message": "未执行"},
-        "tts_public": {"ok": False, "message": "未执行"},
-        "tts_clone": {"ok": False, "message": "未执行"},
-        "seedance": {"ok": False, "message": "未执行"},
+    started_at = datetime.now()
+    planned_steps = _volc_step_order(run_scope)
+    steps: list[dict] = []
+
+    async def run_step(key: str) -> dict:
+        label = _volc_step_label(key)
+        step_started_at = datetime.now()
+        t0 = time.perf_counter()
+        payload: dict = {
+            "key": key,
+            "label": label,
+            "order": len(steps) + 1,
+            "ok": False,
+            "status": "failed",
+            "message": "未执行",
+            "started_at": step_started_at.isoformat(timespec="seconds"),
+            "duration_ms": 0,
+        }
+        try:
+            if key == "ark":
+                if not api_key:
+                    payload.update({"status": "skipped", "message": "未配置 Ark API Key"})
+                    return payload
+                ark = VolcArkClient(api_key=api_key, base_url=base_url, model=model)
+                brief = await ark.build_video_brief(
+                    reference_title="参考标题",
+                    reference_summary="参考摘要",
+                    topic="火山引擎 Ark 连通性测试",
+                    duration_sec=20,
+                )
+                payload.update(
+                    {
+                        "ok": True,
+                        "status": "success",
+                        "message": f"Ark 连通成功：{brief.title[:24]}",
+                        "model": model,
+                        "base_url": base_url,
+                    }
+                )
+                return payload
+
+            if key == "tts_public":
+                if not (tts_app_id and tts_access_key and tts_speaker):
+                    payload.update({"status": "skipped", "message": "未配置 App ID / Access Key / Speaker"})
+                    return payload
+                speech = VolcSpeechClient(
+                    app_id=tts_app_id,
+                    access_key=tts_access_key,
+                    resource_id=tts_resource_id or "volc.service_type.10029",
+                    speaker=tts_speaker,
+                    model=str(extra_settings.get("tts_model") or "seed-tts-2.0-standard").strip() or "seed-tts-2.0-standard",
+                    output_format=str(extra_settings.get("tts_output_format") or "mp3").strip() or "mp3",
+                    sample_rate=int(extra_settings.get("tts_sample_rate") or 24000),
+                )
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
+                    tmp_path = Path(tmp_file.name)
+                try:
+                    result = speech.synthesize("火山公版音色连通性测试。", tmp_path, timeout_s=60)
+                finally:
+                    try:
+                        tmp_path.unlink(missing_ok=True)
+                    except Exception:
+                        pass
+                payload.update(
+                    {
+                        "ok": True,
+                        "status": "success",
+                        "message": f"公版音色连通成功：{result.task_id}",
+                        "resource_id": tts_resource_id,
+                        "speaker": tts_speaker,
+                        "tts_model": str(extra_settings.get("tts_model") or "seed-tts-2.0-standard").strip() or "seed-tts-2.0-standard",
+                    }
+                )
+                return payload
+
+            if key == "tts_clone":
+                if not (tts_app_id and tts_access_key and tts_speaker):
+                    payload.update({"status": "skipped", "message": "未配置 App ID / Access Key / Speaker"})
+                    return payload
+                speech = VolcSpeechClient(
+                    app_id=tts_app_id,
+                    access_key=tts_access_key,
+                    resource_id=str(extra_settings.get("clone_resource_id") or "seed-icl-2.0").strip() or "seed-icl-2.0",
+                    speaker=tts_speaker,
+                    model=str(extra_settings.get("tts_model") or "seed-icl-2.0").strip() or "seed-icl-2.0",
+                    output_format=str(extra_settings.get("tts_output_format") or "mp3").strip() or "mp3",
+                    sample_rate=int(extra_settings.get("tts_sample_rate") or 24000),
+                )
+                with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
+                    tmp_path = Path(tmp_file.name)
+                try:
+                    result = speech.synthesize("火山声音复刻连通性测试。", tmp_path, timeout_s=60)
+                finally:
+                    try:
+                        tmp_path.unlink(missing_ok=True)
+                    except Exception:
+                        pass
+                payload.update(
+                    {
+                        "ok": True,
+                        "status": "success",
+                        "message": f"复刻音色连通成功：{result.task_id}",
+                        "resource_id": "seed-icl-2.0",
+                        "speaker": tts_speaker,
+                        "tts_model": str(extra_settings.get("tts_model") or "seed-icl-2.0").strip() or "seed-icl-2.0",
+                    }
+                )
+                return payload
+
+            if key == "seedance":
+                if not api_key:
+                    payload.update({"status": "skipped", "message": "未配置 Ark API Key"})
+                    return payload
+                video = VolcVideoClient(api_key=api_key, base_url=base_url, model=video_model)
+                prompt = "A vertical short video about an AI video studio, cinematic, modern, clean, high contrast, no readable text."
+                task = video.create_video_task(prompt=prompt, model=video_model)
+                task_result = video.wait_for_video(task.task_id, timeout_s=180, poll_interval_s=10)
+                payload.update(
+                    {
+                        "ok": bool(task_result.video_url),
+                        "status": "success" if task_result.video_url else "failed",
+                        "message": "Seedance 任务已完成" if task_result.video_url else f"Seedance 任务已提交：{task.task_id}",
+                        "task_id": task.task_id,
+                        "task_status": task_result.status,
+                        "video_url": task_result.video_url,
+                        "model": video_model,
+                    }
+                )
+                return payload
+
+            payload.update({"status": "skipped", "message": f"不支持的测试项：{key}"})
+            return payload
+        except Exception as exc:
+            payload.update({"status": "failed", "message": str(exc)})
+            return payload
+        finally:
+            payload["duration_ms"] = int((time.perf_counter() - t0) * 1000)
+            payload["finished_at"] = datetime.now().isoformat(timespec="seconds")
+
+    for key in planned_steps:
+        step = await run_step(key)
+        step["order"] = len(steps) + 1
+        steps.append(step)
+
+    total = len(steps)
+    success_count = sum(1 for step in steps if step["status"] == "success")
+    failed_count = sum(1 for step in steps if step["status"] == "failed")
+    skipped_count = sum(1 for step in steps if step["status"] == "skipped")
+    finished_at = datetime.now()
+    return {
+        "run_scope": run_scope,
+        "started_at": started_at.isoformat(timespec="seconds"),
+        "finished_at": finished_at.isoformat(timespec="seconds"),
+        "duration_ms": int((finished_at - started_at).total_seconds() * 1000),
+        "summary": {
+            "total": total,
+            "success_count": success_count,
+            "failed_count": failed_count,
+            "skipped_count": skipped_count,
+            "completed_count": success_count + failed_count + skipped_count,
+            "all_ok": failed_count == 0 and skipped_count == 0 and total > 0,
+        },
+        "steps": steps,
     }
-
-    if run_scope in {"all", "ark"}:
-        if not api_key:
-            results["ark"] = {"ok": False, "message": "未配置 Ark API Key"}
-        else:
-            ark = VolcArkClient(api_key=api_key, base_url=base_url, model=model)
-            brief = await ark.build_video_brief(
-                reference_title="参考标题",
-                reference_summary="参考摘要",
-                topic="火山引擎 Ark 连通性测试",
-                duration_sec=20,
-            )
-            results["ark"] = {
-                "ok": True,
-                "message": f"Ark 连通成功：{brief.title[:24]}",
-                "model": model,
-                "base_url": base_url,
-            }
-
-    if run_scope in {"all", "tts_public"}:
-        if not (tts_app_id and tts_access_key and tts_speaker):
-            results["tts_public"] = {"ok": False, "message": "未配置 App ID / Access Key / Speaker"}
-        else:
-            speech = VolcSpeechClient(
-                app_id=tts_app_id,
-                access_key=tts_access_key,
-                resource_id=tts_resource_id or "volc.service_type.10029",
-                speaker=tts_speaker,
-                model=str(extra_settings.get("tts_model") or "seed-tts-2.0-standard").strip() or "seed-tts-2.0-standard",
-                output_format=str(extra_settings.get("tts_output_format") or "mp3").strip() or "mp3",
-                sample_rate=int(extra_settings.get("tts_sample_rate") or 24000),
-            )
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
-                tmp_path = Path(tmp_file.name)
-            try:
-                result = speech.synthesize("火山公版音色连通性测试。", tmp_path, timeout_s=60)
-                results["tts_public"] = {
-                    "ok": True,
-                    "message": f"公版音色连通成功：{result.task_id}",
-                    "resource_id": tts_resource_id,
-                    "speaker": tts_speaker,
-                }
-            finally:
-                try:
-                    tmp_path.unlink(missing_ok=True)
-                except Exception:
-                    pass
-
-    if run_scope in {"all", "tts_clone"}:
-        if not (tts_app_id and tts_access_key and tts_speaker):
-            results["tts_clone"] = {"ok": False, "message": "未配置 App ID / Access Key / Speaker"}
-        else:
-            speech = VolcSpeechClient(
-                app_id=tts_app_id,
-                access_key=tts_access_key,
-                resource_id=str(extra_settings.get("clone_resource_id") or "seed-icl-2.0").strip() or "seed-icl-2.0",
-                speaker=tts_speaker,
-                model=str(extra_settings.get("tts_model") or "seed-icl-2.0").strip() or "seed-icl-2.0",
-                output_format=str(extra_settings.get("tts_output_format") or "mp3").strip() or "mp3",
-                sample_rate=int(extra_settings.get("tts_sample_rate") or 24000),
-            )
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
-                tmp_path = Path(tmp_file.name)
-            try:
-                result = speech.synthesize("火山声音复刻连通性测试。", tmp_path, timeout_s=60)
-                results["tts_clone"] = {
-                    "ok": True,
-                    "message": f"复刻音色连通成功：{result.task_id}",
-                    "resource_id": "seed-icl-2.0",
-                    "speaker": tts_speaker,
-                }
-            finally:
-                try:
-                    tmp_path.unlink(missing_ok=True)
-                except Exception:
-                    pass
-
-    if run_scope in {"all", "seedance"}:
-        if not api_key:
-            results["seedance"] = {"ok": False, "message": "未配置 Ark API Key"}
-        else:
-            video = VolcVideoClient(api_key=api_key, base_url=base_url, model=video_model)
-            prompt = "A vertical short video about an AI video studio, cinematic, modern, clean, high contrast, no readable text."
-            task = video.create_video_task(prompt=prompt, model=video_model)
-            task_result = video.wait_for_video(task.task_id, timeout_s=180, poll_interval_s=10)
-            results["seedance"] = {
-                "ok": bool(task_result.video_url),
-                "message": "Seedance 任务已完成" if task_result.video_url else f"Seedance 任务已提交：{task.task_id}",
-                "task_id": task.task_id,
-                "status": task_result.status,
-                "video_url": task_result.video_url,
-                "model": video_model,
-            }
-
-    return results
 
 
 @app.get("/admin", response_class=HTMLResponse)

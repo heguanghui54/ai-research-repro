@@ -4,73 +4,107 @@
   <div>
     <div class="eyebrow">火山引擎</div>
     <h1>连通性测试</h1>
-    <p class="lead">这里会分别测试 Ark、TTS 公版音色、TTS 声音复刻和 Seedance 视频生成，方便你直接看每个环节是否通。</p>
+    <p class="lead">这里会按顺序测试 Ark、TTS 公版音色、TTS 声音复刻和 Seedance 视频生成。你点一次“测试全部”，就能看到每一步的状态、耗时、结果和跳过原因。</p>
   </div>
   <a class="btn btn-secondary" href="/admin/api-config">返回配置</a>
 </section>
 
 <section class="panel">
   <div class="panel-head">
-    <h2>运行测试</h2>
+    <h2>一键顺序测试</h2>
   </div>
   <form class="actions-row" method="post">
-    <button class="btn btn-primary" type="submit" name="run_scope" value="all">测试全部</button>
+    <button class="btn btn-primary" type="submit" name="run_scope" value="all">测试全部并顺序展示</button>
     <button class="btn btn-secondary" type="submit" name="run_scope" value="ark">只测 Ark</button>
     <button class="btn btn-secondary" type="submit" name="run_scope" value="tts_public">只测公版音色</button>
     <button class="btn btn-secondary" type="submit" name="run_scope" value="tts_clone">只测复刻音色</button>
     <button class="btn btn-secondary" type="submit" name="run_scope" value="seedance">只测 Seedance</button>
   </form>
-  <p class="muted">Seedance 测试会真实创建一次视频任务，可能会消耗少量额度并且需要等待一点时间。</p>
+  <p class="muted">Seedance 测试会真实创建一次视频任务，可能会消耗少量额度并且需要等待一会儿。</p>
 </section>
 
 {% if volc_test_results %}
-  <section class="grid two-up">
-    {% for key, item in volc_test_results.items() %}
-      <div class="panel">
-        <div class="panel-head">
-          <h2>
-            {% if key == 'ark' %}Ark 文本
-            {% elif key == 'tts_public' %}TTS 公版音色
-            {% elif key == 'tts_clone' %}TTS 复刻音色
-            {% else %}Seedance 视频
-            {% endif %}
-          </h2>
-          <span class="tag {{ 'tag-success' if item.ok else 'tag-warning' }}">{{ '通了' if item.ok else '未通' }}</span>
-        </div>
-        <div class="stack">
-          <div class="code-block">
-            <h3>结果</h3>
-            <p>{{ item.message }}</p>
-          </div>
-          {% if item.model %}
-            <div class="meta-grid">
-              <div><span>模型</span><strong>{{ item.model }}</strong></div>
-              {% if item.base_url %}
-                <div><span>Base URL</span><strong>{{ item.base_url }}</strong></div>
-              {% endif %}
-              {% if item.resource_id %}
-                <div><span>Resource ID</span><strong>{{ item.resource_id }}</strong></div>
-              {% endif %}
-              {% if item.speaker %}
-                <div><span>Speaker</span><strong>{{ item.speaker }}</strong></div>
-              {% endif %}
-              {% if item.task_id %}
-                <div><span>Task ID</span><strong>{{ item.task_id }}</strong></div>
-              {% endif %}
-              {% if item.status %}
-                <div><span>Status</span><strong>{{ item.status }}</strong></div>
-              {% endif %}
+  {% set summary = volc_test_results.summary %}
+  <section class="panel">
+    <div class="panel-head">
+      <h2>执行总览</h2>
+      <span class="tag
+        {% if summary.all_ok %}tag-success
+        {% elif summary.failed_count > 0 %}tag-warning
+        {% else %}tag
+        {% endif %}">
+        {% if summary.all_ok %}全部通过{% elif summary.failed_count > 0 %}存在失败{% else %}部分跳过{% endif %}
+      </span>
+    </div>
+    <div class="kv-grid">
+      <div><span>开始时间</span><strong>{{ volc_test_results.started_at }}</strong></div>
+      <div><span>结束时间</span><strong>{{ volc_test_results.finished_at }}</strong></div>
+      <div><span>总耗时</span><strong>{{ volc_test_results.duration_ms }} ms</strong></div>
+      <div><span>执行项</span><strong>{{ summary.total }}</strong></div>
+      <div><span>成功</span><strong>{{ summary.success_count }}</strong></div>
+      <div><span>失败 / 跳过</span><strong>{{ summary.failed_count }} / {{ summary.skipped_count }}</strong></div>
+    </div>
+    <div class="progress-shell" aria-label="测试进度">
+      <div class="progress-bar" style="width: {{ (summary.completed_count * 100 / summary.total) if summary.total else 0 }}%"></div>
+    </div>
+    <p class="muted">进度按已完成步骤计算，顺序固定为 Ark -> TTS 公版音色 -> TTS 复刻音色 -> Seedance。</p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h2>步骤时间线</h2>
+    </div>
+    <div class="timeline">
+      {% for step in volc_test_results.steps %}
+        <article class="timeline-item state-{{ step.status }}">
+          <div class="timeline-top">
+            <div class="timeline-badge">{{ step.order }}</div>
+            <div class="stack-tight">
+              <h3>{{ step.label }}</h3>
+              <p class="muted">{{ step.message }}</p>
             </div>
-          {% endif %}
-          {% if item.video_url %}
+            <div class="stack-right">
+              <span class="tag
+                {% if step.status == 'success' %}tag-success
+                {% elif step.status == 'failed' %}tag-warning
+                {% else %}tag
+                {% endif %}">
+                {% if step.status == 'success' %}通过{% elif step.status == 'failed' %}失败{% else %}跳过{% endif %}
+              </span>
+              <strong>{{ step.duration_ms }} ms</strong>
+            </div>
+          </div>
+          <div class="meta-grid">
+            <div><span>开始</span><strong>{{ step.started_at }}</strong></div>
+            <div><span>结束</span><strong>{{ step.finished_at }}</strong></div>
+            {% if step.model %}
+              <div><span>模型</span><strong>{{ step.model }}</strong></div>
+            {% endif %}
+            {% if step.base_url %}
+              <div><span>Base URL</span><strong>{{ step.base_url }}</strong></div>
+            {% endif %}
+            {% if step.resource_id %}
+              <div><span>Resource ID</span><strong>{{ step.resource_id }}</strong></div>
+            {% endif %}
+            {% if step.speaker %}
+              <div><span>Speaker</span><strong>{{ step.speaker }}</strong></div>
+            {% endif %}
+            {% if step.task_id %}
+              <div><span>Task ID</span><strong>{{ step.task_id }}</strong></div>
+            {% endif %}
+            {% if step.task_status %}
+              <div><span>Task 状态</span><strong>{{ step.task_status }}</strong></div>
+            {% endif %}
+          </div>
+          {% if step.video_url %}
             <div class="code-block">
               <h3>视频链接</h3>
-              <p>{{ item.video_url }}</p>
+              <p>{{ step.video_url }}</p>
             </div>
           {% endif %}
-        </div>
-      </div>
-    {% endfor %}
+        </article>
+      {% endfor %}
+    </div>
   </section>
 {% endif %}
 {% endblock %}
