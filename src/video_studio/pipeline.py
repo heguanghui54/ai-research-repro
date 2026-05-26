@@ -21,6 +21,8 @@ from .services.ffmpeg import FFmpegRenderer
 from .services.heygen import HeyGenClient
 from .services.heygen_preview import HeyGenPreviewRenderer
 from .services.monica import MonicaClient
+from .services.volc_avatar import VolcAvatarClient
+from .services.volc_avatar_preview import VolcAvatarPreviewRenderer
 from .services.voice import VoiceSynthesizer
 from .services.volcengine import VolcArkClient, VolcVideoClient
 from .services.whisper import WhisperClient
@@ -168,7 +170,134 @@ class VideoPipeline:
             final_video_path: Path
             avatar_thumb = ""
 
-            if job.avatar_mode == "heygen":
+            if job.avatar_mode == "volc_avatar":
+                volc_cfg = get_integration(db, job.owner_id, "volcengine")
+                volc_settings = volc_cfg.settings if volc_cfg else {}
+                voice_mode = str(volc_settings.get("avatar_voice_mode") or "volc_tts").strip() or "volc_tts"
+                voice_provider = "volc_clone" if voice_mode == "volc_clone" else "volc_tts"
+                voice = VoiceSynthesizer(provider=voice_provider, config=volc_settings).synthesize(
+                    job.script_text,
+                    render_dir,
+                    stem="avatar-voiceover",
+                )
+                preview_renderer = VolcAvatarPreviewRenderer(render_dir)
+                preview = preview_renderer.build_preview_card(
+                    title=job.title or brief.title,
+                    hook=brief.hook,
+                    subtitle_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                    ratio=job.render_ratio,
+                )
+                avatar_thumb = str(preview.preview_path)
+                job.voice_provider = voice.provider
+                job.pipeline_state = {
+                    **(job.pipeline_state or {}),
+                    "volc_avatar_mode": "simulated",
+                    "volc_avatar_preview_image": str(preview.preview_path),
+                    "volc_avatar_voice_mode": voice_mode,
+                }
+                avatar_client = VolcAvatarClient(
+                    access_key_id=str(volc_settings.get("avatar_access_key_id") or settings.volcengine_avatar_access_key_id or "").strip(),
+                    secret_access_key=str(volc_settings.get("avatar_secret_access_key") or settings.volcengine_avatar_secret_access_key or "").strip(),
+                    app_id=str(
+                        volc_settings.get("avatar_app_id")
+                        or volc_settings.get("avatar_rtc_app_id")
+                        or settings.volcengine_avatar_app_id
+                        or settings.volcengine_avatar_rtc_app_id
+                        or ""
+                    ).strip(),
+                    region=str(volc_settings.get("avatar_region") or settings.volcengine_avatar_region or "cn-north-1").strip() or "cn-north-1",
+                    llm_endpoint_id=str(volc_settings.get("avatar_llm_endpoint_id") or settings.volcengine_avatar_llm_endpoint_id or "").strip(),
+                    avatar_token=str(volc_settings.get("avatar_token") or settings.volcengine_avatar_token or "").strip(),
+                    avatar_role=str(volc_settings.get("avatar_role") or settings.volcengine_avatar_role or "").strip(),
+                    avatar_user_id=str(volc_settings.get("avatar_user_id") or settings.volcengine_avatar_user_id or "").strip(),
+                    avatar_background_url=str(volc_settings.get("avatar_background_url") or settings.volcengine_avatar_background_url or "").strip(),
+                    avatar_video_bitrate=int(volc_settings.get("avatar_video_bitrate") or settings.volcengine_avatar_video_bitrate or 2000),
+                    avatar_config=(volc_settings.get("avatar_config") if isinstance(volc_settings.get("avatar_config"), dict) else {}) or {},
+                    tts_app_id=str(volc_settings.get("tts_app_id") or settings.volcengine_tts_app_id or "").strip(),
+                    tts_access_key=str(volc_settings.get("tts_access_key") or settings.volcengine_tts_access_key or "").strip(),
+                    tts_resource_id=str(volc_settings.get("tts_resource_id") or settings.volcengine_tts_resource_id or "volc.service_type.10029").strip(),
+                    tts_speaker=str(volc_settings.get("tts_speaker") or settings.volcengine_tts_speaker or "").strip(),
+                    tts_model=str(volc_settings.get("tts_model") or "seed-tts-2.0-standard").strip() or "seed-tts-2.0-standard",
+                    tts_output_format=str(volc_settings.get("tts_output_format") or "mp3").strip() or "mp3",
+                    tts_sample_rate=int(volc_settings.get("tts_sample_rate") or 24000),
+                    default_voice_mode=voice_mode,
+                )
+                try:
+                    avatar_session = avatar_client.test_session(
+                        title=job.title or brief.title,
+                        hook=brief.hook or reference.hook_summary,
+                        script_text=job.script_text,
+                        voice_mode=voice_mode,
+                        stop_after=True,
+                    )
+                    job.pipeline_state = {
+                        **(job.pipeline_state or {}),
+                        "volc_avatar_mode": "hybrid",
+                        "volc_avatar_room_id": avatar_session.room_id,
+                        "volc_avatar_user_id": avatar_session.user_id,
+                        "volc_avatar_bot_name": avatar_session.bot_name,
+                        "volc_avatar_request_id": avatar_session.start_response.request_id if avatar_session.start_response else "",
+                        "volc_avatar_stop_request_id": avatar_session.stop_response.request_id if avatar_session.stop_response else "",
+                        "volc_avatar_start_result": avatar_session.start_response.result if avatar_session.start_response else "",
+                        "volc_avatar_stop_result": avatar_session.stop_response.result if avatar_session.stop_response else "",
+                        "volc_avatar_payload": avatar_session.payload,
+                    }
+                    self._finish_step(
+                        db,
+                        job.id,
+                        "voice-generation",
+                        {
+                            "provider": "volc_avatar",
+                            "mode": "hybrid",
+                            "room_id": avatar_session.room_id,
+                            "user_id": avatar_session.user_id,
+                            "bot_name": avatar_session.bot_name,
+                            "start_request_id": avatar_session.start_response.request_id if avatar_session.start_response else "",
+                            "start_result": avatar_session.start_response.result if avatar_session.start_response else "",
+                            "stop_request_id": avatar_session.stop_response.request_id if avatar_session.stop_response else "",
+                            "stop_result": avatar_session.stop_response.result if avatar_session.stop_response else "",
+                            "preview_path": str(preview.preview_path),
+                        },
+                    )
+                except Exception as exc:
+                    job.pipeline_state = {
+                        **(job.pipeline_state or {}),
+                        "volc_avatar_mode": "simulated",
+                        "volc_avatar_error": str(exc),
+                    }
+                    self._finish_step(
+                        db,
+                        job.id,
+                        "voice-generation",
+                        {"provider": "volc_avatar", "mode": "simulated", "preview_path": str(preview.preview_path), "error": str(exc)},
+                    )
+                renderer = FFmpegRenderer(render_dir)
+                render = renderer.render_short_video(
+                    title=job.title or brief.title,
+                    hook=brief.hook,
+                    script_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                    audio_path=voice.audio_path,
+                    output_name=slugify(job.title or brief.title),
+                    ratio=job.render_ratio,
+                    cover_image_path=preview.preview_path,
+                )
+                final_video_path = render.video_path
+                avatar_thumb = str(preview.preview_path)
+                self._finish_step(
+                    db,
+                    job.id,
+                    "render",
+                    {
+                        "video_path": str(render.video_path),
+                        "thumbnail_path": str(render.thumbnail_path),
+                        "subtitle_path": str(render.subtitle_path),
+                        "poster_path": str(render.poster_path),
+                    },
+                )
+                job.progress = 72
+                db.commit()
+
+            elif job.avatar_mode == "heygen":
                 heygen_cfg = get_integration(db, job.owner_id, "heygen")
                 heygen_payload = (heygen_cfg.settings if heygen_cfg else {}) or {}
                 avatar_id = str(heygen_payload.get("avatar_id") or settings.heygen_avatar_id or "").strip()

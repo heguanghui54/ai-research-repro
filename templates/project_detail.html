@@ -18,12 +18,12 @@
     <label class="full">参考链接<input type="url" name="reference_url" value="{{ project.reference_url }}"></label>
     <label>播报模式
       <select name="avatar_mode">
-        <option value="cosyvoice">CosyVoice</option>
-        <option value="heygen">HeyGen 数字人（无 API 时自动预览）</option>
-        <option value="volc_tts">火山语音（公版音色）</option>
-        <option value="volc_clone">火山声音复刻</option>
+        <option value="cosyvoice" {% if project.default_avatar_mode == 'cosyvoice' %}selected{% endif %}>CosyVoice</option>
+        <option value="volc_avatar" {% if project.default_avatar_mode == 'volc_avatar' %}selected{% endif %}>火山数字人（接通后自动切换真实会话）</option>
+        <option value="volc_tts" {% if project.default_avatar_mode == 'volc_tts' %}selected{% endif %}>火山语音（公版音色）</option>
+        <option value="volc_clone" {% if project.default_avatar_mode == 'volc_clone' %}selected{% endif %}>火山声音复刻</option>
       </select>
-      <span class="muted">火山语音适合低成本批量生产；声音复刻适合用你的真人声音做更强的品牌感；这两种模式都会进一步接上 Seedance 视频模型；没有 HeyGen API 时，也会自动生成一版接近真实数字人效果的预览视频。</span>
+      <span class="muted">火山数字人会优先走火山引擎的实时数字人 API；如果当前还没配齐 AppId / Access Key / Secret Key / Avatar 配置，会自动给你生成一版接近真实数字人的预览视频，方便先看成片气质。火山语音适合低成本批量生产；声音复刻适合用真人声音增强品牌感；这几种模式都可以继续接 Seedance 视频模型。</span>
     </label>
     <label>转写提供方
       <select name="voice_provider">

@@ -28,7 +28,8 @@ PLATFORM_LABELS: dict[str, str] = {
 
 AVATAR_MODE_LABELS: dict[str, str] = {
     "cosyvoice": "CosyVoice",
-    "heygen": "HeyGen 数字人",
+    "volc_avatar": "火山数字人",
+    "heygen": "HeyGen 数字人（旧）",
     "volc_tts": "火山语音（公版音色）",
     "volc_clone": "火山声音复刻",
 }
@@ -78,8 +79,8 @@ API_CONFIG_SECTIONS: list[dict[str, Any]] = [
     },
     {
         "provider": "volcengine",
-        "label": "火山方舟 / 豆包语音",
-        "description": "默认优先用低成本但可用的 Ark 文本模型、Seedream 封面图和豆包语音。公版 TTS 用最便宜的音色；复刻音色需要填写语音服务的 App ID 和 Access Key。",
+        "label": "火山方舟 / 豆包语音 / 火山数字人",
+        "description": "默认优先用低成本但可用的 Ark 文本模型、Seedream 封面图、豆包语音和火山数字人。公版 TTS 用最便宜的音色；复刻音色和数字人会用到 RTC / 语音服务的 App ID、Access Key、Secret Key、Avatar AppId 等信息。",
         "api_key_placeholder": "粘贴 Ark API Key",
         "base_url": "https://ark.cn-beijing.volces.com/api/v3",
         "model": "doubao-1-5-pro-32k-250115",
@@ -89,6 +90,18 @@ API_CONFIG_SECTIONS: list[dict[str, Any]] = [
             "image_style": "vivid",
             "image_quality": "standard",
             "video_model": "doubao-seedance-1-5-pro-251215",
+            "avatar_access_key_id": "",
+            "avatar_secret_access_key": "",
+            "avatar_rtc_app_id": "",
+            "avatar_app_id": "",
+            "avatar_token": "",
+            "avatar_role": "",
+            "avatar_user_id": "",
+            "avatar_region": "cn-north-1",
+            "avatar_llm_endpoint_id": "",
+            "avatar_background_url": "",
+            "avatar_video_bitrate": 2000,
+            "avatar_voice_mode": "volc_tts",
             "tts_app_id": "",
             "tts_access_key": "",
             "tts_resource_id": "volc.service_type.10029",
@@ -97,7 +110,7 @@ API_CONFIG_SECTIONS: list[dict[str, Any]] = [
             "tts_output_format": "mp3",
             "tts_sample_rate": 24000,
             "clone_resource_id": "seed-icl-2.0",
-            "notes": "Ark text/image + Doubao TTS / voice clone",
+            "notes": "Ark text/image + Doubao TTS / voice clone + Volc avatar",
         },
     },
     {
@@ -108,19 +121,6 @@ API_CONFIG_SECTIONS: list[dict[str, Any]] = [
         "base_url": "https://api.openai.com/v1",
         "model": "whisper-1",
         "extra_defaults": {},
-    },
-    {
-        "provider": "heygen",
-        "label": "HeyGen 数字人",
-        "description": "用于头像播报和数字人口播。",
-        "api_key_placeholder": "粘贴 HeyGen API Key",
-        "base_url": "https://api.heygen.com",
-        "model": "",
-        "extra_defaults": {
-            "avatar_id": "",
-            "voice_id": "",
-            "callback_url": "",
-        },
     },
     {
         "provider": "multipost",

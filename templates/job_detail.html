@@ -19,10 +19,12 @@
     <div class="panel-head">
       <h2>流水线状态</h2>
     </div>
-    {% if job.pipeline_state and job.pipeline_state.get('heygen_mode') == 'simulated' %}
-      <div class="alert alert-success">当前是 HeyGen 预览模式，没有真实 API 也会生成一版接近数字人效果的视频，方便先看成片结构。</div>
-    {% elif job.pipeline_state and job.pipeline_state.get('heygen_mode') == 'real' %}
-      <div class="alert alert-success">当前使用的是 HeyGen 真实 API 生成。</div>
+    {% if job.pipeline_state and job.pipeline_state.get('volc_avatar_mode') == 'simulated' %}
+      <div class="alert alert-success">当前是火山数字人预览模式，没有完整接通时也会先生成一版接近真实数字人效果的视频，方便先看成片结构。</div>
+    {% elif job.pipeline_state and job.pipeline_state.get('volc_avatar_mode') == 'hybrid' %}
+      <div class="alert alert-success">火山数字人 API 已接通，当前展示的是本地预览合成成片。这样你能先看到最终视频气质，同时后台也完成了真实会话链路的验证。</div>
+    {% elif job.pipeline_state and job.pipeline_state.get('volc_avatar_mode') == 'real' %}
+      <div class="alert alert-success">当前使用的是火山数字人真实 API 返回结果。</div>
     {% endif %}
     <div class="progress-shell">
       <div class="progress-bar" style="width: {{ job.progress }}%"></div>

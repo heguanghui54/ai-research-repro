@@ -4,7 +4,7 @@
   <div>
     <div class="eyebrow">火山引擎</div>
     <h1>连通性测试</h1>
-    <p class="lead">这里会按顺序测试 Ark、TTS 公版音色、TTS 声音复刻和 Seedance 视频生成。你点一次“测试全部”，就能看到每一步的状态、耗时、结果和跳过原因。</p>
+    <p class="lead">这里会按顺序测试 Ark、TTS 公版音色、TTS 声音复刻、火山数字人和 Seedance 视频生成。你点一次“测试全部”，就能看到每一步的状态、耗时、结果和跳过原因。</p>
   </div>
   <a class="btn btn-secondary" href="/admin/api-config">返回配置</a>
 </section>
@@ -18,6 +18,7 @@
     <button class="btn btn-secondary" type="submit" name="run_scope" value="ark">只测 Ark</button>
     <button class="btn btn-secondary" type="submit" name="run_scope" value="tts_public">只测公版音色</button>
     <button class="btn btn-secondary" type="submit" name="run_scope" value="tts_clone">只测复刻音色</button>
+    <button class="btn btn-secondary" type="submit" name="run_scope" value="avatar">只测火山数字人</button>
     <button class="btn btn-secondary" type="submit" name="run_scope" value="seedance">只测 Seedance</button>
   </form>
   <p class="muted">Seedance 测试会真实创建一次视频任务，可能会消耗少量额度并且需要等待一会儿。</p>
@@ -47,7 +48,7 @@
     <div class="progress-shell" aria-label="测试进度">
       <div class="progress-bar" style="width: {{ (summary.completed_count * 100 / summary.total) if summary.total else 0 }}%"></div>
     </div>
-    <p class="muted">进度按已完成步骤计算，顺序固定为 Ark -> TTS 公版音色 -> TTS 复刻音色 -> Seedance。</p>
+    <p class="muted">进度按已完成步骤计算，顺序固定为 Ark -> TTS 公版音色 -> TTS 复刻音色 -> 火山数字人 -> Seedance。</p>
   </section>
 
   <section class="panel">
@@ -94,6 +95,24 @@
             {% endif %}
             {% if step.task_status %}
               <div><span>Task 状态</span><strong>{{ step.task_status }}</strong></div>
+            {% endif %}
+            {% if step.room_id %}
+              <div><span>Room ID</span><strong>{{ step.room_id }}</strong></div>
+            {% endif %}
+            {% if step.app_id %}
+              <div><span>App ID</span><strong>{{ step.app_id }}</strong></div>
+            {% endif %}
+            {% if step.user_id %}
+              <div><span>User ID</span><strong>{{ step.user_id }}</strong></div>
+            {% endif %}
+            {% if step.bot_name %}
+              <div><span>Bot Name</span><strong>{{ step.bot_name }}</strong></div>
+            {% endif %}
+            {% if step.start_result %}
+              <div><span>Start 结果</span><strong>{{ step.start_result }}</strong></div>
+            {% endif %}
+            {% if step.stop_result %}
+              <div><span>Stop 结果</span><strong>{{ step.stop_result }}</strong></div>
             {% endif %}
           </div>
           {% if step.video_url %}

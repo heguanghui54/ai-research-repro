@@ -45,6 +45,7 @@ from .db import Base, SessionLocal, engine
 from .models import AppUser, Integration, Project, PublishJob, PublishTarget, VideoJob
 from .pipeline import VideoPipeline
 from .services.monica import MonicaClient
+from .services.volc_avatar import VolcAvatarClient
 from .services.volcengine import VolcArkClient, VolcSpeechClient
 from .services.volcengine import VolcVideoClient
 from .ui import (
@@ -154,6 +155,7 @@ def _volc_step_label(key: str) -> str:
         "ark": "Ark 文本",
         "tts_public": "TTS 公版音色",
         "tts_clone": "TTS 复刻音色",
+        "avatar": "火山数字人",
         "seedance": "Seedance 视频",
     }.get(key, key)
 
@@ -165,9 +167,11 @@ def _volc_step_order(scope: str) -> list[str]:
         return ["tts_public"]
     if scope == "tts_clone":
         return ["tts_clone"]
+    if scope == "avatar":
+        return ["avatar"]
     if scope == "seedance":
         return ["seedance"]
-    return ["ark", "tts_public", "tts_clone", "seedance"]
+    return ["ark", "tts_public", "tts_clone", "avatar", "seedance"]
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -179,7 +183,7 @@ def index(request: Request, db: Session = Depends(get_db)):
         request,
         "index.html",
         stats={
-            "paid_apis": ["Monica API", "HeyGen", "OpenAI Whisper"],
+            "paid_apis": ["Monica API", "火山数字人", "OpenAI Whisper"],
             "open_source": ["CosyVoice", "FFmpeg", "MultiPost"],
         },
     )
@@ -441,7 +445,10 @@ def job_preview_image(request: Request, job_id: str, db: Session = Depends(get_d
     job = get_job(db, user.id, job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found")
-    candidate = job.thumbnail_url or str((job.pipeline_state or {}).get("heygen_preview_image", ""))
+    candidate = job.thumbnail_url or str(
+        (job.pipeline_state or {}).get("volc_avatar_preview_image")
+        or (job.pipeline_state or {}).get("heygen_preview_image", "")
+    )
     if candidate and Path(candidate).exists():
         return FileResponse(candidate, filename=Path(candidate).name)
     if job.output_path and Path(job.output_path).exists():
@@ -755,6 +762,24 @@ async def _test_volcengine_stack(section: dict, run_scope: str = "all") -> dict:
     tts_resource_id = str(extra_settings.get("tts_resource_id") or settings.volcengine_tts_resource_id or "volc.service_type.10029").strip()
     tts_speaker = str(extra_settings.get("tts_speaker") or settings.volcengine_tts_speaker or "").strip()
     video_model = str(extra_settings.get("video_model") or settings.volcengine_video_model or "doubao-seedance-1-5-pro-251215").strip()
+    avatar_access_key_id = str(extra_settings.get("avatar_access_key_id") or settings.volcengine_avatar_access_key_id or "").strip()
+    avatar_secret_access_key = str(extra_settings.get("avatar_secret_access_key") or settings.volcengine_avatar_secret_access_key or "").strip()
+    avatar_app_id = str(
+        extra_settings.get("avatar_app_id")
+        or extra_settings.get("avatar_rtc_app_id")
+        or settings.volcengine_avatar_app_id
+        or settings.volcengine_avatar_rtc_app_id
+        or ""
+    ).strip()
+    avatar_token = str(extra_settings.get("avatar_token") or settings.volcengine_avatar_token or "").strip()
+    avatar_role = str(extra_settings.get("avatar_role") or settings.volcengine_avatar_role or "").strip()
+    avatar_user_id = str(extra_settings.get("avatar_user_id") or settings.volcengine_avatar_user_id or "").strip()
+    avatar_region = str(extra_settings.get("avatar_region") or settings.volcengine_avatar_region or "cn-north-1").strip() or "cn-north-1"
+    avatar_llm_endpoint_id = str(extra_settings.get("avatar_llm_endpoint_id") or settings.volcengine_avatar_llm_endpoint_id or "").strip()
+    avatar_background_url = str(extra_settings.get("avatar_background_url") or settings.volcengine_avatar_background_url or "").strip()
+    avatar_video_bitrate = int(extra_settings.get("avatar_video_bitrate") or settings.volcengine_avatar_video_bitrate or 2000)
+    avatar_voice_mode = str(extra_settings.get("avatar_voice_mode") or "volc_tts").strip() or "volc_tts"
+    avatar_extra_config = extra_settings.get("avatar_config") if isinstance(extra_settings.get("avatar_config"), dict) else {}
 
     started_at = datetime.now()
     planned_steps = _volc_step_order(run_scope)
@@ -863,6 +888,58 @@ async def _test_volcengine_stack(section: dict, run_scope: str = "all") -> dict:
                         "tts_model": str(extra_settings.get("tts_model") or "seed-icl-2.0").strip() or "seed-icl-2.0",
                     }
                 )
+                return payload
+
+            if key == "avatar":
+                if not (avatar_access_key_id and avatar_secret_access_key and avatar_app_id):
+                    payload.update({"status": "skipped", "message": "未配置 Avatar Access Key / Secret Key / AppId"})
+                    return payload
+                avatar_client = VolcAvatarClient(
+                    access_key_id=avatar_access_key_id,
+                    secret_access_key=avatar_secret_access_key,
+                    app_id=avatar_app_id,
+                    region=avatar_region,
+                    llm_endpoint_id=avatar_llm_endpoint_id,
+                    avatar_token=avatar_token,
+                    avatar_role=avatar_role,
+                    avatar_user_id=avatar_user_id,
+                    avatar_background_url=avatar_background_url,
+                    avatar_video_bitrate=avatar_video_bitrate,
+                    avatar_config=avatar_extra_config,
+                    tts_app_id=tts_app_id,
+                    tts_access_key=tts_access_key,
+                    tts_resource_id=tts_resource_id,
+                    tts_speaker=tts_speaker,
+                    tts_model=str(extra_settings.get("tts_model") or "seed-tts-2.0-standard").strip() or "seed-tts-2.0-standard",
+                    tts_output_format=str(extra_settings.get("tts_output_format") or "mp3").strip() or "mp3",
+                    tts_sample_rate=int(extra_settings.get("tts_sample_rate") or 24000),
+                    default_voice_mode=avatar_voice_mode,
+                )
+                try:
+                    session = avatar_client.test_session(
+                        title="火山数字人连通性测试",
+                        hook="看看火山数字人 API 接通后会是什么效果。",
+                        script_text="火山数字人连通性测试。这里会先验证 API，再把预览结果展示给你。",
+                        voice_mode=avatar_voice_mode,
+                        stop_after=True,
+                    )
+                    payload.update(
+                        {
+                            "ok": True,
+                            "status": "success",
+                            "message": "火山数字人连通成功",
+                            "app_id": avatar_app_id,
+                            "room_id": session.room_id,
+                            "user_id": session.user_id,
+                            "bot_name": session.bot_name,
+                            "start_result": session.start_response.result,
+                            "start_request_id": session.start_response.request_id,
+                            "stop_result": session.stop_response.result if session.stop_response else "",
+                            "stop_request_id": session.stop_response.request_id if session.stop_response else "",
+                        }
+                    )
+                except Exception as exc:
+                    payload.update({"status": "failed", "message": f"火山数字人测试失败：{exc}"})
                 return payload
 
             if key == "seedance":

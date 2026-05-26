@@ -13,7 +13,7 @@
 - 先做可运行的 MVP，再接入高质量付费能力
 - 用户数据、项目数据、任务数据都落在 Supabase Postgres
 - 火山方舟优先做低成本脚本/封面模型，火山语音优先做公版 TTS 或声音复刻
-- HeyGen 走官方 `v3/videos` 生成与轮询接口
+- 火山数字人优先走火山引擎实时会话链路，没配齐时自动降级为预览模式
 - OpenAI Whisper 走官方 `/v1/audio/transcriptions`
 - 分发优先支持 `social-auto-upload` 的 `sau` CLI，MultiPost 走可配置 HTTP 适配器
 
@@ -26,13 +26,13 @@
 - 任务队列：内置线程池 + 数据库任务状态
 - 文案/脚本：火山方舟 Ark API，DeepSeek 作为兼容回退
 - 转写：本地 Whisper/Faster-Whisper 预留，默认可降级为参考链接元数据分析
-- 数字人：HeyGen 作为高质量付费通道，CosyVoice 作为开源通道，火山语音作为低成本通道
+- 数字人：火山数字人作为优先高质量通道，CosyVoice 作为开源通道，火山语音作为低成本通道
 - 剪辑：FFmpeg
 - 分发：MultiPost / social-auto-upload 的适配层
 
 ### 付费项先说明
 
-- `HeyGen`：付费，按秒计费，适合高质量数字人
+- `火山数字人`：需要开通 RTC / 数字人能力，适合高质量数字人和实时会话
 - `OpenAI Whisper`：付费，按分钟计费
 - `火山方舟 Ark`：有免费额度和低价模型，当前优先作为默认脚本/封面模型
 - `火山语音`：公版 TTS 和声音复刻都比高阶数字人更省钱，适合批量播报
@@ -116,9 +116,9 @@ export DEEPSEEK_MODEL="deepseek-chat"
 ## 需要你申请或准备的密钥
 
 - `DEEPSEEK_API_KEY`
-- `HEYGEN_API_KEY`，如果要启用高质量数字人
-- `HEYGEN_AVATAR_ID` / `HEYGEN_VOICE_ID`，如果你想直接走环境变量，不想每次都在页面里填
-- 或在应用内 `HeyGen` 集成里写入 `extra settings JSON`
+- `VOLCENGINE_AVATAR_ACCESS_KEY_ID` / `VOLCENGINE_AVATAR_SECRET_ACCESS_KEY` / `VOLCENGINE_AVATAR_RTC_APP_ID` / `VOLCENGINE_AVATAR_APP_ID`，如果要启用火山数字人
+- `VOLCENGINE_AVATAR_TOKEN` / `VOLCENGINE_AVATAR_ROLE` / `VOLCENGINE_AVATAR_USER_ID`，如果你想直接走环境变量，不想每次都在页面里填
+- 或在应用内 `火山方舟 / 豆包语音 / 火山数字人` 集成里写入 `extra settings JSON`
 - `OPENAI_API_KEY`，如果要启用 OpenAI Whisper
 - `VOLCENGINE_ARK_API_KEY`，如果要启用火山方舟低成本脚本/封面模型
 - `VOLCENGINE_VIDEO_MODEL`，如果要切换 Seedance 视频生成模型
@@ -128,24 +128,29 @@ export DEEPSEEK_MODEL="deepseek-chat"
 
 ## 接入步骤
 
-### 1. HeyGen
+### 1. 火山数字人
 
-1. 在 HeyGen 控制台申请 `HEYGEN_API_KEY`。
-2. 到应用的 `Integrations` 页面，把 `heygen` 的 API key 填进去。
-3. 在同一页的 `Extra settings JSON` 里写入：
+1. 在火山引擎控制台先开通虚拟数字人 / RTC / 语音相关权限。
+2. 到应用的 `Integrations` 页面，把 `volcengine` 的 API key 填进去。
+3. 在同一页的 `Extra settings JSON` 里写入数字人相关字段：
 
 ```json
 {
-  "avatar_id": "你的 avatar look id",
-  "voice_id": "你的 voice id",
-  "callback_url": ""
+  "avatar_access_key_id": "你的 RTC Access Key ID",
+  "avatar_secret_access_key": "你的 RTC Secret Access Key",
+  "avatar_rtc_app_id": "你的 RTC AppId（如果和数字人 AppId 是同一个，也可以只填一个）",
+  "avatar_app_id": "你的数字人 AppId",
+  "avatar_token": "你的 AvatarToken",
+  "avatar_role": "你的 AvatarRole",
+  "avatar_user_id": "你的 AvatarUserId",
+  "avatar_llm_endpoint_id": "你的 Ark EndPointId",
+  "avatar_voice_mode": "volc_tts"
 }
 ```
 
-4. 你也可以直接把 `HEYGEN_AVATAR_ID` 和 `HEYGEN_VOICE_ID` 放进系统环境变量，代码会优先读页面配置，页面没填时会回退到环境变量。
-5. `avatar_id` 从 `GET /v3/avatars/looks?avatar_type=digital_twin&ownership=private` 或 `GET /v3/avatars/looks` 里取返回的 `id` 字段。
-6. `voice_id` 从 `GET /v3/voices` 里选，优先选你想要的语言和音色。
-7. 如果是 private avatar 并且还没通过授权，先在 HeyGen 完成头像/数字人授权，状态要是 approved 才能用。
+4. 如果你要更像真人声音，就把 `avatar_voice_mode` 改成 `volc_clone`，并在同一页补好 `tts_app_id` / `tts_access_key` / `tts_speaker`。
+5. 如果你想直接走环境变量，也可以把 `VOLCENGINE_AVATAR_ACCESS_KEY_ID`、`VOLCENGINE_AVATAR_SECRET_ACCESS_KEY`、`VOLCENGINE_AVATAR_RTC_APP_ID`、`VOLCENGINE_AVATAR_APP_ID`、`VOLCENGINE_AVATAR_TOKEN`、`VOLCENGINE_AVATAR_ROLE` 和 `VOLCENGINE_AVATAR_USER_ID` 设好。
+6. 火山数字人现在会优先走真实会话链路，没配齐时会自动降级为预览模式，方便你先看成片效果。
 
 ### 2. OpenAI Whisper
 
@@ -164,7 +169,7 @@ export DEEPSEEK_MODEL="deepseek-chat"
 5. 如果要用声音复刻，再把 `tts_app_id`、`tts_access_key` 和 `tts_speaker` 填进去，并把 `tts_resource_id` 改成 `seed-icl-2.0`。
 6. 语音合成优先走公版音色，只有你需要真人声音克隆时才切复刻音色，这样成本最低。
 7. 如果要启用视频模型，把 `video_model` 保持为 `doubao-seedance-1-5-pro-251215`，也可以在后台里换成你控制台里更便宜或更适合的版本。
-8. 你还可以直接打开后台的 `火山连通性测试` 页面，一次看 Ark、TTS、公版音色、复刻音色和 Seedance 分别通不通。
+8. 你还可以直接打开后台的 `火山连通性测试` 页面，一次看 Ark、TTS、公版音色、复刻音色、火山数字人和 Seedance 分别通不通。
 
 ### 4. social-auto-upload
 
