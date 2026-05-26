@@ -26,11 +26,12 @@ class VoiceSynthesizer:
         output_dir.mkdir(parents=True, exist_ok=True)
         wav_path = output_dir / f"{stem}.wav"
 
-        if self.provider == "heygen" and self.api_key:
+        if self.provider in {"heygen", "heygen_preview"} and self.api_key:
             # Placeholder adapter. Keep the interface stable so the real API can be
             # wired in without changing pipeline code.
             self._write_silence(wav_path, seconds=max(6, min(30, len(text) // 10 + 6)))
-            return VoiceResult(audio_path=wav_path, provider="heygen", note="HeyGen adapter placeholder")
+            note = "HeyGen adapter placeholder" if self.provider == "heygen" else "HeyGen preview placeholder"
+            return VoiceResult(audio_path=wav_path, provider=self.provider, note=note)
 
         if self.provider == "cosyvoice":
             self._write_silence(wav_path, seconds=max(6, min(30, len(text) // 10 + 6)))
@@ -47,4 +48,3 @@ class VoiceSynthesizer:
             wav.setframerate(sample_rate)
             for _ in range(frames):
                 wav.writeframes(struct.pack("<h", 0))
-

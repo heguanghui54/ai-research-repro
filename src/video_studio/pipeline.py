@@ -19,6 +19,7 @@ from .services.deepseek import DeepSeekClient
 from .services.distributor import DistributorClient
 from .services.ffmpeg import FFmpegRenderer
 from .services.heygen import HeyGenClient
+from .services.heygen_preview import HeyGenPreviewRenderer
 from .services.monica import MonicaClient
 from .services.voice import VoiceSynthesizer
 from .services.whisper import WhisperClient
@@ -148,33 +149,68 @@ class VideoPipeline:
                 avatar_id = str(heygen_payload.get("avatar_id") or settings.heygen_avatar_id or "").strip()
                 voice_id = str(heygen_payload.get("voice_id") or settings.heygen_voice_id or "").strip()
                 heygen_api_key = str((heygen_cfg.api_key_enc if heygen_cfg else "") or settings.heygen_api_key or "").strip()
-                if not (heygen_api_key and avatar_id and voice_id):
-                    raise RuntimeError("HeyGen is selected but api_key/avatar_id/voice_id are not configured")
-                heygen = HeyGenClient(api_key=heygen_api_key, base_url=(heygen_cfg.base_url if heygen_cfg else None) or None)
-                video_req = asyncio.run(
-                    heygen.create_avatar_video(
-                        title=job.title or brief.title,
-                        script=job.script_text,
-                        avatar_id=avatar_id,
-                        voice_id=voice_id,
-                        aspect_ratio=self._ratio_to_heygen(job.render_ratio),
-                        callback_url=str(heygen_payload.get("callback_url", "")).strip(),
-                        caption=True,
+                if heygen_api_key and avatar_id and voice_id:
+                    heygen = HeyGenClient(api_key=heygen_api_key, base_url=(heygen_cfg.base_url if heygen_cfg else None) or None)
+                    video_req = asyncio.run(
+                        heygen.create_avatar_video(
+                            title=job.title or brief.title,
+                            script=job.script_text,
+                            avatar_id=avatar_id,
+                            voice_id=voice_id,
+                            aspect_ratio=self._ratio_to_heygen(job.render_ratio),
+                            callback_url=str(heygen_payload.get("callback_url", "")).strip(),
+                            caption=True,
+                        )
                     )
-                )
-                video_status = asyncio.run(heygen.wait_for_video(video_req.video_id))
-                if video_status.status.lower() != "completed" or not video_status.video_url:
-                    raise RuntimeError(f"HeyGen video failed: {json.dumps(video_status.raw or {}, ensure_ascii=False)}")
-                final_video_path = render_dir / f"{slugify(job.title or brief.title)}-heygen.mp4"
-                asyncio.run(heygen.download_video(video_status.video_url, final_video_path))
-                avatar_thumb = str(cover_image_path) if cover_image_path else video_status.thumbnail_url
-                voice_provider = "heygen"
-                self._finish_step(
-                    db,
-                    job.id,
-                    "voice-generation",
-                    {"provider": "heygen", "video_id": video_status.video_id, "video_url": video_status.video_url},
-                )
+                    video_status = asyncio.run(heygen.wait_for_video(video_req.video_id))
+                    if video_status.status.lower() != "completed" or not video_status.video_url:
+                        raise RuntimeError(f"HeyGen video failed: {json.dumps(video_status.raw or {}, ensure_ascii=False)}")
+                    final_video_path = render_dir / f"{slugify(job.title or brief.title)}-heygen.mp4"
+                    asyncio.run(heygen.download_video(video_status.video_url, final_video_path))
+                    avatar_thumb = str(cover_image_path) if cover_image_path else video_status.thumbnail_url
+                    voice_provider = "heygen"
+                    job.pipeline_state = {**(job.pipeline_state or {}), "heygen_mode": "real"}
+                    job.voice_provider = "heygen"
+                    self._finish_step(
+                        db,
+                        job.id,
+                        "voice-generation",
+                        {"provider": "heygen", "mode": "real", "video_id": video_status.video_id, "video_url": video_status.video_url},
+                    )
+                else:
+                    preview_renderer = HeyGenPreviewRenderer(render_dir)
+                    preview = preview_renderer.build_preview_card(
+                        title=job.title or brief.title,
+                        hook=brief.hook,
+                        subtitle_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                        ratio=job.render_ratio,
+                    )
+                    voice = VoiceSynthesizer(provider="heygen_preview").synthesize(job.script_text, render_dir, stem="heygen-preview-voice")
+                    renderer = FFmpegRenderer(render_dir)
+                    render = renderer.render_short_video(
+                        title=job.title or brief.title,
+                        hook=brief.hook,
+                        script_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                        audio_path=voice.audio_path,
+                        output_name=f"{slugify(job.title or brief.title)}-heygen-preview",
+                        ratio=job.render_ratio,
+                        cover_image_path=preview.preview_path,
+                    )
+                    final_video_path = render.video_path
+                    avatar_thumb = str(preview.preview_path)
+                    voice_provider = "heygen_preview"
+                    job.pipeline_state = {
+                        **(job.pipeline_state or {}),
+                        "heygen_mode": "simulated",
+                        "heygen_preview_image": str(preview.preview_path),
+                    }
+                    job.voice_provider = "heygen_preview"
+                    self._finish_step(
+                        db,
+                        job.id,
+                        "voice-generation",
+                        {"provider": "heygen_preview", "mode": "simulated", "preview_path": str(preview.preview_path)},
+                    )
             else:
                 voice_provider_cfg = get_integration(db, job.owner_id, "openai")
                 if voice_provider_cfg and voice_provider_cfg.api_key_enc and job.script_text:
@@ -188,6 +224,7 @@ class VideoPipeline:
                     {"audio_path": str(voice.audio_path), "provider": voice.provider, "note": voice.note},
                 )
                 job.pipeline_state = {**(job.pipeline_state or {}), "voiceover": str(voice.audio_path), "voice_provider": voice.provider}
+                job.voice_provider = voice.provider
                 renderer = FFmpegRenderer(render_dir)
                 render = renderer.render_short_video(
                     title=job.title or brief.title,

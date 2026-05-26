@@ -19,6 +19,11 @@
     <div class="panel-head">
       <h2>流水线状态</h2>
     </div>
+    {% if job.pipeline_state and job.pipeline_state.get('heygen_mode') == 'simulated' %}
+      <div class="alert alert-success">当前是 HeyGen 预览模式，没有真实 API 也会生成一版接近数字人效果的视频，方便先看成片结构。</div>
+    {% elif job.pipeline_state and job.pipeline_state.get('heygen_mode') == 'real' %}
+      <div class="alert alert-success">当前使用的是 HeyGen 真实 API 生成。</div>
+    {% endif %}
     <div class="progress-shell">
       <div class="progress-bar" style="width: {{ job.progress }}%"></div>
     </div>
@@ -28,13 +33,18 @@
       <div><span>播报</span><strong>{{ label_avatar_mode(job.avatar_mode) }}</strong></div>
       <div><span>转写</span><strong>{{ label_voice_provider(job.voice_provider) }}</strong></div>
       </div>
-      <div class="code-block">
+    <div class="code-block">
       <h3>输出</h3>
       <p>{{ job.output_path or '等待渲染' }}</p>
       {% if job.output_path %}
         <a class="btn btn-secondary" href="/jobs/{{ job.id }}/download">下载视频</a>
       {% endif %}
     </div>
+    {% if job.output_path %}
+      <div class="preview-frame">
+        <img src="/jobs/{{ job.id }}/preview-image" alt="视频预览图">
+      </div>
+    {% endif %}
   </div>
 
   <div class="panel">

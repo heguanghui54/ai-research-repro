@@ -411,6 +411,20 @@ def job_download(request: Request, job_id: str, db: Session = Depends(get_db)):
     return FileResponse(job.output_path, filename=Path(job.output_path).name)
 
 
+@app.get("/jobs/{job_id}/preview-image")
+def job_preview_image(request: Request, job_id: str, db: Session = Depends(get_db)):
+    user = require_user(request, db)
+    job = get_job(db, user.id, job_id)
+    if not job:
+        raise HTTPException(status_code=404, detail="Job not found")
+    candidate = job.thumbnail_url or str((job.pipeline_state or {}).get("heygen_preview_image", ""))
+    if candidate and Path(candidate).exists():
+        return FileResponse(candidate, filename=Path(candidate).name)
+    if job.output_path and Path(job.output_path).exists():
+        return FileResponse(job.output_path, filename=Path(job.output_path).name)
+    raise HTTPException(status_code=404, detail="Preview not ready")
+
+
 @app.get("/api/jobs/{job_id}/status")
 def job_status(request: Request, job_id: str, db: Session = Depends(get_db)):
     user = require_user(request, db)

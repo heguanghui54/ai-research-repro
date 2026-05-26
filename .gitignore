@@ -8,6 +8,8 @@ build/
 *.egg-info/
 artifacts/
 runs/
+data/
+viral_studio.db
 *.pt
 *.pth
 *.ckpt
@@ -15,4 +17,3 @@ runs/
 *.png
 *.log
 .pytest_cache/
-

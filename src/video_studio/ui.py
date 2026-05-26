@@ -35,6 +35,7 @@ VOICE_PROVIDER_LABELS: dict[str, str] = {
     "deepseek": "DeepSeek",
     "openai": "OpenAI Whisper",
     "monica": "Monica API",
+    "heygen_preview": "HeyGen 预览",
 }
 
 PUBLISH_ADAPTER_LABELS: dict[str, str] = {
