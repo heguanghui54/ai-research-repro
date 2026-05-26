@@ -211,6 +211,16 @@ input:focus, select:focus, textarea:focus { border-color: rgba(124,224,255,0.55)
   border: 1px solid rgba(255, 122, 89, 0.24);
   color: #ffd5c9;
 }
+.alert-success {
+  background: rgba(118, 232, 163, 0.12);
+  border-color: rgba(118, 232, 163, 0.24);
+  color: #dff8e9;
+}
+.alert-error {
+  background: rgba(255, 122, 89, 0.12);
+  border-color: rgba(255, 122, 89, 0.24);
+  color: #ffd5c9;
+}
 
 .progress-shell {
   width: 100%;

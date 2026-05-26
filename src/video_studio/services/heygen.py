@@ -77,6 +77,15 @@ class HeyGenClient:
             raw=data,
         )
 
+    async def list_voices(self) -> dict:
+        if not self.enabled:
+            raise RuntimeError("HEYGEN_API_KEY is not configured")
+        headers = {"x-api-key": self.api_key}
+        async with httpx.AsyncClient(timeout=60) as client:
+            resp = await client.get(f"{self.base_url}/v2/voices", headers=headers)
+            resp.raise_for_status()
+            return resp.json()
+
     async def wait_for_video(self, video_id: str, timeout_s: int = 900, poll_interval_s: int = 8) -> HeyGenVideoResult:
         deadline = asyncio.get_event_loop().time() + timeout_s
         last = None
@@ -96,4 +105,3 @@ class HeyGenClient:
                     async for chunk in resp.aiter_bytes():
                         f.write(chunk)
         return output_path
-

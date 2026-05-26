@@ -19,6 +19,7 @@ from .services.deepseek import DeepSeekClient
 from .services.distributor import DistributorClient
 from .services.ffmpeg import FFmpegRenderer
 from .services.heygen import HeyGenClient
+from .services.monica import MonicaClient
 from .services.voice import VoiceSynthesizer
 from .services.whisper import WhisperClient
 from .utils import ensure_path, slugify
@@ -96,9 +97,48 @@ class VideoPipeline:
             job.progress = 38
             db.commit()
 
+            render_dir = ensure_path(settings.render_dir / job.id)
+            cover_image_path: Optional[Path] = None
+            cover_cfg = get_integration(db, job.owner_id, "monica")
+            if cover_cfg and cover_cfg.api_key_enc:
+                try:
+                    cover_client = MonicaClient(
+                        api_key=cover_cfg.api_key_enc,
+                        base_url=cover_cfg.base_url or "https://openapi.monica.im/v1",
+                    )
+                    cover_model = str((cover_cfg.settings or {}).get("image_model") or "dall-e-3").strip() or "dall-e-3"
+                    cover_size = "1024x1792" if job.render_ratio == "9:16" else "1792x1024"
+                    cover_prompt = self._build_cover_prompt(
+                        project_name=project.name,
+                        topic=job.topic,
+                        title=job.title or brief.title,
+                        hook=brief.hook or reference.hook_summary,
+                        script=brief.script,
+                    )
+                    cover_result = asyncio.run(
+                        cover_client.generate_image(
+                            prompt=cover_prompt,
+                            model=cover_model,
+                            size=cover_size,
+                            style=str((cover_cfg.settings or {}).get("image_style") or "vivid"),
+                            quality=str((cover_cfg.settings or {}).get("image_quality") or "standard"),
+                        )
+                    )
+                    cover_image_path = render_dir / f"{slugify(job.title or brief.title)}-cover.png"
+                    asyncio.run(cover_client.download_image(cover_result.url, cover_image_path))
+                    job.pipeline_state = {
+                        **(job.pipeline_state or {}),
+                        "cover_image": str(cover_image_path),
+                        "cover_model": cover_model,
+                        "cover_url": cover_result.url,
+                    }
+                    db.commit()
+                except Exception as exc:
+                    job.pipeline_state = {**(job.pipeline_state or {}), "cover_image_error": str(exc)}
+                    db.commit()
+
             add_job_step(db, job.id, "voice-generation", "running", {"provider": job.avatar_mode})
             db.commit()
-            render_dir = ensure_path(settings.render_dir / job.id)
             final_video_path: Path
             avatar_thumb = ""
 
@@ -127,7 +167,7 @@ class VideoPipeline:
                     raise RuntimeError(f"HeyGen video failed: {json.dumps(video_status.raw or {}, ensure_ascii=False)}")
                 final_video_path = render_dir / f"{slugify(job.title or brief.title)}-heygen.mp4"
                 asyncio.run(heygen.download_video(video_status.video_url, final_video_path))
-                avatar_thumb = video_status.thumbnail_url
+                avatar_thumb = str(cover_image_path) if cover_image_path else video_status.thumbnail_url
                 voice_provider = "heygen"
                 self._finish_step(
                     db,
@@ -156,6 +196,7 @@ class VideoPipeline:
                     audio_path=voice.audio_path,
                     output_name=slugify(job.title or brief.title),
                     ratio=job.render_ratio,
+                    cover_image_path=cover_image_path,
                 )
                 final_video_path = render.video_path
                 avatar_thumb = str(render.thumbnail_path)
@@ -376,6 +417,21 @@ class VideoPipeline:
 
     def _ratio_to_heygen(self, ratio: str) -> str:
         return "16:9" if ratio == "16:9" else "9:16"
+
+    def _build_cover_prompt(self, project_name: str, topic: str, title: str, hook: str, script: str) -> str:
+        return "\n".join(
+            [
+                "Create a premium short-video cover image.",
+                "Style: cinematic, modern, high contrast, social-media ready.",
+                "Leave generous negative space for Chinese title text.",
+                f"Project: {project_name}",
+                f"Topic: {topic}",
+                f"Title: {title}",
+                f"Hook: {hook}",
+                f"Script excerpt: {script[:400]}",
+                "Do not render readable text in the image.",
+            ]
+        )
 
     def _finish_step(self, db, job_id: str, step_key: str, detail: dict) -> None:
         step = db.execute(

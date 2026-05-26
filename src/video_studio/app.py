@@ -1,10 +1,14 @@
 from __future__ import annotations
 
+import asyncio
 import json
+import tempfile
+import wave
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 from pathlib import Path
 from typing import Iterable, List, Optional
+from urllib.parse import urlencode
 
 from fastapi import BackgroundTasks, Depends, FastAPI, Form, HTTPException, Request
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse
@@ -39,6 +43,7 @@ from .crud import (
 from .db import Base, SessionLocal, engine
 from .models import AppUser, Integration, Project, PublishJob, PublishTarget, VideoJob
 from .pipeline import VideoPipeline
+from .services.monica import MonicaClient
 from .ui import (
     API_CONFIG_SECTIONS,
     label_avatar_mode,
@@ -100,6 +105,9 @@ def render(request: Request, template_name: str, **context):
             "settings": settings,
             "format_dt": format_dt,
             "json_dumps": json.dumps,
+            "page_notice": request.query_params.get("notice", ""),
+            "page_notice_type": request.query_params.get("notice_type", "success"),
+            "page_focus": request.query_params.get("focus", ""),
             "can_access_admin": can_access_admin,
             "label_status": label_status,
             "label_platform": label_platform,
@@ -114,6 +122,28 @@ def render(request: Request, template_name: str, **context):
 
 def _auth_redirect(url: str) -> RedirectResponse:
     return RedirectResponse(url=url, status_code=303)
+
+
+def _notice_redirect(path: str, notice: str, notice_type: str = "success", focus: str = "") -> RedirectResponse:
+    query = urlencode({"notice": notice, "notice_type": notice_type, "focus": focus})
+    return _auth_redirect(f"{path}?{query}")
+
+
+def _silent_wav(path: Path, seconds: float = 0.4, sample_rate: int = 16000) -> None:
+    frames = max(1, int(seconds * sample_rate))
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with wave.open(str(path), "w") as wav_file:
+        wav_file.setnchannels(1)
+        wav_file.setsampwidth(2)
+        wav_file.setframerate(sample_rate)
+        wav_file.writeframes(b"\x00\x00" * frames)
+
+
+def _normalize_extra_json(raw: str) -> dict:
+    try:
+        return json.loads(raw or "{}")
+    except json.JSONDecodeError:
+        return {}
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -457,6 +487,19 @@ def admin_api_config_page(request: Request, db: Session = Depends(get_db)):
     )
 
 
+def _resolve_api_section(db: Session, user: AppUser, provider: str, api_key: str, base_url: str, model: str, extra_json: str) -> dict:
+    current = get_integration(db, user.id, provider)
+    current_settings = current.settings if current else {}
+    extra_settings = _normalize_extra_json(extra_json) if extra_json.strip() else current_settings
+    return {
+        "provider": provider,
+        "api_key": api_key.strip() or (current.api_key_enc if current else ""),
+        "base_url": base_url.strip() or (current.base_url if current else ""),
+        "model": model.strip() or (current.model if current else ""),
+        "extra_settings": extra_settings or current_settings or {},
+    }
+
+
 @app.post("/admin/api-config")
 def admin_api_config_save(
     request: Request,
@@ -470,22 +513,105 @@ def admin_api_config_save(
     user = require_user(request, db)
     if not _admin_access_allowed(db, user):
         return _auth_redirect("/dashboard")
-    try:
-        extra_settings = json.loads(extra_json or "{}")
-    except json.JSONDecodeError:
-        extra_settings = {}
+    section = _resolve_api_section(db, user, provider, api_key, base_url, model, extra_json)
     upsert_integration(
         db,
         owner_id=user.id,
         provider=provider,
-        api_key_enc=api_key,
-        base_url=base_url,
-        model=model,
-        settings=extra_settings,
+        api_key_enc=section["api_key"],
+        base_url=section["base_url"],
+        model=section["model"],
+        settings=section["extra_settings"],
         is_active=True,
     )
     db.commit()
-    return _auth_redirect("/admin/api-config")
+    return _notice_redirect("/admin/api-config", f"已保存 {provider} 配置", "success", provider)
+
+
+@app.post("/admin/api-config/test")
+def admin_api_config_test(
+    request: Request,
+    provider: str = Form(...),
+    api_key: str = Form(""),
+    base_url: str = Form(""),
+    model: str = Form(""),
+    extra_json: str = Form("{}"),
+    db: Session = Depends(get_db),
+):
+    user = require_user(request, db)
+    if not _admin_access_allowed(db, user):
+        return _auth_redirect("/dashboard")
+    section = _resolve_api_section(db, user, provider, api_key, base_url, model, extra_json)
+    if not section["api_key"]:
+        return _notice_redirect("/admin/api-config", f"{provider} 还没有 API key，先保存后再测试。", "error", provider)
+
+    try:
+        result = asyncio.run(_test_api_section(section))
+    except Exception as exc:
+        return _notice_redirect("/admin/api-config", f"{provider} 测试失败：{exc}", "error", provider)
+    return _notice_redirect("/admin/api-config", result, "success", provider)
+
+
+async def _test_api_section(section: dict) -> str:
+    provider = section["provider"]
+    api_key = section["api_key"]
+    base_url = section["base_url"] or ""
+    model = section["model"] or ""
+    extra_settings = section["extra_settings"] or {}
+
+    if provider == "monica":
+        client = MonicaClient(api_key=api_key, base_url=base_url or "https://openapi.monica.im/v1")
+        text_result = await client.test_chat(model=model or "gpt-4o")
+        image_model = str(extra_settings.get("image_model") or "dall-e-3").strip() or "dall-e-3"
+        image_size = "1024x1792"
+        image_result = await client.generate_image(
+            prompt="生成一张适合短视频封面的科技风背景图，画面要有强烈对比和留白，中文内容留出空间。",
+            model=image_model,
+            size=image_size,
+        )
+        return f"Monica 连通成功，聊天返回：{text_result.text[:30]}；图像模型返回正常。"
+
+    if provider == "deepseek":
+        client = MonicaClient(api_key=api_key, base_url=base_url or "https://api.deepseek.com")
+        text_result = await client.chat_completion("Reply with a single word: ok", model=model or "deepseek-chat")
+        return f"DeepSeek 连通成功：{text_result.text[:30]}"
+
+    if provider == "openai":
+        from .services.whisper import WhisperClient
+
+        client = WhisperClient(api_key=api_key, base_url=base_url or None, model=model or None)
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp_file:
+            tmp_path = Path(tmp_file.name)
+        try:
+            _silent_wav(tmp_path)
+            transcript = await client.transcribe_file(tmp_path, prompt="连接测试")
+            return f"OpenAI Whisper 连通成功：{transcript.text[:30] or '已返回结果'}"
+        finally:
+            try:
+                tmp_path.unlink(missing_ok=True)
+            except Exception:
+                pass
+
+    if provider == "heygen":
+        from .services.heygen import HeyGenClient
+
+        client = HeyGenClient(api_key=api_key, base_url=base_url or None)
+        voices = await client.list_voices()
+        return "HeyGen 连通测试已通过。"
+
+    if provider == "multipost":
+        import httpx
+
+        if not base_url:
+            raise RuntimeError("请先填写 MultiPost 基础地址")
+        headers = {"Authorization": f"Bearer {api_key}"} if api_key else {}
+        async with httpx.AsyncClient(timeout=30, follow_redirects=True) as client:
+            resp = await client.get(base_url, headers=headers)
+            if resp.status_code >= 500:
+                resp.raise_for_status()
+        return f"MultiPost 基础地址可达，当前返回状态码 {resp.status_code}。"
+
+    raise RuntimeError(f"不支持的 provider: {provider}")
 
 
 @app.get("/admin", response_class=HTMLResponse)

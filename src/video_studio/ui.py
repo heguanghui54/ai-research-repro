@@ -57,6 +57,8 @@ API_CONFIG_SECTIONS: list[dict[str, Any]] = [
         "model": "gpt-4o",
         "extra_defaults": {
             "image_model": "dall-e-3",
+            "image_style": "vivid",
+            "image_quality": "standard",
             "notes": "Monica Open API: chat + image",
         },
     },
@@ -133,4 +135,3 @@ def label_publish_adapter(value: str) -> str:
 
 def label_role(value: str) -> str:
     return label_or_default(ROLE_LABELS, value)
-

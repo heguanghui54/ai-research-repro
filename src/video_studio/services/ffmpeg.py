@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from textwrap import wrap
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 from ..utils import ensure_path
 
@@ -33,6 +33,7 @@ class FFmpegRenderer:
         audio_path: Path,
         output_name: str,
         ratio: str = "9:16",
+        cover_image_path: Path | None = None,
     ) -> RenderResult:
         self.workdir.mkdir(parents=True, exist_ok=True)
         width, height = (1080, 1920) if ratio == "9:16" else (1920, 1080)
@@ -41,23 +42,44 @@ class FFmpegRenderer:
         subtitles = self.workdir / f"{output_name}.srt"
         video = self.workdir / f"{output_name}.mp4"
 
-        self._draw_poster(poster, width, height, title, hook, script_lines)
+        self._draw_poster(poster, width, height, title, hook, script_lines, cover_image_path=cover_image_path)
         self._write_srt(subtitles, script_lines)
         self._render_mp4(video, poster, audio_path, subtitles, width, height)
         thumbnail.write_bytes(poster.read_bytes())
         return RenderResult(video_path=video, thumbnail_path=thumbnail, subtitle_path=subtitles, poster_path=poster, note="rendered")
 
-    def _draw_poster(self, path: Path, width: int, height: int, title: str, hook: str, lines: list[str]) -> None:
+    def _draw_poster(
+        self,
+        path: Path,
+        width: int,
+        height: int,
+        title: str,
+        hook: str,
+        lines: list[str],
+        cover_image_path: Path | None = None,
+    ) -> None:
         bg1 = (14, 20, 38)
         bg2 = (34, 78, 115)
-        img = Image.new("RGB", (width, height), bg1)
+        if cover_image_path and cover_image_path.exists():
+            try:
+                base = Image.open(cover_image_path).convert("RGB")
+                img = ImageOps.fit(base, (width, height), method=Image.Resampling.LANCZOS)
+            except Exception:
+                img = Image.new("RGB", (width, height), bg1)
+        else:
+            img = Image.new("RGB", (width, height), bg1)
         draw = ImageDraw.Draw(img)
 
-        # soft gradient bands
-        for i in range(height):
-            ratio = i / max(1, height - 1)
-            color = tuple(int(bg1[c] * (1 - ratio) + bg2[c] * ratio) for c in range(3))
-            draw.line((0, i, width, i), fill=color)
+        if not cover_image_path or not cover_image_path.exists():
+            # soft gradient bands
+            for i in range(height):
+                ratio = i / max(1, height - 1)
+                color = tuple(int(bg1[c] * (1 - ratio) + bg2[c] * ratio) for c in range(3))
+                draw.line((0, i, width, i), fill=color)
+        else:
+            overlay = Image.new("RGB", (width, height), (8, 14, 26))
+            img = Image.blend(img, overlay, 0.34)
+            draw = ImageDraw.Draw(img)
 
         try:
             title_font = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 76)

@@ -8,10 +8,16 @@
   </div>
 </section>
 
+{% if page_notice %}
+  <div class="alert {{ 'alert-success' if page_notice_type != 'error' else 'alert-error' }}">
+    {{ page_notice }}
+  </div>
+{% endif %}
+
 <section class="stack">
   {% for section in api_sections %}
     {% set item = section.current %}
-    <form class="panel form-grid" method="post" action="/admin/api-config">
+    <form id="{{ section.provider }}" class="panel form-grid" method="post" action="/admin/api-config">
       <input type="hidden" name="provider" value="{{ section.provider }}">
       <div class="full panel-head">
         <h2>{{ section.label }}</h2>
@@ -23,7 +29,7 @@
       <label class="full">额外配置 JSON<textarea name="extra_json" rows="5" placeholder='{}'>{{ item.settings | tojson(indent=2) if item else section.extra_json }}</textarea>
         <span class="muted">
           {% if section.provider == 'monica' %}
-            Monica 默认建议把 `image_model`、`vision_model` 等放这里；例如 `{"image_model":"dall-e-3"}`。
+            Monica 默认建议把 `image_model`、`image_style`、`image_quality` 放这里；例如 `{"image_model":"dall-e-3"}`。
           {% elif section.provider == 'heygen' %}
             HeyGen 在这里放 `avatar_id`、`voice_id`、`callback_url`。
           {% elif section.provider == 'multipost' %}
@@ -35,7 +41,9 @@
       </label>
       <div class="full actions-row">
         <button class="btn btn-primary" type="submit">保存 {{ section.label }}</button>
+        <button class="btn btn-secondary" type="submit" formaction="/admin/api-config/test" formmethod="post">测试连通性</button>
       </div>
+      <p class="muted full">提示：测试连通性会真的调用一次对应服务，可能消耗少量额度。</p>
     </form>
   {% endfor %}
 </section>
