@@ -34,6 +34,8 @@
             Monica 默认建议把 `image_model`、`image_style`、`image_quality` 放这里；例如 `{"image_model":"dall-e-3"}`。
           {% elif section.provider == 'volcengine' %}
             火山方舟默认建议把 `image_model` 设成 `doubao-seedream-5.0-lite`，`video_model` 设成 `doubao-seedance-1-5-pro-251215`，`tts_resource_id` 设成 `volc.service_type.10029`。如果要声音复刻，再补 `tts_app_id`、`tts_access_key`、`tts_speaker` 和 `tts_resource_id=seed-icl-2.0`。如果要火山数字人，再补 `avatar_access_key_id`、`avatar_secret_access_key`、`avatar_rtc_app_id`、`avatar_app_id`、`avatar_token`、`avatar_role`、`avatar_user_id`、`avatar_llm_endpoint_id`，还可以加 `avatar_voice_mode`、`avatar_background_url` 和 `avatar_video_bitrate`。
+          {% elif section.provider == 'heygen' %}
+            HeyGen 备用方案默认用 `Space Settings > API` 的 Token；如果你有可用的头像和音色，再补 `avatar_id`、`voice_id`。这组默认只作为 fallback，不会覆盖火山主链路。
           {% elif section.provider == 'multipost' %}
             MultiPost 可以在这里放 `publish_path` 等接口参数。
           {% else %}

@@ -124,6 +124,20 @@ API_CONFIG_SECTIONS: list[dict[str, Any]] = [
         "extra_defaults": {},
     },
     {
+        "provider": "heygen",
+        "label": "HeyGen（备用数字人）",
+        "description": "备用数字人方案。只在火山数字人不可用或你想对比效果时启用；这里的 API Token 来自 HeyGen 的 Space Settings > API。",
+        "api_key_placeholder": "粘贴 HeyGen API Token",
+        "api_key_default": "sk_V2_hgu_kkyESUHu1AP_wOmlJ9s6Oe87ZBAIi9HIXjtdR4H1SfXX",
+        "base_url": "https://api.heygen.com",
+        "model": "",
+        "extra_defaults": {
+            "avatar_id": "",
+            "voice_id": "",
+            "notes": "Free Trial API access / fallback avatar provider",
+        },
+    },
+    {
         "provider": "multipost",
         "label": "MultiPost 分发",
         "description": "用于多平台分发的 HTTP 接口。",
