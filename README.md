@@ -12,6 +12,7 @@
 - AI 负责结构化改写，FFmpeg 负责确定性渲染
 - 先做可运行的 MVP，再接入高质量付费能力
 - 用户数据、项目数据、任务数据都落在 Supabase Postgres
+- 火山方舟优先做低成本脚本/封面模型，火山语音优先做公版 TTS 或声音复刻
 - HeyGen 走官方 `v3/videos` 生成与轮询接口
 - OpenAI Whisper 走官方 `/v1/audio/transcriptions`
 - 分发优先支持 `social-auto-upload` 的 `sau` CLI，MultiPost 走可配置 HTTP 适配器
@@ -23,9 +24,9 @@
 - 数据库：Supabase Postgres
 - 认证：应用内账号体系，后续可切 Supabase Auth
 - 任务队列：内置线程池 + 数据库任务状态
-- 文案/脚本：DeepSeek API
+- 文案/脚本：火山方舟 Ark API，DeepSeek 作为兼容回退
 - 转写：本地 Whisper/Faster-Whisper 预留，默认可降级为参考链接元数据分析
-- 数字人：HeyGen 作为高质量付费通道，CosyVoice 作为开源通道
+- 数字人：HeyGen 作为高质量付费通道，CosyVoice 作为开源通道，火山语音作为低成本通道
 - 剪辑：FFmpeg
 - 分发：MultiPost / social-auto-upload 的适配层
 
@@ -33,7 +34,9 @@
 
 - `HeyGen`：付费，按秒计费，适合高质量数字人
 - `OpenAI Whisper`：付费，按分钟计费
-- `DeepSeek API`：按 token 计费，不是永久免费
+- `火山方舟 Ark`：有免费额度和低价模型，当前优先作为默认脚本/封面模型
+- `火山语音`：公版 TTS 和声音复刻都比高阶数字人更省钱，适合批量播报
+- `DeepSeek API`：按 token 计费，作为兼容回退
 - `Coze`：有免费额度，超过后要买 token
 - `FFmpeg`：软件开源免费，但商用编译和分发要注意 LGPL/GPL 边界
 
@@ -117,6 +120,8 @@ export DEEPSEEK_MODEL="deepseek-chat"
 - `HEYGEN_AVATAR_ID` / `HEYGEN_VOICE_ID`，如果你想直接走环境变量，不想每次都在页面里填
 - 或在应用内 `HeyGen` 集成里写入 `extra settings JSON`
 - `OPENAI_API_KEY`，如果要启用 OpenAI Whisper
+- `VOLCENGINE_ARK_API_KEY`，如果要启用火山方舟低成本脚本/封面模型
+- `VOLCENGINE_TTS_APP_ID` / `VOLCENGINE_TTS_ACCESS_KEY`，如果要启用火山语音合成或声音复刻
 - `MULTIPOST_API_BASE` / `MULTIPOST_API_KEY`，如果要接多平台分发 API
 - `sau` CLI，如果要启用 `social-auto-upload` 发布
 
@@ -149,7 +154,16 @@ export DEEPSEEK_MODEL="deepseek-chat"
 4. `Model` 可以先填 `whisper-1`，如果你想用新模型也可以换成 `gpt-4o-mini-transcribe`。
 5. 如果你不想在页面里填，直接在系统环境变量里设 `OPENAI_API_KEY` 也可以，代码会优先读页面配置，页面没填时回退到环境变量。
 
-### 3. social-auto-upload
+### 3. 火山方舟 / 豆包语音
+
+1. 在火山引擎控制台申请 Ark API Key。
+2. 在应用 `Integrations` 页把 `volcengine` 的 API key 填进去。
+3. `Base URL` 保持默认 `https://ark.cn-beijing.volces.com/api/v3`，`Model` 先用 `doubao-seed-2.0-lite`。
+4. `Extra settings JSON` 里默认已经预填了 `image_model=Doubao-Seedream-5.0-lite`、`tts_resource_id=volc.service_type.10029`。
+5. 如果要用声音复刻，再把 `tts_app_id`、`tts_access_key` 和 `tts_speaker` 填进去，并把 `tts_resource_id` 改成 `seed-icl-2.0`。
+6. 语音合成优先走公版音色，只有你需要真人声音克隆时才切复刻音色，这样成本最低。
+
+### 4. social-auto-upload
 
 1. 先安装 `sau` CLI，并确保终端里能直接运行 `sau --help`。
 2. 用 `sau douyin login --account <account_name>` 之类的命令登录对应平台。
@@ -157,7 +171,7 @@ export DEEPSEEK_MODEL="deepseek-chat"
 4. `Account / Handle` 填你登录时用的账号名。
 5. 需要 Bilibili 时，可以在 `Extra settings JSON` 里放 `{"tid": 249}` 之类的参数。
 
-### 4. MultiPost
+### 5. MultiPost
 
 1. 你可以把它当成 HTTP 分发适配器接到自己的后端。
 2. 在 `Integrations` 页配置 `multipost` 的 `Base URL` 和 `API key`。

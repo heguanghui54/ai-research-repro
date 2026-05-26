@@ -44,6 +44,7 @@ from .db import Base, SessionLocal, engine
 from .models import AppUser, Integration, Project, PublishJob, PublishTarget, VideoJob
 from .pipeline import VideoPipeline
 from .services.monica import MonicaClient
+from .services.volcengine import VolcArkClient, VolcSpeechClient
 from .ui import (
     API_CONFIG_SECTIONS,
     label_avatar_mode,
@@ -589,6 +590,51 @@ async def _test_api_section(section: dict) -> str:
         client = MonicaClient(api_key=api_key, base_url=base_url or "https://api.deepseek.com")
         text_result = await client.chat_completion("Reply with a single word: ok", model=model or "deepseek-chat")
         return f"DeepSeek 连通成功：{text_result.text[:30]}"
+
+    if provider == "volcengine":
+        volc_chat = VolcArkClient(api_key=api_key, base_url=base_url or "https://ark.cn-beijing.volces.com/api/v3", model=model or "doubao-seed-2.0-lite")
+        chat_result = await volc_chat.test_chat(model=model or "doubao-seed-2.0-lite")
+        extra_image_model = str(extra_settings.get("image_model") or "doubao-seedream-5.0-lite").strip() or "doubao-seedream-5.0-lite"
+        image_result_text = "未测试图像"
+        try:
+            image_result = await volc_chat.generate_image(
+                prompt="生成一张适合短视频封面的科技风背景图，画面要有强烈对比和留白，中文内容留出空间。",
+                model=extra_image_model,
+                size=str(extra_settings.get("image_size") or "1024x1024").strip() or "1024x1024",
+                style=str(extra_settings.get("image_style") or "vivid").strip() or "vivid",
+                quality=str(extra_settings.get("image_quality") or "standard").strip() or "standard",
+            )
+            image_result_text = f"图像模型返回正常：{image_result.model}"
+        except Exception as exc:
+            image_result_text = f"图像模型测试跳过：{exc}"
+        speech_info = ""
+        tts_app_id = str(extra_settings.get("tts_app_id") or "").strip()
+        tts_access_key = str(extra_settings.get("tts_access_key") or "").strip()
+        tts_resource_id = str(extra_settings.get("tts_resource_id") or "volc.service_type.10029").strip()
+        tts_speaker = str(extra_settings.get("tts_speaker") or "").strip()
+        if tts_app_id and tts_access_key and tts_speaker:
+            speech = VolcSpeechClient(
+                app_id=tts_app_id,
+                access_key=tts_access_key,
+                resource_id=tts_resource_id,
+                speaker=tts_speaker,
+                model=str(extra_settings.get("tts_model") or "seed-tts-2.0-standard").strip() or "seed-tts-2.0-standard",
+                output_format=str(extra_settings.get("tts_output_format") or "mp3").strip() or "mp3",
+                sample_rate=int(extra_settings.get("tts_sample_rate") or 24000),
+            )
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
+                tmp_path = Path(tmp_file.name)
+            try:
+                result = speech.synthesize("火山引擎联通测试，正在生成一段语音。", tmp_path)
+                speech_info = f"；语音合成返回正常：{result.task_id}"
+            finally:
+                try:
+                    tmp_path.unlink(missing_ok=True)
+                except Exception:
+                    pass
+        else:
+            speech_info = "；语音合成未配置 App ID / Access Key / Speaker，已跳过"
+        return f"火山方舟连通成功，聊天返回：{chat_result.title[:20]}；{image_result_text}{speech_info}"
 
     if provider == "openai":
         from .services.whisper import WhisperClient

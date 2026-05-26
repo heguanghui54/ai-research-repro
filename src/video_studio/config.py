@@ -31,6 +31,15 @@ class Settings:
     heygen_api_key: str = field(default_factory=lambda: _env("HEYGEN_API_KEY"))
     heygen_avatar_id: str = field(default_factory=lambda: _env("HEYGEN_AVATAR_ID"))
     heygen_voice_id: str = field(default_factory=lambda: _env("HEYGEN_VOICE_ID"))
+
+    volcengine_ark_api_key: str = field(default_factory=lambda: _env("VOLCENGINE_ARK_API_KEY"))
+    volcengine_ark_base_url: str = field(default_factory=lambda: _env("VOLCENGINE_ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3"))
+    volcengine_ark_model: str = field(default_factory=lambda: _env("VOLCENGINE_ARK_MODEL", "doubao-seed-2.0-lite"))
+    volcengine_tts_app_id: str = field(default_factory=lambda: _env("VOLCENGINE_TTS_APP_ID"))
+    volcengine_tts_access_key: str = field(default_factory=lambda: _env("VOLCENGINE_TTS_ACCESS_KEY"))
+    volcengine_tts_resource_id: str = field(default_factory=lambda: _env("VOLCENGINE_TTS_RESOURCE_ID", "volc.service_type.10029"))
+    volcengine_tts_speaker: str = field(default_factory=lambda: _env("VOLCENGINE_TTS_SPEAKER", "zh_female_qingxin_moon_bigtts"))
+
     multipost_api_base: str = field(default_factory=lambda: _env("MULTIPOST_API_BASE"))
     multipost_api_key: str = field(default_factory=lambda: _env("MULTIPOST_API_KEY"))
 

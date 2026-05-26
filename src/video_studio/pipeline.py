@@ -22,6 +22,7 @@ from .services.heygen import HeyGenClient
 from .services.heygen_preview import HeyGenPreviewRenderer
 from .services.monica import MonicaClient
 from .services.voice import VoiceSynthesizer
+from .services.volcengine import VolcArkClient
 from .services.whisper import WhisperClient
 from .utils import ensure_path, slugify
 
@@ -67,12 +68,23 @@ class VideoPipeline:
 
             add_job_step(db, job.id, "script-generation", "running", {"topic": job.topic})
             db.commit()
-            llm_cfg = get_integration(db, job.owner_id, "monica") or get_integration(db, job.owner_id, "deepseek")
-            deepseek = DeepSeekClient(
-                api_key=(llm_cfg.api_key_enc if llm_cfg else None) or None,
-                base_url=(llm_cfg.base_url if llm_cfg else None) or None,
-                model=(llm_cfg.model if llm_cfg else None) or None,
+            llm_cfg = (
+                get_integration(db, job.owner_id, "volcengine")
+                or get_integration(db, job.owner_id, "monica")
+                or get_integration(db, job.owner_id, "deepseek")
             )
+            if llm_cfg and llm_cfg.provider == "volcengine":
+                deepseek = VolcArkClient(
+                    api_key=(llm_cfg.api_key_enc if llm_cfg else None) or None,
+                    base_url=(llm_cfg.base_url if llm_cfg else None) or None,
+                    model=(llm_cfg.model if llm_cfg else None) or None,
+                )
+            else:
+                deepseek = DeepSeekClient(
+                    api_key=(llm_cfg.api_key_enc if llm_cfg else None) or None,
+                    base_url=(llm_cfg.base_url if llm_cfg else None) or None,
+                    model=(llm_cfg.model if llm_cfg else None) or None,
+                )
             brief = asyncio.run(
                 deepseek.build_video_brief(
                     reference_title=reference.source_title,
@@ -100,14 +112,27 @@ class VideoPipeline:
 
             render_dir = ensure_path(settings.render_dir / job.id)
             cover_image_path: Optional[Path] = None
-            cover_cfg = get_integration(db, job.owner_id, "monica")
+            cover_cfg = get_integration(db, job.owner_id, "volcengine") or get_integration(db, job.owner_id, "monica")
             if cover_cfg and cover_cfg.api_key_enc:
                 try:
-                    cover_client = MonicaClient(
-                        api_key=cover_cfg.api_key_enc,
-                        base_url=cover_cfg.base_url or "https://openapi.monica.im/v1",
-                    )
-                    cover_model = str((cover_cfg.settings or {}).get("image_model") or "dall-e-3").strip() or "dall-e-3"
+                    cover_settings = cover_cfg.settings or {}
+                    if cover_cfg.provider == "volcengine":
+                        cover_client = VolcArkClient(
+                            api_key=cover_cfg.api_key_enc,
+                            base_url=cover_cfg.base_url or "https://ark.cn-beijing.volces.com/api/v3",
+                            model=cover_cfg.model or "doubao-seed-2.0-lite",
+                        )
+                        cover_model = str(cover_settings.get("image_model") or "doubao-seedream-5.0-lite").strip() or "doubao-seedream-5.0-lite"
+                        cover_style = str(cover_settings.get("image_style") or "vivid").strip() or "vivid"
+                        cover_quality = str(cover_settings.get("image_quality") or "standard").strip() or "standard"
+                    else:
+                        cover_client = MonicaClient(
+                            api_key=cover_cfg.api_key_enc,
+                            base_url=cover_cfg.base_url or "https://openapi.monica.im/v1",
+                        )
+                        cover_model = str((cover_settings.get("image_model") or "dall-e-3")).strip() or "dall-e-3"
+                        cover_style = str(cover_settings.get("image_style") or "vivid").strip() or "vivid"
+                        cover_quality = str(cover_settings.get("image_quality") or "standard").strip() or "standard"
                     cover_size = "1024x1792" if job.render_ratio == "9:16" else "1792x1024"
                     cover_prompt = self._build_cover_prompt(
                         project_name=project.name,
@@ -121,8 +146,8 @@ class VideoPipeline:
                             prompt=cover_prompt,
                             model=cover_model,
                             size=cover_size,
-                            style=str((cover_cfg.settings or {}).get("image_style") or "vivid"),
-                            quality=str((cover_cfg.settings or {}).get("image_quality") or "standard"),
+                            style=cover_style,
+                            quality=cover_quality,
                         )
                     )
                     cover_image_path = render_dir / f"{slugify(job.title or brief.title)}-cover.png"
@@ -212,11 +237,12 @@ class VideoPipeline:
                         {"provider": "heygen_preview", "mode": "simulated", "preview_path": str(preview.preview_path)},
                     )
             else:
-                voice_provider_cfg = get_integration(db, job.owner_id, "openai")
-                if voice_provider_cfg and voice_provider_cfg.api_key_enc and job.script_text:
-                    # Whisper is used upstream for transcription; local voice remains the default narrator path.
-                    pass
-                voice = VoiceSynthesizer(provider=job.avatar_mode).synthesize(job.script_text, render_dir, stem="voiceover")
+                voice_cfg = get_integration(db, job.owner_id, "volcengine")
+                voice = VoiceSynthesizer(provider=job.avatar_mode, config=(voice_cfg.settings if voice_cfg else {})).synthesize(
+                    job.script_text,
+                    render_dir,
+                    stem="voiceover",
+                )
                 self._finish_step(
                     db,
                     job.id,
