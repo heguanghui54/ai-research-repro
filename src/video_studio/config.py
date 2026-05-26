@@ -56,7 +56,7 @@ class Settings:
     multipost_api_base: str = field(default_factory=lambda: _env("MULTIPOST_API_BASE"))
     multipost_api_key: str = field(default_factory=lambda: _env("MULTIPOST_API_KEY"))
 
-    default_admin_email: str = field(default_factory=lambda: _env("DEFAULT_ADMIN_EMAIL", "hgh54913"))
+    default_admin_email: str = field(default_factory=lambda: _env("DEFAULT_ADMIN_EMAIL", "hgh54913@gmail.com"))
     default_admin_password: str = field(default_factory=lambda: _env("DEFAULT_ADMIN_PASSWORD", "Aaa.123456"))
     default_admin_display_name: str = field(default_factory=lambda: _env("DEFAULT_ADMIN_DISPLAY_NAME", "hgh54913"))
 
