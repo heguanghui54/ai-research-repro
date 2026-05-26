@@ -630,8 +630,8 @@ async def _test_api_section(section: dict) -> str:
         return f"DeepSeek 连通成功：{text_result.text[:30]}"
 
     if provider == "volcengine":
-        volc_chat = VolcArkClient(api_key=api_key, base_url=base_url or "https://ark.cn-beijing.volces.com/api/v3", model=model or "doubao-seed-2.0-lite")
-        chat_result = await volc_chat.test_chat(model=model or "doubao-seed-2.0-lite")
+        volc_chat = VolcArkClient(api_key=api_key, base_url=base_url or "https://ark.cn-beijing.volces.com/api/v3", model=model or "doubao-1-5-pro-32k-250115")
+        chat_result = await volc_chat.test_chat(model=model or "doubao-1-5-pro-32k-250115")
         extra_image_model = str(extra_settings.get("image_model") or "doubao-seedream-5.0-lite").strip() or "doubao-seedream-5.0-lite"
         image_result_text = "未测试图像"
         try:
@@ -727,7 +727,7 @@ async def _test_volcengine_stack(section: dict, run_scope: str = "all") -> dict:
     extra_settings = current.settings if current else section.get("extra_defaults") or {}
     api_key = str((current.api_key_enc if current else "") or "").strip()
     base_url = str((current.base_url if current else "") or section.get("base_url") or "https://ark.cn-beijing.volces.com/api/v3").strip()
-    model = str((current.model if current else "") or section.get("model") or "doubao-seed-2.0-lite").strip()
+    model = str((current.model if current else "") or section.get("model") or "doubao-1-5-pro-32k-250115").strip()
     tts_app_id = str(extra_settings.get("tts_app_id") or settings.volcengine_tts_app_id or "").strip()
     tts_access_key = str(extra_settings.get("tts_access_key") or settings.volcengine_tts_access_key or "").strip()
     tts_resource_id = str(extra_settings.get("tts_resource_id") or settings.volcengine_tts_resource_id or "volc.service_type.10029").strip()

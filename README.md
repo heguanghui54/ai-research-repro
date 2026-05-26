@@ -159,7 +159,7 @@ export DEEPSEEK_MODEL="deepseek-chat"
 
 1. 在火山引擎控制台申请 Ark API Key。
 2. 在应用 `Integrations` 页把 `volcengine` 的 API key 填进去。
-3. `Base URL` 保持默认 `https://ark.cn-beijing.volces.com/api/v3`，`Model` 先用 `doubao-seed-2.0-lite`。
+3. `Base URL` 保持默认 `https://ark.cn-beijing.volces.com/api/v3`，`Model` 先用 `doubao-1-5-pro-32k-250115`。
 4. `Extra settings JSON` 里默认已经预填了 `image_model=Doubao-Seedream-5.0-lite`、`tts_resource_id=volc.service_type.10029`。
 5. 如果要用声音复刻，再把 `tts_app_id`、`tts_access_key` 和 `tts_speaker` 填进去，并把 `tts_resource_id` 改成 `seed-icl-2.0`。
 6. 语音合成优先走公版音色，只有你需要真人声音克隆时才切复刻音色，这样成本最低。

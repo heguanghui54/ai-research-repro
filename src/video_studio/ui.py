@@ -79,10 +79,10 @@ API_CONFIG_SECTIONS: list[dict[str, Any]] = [
     {
         "provider": "volcengine",
         "label": "火山方舟 / 豆包语音",
-        "description": "默认优先用低成本 Ark 文本模型、Seedream 封面图和豆包语音。公版 TTS 用最便宜的音色；复刻音色需要填写语音服务的 App ID 和 Access Key。",
+        "description": "默认优先用低成本但可用的 Ark 文本模型、Seedream 封面图和豆包语音。公版 TTS 用最便宜的音色；复刻音色需要填写语音服务的 App ID 和 Access Key。",
         "api_key_placeholder": "粘贴 Ark API Key",
         "base_url": "https://ark.cn-beijing.volces.com/api/v3",
-        "model": "doubao-seed-2.0-lite",
+        "model": "doubao-1-5-pro-32k-250115",
         "extra_defaults": {
             "image_model": "doubao-seedream-5.0-lite",
             "image_size": "1024x1024",

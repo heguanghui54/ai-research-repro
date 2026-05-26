@@ -120,7 +120,7 @@ class VideoPipeline:
                         cover_client = VolcArkClient(
                             api_key=cover_cfg.api_key_enc,
                             base_url=cover_cfg.base_url or "https://ark.cn-beijing.volces.com/api/v3",
-                            model=cover_cfg.model or "doubao-seed-2.0-lite",
+                            model=cover_cfg.model or "doubao-1-5-pro-32k-250115",
                         )
                         cover_model = str(cover_settings.get("image_model") or "doubao-seedream-5.0-lite").strip() or "doubao-seedream-5.0-lite"
                         cover_style = str(cover_settings.get("image_style") or "vivid").strip() or "vivid"
