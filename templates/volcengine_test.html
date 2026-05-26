@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-head">
+  <div>
+    <div class="eyebrow">火山引擎</div>
+    <h1>连通性测试</h1>
+    <p class="lead">这里会分别测试 Ark、TTS 公版音色、TTS 声音复刻和 Seedance 视频生成，方便你直接看每个环节是否通。</p>
+  </div>
+  <a class="btn btn-secondary" href="/admin/api-config">返回配置</a>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>运行测试</h2>
+  </div>
+  <form class="actions-row" method="post">
+    <button class="btn btn-primary" type="submit" name="run_scope" value="all">测试全部</button>
+    <button class="btn btn-secondary" type="submit" name="run_scope" value="ark">只测 Ark</button>
+    <button class="btn btn-secondary" type="submit" name="run_scope" value="tts_public">只测公版音色</button>
+    <button class="btn btn-secondary" type="submit" name="run_scope" value="tts_clone">只测复刻音色</button>
+    <button class="btn btn-secondary" type="submit" name="run_scope" value="seedance">只测 Seedance</button>
+  </form>
+  <p class="muted">Seedance 测试会真实创建一次视频任务，可能会消耗少量额度并且需要等待一点时间。</p>
+</section>
+
+{% if volc_test_results %}
+  <section class="grid two-up">
+    {% for key, item in volc_test_results.items() %}
+      <div class="panel">
+        <div class="panel-head">
+          <h2>
+            {% if key == 'ark' %}Ark 文本
+            {% elif key == 'tts_public' %}TTS 公版音色
+            {% elif key == 'tts_clone' %}TTS 复刻音色
+            {% else %}Seedance 视频
+            {% endif %}
+          </h2>
+          <span class="tag {{ 'tag-success' if item.ok else 'tag-warning' }}">{{ '通了' if item.ok else '未通' }}</span>
+        </div>
+        <div class="stack">
+          <div class="code-block">
+            <h3>结果</h3>
+            <p>{{ item.message }}</p>
+          </div>
+          {% if item.model %}
+            <div class="meta-grid">
+              <div><span>模型</span><strong>{{ item.model }}</strong></div>
+              {% if item.base_url %}
+                <div><span>Base URL</span><strong>{{ item.base_url }}</strong></div>
+              {% endif %}
+              {% if item.resource_id %}
+                <div><span>Resource ID</span><strong>{{ item.resource_id }}</strong></div>
+              {% endif %}
+              {% if item.speaker %}
+                <div><span>Speaker</span><strong>{{ item.speaker }}</strong></div>
+              {% endif %}
+              {% if item.task_id %}
+                <div><span>Task ID</span><strong>{{ item.task_id }}</strong></div>
+              {% endif %}
+              {% if item.status %}
+                <div><span>Status</span><strong>{{ item.status }}</strong></div>
+              {% endif %}
+            </div>
+          {% endif %}
+          {% if item.video_url %}
+            <div class="code-block">
+              <h3>视频链接</h3>
+              <p>{{ item.video_url }}</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+{% endif %}
+{% endblock %}

@@ -45,6 +45,7 @@ from .models import AppUser, Integration, Project, PublishJob, PublishTarget, Vi
 from .pipeline import VideoPipeline
 from .services.monica import MonicaClient
 from .services.volcengine import VolcArkClient, VolcSpeechClient
+from .services.volcengine import VolcVideoClient
 from .ui import (
     API_CONFIG_SECTIONS,
     label_avatar_mode,
@@ -567,6 +568,43 @@ def admin_api_config_test(
     return _notice_redirect("/admin/api-config", result, "success", provider)
 
 
+@app.get("/admin/volcengine-test", response_class=HTMLResponse)
+def admin_volcengine_test_page(request: Request, db: Session = Depends(get_db)):
+    user = require_user(request, db)
+    if not _admin_access_allowed(db, user):
+        return _auth_redirect("/dashboard")
+    section = _get_volcengine_section(db, user)
+    return render(
+        request,
+        "volcengine_test.html",
+        user=user,
+        volc_section=section,
+        volc_test_results=None,
+    )
+
+
+@app.post("/admin/volcengine-test", response_class=HTMLResponse)
+def admin_volcengine_test_run(
+    request: Request,
+    run_scope: str = Form("all"),
+    db: Session = Depends(get_db),
+):
+    user = require_user(request, db)
+    if not _admin_access_allowed(db, user):
+        return _auth_redirect("/dashboard")
+    section = _get_volcengine_section(db, user)
+    results = asyncio.run(_test_volcengine_stack(section, run_scope=run_scope))
+    return render(
+        request,
+        "volcengine_test.html",
+        user=user,
+        volc_section=section,
+        volc_test_results=results,
+        page_notice="火山引擎连通性测试已完成",
+        page_notice_type="success",
+    )
+
+
 async def _test_api_section(section: dict) -> str:
     provider = section["provider"]
     api_key = section["api_key"]
@@ -672,6 +710,131 @@ async def _test_api_section(section: dict) -> str:
         return f"MultiPost 基础地址可达，当前返回状态码 {resp.status_code}。"
 
     raise RuntimeError(f"不支持的 provider: {provider}")
+
+
+def _get_volcengine_section(db: Session, user: AppUser) -> dict:
+    current = get_integration(db, user.id, "volcengine")
+    section = next(item for item in API_CONFIG_SECTIONS if item["provider"] == "volcengine")
+    return {
+        **section,
+        "current": current,
+        "extra_json": json.dumps((current.settings if current else section["extra_defaults"]) or {}, ensure_ascii=False, indent=2),
+    }
+
+
+async def _test_volcengine_stack(section: dict, run_scope: str = "all") -> dict:
+    current = section.get("current")
+    extra_settings = current.settings if current else section.get("extra_defaults") or {}
+    api_key = str((current.api_key_enc if current else "") or "").strip()
+    base_url = str((current.base_url if current else "") or section.get("base_url") or "https://ark.cn-beijing.volces.com/api/v3").strip()
+    model = str((current.model if current else "") or section.get("model") or "doubao-seed-2.0-lite").strip()
+    tts_app_id = str(extra_settings.get("tts_app_id") or settings.volcengine_tts_app_id or "").strip()
+    tts_access_key = str(extra_settings.get("tts_access_key") or settings.volcengine_tts_access_key or "").strip()
+    tts_resource_id = str(extra_settings.get("tts_resource_id") or settings.volcengine_tts_resource_id or "volc.service_type.10029").strip()
+    tts_speaker = str(extra_settings.get("tts_speaker") or settings.volcengine_tts_speaker or "").strip()
+    video_model = str(extra_settings.get("video_model") or settings.volcengine_video_model or "doubao-seedance-1-5-pro-251215").strip()
+
+    results = {
+        "ark": {"ok": False, "message": "未执行"},
+        "tts_public": {"ok": False, "message": "未执行"},
+        "tts_clone": {"ok": False, "message": "未执行"},
+        "seedance": {"ok": False, "message": "未执行"},
+    }
+
+    if run_scope in {"all", "ark"}:
+        if not api_key:
+            results["ark"] = {"ok": False, "message": "未配置 Ark API Key"}
+        else:
+            ark = VolcArkClient(api_key=api_key, base_url=base_url, model=model)
+            brief = await ark.build_video_brief(
+                reference_title="参考标题",
+                reference_summary="参考摘要",
+                topic="火山引擎 Ark 连通性测试",
+                duration_sec=20,
+            )
+            results["ark"] = {
+                "ok": True,
+                "message": f"Ark 连通成功：{brief.title[:24]}",
+                "model": model,
+                "base_url": base_url,
+            }
+
+    if run_scope in {"all", "tts_public"}:
+        if not (tts_app_id and tts_access_key and tts_speaker):
+            results["tts_public"] = {"ok": False, "message": "未配置 App ID / Access Key / Speaker"}
+        else:
+            speech = VolcSpeechClient(
+                app_id=tts_app_id,
+                access_key=tts_access_key,
+                resource_id=tts_resource_id or "volc.service_type.10029",
+                speaker=tts_speaker,
+                model=str(extra_settings.get("tts_model") or "seed-tts-2.0-standard").strip() or "seed-tts-2.0-standard",
+                output_format=str(extra_settings.get("tts_output_format") or "mp3").strip() or "mp3",
+                sample_rate=int(extra_settings.get("tts_sample_rate") or 24000),
+            )
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
+                tmp_path = Path(tmp_file.name)
+            try:
+                result = speech.synthesize("火山公版音色连通性测试。", tmp_path, timeout_s=60)
+                results["tts_public"] = {
+                    "ok": True,
+                    "message": f"公版音色连通成功：{result.task_id}",
+                    "resource_id": tts_resource_id,
+                    "speaker": tts_speaker,
+                }
+            finally:
+                try:
+                    tmp_path.unlink(missing_ok=True)
+                except Exception:
+                    pass
+
+    if run_scope in {"all", "tts_clone"}:
+        if not (tts_app_id and tts_access_key and tts_speaker):
+            results["tts_clone"] = {"ok": False, "message": "未配置 App ID / Access Key / Speaker"}
+        else:
+            speech = VolcSpeechClient(
+                app_id=tts_app_id,
+                access_key=tts_access_key,
+                resource_id=str(extra_settings.get("clone_resource_id") or "seed-icl-2.0").strip() or "seed-icl-2.0",
+                speaker=tts_speaker,
+                model=str(extra_settings.get("tts_model") or "seed-icl-2.0").strip() or "seed-icl-2.0",
+                output_format=str(extra_settings.get("tts_output_format") or "mp3").strip() or "mp3",
+                sample_rate=int(extra_settings.get("tts_sample_rate") or 24000),
+            )
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
+                tmp_path = Path(tmp_file.name)
+            try:
+                result = speech.synthesize("火山声音复刻连通性测试。", tmp_path, timeout_s=60)
+                results["tts_clone"] = {
+                    "ok": True,
+                    "message": f"复刻音色连通成功：{result.task_id}",
+                    "resource_id": "seed-icl-2.0",
+                    "speaker": tts_speaker,
+                }
+            finally:
+                try:
+                    tmp_path.unlink(missing_ok=True)
+                except Exception:
+                    pass
+
+    if run_scope in {"all", "seedance"}:
+        if not api_key:
+            results["seedance"] = {"ok": False, "message": "未配置 Ark API Key"}
+        else:
+            video = VolcVideoClient(api_key=api_key, base_url=base_url, model=video_model)
+            prompt = "A vertical short video about an AI video studio, cinematic, modern, clean, high contrast, no readable text."
+            task = video.create_video_task(prompt=prompt, model=video_model)
+            task_result = video.wait_for_video(task.task_id, timeout_s=180, poll_interval_s=10)
+            results["seedance"] = {
+                "ok": bool(task_result.video_url),
+                "message": "Seedance 任务已完成" if task_result.video_url else f"Seedance 任务已提交：{task.task_id}",
+                "task_id": task.task_id,
+                "status": task_result.status,
+                "video_url": task_result.video_url,
+                "model": video_model,
+            }
+
+    return results
 
 
 @app.get("/admin", response_class=HTMLResponse)

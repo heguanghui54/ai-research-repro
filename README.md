@@ -121,6 +121,7 @@ export DEEPSEEK_MODEL="deepseek-chat"
 - 或在应用内 `HeyGen` 集成里写入 `extra settings JSON`
 - `OPENAI_API_KEY`，如果要启用 OpenAI Whisper
 - `VOLCENGINE_ARK_API_KEY`，如果要启用火山方舟低成本脚本/封面模型
+- `VOLCENGINE_VIDEO_MODEL`，如果要切换 Seedance 视频生成模型
 - `VOLCENGINE_TTS_APP_ID` / `VOLCENGINE_TTS_ACCESS_KEY`，如果要启用火山语音合成或声音复刻
 - `MULTIPOST_API_BASE` / `MULTIPOST_API_KEY`，如果要接多平台分发 API
 - `sau` CLI，如果要启用 `social-auto-upload` 发布
@@ -162,6 +163,8 @@ export DEEPSEEK_MODEL="deepseek-chat"
 4. `Extra settings JSON` 里默认已经预填了 `image_model=Doubao-Seedream-5.0-lite`、`tts_resource_id=volc.service_type.10029`。
 5. 如果要用声音复刻，再把 `tts_app_id`、`tts_access_key` 和 `tts_speaker` 填进去，并把 `tts_resource_id` 改成 `seed-icl-2.0`。
 6. 语音合成优先走公版音色，只有你需要真人声音克隆时才切复刻音色，这样成本最低。
+7. 如果要启用视频模型，把 `video_model` 保持为 `doubao-seedance-1-5-pro-251215`，也可以在后台里换成你控制台里更便宜或更适合的版本。
+8. 你还可以直接打开后台的 `火山连通性测试` 页面，一次看 Ark、TTS、公版音色、复刻音色和 Seedance 分别通不通。
 
 ### 4. social-auto-upload
 

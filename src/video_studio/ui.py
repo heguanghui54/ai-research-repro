@@ -88,6 +88,7 @@ API_CONFIG_SECTIONS: list[dict[str, Any]] = [
             "image_size": "1024x1024",
             "image_style": "vivid",
             "image_quality": "standard",
+            "video_model": "doubao-seedance-1-5-pro-251215",
             "tts_app_id": "",
             "tts_access_key": "",
             "tts_resource_id": "volc.service_type.10029",

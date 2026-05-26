@@ -29,6 +29,15 @@ class VolcSpeechResult:
     raw: dict | None = None
 
 
+@dataclass
+class VolcVideoResult:
+    task_id: str
+    status: str
+    video_url: str = ""
+    last_frame_url: str = ""
+    raw: dict | None = None
+
+
 class VolcArkClient:
     def __init__(self, api_key: Optional[str] = None, base_url: Optional[str] = None, model: Optional[str] = None):
         self.api_key = api_key or settings.volcengine_ark_api_key
@@ -291,3 +300,72 @@ class VolcSpeechClient:
             with output_path.open("wb") as f:
                 for chunk in resp.iter_bytes():
                     f.write(chunk)
+
+
+class VolcVideoClient:
+    def __init__(self, api_key: Optional[str] = None, base_url: Optional[str] = None, model: Optional[str] = None):
+        self.api_key = api_key or settings.volcengine_ark_api_key
+        self.base_url = (base_url or settings.volcengine_ark_base_url).rstrip("/")
+        self.model = model or settings.volcengine_video_model
+
+    @property
+    def enabled(self) -> bool:
+        return bool(self.api_key)
+
+    def create_video_task(self, prompt: str, image_url: str = "", model: Optional[str] = None, aspect_ratio: str = "9:16") -> VolcVideoResult:
+        if not self.enabled:
+            raise RuntimeError("Volcengine Ark API key is not configured")
+        payload: dict[str, Any] = {
+            "model": model or self.model,
+            "content": [{"type": "text", "text": prompt}],
+        }
+        if image_url:
+            payload["content"].append({"type": "image_url", "image_url": {"url": image_url}})
+        headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
+        with httpx.Client(timeout=120) as client:
+            resp = client.post(f"{self.base_url}/contents/generations/tasks", json=payload, headers=headers)
+            resp.raise_for_status()
+            data = resp.json()
+        task_id = str(data.get("id") or data.get("task_id") or "")
+        if not task_id:
+            raise RuntimeError(f"Volcengine video task creation failed: {data}")
+        return VolcVideoResult(task_id=task_id, status=str(data.get("status") or "pending"), raw=data)
+
+    def get_video_task(self, task_id: str) -> VolcVideoResult:
+        if not self.enabled:
+            raise RuntimeError("Volcengine Ark API key is not configured")
+        headers = {"Authorization": f"Bearer {self.api_key}", "Content-Type": "application/json"}
+        with httpx.Client(timeout=120) as client:
+            resp = client.get(f"{self.base_url}/contents/generations/tasks/{task_id}", headers=headers)
+            resp.raise_for_status()
+            data = resp.json()
+        payload = data.get("data") or data
+        status = str(payload.get("status") or payload.get("task_status") or data.get("status") or "pending")
+        video_url = str(
+            payload.get("video_url")
+            or payload.get("output_video_url")
+            or payload.get("url")
+            or ""
+        )
+        last_frame_url = str(payload.get("last_frame_url") or payload.get("thumbnail_url") or "")
+        return VolcVideoResult(task_id=task_id, status=status, video_url=video_url, last_frame_url=last_frame_url, raw=data)
+
+    def wait_for_video(self, task_id: str, timeout_s: int = 900, poll_interval_s: int = 10) -> VolcVideoResult:
+        deadline = time.time() + timeout_s
+        last: VolcVideoResult | None = None
+        while time.time() < deadline:
+            last = self.get_video_task(task_id)
+            if last.status.lower() in {"completed", "failed", "success"} and (last.video_url or last.last_frame_url):
+                return last
+            time.sleep(poll_interval_s)
+        return last or VolcVideoResult(task_id=task_id, status="timeout")
+
+    def download_video(self, url: str, output_path: Path) -> Path:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with httpx.Client(timeout=120, follow_redirects=True) as client:
+            with client.stream("GET", url) as resp:
+                resp.raise_for_status()
+                with output_path.open("wb") as f:
+                    for chunk in resp.iter_bytes():
+                        f.write(chunk)
+        return output_path

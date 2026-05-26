@@ -22,7 +22,7 @@ from .services.heygen import HeyGenClient
 from .services.heygen_preview import HeyGenPreviewRenderer
 from .services.monica import MonicaClient
 from .services.voice import VoiceSynthesizer
-from .services.volcengine import VolcArkClient
+from .services.volcengine import VolcArkClient, VolcVideoClient
 from .services.whisper import WhisperClient
 from .utils import ensure_path, slugify
 
@@ -236,6 +236,109 @@ class VideoPipeline:
                         "voice-generation",
                         {"provider": "heygen_preview", "mode": "simulated", "preview_path": str(preview.preview_path)},
                     )
+            elif job.avatar_mode in {"volc_tts", "volc_clone"}:
+                voice_cfg = get_integration(db, job.owner_id, "volcengine")
+                voice = VoiceSynthesizer(provider=job.avatar_mode, config=(voice_cfg.settings if voice_cfg else {})).synthesize(
+                    job.script_text,
+                    render_dir,
+                    stem="voiceover",
+                )
+                self._finish_step(
+                    db,
+                    job.id,
+                    "voice-generation",
+                    {"audio_path": str(voice.audio_path), "provider": voice.provider, "note": voice.note},
+                )
+                job.pipeline_state = {**(job.pipeline_state or {}), "voiceover": str(voice.audio_path), "voice_provider": voice.provider}
+                job.voice_provider = voice.provider
+
+                voice_settings = voice_cfg.settings if voice_cfg else {}
+                video_model = str(voice_settings.get("video_model") or settings.volcengine_video_model).strip() or settings.volcengine_video_model
+                video_client = VolcVideoClient(
+                    api_key=(voice_cfg.api_key_enc if voice_cfg else None) or None,
+                    base_url=(voice_cfg.base_url if voice_cfg else None) or None,
+                    model=video_model,
+                )
+                if video_client.enabled:
+                    video_prompt = self._build_seedance_prompt(
+                        project_name=project.name,
+                        topic=job.topic,
+                        title=job.title or brief.title,
+                        hook=brief.hook or reference.hook_summary,
+                        script=brief.script,
+                        ratio=job.render_ratio,
+                    )
+                    video_task = video_client.create_video_task(prompt=video_prompt, model=video_model)
+                    video_result = video_client.wait_for_video(video_task.task_id, timeout_s=900, poll_interval_s=12)
+                    if not video_result.video_url:
+                        raise RuntimeError(f"Seedance video generation failed: {json.dumps(video_result.raw or {}, ensure_ascii=False)}")
+                    raw_video_path = render_dir / f"{slugify(job.title or brief.title)}-seedance-raw.mp4"
+                    video_client.download_video(video_result.video_url, raw_video_path)
+                    renderer = FFmpegRenderer(render_dir)
+                    render = renderer.compose_generated_video(
+                        source_video=raw_video_path,
+                        audio_path=voice.audio_path,
+                        script_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                        output_name=slugify(job.title or brief.title),
+                        ratio=job.render_ratio,
+                    )
+                    final_video_path = render.video_path
+                    avatar_thumb = str(render.thumbnail_path)
+                    job.pipeline_state = {
+                        **(job.pipeline_state or {}),
+                        "seedance_mode": "enabled",
+                        "seedance_task_id": video_task.task_id,
+                        "seedance_video_url": video_result.video_url,
+                        "seedance_model": video_model,
+                    }
+                    self._finish_step(
+                        db,
+                        job.id,
+                        "video-generation",
+                        {
+                            "task_id": video_task.task_id,
+                            "video_url": video_result.video_url,
+                            "model": video_model,
+                        },
+                    )
+                    self._finish_step(
+                        db,
+                        job.id,
+                        "render",
+                        {
+                            "video_path": str(render.video_path),
+                            "thumbnail_path": str(render.thumbnail_path),
+                            "subtitle_path": str(render.subtitle_path),
+                            "poster_path": str(render.poster_path),
+                        },
+                    )
+                else:
+                    renderer = FFmpegRenderer(render_dir)
+                    render = renderer.render_short_video(
+                        title=job.title or brief.title,
+                        hook=brief.hook,
+                        script_lines=brief.subtitle_lines or job.script_text.splitlines(),
+                        audio_path=voice.audio_path,
+                        output_name=slugify(job.title or brief.title),
+                        ratio=job.render_ratio,
+                        cover_image_path=cover_image_path,
+                    )
+                    final_video_path = render.video_path
+                    avatar_thumb = str(render.thumbnail_path)
+                    self._finish_step(
+                        db,
+                        job.id,
+                        "render",
+                        {
+                            "video_path": str(render.video_path),
+                            "thumbnail_path": str(render.thumbnail_path),
+                            "subtitle_path": str(render.subtitle_path),
+                            "poster_path": str(render.poster_path),
+                        },
+                    )
+                job.progress = 72
+                db.commit()
+
             else:
                 voice_cfg = get_integration(db, job.owner_id, "volcengine")
                 voice = VoiceSynthesizer(provider=job.avatar_mode, config=(voice_cfg.settings if voice_cfg else {})).synthesize(
@@ -493,6 +596,24 @@ class VideoPipeline:
                 f"Hook: {hook}",
                 f"Script excerpt: {script[:400]}",
                 "Do not render readable text in the image.",
+            ]
+        )
+
+    def _build_seedance_prompt(self, project_name: str, topic: str, title: str, hook: str, script: str, ratio: str = "9:16") -> str:
+        aspect = "vertical 9:16" if ratio != "16:9" else "horizontal 16:9"
+        return "\n".join(
+            [
+                "Create a polished short-form video for social media.",
+                f"Aspect ratio: {aspect}.",
+                "Cinematic, modern, premium, high contrast.",
+                "Human-centered framing, dynamic camera motion, clean composition.",
+                "No readable text in the visual, leave safe negative space for subtitles.",
+                "Make it feel like a finished creator video, not a slideshow.",
+                f"Project: {project_name}",
+                f"Topic: {topic}",
+                f"Title: {title}",
+                f"Hook: {hook}",
+                f"Script excerpt: {script[:500]}",
             ]
         )
 

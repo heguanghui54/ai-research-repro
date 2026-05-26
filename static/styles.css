@@ -200,6 +200,21 @@ input:focus, select:focus, textarea:focus { border-color: rgba(124,224,255,0.55)
 .stack { display: grid; gap: 18px; }
 .stack-tight { display: grid; gap: 10px; flex: 1; }
 .stack-right { display: grid; gap: 10px; min-width: 180px; justify-items: end; }
+.two-up { display: grid; gap: 18px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.meta-grid div {
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.meta-grid span { display: block; color: var(--muted); margin-bottom: 8px; }
+.tag-success { color: #dff8e9; border-color: rgba(118, 232, 163, 0.28); background: rgba(118, 232, 163, 0.12); }
+.tag-warning { color: #ffe9d9; border-color: rgba(255, 122, 89, 0.28); background: rgba(255, 122, 89, 0.12); }
 .row-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .auth-copy { padding: 20px 4px; display: flex; flex-direction: column; justify-content: center; }
 .auth-form { display: grid; gap: 16px; }

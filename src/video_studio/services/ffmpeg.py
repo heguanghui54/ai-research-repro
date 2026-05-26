@@ -48,6 +48,27 @@ class FFmpegRenderer:
         thumbnail.write_bytes(poster.read_bytes())
         return RenderResult(video_path=video, thumbnail_path=thumbnail, subtitle_path=subtitles, poster_path=poster, note="rendered")
 
+    def compose_generated_video(
+        self,
+        source_video: Path,
+        audio_path: Path,
+        script_lines: list[str],
+        output_name: str,
+        ratio: str = "9:16",
+    ) -> RenderResult:
+        self.workdir.mkdir(parents=True, exist_ok=True)
+        subtitles = self.workdir / f"{output_name}.srt"
+        video = self.workdir / f"{output_name}.mp4"
+        thumbnail = self.workdir / f"{output_name}_thumb.png"
+        poster = self.workdir / f"{output_name}.png"
+        self._write_srt(subtitles, script_lines)
+        self._extract_thumbnail(source_video, thumbnail)
+        if not thumbnail.exists():
+            self._draw_placeholder_thumbnail(thumbnail, source_video.stem)
+        self._mux_video_audio(video, source_video, audio_path, subtitles)
+        poster.write_bytes(thumbnail.read_bytes() if thumbnail.exists() else b"")
+        return RenderResult(video_path=video, thumbnail_path=thumbnail, subtitle_path=subtitles, poster_path=poster, note="composed")
+
     def _draw_poster(
         self,
         path: Path,
@@ -201,6 +222,71 @@ class FFmpegRenderer:
                 subprocess.run(fallback_cmd, check=True, capture_output=True)
             except subprocess.CalledProcessError:
                 raise RuntimeError(f"ffmpeg render failed: {exc.stderr.decode('utf-8', errors='ignore')[:500]}")
+
+    def _extract_thumbnail(self, source_video: Path, thumbnail: Path) -> None:
+        ffmpeg_bin = self._ffmpeg_binary()
+        try:
+            subprocess.run(
+                [
+                    ffmpeg_bin,
+                    "-y",
+                    "-i",
+                    str(source_video),
+                    "-frames:v",
+                    "1",
+                    "-q:v",
+                    "2",
+                    str(thumbnail),
+                ],
+                check=True,
+                capture_output=True,
+            )
+        except Exception:
+            return
+
+    def _draw_placeholder_thumbnail(self, path: Path, title: str) -> None:
+        img = Image.new("RGB", (1080, 1920), (12, 18, 34))
+        draw = ImageDraw.Draw(img)
+        draw.rounded_rectangle((72, 120, 1008, 1800), radius=42, outline=(255, 255, 255), width=4)
+        try:
+            font = ImageFont.truetype("/System/Library/Fonts/PingFang.ttc", 64)
+        except Exception:
+            font = ImageFont.load_default()
+        draw.text((108, 220), "Seedance 预览", fill=(130, 220, 255), font=font)
+        draw.text((108, 340), title[:24], fill=(255, 255, 255), font=font)
+        img.save(path)
+
+    def _mux_video_audio(self, output: Path, source_video: Path, audio: Path, subtitles: Path) -> None:
+        ffmpeg_bin = self._ffmpeg_binary()
+        subtitle_path = str(subtitles).replace(":", "\\:")
+        cmd = [
+            ffmpeg_bin,
+            "-y",
+            "-i",
+            str(source_video),
+            "-i",
+            str(audio),
+            "-vf",
+            f"subtitles={subtitle_path}:force_style='FontSize=24,PrimaryColour=&H00FFFFFF&'",
+            "-map",
+            "0:v:0",
+            "-map",
+            "1:a:0",
+            "-c:v",
+            "libx264",
+            "-c:a",
+            "aac",
+            "-b:a",
+            "192k",
+            "-pix_fmt",
+            "yuv420p",
+            "-shortest",
+            str(output),
+        ]
+        try:
+            subprocess.run(cmd, check=True, capture_output=True)
+        except subprocess.CalledProcessError as exc:
+            raise RuntimeError(f"ffmpeg mux failed: {exc.stderr.decode('utf-8', errors='ignore')[:500]}")
 
     def _ffmpeg_binary(self) -> str:
         try:

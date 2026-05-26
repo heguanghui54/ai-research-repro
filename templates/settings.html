@@ -6,6 +6,7 @@
     <h1>管理员 API 配置中心</h1>
     <p class="lead">API key、基础地址和模型都保存在后台数据库里，不写死在代码里。Monica 和火山方舟都已预填默认推荐项，其中火山方舟优先走低成本模型。</p>
   </div>
+  <a class="btn btn-secondary" href="/admin/volcengine-test">火山连通性测试</a>
 </section>
 
 {% if page_notice %}
@@ -31,7 +32,7 @@
           {% if section.provider == 'monica' %}
             Monica 默认建议把 `image_model`、`image_style`、`image_quality` 放这里；例如 `{"image_model":"dall-e-3"}`。
           {% elif section.provider == 'volcengine' %}
-            火山方舟默认建议把 `image_model` 设成 `doubao-seedream-5.0-lite`，`tts_resource_id` 设成 `volc.service_type.10029`。如果要声音复刻，再补 `tts_app_id`、`tts_access_key`、`tts_speaker` 和 `tts_resource_id=seed-icl-2.0`。
+            火山方舟默认建议把 `image_model` 设成 `doubao-seedream-5.0-lite`，`video_model` 设成 `doubao-seedance-1-5-pro-251215`，`tts_resource_id` 设成 `volc.service_type.10029`。如果要声音复刻，再补 `tts_app_id`、`tts_access_key`、`tts_speaker` 和 `tts_resource_id=seed-icl-2.0`。
           {% elif section.provider == 'heygen' %}
             HeyGen 在这里放 `avatar_id`、`voice_id`、`callback_url`。
           {% elif section.provider == 'multipost' %}
