@@ -21,17 +21,17 @@
       </a>
       <nav class="topnav">
         {% if user %}
-          <a href="/dashboard">Dashboard</a>
-          <a href="/publish-jobs">Publish Jobs</a>
-          <a href="/projects/new">New Project</a>
-          <a href="/settings">Integrations</a>
-          {% if user.role == 'admin' %}<a href="/admin">Admin</a>{% endif %}
+          <a href="/dashboard">首页</a>
+          <a href="/publish-jobs">发布任务</a>
+          <a href="/projects/new">新建项目</a>
+          <a href="/settings">后台配置</a>
+          {% if can_access_admin %}<a href="/admin">管理面板</a>{% endif %}
           <form action="/logout" method="post" class="inline-form">
-            <button class="btn btn-ghost" type="submit">Logout</button>
+            <button class="btn btn-ghost" type="submit">退出</button>
           </form>
         {% else %}
-          <a href="/login">Login</a>
-          <a href="/register">Register</a>
+          <a href="/login">登录</a>
+          <a href="/register">注册</a>
         {% endif %}
       </nav>
     </header>

@@ -2,34 +2,39 @@
 {% block content %}
 <section class="page-head">
   <div>
-    <div class="eyebrow">Integrations</div>
-    <h1>Backend API configuration</h1>
-    <p class="lead">Save provider keys per user, then let the pipeline pick them up automatically.</p>
+    <div class="eyebrow">后台配置</div>
+    <h1>管理员 API 配置中心</h1>
+    <p class="lead">API key、基础地址和模型都保存在后台数据库里，不写死在代码里。Monica 已作为默认推荐项预填。</p>
   </div>
 </section>
 
 <section class="stack">
-  {% for provider, label, placeholder in [
-    ("deepseek", "DeepSeek", "Script / title generation"),
-    ("openai", "OpenAI Whisper", "Transcription"),
-    ("heygen", "HeyGen", "Digital human rendering"),
-    ("multipost", "MultiPost", "Distribution")
-  ] %}
-    {% set item = integrations.get(provider) %}
-    <form class="panel form-grid" method="post" action="/settings/integrations">
-      <input type="hidden" name="provider" value="{{ provider }}">
+  {% for section in api_sections %}
+    {% set item = section.current %}
+    <form class="panel form-grid" method="post" action="/admin/api-config">
+      <input type="hidden" name="provider" value="{{ section.provider }}">
       <div class="full panel-head">
-        <h2>{{ label }}</h2>
-        <p class="muted">{{ placeholder }}</p>
+        <h2>{{ section.label }}</h2>
+        <p class="muted">{{ section.description }}</p>
       </div>
-      <label>API key<input type="password" name="api_key" value="{{ item.api_key_enc if item else '' }}"></label>
-      <label>Base URL<input type="text" name="base_url" value="{{ item.base_url if item else '' }}" placeholder="Optional"></label>
-      <label>Model<input type="text" name="model" value="{{ item.model if item else '' }}" placeholder="Optional"></label>
-      <label class="full">Extra settings JSON<textarea name="extra_json" rows="5" placeholder='{"avatar_id":"...","voice_id":"..."}'>{{ item.settings | tojson(indent=2) if item else '{}' }}</textarea>
-        <span class="muted">HeyGen 用这里放 `avatar_id` 和 `voice_id`；也可以直接用 `HEYGEN_AVATAR_ID` / `HEYGEN_VOICE_ID` 环境变量。MultiPost 可以放接口所需的补充字段。</span>
+      <label>API key<input type="password" name="api_key" value="{{ item.api_key_enc if item else '' }}" placeholder="{{ section.api_key_placeholder }}"></label>
+      <label>基础地址<input type="text" name="base_url" value="{{ item.base_url if item and item.base_url else section.base_url }}" placeholder="可留空"></label>
+      <label>模型<input type="text" name="model" value="{{ item.model if item and item.model else section.model }}" placeholder="可留空"></label>
+      <label class="full">额外配置 JSON<textarea name="extra_json" rows="5" placeholder='{}'>{{ item.settings | tojson(indent=2) if item else section.extra_json }}</textarea>
+        <span class="muted">
+          {% if section.provider == 'monica' %}
+            Monica 默认建议把 `image_model`、`vision_model` 等放这里；例如 `{"image_model":"dall-e-3"}`。
+          {% elif section.provider == 'heygen' %}
+            HeyGen 在这里放 `avatar_id`、`voice_id`、`callback_url`。
+          {% elif section.provider == 'multipost' %}
+            MultiPost 可以在这里放 `publish_path` 等接口参数。
+          {% else %}
+            这里可以放这个服务所需的补充字段。
+          {% endif %}
+        </span>
       </label>
       <div class="full actions-row">
-        <button class="btn btn-primary" type="submit">Save {{ label }}</button>
+        <button class="btn btn-primary" type="submit">保存 {{ section.label }}</button>
       </div>
     </form>
   {% endfor %}

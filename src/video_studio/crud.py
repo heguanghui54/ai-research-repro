@@ -23,11 +23,12 @@ def normalize_email(email: str) -> str:
     return email.strip().lower()
 
 
-def create_user(db: Session, email: str, password: str, display_name: str = "") -> AppUser:
+def create_user(db: Session, email: str, password: str, display_name: str = "", role: str = "member") -> AppUser:
     user = AppUser(
         email=normalize_email(email),
         password_hash=hash_password(password),
         display_name=display_name.strip() or normalize_email(email).split("@", 1)[0],
+        role=role,
     )
     db.add(user)
     db.flush()

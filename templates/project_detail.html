@@ -2,76 +2,77 @@
 {% block content %}
 <section class="page-head">
   <div>
-    <div class="eyebrow">Project</div>
+    <div class="eyebrow">项目</div>
     <h1>{{ project.name }}</h1>
-    <p class="lead">{{ project.description or 'No description yet' }}</p>
+    <p class="lead">{{ project.description or '暂无描述' }}</p>
   </div>
-  <a class="btn btn-secondary" href="/dashboard">Back</a>
+  <a class="btn btn-secondary" href="/dashboard">返回</a>
 </section>
 
 <section class="panel">
   <div class="panel-head">
-    <h2>Generate a video</h2>
+    <h2>生成视频</h2>
   </div>
   <form class="form-grid" method="post" action="/projects/{{ project.id }}/jobs">
-    <label class="full">Topic<input type="text" name="topic" placeholder="New theme different from the reference" required></label>
-    <label class="full">Override reference URL<input type="url" name="reference_url" value="{{ project.reference_url }}"></label>
-    <label>Avatar mode
+    <label class="full">主题<input type="text" name="topic" placeholder="与参考视频不同的新主题" required></label>
+    <label class="full">参考链接<input type="url" name="reference_url" value="{{ project.reference_url }}"></label>
+    <label>播报模式
       <select name="avatar_mode">
         <option value="cosyvoice">CosyVoice</option>
-        <option value="heygen">HeyGen</option>
+        <option value="heygen">HeyGen 数字人</option>
       </select>
     </label>
-    <label>Voice provider
+    <label>转写提供方
       <select name="voice_provider">
-        <option value="deepseek">DeepSeek script</option>
+        <option value="deepseek">DeepSeek</option>
         <option value="openai">OpenAI Whisper</option>
+        <option value="monica">Monica API</option>
       </select>
     </label>
-    <label>Render ratio
+    <label>画面比例
       <select name="render_ratio">
         <option value="9:16">9:16</option>
         <option value="16:9">16:9</option>
       </select>
     </label>
-    <label>Autostart
+    <label>自动开始
       <select name="auto_start">
-        <option value="1">Create and start</option>
-        <option value="0">Create only</option>
+        <option value="1">创建并开始</option>
+        <option value="0">仅创建</option>
       </select>
     </label>
     <div class="full actions-row">
-      <button class="btn btn-primary" type="submit">Generate</button>
+      <button class="btn btn-primary" type="submit">生成</button>
     </div>
   </form>
 </section>
 
 <section class="panel">
   <div class="panel-head">
-    <h2>Publish targets</h2>
+    <h2>发布目标</h2>
   </div>
   <form class="form-grid" method="post" action="/projects/{{ project.id }}/targets">
-    <label>Platform
+    <label>平台
       <select name="platform">
-        <option value="douyin">Douyin</option>
-        <option value="xiaohongshu">Xiaohongshu</option>
-        <option value="kuaishou">Kuaishou</option>
+        <option value="douyin">抖音</option>
+        <option value="xiaohongshu">小红书</option>
+        <option value="kuaishou">快手</option>
         <option value="bilibili">Bilibili</option>
         <option value="youtube">YouTube</option>
         <option value="tiktok">TikTok</option>
         <option value="multipost">MultiPost</option>
       </select>
     </label>
-    <label>Account / Handle<input type="text" name="handle" placeholder="account name or handle"></label>
-    <label>Adapter
+    <label>账号 / Handle<input type="text" name="handle" placeholder="账号名或 handle"></label>
+    <label>分发适配器
       <select name="adapter">
         <option value="social-auto-upload">social-auto-upload</option>
         <option value="multipost">MultiPost</option>
       </select>
     </label>
-    <label class="full">Extra settings JSON<textarea name="settings_json" rows="4" placeholder='{"tid":249,"account_name":"creator"}'>{}</textarea></label>
+    <label class="full">额外配置 JSON<textarea name="settings_json" rows="4" placeholder='{"tid":249,"account_name":"creator"}'>{}</textarea></label>
     <div class="full actions-row">
-      <button class="btn btn-primary" type="submit">Add target</button>
+      <button class="btn btn-primary" type="submit">添加目标</button>
     </div>
   </form>
 </section>
@@ -79,7 +80,7 @@
 <section class="split-grid">
   <div class="panel">
     <div class="panel-head">
-      <h2>Recent jobs</h2>
+      <h2>最近任务</h2>
     </div>
     {% if jobs %}
       <div class="card-list">
@@ -87,35 +88,35 @@
           <a class="item-card" href="/jobs/{{ job.id }}">
             <div>
               <h3>{{ job.title or job.topic }}</h3>
-              <p>{{ job.status }} · {{ job.progress }}%</p>
+              <p>{{ label_status(job.status) }} · {{ job.progress }}%</p>
             </div>
-            <span class="tag">{{ job.avatar_mode }}</span>
+            <span class="tag">{{ label_avatar_mode(job.avatar_mode) }}</span>
           </a>
         {% endfor %}
       </div>
     {% else %}
-      <p class="muted">No jobs yet.</p>
+      <p class="muted">还没有任务。</p>
     {% endif %}
   </div>
 
   <div class="panel">
     <div class="panel-head">
-      <h2>Distribution targets</h2>
+      <h2>分发目标</h2>
     </div>
     {% if targets %}
       <div class="card-list">
         {% for target in targets %}
           <div class="item-card">
             <div>
-              <h3>{{ target.platform }}</h3>
-              <p>{{ target.handle or 'No handle' }} · {{ target.publish_mode }}</p>
+              <h3>{{ label_platform(target.platform) }}</h3>
+              <p>{{ target.handle or '未设置账号' }} · {{ label_publish_adapter(target.publish_mode) }}</p>
             </div>
-            <span class="tag">{{ 'On' if target.is_enabled else 'Off' }}</span>
+            <span class="tag">{{ '启用' if target.is_enabled else '停用' }}</span>
           </div>
         {% endfor %}
       </div>
     {% else %}
-      <p class="muted">Add publish targets after you connect MultiPost or platform accounts.</p>
+      <p class="muted">连接 MultiPost 或平台账号后再添加发布目标。</p>
     {% endif %}
   </div>
 </section>

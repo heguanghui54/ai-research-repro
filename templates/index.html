@@ -2,24 +2,24 @@
 {% block content %}
 <section class="hero">
   <div class="hero-copy">
-    <div class="eyebrow">Reference to revenue-grade short videos</div>
+    <div class="eyebrow">参考链接 -> 爆款短视频流水线</div>
     <h1>把一个爆款参考链接，变成一条可批量生产、可一键分发的内容流水线。</h1>
     <p class="lead">
-      DeepSeek 负责改写结构，CosyVoice / HeyGen 负责数字人播报，FFmpeg 负责自动剪辑，MultiPost 负责分发。
+      Monica / DeepSeek 负责改写结构，CosyVoice / HeyGen 负责数字人播报，FFmpeg 负责自动剪辑，MultiPost 负责分发。
     </p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="/register">Create workspace</a>
-      <a class="btn btn-secondary" href="/login">Sign in</a>
+      <a class="btn btn-primary" href="/register">创建工作区</a>
+      <a class="btn btn-secondary" href="/login">登录</a>
     </div>
     <div class="pill-row">
       <span class="pill">Supabase Postgres</span>
       <span class="pill">FastAPI</span>
       <span class="pill">FFmpeg</span>
-      <span class="pill">DeepSeek</span>
+      <span class="pill">Monica API</span>
     </div>
   </div>
   <aside class="hero-card">
-    <h3>What the MVP covers</h3>
+    <h3>MVP 覆盖内容</h3>
     <ul class="feature-list">
       <li>参考视频链接分析</li>
       <li>同结构不同主题脚本生成</li>
@@ -28,14 +28,13 @@
       <li>多平台分发包导出</li>
     </ul>
     <div class="meter">
-      <span>Paid APIs to plan for</span>
+      <span>需要预留的付费 API</span>
       <strong>{{ stats.paid_apis | join(" · ") }}</strong>
     </div>
     <div class="meter alt">
-      <span>Open source anchors</span>
+      <span>开源底座</span>
       <strong>{{ stats.open_source | join(" · ") }}</strong>
     </div>
   </aside>
 </section>
 {% endblock %}
-

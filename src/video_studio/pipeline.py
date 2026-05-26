@@ -65,11 +65,11 @@ class VideoPipeline:
 
             add_job_step(db, job.id, "script-generation", "running", {"topic": job.topic})
             db.commit()
-            deepseek_cfg = get_integration(db, job.owner_id, "deepseek")
+            llm_cfg = get_integration(db, job.owner_id, "monica") or get_integration(db, job.owner_id, "deepseek")
             deepseek = DeepSeekClient(
-                api_key=(deepseek_cfg.api_key_enc if deepseek_cfg else None) or None,
-                base_url=(deepseek_cfg.base_url if deepseek_cfg else None) or None,
-                model=(deepseek_cfg.model if deepseek_cfg else None) or None,
+                api_key=(llm_cfg.api_key_enc if llm_cfg else None) or None,
+                base_url=(llm_cfg.base_url if llm_cfg else None) or None,
+                model=(llm_cfg.model if llm_cfg else None) or None,
             )
             brief = asyncio.run(
                 deepseek.build_video_brief(

@@ -2,63 +2,63 @@
 {% block content %}
 <section class="page-head">
   <div>
-    <div class="eyebrow">Job</div>
+    <div class="eyebrow">任务</div>
     <h1>{{ job.title or job.topic }}</h1>
-    <p class="lead">{{ job.status }} · {{ job.progress }}%</p>
+    <p class="lead">{{ label_status(job.status) }} · {{ job.progress }}%</p>
   </div>
   <div class="actions-row">
     <form method="post" action="/jobs/{{ job.id }}/run" class="inline-form">
-      <button class="btn btn-primary" type="submit">Run pipeline</button>
+      <button class="btn btn-primary" type="submit">运行流水线</button>
     </form>
-    <a class="btn btn-secondary" href="/projects/{{ project.id }}">Project</a>
+    <a class="btn btn-secondary" href="/projects/{{ project.id }}">项目</a>
   </div>
 </section>
 
 <section class="split-grid">
   <div class="panel">
     <div class="panel-head">
-      <h2>Pipeline status</h2>
+      <h2>流水线状态</h2>
     </div>
     <div class="progress-shell">
       <div class="progress-bar" style="width: {{ job.progress }}%"></div>
     </div>
-    <div class="kv-grid">
-      <div><span>Status</span><strong id="job-status">{{ job.status }}</strong></div>
-      <div><span>Ratio</span><strong>{{ job.render_ratio }}</strong></div>
-      <div><span>Avatar</span><strong>{{ job.avatar_mode }}</strong></div>
-      <div><span>Voice</span><strong>{{ job.voice_provider }}</strong></div>
-    </div>
-    <div class="code-block">
-      <h3>Output</h3>
-      <p>{{ job.output_path or 'Waiting for render' }}</p>
+      <div class="kv-grid">
+      <div><span>状态</span><strong id="job-status">{{ label_status(job.status) }}</strong></div>
+      <div><span>比例</span><strong>{{ job.render_ratio }}</strong></div>
+      <div><span>播报</span><strong>{{ label_avatar_mode(job.avatar_mode) }}</strong></div>
+      <div><span>转写</span><strong>{{ label_voice_provider(job.voice_provider) }}</strong></div>
+      </div>
+      <div class="code-block">
+      <h3>输出</h3>
+      <p>{{ job.output_path or '等待渲染' }}</p>
       {% if job.output_path %}
-        <a class="btn btn-secondary" href="/jobs/{{ job.id }}/download">Download video</a>
+        <a class="btn btn-secondary" href="/jobs/{{ job.id }}/download">下载视频</a>
       {% endif %}
     </div>
   </div>
 
   <div class="panel">
     <div class="panel-head">
-      <h2>Generated script</h2>
+      <h2>生成脚本</h2>
     </div>
     <div class="code-block">
-      <pre>{{ job.script_text or 'No script yet' }}</pre>
+      <pre>{{ job.script_text or '还没有脚本' }}</pre>
     </div>
   </div>
 </section>
 
 <section class="panel">
   <div class="panel-head">
-    <h2>Steps</h2>
+    <h2>步骤</h2>
   </div>
   <div class="card-list">
     {% for step in steps %}
       <div class="item-card">
         <div>
           <h3>{{ step.step_key }}</h3>
-          <p>{{ step.status }}{% if step.finished_at %} · {{ format_dt(step.finished_at) }}{% endif %}</p>
+          <p>{{ label_status(step.status) }}{% if step.finished_at %} · {{ format_dt(step.finished_at) }}{% endif %}</p>
         </div>
-        <span class="tag">{{ step.status }}</span>
+        <span class="tag">{{ label_status(step.status) }}</span>
       </div>
     {% endfor %}
   </div>
@@ -67,24 +67,37 @@
 <section class="split-grid">
   <div class="panel">
     <div class="panel-head">
-      <h2>Distribution bundle</h2>
+      <h2>分发包</h2>
     </div>
     <pre class="code-block">{{ publish_bundle_json }}</pre>
   </div>
   <div class="panel">
     <div class="panel-head">
-      <h2>Auto refresh</h2>
+      <h2>自动刷新</h2>
     </div>
-    <p class="muted">The page refreshes status every 3 seconds while the job is running.</p>
+    <p class="muted">任务运行时，页面会每 3 秒刷新一次状态。</p>
     <script>
       (function () {
         const jobId = "{{ job.id }}";
+        const statusLabels = {
+          all: "全部",
+          queued: "排队中",
+          running: "进行中",
+          ready_to_publish: "待发布",
+          published: "已发布",
+          completed: "已完成",
+          failed: "失败",
+          manual: "待手动处理",
+        };
+        function translateStatus(value) {
+          return statusLabels[value] || value;
+        }
         async function tick() {
           const res = await fetch(`/api/jobs/${jobId}/status`);
           if (!res.ok) return;
           const data = await res.json();
           document.querySelector(".progress-bar").style.width = `${data.progress}%`;
-          document.getElementById("job-status").textContent = data.status;
+          document.getElementById("job-status").textContent = translateStatus(data.status);
           if (data.status === "completed" || data.status === "failed") return;
           setTimeout(tick, 3000);
         }

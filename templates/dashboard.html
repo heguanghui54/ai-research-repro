@@ -2,24 +2,24 @@
 {% block content %}
 <section class="page-head">
   <div>
-    <div class="eyebrow">Workspace</div>
-    <h1>Hello, {{ user.display_name or user.email }}</h1>
-    <p class="lead">This is your command center for reference analysis, video generation, and distribution.</p>
+    <div class="eyebrow">工作台</div>
+    <h1>你好，{{ user.display_name or user.email }}</h1>
+    <p class="lead">这里是你的参考分析、视频生成和分发控制中心。</p>
   </div>
-  <a class="btn btn-primary" href="/projects/new">New project</a>
+  <a class="btn btn-primary" href="/projects/new">新建项目</a>
 </section>
 
 <section class="stats-grid">
   <div class="stat-card">
-    <span>Projects</span>
+    <span>项目</span>
     <strong>{{ projects|length }}</strong>
   </div>
   <div class="stat-card">
-    <span>Jobs</span>
+    <span>任务</span>
     <strong>{{ jobs|length }}</strong>
   </div>
   <div class="stat-card">
-    <span>Integrations</span>
+    <span>后台配置</span>
     <strong>{{ integrations|length }}</strong>
   </div>
 </section>
@@ -27,8 +27,8 @@
 <section class="split-grid">
   <div class="panel">
     <div class="panel-head">
-      <h2>Projects</h2>
-      <a href="/projects/new">Create</a>
+      <h2>项目</h2>
+      <a href="/projects/new">创建</a>
     </div>
     {% if projects %}
       <div class="card-list">
@@ -36,20 +36,20 @@
           <a class="item-card" href="/projects/{{ project.id }}">
             <div>
               <h3>{{ project.name }}</h3>
-              <p>{{ project.description or 'No description yet' }}</p>
+              <p>{{ project.description or '暂无描述' }}</p>
             </div>
-            <span class="tag">{{ project.status }}</span>
+            <span class="tag">{{ label_status(project.status) }}</span>
           </a>
         {% endfor %}
       </div>
     {% else %}
-      <p class="muted">No project yet. Create one to start the pipeline.</p>
+      <p class="muted">还没有项目，先创建一个开始流水线。</p>
     {% endif %}
   </div>
 
   <div class="panel">
     <div class="panel-head">
-      <h2>Recent jobs</h2>
+      <h2>最近任务</h2>
     </div>
     {% if jobs %}
       <div class="card-list">
@@ -57,16 +57,15 @@
           <a class="item-card" href="/jobs/{{ job.id }}">
             <div>
               <h3>{{ job.title or job.topic }}</h3>
-              <p>{{ job.status }} · {{ job.progress }}%</p>
+              <p>{{ label_status(job.status) }} · {{ job.progress }}%</p>
             </div>
             <span class="tag">{{ job.render_ratio }}</span>
           </a>
         {% endfor %}
       </div>
     {% else %}
-      <p class="muted">No generated video yet.</p>
+      <p class="muted">还没有生成视频。</p>
     {% endif %}
   </div>
 </section>
 {% endblock %}
-

@@ -10,7 +10,7 @@ from fastapi import BackgroundTasks, Depends, FastAPI, Form, HTTPException, Requ
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from sqlalchemy import desc, select
+from sqlalchemy import desc, func, select
 from sqlalchemy.orm import Session
 from starlette.middleware.sessions import SessionMiddleware
 
@@ -39,6 +39,15 @@ from .crud import (
 from .db import Base, SessionLocal, engine
 from .models import AppUser, Integration, Project, PublishJob, PublishTarget, VideoJob
 from .pipeline import VideoPipeline
+from .ui import (
+    API_CONFIG_SECTIONS,
+    label_avatar_mode,
+    label_platform,
+    label_publish_adapter,
+    label_role,
+    label_status,
+    label_voice_provider,
+)
 from .utils import format_dt
 
 
@@ -46,6 +55,16 @@ app = FastAPI(title=settings.app_name)
 app.add_middleware(SessionMiddleware, secret_key=settings.secret_key, same_site="lax")
 app.mount("/static", StaticFiles(directory=str(settings.static_dir)), name="static")
 templates = Jinja2Templates(directory=str(settings.template_dir))
+templates.env.globals.update(
+    {
+        "label_status": label_status,
+        "label_platform": label_platform,
+        "label_avatar_mode": label_avatar_mode,
+        "label_voice_provider": label_voice_provider,
+        "label_publish_adapter": label_publish_adapter,
+        "label_role": label_role,
+    }
+)
 executor = ThreadPoolExecutor(max_workers=2)
 pipeline = VideoPipeline()
 Base.metadata.create_all(bind=engine)
@@ -69,6 +88,11 @@ def render(request: Request, template_name: str, **context):
     if user is None:
         with SessionLocal() as db:
             user = current_user(request, db)
+    can_access_admin = False
+    if user:
+        with SessionLocal() as db:
+            admin_count = db.execute(select(func.count()).select_from(AppUser).where(AppUser.role == "admin")).scalar_one()
+            can_access_admin = user.role == "admin" or admin_count == 0
     context.update(
         {
             "request": request,
@@ -76,6 +100,13 @@ def render(request: Request, template_name: str, **context):
             "settings": settings,
             "format_dt": format_dt,
             "json_dumps": json.dumps,
+            "can_access_admin": can_access_admin,
+            "label_status": label_status,
+            "label_platform": label_platform,
+            "label_avatar_mode": label_avatar_mode,
+            "label_voice_provider": label_voice_provider,
+            "label_publish_adapter": label_publish_adapter,
+            "label_role": label_role,
         }
     )
     return templates.TemplateResponse(template_name, context)
@@ -94,7 +125,7 @@ def index(request: Request, db: Session = Depends(get_db)):
         request,
         "index.html",
         stats={
-            "paid_apis": ["HeyGen", "OpenAI Whisper", "DeepSeek"],
+            "paid_apis": ["Monica API", "HeyGen", "OpenAI Whisper"],
             "open_source": ["CosyVoice", "FFmpeg", "MultiPost"],
         },
     )
@@ -115,7 +146,8 @@ def register(
 ):
     if get_user_by_email(db, email):
         return render(request, "register.html", error="Email already exists.")
-    user = create_user(db, email=email, password=password, display_name=display_name)
+    admin_exists = db.execute(select(func.count()).select_from(AppUser).where(AppUser.role == "admin")).scalar_one() > 0
+    user = create_user(db, email=email, password=password, display_name=display_name, role="member" if admin_exists else "admin")
     db.commit()
     sign_in(request, user.id)
     return _auth_redirect("/dashboard")
@@ -387,20 +419,46 @@ def publish_job_retry(request: Request, publish_job_id: str, db: Session = Depen
     return _auth_redirect("/publish-jobs?status=failed")
 
 
+def _admin_access_allowed(db: Session, user: AppUser) -> bool:
+    admin_count = db.execute(select(func.count()).select_from(AppUser).where(AppUser.role == "admin")).scalar_one()
+    return user.role == "admin" or admin_count == 0
+
+
 @app.get("/settings", response_class=HTMLResponse)
 def settings_page(request: Request, db: Session = Depends(get_db)):
     user = require_user(request, db)
+    if not _admin_access_allowed(db, user):
+        return _auth_redirect("/dashboard")
+    return _auth_redirect("/admin/api-config")
+
+
+@app.get("/admin/api-config", response_class=HTMLResponse)
+def admin_api_config_page(request: Request, db: Session = Depends(get_db)):
+    user = require_user(request, db)
+    if not _admin_access_allowed(db, user):
+        return _auth_redirect("/dashboard")
     integrations = {item.provider: item for item in list_integrations(db, user.id)}
+    sections = []
+    for item in API_CONFIG_SECTIONS:
+        current = integrations.get(item["provider"])
+        sections.append(
+            {
+                **item,
+                "current": current,
+                "extra_json": json.dumps((current.settings if current else item["extra_defaults"]) or {}, ensure_ascii=False, indent=2),
+            }
+        )
     return render(
         request,
         "settings.html",
         user=user,
         integrations=integrations,
+        api_sections=sections,
     )
 
 
-@app.post("/settings/integrations")
-def settings_integrations(
+@app.post("/admin/api-config")
+def admin_api_config_save(
     request: Request,
     provider: str = Form(...),
     api_key: str = Form(""),
@@ -410,6 +468,8 @@ def settings_integrations(
     db: Session = Depends(get_db),
 ):
     user = require_user(request, db)
+    if not _admin_access_allowed(db, user):
+        return _auth_redirect("/dashboard")
     try:
         extra_settings = json.loads(extra_json or "{}")
     except json.JSONDecodeError:
@@ -425,16 +485,15 @@ def settings_integrations(
         is_active=True,
     )
     db.commit()
-    return _auth_redirect("/settings")
+    return _auth_redirect("/admin/api-config")
 
 
 @app.get("/admin", response_class=HTMLResponse)
 def admin_page(request: Request, db: Session = Depends(get_db)):
     user = require_user(request, db)
-    if user.role != "admin":
+    if not _admin_access_allowed(db, user):
         return _auth_redirect("/dashboard")
-    users = db.execute(select(AppUser).order_by(desc(AppUser.created_at))).scalars().all()
-    return render(request, "dashboard.html", user=user, projects=[], jobs=[], integrations=[], admin_users=users)
+    return _auth_redirect("/admin/api-config")
 
 
 @app.get("/healthz")

@@ -2,35 +2,35 @@
 {% block content %}
 <section class="page-head">
   <div>
-    <div class="eyebrow">Publishing</div>
-    <h1>Publish task list</h1>
-    <p class="lead">Track every platform push, inspect failures, and retry without re-running the full video pipeline.</p>
+    <div class="eyebrow">发布</div>
+    <h1>发布任务列表</h1>
+    <p class="lead">跟踪每个平台的发布结果，查看失败原因，并且不用重新跑完整流水线就能重试。</p>
   </div>
   <div class="actions-row">
-    <a class="btn btn-secondary" href="/publish-jobs?status=all">All</a>
-    <a class="btn btn-secondary" href="/publish-jobs?status=failed">Failed <span class="tag">{{ failed_count }}</span></a>
+    <a class="btn btn-secondary" href="/publish-jobs?status=all">全部</a>
+    <a class="btn btn-secondary" href="/publish-jobs?status=failed">失败 <span class="tag">{{ failed_count }}</span></a>
   </div>
 </section>
 
 <section class="panel">
   <div class="panel-head">
-    <h2>Filters</h2>
-    <p class="muted">Current: {{ status }}</p>
+    <h2>筛选</h2>
+    <p class="muted">当前：{{ label_status(status) }}</p>
   </div>
   <div class="pill-row">
-    <a class="pill" href="/publish-jobs?status=all">All</a>
-    <a class="pill" href="/publish-jobs?status=queued">Queued</a>
-    <a class="pill" href="/publish-jobs?status=running">Running</a>
-    <a class="pill" href="/publish-jobs?status=published">Published</a>
-    <a class="pill" href="/publish-jobs?status=failed">Failed</a>
-    <a class="pill" href="/publish-jobs?status=manual">Manual</a>
+    <a class="pill" href="/publish-jobs?status=all">全部</a>
+    <a class="pill" href="/publish-jobs?status=queued">排队中</a>
+    <a class="pill" href="/publish-jobs?status=running">进行中</a>
+    <a class="pill" href="/publish-jobs?status=published">已发布</a>
+    <a class="pill" href="/publish-jobs?status=failed">失败</a>
+    <a class="pill" href="/publish-jobs?status=manual">待手动处理</a>
   </div>
 </section>
 
 <section class="panel">
   <div class="panel-head">
-    <h2>Tasks</h2>
-    <p class="muted">{{ items|length }} records</p>
+    <h2>任务</h2>
+    <p class="muted">{{ items|length }} 条记录</p>
   </div>
   {% if items %}
     <div class="card-list">
@@ -41,32 +41,32 @@
         <div class="item-card">
           <div class="stack-tight">
             <div class="row-line">
-              <h3>{% if job %}{{ job.title or job.topic }}{% else %}Unknown job{% endif %}</h3>
-              <span class="tag">{{ pj.status }}</span>
+              <h3>{% if job %}{{ job.title or job.topic }}{% else %}未知任务{% endif %}</h3>
+              <span class="tag">{{ label_status(pj.status) }}</span>
             </div>
-            <p>{% if target %}{{ target.platform }} · {{ target.handle }}{% else %}unknown target{% endif %}</p>
-            <p class="muted">Job: {% if job %}<a href="/jobs/{{ pj.job_id }}">{{ job.title or job.topic }}</a>{% else %}{{ pj.job_id }}{% endif %}</p>
+            <p>{% if target %}{{ label_platform(target.platform) }} · {{ target.handle }}{% else %}未知目标{% endif %}</p>
+            <p class="muted">任务：{% if job %}<a href="/jobs/{{ pj.job_id }}">{{ job.title or job.topic }}</a>{% else %}{{ pj.job_id }}{% endif %}</p>
             {% if pj.error %}
-              <div class="alert">Error: {{ pj.error }}</div>
+              <div class="alert">错误：{{ pj.error }}</div>
             {% endif %}
             <pre class="code-block">{{ json_dumps(pj.payload, indent=2, ensure_ascii=False) }}</pre>
           </div>
           <div class="stack-right">
-            <a class="btn btn-secondary" href="/jobs/{{ pj.job_id }}">Open video</a>
+            <a class="btn btn-secondary" href="/jobs/{{ pj.job_id }}">打开视频</a>
             {% if pj.status == 'failed' %}
               <form method="post" action="/publish-jobs/{{ pj.id }}/retry">
-                <button class="btn btn-primary" type="submit">Retry</button>
+                <button class="btn btn-primary" type="submit">重试</button>
               </form>
             {% endif %}
             {% if pj.remote_url %}
-              <a class="btn btn-ghost" href="{{ pj.remote_url }}" target="_blank" rel="noreferrer">Remote link</a>
+              <a class="btn btn-ghost" href="{{ pj.remote_url }}" target="_blank" rel="noreferrer">远程链接</a>
             {% endif %}
           </div>
         </div>
       {% endfor %}
     </div>
   {% else %}
-    <p class="muted">No publish tasks yet. Run a video job with publish targets configured.</p>
+    <p class="muted">还没有发布任务。先创建视频任务并配置发布目标。</p>
   {% endif %}
 </section>
 {% endblock %}
