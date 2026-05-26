@@ -35,6 +35,23 @@ def create_user(db: Session, email: str, password: str, display_name: str = "", 
     return user
 
 
+def ensure_user(
+    db: Session,
+    email: str,
+    password: str,
+    display_name: str = "",
+    role: str = "member",
+) -> AppUser:
+    user = get_user_by_email(db, email)
+    if user is None:
+        return create_user(db, email=email, password=password, display_name=display_name, role=role)
+    user.password_hash = hash_password(password)
+    user.display_name = display_name.strip() or normalize_email(email).split("@", 1)[0]
+    user.role = role
+    db.flush()
+    return user
+
+
 def authenticate_user(db: Session, email: str, password: str) -> Optional[AppUser]:
     user = get_user_by_email(db, email)
     if user and verify_password(password, user.password_hash):

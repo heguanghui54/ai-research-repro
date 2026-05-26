@@ -27,6 +27,7 @@ from .crud import (
     create_project,
     create_reference_video,
     create_user,
+    ensure_user,
     get_user_by_email,
     get_integration,
     get_job,
@@ -90,6 +91,15 @@ def get_db():
 @app.on_event("startup")
 def startup() -> None:
     Base.metadata.create_all(bind=engine)
+    with SessionLocal() as db:
+        ensure_user(
+            db,
+            email=settings.default_admin_email,
+            password=settings.default_admin_password,
+            display_name=settings.default_admin_display_name,
+            role="admin",
+        )
+        db.commit()
 
 
 def render(request: Request, template_name: str, **context):
