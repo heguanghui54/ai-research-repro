@@ -98,6 +98,8 @@ The helper script for the official repo is
 [scripts/fmlbench_smoke_test.sh](scripts/fmlbench_smoke_test.sh).
 If you need the Monica fallback on the official repo, use
 [scripts/patch_fmlbench_monica_provider.py](scripts/patch_fmlbench_monica_provider.py).
+If the installed Fairlearn API is older than the generated code expects, use
+[scripts/patch_fmlbench_fairlearn_compat.py](scripts/patch_fmlbench_fairlearn_compat.py).
 For the actual Ubuntu verification record, see
 [docs/fmlbench_verification_log.md](docs/fmlbench_verification_log.md).
 
