@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from cryptography.fernet import Fernet
-from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Integer, String, Text, create_engine
+from sqlalchemy import JSON, Boolean, DateTime, ForeignKey, Integer, String, Text, create_engine, text as sql_text
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, sessionmaker
 
 
@@ -102,6 +102,8 @@ class Project(Base):
     model_name: Mapped[str] = mapped_column(String(120), default="gpt-4o-mini")
     api_key_enc: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     experiment_template: Mapped[str] = mapped_column(String(80), default="sandbox")
+    compute_backend: Mapped[str] = mapped_column(String(80), default="local-cpu")
+    compute_config_json: Mapped[Optional[Dict[str, Any]]] = mapped_column(JSON, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow)
 
@@ -170,6 +172,12 @@ class Artifact(Base):
 
 def init_db() -> None:
     Base.metadata.create_all(bind=engine)
+    with engine.begin() as conn:
+        columns = {row[1] for row in conn.execute(sql_text("PRAGMA table_info(projects)")).fetchall()}
+        if "compute_backend" not in columns:
+            conn.execute(sql_text("ALTER TABLE projects ADD COLUMN compute_backend VARCHAR(80) DEFAULT 'local-cpu'"))
+        if "compute_config_json" not in columns:
+            conn.execute(sql_text("ALTER TABLE projects ADD COLUMN compute_config_json JSON"))
 
 
 def get_session():
@@ -199,6 +207,8 @@ def serialize_model(instance) -> Dict[str, Any]:
             "api_base_url": instance.api_base_url,
             "model_name": instance.model_name,
             "experiment_template": instance.experiment_template,
+            "compute_backend": instance.compute_backend,
+            "compute_config_json": instance.compute_config_json or {},
             "created_at": instance.created_at.isoformat() if instance.created_at else None,
             "updated_at": instance.updated_at.isoformat() if instance.updated_at else None,
         }

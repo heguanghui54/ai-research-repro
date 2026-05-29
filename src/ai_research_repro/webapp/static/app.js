@@ -70,7 +70,7 @@
         <button class="project-item ${state.activeProject?.id === project.id ? "active" : ""}" data-project-id="${project.id}">
           <div class="title">${esc(project.name)}</div>
           <div class="meta">${esc(project.topic.slice(0, 120))}</div>
-          <div class="meta">${esc(project.model_name)} · ${esc(project.experiment_template)}</div>
+          <div class="meta">${esc(project.model_name)} · ${esc(project.experiment_template)} · ${esc(project.compute_backend || "local-cpu")}</div>
         </button>
       `
       )
@@ -289,7 +289,7 @@
     state.activeProject = data.project;
     state.runs = data.runs || [];
     $("#active-project-title").textContent = data.project.name;
-    $("#active-project-meta").textContent = data.project.topic;
+    $("#active-project-meta").textContent = `${data.project.topic} · ${data.project.experiment_template} · ${data.project.compute_backend || "local-cpu"}`;
     $("#start-run-btn").disabled = false;
     $("#clone-run-btn").disabled = !state.activeRun;
     state.projects = state.projects.map((p) => (p.id === data.project.id ? data.project : p));
@@ -374,6 +374,8 @@
     try {
       const data = await api("/api/projects", { method: "POST", body: JSON.stringify(payload) });
       form.reset();
+      $("#project-form select[name='compute_backend']").value = "local-cpu";
+      $("#project-form textarea[name='compute_config_json']").value = "";
       $("#project-form select[name='experiment_template']").value = "sandbox";
       setMessage("Project created.", "success");
       await loadProjects();
@@ -528,6 +530,42 @@
         input.disabled = event.target.checked;
         if (event.target.checked) input.checked = false;
       });
+    });
+    $("#project-form select[name='compute_backend']").addEventListener("change", (event) => {
+      const config = $("#project-form textarea[name='compute_config_json']");
+      if (!config) return;
+      const backend = event.target.value;
+      if (backend === "ssh-remote-gpu") {
+        config.placeholder = JSON.stringify(
+          {
+            host: "1.2.3.4",
+            user: "ubuntu",
+            identity_file: "~/.ssh/id_ed25519",
+            remote_workdir: "/home/ubuntu/research",
+            remote_python: "python3",
+            env: { HF_TOKEN: "..." },
+          },
+          null,
+          2
+        );
+      } else if (backend === "hf-job") {
+        config.placeholder = JSON.stringify(
+          {
+            image: "python:3.11-slim",
+            flavor: "a10g-small",
+            command: [
+              "python3",
+              "-c",
+              "from ai_research_repro.templates.nanogpt_lite import default_config, train_and_evaluate; print('===AI_RESEARCH_RESULT_JSON_START==='); print('{}'); print('===AI_RESEARCH_RESULT_JSON_END===')",
+            ],
+            env: { HF_TOKEN: "..." },
+          },
+          null,
+          2
+        );
+      } else {
+        config.placeholder = 'Optional backend config JSON. Example: {"host":"1.2.3.4","user":"ubuntu"}';
+      }
     });
 
     Promise.all([loadProjects(), loadAccountHistory(), loadLibrary()]).catch((error) => setMessage(error.message, "error"));

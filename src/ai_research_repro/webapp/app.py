@@ -160,6 +160,18 @@ def api_create_project(payload: dict[str, Any] = Body(...), user: User = Depends
     topic = (payload.get("topic") or "").strip()
     if not name or not topic:
         raise HTTPException(status_code=400, detail="Project name and topic are required")
+    raw_compute_config = payload.get("compute_config_json")
+    compute_config_json: dict[str, Any] = {}
+    if isinstance(raw_compute_config, str) and raw_compute_config.strip():
+        try:
+            parsed = json.loads(raw_compute_config)
+        except json.JSONDecodeError as exc:
+            raise HTTPException(status_code=400, detail=f"Invalid compute config JSON: {exc.msg}") from exc
+        if not isinstance(parsed, dict):
+            raise HTTPException(status_code=400, detail="Compute config JSON must be an object")
+        compute_config_json = parsed
+    elif isinstance(raw_compute_config, dict):
+        compute_config_json = raw_compute_config
     project = Project(
         user_id=user.id,
         name=name,
@@ -171,6 +183,8 @@ def api_create_project(payload: dict[str, Any] = Body(...), user: User = Depends
         model_name=(payload.get("model_name") or "gpt-4o-mini").strip(),
         api_key_enc=encrypt_text((payload.get("api_key") or "").strip() or None),
         experiment_template=(payload.get("experiment_template") or "sandbox").strip() or "sandbox",
+        compute_backend=(payload.get("compute_backend") or "local-cpu").strip() or "local-cpu",
+        compute_config_json=compute_config_json or None,
     )
     db.add(project)
     db.commit()
@@ -272,6 +286,9 @@ def api_start_run(
             "label": label,
             "pause_points": list(pause_points),
             "auto_continue": bool(payload.get("auto_continue")),
+            "experiment_template": project.experiment_template,
+            "compute_backend": project.compute_backend,
+            "compute_config_json": project.compute_config_json or {},
         },
     )
     db.add(run)

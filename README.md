@@ -78,6 +78,11 @@ path uses a real Hugging Face benchmark adapter with `datasets.load_dataset(...,
 streaming=True, trust_remote_code=True)` so the dataset stays remote until the
 loop materializes a bounded sample locally.
 
+The same web workspace also lets you choose the execution backend per project:
+`local-cpu`, `local-gpu`, `ssh-remote-gpu`, or `hf-job`. Backend-specific
+settings are passed as JSON in the project form, so the loop can stay portable
+while still targeting remote compute when available.
+
 ## Main commands
 
 ```bash

@@ -37,6 +37,17 @@
         </div>
         <input name="api_base_url" placeholder="API base URL" value="https://api.openai.com/v1" />
         <input name="api_key" placeholder="API key" type="password" autocomplete="off" />
+        <select name="compute_backend">
+          <option value="local-cpu">Local CPU</option>
+          <option value="local-gpu">Local GPU / CUDA</option>
+          <option value="ssh-remote-gpu">SSH remote GPU</option>
+          <option value="hf-job">Hugging Face Job</option>
+        </select>
+        <textarea
+          name="compute_config_json"
+          rows="8"
+          placeholder='Optional backend config JSON. Examples: {"host":"1.2.3.4","user":"ubuntu","identity_file":"~/.ssh/id_ed25519","remote_workdir":"/home/ubuntu/repo"}'
+        ></textarea>
         <select name="experiment_template">
           <option value="sandbox">Sandbox benchmark</option>
           <option value="hf-streaming">HF streaming benchmark</option>

@@ -12,8 +12,14 @@ from pathlib import Path
 from typing import Any, Callable
 
 from ..benchmarks import recommend_hf_benchmarks, search_academic_sources, semantic_scholar_dedupe, spec_from_candidate
+from ..compute_backends import (
+    run_hf_job_experiment,
+    run_local_cpu_experiment,
+    run_local_gpu_experiment,
+    run_ssh_remote_experiment,
+)
 from ..charts import save_learning_curve
-from ..templates.nanogpt_lite import apply_patch, default_config, summarize_config, train_and_evaluate
+from ..templates.nanogpt_lite import apply_patch, default_config, summarize_config
 from .db import Artifact, Project, Run, RunEvent, SessionLocal, decrypt_text, init_db, utcnow
 from .provider import OpenAICompatibleProvider, ProviderConfig
 
@@ -505,6 +511,94 @@ def design_experiment_plan(
     return fallback()
 
 
+def _prepare_hf_benchmark(
+    benchmark: dict[str, Any],
+    *,
+    output_dir: Path,
+) -> tuple[list[dict[str, Any]], str | None, str | None]:
+    spec = spec_from_candidate(benchmark)
+    hf_loader_snippet = spec.loader_snippet
+    try:
+        hf_preview = spec.preview(limit=5)
+    except Exception as exc:
+        hf_preview = [{"error": f"preview failed: {type(exc).__name__}", "dataset_id": spec.dataset_id}]
+    try:
+        corpus_text = spec.build_corpus(limit=benchmark.get("sample_limit") or spec.sample_limit)
+    except Exception as exc:
+        corpus_text = json.dumps(
+            {
+                "benchmark": benchmark.get("name"),
+                "dataset_id": spec.dataset_id,
+                "split": spec.split,
+                "loader_snippet": hf_loader_snippet,
+                "error": f"materialization failed: {type(exc).__name__}: {exc}",
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    hf_meta = {
+        "benchmark": benchmark,
+        "preview": hf_preview,
+        "loader_snippet": hf_loader_snippet,
+        "corpus_chars": len(corpus_text or ""),
+    }
+    hf_meta_path = output_dir / "hf_benchmark_meta.json"
+    hf_meta_path.write_text(json.dumps(hf_meta, indent=2, ensure_ascii=False), encoding="utf-8")
+    hf_corpus_path = output_dir / "hf_benchmark_corpus.txt"
+    hf_corpus_path.write_text(corpus_text or "", encoding="utf-8")
+    return hf_preview, hf_loader_snippet, corpus_text
+
+
+def _run_compute_backend(
+    *,
+    backend: str,
+    benchmark: dict[str, Any],
+    config,
+    output_dir: Path,
+    corpus_text: str | None,
+    metadata: dict[str, Any],
+) -> Any:
+    if backend == "local-gpu":
+        return run_local_gpu_experiment(config=config, out_dir=output_dir, corpus_text=corpus_text, metadata=metadata)
+    if backend == "ssh-remote-gpu":
+        remote = benchmark.get("compute_config") or {}
+        return run_ssh_remote_experiment(
+            out_dir=output_dir,
+            host=str(remote.get("host") or ""),
+            user=remote.get("user") or None,
+            port=int(remote["port"]) if remote.get("port") else None,
+            identity_file=remote.get("identity_file") or None,
+            remote_workdir=remote.get("remote_workdir") or None,
+            remote_python=remote.get("remote_python") or "python3",
+            corpus_text=corpus_text,
+            config=config,
+            env=remote.get("env") or {},
+            metadata=metadata,
+        )
+    if backend == "hf-job":
+        remote = benchmark.get("compute_config") or {}
+        command = remote.get("command") or [
+            "python3",
+            "-c",
+            "from ai_research_repro.templates.nanogpt_lite import default_config, train_and_evaluate; "
+            "import json; from pathlib import Path; "
+            "result = train_and_evaluate(default_config(), out_dir=Path('remote_run')); "
+            "print('===AI_RESEARCH_RESULT_JSON_START==='); "
+            "print(json.dumps(result, ensure_ascii=False)); "
+            "print('===AI_RESEARCH_RESULT_JSON_END===')",
+        ]
+        return run_hf_job_experiment(
+            out_dir=output_dir,
+            image=str(remote.get("image") or "python:3.11-slim"),
+            command=command,
+            flavor=str(remote.get("flavor") or "a10g-small"),
+            env=remote.get("env") or {},
+            secrets=remote.get("secrets") or {},
+            metadata=metadata,
+        )
+    return run_local_cpu_experiment(config=config, out_dir=output_dir, corpus_text=corpus_text, metadata=metadata)
+
+
 def run_sandbox_experiments(
     *,
     run: Run,
@@ -514,6 +608,8 @@ def run_sandbox_experiments(
     output_dir: Path,
     emit: Callable[..., dict[str, Any]],
     session,
+    compute_backend: str = "local-cpu",
+    compute_config: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     base_cfg = default_config()
     candidate_patch = dict(idea.get("patch") or {})
@@ -523,41 +619,17 @@ def run_sandbox_experiments(
 
     baseline_dir = output_dir / "baseline"
     candidate_dir = output_dir / "candidate"
-    hf_preview = []
-    hf_loader_snippet = None
-    hf_corpus_path = None
-    corpus_text = None
-    if benchmark.get("backend") == "huggingface":
-        spec = spec_from_candidate(benchmark)
-        hf_loader_snippet = spec.loader_snippet
-        try:
-            hf_preview = spec.preview(limit=5)
-        except Exception as exc:
-            hf_preview = [{"error": f"preview failed: {type(exc).__name__}", "dataset_id": spec.dataset_id}]
-        try:
-            corpus_text = spec.build_corpus(limit=benchmark.get("sample_limit") or spec.sample_limit)
-        except Exception as exc:
-            corpus_text = json.dumps(
-                {
-                    "benchmark": benchmark.get("name"),
-                    "dataset_id": spec.dataset_id,
-                    "split": spec.split,
-                    "loader_snippet": hf_loader_snippet,
-                    "error": f"materialization failed: {type(exc).__name__}: {exc}",
-                },
-                ensure_ascii=False,
-                indent=2,
-            )
-        hf_meta = {
-            "benchmark": benchmark,
-            "preview": hf_preview,
-            "loader_snippet": hf_loader_snippet,
-            "corpus_chars": len(corpus_text or ""),
-        }
+    hf_preview: list[dict[str, Any]] = []
+    hf_loader_snippet: str | None = None
+    hf_corpus_path: Path | None = None
+    corpus_text: str | None = None
+    backend = benchmark.get("backend", "sandbox")
+    benchmark_metadata: dict[str, Any] = {"backend": backend}
+
+    if backend == "huggingface":
+        hf_preview, hf_loader_snippet, corpus_text = _prepare_hf_benchmark(benchmark, output_dir=output_dir)
         hf_meta_path = output_dir / "hf_benchmark_meta.json"
-        hf_meta_path.write_text(json.dumps(hf_meta, indent=2, ensure_ascii=False), encoding="utf-8")
         hf_corpus_path = output_dir / "hf_benchmark_corpus.txt"
-        hf_corpus_path.write_text(corpus_text or "", encoding="utf-8")
         emit(
             session,
             run,
@@ -571,10 +643,26 @@ def run_sandbox_experiments(
         save_artifact(session, run, "json", "hf benchmark metadata", hf_meta_path, "application/json")
         save_artifact(session, run, "text", "hf benchmark corpus", hf_corpus_path, "text/plain")
 
-    baseline_result = train_and_evaluate(base_cfg, out_dir=baseline_dir, corpus_text=corpus_text)
-    candidate_result = train_and_evaluate(candidate_cfg, out_dir=candidate_dir, corpus_text=corpus_text)
+    benchmark = dict(benchmark)
+    benchmark["compute_config"] = dict(compute_config or {})
+    baseline_result = _run_compute_backend(
+        backend=compute_backend,
+        benchmark=benchmark,
+        config=base_cfg,
+        output_dir=baseline_dir,
+        corpus_text=corpus_text,
+        metadata={**benchmark_metadata, "role": "baseline"},
+    )
+    candidate_result = _run_compute_backend(
+        backend=compute_backend,
+        benchmark=benchmark,
+        config=candidate_cfg,
+        output_dir=candidate_dir,
+        corpus_text=corpus_text,
+        metadata={**benchmark_metadata, "role": "candidate"},
+    )
 
-    save_learning_curve(candidate_result["history"], output_dir / "best_learning_curve.svg")
+    save_learning_curve(candidate_result.history, output_dir / "best_learning_curve.svg")
     (output_dir / "baseline_config.json").write_text(summarize_config(base_cfg), encoding="utf-8")
     (output_dir / "candidate_config.json").write_text(summarize_config(candidate_cfg), encoding="utf-8")
 
@@ -583,23 +671,27 @@ def run_sandbox_experiments(
         run,
         kind="experiment.result",
         stage="execution",
-        title="Sandbox benchmark complete",
-        message="The internal toy benchmark finished and produced comparable baseline/candidate metrics.",
+        title="Benchmark complete",
+        message="The selected execution backend finished and produced comparable baseline/candidate metrics.",
         payload={
-            "baseline": baseline_result["metrics"],
-            "candidate": candidate_result["metrics"],
+            "baseline": baseline_result.metrics,
+            "candidate": candidate_result.metrics,
             "patch": combined_patch,
+            "backend": compute_backend,
+            "benchmark_backend": backend,
+            "hf_loader_snippet": hf_loader_snippet,
         },
         progress=78,
     )
 
     return {
-        "baseline": baseline_result,
-        "candidate": candidate_result,
+        "baseline": baseline_result.__dict__,
+        "candidate": candidate_result.__dict__,
         "combined_patch": combined_patch,
         "hf_preview": hf_preview,
         "hf_loader_snippet": hf_loader_snippet,
         "hf_corpus_path": str(hf_corpus_path) if hf_corpus_path else None,
+        "compute_backend": compute_backend,
     }
 
 
@@ -1141,6 +1233,8 @@ def run_full_loop(
             output_dir=run_dir,
             emit=emit,
             session=session,
+            compute_backend=project.compute_backend,
+            compute_config=project.compute_config_json or {},
         )
         baseline_result = exec_result["baseline"]
         candidate_result = exec_result["candidate"]
@@ -1178,11 +1272,11 @@ def run_full_loop(
             topic=topic,
             idea=selected_idea,
             benchmark=selected_benchmark,
-            summary=summary,
-            literature=literature[:12],
-            plan=plan,
-            user_notes=notes,
-        )
+        summary=summary,
+        literature=literature[:12],
+        plan=plan,
+        user_notes=notes,
+    )
         review_rounds: list[dict[str, Any]] = []
         for round_idx in range(2):
             review = review_paper(
