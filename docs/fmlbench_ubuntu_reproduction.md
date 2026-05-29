@@ -77,6 +77,12 @@ client, so in practice you usually only need the key plus the provider choice.
 This is the smallest meaningful reproduction step:
 
 ```bash
+./scripts/fmlbench_smoke_test.sh
+```
+
+If you want to set everything explicitly instead of using the helper script:
+
+```bash
 python run_agent_benchmark.py \
   --agent-config configs/agents/ai_scientist_v2.yaml \
   --task-config configs/tasks/causality_causalml.yaml \
@@ -125,4 +131,3 @@ It adds:
 
 That makes it easier to validate the workflow cheaply before paying the
 full benchmark cost.
-
