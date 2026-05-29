@@ -5,6 +5,26 @@ The goal is not to clone the full Sakana AI system on day one. The goal is
 to keep the loop small enough that we can actually run it end to end, then
 grow it step by step.
 
+## AI Scientist-v2 reproduction snapshot
+
+This repository also records a low-cost reproduction pass for
+`SakanaAI/AI-Scientist-v2`.
+
+- Goal: run the paper-generation loop end to end and produce a paper PDF
+- Execution: remote Ubuntu host over SSH
+- Cost strategy: prefer cheaper models first, including `gpt-4o-mini`
+- Result: a paper PDF was generated successfully
+- Reference PR: [heguanghui54/AI-Scientist#1](https://github.com/heguanghui54/AI-Scientist/pull/1)
+
+What had to be stabilized:
+
+- LaTeX compilation on the remote host was switched to `tectonic`
+- The writeup step was made resilient when VLM reflection is unavailable
+- The expected figure files were supplied so the manuscript could compile
+
+The reproduction note is kept in
+[AI-Scientist-v2-reproduction-note.md](AI-Scientist-v2-reproduction-note.md).
+
 ## What is in scope
 
 - GPT handles `idea / review / writeup`
