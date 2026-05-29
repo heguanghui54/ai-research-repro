@@ -25,7 +25,8 @@ def review_report(
     report_text: str,
     *,
     metrics: dict[str, Any],
-    model: str = "gpt-4o-mini",
+    model: str | None = None,
+    provider: str | None = None,
 ) -> dict[str, Any]:
     user = f"""Review the following report and metrics.
 
@@ -35,7 +36,13 @@ METRICS:
 REPORT:
 {report_text}
 """
-    result = chat_json(system=REVIEW_SYSTEM, user=user, model=model, fallback=lambda: fallback_review(report_text, metrics))
+    result = chat_json(
+        system=REVIEW_SYSTEM,
+        user=user,
+        model=model,
+        provider=provider,
+        fallback=lambda: fallback_review(report_text, metrics),
+    )
     if isinstance(result, dict):
         result.setdefault("overall", 0.0)
         result.setdefault("strengths", [])
@@ -48,4 +55,3 @@ REPORT:
 def save_review(review: dict[str, Any], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(review, indent=2), encoding="utf-8")
-

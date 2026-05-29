@@ -16,7 +16,8 @@ from .writer import save_report, write_report
 class PipelineConfig:
     workspace: Path
     num_ideas: int = 3
-    gpt_model: str = "gpt-4o-mini"
+    gpt_model: str | None = None
+    provider: str | None = None
     run_baseline: bool = True
 
 
@@ -56,7 +57,14 @@ def run_pipeline(cfg: PipelineConfig) -> dict[str, Any]:
     else:
         baseline_result = _load_run(dirs["baseline"])
 
-    ideas = novelty_filter(generate_ideas(num_ideas=cfg.num_ideas, default_cfg=asdict(base_cfg), model=cfg.gpt_model))
+    ideas = novelty_filter(
+        generate_ideas(
+            num_ideas=cfg.num_ideas,
+            default_cfg=asdict(base_cfg),
+            model=cfg.gpt_model,
+            provider=cfg.provider,
+        )
+    )
     ideas_path = dirs["artifacts"] / "ideas.json"
     ideas_path.write_text(json.dumps(ideas, indent=2), encoding="utf-8")
 
@@ -83,10 +91,21 @@ def run_pipeline(cfg: PipelineConfig) -> dict[str, Any]:
     }
     (dirs["artifacts"] / "summary.json").write_text(json.dumps(summary_metrics, indent=2), encoding="utf-8")
 
-    report = write_report(best["idea"], baseline_result, best, model=cfg.gpt_model)
+    report = write_report(
+        best["idea"],
+        baseline_result,
+        best,
+        model=cfg.gpt_model,
+        provider=cfg.provider,
+    )
     report_path = dirs["artifacts"] / "report.md"
     save_report(report, report_path)
-    review = review_report(report, metrics=summary_metrics, model=cfg.gpt_model)
+    review = review_report(
+        report,
+        metrics=summary_metrics,
+        model=cfg.gpt_model,
+        provider=cfg.provider,
+    )
     save_review(review, dirs["artifacts"] / "review.json")
 
     return {

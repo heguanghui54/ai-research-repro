@@ -43,7 +43,8 @@ def write_report(
     baseline: dict[str, Any],
     candidate: dict[str, Any],
     *,
-    model: str = "gpt-4o-mini",
+    model: str | None = None,
+    provider: str | None = None,
 ) -> str:
     prompt = f"""Write a concise scientific report in markdown.
 Use the following experiment data.
@@ -60,11 +61,16 @@ CANDIDATE METRICS:
 HISTORY:
 {json.dumps(candidate["history"], indent=2)}
 """
-    result = chat_text(system=WRITE_SYSTEM, user=prompt, model=model, fallback=lambda: fallback_report(idea, baseline, candidate))
+    result = chat_text(
+        system=WRITE_SYSTEM,
+        user=prompt,
+        model=model,
+        provider=provider,
+        fallback=lambda: fallback_report(idea, baseline, candidate),
+    )
     return result.text
 
 
 def save_report(report: str, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(report, encoding="utf-8")
-

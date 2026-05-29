@@ -62,14 +62,21 @@ def generate_ideas(
     *,
     num_ideas: int,
     default_cfg: dict[str, Any],
-    model: str = "gpt-4o-mini",
+    model: str | None = None,
+    provider: str | None = None,
 ) -> list[dict[str, Any]]:
     user = IDEA_USER.format(baseline_summary=baseline_summary(default_cfg), num_ideas=num_ideas)
 
     def _fallback() -> list[dict[str, Any]]:
         return fallback_ideas(num_ideas)
 
-    result = chat_json(system=IDEA_SYSTEM, user=user, model=model, fallback=_fallback)
+    result = chat_json(
+        system=IDEA_SYSTEM,
+        user=user,
+        model=model,
+        provider=provider,
+        fallback=_fallback,
+    )
     if isinstance(result, dict) and "ideas" in result:
         result = result["ideas"]
     if not isinstance(result, list):
