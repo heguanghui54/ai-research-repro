@@ -42,6 +42,12 @@ def _cmd_review(args: argparse.Namespace) -> None:
     print(json.dumps(review, indent=2))
 
 
+def _cmd_web(_: argparse.Namespace) -> None:
+    import uvicorn
+
+    uvicorn.run("ai_research_repro.webapp.app:app", host="127.0.0.1", port=8000, reload=False)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="ai-research-repro")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -62,6 +68,9 @@ def build_parser() -> argparse.ArgumentParser:
     review.add_argument("--model", default="gpt-4o-mini")
     review.set_defaults(func=_cmd_review)
 
+    web = sub.add_parser("web", help="Start the web workspace.")
+    web.set_defaults(func=_cmd_web)
+
     return parser
 
 
@@ -73,4 +82,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

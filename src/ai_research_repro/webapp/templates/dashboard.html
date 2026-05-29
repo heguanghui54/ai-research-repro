@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block body %}
+<script>
+  window.__BOOTSTRAP__ = {{ {
+    "user": user,
+    "db_path": db_path
+  } | tojson }};
+</script>
+<div class="app-shell" id="app-root">
+  <header class="topbar">
+    <div>
+      <div class="brand">AI Scientist-v2 Workspace</div>
+      <div class="topbar-sub">Logged in as {{ user.username }}</div>
+    </div>
+    <div class="topbar-actions">
+      <button class="ghost" id="refresh-all">刷新</button>
+      <button class="ghost danger" id="logout-btn">退出</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="panel sidebar">
+      <div class="panel-head">
+        <div>
+          <h2>Projects</h2>
+          <p>输入研究 topic，系统会自动进入 AI Scientist-v2 loop。</p>
+        </div>
+      </div>
+      <form id="project-form" class="stack">
+        <input name="name" placeholder="Project name" required />
+        <textarea name="topic" rows="4" placeholder="Research topic / problem statement" required></textarea>
+        <input name="venue" placeholder="Target venue (optional)" />
+        <textarea name="description" rows="3" placeholder="Project notes / constraints (optional)"></textarea>
+        <div class="two-col">
+          <input name="provider_name" placeholder="Provider name" value="openai-compatible" />
+          <input name="model_name" placeholder="Model" value="gpt-4o-mini" />
+        </div>
+        <input name="api_base_url" placeholder="API base URL" value="https://api.openai.com/v1" />
+        <input name="api_key" placeholder="API key" type="password" autocomplete="off" />
+        <select name="experiment_template">
+          <option value="sandbox">Sandbox benchmark</option>
+          <option value="hf-streaming">HF streaming benchmark</option>
+        </select>
+        <button type="submit">Create project</button>
+      </form>
+      <div id="project-list" class="project-list"></div>
+    </aside>
+
+    <section class="panel main-panel">
+      <div class="panel-head">
+        <div>
+          <h2 id="active-project-title">No project selected</h2>
+          <p id="active-project-meta">Create or select a project to begin.</p>
+        </div>
+        <div class="run-actions">
+          <button class="ghost" id="start-run-btn" disabled>Start run</button>
+          <button class="ghost" id="clone-run-btn" disabled>Rewind / rerun</button>
+        </div>
+      </div>
+
+      <div class="run-form-grid">
+        <label class="toggle">
+          <input type="checkbox" id="auto-continue" checked />
+          <span>Auto-continue through checkpoints</span>
+        </label>
+        <div class="pause-grid">
+          <label><input type="checkbox" name="pause_points" value="ideation" /> Pause after ideation</label>
+          <label><input type="checkbox" name="pause_points" value="benchmark" /> Pause after benchmark</label>
+          <label><input type="checkbox" name="pause_points" value="planning" /> Pause after planning</label>
+          <label><input type="checkbox" name="pause_points" value="execution" /> Pause after execution</label>
+          <label><input type="checkbox" name="pause_points" value="writing" /> Pause before final PDF</label>
+        </div>
+        <input id="run-label" placeholder="Run label" />
+      </div>
+
+      <div class="status-strip">
+        <div>
+          <span>Status</span>
+          <strong id="run-status">idle</strong>
+        </div>
+        <div>
+          <span>Stage</span>
+          <strong id="run-stage">none</strong>
+        </div>
+        <div>
+          <span>Progress</span>
+          <strong id="run-progress">0%</strong>
+        </div>
+        <div>
+          <span>Paper PDF</span>
+          <strong id="pdf-link-wrap"><a href="#" id="pdf-link" target="_blank">-</a></strong>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <section class="panel subpanel">
+          <div class="subpanel-head">
+            <h3>Live timeline</h3>
+            <p>Every stage event, literature hit, and evaluation summary appears here.</p>
+          </div>
+          <div id="event-list" class="event-list"></div>
+        </section>
+
+        <section class="panel subpanel">
+          <div class="subpanel-head">
+            <h3>Key artifacts</h3>
+            <p>Ideas, benchmark notes, plans, summaries, paper, and PDF.</p>
+          </div>
+          <div id="artifact-list" class="artifact-list"></div>
+        </section>
+
+        <section class="panel subpanel">
+          <div class="subpanel-head">
+            <h3>Run history</h3>
+            <p>Every prior run for this project is visible and can be reopened or rewound.</p>
+          </div>
+          <div id="run-history" class="artifact-list"></div>
+        </section>
+
+        <section class="panel subpanel wide">
+          <div class="subpanel-head">
+            <h3>Research outputs</h3>
+            <p>Selected idea, benchmark discovery, experiment summary, and paper outline.</p>
+          </div>
+          <div id="output-cards" class="output-cards"></div>
+        </section>
+
+        <section class="panel subpanel wide">
+          <div class="subpanel-head">
+            <h3>File library</h3>
+            <p>All artifacts across the current account, not just the active run.</p>
+          </div>
+          <div id="library-list" class="artifact-list"></div>
+        </section>
+
+        <section class="panel subpanel">
+          <div class="subpanel-head">
+            <h3>User intervention</h3>
+            <p>Inject feedback at the current checkpoint, then resume the loop.</p>
+          </div>
+          <textarea id="user-note" rows="6" placeholder="Example: tighten the claim around benchmark search; avoid overclaiming novelty."></textarea>
+          <div class="row">
+            <button class="ghost" id="add-note-btn">Save note</button>
+            <button class="ghost" id="resume-btn">Resume run</button>
+          </div>
+          <div class="message" id="run-message"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+</div>
+{% endblock %}

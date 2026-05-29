@@ -53,6 +53,31 @@ If `OPENAI_API_KEY` is set and `openai` is installed, the pipeline uses GPT
 for idea generation, review, and writeup. Otherwise it falls back to
 deterministic heuristics so the repo stays runnable in a minimal environment.
 
+## Web Workspace
+
+The repository now also ships a FastAPI-based research workspace that wraps
+the AI Scientist-v2 style loop into a browser UI:
+
+```bash
+PYTHONPATH=src python3 -m ai_research_repro.cli web
+```
+
+Then open `http://127.0.0.1:8000` and:
+
+1. Register or log in.
+2. Create a project with your own topic and OpenAI-compatible API key.
+3. Start a run and watch the live timeline.
+4. Pause at ideation, benchmark, planning, execution, or writing checkpoints.
+5. Save notes, resume, rewind, and revisit the file library or run history.
+
+The web app persists runs, events, artifacts, generated papers, and PDFs in
+`data/` for per-user replay and review.
+
+The project form now also supports an `HF streaming benchmark` template. That
+path uses a real Hugging Face benchmark adapter with `datasets.load_dataset(...,
+streaming=True, trust_remote_code=True)` so the dataset stays remote until the
+loop materializes a bounded sample locally.
+
 ## Main commands
 
 ```bash

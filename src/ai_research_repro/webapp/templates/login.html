@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block body %}
+<main class="auth-shell">
+  <section class="auth-hero">
+    <div class="badge">AI Scientist-v2 Workspace</div>
+    <h1>从 topic 到论文 PDF 的自动科研工作台</h1>
+    <p>
+      输入研究题目、自己的 LLM API key 和 OpenAI-compatible 端点，
+      系统会按 AI Scientist-v2 的方式做候选生成、文献检索、benchmark 发现、
+      实验计划、执行、审稿和 PDF 输出。
+    </p>
+    <div class="hero-list">
+      <div>实时事件流</div>
+      <div>可暂停的关键节点</div>
+      <div>历史可回放</div>
+      <div>artifact 库和 PDF 下载</div>
+    </div>
+  </section>
+
+  <section class="auth-card">
+    <div class="tabs">
+      <button class="tab active" data-tab="login">登录</button>
+      <button class="tab" data-tab="register">注册</button>
+    </div>
+    <form id="login-form" class="auth-form" data-mode="login">
+      <label>用户名<input name="username" autocomplete="username" required /></label>
+      <label>密码<input name="password" type="password" autocomplete="current-password" required /></label>
+      <button type="submit">进入工作台</button>
+    </form>
+    <form id="register-form" class="auth-form hidden" data-mode="register">
+      <label>用户名<input name="username" autocomplete="username" required /></label>
+      <label>邮箱<input name="email" type="email" autocomplete="email" /></label>
+      <label>密码<input name="password" type="password" autocomplete="new-password" required /></label>
+      <button type="submit">创建账号</button>
+    </form>
+    <div id="auth-message" class="message"></div>
+  </section>
+</main>
+{% endblock %}
