@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FML-bench 两个任务和 Agent 搜索过程可视化</title>
+  <style>
+    :root {
+      --ink: #16202a;
+      --muted: #5d6976;
+      --paper: #fffaf1;
+      --panel: #ffffff;
+      --line: #eadfcb;
+      --blue: #2f6f9f;
+      --green: #3b8c6e;
+      --orange: #df8f2d;
+      --red: #c85346;
+      --violet: #7562a8;
+      --shadow: 0 18px 45px rgba(46, 35, 18, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(223, 143, 45, 0.18), transparent 28%),
+        radial-gradient(circle at 90% 0%, rgba(47, 111, 159, 0.16), transparent 28%),
+        linear-gradient(135deg, #fff7e7 0%, #f5efe2 48%, #eef6f3 100%);
+      font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 56px 7vw 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      max-width: 980px;
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(24px, 3vw, 38px);
+      letter-spacing: -0.03em;
+    }
+
+    h3 { margin: 0 0 10px; font-size: 21px; }
+
+    p { line-height: 1.75; }
+
+    .lead {
+      margin: 0;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+
+    .badge {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.68);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 14px;
+      color: #3c4652;
+      backdrop-filter: blur(8px);
+    }
+
+    .truth-card {
+      background: #17212b;
+      color: #fff8e9;
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .truth-card:before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(223, 143, 45, 0.34);
+    }
+
+    .truth-card strong { color: #ffd37b; }
+
+    main { padding: 0 7vw 72px; }
+
+    section {
+      margin: 28px 0;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(234, 223, 203, 0.9);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 38px);
+      backdrop-filter: blur(10px);
+    }
+
+    .grid { display: grid; gap: 18px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 10px 24px rgba(46, 35, 18, 0.07);
+    }
+
+    .card p { margin: 7px 0 0; color: var(--muted); }
+
+    .pill {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f2eadb;
+      color: #6b5631;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 18px 0 22px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 17px;
+      background: #22303c;
+      color: #fff8e9;
+      cursor: pointer;
+      font: inherit;
+      box-shadow: 0 10px 18px rgba(22, 32, 42, 0.14);
+    }
+
+    button.secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    button.active { background: var(--orange); color: #23180a; }
+
+    .stage {
+      min-height: 420px;
+      background:
+        linear-gradient(90deg, rgba(47, 111, 159, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(47, 111, 159, 0.08) 1px, transparent 1px),
+        #fffdf7;
+      background-size: 28px 28px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stage-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .scene-text {
+      max-width: 760px;
+      font-size: 18px;
+      color: #34404c;
+      margin: 0;
+    }
+
+    .diagram {
+      display: grid;
+      grid-template-columns: 0.95fr 1.1fr 0.95fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 20px;
+    }
+
+    .person, .model-box, .score-box {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 230px;
+    }
+
+    .mini-people {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .avatar {
+      min-height: 62px;
+      border-radius: 16px;
+      background: #edf4f8;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      border: 1px solid #d8e6ef;
+      position: relative;
+    }
+
+    .avatar:after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: -18px;
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .arrow {
+      font-size: 42px;
+      color: var(--orange);
+      text-align: center;
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateX(0); opacity: 0.65; }
+      50% { transform: translateX(8px); opacity: 1; }
+    }
+
+    .bar-wrap {
+      margin: 14px 0;
+      background: #eee5d5;
+      height: 18px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid #dfd2bc;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: var(--green);
+      transition: width 900ms ease;
+    }
+
+    .bar.orange { background: var(--orange); }
+    .bar.red { background: var(--red); }
+    .bar.blue { background: var(--blue); }
+
+    .agent-track {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .step-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      min-height: 170px;
+      position: relative;
+      transform: translateY(12px);
+      opacity: 0.45;
+      transition: 420ms ease;
+    }
+
+    .step-card.revealed {
+      transform: translateY(0);
+      opacity: 1;
+      border-color: rgba(59, 140, 110, 0.45);
+    }
+
+    .step-number {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #17212b;
+      color: #fff8e9;
+      font-size: 14px;
+      margin-bottom: 9px;
+    }
+
+    .metric {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-top: 8px;
+    }
+
+    .metric.good { color: var(--green); }
+    .metric.bad { color: var(--red); }
+    .metric.neutral { color: var(--blue); }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .strategy-map {
+      min-height: 280px;
+      border-radius: 24px;
+      background: #fffdf8;
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .hill {
+      position: absolute;
+      width: 220px;
+      height: 130px;
+      border-radius: 50% 50% 0 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(59, 140, 110, 0.34), rgba(59, 140, 110, 0.06));
+    }
+
+    .hill.one { left: 6%; height: 92px; }
+    .hill.two { left: 36%; height: 145px; width: 280px; }
+    .hill.three { right: 7%; height: 112px; }
+
+    .dot {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 6px rgba(223, 143, 45, 0.2);
+      transition: 700ms ease;
+    }
+
+    .branch {
+      position: absolute;
+      height: 3px;
+      background: rgba(47, 111, 159, 0.38);
+      transform-origin: left center;
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+
+    .comparison {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .comparison th, .comparison td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .comparison th { background: #f5eddd; }
+    .comparison tr:last-child td { border-bottom: 0; }
+
+    footer {
+      margin: 32px 7vw 52px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      header, .diagram, .grid.two, .grid.three, .grid.four {
+        grid-template-columns: 1fr;
+      }
+
+      .agent-track { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>看懂 FML-bench：两个任务，几种 Agent，像看一场实验闯关</h1>
+      <p class="lead">
+        这个页面把我们已经低成本跑通的两个任务做成动画讲解：一个是“治疗到底有没有用”的因果推断，
+        一个是“模型是不是公平”的收入预测。重点不是炫技术，而是让中学生也能看懂：数据是什么、指标是什么、
+        agent 每一步在试什么。
+      </p>
+      <div class="badge-row">
+        <span class="badge">真实跑过：AI Scientist v2 + DeepSeek</span>
+        <span class="badge">步数：每个任务 4 step</span>
+        <span class="badge">指标方向：两个任务都是越低越好</span>
+      </div>
+    </div>
+    <aside class="truth-card">
+      <h3>先说清楚</h3>
+      <p>
+        页面里 <strong>AI Scientist v2 的四步轨迹</strong> 来自真实复现日志。
+        其他 agent 的动画是为了讲搜索策略差异的教学类比，不是我们这次实际跑出的结果。
+      </p>
+    </aside>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. Agent 到底在比什么？</h2>
+      <div class="grid four">
+        <div class="card">
+          <span class="pill">同一张试卷</span>
+          <h3>FML-bench 任务</h3>
+          <p>给定已有代码、数据集、baseline 和评分标准，让 agent 去改代码。</p>
+        </div>
+        <div class="card">
+          <span class="pill">同一个裁判</span>
+          <h3>验证集和测试集</h3>
+          <p>搜索时只能看验证集分数，最后才用测试集判最终成绩。</p>
+        </div>
+        <div class="card">
+          <span class="pill">同样次数</span>
+          <h3>Step budget</h3>
+          <p>每次改代码并跑一次实验算一步。我们省钱版每个任务只跑 4 步。</p>
+        </div>
+        <div class="card">
+          <span class="pill">比方法</span>
+          <h3>搜索策略</h3>
+          <p>比较的是 agent 怎么选择下一次实验，而不是单纯比较底层大模型。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. 两个任务是什么？</h2>
+      <div class="tabs">
+        <button class="active" data-task="causality">儿童治疗效果：Causality_causalml</button>
+        <button class="secondary" data-task="fairness">收入公平预测：Fairness_fairlearn</button>
+      </div>
+      <div class="stage" id="task-stage"></div>
+    </section>
+
+    <section>
+      <h2>3. 主流 agent 的搜索方法像什么？</h2>
+      <p class="scene-text">
+        可以把机器学习研究想成“在山里找最高点”。每个点是一版代码，每跑一次实验就知道这个点高不高。
+        不同 agent 的区别，是它们怎么决定下一步往哪里走。
+      </p>
+      <div class="tabs">
+        <button class="active" data-agent="tas2">AI Scientist v2</button>
+        <button class="secondary" data-agent="auto">Autoresearch</button>
+        <button class="secondary" data-agent="aide">AIDE</button>
+        <button class="secondary" data-agent="evolve">OpenEvolve</button>
+      </div>
+      <div class="grid two">
+        <div class="card" id="agent-copy"></div>
+        <div>
+          <button id="play-agent">播放搜索动画</button>
+          <div class="strategy-map" id="strategy-map">
+            <div class="hill one"></div>
+            <div class="hill two"></div>
+            <div class="hill three"></div>
+          </div>
+          <div class="legend">
+            <span><span class="swatch" style="background: var(--orange)"></span>当前尝试</span>
+            <span><span class="swatch" style="background: var(--blue)"></span>搜索分支</span>
+            <span><span class="swatch" style="background: var(--green)"></span>分数更好的区域</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. AI Scientist v2 真实跑过的四步</h2>
+      <p class="scene-text">
+        下面两条轨迹来自我们在 Ubuntu 上跑出的结果。请特别注意：降低指标才是好事。
+        因果任务明显降低了错误；公平任务在 4 步省钱版里没有超过 baseline，还出现了报错。
+      </p>
+      <div class="tabs">
+        <button class="active" data-run="causality">看因果任务轨迹</button>
+        <button class="secondary" data-run="fairness">看公平任务轨迹</button>
+      </div>
+      <button id="play-run">播放四步实验</button>
+      <div class="agent-track" id="run-track"></div>
+    </section>
+
+    <section>
+      <h2>5. 如果换成其他 agent，它们会怎样试？</h2>
+      <p class="scene-text">
+        下面是教学推演，不是本次真实运行结果。它的作用是帮你理解“搜索算法差异”：
+        同一道任务，不同 agent 可能会选择不同的试错路线。
+      </p>
+      <table class="comparison">
+        <thead>
+          <tr>
+            <th>Agent</th>
+            <th>面对因果任务可能试什么</th>
+            <th>面对公平任务可能试什么</th>
+            <th>它的搜索味道</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AI Scientist v2</td>
+            <td>先试一个较完整的方案，例如集成多个回归器、标准化特征，再根据验证误差继续改。</td>
+            <td>先试去相关、约束优化、后处理阈值等多种公平机器学习办法。</td>
+            <td>像写实验日志的树搜索：保留有希望的方向，继续深挖。</td>
+          </tr>
+          <tr>
+            <td>Autoresearch</td>
+            <td>如果“加 Ridge 正则化”让 MAE 下降，就沿着这个方向继续小调参数。</td>
+            <td>如果“调分类阈值”让群体差距变小，就继续围绕阈值和权重微调。</td>
+            <td>像贪心爬山：只保留眼前更好的改法。</td>
+          </tr>
+          <tr>
+            <td>AIDE</td>
+            <td>可能同时保留“线性模型”“集成模型”“更强正则化”几个候选，并修复报错分支。</td>
+            <td>遇到 Fairlearn API 报错时，会更重视把这条分支修到能跑，再比较分数。</td>
+            <td>像多份草稿 + 修 bug：让更多实验有效完成。</td>
+          </tr>
+          <tr>
+            <td>OpenEvolve</td>
+            <td>让很多候选方案同时变异：有的换模型，有的换损失，有的换数据切分。</td>
+            <td>同时保留多种公平策略，例如预处理、训练中约束、预测后调阈值。</td>
+            <td>像进化比赛：保留一群方案，让它们竞争和变异。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>6. 结果怎么读？</h2>
+      <table class="comparison">
+        <thead>
+          <tr>
+            <th>任务</th>
+            <th>数据集</th>
+            <th>评分标准</th>
+            <th>Baseline</th>
+            <th>真实复现结果</th>
+            <th>中学生版结论</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Causality_causalml</td>
+            <td>IHDP 儿童健康项目数据</td>
+            <td>MAE，平均预测错多少，越低越好</td>
+            <td>1.296</td>
+            <td>验证集 0.599，测试集 0.618</td>
+            <td>这 4 步找到了比原始模型更准的治疗效果估计方法。</td>
+          </tr>
+          <tr>
+            <td>Fairness_fairlearn</td>
+            <td>Adult Census Income 成人收入数据</td>
+            <td>人口统计公平差距，越低越好</td>
+            <td>0.187</td>
+            <td>验证集 0.316，测试集 0.316</td>
+            <td>这 4 步跑通了流程，但没有改好公平性；它是失败样本，也很有教学价值。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    数据来源：本仓库复现记录和 Ubuntu 运行产物 summary.json。页面中的儿童治疗、猫狗分类、学校补习等例子是教学类比；真实 IHDP 任务的“干预”是是否接受早期干预/治疗，不是让 agent 选择现实中的具体药物或治疗方案。
+  </footer>
+
+  <script>
+    const tasks = {
+      causality: {
+        title: "Causality_causalml：治疗到底有没有用？",
+        dataset: "数据集：IHDP 儿童健康项目数据",
+        intervention: "真实任务里的干预选项是二选一：接受早期干预/治疗，或不接受。它不是让 agent 在多种药物之间做现实医疗选择。",
+        example: "教学例子：如果小明不接受干预，预测结果是 40；接受干预，预测结果是 46；模型认为这次干预效果是 +6。真实答案如果是 +5，模型就错了 1。",
+        leftTitle: "数据像什么",
+        left: "每条数据像一个孩子的档案：家庭背景、健康情况、是否接受早期干预，以及后来的结果。",
+        middleTitle: "模型要猜什么",
+        middle: "不是猜猫狗，而是猜“如果这个孩子接受干预会怎样；如果不接受会怎样”。两种未来的差，就是治疗效果。",
+        scoreTitle: "评价标准",
+        score: "MAE = 平均预测错多少。越低越好。像估分，真实提高 5 分，你猜 4 分，就错 1 分。",
+        labels: ["孩子A", "孩子B", "孩子C", "孩子D"],
+        icons: ["书", "药", "家", "跑"],
+        bar: 48,
+        barClass: "green",
+        analogy: "图像分类类比：猫狗分类看认对多少；这里看治疗效果预测错多少。"
+      },
+      fairness: {
+        title: "Fairness_fairlearn：预测收入时公平吗？",
+        dataset: "数据集：Adult Census Income 成人收入数据",
+        intervention: "这里没有“治疗干预”。这里的关键变量是敏感群体，比如 sex。任务是让模型预测收入时，别让不同群体的预测比例差得太离谱。",
+        example: "教学例子：如果模型把 60% 的男性预测为高收入、30% 的女性预测为高收入，差距就是 0.30；差距越小，越公平。",
+        leftTitle: "数据像什么",
+        left: "每条数据像一个成年人档案：年龄、学历、职业、婚姻、性别等，标签是收入是否超过 5 万美元。",
+        middleTitle: "模型要猜什么",
+        middle: "模型要预测收入高低，但不能只看准确率，还要检查不同群体是不是被明显区别对待。",
+        scoreTitle: "评价标准",
+        score: "Demographic parity difference = 不同群体被预测为高收入的比例差。越接近 0 越公平。",
+        labels: ["男组", "女组", "高学历", "低学历"],
+        icons: ["工", "学", "钱", "秤"],
+        bar: 68,
+        barClass: "orange",
+        analogy: "图像分类类比：不仅看猫狗分类准不准，还看黑猫白猫是不是被同样公平地识别。"
+      }
+    };
+
+    const agents = {
+      tas2: {
+        name: "AI Scientist v2：带实验日志的树搜索",
+        text: "像一个会写实验日记的学生。它先提出几个方向，再看哪个方向更有希望，然后继续往那个方向深入。优点是不会只盯着一个小改法，能利用之前的实验记忆。",
+        path: [[18, 78], [34, 58], [49, 45], [62, 36], [72, 28]],
+        branches: [[34,58,48,70], [49,45,63,58], [49,45,58,32], [62,36,80,42]]
+      },
+      auto: {
+        name: "Autoresearch：贪心爬山",
+        text: "像爬山时只走眼前更高的一步。改法变好就保留，变差就撤回。优点是简单、省事、很快见效；缺点是可能卡在小山头，看不到远处更高的山。",
+        path: [[15, 76], [25, 68], [34, 60], [42, 54], [50, 49]],
+        branches: [[25,68,32,73], [34,60,40,64]]
+      },
+      aide: {
+        name: "AIDE：候选方案树 + 修 bug",
+        text: "像同时写几份草稿，发现某份草稿报错就先修它。它比较重视让实验有效运行，所以适合处理代码容易坏的任务。",
+        path: [[16, 76], [30, 62], [45, 66], [57, 48], [70, 38]],
+        branches: [[30,62,42,52], [30,62,42,74], [57,48,68,62]]
+      },
+      evolve: {
+        name: "OpenEvolve：进化比赛",
+        text: "像让很多小队同时试方案，每轮保留强的、淘汰弱的，再让强方案变异出新方案。优点是探索范围大；缺点是有时不够聚焦。",
+        path: [[13, 77], [32, 70], [45, 50], [67, 68], [82, 42]],
+        branches: [[13,77,23,62], [13,77,26,84], [32,70,44,77], [45,50,60,35], [67,68,82,58]]
+      }
+    };
+
+    const runs = {
+      causality: {
+        lowerIsBetter: true,
+        steps: [
+          { n: "B", title: "Baseline", action: "原始 Dragonnet", metric: 1.296, status: "起点", detail: "原始模型平均预测误差较大。" },
+          { n: 1, title: "Draft 1", action: "加权集成：Linear/Ridge/Lasso + 标准化", metric: 0.599, status: "有效，最好", detail: "像请三个同学一起估分，再加权平均，误差明显下降。" },
+          { n: 2, title: "Draft 2", action: "简化为 treatment/control 两个线性模型", metric: 0.628, status: "有效", detail: "把接受干预和未接受干预分开建模，也有效，但不如第 1 步。" },
+          { n: 3, title: "Improve", action: "继续调集成模型", metric: 0.621, status: "有效", detail: "比 baseline 好，但没有超过第 1 步。" },
+          { n: 4, title: "Improve", action: "回到最佳集成方向", metric: 0.599, status: "有效", detail: "最终选择验证集上最好的版本去测试。" }
+        ]
+      },
+      fairness: {
+        lowerIsBetter: true,
+        steps: [
+          { n: "B", title: "Baseline", action: "普通 Logistic Regression", metric: 0.187, status: "起点", detail: "原始公平差距是 0.187，越低越好。" },
+          { n: 1, title: "Draft 1", action: "CorrelationRemover + GradientBoosting", metric: 0.316, status: "有效但变差", detail: "想先去掉和性别相关的线索，再训练分类器；这次公平指标反而变大。" },
+          { n: 2, title: "Draft 2", action: "ExponentiatedGradient 公平约束", metric: null, status: "报错", detail: "想直接用公平约束训练，但当前环境 API 不兼容，实验失败。" },
+          { n: 3, title: "Improve", action: "ThresholdOptimizer 后处理", metric: 0.331, status: "有效但更差", detail: "像给不同群体调不同判定门槛，但这次没有改善主指标。" },
+          { n: 4, title: "Improve", action: "再试 ExponentiatedGradient", metric: null, status: "报错", detail: "仍然遇到兼容性/运行问题；最终没有超过 baseline。" }
+        ]
+      }
+    };
+
+    let activeTask = "causality";
+    let activeAgent = "tas2";
+    let activeRun = "causality";
+
+    function renderTask() {
+      const t = tasks[activeTask];
+      const stage = document.getElementById("task-stage");
+      stage.innerHTML = `
+        <div class="stage-title">
+          <div>
+            <h3>${t.title}</h3>
+            <p class="scene-text">${t.analogy}</p>
+          </div>
+        </div>
+        <div class="grid two" style="margin-bottom: 18px;">
+          <div class="card">
+            <span class="pill">数据集</span>
+            <p>${t.dataset}</p>
+          </div>
+          <div class="card">
+            <span class="pill">任务里的“干预/敏感变量”</span>
+            <p>${t.intervention}</p>
+            <p class="note">${t.example}</p>
+          </div>
+        </div>
+        <div class="diagram">
+          <div class="person">
+            <h3>${t.leftTitle}</h3>
+            <p>${t.left}</p>
+            <div class="mini-people">
+              ${t.icons.map((icon, i) => `<div class="avatar" data-label="${t.labels[i]}">${icon}</div>`).join("")}
+            </div>
+          </div>
+          <div class="model-box">
+            <h3>${t.middleTitle}</h3>
+            <p>${t.middle}</p>
+            <div class="arrow">→</div>
+            <p class="note">Agent 改的是模型代码，比如换训练方法、加约束、换预测规则，不是去真实世界给孩子选择药物。</p>
+          </div>
+          <div class="score-box">
+            <h3>${t.scoreTitle}</h3>
+            <p>${t.score}</p>
+            <div class="bar-wrap"><div class="bar ${t.barClass}" style="width:${t.bar}%"></div></div>
+            <p class="note">这根条只是帮助理解“差距/错误”的大小，不代表额外实验结果。</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAgent() {
+      const a = agents[activeAgent];
+      document.getElementById("agent-copy").innerHTML = `
+        <span class="pill">搜索策略类比</span>
+        <h3>${a.name}</h3>
+        <p>${a.text}</p>
+        <p class="note">注意：这张图展示策略形状，不表示我们实际跑了这个 agent 的两个任务。</p>
+      `;
+      drawStrategy(false);
+    }
+
+    function drawStrategy(animated) {
+      const map = document.getElementById("strategy-map");
+      map.querySelectorAll(".dot,.branch").forEach(el => el.remove());
+      const a = agents[activeAgent];
+      a.branches.forEach(b => {
+        const branch = document.createElement("div");
+        branch.className = "branch";
+        const dx = b[2] - b[0];
+        const dy = b[3] - b[1];
+        branch.style.left = `${b[0]}%`;
+        branch.style.top = `${b[1]}%`;
+        branch.style.width = `${Math.hypot(dx, dy)}%`;
+        branch.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+        branch.style.opacity = animated ? 0 : 0.6;
+        map.appendChild(branch);
+        if (animated) setTimeout(() => { branch.style.opacity = 0.6; }, 200);
+      });
+      const dot = document.createElement("div");
+      dot.className = "dot";
+      map.appendChild(dot);
+      const positions = animated ? a.path : [a.path[a.path.length - 1]];
+      positions.forEach((p, i) => {
+        setTimeout(() => {
+          dot.style.left = `calc(${p[0]}% - 8px)`;
+          dot.style.top = `calc(${p[1]}% - 8px)`;
+        }, animated ? i * 650 : 0);
+      });
+    }
+
+    function renderRun(revealCount = 0) {
+      const data = runs[activeRun];
+      const track = document.getElementById("run-track");
+      const baseline = data.steps[0].metric;
+      track.innerHTML = data.steps.map((s, i) => {
+        const isError = s.metric === null;
+        const better = !isError && s.metric < baseline;
+        const worse = !isError && s.metric > baseline && i > 0;
+        const metricText = isError ? "报错" : s.metric.toFixed(3);
+        const cls = isError || worse ? "bad" : better ? "good" : "neutral";
+        return `
+          <div class="step-card ${i <= revealCount ? "revealed" : ""}">
+            <div class="step-number">${s.n}</div>
+            <h3>${s.title}</h3>
+            <p><strong>${s.action}</strong></p>
+            <div class="metric ${cls}">${metricText}</div>
+            <p class="note">${s.status}</p>
+            <p class="note">${s.detail}</p>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function updateButtons(selector, key, value) {
+      document.querySelectorAll(selector).forEach(btn => {
+        const active = btn.dataset[key] === value;
+        btn.classList.toggle("active", active);
+        btn.classList.toggle("secondary", !active);
+      });
+    }
+
+    document.querySelectorAll("[data-task]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeTask = btn.dataset.task;
+        updateButtons("[data-task]", "task", activeTask);
+        renderTask();
+      });
+    });
+
+    document.querySelectorAll("[data-agent]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeAgent = btn.dataset.agent;
+        updateButtons("[data-agent]", "agent", activeAgent);
+        renderAgent();
+      });
+    });
+
+    document.querySelectorAll("[data-run]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeRun = btn.dataset.run;
+        updateButtons("[data-run]", "run", activeRun);
+        renderRun(0);
+      });
+    });
+
+    document.getElementById("play-agent").addEventListener("click", () => drawStrategy(true));
+    document.getElementById("play-run").addEventListener("click", () => {
+      runs[activeRun].steps.forEach((_, i) => setTimeout(() => renderRun(i), i * 650));
+    });
+
+    renderTask();
+    renderAgent();
+    renderRun(0);
+  </script>
+</body>
+</html>

@@ -96,6 +96,8 @@ then scales up, see
 [docs/fmlbench_official_ubuntu_runbook.md](docs/fmlbench_official_ubuntu_runbook.md).
 中文复现说明见
 [docs/fmlbench_中文复现说明.md](docs/fmlbench_中文复现说明.md).
+面向中学生的可视动画解释见
+[visuals/fmlbench_agent_animation.html](visuals/fmlbench_agent_animation.html).
 The helper script for the official repo is
 [scripts/fmlbench_smoke_test.sh](scripts/fmlbench_smoke_test.sh).
 If you need the Monica fallback on the official repo, use
