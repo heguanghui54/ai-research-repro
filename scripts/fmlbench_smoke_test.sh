@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="${FMLBENCH_REPO_DIR:-$PWD}"
 TASK="${FMLBENCH_TASK:-Causality_causalml}"
 AGENT_CONFIG="${FMLBENCH_AGENT_CONFIG:-configs/agents/ai_scientist_v2.yaml}"
@@ -23,8 +24,18 @@ if [[ "$DO_SETUP" == "1" ]]; then
   python setup.py --task "$TASK"
 fi
 
-export DEEPSEEK_API_KEY="${DEEPSEEK_API_KEY:-}"
-export DEEPSEEK_BASE_URL="${DEEPSEEK_BASE_URL:-https://api.deepseek.com}"
+if [[ "$PROVIDER" == "Monica" ]]; then
+  python "$SCRIPT_DIR/patch_fmlbench_monica_provider.py" --repo "$REPO_DIR"
+  export MONICA_API_KEY="${MONICA_API_KEY:-}"
+  export MONICA_BASE_URL="${MONICA_BASE_URL:-https://openapi.monica.im/v1}"
+elif [[ "$PROVIDER" == "DeepSeek" ]]; then
+  export DEEPSEEK_API_KEY="${DEEPSEEK_API_KEY:-}"
+  export DEEPSEEK_BASE_URL="${DEEPSEEK_BASE_URL:-https://api.deepseek.com}"
+else
+  echo "Unsupported PROVIDER=$PROVIDER. Use DeepSeek or Monica." >&2
+  exit 1
+fi
+
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
 
 python run_agent_benchmark.py \
@@ -34,4 +45,3 @@ python run_agent_benchmark.py \
   --provider "$PROVIDER" \
   --output-dir "$OUTPUT_DIR" \
   "agent.ai_scientist_v2.max_steps=$MAX_STEPS"
-

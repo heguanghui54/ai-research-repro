@@ -72,12 +72,34 @@ export DEEPSEEK_BASE_URL="https://api.deepseek.com"
 The official benchmark's LLM layer already knows how to create a DeepSeek
 client, so in practice you usually only need the key plus the provider choice.
 
+### 3b. Configure Monica as a fallback
+
+If DeepSeek is not available, patch the official repo once and use Monica:
+
+```bash
+python scripts/patch_fmlbench_monica_provider.py --repo /path/to/FML-bench
+export MONICA_API_KEY="your_monica_key"
+export MONICA_BASE_URL="https://openapi.monica.im/v1"
+```
+
+The helper script in this worktree will apply the patch automatically when you
+run it with `--provider Monica`.
+
 ### 4. Run a cheap smoke test
 
 This is the smallest meaningful reproduction step:
 
 ```bash
 ./scripts/fmlbench_smoke_test.sh
+```
+
+To use Monica instead of DeepSeek:
+
+```bash
+FMLBENCH_PROVIDER=Monica \
+  MONICA_API_KEY="your_monica_key" \
+  FMLBENCH_REPO_DIR=/path/to/FML-bench \
+  ./scripts/fmlbench_smoke_test.sh
 ```
 
 If you want to set everything explicitly instead of using the helper script:
