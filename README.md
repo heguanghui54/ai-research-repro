@@ -91,6 +91,9 @@ If you later want the full benchmark, use the official repo:
 
 - [qrzou/FML-bench](https://github.com/qrzou/FML-bench)
 
+For a practical Ubuntu-side runbook that starts with a cheap smoke test and
+then scales up, see [docs/fmlbench_ubuntu_reproduction.md](/Users/hgh54913/.codex/worktrees/08dd/research/docs/fmlbench_ubuntu_reproduction.md).
+
 On an Ubuntu machine, the official repo still needs task repos, conda envs, and
 GPU time, so it is better to validate this minimal scaffold first.
 
@@ -100,4 +103,3 @@ GPU time, so it is better to validate this minimal scaffold first.
 2. DeepSeek is preferred because it is usually the cheapest option for this use.
 3. Monica is the fallback if DeepSeek is unavailable.
 4. The code stays deterministic when no API is configured.
-
