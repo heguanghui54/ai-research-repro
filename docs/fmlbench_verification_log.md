@@ -5,13 +5,13 @@ reachable via `ssh ubuntu-heshi`.
 
 ## Verified in this worktree
 
-- The minimal local reproduction scaffold runs on Ubuntu without API keys.
-- The repo is pushed to GitHub on branch `codex/fmlbench-minimal`.
-- The Ubuntu reproduction guide and smoke-test helper are in the repo.
+- The official FML-bench helper scripts for DeepSeek and Monica were added.
+- A dedicated Ubuntu runbook was written for the official repository.
+- The repository is pushed to GitHub on branch `codex/fmlbench-minimal`.
 
 ## Verified on Ubuntu
 
-### 1. Official FML-bench repository help path works
+### 1. Official FML-bench CLI help path works
 
 Command:
 
@@ -22,14 +22,29 @@ ssh ubuntu-heshi 'cd ~/work/FML-bench && python3 run_agent_benchmark.py --help'
 Result:
 
 - `run_agent_benchmark.py` starts successfully
-- the CLI exposes `--agent-config`, `--task-config`, `--model`, `--provider`, and `--output-dir`
+- the CLI exposes `--agent-config`, `--task-config`, `--model`, `--provider`,
+  and `--output-dir`
 
-### 2. Monica provider patch works
+### 2. DeepSeek provider patch works
 
 Command:
 
 ```bash
-ssh ubuntu-heshi 'cd ~/work/ai-research-repro && python3 scripts/patch_fmlbench_monica_provider.py --repo ~/work/FML-bench'
+ssh ubuntu-heshi 'cd ~/work/FML-bench && python3 /home/heshi/patch_fmlbench_deepseek_provider.py --repo /home/heshi/work/FML-bench'
+```
+
+Result:
+
+- the official repo now accepts `provider=DeepSeek`
+- the provider branch uses `DEEPSEEK_API_KEY` and
+  `https://api.deepseek.com`
+
+### 3. Monica provider patch works
+
+Command:
+
+```bash
+ssh ubuntu-heshi 'cd ~/work/FML-bench && python3 /home/heshi/patch_fmlbench_monica_provider.py --repo /home/heshi/work/FML-bench'
 ```
 
 Then:
@@ -43,50 +58,40 @@ Result:
 - the official repo now accepts `provider=Monica`
 - the constructed client points to `https://openapi.monica.im/v1`
 
-### 3. Minimal local reproduction runs end-to-end
+### 4. Official DeepSeek smoke test completed successfully
 
 Command:
 
 ```bash
-ssh ubuntu-heshi 'cd ~/work/ai-research-repro && PYTHONPATH=src python3 -m ai_research_repro.cli run --workspace ~/work/fmlbench-local --ideas 1'
+ssh ubuntu-heshi 'cd /home/heshi/work/FML-bench && \
+  env DEEPSEEK_API_KEY="sk-..." DEEPSEEK_BASE_URL="https://api.deepseek.com" \
+  CUDA_VISIBLE_DEVICES=0 \
+  /home/heshi/miniconda3/bin/conda run -n fmlbench python run_agent_benchmark.py \
+  --agent-config configs/agents/ai_scientist_v2.yaml \
+  --task-config configs/tasks/causality_causalml.yaml \
+  --model deepseek-chat \
+  --provider DeepSeek \
+  --output-dir /home/heshi/work/fmlbench-smoke-results-fixed2 \
+  agent.ai_scientist_v2.max_steps=4'
 ```
 
 Result:
 
-```json
-{
-  "workspace": "/home/heshi/work/fmlbench-local",
-  "summary_metrics": {
-    "baseline_val_loss": 0.43255431094511965,
-    "best_val_loss": 0.40170218769559984,
-    "delta_val_loss": -0.030852123249519803,
-    "baseline_train_loss": 0.1908155709703061,
-    "best_train_loss": 0.2915316256996926
-  },
-  "report_path": "/home/heshi/work/fmlbench-local/artifacts/report.md",
-  "review": {
-    "overall": 7.0,
-    "strengths": [
-      "Clear end-to-end workflow",
-      "Reproducible local benchmark"
-    ],
-    "weaknesses": [
-      "Small benchmark",
-      "Limited novelty if ideas are only hyperparameter edits"
-    ],
-    "recommendation": "revise"
-  }
-}
-```
+- the official benchmark completed end-to-end
+- validation and test metrics were produced
+- the final summary reported:
+  - Best Val Metric: `0.5989426968010781`
+  - Test Metric: `0.6177188971481032`
+  - Total Steps: `4`
 
-## Still missing for a full paper-style run
+## What remains unreproduced
 
-The official benchmark still needs:
+The current work proves the official workflow and provider wiring, but not the
+full paper-scale 18-task sweep or the paper's reported aggregate numbers.
 
-- a real API key for DeepSeek or Monica
-- task-specific environment setup on the Ubuntu host
-- time to run the chosen task configs at the intended step budget
+To reach the full paper setup, you would still need:
 
-The current worktree therefore proves the workflow and provider wiring, but
-not yet the full 18-task paper-scale benchmark run.
+- the full task sweep
+- enough API budget and compute time
+- any additional benchmark-specific repeats or comparison runs
 
