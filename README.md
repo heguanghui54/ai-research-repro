@@ -95,6 +95,7 @@ For a practical Ubuntu-side runbook that starts with a cheap smoke test and
 then scales up, see [docs/fmlbench_ubuntu_reproduction.md](/Users/hgh54913/.codex/worktrees/08dd/research/docs/fmlbench_ubuntu_reproduction.md).
 The helper script for the official repo is [scripts/fmlbench_smoke_test.sh](/Users/hgh54913/.codex/worktrees/08dd/research/scripts/fmlbench_smoke_test.sh).
 If you need the Monica fallback on the official repo, use [scripts/patch_fmlbench_monica_provider.py](/Users/hgh54913/.codex/worktrees/08dd/research/scripts/patch_fmlbench_monica_provider.py).
+For the actual Ubuntu verification record, see [docs/fmlbench_verification_log.md](/Users/hgh54913/.codex/worktrees/08dd/research/docs/fmlbench_verification_log.md).
 
 On an Ubuntu machine, the official repo still needs task repos, conda envs, and
 GPU time, so it is better to validate this minimal scaffold first.
