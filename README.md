@@ -94,6 +94,8 @@ If you later want the full benchmark, use the official repo:
 For a practical Ubuntu-side runbook that starts with a cheap smoke test and
 then scales up, see
 [docs/fmlbench_official_ubuntu_runbook.md](docs/fmlbench_official_ubuntu_runbook.md).
+中文复现说明见
+[docs/fmlbench_中文复现说明.md](docs/fmlbench_中文复现说明.md).
 The helper script for the official repo is
 [scripts/fmlbench_smoke_test.sh](scripts/fmlbench_smoke_test.sh).
 If you need the Monica fallback on the official repo, use
