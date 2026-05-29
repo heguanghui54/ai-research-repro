@@ -22,6 +22,19 @@ The pipeline:
 6. Generates a report and a review summary
 7. Saves charts and artifacts in a run directory
 
+## Interactive explainer
+
+There is also a browser demo at [`site/index.html`](site/index.html).
+It turns the AI Scientist-v2 workflow into a kid-friendly visual explanation and includes a clickable simulated experiment.
+
+To preview it locally:
+
+```bash
+python3 -m http.server 8000 --directory site
+```
+
+Then open `http://localhost:8000` in a browser.
+
 ## Quickstart
 
 ```bash

@@ -1,0 +1,70 @@
+{
+  "repoName": "SakanaAI/AI-Scientist-v2",
+  "repoUrl": "https://github.com/SakanaAI/AI-Scientist-v2",
+  "paperUrl": "https://arxiv.org/abs/2504.08066",
+  "title": "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search",
+  "summary": "A generalized end-to-end agentic system that generates hypotheses, runs experiments, analyzes data, and writes scientific manuscripts.",
+  "treeSearchOrigin": "AIDE",
+  "models": {
+    "code": "anthropic.claude-3-5-sonnet-20241022-v2:0",
+    "feedback": "gpt-4o-2024-11-20",
+    "vlmFeedback": "gpt-4o-2024-11-20",
+    "report": "gpt-4o-2024-11-20",
+    "aggPlots": "o3-mini-2025-01-31",
+    "writeup": "o1-preview-2024-09-12",
+    "citation": "gpt-4o-2024-11-20"
+  },
+  "execution": {
+    "timeoutSeconds": 3600,
+    "workers": 4,
+    "steps": 5,
+    "numDrafts": 3,
+    "maxDebugDepth": 3,
+    "debugProb": 0.5,
+    "numSeeds": 3,
+    "kFoldValidation": 1,
+    "exposePrediction": false,
+    "dataPreview": false
+  },
+  "stages": [
+    {
+      "id": "stage1",
+      "name": "Stage 1 初步验证",
+      "maxIters": 20,
+      "note": "先看能不能跑通一个最小原型。"
+    },
+    {
+      "id": "stage2",
+      "name": "Stage 2 调参",
+      "maxIters": 12,
+      "note": "调学习率、轮数等，找到更稳的实验。"
+    },
+    {
+      "id": "stage3",
+      "name": "Stage 3 研究推进",
+      "maxIters": 12,
+      "note": "围绕核心研究路线继续探索。"
+    },
+    {
+      "id": "stage4",
+      "name": "Stage 4 消融",
+      "maxIters": 18,
+      "note": "验证哪些部件真的有用。"
+    }
+  ],
+  "artifacts": [
+    "experiments/<timestamp_ideaname>/logs/0-run/unified_tree_viz.html",
+    "experiments/<timestamp_ideaname>/timestamp_ideaname.pdf",
+    "ai_scientist/ideas/<topic>.json",
+    "bfts_config.yaml",
+    "launch_scientist_bfts.py"
+  ],
+  "repoLayout": [
+    "ai_scientist/",
+    "docs/",
+    "README.md",
+    "bfts_config.yaml",
+    "launch_scientist_bfts.py",
+    "requirements.txt"
+  ]
+}

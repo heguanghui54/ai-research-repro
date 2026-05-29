@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="把 AI Scientist-v2 变成一个中学生也能看懂的交互式中文可视化页面。"
+    />
+    <title>AI Scientist-v2 | 一看就懂的互动科普站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans+SC:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-orb orb-a"></div>
+    <div class="bg-orb orb-b"></div>
+    <div class="bg-grid"></div>
+
+    <main class="page">
+      <section class="hero panel">
+        <div class="hero-copy">
+          <span class="eyebrow">AI Scientist-v2 互动科普站</span>
+          <h1>把一个“会自己做科研的 AI”讲到中学生都看得懂</h1>
+          <p class="lead">
+            这不是一个普通的聊天机器人。它像一个小型科研实验室：
+            先想课题，再写代码，再跑实验，再修 bug，最后自动写论文。
+          </p>
+          <div class="hero-actions">
+            <button class="primary" id="runDemo">点击运行模拟实验</button>
+            <button class="secondary" id="resetDemo">重置演示</button>
+          </div>
+          <div class="hero-meta">
+            <div class="pill">AIDE 提供树搜索灵感</div>
+            <div class="pill">Claude 3.5 Sonnet 写代码</div>
+            <div class="pill">GPT-4o 做反馈和审稿</div>
+          </div>
+        </div>
+
+        <div class="hero-side">
+          <div class="stat-card">
+            <div class="stat-label">你可以把它想成</div>
+            <div class="stat-value">AI 实验室 + AI 审稿人 + AI 写手</div>
+          </div>
+          <div class="mini-cards">
+            <article>
+              <span>输入</span>
+              <strong>一个主题</strong>
+              <p>例如 “ICBINB workshop 主题”</p>
+            </article>
+            <article>
+              <span>过程</span>
+              <strong>树搜索</strong>
+              <p>像在实验树上不断分叉找更好的路</p>
+            </article>
+            <article>
+              <span>输出</span>
+              <strong>论文 + 图表 + 代码</strong>
+              <p>还会给出 reviewer 风格的评价</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="explain-grid">
+        <article class="panel explain-card">
+          <h2>它到底在做什么？</h2>
+          <ol class="big-steps">
+            <li>先把一个大主题拆成很多研究想法。</li>
+            <li>让 AI 写实验代码，但不是直接相信它。</li>
+            <li>把代码放进受控环境里运行，看看会不会报错。</li>
+            <li>如果报错，就修；如果跑通，就继续搜更好的分支。</li>
+            <li>最后把结果整理成论文，让系统自己写出来。</li>
+          </ol>
+        </article>
+
+        <article class="panel explain-card">
+          <h2>AIDE 和 v2 的关系</h2>
+          <p>
+            AIDE 更像“树搜索的灵感来源”。AI Scientist-v2
+            则把这个想法改造成了一个面向科研的完整系统。
+          </p>
+          <div class="stacked">
+            <div class="stack-item">
+              <strong>AIDE</strong>
+              <span>给了树搜索的思路</span>
+            </div>
+            <div class="stack-item">
+              <strong>AI Scientist-v2</strong>
+              <span>加上了实验管理器、调试、审稿、写作</span>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel facts-panel">
+        <div class="section-head">
+          <h2>真实仓库数据</h2>
+          <span>这些参数直接来自 GitHub README / bfts_config.yaml / 论文摘要</span>
+        </div>
+        <div class="facts-grid" id="factsGrid"></div>
+      </section>
+
+      <section class="panel repo-panel">
+        <div class="section-head">
+          <h2>仓库目录</h2>
+          <span>从 GitHub 仓库里挑出来的关键入口</span>
+        </div>
+        <div class="repo-tree" id="repoTree"></div>
+      </section>
+
+      <section class="demo-layout">
+        <article class="panel demo-controls">
+          <div class="section-head">
+            <h2>模拟实验控制台</h2>
+            <span>点一下，整个科研循环就会动起来</span>
+          </div>
+
+          <div class="control-row">
+            <button class="primary wide" id="runDemo2">开始模拟</button>
+            <button class="secondary" id="stepDemo">单步</button>
+          </div>
+
+          <label class="slider-wrap">
+            <span>难度：<strong id="difficultyLabel">标准</strong></span>
+            <input id="difficulty" type="range" min="0" max="2" value="1" />
+          </label>
+
+          <div class="mode-note" id="modeNote">
+            标准模式：有一点点 bug，像真实科研。
+          </div>
+
+          <div class="timeline" id="timeline">
+            <div class="timeline-step active" data-step="idea">
+              <b>1</b>
+              <div>
+                <strong>想点子 · 20 节点</strong>
+                <p>先把大主题拆成可研究的问题</p>
+              </div>
+            </div>
+            <div class="timeline-step" data-step="search">
+              <b>2</b>
+              <div>
+                <strong>树搜索 · 12 节点</strong>
+                <p>不断扩展更有前景的实验分支</p>
+              </div>
+            </div>
+            <div class="timeline-step" data-step="debug">
+              <b>3</b>
+              <div>
+                <strong>修 bug · 最多 3 层</strong>
+                <p>跑错了就修，像实验员盯着机器</p>
+              </div>
+            </div>
+            <div class="timeline-step" data-step="review">
+              <b>4</b>
+              <div>
+                <strong>审稿 · GPT-4o</strong>
+                <p>检查图表、结果和论文说法</p>
+              </div>
+            </div>
+            <div class="timeline-step" data-step="paper">
+              <b>5</b>
+              <div>
+                <strong>出论文 · GPT-4o</strong>
+                <p>自动整理成可以读的论文草稿</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="legend">
+            <span><i class="dot blue"></i>可运行节点</span>
+            <span><i class="dot amber"></i>正在探索</span>
+            <span><i class="dot red"></i>报错节点</span>
+          </div>
+        </article>
+
+        <article class="panel tree-panel">
+          <div class="section-head">
+            <h2>实验树</h2>
+            <span>每个圆点都是一条实验路线</span>
+          </div>
+          <svg viewBox="0 0 900 420" class="tree-svg" aria-label="experiment tree">
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="7" result="coloredBlur"></feGaussianBlur>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"></feMergeNode>
+                  <feMergeNode in="SourceGraphic"></feMergeNode>
+                </feMerge>
+              </filter>
+            </defs>
+            <g class="edges">
+              <path d="M450 74 L280 150" />
+              <path d="M450 74 L620 150" />
+              <path d="M280 150 L190 260" />
+              <path d="M280 150 L340 260" />
+              <path d="M620 150 L560 260" />
+              <path d="M620 150 L710 260" />
+              <path d="M450 74 L450 210" />
+              <path d="M450 210 L450 330" />
+            </g>
+
+            <g class="node" data-node="root" tabindex="0" role="button" aria-label="根节点">
+              <circle cx="450" cy="74" r="24"></circle>
+              <text x="450" y="74">主题</text>
+            </g>
+            <g class="node" data-node="idea" tabindex="0" role="button" aria-label="想法节点">
+              <circle cx="280" cy="150" r="22"></circle>
+              <text x="280" y="150">想法</text>
+            </g>
+            <g class="node" data-node="search" tabindex="0" role="button" aria-label="搜索节点">
+              <circle cx="620" cy="150" r="22"></circle>
+              <text x="620" y="150">搜索</text>
+            </g>
+            <g class="node" data-node="debug" tabindex="0" role="button" aria-label="调试节点">
+              <circle cx="190" cy="260" r="20"></circle>
+              <text x="190" y="260">修错</text>
+            </g>
+            <g class="node" data-node="tune" tabindex="0" role="button" aria-label="调参节点">
+              <circle cx="340" cy="260" r="20"></circle>
+              <text x="340" y="260">调参</text>
+            </g>
+            <g class="node" data-node="review" tabindex="0" role="button" aria-label="审稿节点">
+              <circle cx="560" cy="260" r="20"></circle>
+              <text x="560" y="260">审稿</text>
+            </g>
+            <g class="node" data-node="paper" tabindex="0" role="button" aria-label="论文节点">
+              <circle cx="710" cy="260" r="20"></circle>
+              <text x="710" y="260">论文</text>
+            </g>
+            <g class="node node-final" data-node="final" tabindex="0" role="button" aria-label="最终结果节点">
+              <circle cx="450" cy="334" r="28"></circle>
+              <text x="450" y="334">结果</text>
+            </g>
+          </svg>
+        </article>
+
+        <aside class="panel output-panel">
+          <div class="section-head">
+            <h2>演示输出</h2>
+            <span>这里会慢慢长出一篇“自动论文”</span>
+          </div>
+
+          <div class="output-card">
+            <div class="output-title" id="paperTitle">点击开始，论文标题会出现</div>
+            <p class="output-abstract" id="paperAbstract">
+              它会先找一个研究想法，再跑一轮模拟实验，最后把结果写成一篇小论文。
+            </p>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric">
+              <span>基线分数</span>
+              <strong id="baselineMetric">--</strong>
+            </div>
+            <div class="metric">
+              <span>候选分数</span>
+              <strong id="candidateMetric">--</strong>
+            </div>
+            <div class="metric">
+              <span>改进幅度</span>
+              <strong id="deltaMetric">--</strong>
+            </div>
+            <div class="metric">
+              <span>审稿结果</span>
+              <strong id="reviewMetric">等待运行</strong>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <div class="paper-preview-head">
+              <span>实验曲线</span>
+              <small>蓝线是基线，绿线是候选方案</small>
+            </div>
+            <svg id="lossChart" viewBox="0 0 520 220" class="loss-chart" aria-label="loss chart"></svg>
+          </div>
+
+          <div class="artifact-card">
+            <div class="paper-preview-head">
+              <span>真实产出示意</span>
+              <small>来自仓库里提到的典型结果文件</small>
+            </div>
+            <ul class="artifact-list" id="artifactList"></ul>
+          </div>
+
+          <div class="paper-preview">
+            <div class="paper-preview-head">
+              <span>生成中的论文片段</span>
+              <small>会随着模拟过程更新</small>
+            </div>
+            <pre id="paperBody"># 论文草稿
+
+先运行模拟实验，再看这里怎么变化。</pre>
+          </div>
+        </aside>
+      </section>
+
+      <section class="panel log-panel">
+        <div class="section-head">
+          <h2>实验日志</h2>
+          <span>像科研助手在旁边边跑边记</span>
+        </div>
+        <div class="log-stream" id="logStream"></div>
+      </section>
+
+      <section class="panel compare-panel">
+        <div class="section-head">
+          <h2>一句话分清楚：AIDE vs AI Scientist-v2</h2>
+          <span>这个页面最想帮你记住的地方</span>
+        </div>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h3>AIDE</h3>
+            <p>更像提供了“树搜索怎么找路”的思路。</p>
+          </div>
+          <div class="compare-card highlight">
+            <h3>AI Scientist-v2</h3>
+            <p>把这个思路做成了一整套自动做科研的系统。</p>
+          </div>
+          <div class="compare-card">
+            <h3>沙箱</h3>
+            <p>负责安全运行代码，不是负责自动证明代码一定正确。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel faq-panel">
+        <div class="section-head">
+          <h2>给中学生的超短答案</h2>
+          <span>三句话就能懂</span>
+        </div>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <strong>它是什么？</strong>
+            <p>一个能自动想课题、写代码、跑实验、写论文的 AI 系统。</p>
+          </div>
+          <div class="faq-item">
+            <strong>为什么要用树搜索？</strong>
+            <p>因为一条实验路不一定最好，所以它会分叉找更好的路。</p>
+          </div>
+          <div class="faq-item">
+            <strong>为什么不会完全乱来？</strong>
+            <p>因为每次代码都会被放进受控环境里跑，错了就会暴露出来。</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <a href="https://github.com/SakanaAI/AI-Scientist-v2" target="_blank" rel="noreferrer">
+          GitHub 仓库
+        </a>
+        <a href="https://arxiv.org/abs/2504.08066" target="_blank" rel="noreferrer">
+          arXiv 论文
+        </a>
+        <span>这是一个面向理解的可视化演示，不是原始科研系统本体。</span>
+      </footer>
+    </main>
+
+    <template id="logTemplate">
+      <div class="log-line">
+        <span class="time"></span>
+        <span class="msg"></span>
+      </div>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
