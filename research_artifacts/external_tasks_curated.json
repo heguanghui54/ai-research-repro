@@ -1,0 +1,64 @@
+{
+  "tasks": [
+    {
+      "task_id": "airs_style_no_baseline_code",
+      "source": "AIRS-Bench-inspired",
+      "domain": "full_lifecycle_research",
+      "question": "Design an autonomous research task where the agent receives a paper-level objective but no baseline code.",
+      "related_work_trap": "Do not overclaim AIRS-Bench performance without running its official evaluator or using its task definitions.",
+      "required_evidence": ["task schema", "submission artifact", "official-evaluator plan", "failure taxonomy"],
+      "toy_experiment": "Convert one paper abstract into a constrained task spec and require a submission file plus evaluator stub.",
+      "expected_artifacts": ["task.json", "submission.csv", "evaluator stub", "failure taxonomy"]
+    },
+    {
+      "task_id": "fire_style_insight_rediscovery",
+      "source": "FIRE-Bench-inspired",
+      "domain": "insight_rediscovery",
+      "question": "Evaluate whether an agent can rediscover a known empirical insight without seeing the answer.",
+      "related_work_trap": "Do not measure only paper fluency; require evidence that the rediscovered insight follows from experiments.",
+      "required_evidence": ["hidden target claim", "experiment trace", "claim extraction", "judge calibration"],
+      "toy_experiment": "Give a high-level research question and synthetic logs, then compare generated claims to a hidden target.",
+      "expected_artifacts": ["hidden_claim.json", "experiment_trace.jsonl", "claim match table", "judge calibration notes"]
+    },
+    {
+      "task_id": "scienceagentbench_data_driven",
+      "source": "ScienceAgentBench-inspired",
+      "domain": "data_driven_discovery",
+      "question": "Test an agent on a data-driven discovery task where success requires analysis code and grounded interpretation.",
+      "related_work_trap": "Do not treat a plausible narrative as a solved data-science task without executable analysis.",
+      "required_evidence": ["analysis script", "data split", "metric definition", "error analysis"],
+      "toy_experiment": "Provide a small CSV with a hidden trend and require code, metrics, and a short interpretation.",
+      "expected_artifacts": ["analysis.py", "metrics.json", "error analysis", "interpretation section"]
+    },
+    {
+      "task_id": "cost_controlled_topology",
+      "source": "MultiAgentBench-inspired",
+      "domain": "multi_agent_collaboration",
+      "question": "Compare single-agent and multi-agent research workflows under matched inference budgets.",
+      "related_work_trap": "Do not attribute gains to topology when the multi-agent workflow receives many more tokens or calls.",
+      "required_evidence": ["budget matching", "topology config", "paired comparison", "cost-normalized metric"],
+      "toy_experiment": "Run direct, chain, and graph workflows with a fixed maximum API-call budget.",
+      "expected_artifacts": ["topology.yaml", "budget ledger", "paired comparison table", "cost-normalized plot"]
+    },
+    {
+      "task_id": "vlm_figure_gate",
+      "source": "AI-Scientist-v2-inspired",
+      "domain": "paper_writing",
+      "question": "Measure whether a VLM figure-review gate catches unsupported visual claims before paper export.",
+      "related_work_trap": "Do not claim VLM critique improves science unless it changes a decision or catches a real defect.",
+      "required_evidence": ["with/without VLM", "defect before/after", "decision change log", "cost accounting"],
+      "toy_experiment": "Inject label and caption defects into generated plots and compare paper claims before and after VLM review.",
+      "expected_artifacts": ["defect set", "vlm critique", "revision diff", "cost table"]
+    },
+    {
+      "task_id": "artifact_drift_guard",
+      "source": "self-evolving-agent-inspired",
+      "domain": "agent_self_evolution",
+      "question": "Audit whether self-evolving strategy artifacts improve reliability without drifting into overclaiming.",
+      "related_work_trap": "Do not equate any policy update with improvement; require before/after measurement and drift checks.",
+      "required_evidence": ["policy diff", "before/after score", "overclaiming audit", "rollback rule"],
+      "toy_experiment": "Run two passes over shuffled tasks, update the strategy policy after pass one, and audit drift in pass two.",
+      "expected_artifacts": ["strategy_policy.diff", "before_after.csv", "overclaim audit", "rollback rule"]
+    }
+  ]
+}

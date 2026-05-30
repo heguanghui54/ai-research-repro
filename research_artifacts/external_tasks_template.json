@@ -1,0 +1,23 @@
+{
+  "tasks": [
+    {
+      "task_id": "external_example_001",
+      "source": "airs_bench_or_researchgym_subset",
+      "domain": "language_modeling",
+      "question": "State the research objective the agent must solve.",
+      "related_work_trap": "Describe a common false novelty, leakage, or overclaim trap.",
+      "required_evidence": [
+        "baseline comparison",
+        "ablation",
+        "reproducibility commands"
+      ],
+      "toy_experiment": "Describe the smallest executable evaluation for this task.",
+      "expected_artifacts": [
+        "experiment script",
+        "metrics.json",
+        "paper section"
+      ]
+    }
+  ]
+}
+

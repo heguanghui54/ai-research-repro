@@ -1,0 +1,224 @@
+{
+  "source": "AIRS-Bench official task definitions",
+  "source_url": "https://github.com/facebookresearch/airs-bench",
+  "source_revision": "18e4f1d501069cf7d7e2740d81c2ca748c56a6a1",
+  "split": "rad",
+  "tasks": [
+    {
+      "task_id": "airs_CodeGenerationAPPSPassAt5",
+      "source": "AIRS-Bench official task definition",
+      "domain": "Code",
+      "question": "AIRS-Bench task `CodeGenerationAPPSPassAt5`: solve Code Generation on `codeparrot/apps` using metric `Pass@5` (higher is better). Official task brief excerpt: # Overview ## Task Description This is a Machine Learning project and your goal is to build a model that solves the project's TASK following the instructions provided below. TASK: Your task is to generate five independent Python programs for each competitive-programming problem. Each program must read from standard input and write to standard output and is intended to solve the given problem completely. A prediction for a problem is considered correct if at least one of the five submitted programs passes all of the official hidden test cases. Your predictions will be scored using the Pass@5 metric, which measures the fraction of test problems solved by at least one of the five attempts. ## Data ### Dataset Structure The default config of the APPS dataset has the following structure. Here is a description of the contents of each column including their name, what they contain, and the...",
+      "related_work_trap": "Do not report official AIRS-Bench performance unless the generated submission is evaluated by the task's official evaluate.py script; planning-only runs are not official benchmark scores.",
+      "required_evidence": [
+        "official task metadata",
+        "submission artifact",
+        "official evaluator command",
+        "metric direction",
+        "SOTA or baseline comparison plan"
+      ],
+      "toy_experiment": "Prepare `submission.csv`, run the task-local `evaluate.py`, report `Pass@5` with metric direction `higher is better`, and compare against SOTA `` when available.",
+      "expected_artifacts": [
+        "submission.csv",
+        "evaluate.py command",
+        "metrics.json",
+        "reproducibility commands",
+        "claim-evidence table"
+      ],
+      "official_metadata": {
+        "task_name": "CodeGenerationAPPSPassAt5",
+        "split": "rad",
+        "dataset": "codeparrot/apps",
+        "category": "Code",
+        "research_problem": "Code Generation",
+        "metric": "Pass@5",
+        "metric_lower_is_better": false,
+        "sota": "",
+        "optimal_score": 1.0,
+        "estimated_worst_score": 0.0,
+        "metadata_path": "airsbench/tasks/rad/CodeGenerationAPPSPassAt5/metadata.yaml",
+        "project_description_path": "airsbench/tasks/rad/CodeGenerationAPPSPassAt5/project_description.md"
+      }
+    },
+    {
+      "task_id": "airs_MathQuestionAnsweringSVAMPAccuracy",
+      "source": "AIRS-Bench official task definition",
+      "domain": "Math",
+      "question": "AIRS-Bench task `MathQuestionAnsweringSVAMPAccuracy`: solve Math Question Answering on `ChilleD/SVAMP` using metric `Accuracy` (higher is better). Official task brief excerpt: # Overview ## Task Description This is a Machine Learning project and your goal is to build a model that solves the project's TASK following the instructions provided below. TASK: Your task is solve math world prolems. Each example presents a short story followed by a specific question. Your task is to read the text and predict the correct numerical answer. Your predictions will be scored against the `Answer` column of the test set. ## Data ### Dataset Structure The default config of SVAMP has the following structure. Here is a description of the contents of each column including their name, what they contain, and the data type: ``` { \"ID\": string, # Unique identifier for the problem \"Body\": string, # The narrative or context text describing the scenario \"Question\": string, # The actual math question asked based on the Body \"Equation\": string, # The ground-truth equation used to compute...",
+      "related_work_trap": "Do not report official AIRS-Bench performance unless the generated submission is evaluated by the task's official evaluate.py script; planning-only runs are not official benchmark scores.",
+      "required_evidence": [
+        "official task metadata",
+        "submission artifact",
+        "official evaluator command",
+        "metric direction",
+        "SOTA or baseline comparison plan"
+      ],
+      "toy_experiment": "Prepare `submission.csv`, run the task-local `evaluate.py`, report `Accuracy` with metric direction `higher is better`, and compare against SOTA `` when available.",
+      "expected_artifacts": [
+        "submission.csv",
+        "evaluate.py command",
+        "metrics.json",
+        "reproducibility commands",
+        "claim-evidence table"
+      ],
+      "official_metadata": {
+        "task_name": "MathQuestionAnsweringSVAMPAccuracy",
+        "split": "rad",
+        "dataset": "ChilleD/SVAMP",
+        "category": "Math",
+        "research_problem": "Math Question Answering",
+        "metric": "Accuracy",
+        "metric_lower_is_better": false,
+        "sota": "",
+        "optimal_score": 1.0,
+        "estimated_worst_score": 0.0,
+        "metadata_path": "airsbench/tasks/rad/MathQuestionAnsweringSVAMPAccuracy/metadata.yaml",
+        "project_description_path": "airsbench/tasks/rad/MathQuestionAnsweringSVAMPAccuracy/project_description.md"
+      }
+    },
+    {
+      "task_id": "airs_CvMolecularPropertyPredictionQm9MeanAbsoluteError",
+      "source": "AIRS-Bench official task definition",
+      "domain": "Molecules and Proteins ML",
+      "question": "AIRS-Bench task `CvMolecularPropertyPredictionQm9MeanAbsoluteError`: solve Molecular Property Prediction on `nimashoghi/qm9` using metric `MeanAbsoluteError` (lower is better). Official task brief excerpt: # Overview ## Task Description This is a Machine Learning project and your goal is to complete the project's TASK following the instructions provided below. TASK: Your task is to predict a molecular property of small molecules which is known as the **heat capacity at constant volume (c_v)**. This is a fundamental thermodynamic property that measures the amount of energy required to raise the temperature of one mole of a substance by one degree Kelvin at constant volume. In the qm9 dataset, c_v values are computed at 298.15 K and given in units of cal/(mol\u00b7K). This property is crucial for understanding molecular thermodynamics, phase transitions, and energy storage capabilities of chemical compounds. Your predictions will be scored against the `c_v` column of the test set. ## Data ### Dataset Structure The default config of qm9 has the following structure. Here is a description of the...",
+      "related_work_trap": "Do not report official AIRS-Bench performance unless the generated submission is evaluated by the task's official evaluate.py script; planning-only runs are not official benchmark scores.",
+      "required_evidence": [
+        "official task metadata",
+        "submission artifact",
+        "official evaluator command",
+        "metric direction",
+        "SOTA or baseline comparison plan"
+      ],
+      "toy_experiment": "Prepare `submission.csv`, run the task-local `evaluate.py`, report `MeanAbsoluteError` with metric direction `lower is better`, and compare against SOTA `` when available.",
+      "expected_artifacts": [
+        "submission.csv",
+        "evaluate.py command",
+        "metrics.json",
+        "reproducibility commands",
+        "claim-evidence table"
+      ],
+      "official_metadata": {
+        "task_name": "CvMolecularPropertyPredictionQm9MeanAbsoluteError",
+        "split": "rad",
+        "dataset": "nimashoghi/qm9",
+        "category": "Molecules and Proteins ML",
+        "research_problem": "Molecular Property Prediction",
+        "metric": "MeanAbsoluteError",
+        "metric_lower_is_better": true,
+        "sota": "",
+        "optimal_score": 0.0,
+        "estimated_worst_score": 132.63319396972656,
+        "metadata_path": "airsbench/tasks/rad/CvMolecularPropertyPredictionQm9MeanAbsoluteError/metadata.yaml",
+        "project_description_path": "airsbench/tasks/rad/CvMolecularPropertyPredictionQm9MeanAbsoluteError/project_description.md"
+      }
+    },
+    {
+      "task_id": "airs_QuestionAnsweringDuoRCAccuracy",
+      "source": "AIRS-Bench official task definition",
+      "domain": "Question Answering",
+      "question": "AIRS-Bench task `QuestionAnsweringDuoRCAccuracy`: solve Question Answering on `ibm-research/duorc` using metric `Accuracy` (higher is better). Official task brief excerpt: # Overview ## Task Description This is a Machine Learning project and your goal is to build a model that solves the project's TASK following the instructions provided below. TASK: Your task is to answer questions given a large context. You will be provided a title of a story and context surrounding its plot, then will be asked a question for which you should retrieve the answer from the context. Your predictions will be scored against a list of candidate answers provided in the `answers` column of the test. ## Data ### Dataset Structure The default config of the DuoRC dataset has the following structure. Here is a description of the contents of each column including their name, what they contain, and the data type: ``` { \"plot_id\": string, # The ID of the story \"plot\": string, # The plot of the story \"title\": string, # The title of the story \"question\": string, # A question regarding a...",
+      "related_work_trap": "Do not report official AIRS-Bench performance unless the generated submission is evaluated by the task's official evaluate.py script; planning-only runs are not official benchmark scores.",
+      "required_evidence": [
+        "official task metadata",
+        "submission artifact",
+        "official evaluator command",
+        "metric direction",
+        "SOTA or baseline comparison plan"
+      ],
+      "toy_experiment": "Prepare `submission.csv`, run the task-local `evaluate.py`, report `Accuracy` with metric direction `higher is better`, and compare against SOTA `` when available.",
+      "expected_artifacts": [
+        "submission.csv",
+        "evaluate.py command",
+        "metrics.json",
+        "reproducibility commands",
+        "claim-evidence table"
+      ],
+      "official_metadata": {
+        "task_name": "QuestionAnsweringDuoRCAccuracy",
+        "split": "rad",
+        "dataset": "ibm-research/duorc",
+        "category": "Question Answering",
+        "research_problem": "Question Answering",
+        "metric": "Accuracy",
+        "metric_lower_is_better": false,
+        "sota": "",
+        "optimal_score": 1.0,
+        "estimated_worst_score": 0.0,
+        "metadata_path": "airsbench/tasks/rad/QuestionAnsweringDuoRCAccuracy/metadata.yaml",
+        "project_description_path": "airsbench/tasks/rad/QuestionAnsweringDuoRCAccuracy/project_description.md"
+      }
+    },
+    {
+      "task_id": "airs_SentimentAnalysisYelpReviewFullAccuracy",
+      "source": "AIRS-Bench official task definition",
+      "domain": "Text Classification",
+      "question": "AIRS-Bench task `SentimentAnalysisYelpReviewFullAccuracy`: solve Text Classification on `Yelp/yelp_review_full` using metric `Accuracy` (higher is better). Official task brief excerpt: # Overview ## Task Description This is a Machine Learning project and your goal is to complete the project's TASK following the instructions provided below. TASK: This is a NLP task to perform Sentiment Analysis on Yelp/yelp_review_full/. Your predictions will be scored against the `label` column of the test set. ## Data ### Dataset Structure The default config of Yelp/yelp_review_full/ has the following structure. Here is a description of the contents of each column including their name, what they contain, and the data type: ``` Column types: label: ClassLabel(names=['1 star', '2 star', '3 stars', '4 stars', '5 stars']): The given rating (0 , 1, 2, 3, or 4). text: Value('string'): The review text provided by the user. ``` Train data can be loaded using load_from_disk('./data/train') and test data can be loaded using load_from_disk('./data/test'). Note that the scoring column has been...",
+      "related_work_trap": "Do not report official AIRS-Bench performance unless the generated submission is evaluated by the task's official evaluate.py script; planning-only runs are not official benchmark scores.",
+      "required_evidence": [
+        "official task metadata",
+        "submission artifact",
+        "official evaluator command",
+        "metric direction",
+        "SOTA or baseline comparison plan"
+      ],
+      "toy_experiment": "Prepare `submission.csv`, run the task-local `evaluate.py`, report `Accuracy` with metric direction `higher is better`, and compare against SOTA `` when available.",
+      "expected_artifacts": [
+        "submission.csv",
+        "evaluate.py command",
+        "metrics.json",
+        "reproducibility commands",
+        "claim-evidence table"
+      ],
+      "official_metadata": {
+        "task_name": "SentimentAnalysisYelpReviewFullAccuracy",
+        "split": "rad",
+        "dataset": "Yelp/yelp_review_full",
+        "category": "Text Classification",
+        "research_problem": "Text Classification",
+        "metric": "Accuracy",
+        "metric_lower_is_better": false,
+        "sota": "",
+        "optimal_score": 1.0,
+        "estimated_worst_score": 0.18208,
+        "metadata_path": "airsbench/tasks/rad/SentimentAnalysisYelpReviewFullAccuracy/metadata.yaml",
+        "project_description_path": "airsbench/tasks/rad/SentimentAnalysisYelpReviewFullAccuracy/project_description.md"
+      }
+    },
+    {
+      "task_id": "airs_CoreferenceResolutionSuperGLUEWSCAccuracy",
+      "source": "AIRS-Bench official task definition",
+      "domain": "Text Extraction and Matching",
+      "question": "AIRS-Bench task `CoreferenceResolutionSuperGLUEWSCAccuracy`: solve Coreference Resolution on `aps/super_glue` using metric `Accuracy` (higher is better). Official task brief excerpt: # Overview ## Task Description This is a Machine Learning project and your goal is to build a model that solves the project's TASK following the instructions provided below. TASK: Your task is to resolve pronoun references in natural language sentences. You will be given a sentence containing an ambiguous pronoun and a possible referent. Your goal is to predict whether the pronoun refers to the referent based on commonsense reasoning. Your predictions will be scored against the `label` column of the test. ## Data ### Dataset Structure The default config of the WSC dataset has the following structure. Here is a description of the contents of each column including their name, what they contain, and the data type: ``` { \"text\": string, # The passage containing an ambiguous pronoun and candidate antecedent \"span1_index\": int, # The token index of the first candidate antecedent in the...",
+      "related_work_trap": "Do not report official AIRS-Bench performance unless the generated submission is evaluated by the task's official evaluate.py script; planning-only runs are not official benchmark scores.",
+      "required_evidence": [
+        "official task metadata",
+        "submission artifact",
+        "official evaluator command",
+        "metric direction",
+        "SOTA or baseline comparison plan"
+      ],
+      "toy_experiment": "Prepare `submission.csv`, run the task-local `evaluate.py`, report `Accuracy` with metric direction `higher is better`, and compare against SOTA `` when available.",
+      "expected_artifacts": [
+        "submission.csv",
+        "evaluate.py command",
+        "metrics.json",
+        "reproducibility commands",
+        "claim-evidence table"
+      ],
+      "official_metadata": {
+        "task_name": "CoreferenceResolutionSuperGLUEWSCAccuracy",
+        "split": "rad",
+        "dataset": "aps/super_glue",
+        "category": "Text Extraction and Matching",
+        "research_problem": "Coreference Resolution",
+        "metric": "Accuracy",
+        "metric_lower_is_better": false,
+        "sota": "",
+        "optimal_score": 1.0,
+        "estimated_worst_score": 0.3653846154,
+        "metadata_path": "airsbench/tasks/rad/CoreferenceResolutionSuperGLUEWSCAccuracy/metadata.yaml",
+        "project_description_path": "airsbench/tasks/rad/CoreferenceResolutionSuperGLUEWSCAccuracy/project_description.md"
+      }
+    }
+  ]
+}

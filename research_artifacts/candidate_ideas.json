@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Artifact-Centric Self-Evolution",
+    "title": "Artifact-Centric Self-Evolution for Autonomous AI Research Agents",
+    "core_hypothesis": "Agents improve more reliably when they evolve persistent executable artifacts, rubrics, and strategy policies instead of only rewriting prompts.",
+    "related_work_gap": "AI Scientist-v2 demonstrates agentic tree search for workshop-level discovery, while self-evolving agents often focus on games or coding tasks; the missing link is controlled self-evolution inside the research lifecycle itself.",
+    "expected_novelty": "A reproducible protocol for measuring policy/artifact evolution across repeated research cycles.",
+    "minimal_experiment": "Compare fixed single-agent, prompt-reflection, and artifact-evolution variants on 10 to 20 research-lifecycle tasks.",
+    "evaluation_target": "Task completion, claim-grounding errors, reproducibility score, reviewer score, and token-normalized performance.",
+    "main_risk": "LLM judges may overvalue polished writing; include executable checks and blind human spot review."
+  },
+  {
+    "name": "Collaboration Topology Ablation",
+    "title": "Which Multi-Agent Collaboration Topologies Help Automated Research?",
+    "core_hypothesis": "Graph/tree-style collaboration with explicit critic and experiment-manager roles will outperform chain or single-agent coordination for research planning and result validation.",
+    "related_work_gap": "MultiAgentBench evaluates collaboration broadly, but automated scientific research has domain-specific failure modes such as unsupported novelty claims and broken experiments.",
+    "expected_novelty": "A research-agent-specific topology ablation with controlled budgets and scientific quality metrics.",
+    "minimal_experiment": "Run single, chain, tree, and graph teams on the same task suite and compare milestone completion plus quality metrics.",
+    "evaluation_target": "Milestone completion, conflict resolution quality, executable experiment rate, and final paper-review score.",
+    "main_risk": "More agents consume more tokens; normalize by total tokens and add a same-budget single-agent baseline."
+  },
+  {
+    "name": "VLM Figure Critic Loop",
+    "title": "Vision-Language Figure Critiques as a Bottleneck in Automated Paper Writing",
+    "core_hypothesis": "A VLM critic reduces misleading or unreadable figures and improves paper review scores when integrated after plot generation.",
+    "related_work_gap": "AI Scientist-v2 reports a VLM feedback loop for figures; a focused ablation can quantify when it matters and when it is unnecessary.",
+    "expected_novelty": "A small, controlled study of figure-feedback value under realistic API cost constraints.",
+    "minimal_experiment": "Generate result plots with and without VLM critique; score readability, correctness, and paper-level impact.",
+    "evaluation_target": "Figure defect rate, VLM-human agreement on figure issues, and reviewer score delta.",
+    "main_risk": "Requires Monica/VLM API integration and figure-heavy tasks; keep as a secondary experiment."
+  },
+  {
+    "name": "Literature-Grounded Novelty Guard",
+    "title": "Literature-Grounded Novelty Guards for AI-Generated Research Ideas",
+    "core_hypothesis": "Structured novelty checks against retrieved literature reduce duplicate or overclaimed AI-generated research ideas without suppressing useful incremental work.",
+    "related_work_gap": "Existing autonomous research systems search literature, but few isolate novelty-check quality as a measured component.",
+    "expected_novelty": "A benchmarked novelty-guard module with false-positive and false-negative analysis.",
+    "minimal_experiment": "Create tasks with known related-work traps; compare no retrieval, shallow retrieval, and structured novelty-guard variants.",
+    "evaluation_target": "Duplicate detection, claim calibration, accepted idea rate, and downstream reviewer novelty score.",
+    "main_risk": "Requires high-quality literature labels; start with curated small labels."
+  }
+]
+

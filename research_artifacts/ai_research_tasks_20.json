@@ -1,0 +1,207 @@
+{
+  "suite_name": "ai_research_workflow_diagnostic_20",
+  "suite_version": "2026-05-30",
+  "notes": "Author-created diagnostic tasks for AI-research workflow instrumentation. These tasks are not official benchmark scores and should be paired with independent quality judging.",
+  "tasks": [
+    {
+      "task_id": "novelty_duplicate_triage",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "novelty_checking",
+      "question": "Design a triage protocol that separates genuinely novel AI-generated research ideas from near-duplicates.",
+      "related_work_trap": "Do not treat keyword mismatch as novelty; semantic duplicates and benchmark rephrasings must be caught.",
+      "required_evidence": ["semantic duplicate set", "retrieval threshold ablation", "false positive and false negative audit"],
+      "toy_experiment": "Evaluate 30 generated ideas against 10 known duplicate idea pairs and report precision/recall under two retrieval thresholds.",
+      "expected_artifacts": ["duplicate labels", "threshold table", "error taxonomy"]
+    },
+    {
+      "task_id": "claim_evidence_alignment",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "paper_writing",
+      "question": "Audit whether a generated paper section keeps claims aligned with observed experiment logs.",
+      "related_work_trap": "Do not convert planned experiments or synthetic examples into completed empirical results.",
+      "required_evidence": ["claim-evidence table", "log-to-claim links", "unsupported claim count"],
+      "toy_experiment": "Sample 12 generated claims, map each claim to a log line or mark it unsupported, and compute unsupported-claim rate.",
+      "expected_artifacts": ["claim audit csv", "evidence links", "unsupported claim examples"]
+    },
+    {
+      "task_id": "multi_agent_budget_control",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "multi_agent_collaboration",
+      "question": "Test whether multi-agent role decomposition helps after controlling for total calls and tokens.",
+      "related_work_trap": "More agents may only mean more inference budget unless same-call and same-token baselines are included.",
+      "required_evidence": ["single-agent same-call baseline", "token-normalized comparison", "role ablation"],
+      "toy_experiment": "Compare single fixed, single self-consistency, full multi-agent, and reviewer-free multi-agent workflows on identical tasks.",
+      "expected_artifacts": ["budget table", "role ablation table", "paired seed deltas"]
+    },
+    {
+      "task_id": "artifact_memory_retrieval",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "agent_memory",
+      "question": "Evaluate whether retrieved failure memories change later research artifacts in measurable ways.",
+      "related_work_trap": "Adding retrieved text is not enough; show that the next artifact corrected a prior failure mode.",
+      "required_evidence": ["retrieval relevance score", "before-after failure tag change", "memory acceptance test"],
+      "toy_experiment": "Run shuffled tasks with structured memory and compare failure tags before and after retrieval on matched task categories.",
+      "expected_artifacts": ["memory records", "retrieval table", "failure tag delta"]
+    },
+    {
+      "task_id": "execution_gap_detector",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "experiment_execution",
+      "question": "Detect when an AI research agent describes an experiment without actually executing it.",
+      "related_work_trap": "Runnable-looking commands are not evidence of execution unless outputs, timestamps, and metrics are present.",
+      "required_evidence": ["command log", "output artifact checksum", "execution timestamp"],
+      "toy_experiment": "Audit 15 generated experiment plans and classify each as planned, attempted, failed, or executed with output.",
+      "expected_artifacts": ["execution ledger", "checksum list", "status confusion matrix"]
+    },
+    {
+      "task_id": "vlm_figure_grounding",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "multimodal_review",
+      "question": "Measure whether a VLM figure critic catches plot-label and data-grounding errors in generated paper figures.",
+      "related_work_trap": "Generic figure style critique is not enough; the critic must compare the visual to plotted data and caption claims.",
+      "required_evidence": ["with-without VLM ablation", "figure defect labels", "data-caption consistency check"],
+      "toy_experiment": "Inject five label or caption defects into plots and compare text-only and VLM critics on defect recall.",
+      "expected_artifacts": ["defect taxonomy", "critic comparison table", "annotated figures"]
+    },
+    {
+      "task_id": "reviewer_calibration",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "automated_review",
+      "question": "Calibrate an automated reviewer so that it penalizes unsupported claims and rewards reproducible evidence.",
+      "related_work_trap": "Reviewer fluency is not reviewer reliability; compare against known seeded flaws.",
+      "required_evidence": ["seeded flaw set", "reviewer precision recall", "severity calibration"],
+      "toy_experiment": "Create 20 short paper snippets with known flaws and score reviewer detection accuracy by severity.",
+      "expected_artifacts": ["flaw labels", "review table", "calibration plot"]
+    },
+    {
+      "task_id": "code_repair_loop",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "coding_agent",
+      "question": "Evaluate whether an AI research workflow can repair failed experiment code without hiding the failure.",
+      "related_work_trap": "A final passing script is insufficient if the failure trace and repair rationale are missing.",
+      "required_evidence": ["initial failing trace", "patch diff", "post-repair test output"],
+      "toy_experiment": "Seed three small experiment scripts with bugs and compare direct repair, reviewer-guided repair, and multi-agent repair.",
+      "expected_artifacts": ["failure log", "patch file", "test report"]
+    },
+    {
+      "task_id": "benchmark_leakage_guard",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "benchmark_integrity",
+      "question": "Design checks that prevent leakage from test labels or evaluator outputs into generated submissions.",
+      "related_work_trap": "Local evaluator access can leak labels unless prompt inputs, mounts, and outputs are separated.",
+      "required_evidence": ["prompt input audit", "label mount separation", "leakage sentinel test"],
+      "toy_experiment": "Run one clean and one deliberately leaky submission pipeline and verify that the sentinel detects the leaky path.",
+      "expected_artifacts": ["leakage checklist", "sentinel result", "mount diagram"]
+    },
+    {
+      "task_id": "idea_to_experiment_trace",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "research_traceability",
+      "question": "Measure whether generated experiments preserve the original research idea without drifting into an easier task.",
+      "related_work_trap": "Agents may silently replace a hard research question with a simpler proxy that no longer tests the hypothesis.",
+      "required_evidence": ["idea-experiment alignment rubric", "drift examples", "proxy validity check"],
+      "toy_experiment": "Score 15 idea-plan pairs for alignment and compare raw plan quality to alignment-corrected quality.",
+      "expected_artifacts": ["alignment scores", "drift taxonomy", "proxy validity table"]
+    },
+    {
+      "task_id": "negative_result_reporting",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "paper_writing",
+      "question": "Test whether an automated writer reports negative and null results without rhetorical inflation.",
+      "related_work_trap": "Do not reframe failure as success by changing the metric after seeing the result.",
+      "required_evidence": ["pre-registered metric", "negative result text", "post-hoc metric audit"],
+      "toy_experiment": "Give the writer three null-result summaries and audit whether the final prose preserves the null finding.",
+      "expected_artifacts": ["metric registry", "result paragraph", "inflation audit"]
+    },
+    {
+      "task_id": "token_cost_policy",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "cost_accounting",
+      "question": "Design a policy that trades off research artifact quality against API calls and token cost.",
+      "related_work_trap": "A method that scores higher only by using many more tokens may not be practically better.",
+      "required_evidence": ["cost-normalized metric", "quality-cost frontier", "budget sensitivity analysis"],
+      "toy_experiment": "Compare three call budgets on the same tasks and plot quality versus total tokens.",
+      "expected_artifacts": ["cost ledger", "frontier plot", "budget table"]
+    },
+    {
+      "task_id": "role_trace_accountability",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "multi_agent_collaboration",
+      "question": "Determine whether role traces make multi-agent research outputs easier to audit.",
+      "related_work_trap": "More trace text may create audit burden without improving accountability.",
+      "required_evidence": ["trace-to-claim links", "audit time estimate", "missing responsibility cases"],
+      "toy_experiment": "Ask reviewers to audit outputs with and without role traces and compare unsupported-claim detection time.",
+      "expected_artifacts": ["trace index", "audit timing table", "responsibility map"]
+    },
+    {
+      "task_id": "paper_revision_loop",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "paper_revision",
+      "question": "Evaluate whether automated paper revision removes overclaims after a structured review.",
+      "related_work_trap": "Revision may add caveats while leaving unsupported headline claims intact.",
+      "required_evidence": ["pre-post claim audit", "review action mapping", "residual overclaim count"],
+      "toy_experiment": "Run one review-revision cycle on five generated abstracts and compare claim audit counts before and after.",
+      "expected_artifacts": ["revision diff", "action map", "residual claim table"]
+    },
+    {
+      "task_id": "dataset_choice_justification",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "benchmark_selection",
+      "question": "Assess whether an AI research agent justifies benchmark and dataset choice for the stated claim.",
+      "related_work_trap": "Convenient datasets may not measure the claimed capability.",
+      "required_evidence": ["claim-to-dataset mapping", "dataset limitation list", "alternative benchmark comparison"],
+      "toy_experiment": "Score 10 proposed benchmark choices for fit to hypothesis and identify mismatched proxy evaluations.",
+      "expected_artifacts": ["benchmark fit rubric", "limitations table", "alternative list"]
+    },
+    {
+      "task_id": "statistical_claim_guard",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "statistics",
+      "question": "Prevent automated papers from overstating small-seed statistical comparisons.",
+      "related_work_trap": "Sign tests and bootstrap intervals over very few seeds are descriptive, not confirmatory.",
+      "required_evidence": ["seed count disclosure", "effect size table", "uncertainty caveat"],
+      "toy_experiment": "Generate result paragraphs for N=3, N=7, and N=30 seeds and audit whether statistical language scales with evidence.",
+      "expected_artifacts": ["statistics checklist", "effect table", "language audit"]
+    },
+    {
+      "task_id": "human_judge_protocol",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "evaluation_protocol",
+      "question": "Design a small human expert review protocol for AI-generated research artifacts.",
+      "related_work_trap": "LLM-as-judge agreement is not a substitute for human expert validation.",
+      "required_evidence": ["expert rubric", "blind review assignment", "inter-rater agreement plan"],
+      "toy_experiment": "Create a 20-artifact review packet with blinded method labels and a five-point expert scoring rubric.",
+      "expected_artifacts": ["review form", "assignment sheet", "agreement analysis plan"]
+    },
+    {
+      "task_id": "citation_grounding_check",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "literature_review",
+      "question": "Check whether citations in generated related-work text support the claims attached to them.",
+      "related_work_trap": "Real citations can still be misused if the cited paper does not support the generated claim.",
+      "required_evidence": ["citation-claim pairs", "support labels", "misuse examples"],
+      "toy_experiment": "Sample 15 citation-claim pairs and label each as supports, partially supports, or does not support.",
+      "expected_artifacts": ["citation table", "support labels", "misuse taxonomy"]
+    },
+    {
+      "task_id": "agent_handoff_failure",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "multi_agent_collaboration",
+      "question": "Measure whether information is lost when one research-agent role hands work to another.",
+      "related_work_trap": "A polished final synthesis can hide missing constraints from earlier roles.",
+      "required_evidence": ["handoff checklist", "lost constraint count", "role trace comparison"],
+      "toy_experiment": "Inject constraints into ideator and reviewer roles, then audit whether the writer preserves them in the final artifact.",
+      "expected_artifacts": ["handoff log", "constraint table", "loss analysis"]
+    },
+    {
+      "task_id": "camera_ready_repro_package",
+      "source": "ai_research_workflow_diagnostic_20",
+      "domain": "reproducibility_package",
+      "question": "Evaluate whether an automated workflow exports enough artifacts for a reader to reproduce the paper claims.",
+      "related_work_trap": "A PDF alone is not reproducible; logs, data, commands, and code snapshots must match the reported claims.",
+      "required_evidence": ["package manifest", "command replay checklist", "claim-to-file map"],
+      "toy_experiment": "Audit a submission package and count claims that lack a corresponding file or replay command.",
+      "expected_artifacts": ["manifest", "replay checklist", "claim-file map"]
+    }
+  ]
+}

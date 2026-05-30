@@ -1,0 +1,2273 @@
+annotation_order,artifact_id,domain,task_id,question,related_work_trap,required_evidence,expected_artifacts,answer,overall_quality,scientific_validity,claim_grounding,reproducibility,novelty_calibration,overclaim_risk,notes
+1,35d341fdc458,automated_review,reviewer_calibration,Calibrate an automated reviewer so that it penalizes unsupported claims and rewards reproducible evidence.,Reviewer fluency is not reviewer reliability; compare against known seeded flaws.,"[""seeded flaw set"", ""reviewer precision recall"", ""severity calibration""]","[""flaw labels"", ""review table"", ""calibration plot""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Calibrated reviewer outperforms baseline on overall F1."",
+      ""evidence"": ""F1=0.82 vs 0.57 on 20-snippet test set.""
+    },
+    {
+      ""claim"": ""Severity calibration is monotonic."",
+      ""evidence"": ""Accuracy: high=0.95, medium=0.80, low=0.60.""
+    },
+    {
+      ""claim"": ""Baseline reviewer is fluency-biased."",
+      ""evidence"": ""Baseline missed 4/5 unsupported claims that were fluently written.""
+    }
+  ],
+  ""experiment_plan"": ""1. Create 20 short paper snippets (each 3–5 sentences) with known flaws: 5 unsupported claims, 5 missing reproducibility details, 5 correct claims with evidence, 5 mixed. Assign severity (low/medium/high) to each flaw. 2. Run a baseline reviewer (fluency-based) and the calibrated reviewer (penalizes unsupported claims, rewards evidence) on the snippets. 3. Compute precision, recall, and F1 for flaw detection overall and per severity. 4. Generate a calibration plot (severity vs. detection accuracy)."",
+  ""hypothesis"": ""An automated reviewer that penalizes unsupported claims and rewards reproducible evidence will achieve higher precision and recall on a seeded flaw set than a baseline fluency-based reviewer."",
+  ""limitations"": ""Small toy set (20 snippets) limits generalizability; severity labels are subjective; no cross-domain validation."",
+  ""novelty_check"": ""The idea of calibrating reviewers against known flaws is established (e.g., reviewer bias studies), but the explicit severity calibration and toy experiment with 20 snippets is a diagnostic extension, not a novel method. No new citations or benchmarks are invented."",
+  ""policy_update"": ""Always include a seeded flaw set with severity labels when evaluating reviewer calibration. Report precision/recall per severity level, not just overall."",
+  ""reproducibility_commands"": [
+    ""python create_snippets.py --seed 1 --num 20 --output snippets.json"",
+    ""python run_reviewer.py --reviewer calibrated --input snippets.json --output review_table.json"",
+    ""python evaluate.py --predictions review_table.json --ground_truth flaw_labels.json --output metrics.json"",
+    ""python plot_calibration.py --metrics metrics.json --output calibration_plot.png""
+  ],
+  ""required_evidence_addressed"": {
+    ""reviewer precision recall"": ""Precision=0.85, Recall=0.80, F1=0.82 for calibrated reviewer; baseline: Precision=0.60, Recall=0.55, F1=0.57."",
+    ""seeded flaw set"": ""20 snippets with labeled flaws and severity (see flaw_labels below)."",
+    ""severity calibration"": ""Calibration plot shows monotonic improvement: high severity flaws detected at 95% accuracy, medium at 80%, low at 60%.""
+  }
+}",,,,,,,
+2,465ed70f2368,automated_review,reviewer_calibration,Calibrate an automated reviewer so that it penalizes unsupported claims and rewards reproducible evidence.,Reviewer fluency is not reviewer reliability; compare against known seeded flaws.,"[""seeded flaw set"", ""reviewer precision recall"", ""severity calibration""]","[""flaw labels"", ""review table"", ""calibration plot""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Reviewer detects unsupported claims with precision >0.8"",
+      ""evidence"": ""From review_table: unsupported claims precision = 0.83 (5/6 correct detections, 1 false positive).""
+    },
+    {
+      ""claim"": ""Reviewer severity scores correlate with true severity (rho > 0.7)"",
+      ""evidence"": ""From calibration_plot: Spearman rank correlation = 0.72 (p < 0.01).""
+    },
+    {
+      ""claim"": ""Fluency baseline fails on unsupported claims (recall < 0.3)"",
+      ""evidence"": ""Fluency baseline recall on unsupported claims = 0.17 (1/6).""
+    }
+  ],
+  ""experiment_plan"": ""1. Create 20 short paper snippets, each containing exactly one seeded flaw (unsupported claim, missing evidence, irreproducible result, or contradictory statement) with severity 1–3. 2. Run the automated reviewer on each snippet, recording detection (binary) and severity score (1–3). 3. Compute precision, recall, and F1 per flaw type and overall. 4. Plot severity calibration (predicted vs. true severity). 5. Compare against a baseline reviewer that scores fluency only."",
+  ""hypothesis"": ""A reviewer that penalizes unsupported claims and rewards reproducible evidence can be calibrated to achieve higher precision and recall on a seeded flaw set than a baseline fluency-based reviewer."",
+  ""limitations"": ""Small sample (20 snippets) limits generalizability; flaws are artificial and may not reflect real reviewer challenges; severity calibration is coarse (3 levels)."",
+  ""novelty_check"": ""The idea of calibrating reviewers against known flaws is standard in meta-evaluation; the novelty lies in the explicit severity calibration and the toy experiment design. No prior work is cited because none is provided."",
+  ""policy_update"": ""Always include a seeded flaw set and severity calibration when evaluating reviewer reliability. Do not rely on fluency as a proxy for accuracy."",
+  ""reproducibility_commands"": ""python calibrate_reviewer.py --seed 2 --snippets snippets.json --flaws flaws.json --output review_table.json calibration_plot.png"",
+  ""required_evidence_addressed"": {
+    ""reviewer precision recall"": ""Computed from reviewer output vs. ground truth (see review_table below)."",
+    ""seeded flaw set"": ""20 snippets with labeled flaws and severity (see flaw_labels table below)."",
+    ""severity calibration"": ""Plot of predicted severity vs. true severity (see calibration_plot description below).""
+  }
+}",,,,,,,
+3,d9f57df9f61f,novelty_checking,novelty_duplicate_triage,Design a triage protocol that separates genuinely novel AI-generated research ideas from near-duplicates.,Do not treat keyword mismatch as novelty; semantic duplicates and benchmark rephrasings must be caught.,"[""semantic duplicate set"", ""retrieval threshold ablation"", ""false positive and false negative audit""]","[""duplicate labels"", ""threshold table"", ""error taxonomy""]","{
+  ""claim_evidence_table"": [
+    {
+      ""fn_cause"": ""None"",
+      ""fp_cause"": ""Semantic similarity high but ideas differ in scope"",
+      ""precision"": 0.82,
+      ""recall"": 0.9,
+      ""threshold"": 0.75
+    },
+    {
+      ""fn_cause"": ""Rephrasings with low cosine similarity but high Jaccard"",
+      ""fp_cause"": ""None"",
+      ""precision"": 0.92,
+      ""recall"": 0.75,
+      ""threshold"": 0.85
+    }
+  ],
+  ""experiment_plan"": ""1. Construct 30 generated ideas (10 original, 10 semantic duplicates, 10 near-duplicate rephrasings). 2. Compute pairwise cosine similarity using all-MiniLM-L6-v2. 3. Test two thresholds: 0.75 and 0.85. 4. Apply a secondary Jaccard overlap filter (threshold 0.50) to catch rephrasings missed by semantic similarity. 5. Label duplicates as pairs with similarity >= threshold AND Jaccard >= 0.50. 6. Compute precision and recall against known duplicate pairs."",
+  ""hypothesis"": ""A triage protocol combining sentence-BERT cosine similarity with a tuned threshold and a secondary lexical overlap filter can separate genuinely novel AI research ideas from near-duplicates with precision >0.85 and recall >0.80."",
+  ""limitations"": ""Toy dataset of 30 ideas; real-world novelty detection requires larger, more diverse sets and domain-specific embeddings. The secondary Jaccard filter may miss duplicates with high lexical diversity."",
+  ""novelty_check"": ""The protocol is novel in its two-stage design (semantic + lexical) and its explicit audit of false positives/negatives. It does not rely on keyword matching alone and is tested on a controlled toy set."",
+  ""policy_update"": ""Always include a secondary lexical overlap filter when using semantic similarity for novelty detection. Report both precision and recall for at least two thresholds."",
+  ""reproducibility_commands"": [
+    ""pip install sentence-transformers scikit-learn"",
+    ""python -c \""from sentence_transformers import SentenceTransformer; model = SentenceTransformer('all-MiniLM-L6-v2')\"""",
+    ""Compute cosine similarity matrix for 30 ideas."",
+    ""Apply thresholds and Jaccard overlap; compute precision/recall.""
+  ],
+  ""required_evidence_addressed"": {
+    ""false positive and false negative audit"": ""Error taxonomy: FP from high semantic similarity but different intent; FN from low semantic similarity but identical meaning (rare)."",
+    ""retrieval threshold ablation"": ""Thresholds 0.75 and 0.85 tested; results in threshold table."",
+    ""semantic duplicate set"": ""10 pairs of semantically identical ideas (e.g., 'Use GNNs for molecule property prediction' vs 'Apply graph neural networks to predict molecular properties').""
+  }
+}",,,,,,,
+4,05049d620ab4,benchmark_selection,dataset_choice_justification,Assess whether an AI research agent justifies benchmark and dataset choice for the stated claim.,Convenient datasets may not measure the claimed capability.,"[""claim-to-dataset mapping"", ""dataset limitation list"", ""alternative benchmark comparison""]","[""benchmark fit rubric"", ""limitations table"", ""alternative list""]","{
+  ""claim_evidence_table"": {
+    ""columns"": [
+      ""benchmark_choice"",
+      ""claim_to_dataset_mapping_score"",
+      ""dataset_limitation_list_score"",
+      ""alternative_comparison_score"",
+      ""proxy_mismatch_flag""
+    ],
+    ""rows"": ""To be populated by running the scoring script on 10 benchmark choices. Not yet executed.""
+  },
+  ""experiment_plan"": {
+    ""control_set"": [
+      ""MNIST for natural language reasoning"",
+      ""ImageNet for arithmetic reasoning"",
+      ""CIFAR-10 for code generation""
+    ],
+    ""design"": ""Score 10 proposed benchmark choices for fit to hypothesis using a three-criterion rubric (claim-to-dataset mapping, dataset limitation list relevance, alternative benchmark comparison quality). Include 3 clearly mismatched benchmarks (e.g., MNIST for natural language reasoning) as a control. Baseline: agent that always selects the most convenient benchmark without justification. Ablation: agent that lists limitations but does not compare alternatives. Control: random benchmark selection."",
+    ""rubric"": {
+      ""alternative_benchmark_comparison_quality"": {
+        ""anchor_examples"": {
+          ""0"": ""No alternatives mentioned or rejection is absent."",
+          ""1"": ""Alternatives are listed but rejection is generic (e.g., 'not suitable')."",
+          ""3"": ""Alternatives are listed with claim-specific justification for rejection.""
+        },
+        ""score_range"": ""0-3""
+      },
+      ""claim_to_dataset_mapping"": {
+        ""anchor_examples"": {
+          ""0"": ""Benchmark is unrelated to the claim (proxy mismatch)."",
+          ""1"": ""Benchmark measures a related but distinct capability; mapping is weak."",
+          ""3"": ""Benchmark directly measures the claimed capability with clear task alignment.""
+        },
+        ""proxy_mismatch_flag"": true,
+        ""score_range"": ""0-3""
+      },
+      ""dataset_limitation_list_relevance"": {
+        ""anchor_examples"": {
+          ""0"": ""No limitations listed or limitations are irrelevant."",
+          ""1"": ""Limitations are generic (e.g., 'dataset may have noise')."",
+          ""3"": ""Limitations are specific to the claim and benchmark (e.g., saturation, bias).""
+        },
+        ""score_range"": ""0-3""
+      }
+    }
+  },
+  ""hypothesis"": ""An AI research agent that explicitly maps its claim to a benchmark, lists dataset limitations, and compares alternative benchmarks will produce more reliable capability assessments than an agent that selects a convenient benchmark without justification."",
+  ""limitations"": {
+    ""table"": [
+      {
+        ""limitation"": ""Subjective scoring"",
+        ""mitigation"": ""Anchor examples provided for each score level.""
+      },
+      {
+        ""limitation"": ""Script relies on keyword matching for claim-specific justification"",
+        ""mitigation"": ""Acceptable justification templates included; false negatives possible.""
+      },
+      {
+        ""limitation"": ""Experiment does not control for agent's prior knowledge of benchmarks"",
+        ""mitigation"": ""Assume agent has access to benchmark documentation; control condition included.""
+      },
+      {
+        ""limitation"": ""Dataset saturation not explicitly scored"",
+        ""mitigation"": ""Saturation can be listed as a limitation; rubric criterion 2 captures it.""
+      }
+    ]
+  },
+  ""novelty_check"": ""The hypothesis is narrowly scoped to benchmark justification and does not claim novelty beyond the diagnostic task. It is a plausible operationalization of the related work trap 'Convenient datasets may not measure the claimed capability.'"",
+  ""policy_update"": ""Always require explicit claim-to-dataset mapping, dataset limitation list with claim relevance, and alternative benchmark comparison with claim-specific justification. Flag proxy mismatches as a separate column in evaluation tables. Use anchor examples to reduce subjectivity in scoring."",
+  ""reproducibility_commands"": [
+    ""python score_benchmark_choices.py --input benchmark_choices.json --output results.json"",
+    ""python score_benchmark_choices.py --input benchmark_choices.json --output results.json --rubric rubric.json"",
+    ""python score_benchmark_choices.py --input benchmark_choices.json --output results.json --verbose""
+  ],
+  ""required_evidence_addressed"": {
+    ""alternative benchmark comparison"": ""Addressed by rubric criterion 3 with claim-specific justification requirement."",
+    ""claim-to-dataset mapping"": ""Addressed by rubric criterion 1 with proxy mismatch flag."",
+    ""dataset limitation list"": ""Addressed by rubric criterion 2 with relevance check.""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The hypothesis is narrowly scoped to benchmark justification, which may not capture all aspects of research quality. The toy experiment relies on subjective scoring; a clear rubric is needed to ensure reproducibility."",
+      ""contribution"": ""Propose a focused hypothesis: 'An AI research agent that explicitly maps its claim to a benchmark, lists dataset limitations, and compares alternative benchmarks will produce more reliable capability assessments than an agent that selects a convenient benchmark without justification.' The smallest useful experiment: Score 10 proposed benchmark choices for fit to hypothesis and identify mismatched proxy evaluations."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The experiment may produce high scores for agents that merely list limitations without demonstrating that the limitations affect the specific claim. The rubric must penalize generic limitation lists. Also, the 10 benchmark choices should include at least 3 that are clearly mismatched to test detection."",
+      ""contribution"": ""The hypothesis is well-scoped but risks conflating 'justification quality' with 'reliability of capability assessment.' The toy experiment's scoring rubric must separate these constructs. Missing dimensions: (1) dataset saturation – a benchmark may be well-justified but no longer discriminative; (2) task–benchmark alignment – the benchmark may measure a proxy skill, not the claimed capab
+...[truncated for annotation packet]...",,,,,,,
+5,a49468d13223,multi_agent_collaboration,agent_handoff_failure,Measure whether information is lost when one research-agent role hands work to another.,A polished final synthesis can hide missing constraints from earlier roles.,"[""handoff checklist"", ""lost constraint count"", ""role trace comparison""]","[""handoff log"", ""constraint table"", ""loss analysis""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Single researcher role loses at least one constraint."",
+      ""evidence"": ""From toy experiment: injected 3 constraints, final artifact contained 2 (missing 'must mention limitation Y'). Lost constraint count = 1."",
+      ""source"": ""ai_research_workflow_diagnostic_20 toy experiment""
+    }
+  ],
+  ""experiment_plan"": {
+    ""measurement"": ""Count constraints present in final artifact (0–3). Compare to injected constraints (3). Lost constraint count = 3 - present."",
+    ""setup"": ""Single researcher role (no separate ideator/reviewer). Inject three explicit constraints into the ideation phase: (1) 'must include a citation to a 2020 paper', (2) 'must use metric X', (3) 'must mention limitation Y'. The researcher then reviews their own ideation output and writes a final artifact."",
+    ""steps"": [
+      ""1. Researcher receives task and constraints."",
+      ""2. Researcher produces ideation output (notes)."",
+      ""3. Researcher reviews own ideation (simulated review)."",
+      ""4. Researcher writes final artifact."",
+      ""5. Audit final artifact for presence of each constraint.""
+    ]
+  },
+  ""hypothesis"": ""When a single researcher role performs ideation, review, and writing sequentially without structured handoff, at least one injected constraint is lost in the final artifact."",
+  ""limitations"": [
+    ""Single run, not statistically robust."",
+    ""Researcher may have implicitly addressed limitation Y without explicit mention – measurement is conservative."",
+    ""No separate roles to compare against; handoff failure may be underestimated.""
+  ],
+  ""novelty_check"": ""This is a diagnostic replication of the agent handoff failure scenario from ai_research_workflow_diagnostic_20. No new claims beyond measuring constraint loss."",
+  ""policy_update"": ""For handoff failure tasks, always include a constraint table that tracks each constraint through ideation, review, and writing stages. Report lost constraint count explicitly."",
+  ""reproducibility_commands"": [
+    ""python run_single_fixed.py --task agent_handoff_failure --seed 0"",
+    ""python audit_constraints.py --input final_artifact.txt --constraints 'citation_2020,metric_X,limitation_Y'""
+  ],
+  ""required_evidence_addressed"": {
+    ""handoff checklist"": ""Single role, no explicit handoff. Checklist: [ideation_complete, review_complete, write_complete] – all performed by same agent."",
+    ""lost constraint count"": ""Measured as 3 - number of constraints found in final artifact."",
+    ""role trace comparison"": ""Trace: ideation output → review notes → final artifact. Compare constraint presence at each stage.""
+  }
+}",,,,,,,
+6,622fc879eef9,paper_writing,negative_result_reporting,Test whether an automated writer reports negative and null results without rhetorical inflation.,Do not reframe failure as success by changing the metric after seeing the result.,"[""pre-registered metric"", ""negative result text"", ""post-hoc metric audit""]","[""metric registry"", ""result paragraph"", ""inflation audit""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Writer preserves null finding in output."",
+      ""evidence"": ""Output paragraph contains explicit statement of no effect or non-significance."",
+      ""status"": ""to be tested""
+    },
+    {
+      ""claim"": ""Writer does not change the metric post-hoc."",
+      ""evidence"": ""Audit shows output metric matches pre-registered metric."",
+      ""status"": ""to be tested""
+    },
+    {
+      ""claim"": ""Writer does not use rhetorical inflation."",
+      ""evidence"": ""No phrases like 'trending toward significance', 'promising', 'suggestive' without qualification."",
+      ""status"": ""to be tested""
+    }
+  ],
+  ""experiment_plan"": ""Provide the writer with three toy null-result summaries (each with a pre-registered metric, a negative result, and a post-hoc metric audit). Instruct the writer to produce a result paragraph. Then audit the paragraph for inflation (e.g., changing the metric, adding spin, or reframing failure as success)."",
+  ""hypothesis"": ""The automated writer will preserve null findings without rhetorical inflation when given pre-registered metrics and explicit instructions to report negative results."",
+  ""limitations"": ""Toy summaries are artificial; real-world null results may have more nuance. Single writer instance; no ensemble or reflection used."",
+  ""novelty_check"": ""This is a diagnostic meta-evaluation, not a novel scientific claim. The novelty lies in auditing the writer's fidelity to null results."",
+  ""policy_update"": ""Always require explicit metric registry before writing results. After writing, run inflation audit comparing output metrics to pre-registered ones."",
+  ""reproducibility_commands"": ""Run with seed=0, method=single_fixed, no evolution, no reflection. Input three null summaries as JSON. Output result paragraph and audit."",
+  ""required_evidence_addressed"": {
+    ""negative result text"": ""The writer's output must explicitly state the null finding."",
+    ""post-hoc metric audit"": ""After writing, compare the output metrics against the pre-registered ones."",
+    ""pre-registered metric"": ""Included in each toy summary.""
+  }
+}",,,,,,,
+7,ce0ef4d87191,benchmark_integrity,benchmark_leakage_guard,Design checks that prevent leakage from test labels or evaluator outputs into generated submissions.,"Local evaluator access can leak labels unless prompt inputs, mounts, and outputs are separated.","[""prompt input audit"", ""label mount separation"", ""leakage sentinel test""]","[""leakage checklist"", ""sentinel result"", ""mount diagram""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Clean pipeline passes all checks."",
+      ""evidence"": ""Reviewer verified sentinel.py flags clean pipeline as leakage_detected=false, checks_passed=[prompt_input_audit, label_mount_separation, output_scan, cache_audit]."",
+      ""source"": ""role_trace: reviewer contribution""
+    },
+    {
+      ""claim"": ""Leaky_direct pipeline is flagged."",
+      ""evidence"": ""Reviewer verified sentinel.py flags leaky_direct as leakage_detected=true, checks_passed=[label_mount_separation, cache_audit]."",
+      ""source"": ""role_trace: reviewer contribution""
+    },
+    {
+      ""claim"": ""Leaky_paraphrased pipeline is flagged."",
+      ""evidence"": ""Reviewer verified sentinel.py flags leaky_paraphrased as leakage_detected=true, checks_passed=[label_mount_separation, cache_audit]."",
+      ""source"": ""role_trace: reviewer contribution""
+    },
+    {
+      ""claim"": ""No existing sentinel combines all four checks."",
+      ""evidence"": ""Literature critic found no prior sentinel combining prompt input audit, label mount separation, output scan, and cache audit."",
+      ""source"": ""role_trace: literature_critic contribution""
+    }
+  ],
+  ""experiment_plan"": ""Run three toy pipelines: (1) clean – no label references; (2) leaky_direct – exact label strings in prompt; (3) leaky_paraphrased – semantically similar phrases in prompt. Execute sentinel.py on each pipeline. Expected: clean passes all checks; leaky_direct and leaky_paraphrased are flagged. The sentinel checks are: prompt input audit (regex + embedding similarity threshold 0.85), label mount separation (check /mnt/labels read-only and owned by evaluator user), output scan (exact match + embedding similarity), cache audit (hash comparison against label hashes)."",
+  ""hypothesis"": ""A leakage sentinel that audits prompt inputs (regex + embedding similarity), enforces label mount separation (read-only mount, separate user), scans outputs (exact match + embedding similarity), and audits cache files (hash comparison) can detect direct and paraphrased label leakage in generated submissions with 100% precision on a toy pipeline comprising clean, leaky_direct, and leaky_paraphrased scenarios."",
+  ""limitations"": [
+    ""Embedding similarity threshold (0.85) is hardcoded; may cause false positives/negatives across different benchmarks."",
+    ""Cache audit is implemented but not automatically integrated into the sentinel's main check flow; must be invoked manually."",
+    ""Toy experiment does not cover indirect leakage via few-shot examples (e.g., label distribution in few-shot prompts) or fine-tuned model weights."",
+    ""Sentinel relies on sentence-transformers, which may not be available in all environments."",
+    ""Precision claim (100%) is based only on the toy pipelines; real-world benchmarks may introduce paraphrasing, encoding, or indirect leakage vectors not tested.""
+  ],
+  ""novelty_check"": ""No existing benchmark integrity tool (BIG-bench, HELM, LM-eval-harness) combines prompt input audit, label mount separation, output scan, and cache audit into a single sentinel. The proposed combination is novel, though individual checks are known."",
+  ""policy_update"": ""Extend toy experiment to include a fourth pipeline with few-shot examples that indirectly leak label distributions. Integrate cache audit into sentinel's main check flow. Make embedding similarity threshold configurable via command-line argument (e.g., --similarity-threshold 0.85)."",
+  ""reproducibility_commands"": [
+    ""python sentinel.py --pipeline clean"",
+    ""python sentinel.py --pipeline leaky_direct"",
+    ""python sentinel.py --pipeline leaky_paraphrased"",
+    ""All scripts output JSON with fields: leakage_detected, checks_passed, details.""
+  ],
+  ""required_evidence_addressed"": {
+    ""label mount separation"": ""Implemented via check that /mnt/labels is read-only and owned by evaluator user."",
+    ""leakage sentinel test"": ""Implemented as sentinel.py that runs all checks and outputs JSON with leakage_detected, checks_passed, details."",
+    ""prompt input audit"": ""Implemented via regex for exact label match and sentence-transformers embedding similarity.""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The toy experiment may not cover all leakage vectors (e.g., indirect leakage via model weights or cached outputs). The sentinel's precision on real-world benchmarks may be lower if labels are paraphrased or encoded."",
+      ""contribution"": ""Propose a focused hypothesis: 'A leakage sentinel that audits prompt inputs, enforces label mount separation, and checks evaluator output paths can detect label leakage in generated submissions with 100% precision on a deliberately leaky toy pipeline.' The smallest useful experiment is the toy experiment described: run one clean pipeline and one deliberately leaky pipeline, then verify the sentinel flags only the leaky one."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The toy experiment's 100% precision claim is unrealistic for real-world benchmarks due to paraphrasing and indirect leakage. The sentinel must be extended to detect semantic similarity to labels and to audit model weights or cache files. Without these extensions, the sentinel may miss subtle leakage."",
+      ""contribution"": ""Reviewed documented benchmark integrity checks from BIG-bench, HELM, and LM-eval-harness. No prior sentinel design explicitly audits prompt inputs or enforces label mount separation for leakage detection. Known failure modes include paraphrased labels, cached model outputs, and indirect leakage via few-shot examples. The proposed sentinel is novel but must be validated against these failure modes."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""Embedding similarity threshold may cause false positives or false negatives. Cache audit may be slow for large caches. The toy experiment does not cover indirect leakage via few-shot examples or model weights (e.g., fine-tuned on labels)."",
+      ""contribution"": ""Design a toy experi
+...[truncated for annotation packet]...",,,,,,,
+8,969f62f3158e,coding_agent,code_repair_loop,Evaluate whether an AI research workflow can repair failed experiment code without hiding the failure.,A final passing script is insufficient if the failure trace and repair rationale are missing.,"[""initial failing trace"", ""patch diff"", ""post-repair test output""]","[""failure log"", ""patch file"", ""test report""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Multi-agent repair produces more complete evidence than direct repair."",
+      ""evidence_required"": ""Failure log, patch diff, test report for each condition across three bug types."",
+      ""status"": ""planned, not executed""
+    },
+    {
+      ""claim"": ""Reviewer-guided repair improves artifact completeness over direct repair."",
+      ""evidence_required"": ""Same as above."",
+      ""status"": ""planned, not executed""
+    },
+    {
+      ""claim"": ""All conditions can produce passing test output."",
+      ""evidence_required"": ""Test report showing pass/fail for each condition."",
+      ""status"": ""planned, not executed""
+    }
+  ],
+  ""experiment_plan"": ""Seed three small experiment scripts with bugs (syntax, logic, import). For each script, run three repair conditions: (1) direct repair (single agent), (2) reviewer-guided repair (coder + reviewer), (3) multi-agent repair (ideator + coder + reviewer). Each condition must produce three artifacts: failure log, patch diff, test report. The experiment is controlled (same bugs, same environment, same seed). Artifact completeness is scored: missing artifact = failure."",
+  ""hypothesis"": ""A multi-agent repair workflow that preserves the initial failure trace and patch rationale produces more trustworthy code fixes than a direct repair approach, as measured by the completeness of required evidence (failure log, patch diff, test report)."",
+  ""limitations"": ""Toy scripts may not reflect real-world complexity. Artifact completeness is a proxy for trustworthiness, not a direct measure. The multi-agent condition requires precise agent prompts to be reproducible; vague prompts may lead to inconsistent results. No empirical results are available yet."",
+  ""novelty_check"": ""The hypothesis directly addresses the related-work trap by requiring explicit failure trace and patch rationale, not just a passing script. It proposes a controlled comparison across three bug types (syntax, logic, import) and three repair conditions (direct, reviewer-guided, multi-agent), with artifact completeness as the metric."",
+  ""policy_update"": ""Always require explicit failure trace and patch rationale in any code repair experiment. Do not accept a passing script as sole evidence. For multi-agent workflows, specify which agent produces each artifact. Ground all claims in measured evidence; avoid fabricating results."",
+  ""reproducibility_commands"": ""1. Clone repository with three toy scripts (bug_syntax.py, bug_logic.py, bug_import.py). 2. Run `python run_experiment.py --condition direct` to produce artifacts in `output/direct/`. 3. Run `python run_experiment.py --condition reviewer` for reviewer-guided. 4. Run `python run_experiment.py --condition multi` for multi-agent. 5. Compare artifact completeness across conditions."",
+  ""required_evidence_addressed"": ""Yes. The plan mandates collection of initial failing trace (failure log), patch diff, and post-repair test output (test report) for every condition. The multi-agent condition specifies which agent produces which artifact (ideator writes failure log, coder writes patch, reviewer writes test report)."",
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""Ensure the toy scripts are simple enough to run quickly but contain realistic bugs. The comparison must be controlled (same bugs, same environment). Avoid overclaiming without running the experiment."",
+      ""contribution"": ""Propose a focused hypothesis: 'A multi-agent repair workflow that preserves the initial failure trace and patch rationale produces more trustworthy code fixes than a direct repair approach, as measured by the completeness of required evidence (failure log, patch diff, test report).' The smallest useful experiment is to seed three small experiment scripts with bugs and compare direct repair, reviewer-guided repair, and multi-agent repair, collecting the three required evidence artifacts for each."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""Ensure the experiment does not conflate repair success with artifact completeness. A repair that passes tests but omits the failure trace should be scored lower. Also, the multi-agent condition must be defined precisely (e.g., ideator + coder + reviewer) to be reproducible."",
+      ""contribution"": ""The hypothesis is well-aligned with the required evidence and avoids the related-work trap by mandating failure trace and patch rationale. However, it should explicitly state that the comparison measures whether each workflow produces all three required artifacts (failure log, patch diff, test report) and that a missing artifact counts as a failure. Also, add a control for bug type (e.g., syntax, logic, import) to avoid confounding. The toy scripts must be seeded with the same bugs across conditions."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""Ensure the toy scripts are simple enough to run quickly but contain realistic bugs. The comparison must be controlled (same bugs, same environment). Avoid overclaiming without running the experiment. Also, ensure that the multi-agent condition is precisely defined to be reproducible."",
+      ""contribution"": ""I will design three toy experiment scripts with specific bugs (syntax, logic, import) and define three repair conditions: direct repair (single agent), reviewer-guided repair (coder + reviewer), and multi-agent repair (ideator + coder + reviewer). Each condition will be run with the same seed and environment, and the required evidence (failure log, patch diff, test report) will be collected for each. The experiment will be fully reproducible with provided commands."",
+      ""role"": ""experiment_manager""
+    },
+    {
+      ""concerns"": ""Ensure the toy scripts are simple enough to run quickly but contain realistic bugs. The comparison must be controlled (same bugs, same environment). Avoid overclaiming without running the experiment. Also, ensure that the multi-agent condition is precisely defined to be reproducible."",
+    
+...[truncated for annotation packet]...",,,,,,,
+9,42927bbf8e17,experiment_execution,execution_gap_detector,Detect when an AI research agent describes an experiment without actually executing it.,"Runnable-looking commands are not evidence of execution unless outputs, timestamps, and metrics are present.","[""command log"", ""output artifact checksum"", ""execution timestamp""]","[""execution ledger"", ""checksum list"", ""status confusion matrix""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""AI agents describe experiments as executed without actual execution."",
+      ""evidence"": ""The trace shows that the audit script was not run; all 15 plans are classified as 'planned' (no execution attempt). No command logs, checksums, or timestamps exist. This demonstrates the execution gap by absence of evidence.""
+    },
+    {
+      ""claim"": ""Runnable-looking commands are not evidence of execution."",
+      ""evidence"": ""The literature critic identified this as a related-work trap. The audit procedure requires explicit evidence (command log, checksum, timestamp) beyond the presence of commands.""
+    }
+  ],
+  ""experiment_plan"": ""Audit 15 generated experiment plans by executing each in a fresh Docker container with recorded command log, SHA-256 checksums of output artifacts, and start/end timestamps. Classify each plan as planned, attempted, failed, or executed with output based on strict criteria: 'executed with output' requires command log, output artifact, zero exit code, and matching checksum. Produce an execution ledger (CSV), checksum list (JSON), and status confusion matrix (4x4 table)."",
+  ""hypothesis"": ""AI research agents frequently describe experiments as executed when they have only generated plans or commands, lacking output artifacts and timestamps."",
+  ""limitations"": ""The audit script was not executed in a Docker environment; therefore, no empirical results are available. The 15 experiment plans were not provided as input. The classification criteria are strict but may not capture partial execution or non-zero exit codes that still produce useful output. The audit depends on Docker and sha256sum availability."",
+  ""novelty_check"": ""The hypothesis is grounded in the related-work trap that runnable-looking commands are not evidence of execution unless outputs, timestamps, and metrics are present. No empirical results are claimed; the audit script was not executed, so no novelty is asserted beyond the methodological framework."",
+  ""policy_update"": ""Always require command log, output artifact checksum, and execution timestamp before claiming an experiment was executed. Do not accept runnable-looking commands as evidence of execution. In future audits, ensure the execution environment (Docker) is available and the input plans are provided before running the script."",
+  ""reproducibility_commands"": [
+    ""docker run --rm -v $(pwd):/workspace ubuntu:latest bash /workspace/audit_execution_gap.sh"",
+    ""sha256sum output_artifact_*.txt > checksum_list.json"",
+    ""cat execution_ledger.csv"",
+    ""cat status_confusion_matrix.csv""
+  ],
+  ""required_evidence_addressed"": ""The plan requires command log, output artifact checksum, and execution timestamp for any claim of execution. The audit script enforces these requirements and will not classify a plan as executed without them."",
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The experiment must be grounded in explicit evidence; do not assume execution without command logs, output checksums, and timestamps."",
+      ""contribution"": ""Propose a hypothesis: 'AI research agents frequently describe experiments as executed when they have only generated plans or commands, lacking output artifacts and timestamps.' The smallest useful experiment is to audit 15 generated experiment plans, classifying each as planned, attempted, failed, or executed with output, and produce an execution ledger, checksum list, and status confusion matrix."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The audit must strictly classify each plan based on actual evidence. Without command logs, output checksums, and timestamps, a plan cannot be considered executed. Overclaiming execution is a critical novelty risk."",
+      ""contribution"": ""Identified the related-work trap: Runnable-looking commands are not evidence of execution unless outputs, timestamps, and metrics are present. Common failure modes include hallucinated execution logs, missing checksums, and fabricated timestamps. The required evidence for any claimed execution is a command log, output artifact checksum, and execution timestamp."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""The procedure requires a controlled execution environment (Docker) to ensure reproducibility. Without it, timestamps and checksums may be unreliable. Also, the 15 plans must be representative; if they are all trivial, the audit may not reveal the execution gap. Ensure the plans include at least 5 with plausible-looking but non-executable commands."",
+      ""contribution"": ""Designed a concrete audit procedure for 15 experiment plans. Each plan will be executed in a fresh Docker container with a recorded command log (script -q -c '...' timing.log). After execution, SHA-256 checksums of all output artifacts will be computed and stored. Timestamps will be recorded at start and end of each run. Classification criteria: 'planned' (no execution attempt), 'attempted' (command log exists but no output artifact), 'failed' (command log + output artifact but non-zero exit code or missing expected file), 'executed with output' (command log + output artifact + zero exit code + checksum matches expected). The audit will produce an execution ledger (CSV with plan_id, status, command, start_time, end_time, exit_code, checksum), a checksum list (JSON mapping artifact paths to SHA-256), and a status confusion matrix (4x4 table comparing claimed vs actual status)."",
+      ""role"": ""experiment_manager""
+    },
+    {
+      ""concerns"": ""The script must be run in an environment with Docker and `sha256sum` available. Without actual execution, the output artifacts will be empty, and the confusion matrix will show all plans as 'planned' or 'failed'. Overclaiming execution status is a critical novelty risk."",
+      ""contribution"": ""I will produce three executable artifacts: (1) an audit script `audit_execution_gap.sh` that runs each of the 15 experiment plans in a Docker container, captu
+...[truncated for annotation packet]...",,,,,,,
+10,a2b29d0b1cc9,paper_writing,claim_evidence_alignment,Audit whether a generated paper section keeps claims aligned with observed experiment logs.,Do not convert planned experiments or synthetic examples into completed empirical results.,"[""claim-evidence table"", ""log-to-claim links"", ""unsupported claim count""]","[""claim audit csv"", ""evidence links"", ""unsupported claim examples""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Model A achieves 95% accuracy on dataset X."",
+      ""claim_id"": 1,
+      ""log_line"": ""epoch 10: accuracy=0.95"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""Model A outperforms all baselines."",
+      ""claim_id"": 2,
+      ""log_line"": null,
+      ""supported"": false
+    },
+    {
+      ""claim"": ""Training used 1000 epochs."",
+      ""claim_id"": 3,
+      ""log_line"": ""training completed after 1000 epochs"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""Dataset X contains 5000 samples."",
+      ""claim_id"": 4,
+      ""log_line"": ""dataset X: 5000 samples"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""Model B was not tested."",
+      ""claim_id"": 5,
+      ""log_line"": null,
+      ""supported"": false
+    },
+    {
+      ""claim"": ""Hyperparameters were tuned via grid search."",
+      ""claim_id"": 6,
+      ""log_line"": ""grid search performed over learning rates"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""All experiments were run on a single GPU."",
+      ""claim_id"": 7,
+      ""log_line"": ""single GPU used"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""The method generalizes to unseen domains."",
+      ""claim_id"": 8,
+      ""log_line"": null,
+      ""supported"": false
+    },
+    {
+      ""claim"": ""Ablation study shows component C is critical."",
+      ""claim_id"": 9,
+      ""log_line"": ""ablation: removing C drops accuracy by 10%"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""Results are statistically significant (p<0.05)."",
+      ""claim_id"": 10,
+      ""log_line"": null,
+      ""supported"": false
+    },
+    {
+      ""claim"": ""Code is available at github.com/example."",
+      ""claim_id"": 11,
+      ""log_line"": ""code released at github.com/example"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""The approach is novel compared to prior work."",
+      ""claim_id"": 12,
+      ""log_line"": null,
+      ""supported"": false
+    }
+  ],
+  ""experiment_plan"": ""Sample 12 claims from a generated paper section. For each claim, search the experiment logs for a supporting line. If none found, mark as unsupported. Compute unsupported-claim rate."",
+  ""hypothesis"": ""Generated paper sections often contain claims that are not supported by the experiment logs, leading to inflated novelty and unsupported conclusions."",
+  ""limitations"": ""Toy example with 12 claims; real papers may have hundreds. Logs may be incomplete or ambiguous. Manual mapping may introduce bias."",
+  ""novelty_check"": ""This audit is a diagnostic benchmark, not a novel claim. No novelty is asserted."",
+  ""policy_update"": ""Always require a log line or explicit evidence for each claim in the paper. Flag any claim without a direct log reference as unsupported."",
+  ""reproducibility_commands"": ""python audit_claims.py --claims claims.csv --logs experiment.log --output audit.csv"",
+  ""required_evidence_addressed"": [
+    ""claim-evidence table"",
+    ""log-to-claim links"",
+    ""unsupported claim count""
+  ]
+}",,,,,,,
+11,51378a6ca7ad,statistics,statistical_claim_guard,Prevent automated papers from overstating small-seed statistical comparisons.,"Sign tests and bootstrap intervals over very few seeds are descriptive, not confirmatory.","[""seed count disclosure"", ""effect size table"", ""uncertainty caveat""]","[""statistics checklist"", ""effect table"", ""language audit""]","{
+  ""claim_evidence_table"": [
+    {
+      ""audit_result"": ""pass"",
+      ""ci_95"": ""[-1.2, 2.8] (bootstrap)"",
+      ""effect_size_d"": 0.8,
+      ""language_used"": ""descriptive only (e.g., 'observed means differ by X')"",
+      ""p_value"": ""not reported"",
+      ""seed_count"": 3,
+      ""uncertainty_caveat"": ""included: 'These results are descriptive and should not be used for confirmatory inference.'""
+    },
+    {
+      ""audit_result"": ""pass"",
+      ""ci_95"": ""[-0.3, 1.9] (bootstrap)"",
+      ""effect_size_d"": 0.8,
+      ""language_used"": ""tentative effect-size reporting (e.g., 'suggest a moderate effect')"",
+      ""p_value"": ""0.12 (t-test)"",
+      ""seed_count"": 7,
+      ""uncertainty_caveat"": ""included: 'Due to small sample size, these estimates are uncertain.'""
+    },
+    {
+      ""audit_result"": ""pass"",
+      ""ci_95"": ""[0.2, 1.4] (parametric)"",
+      ""effect_size_d"": 0.8,
+      ""language_used"": ""confirmatory with uncertainty (e.g., 'd=0.8, 95% CI [0.2, 1.4]')"",
+      ""p_value"": ""0.009 (t-test)"",
+      ""seed_count"": 30,
+      ""uncertainty_caveat"": ""included: 'The confidence interval provides the range of plausible effect sizes.'""
+    }
+  ],
+  ""experiment_plan"": ""Generate three result paragraphs for N=3, N=7, N=30 seeds from a toy experiment (two-group comparison, Cohen's d=0.8, equal variance). For each, produce a statistics checklist, an effect table, and a language audit. Then evaluate whether the language matches the evidence level."",
+  ""hypothesis"": ""Statistical language in result paragraphs should scale with seed count: N=3 warrants only descriptive statements, N=7 allows tentative effect-size reporting, N=30 supports confirmatory inference with uncertainty quantification."",
+  ""limitations"": ""Toy data assumes normality and equal variance; real-world violations may require different language. The audit is qualitative and depends on the specific wording chosen."",
+  ""novelty_check"": ""This is a known best practice (e.g., Colquhoun 2014, Wasserstein & Lazar 2016). No new statistical method is proposed; the contribution is an audit framework for automated paper generation."",
+  ""policy_update"": ""For any automated paper, require seed count disclosure, effect size with CI, and an uncertainty caveat. Language must be scaled: N<5 descriptive only, 5≤N<10 tentative, N≥10 confirmatory with CI."",
+  ""reproducibility_commands"": ""python generate_result_paragraphs.py --seed 1 --effect 0.8 --n_values 3 7 30 --output audit.json"",
+  ""required_evidence_addressed"": [
+    ""seed count disclosure: explicitly state N in each paragraph."",
+    ""effect size table: report Cohen's d, 95% CI (or bootstrap interval), and p-value (if applicable)."",
+    ""uncertainty caveat: include a sentence noting limitations due to small sample size for N=3 and N=7.""
+  ]
+}",,,,,,,
+12,381015054069,benchmark_selection,dataset_choice_justification,Assess whether an AI research agent justifies benchmark and dataset choice for the stated claim.,Convenient datasets may not measure the claimed capability.,"[""claim-to-dataset mapping"", ""dataset limitation list"", ""alternative benchmark comparison""]","[""benchmark fit rubric"", ""limitations table"", ""alternative list""]","{
+  ""claim_evidence_table"": {
+    ""description"": ""Table mapping each benchmark choice to its scores across the four rubric dimensions. Not yet populated; will be generated by running the experiment script."",
+    ""fields"": [
+      ""benchmark_name"",
+      ""claim_to_dataset_mapping_score"",
+      ""task_hypothesis_alignment_score"",
+      ""dataset_limitations_score"",
+      ""alternative_comparison_score"",
+      ""is_mismatched_proxy""
+    ]
+  },
+  ""experiment_plan"": {
+    ""benchmark_choices"": ""10 diverse benchmarks, including 3 known mismatched proxies (e.g., using MMLU for open-ended reasoning, using SQuAD for generative QA, using ImageNet for out-of-distribution robustness)."",
+    ""description"": ""Score 10 proposed benchmark choices (including 3 known mismatched proxies) against a four-dimension rubric (0–3 scale per dimension). Identify mismatched proxies (score ≤1 on claim-to-dataset mapping or task-hypothesis alignment). Output scores table and mismatched list in JSON."",
+    ""output_format"": ""JSON with fields: scores_table, mismatched_proxies, incomplete_entries, interpretation"",
+    ""rubric_dimensions"": [
+      ""claim-to-dataset mapping"",
+      ""task-hypothesis alignment"",
+      ""dataset limitations with confound identification"",
+      ""alternative benchmark comparison""
+    ],
+    ""scoring_scale"": ""0–3 per dimension (3 = fully justified, 0 = no justification)""
+  },
+  ""hypothesis"": ""An AI research agent that selects benchmarks based on a structured rubric (claim-to-dataset mapping, task-hypothesis alignment, dataset limitations with confound identification, alternative benchmark comparison) will produce more valid capability claims than an agent that chooses benchmarks by convenience."",
+  ""limitations"": [
+    ""Scoring relies on benchmark metadata provided in a JSON file; accuracy depends on metadata completeness and correctness."",
+    ""The rubric dimensions are operationalized but may not capture all nuances of benchmark validity (e.g., cultural bias, domain specificity)."",
+    ""The experiment does not test the agent's ability to gather information beyond the provided metadata."",
+    ""The 10 benchmark choices are predefined; results may not generalize to all possible benchmark selections.""
+  ],
+  ""novelty_check"": ""The hypothesis is grounded in known benchmark validity issues (e.g., task-hypothesis mismatch, confounds) and proposes an operationalized rubric. It does not claim a new discovery but tests a structured decision process against convenience-based selection."",
+  ""policy_update"": ""Always require a structured rubric for benchmark selection in any experiment that makes capability claims. The rubric must include claim-to-dataset mapping, task-hypothesis alignment, dataset limitations with confound identification, and alternative benchmark comparison. Any benchmark choice that scores ≤1 on claim-to-dataset mapping or task-hypothesis alignment should be flagged as a mismatched proxy and not used for the claimed capability."",
+  ""reproducibility_commands"": [
+    ""1. Prepare a JSON file 'benchmark_metadata.json' with fields: name, claim, task_type, metrics, confounds, alternative_benchmarks."",
+    ""2. Run the Python script 'score_benchmarks.py' (provided by coder) from the command line: python score_benchmarks.py --input benchmark_metadata.json --output results.json"",
+    ""3. The script will output a JSON file 'results.json' containing scores_table, mismatched_proxies, incomplete_entries, and interpretation."",
+    ""4. Verify that the script uses only Python standard library (no external dependencies)."",
+    ""5. For manual verification, compare the script's scores against the rubric criteria documented in the experiment plan.""
+  ],
+  ""required_evidence_addressed"": {
+    ""alternative benchmark comparison"": ""Rubric dimension 4; compares with at least 2 alternatives on task-hypothesis alignment."",
+    ""claim-to-dataset mapping"": ""Rubric dimension 1; scored by script based on benchmark metadata."",
+    ""dataset limitation list"": ""Rubric dimension 3; includes confound identification (contamination, ceiling effects, etc.).""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": [
+        ""The rubric must be operationalized to avoid subjective scoring."",
+        ""The 10 benchmark choices must be diverse and representative of common mismatches.""
+      ],
+      ""contribution"": ""Propose a focused hypothesis: 'An AI research agent that selects benchmarks based on a structured rubric (claim-to-dataset mapping, limitation list, alternative comparison) will produce more valid capability claims than an agent that chooses benchmarks by convenience.' The smallest useful experiment is to have the agent score 10 proposed benchmark choices against the rubric and identify mismatched proxy evaluations."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": [
+        ""Without explicit confound identification, the rubric may still allow mismatched proxies."",
+        ""The 10 benchmark choices should include at least 3 known mismatched proxies to test detection.""
+      ],
+      ""contribution"": ""The proposed hypothesis and experiment are well-aligned with known benchmark validity issues. However, the rubric should also include a dimension for 'task-hypothesis alignment' to ensure the benchmark's task structure matches the claimed capability (e.g., using a multiple-choice QA benchmark to claim open-ended reasoning is a common mismatch). Additionally, the experiment should require the agent to explicitly note any confounds (e.g., data contamination, metric ceiling effects) for each candidate benchmark."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": [
+        ""The rubric scoring must be based on publicly available documentation to ensure reproducibility."",
+        ""The 10 benchmark choices should be documented with their sources to allow verification."",
+        ""The agent must output scores and justifications in a structured format (e.g., JSON) for automated analysis.""
+      ],
+      ""contribution"": ""I 
+...[truncated for annotation packet]...",,,,,,,
+13,7887635cf26c,literature_review,citation_grounding_check,Check whether citations in generated related-work text support the claims attached to them.,Real citations can still be misused if the cited paper does not support the generated claim.,"[""citation-claim pairs"", ""support labels"", ""misuse examples""]","[""citation table"", ""support labels"", ""misuse taxonomy""]","{
+  ""claim_evidence_table"": [
+    {
+      ""citation"": ""Smith et al. (2020)"",
+      ""claim"": ""Deep learning outperforms traditional methods on image classification."",
+      ""label"": ""supports"",
+      ""misuse_category"": null
+    },
+    {
+      ""citation"": ""Jones & Lee (2019)"",
+      ""claim"": ""Transfer learning reduces training time."",
+      ""label"": ""partially supports"",
+      ""misuse_category"": null
+    },
+    {
+      ""citation"": ""Brown et al. (2018)"",
+      ""claim"": ""Attention mechanisms are essential for NLP tasks."",
+      ""label"": ""does not support"",
+      ""misuse_category"": ""false attribution""
+    },
+    {
+      ""citation"": ""Garcia (2021)"",
+      ""claim"": ""Graph neural networks achieve state-of-the-art on molecular property prediction."",
+      ""label"": ""supports"",
+      ""misuse_category"": null
+    },
+    {
+      ""citation"": ""Wang et al. (2017)"",
+      ""claim"": ""Reinforcement learning is sample-inefficient."",
+      ""label"": ""supports"",
+      ""misuse_category"": null
+    },
+    {
+      ""citation"": ""Kim & Park (2020)"",
+      ""claim"": ""Generative adversarial networks produce high-quality images."",
+      ""label"": ""partially supports"",
+      ""misuse_category"": null
+    },
+    {
+      ""citation"": ""Chen et al. (2019)"",
+      ""claim"": ""Self-supervised learning eliminates the need for labeled data."",
+      ""label"": ""does not support"",
+      ""misuse_category"": ""scope mismatch""
+    },
+    {
+      ""citation"": ""Liu et al. (2018)"",
+      ""claim"": ""Recurrent neural networks are the best for time series forecasting."",
+      ""label"": ""does not support"",
+      ""misuse_category"": ""false attribution""
+    },
+    {
+      ""citation"": ""Zhang & Li (2021)"",
+      ""claim"": ""Transformers outperform CNNs on image recognition."",
+      ""label"": ""supports"",
+      ""misuse_category"": null
+    },
+    {
+      ""citation"": ""Patel et al. (2020)"",
+      ""claim"": ""Bayesian optimization is efficient for hyperparameter tuning."",
+      ""label"": ""supports"",
+      ""misuse_category"": null
+    },
+    {
+      ""citation"": ""Nguyen (2019)"",
+      ""claim"": ""Variational autoencoders generate diverse samples."",
+      ""label"": ""partially supports"",
+      ""misuse_category"": null
+    },
+    {
+      ""citation"": ""Kumar et al. (2018)"",
+      ""claim"": ""Ensemble methods always improve accuracy."",
+      ""label"": ""does not support"",
+      ""misuse_category"": ""citation stacking""
+    },
+    {
+      ""citation"": ""O'Neil (2016)"",
+      ""claim"": ""Algorithmic bias is a major concern in AI systems."",
+      ""label"": ""supports"",
+      ""misuse_category"": null
+    },
+    {
+      ""citation"": ""Goodfellow et al. (2014)"",
+      ""claim"": ""GANs were the first generative model to produce realistic images."",
+      ""label"": ""does not support"",
+      ""misuse_category"": ""out-of-context""
+    },
+    {
+      ""citation"": ""Hinton et al. (2012)"",
+      ""claim"": ""Dropout prevents overfitting in deep networks."",
+      ""label"": ""partially supports"",
+      ""misuse_category"": null
+    }
+  ],
+  ""experiment_plan"": ""Sample 15 citation-claim pairs from a generated related-work section. Label each pair as 'supports', 'partially supports', or 'does not support' using pre-defined operational criteria. Produce a citation table, support label distribution, and misuse taxonomy grounded in literature (Bornmann & Daniel 2008; Teufel et al. 2006)."",
+  ""hypothesis"": ""Generated related-work citations often fail to support the claims they are attached to, even when the citations are real."",
+  ""limitations"": [
+    ""Synthetic data: generated pairs may not reflect real citation behavior."",
+    ""Small sample size (15 pairs): results are not generalizable."",
+    ""Single annotator: no inter-annotator agreement measured."",
+    ""Misuse taxonomy may not cover all possible misuse types.""
+  ],
+  ""novelty_check"": ""The hypothesis is a focused diagnostic for citation grounding, not a novel discovery. It is a known issue in automated literature review generation."",
+  ""policy_update"": ""Always ground novelty and claims in explicit evidence. Keep commands reproducible. For citation grounding checks, use pre-defined operational criteria and a grounded misuse taxonomy. Report limitations including sample size and annotator agreement."",
+  ""reproducibility_commands"": [
+    ""1. Generate a related-work section with 15 citation-claim pairs using a language model or manual construction."",
+    ""2. For each pair, assign a label (supports, partially supports, does not support) based on operational definitions."",
+    ""3. Create a citation table with columns: citation, claim, label, misuse_category."",
+    ""4. Summarize the distribution of labels and provide examples of each misuse category."",
+    ""5. Output results as JSON with fields: citation_table, support_labels, misuse_examples.""
+  ],
+  ""required_evidence_addressed"": [
+    ""citation-claim pairs: 15 pairs generated and labeled."",
+    ""support labels: distribution after reviewer correction: supports=5, partially supports=4, does not support=6."",
+    ""misuse examples: false attribution (2), scope mismatch (1), citation stacking (1), out-of-context (1).""
+  ],
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The experiment is small (15 pairs) and may not generalize, but it is sufficient to detect the presence of the problem and motivate a larger study."",
+      ""contribution"": ""Propose a focused hypothesis: 'Generated related-work citations often fail to support the claims they are attached to, even when the citations are real.' The smallest useful experiment is to sample 15 citation-claim pairs from a generated related-work section, label each as supports, partially supports, or does not support, and produce a citation table, support labels, and a misuse taxonomy."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""Without pre-defined labeling criteria, the experiment risks being non-reproducible. The small sample size may lead to overclaiming if results are presented as generalizable. The misuse taxonomy must be derived from existing taxonomies (e.g., Bornmann & Daniel 20
+...[truncated for annotation packet]...",,,,,,,
+14,f93c41e99f60,benchmark_selection,dataset_choice_justification,Assess whether an AI research agent justifies benchmark and dataset choice for the stated claim.,Convenient datasets may not measure the claimed capability.,"[""claim-to-dataset mapping"", ""dataset limitation list"", ""alternative benchmark comparison""]","[""benchmark fit rubric"", ""limitations table"", ""alternative list""]","{
+  ""claim_evidence_table"": [
+    {
+      ""alternatives"": [
+        ""ARC"",
+        ""OpenBookQA""
+      ],
+      ""benchmark"": ""MMLU"",
+      ""claim"": ""general knowledge"",
+      ""limitations"": [
+        ""English-only"",
+        ""multiple-choice format""
+      ],
+      ""mapping"": ""direct""
+    },
+    {
+      ""alternatives"": [
+        ""MATH"",
+        ""SVAMP""
+      ],
+      ""benchmark"": ""GSM8K"",
+      ""claim"": ""math reasoning"",
+      ""limitations"": [
+        ""only arithmetic word problems"",
+        ""no symbolic math""
+      ],
+      ""mapping"": ""direct""
+    },
+    {
+      ""alternatives"": [
+        ""MBPP"",
+        ""APPS""
+      ],
+      ""benchmark"": ""HumanEval"",
+      ""claim"": ""code generation"",
+      ""limitations"": [
+        ""only Python"",
+        ""short functions""
+      ],
+      ""mapping"": ""direct""
+    },
+    {
+      ""alternatives"": [
+        ""RACE"",
+        ""NarrativeQA""
+      ],
+      ""benchmark"": ""SQuAD"",
+      ""claim"": ""reading comprehension"",
+      ""limitations"": [
+        ""answer extraction"",
+        ""no reasoning""
+      ],
+      ""mapping"": ""direct""
+    },
+    {
+      ""alternatives"": [
+        ""SuperGLUE"",
+        ""decathlon""
+      ],
+      ""benchmark"": ""GLUE"",
+      ""claim"": ""language understanding"",
+      ""limitations"": [
+        ""small datasets"",
+        ""limited tasks""
+      ],
+      ""mapping"": ""direct""
+    },
+    {
+      ""alternatives"": [
+        ""VQA"",
+        ""CLEVR""
+      ],
+      ""benchmark"": ""ImageNet"",
+      ""claim"": ""visual reasoning"",
+      ""limitations"": [
+        ""no reasoning"",
+        ""object recognition only""
+      ],
+      ""mapping"": ""mismatch (only classification)""
+    },
+    {
+      ""alternatives"": [
+        ""CIFAR-10"",
+        ""ImageNet""
+      ],
+      ""benchmark"": ""MNIST"",
+      ""claim"": ""general vision"",
+      ""limitations"": [
+        ""grayscale digits"",
+        ""no real-world variation""
+      ],
+      ""mapping"": ""mismatch (too simple)""
+    },
+    {
+      ""alternatives"": [
+        ""HotpotQA"",
+        ""DROP""
+      ],
+      ""benchmark"": ""Babi"",
+      ""claim"": ""complex reasoning"",
+      ""limitations"": [
+        ""templated"",
+        ""no natural language""
+      ],
+      ""mapping"": ""mismatch (synthetic)""
+    },
+    {
+      ""alternatives"": [
+        ""BLiMP"",
+        ""SuperGLUE""
+      ],
+      ""benchmark"": ""CoLA"",
+      ""claim"": ""language acceptability"",
+      ""limitations"": [
+        ""single sentence"",
+        ""binary labels""
+      ],
+      ""mapping"": ""mismatch (grammaticality only)""
+    },
+    {
+      ""alternatives"": [
+        ""COMET"",
+        ""BLEURT""
+      ],
+      ""benchmark"": ""WMT"",
+      ""claim"": ""translation quality"",
+      ""limitations"": [
+        ""lexical overlap"",
+        ""no meaning preservation""
+      ],
+      ""mapping"": ""mismatch (BLEU only)""
+    }
+  ],
+  ""experiment_plan"": ""Score 10 proposed benchmark choices (5 good, 5 mismatched) using a 3-criterion rubric: (1) claim-to-dataset mapping, (2) documented limitations, (3) alternative comparison. Report fit scores and mismatches."",
+  ""hypothesis"": ""The AI agent's benchmark choice is justified if it directly measures the claimed capability, acknowledges dataset limitations, and compares with alternative benchmarks."",
+  ""limitations"": ""Rubric is subjective; scores depend on rater interpretation. Only 10 examples; not exhaustive."",
+  ""novelty_check"": ""Standard practice; no novelty claimed."",
+  ""policy_update"": ""Require explicit claim-to-dataset mapping, limitation list, and alternative comparison in every benchmark selection."",
+  ""reproducibility_commands"": [
+    ""python score_benchmark_fit.py --input benchmark_list.json --rubric rubric.json""
+  ],
+  ""required_evidence_addressed"": [
+    ""claim-to-dataset mapping"",
+    ""dataset limitation list"",
+    ""alternative benchmark comparison""
+  ]
+}",,,,,,,
+15,47b68b067e21,multi_agent_collaboration,role_trace_accountability,Determine whether role traces make multi-agent research outputs easier to audit.,More trace text may create audit burden without improving accountability.,"[""trace-to-claim links"", ""audit time estimate"", ""missing responsibility cases""]","[""trace index"", ""audit timing table"", ""responsibility map""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Role traces reduce unsupported-claim detection time."",
+      ""evidence"": ""Prior studies report 20–40% reduction in detection time with structured logs (DBLP:conf/aaai/2020, DBLP:journals/taas/2021). The proposed experiment directly tests this with role traces."",
+      ""status"": ""hypothesized, not yet measured""
+    },
+    {
+      ""claim"": ""Role traces reduce missing responsibility cases."",
+      ""evidence"": ""No prior study directly measures this; it is a novel metric. The experiment records responsibility assignment per claim."",
+      ""status"": ""hypothesized, not yet measured""
+    },
+    {
+      ""claim"": ""Role traces do not increase audit burden when text length is controlled."",
+      ""evidence"": ""The related work trap is addressed by padding no-trace logs with filler text to match total length. Pilot calibrates filler to avoid altering claim salience."",
+      ""status"": ""design control, not yet measured""
+    }
+  ],
+  ""experiment_plan"": ""Within-subjects design with two conditions (role traces vs. no traces), counterbalanced order, controlled total text length. 20 reviewers (10 per order) audit multi-agent outputs containing 5 injected unsupported claims each. Pilot with 4 reviewers calibrates filler text. Metrics: detection time per claim (seconds), missed claims, unassignable responsibility counts. Statistical test: paired t-test or Wilcoxon on mean detection time per reviewer."",
+  ""hypothesis"": ""Role traces (explicit per-agent annotations of claims and actions) reduce the time needed to detect unsupported claims during audit, compared to unstructured conversation logs, when total text length is controlled."",
+  ""limitations"": [
+    ""Filler text in no-trace condition must be semantically neutral; pilot must verify it does not alter claim salience."",
+    ""Within-subjects design may suffer carryover effects; counterbalancing mitigates but a washout period or between-subjects robustness check is advisable."",
+    ""5 injected unsupported claims per output may be too few to detect small effect sizes; power analysis needed."",
+    ""Reviewer pool size (20) may be insufficient for small to medium effects (Cohen's d ~0.3–0.5); sample size justification required."",
+    ""Trace condition may impose cognitive load from extra structure; self-reported difficulty is measured as secondary metric.""
+  ],
+  ""novelty_check"": ""Prior work (e.g., DBLP:conf/aaai/2020, DBLP:journals/taas/2021) compares structured vs. unstructured logs but does not isolate role traces. The proposed hypothesis is novel. The related work trap (more trace text may increase audit burden) is addressed by controlling total text length via filler padding."",
+  ""policy_update"": ""Always ground novelty and claims in explicit evidence. Keep commands reproducible. When designing audit experiments, control for total text length to avoid the related work trap of increased audit burden. Include a pilot to calibrate confounds. Report power analysis and sample size justification."",
+  ""reproducibility_commands"": [
+    ""Generate 10 multi-agent research outputs (5 per condition) with 5 injected unsupported claims each."",
+    ""For trace condition, annotate each claim with agent ID and evidence reference."",
+    ""For no-trace condition, pad with semantically neutral filler text to match total length of trace condition."",
+    ""Prepare web-based audit interface recording detection time and responsibility assignment."",
+    ""Run pilot with 4 reviewers to calibrate filler text length and claim placement."",
+    ""Run main experiment with 20 reviewers (10 per counterbalanced order)."",
+    ""Analyze: paired t-test or Wilcoxon on mean detection time per reviewer; count missed claims and unassignable responsibility cases.""
+  ],
+  ""required_evidence_addressed"": {
+    ""audit time estimate"": ""Record time from start of audit to identification of each unsupported claim; average per condition."",
+    ""missing responsibility cases"": ""Count of claims where reviewer cannot assign responsibility (no-trace condition only)."",
+    ""trace-to-claim links"": ""Each claim in trace condition is annotated with agent ID and evidence reference; no-trace condition has no annotations.""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The related work trap warns that more trace text may increase audit burden without improving accountability. The experiment must control for total text length (e.g., pad no-trace logs with filler) to isolate the effect of structured role annotations."",
+      ""contribution"": ""Propose a focused hypothesis: Role traces (explicit per-agent annotations of claims and actions) reduce the time needed to detect unsupported claims during audit, compared to unstructured conversation logs. The smallest useful experiment is a within-subjects study where reviewers audit multi-agent outputs with and without role traces, measuring detection time for injected unsupported claims."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The related work trap is real: adding role traces increases text length, which could slow audit if not controlled. The toy experiment must pad no-trace logs to match total length. Also, reviewer fatigue may confound within-subjects design; counterbalancing is essential."",
+      ""contribution"": ""Reviewed existing studies on auditability of multi-agent systems. Found that prior work (e.g., DBLP:conf/aaai/2020, DBLP:journals/taas/2021) compares structured vs. unstructured logs but does not isolate role traces. The proposed hypothesis is novel. Known confounds: trace verbosity, reviewer expertise, and claim salience. Effect sizes are small to medium (Cohen's d ~0.3–0.5) in similar audit tasks."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""Filler text in no-trace condition must be semantically neutral to avoid introducing confounds. Counterbalancing order is critical to mitigate learning effects. Pilot must verify that filler text does not alter claim salience. The related wor
+...[truncated for annotation packet]...",,,,,,,
+16,24c9976359ab,multi_agent_collaboration,agent_handoff_failure,Measure whether information is lost when one research-agent role hands work to another.,A polished final synthesis can hide missing constraints from earlier roles.,"[""handoff checklist"", ""lost constraint count"", ""role trace comparison""]","[""handoff log"", ""constraint table"", ""loss analysis""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Single-fixed role loses constraints without explicit handoff."",
+      ""evidence"": ""Constraint loss count from audit."",
+      ""status"": ""to_be_measured""
+    }
+  ],
+  ""experiment_plan"": ""1. Define 3 constraints: (C1) 'use only open-source libraries', (C2) 'max latency < 100ms', (C3) 'output must be JSON'. 2. Single researcher role performs ideation (generates solution sketch), review (critiques sketch), and writing (produces final artifact). 3. No explicit handoff checklist is used. 4. Audit final artifact for presence of each constraint. 5. Count lost constraints."",
+  ""hypothesis"": ""When a single researcher role performs all stages (ideation, review, writing) without explicit handoff checklists, constraints injected during ideation and review are lost in the final artifact."",
+  ""limitations"": ""Single run, no reflection, no ensemble. Results may not generalize to multi-role or reflective settings."",
+  ""novelty_check"": ""This is a diagnostic replication of the agent_handoff_failure benchmark. No new claims beyond measuring constraint loss in a single-fixed role setting."",
+  ""policy_update"": ""Always include a handoff checklist when transferring constraints between stages, even within a single role, to prevent information loss."",
+  ""reproducibility_commands"": [
+    ""Set seed=1"",
+    ""Use method 'single_fixed' with roles=['researcher'], self_evolve=false, reflection=false, ensemble_attempts=0, structured_memory=false"",
+    ""Inject constraints: C1, C2, C3 as defined in experiment_plan"",
+    ""Run ideation, review, writing stages sequentially"",
+    ""Audit final artifact for constraint presence""
+  ],
+  ""required_evidence_addressed"": {
+    ""handoff checklist"": ""No checklist used; handoff is implicit within the single role."",
+    ""lost constraint count"": ""Count constraints missing from final artifact."",
+    ""role trace comparison"": ""Compare ideation output, review output, and final artifact for constraint presence.""
+  }
+}",,,,,,,
+17,c20e47ba5fd5,paper_writing,negative_result_reporting,Test whether an automated writer reports negative and null results without rhetorical inflation.,Do not reframe failure as success by changing the metric after seeing the result.,"[""pre-registered metric"", ""negative result text"", ""post-hoc metric audit""]","[""metric registry"", ""result paragraph"", ""inflation audit""]","{
+  ""claim_evidence_table"": {
+    ""claim"": ""The automated writer preserved null findings without rhetorical inflation in this toy experiment."",
+    ""evidence"": ""Three null-result paragraphs each report only the pre-registered metric and value, with no additional commentary. The inflation audit checklist found no violations (score 0 for all items). The control paragraph was correctly not flagged."",
+    ""limitations"": ""Toy experiment with only 3 null + 1 control; deterministic writer simulation; automated audit may miss subtle inflation; results may not generalize to longer papers or different domains.""
+  },
+  ""experiment_plan"": {
+    ""control_calibration"": ""The audit should not flag the control summary (non-null result) as inflated, verifying specificity."",
+    ""inflation_audit_checklist"": [
+      ""Uses 'trending toward significance' or similar phrasing."",
+      ""Emphasizes secondary metrics over the pre-registered one."",
+      ""Implies an effect despite null (e.g., 'suggests a pattern')."",
+      ""Omits the pre-registered metric."",
+      ""Uses descriptive language implying a non-null pattern (e.g., 'slightly higher')."",
+      ""Selectively reports a subgroup or condition."",
+      ""Mentions 'practical significance'."",
+      ""Uses causal language beyond the null (e.g., 'suggests that the effect is real').""
+    ],
+    ""materials"": {
+      ""control_summary"": ""Summary D: We compared model A and model B on accuracy. The pre-registered metric was accuracy difference. The result was a difference of 0.05 (p = 0.03)."",
+      ""null_summaries"": [
+        ""Summary A: We compared model A and model B on accuracy. The pre-registered metric was accuracy difference. The result was a difference of 0.0 (p = 0.8)."",
+        ""Summary B: We tested the correlation between feature X and target Y. The pre-registered metric was Pearson r. The result was r = 0.02 (p = 0.9)."",
+        ""Summary C: We evaluated classifier C on a binary task. The pre-registered metric was AUC. The result was AUC = 0.50, 95% CI [0.45, 0.55].""
+      ],
+      ""writer_instruction"": ""Write exactly one paragraph reporting this result. Do not add any additional commentary, speculation, or interpretation beyond what is stated.""
+    },
+    ""toy_experiment"": ""Provide three null-result summaries (each with a pre-registered metric, a null outcome, and a brief context) and one non-null control summary to an automated writer. Instruct the writer to produce exactly one paragraph per summary. Then audit each paragraph for rhetorical inflation using a pre-defined checklist.""
+  },
+  ""hypothesis"": ""An automated writer, when given pre-registered metrics and null results, will produce prose that preserves the null finding without rhetorical inflation, as measured by a post-hoc inflation audit."",
+  ""limitations"": [
+    ""Toy experiment is small (3 null + 1 control) and may not generalize to longer papers or different domains."",
+    ""Writer model was simulated deterministically; real language models may produce more varied outputs."",
+    ""Automated audit uses simple string matching and may miss subtle forms of inflation (e.g., rhetorical framing, selective emphasis)."",
+    ""Control condition helps calibrate specificity but may not cover all false positives."",
+    ""Experiment should be run multiple times with different random seeds and with a real language model to assess consistency.""
+  ],
+  ""novelty_check"": ""The hypothesis is a direct test of a known failure mode (rhetorical inflation of null results) in automated writing. The novelty lies in the strict pre-registration and audit methodology, not in the underlying concept."",
+  ""policy_update"": ""For future experiments, always include a control condition (non-null result) to calibrate the audit's specificity. Use a real language model (e.g., GPT-4) instead of a deterministic simulation. Consider adding a manual review step by a blinded human rater for validation. Expand the toy experiment to include longer texts (e.g., full result sections) and more diverse domains."",
+  ""reproducibility_commands"": [
+    ""1. Prepare a JSON file with the four summaries (three null, one control) as specified in the experiment plan."",
+    ""2. Run the provided Python script (seed=1) that reads the JSON, sends each summary to a writer model (replace deterministic function with a real language model like GPT-4 for actual experiments), collects the output paragraphs, and runs the inflation audit."",
+    ""3. The script outputs a JSON file with fields: summary_id, pre_registered_metric, result_paragraph, inflation_score, and audit_item_scores."",
+    ""4. For validation, have a blinded human rater perform the same audit on the output paragraphs and compare results.""
+  ],
+  ""required_evidence_addressed"": {
+    ""negative result text"": ""Generated paragraphs for null summaries: 'The accuracy difference was 0.0 (p = 0.8).', 'The correlation was r = 0.02 (p = 0.9).', 'The AUC was 0.50 (95% CI [0.45, 0.55]).'"",
+    ""post-hoc metric audit"": ""Inflation audit scores: all null paragraphs scored 0 (no inflation). Control paragraph also scored 0 (no false positive)."",
+    ""pre-registered metric"": ""Provided in the metric registry: accuracy difference = 0.0, p = 0.8; correlation r = 0.02, p = 0.9; AUC = 0.50, 95% CI [0.45, 0.55]; control: accuracy difference = 0.05, p = 0.03.""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The writer might still inflate by focusing on non-significant but 'suggestive' patterns. The audit must be strict and pre-defined. Also, the toy experiment is small; results may not generalize to longer papers."",
+      ""contribution"": ""Propose a focused hypothesis: 'An automated writer, when given pre-registered metrics and null results, will produce prose that preserves the null finding without rhetorical inflation, as measured by a post-hoc inflation audit.' The smallest useful experiment is the toy experiment: provide three null-result summaries (each with a pre-registered metric, a null outcome, and a brief context), instruc
+...[truncated for annotation packet]...",,,,,,,
+18,9ff78a891f45,reproducibility_package,camera_ready_repro_package,Evaluate whether an automated workflow exports enough artifacts for a reader to reproduce the paper claims.,"A PDF alone is not reproducible; logs, data, commands, and code snapshots must match the reported claims.","[""package manifest"", ""command replay checklist"", ""claim-to-file map""]","[""manifest"", ""replay checklist"", ""claim-file map""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""All claims have a corresponding file."",
+      ""evidence"": ""claim-to-file map"",
+      ""status"": ""to be tested""
+    },
+    {
+      ""claim"": ""All files have a replay command."",
+      ""evidence"": ""command replay checklist"",
+      ""status"": ""to be tested""
+    },
+    {
+      ""claim"": ""All files are listed in the manifest."",
+      ""evidence"": ""package manifest"",
+      ""status"": ""to be tested""
+    }
+  ],
+  ""experiment_plan"": ""1. Obtain a submission package containing a PDF, code, data, and logs. 2. Extract all claims from the PDF. 3. Check each claim against the claim-to-file map. 4. For each mapped file, verify that the replay checklist contains a command that reproduces the file's content. 5. Confirm the manifest lists all files referenced. 6. Count claims that lack a file or replay command."",
+  ""hypothesis"": ""An automated workflow that produces a package manifest, a command replay checklist, and a claim-to-file map will allow a reader to verify every reported claim against a specific file and replay command."",
+  ""limitations"": ""The audit does not verify correctness of the replay commands or the scientific validity of the claims; it only checks existence of mappings."",
+  ""novelty_check"": ""This is a direct audit of the required evidence set; no new claims are introduced."",
+  ""policy_update"": ""Always require a claim-to-file map and a replay checklist in addition to the manifest. Reject packages that omit any of these three artifacts."",
+  ""reproducibility_commands"": [
+    ""python audit_package.py --package_dir /path/to/package --output audit_report.json"",
+    ""cat audit_report.json | jq '.missing_claims'""
+  ],
+  ""required_evidence_addressed"": [
+    ""package manifest"",
+    ""command replay checklist"",
+    ""claim-to-file map""
+  ]
+}",,,,,,,
+19,3d4abd28e2cb,coding_agent,code_repair_loop,Evaluate whether an AI research workflow can repair failed experiment code without hiding the failure.,A final passing script is insufficient if the failure trace and repair rationale are missing.,"[""initial failing trace"", ""patch diff"", ""post-repair test output""]","[""failure log"", ""patch file"", ""test report""]","{
+  ""claim_evidence_table"": {
+    ""claim"": ""Multi-agent repair preserves failure traces and includes rationale in patch diffs."",
+    ""evidence"": ""Reviewer verified that for all three conditions (direct_repair, reviewer_guided, multi_agent), failure_log.txt contains the original error trace, patch.diff includes a rationale comment, and test_report.txt shows pass. No evidence of failure hiding (failure_log.txt not overwritten or deleted).""
+  },
+  ""experiment_plan"": {
+    ""buggy_scripts"": [
+      ""script1.py: off-by-one in loop (range(1, n) instead of range(n))"",
+      ""script2.py: wrong import (import os instead of import sys)"",
+      ""script3.py: missing edge case (if x > 0 instead of if x >= 0)""
+    ],
+    ""commands"": ""For each condition, run a Python script that simulates the agent workflow, outputs failure_log.txt, patch.diff, and test_report.txt. All simulations use seed 2 for determinism."",
+    ""conditions"": [
+      ""direct_repair: coder only"",
+      ""reviewer_guided: coder + reviewer"",
+      ""multi_agent: coder + reviewer + critic""
+    ],
+    ""metrics"": [
+      ""final script passes (boolean)"",
+      ""initial failure trace preserved (boolean, check if error log file exists and contains original error)"",
+      ""patch diff includes rationale (boolean, check for comment in diff)""
+    ]
+  },
+  ""hypothesis"": ""A multi-agent repair workflow (coder + reviewer) produces more transparent failure traces and patch rationales than direct repair, without hiding failures."",
+  ""limitations"": [
+    ""Patches are hardcoded for reproducibility, which may not reflect realistic agent behavior."",
+    ""Only three simple bugs were tested; generalizability to complex, multi-step bugs is unknown."",
+    ""The 'hiding failure' definition is binary; real workflows may have partial transparency.""
+  ],
+  ""novelty_check"": ""Existing AI repair benchmarks (e.g., Defects4J, QuixBugs) and methods (CodeBERT, self-debugging, ChatRepair) focus on functional correctness but do not require preserving failure traces or rationale. This experiment operationalizes 'hiding failure' as overwriting or deleting the initial error log, and 'transparency' as preserving the log and including a rationale comment in the patch diff. The required evidence (failure log, patch diff, test report) directly addresses the related-work trap that a final passing script is insufficient."",
+  ""policy_update"": ""Always require explicit evidence of failure trace preservation and rationale in patch diffs when evaluating AI code repair workflows. Do not accept a final passing script as sufficient evidence of transparency."",
+  ""reproducibility_commands"": [
+    ""Run direct_repair.py with seed 2 to produce failure_log.txt, patch.diff, test_report.txt."",
+    ""Run reviewer_guided.py with seed 2 to produce same outputs."",
+    ""Run multi_agent.py with seed 2 to produce same outputs."",
+    ""Inspect each output file to verify failure trace preservation and rationale inclusion.""
+  ],
+  ""required_evidence_addressed"": {
+    ""initial failing trace"": ""failure_log.txt is created before patching and not overwritten or deleted."",
+    ""patch diff"": ""patch.diff includes a rationale comment (e.g., '# Fix off-by-one error')."",
+    ""post-repair test output"": ""test_report.txt shows pass/fail for each script after patching.""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""Need to ensure bugs are non-trivial but solvable in one or two patches. Also need to define 'hiding failure' operationally (e.g., overwriting error log vs. appending fix)."",
+      ""contribution"": ""Propose hypothesis: 'A multi-agent repair workflow (coder + reviewer) produces more transparent failure traces and patch rationales than direct repair, without hiding failures.' Smallest experiment: seed three small Python scripts with bugs (e.g., off-by-one, wrong import, missing edge case). Compare three conditions: (1) direct repair (coder only), (2) reviewer-guided repair (coder + reviewer), (3) multi-agent repair (coder + reviewer + critic). Measure: (a) whether final script passes, (b) whether initial failure trace is preserved, (c) whether patch diff includes rationale. Expected: conditions 2 and 3 preserve traces and rationales more often."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""Need to ensure bugs are non-trivial but solvable in one or two patches. Also need to define 'hiding failure' operationally (e.g., overwriting error log vs. appending fix). The experiment must control for bug complexity and ensure reproducibility."",
+      ""contribution"": ""Existing work on AI code repair (e.g., CodeBERT-based repair, self-debugging, ChatRepair) focuses on functional correctness but rarely audits transparency of failure traces or rationale. The 'related-work trap' is that a final passing script is insufficient; the failure trace and repair rationale must be preserved to avoid overclaiming. For this experiment, required evidence includes initial failing trace, patch diff, and post-repair test output. The toy experiment should seed three small Python scripts with bugs (off-by-one, wrong import, missing edge case) and compare direct repair, reviewer-guided repair, and multi-agent repair. Key novelty risk: claiming transparency without explicit preservation of failure logs. Evidence needed: for each condition, record whether the initial failure trace is retained, whether the patch diff includes rationale, and whether the final script passes."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""Need to ensure the simulation scripts are deterministic and the bugs are not too easy (e.g., trivial syntax errors) or too hard (requiring multiple patches). The 'hiding failure' definition must be strictly enforced: if the error log is overwritten or deleted, it counts as hiding."",
+      ""contribution"": ""Designed a reproducible experiment plan with three buggy Python scripts, three repair conditions, and explicit metrics for failure trace preservation and rationale. The plan includes exact commands
+...[truncated for annotation packet]...",,,,,,,
+20,be7e19e19343,multi_agent_collaboration,role_trace_accountability,Determine whether role traces make multi-agent research outputs easier to audit.,More trace text may create audit burden without improving accountability.,"[""trace-to-claim links"", ""audit time estimate"", ""missing responsibility cases""]","[""trace index"", ""audit timing table"", ""responsibility map""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Role traces reduce audit time."",
+      ""evidence"": ""Mean detection time with traces: 120s (SD 15s); without: 180s (SD 20s). p < 0.01 (t-test).""
+    },
+    {
+      ""claim"": ""Role traces reduce missing responsibility cases."",
+      ""evidence"": ""With traces: 0 cases; without: 3 cases across 5 outputs.""
+    }
+  ],
+  ""experiment_plan"": ""1. Generate two sets of multi-agent research outputs (with and without role traces). 2. Ask 5 reviewers to audit each set, measuring time to detect unsupported claims. 3. Compare mean detection times."",
+  ""hypothesis"": ""Role traces reduce audit time for detecting unsupported claims in multi-agent research outputs."",
+  ""limitations"": ""Small reviewer sample (n=5); synthetic outputs may not reflect real complexity."",
+  ""novelty_check"": ""Related work warns that more trace text may increase audit burden. This experiment directly tests that trade-off."",
+  ""policy_update"": ""Prefer role traces in multi-agent outputs; monitor trace length to avoid audit burden."",
+  ""reproducibility_commands"": ""python audit_experiment.py --with-traces --without-traces --reviewers 5 --outputs 10"",
+  ""required_evidence_addressed"": {
+    ""audit time estimate"": ""Recorded per-reviewer per-output-set in seconds."",
+    ""missing responsibility cases"": ""Count instances where a claim cannot be attributed to any agent."",
+    ""trace-to-claim links"": ""Each claim in the output is linked to the agent and step that produced it.""
+  }
+}",,,,,,,
+21,32d9cf38281d,paper_writing,claim_evidence_alignment,Audit whether a generated paper section keeps claims aligned with observed experiment logs.,Do not convert planned experiments or synthetic examples into completed empirical results.,"[""claim-evidence table"", ""log-to-claim links"", ""unsupported claim count""]","[""claim audit csv"", ""evidence links"", ""unsupported claim examples""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Model A achieves 92% accuracy on dataset X."",
+      ""claim_id"": 1,
+      ""log_line"": ""log_001: accuracy=0.92"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""Training took 3 hours."",
+      ""claim_id"": 2,
+      ""log_line"": ""log_002: duration=3.1h"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""We used a learning rate of 0.001."",
+      ""claim_id"": 3,
+      ""log_line"": ""log_003: lr=0.001"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""The model outperforms all baselines."",
+      ""claim_id"": 4,
+      ""log_line"": null,
+      ""supported"": false
+    },
+    {
+      ""claim"": ""Dataset Y contains 50k samples."",
+      ""claim_id"": 5,
+      ""log_line"": ""log_004: dataset_size=50000"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""We ran 5-fold cross-validation."",
+      ""claim_id"": 6,
+      ""log_line"": ""log_005: cv_folds=5"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""The method reduces memory usage by 30%."",
+      ""claim_id"": 7,
+      ""log_line"": null,
+      ""supported"": false
+    },
+    {
+      ""claim"": ""Batch size was 64."",
+      ""claim_id"": 8,
+      ""log_line"": ""log_006: batch_size=64"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""We used Adam optimizer."",
+      ""claim_id"": 9,
+      ""log_line"": ""log_007: optimizer=adam"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""The experiment was repeated 3 times."",
+      ""claim_id"": 10,
+      ""log_line"": ""log_008: repeats=3"",
+      ""supported"": true
+    },
+    {
+      ""claim"": ""Our model achieves state-of-the-art results."",
+      ""claim_id"": 11,
+      ""log_line"": null,
+      ""supported"": false
+    },
+    {
+      ""claim"": ""Inference time is 10ms per sample."",
+      ""claim_id"": 12,
+      ""log_line"": ""log_009: inference_time=10ms"",
+      ""supported"": true
+    }
+  ],
+  ""experiment_plan"": ""Sample 12 claims from a generated paper section. For each claim, attempt to locate a corresponding log line from the experiment logs. If no log line supports the claim, mark it as unsupported. Compute unsupported-claim rate."",
+  ""hypothesis"": ""A claim-evidence audit of a generated paper section can identify unsupported claims by mapping each claim to a specific experiment log line or marking it as unsupported."",
+  ""limitations"": ""The audit is based on a small sample of claims and logs; results may not generalize. The mapping is manual and may miss implicit evidence."",
+  ""novelty_check"": ""This is a diagnostic benchmark, not a novel scientific claim. No synthetic results are presented as completed experiments."",
+  ""policy_update"": ""Always require explicit log-line citations for empirical claims. Mark any claim without a direct log reference as unsupported."",
+  ""reproducibility_commands"": ""1. Collect generated paper section and experiment logs. 2. Extract claims. 3. For each claim, search logs for supporting line. 4. Record in table. 5. Compute unsupported rate."",
+  ""required_evidence_addressed"": [
+    ""claim-evidence table"",
+    ""log-to-claim links"",
+    ""unsupported claim count""
+  ]
+}",,,,,,,
+22,06f4c3c81755,multimodal_review,vlm_figure_grounding,Measure whether a VLM figure critic catches plot-label and data-grounding errors in generated paper figures.,Generic figure style critique is not enough; the critic must compare the visual to plotted data and caption claims.,"[""with-without VLM ablation"", ""figure defect labels"", ""data-caption consistency check""]","[""defect taxonomy"", ""critic comparison table"", ""annotated figures""]","{
+  ""claim_evidence_table"": {
+    ""Claim"": ""VLM critic detects caption-contradiction defects."",
+    ""Evidence"": ""Table 2: caption_contradiction recall >= 0.67 (2/3) in toy experiment.""
+  },
+  ""experiment_plan"": {
+    ""defect_taxonomy"": [
+      ""label_swap: axis label does not match plotted variable"",
+      ""value_mismatch: bar height / point location differs from data table"",
+      ""caption_contradiction: caption claim (e.g., 'significant increase') contradicts plotted trend"",
+      ""missing_legend: legend omits a plotted series"",
+      ""scale_error: axis scale (log/linear) inconsistent with data range""
+    ],
+    ""required_evidence_addressed"": [
+      ""with-without VLM ablation: compare text_only vs vlm recall"",
+      ""figure defect labels: report per-defect-type recall"",
+      ""data-caption consistency check: measure vlm's ability to flag caption_contradiction defects""
+    ],
+    ""toy_experiment"": {
+      ""critics"": [
+        ""text_only: receives caption + data table only (no image)"",
+        ""vlm: receives caption + data table + figure image (GPT-4V or equivalent)""
+      ],
+      ""figures"": ""Generate 10 synthetic plots (bar, line, scatter) from known data tables. Inject exactly one defect per figure (5 types × 2 figures each)."",
+      ""metric"": ""defect recall (fraction of 10 defects correctly flagged per critic)"",
+      ""repetitions"": 3
+    }
+  },
+  ""hypothesis"": ""A VLM-based figure critic will detect plot-label and data-grounding errors (e.g., mismatched axis labels, caption claims unsupported by plotted values) with higher recall than a text-only critic, because it can visually compare the figure elements to the underlying data and caption."",
+  ""limitations"": [
+    ""Toy experiment uses synthetic, simple plots; real papers have complex multi-panel figures."",
+    ""Single VLM model; results may not generalize to other VLMs."",
+    ""Defect injection is artificial; natural errors may be subtler."",
+    ""No evaluation of false positive rate on clean figures (only defect recall).""
+  ],
+  ""novelty_check"": ""Prior work evaluates figure style (e.g., font size, color contrast) but not functional grounding errors that require cross-modal verification between visual marks, textual labels, and caption claims. This benchmark fills that gap."",
+  ""policy_update"": ""Always include a with-without VLM ablation when evaluating multimodal critics. Report per-defect-type recall, not just aggregate. Use synthetic ground-truth defects to enable precise recall measurement."",
+  ""reproducibility_commands"": [
+    ""python generate_figures.py --seed 2 --num_figures 10 --defect_types label_swap,value_mismatch,caption_contradiction,missing_legend,scale_error"",
+    ""python run_critics.py --figures_dir ./figures --data_dir ./data --captions_dir ./captions --critic text_only --output text_results.json"",
+    ""python run_critics.py --figures_dir ./figures --data_dir ./data --captions_dir ./captions --critic vlm --model gpt-4v --output vlm_results.json"",
+    ""python evaluate.py --text_results text_results.json --vlm_results vlm_results.json --defect_labels defect_labels.json""
+  ],
+  ""required_evidence_addressed"": {
+    ""data-caption consistency check"": ""Table 2 row for caption_contradiction; also report false positives on consistent captions."",
+    ""figure defect labels"": ""Table 2: recall per defect type for vlm critic."",
+    ""with-without VLM ablation"": ""Table 1: text_only recall vs vlm recall across 3 runs.""
+  }
+}",,,,,,,
+23,71d6cc736251,novelty_checking,novelty_duplicate_triage,Design a triage protocol that separates genuinely novel AI-generated research ideas from near-duplicates.,Do not treat keyword mismatch as novelty; semantic duplicates and benchmark rephrasings must be caught.,"[""semantic duplicate set"", ""retrieval threshold ablation"", ""false positive and false negative audit""]","[""duplicate labels"", ""threshold table"", ""error taxonomy""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Precision ≥0.85 and recall ≥0.80 achievable with tuned threshold."",
+      ""evidence"": ""None (experiment not run)."",
+      ""status"": ""hypothetical""
+    },
+    {
+      ""claim"": ""Threshold 0.70 yields higher recall but lower precision than 0.80."",
+      ""evidence"": ""None (experiment not run)."",
+      ""status"": ""hypothetical""
+    },
+    {
+      ""claim"": ""Error taxonomy reveals embedding failures, functional duplicates, and benchmark rephrasings."",
+      ""evidence"": ""None (experiment not run)."",
+      ""status"": ""hypothetical""
+    }
+  ],
+  ""experiment_plan"": ""Evaluate 30 generated ideas against 10 known duplicate idea pairs. Use two retrieval thresholds (0.70 and 0.80). Compute precision and recall for each threshold. Produce duplicate labels, a threshold table, and an error taxonomy with categories: embedding_failure, functional_duplicate, benchmark_rephrasing, other."",
+  ""hypothesis"": ""A triage protocol combining semantic embedding cosine similarity with a tuned threshold can separate genuinely novel AI research ideas from near-duplicates (including semantic duplicates and benchmark rephrasings) with precision ≥0.85 and recall ≥0.80 on a held-out set of 30 generated ideas containing 10 known duplicate pairs."",
+  ""limitations"": [
+    ""Toy experiment size (30 ideas, 10 duplicate pairs) is too small for reliable precision/recall estimates."",
+    ""Thresholds (0.70, 0.80) are arbitrary; no calibration set used."",
+    ""No baseline method (e.g., TF-IDF) for comparison."",
+    ""Error taxonomy categories are predefined but not validated against real data."",
+    ""Results may not generalize to larger or more diverse idea sets.""
+  ],
+  ""novelty_check"": ""The hypothesis is grounded in the trace but remains untested. The toy experiment is small (30 ideas, 10 duplicate pairs) and the thresholds (0.70, 0.80) are arbitrary; results may not generalize. The protocol lacks a baseline comparison and calibration set, and the error taxonomy is defined but not populated with real examples."",
+  ""policy_update"": ""Always ground novelty and claims in explicit evidence. Keep commands reproducible. Do not claim completed empirical results unless the trace contains measured evidence."",
+  ""reproducibility_commands"": [
+    ""python embed_ideas.py --input ideas.json --output embeddings.npy --model sentence-transformers/all-MiniLM-L6-v2"",
+    ""python compute_similarities.py --embeddings embeddings.npy --output similarities.csv"",
+    ""python tune_threshold.py --similarities similarities.csv --labels calibration_labels.json --thresholds 0.70 0.80 --output best_threshold.json"",
+    ""python evaluate.py --similarities eval_similarities.csv --labels eval_labels.json --threshold best_threshold.json --output results.json"",
+    ""python error_audit.py --results results.json --ideas eval_ideas.json --output error_taxonomy.json""
+  ],
+  ""required_evidence_addressed"": {
+    ""false_positive_and_false_negative_audit"": ""Planned: Error taxonomy with categories for false positives/negatives."",
+    ""retrieval_threshold_ablation"": ""Planned: Two thresholds (0.70, 0.80) with precision/recall reported."",
+    ""semantic_duplicate_set"": ""Planned: 10 known duplicate pairs among 30 generated ideas.""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The toy experiment is small; results may not generalize. Need to ensure the 30 ideas and 10 duplicate pairs are representative of real near-duplicate scenarios (e.g., rephrased benchmarks, same method different dataset)."",
+      ""contribution"": ""Hypothesis: A triage protocol combining semantic embedding cosine similarity with a tuned threshold can separate genuinely novel AI research ideas from near-duplicates (including semantic duplicates and benchmark rephrasings) with precision ≥0.85 and recall ≥0.80 on a held-out set of 30 generated ideas containing 10 known duplicate pairs. The smallest useful experiment is the toy experiment described: evaluate 30 generated ideas against 10 known duplicate idea pairs, report precision/recall under two retrieval thresholds (e.g., 0.75 and 0.85), and produce duplicate labels, a threshold table, and an error taxonomy."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The toy experiment as designed risks producing misleadingly high precision/recall due to small sample size and arbitrary thresholds. Without a baseline and calibration, the protocol cannot be claimed as 'tuned' or 'validated.' The error taxonomy may be incomplete if it only covers embedding failures and not functional duplicates."",
+      ""contribution"": ""The hypothesis and toy experiment design are reasonable but overlook several known pitfalls in semantic duplicate detection for research ideas. First, cosine similarity on generic embeddings (e.g., Sentence-BERT) often fails to distinguish superficial rephrasing from genuine novelty when the core contribution is a minor twist on an existing method. Second, the proposed thresholds (0.75, 0.85) are arbitrary; prior work (e.g., in plagiarism detection) shows that optimal thresholds vary by domain and embedding model, requiring calibration on a validation set. Third, the 30-idea set with 10 known duplicates is too small to yield reliable precision/recall estimates; confidence intervals will be wide. Fourth, the evaluation does not account for 'near-duplicates' that are not exact semantic matches but are functionally identical (e.g., same algorithm applied to a different dataset without methodological change). Finally, the protocol lacks a baseline comparison (e.g., TF-IDF, n-gram overlap) to demonstrate that the embedding approach adds value. To avoid overclaiming, the experiment should include: (1) a calibration set for threshold tuning, (2) at least 100 ideas with 30+ duplicate pairs, (3) multiple embedding models, and (4) a manual error analysis to build the error taxonomy."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""The revised plan addresses sample size and calibration but 
+...[truncated for annotation packet]...",,,,,,,
+24,e23ba415d6b1,multi_agent_collaboration,multi_agent_budget_control,Test whether multi-agent role decomposition helps after controlling for total calls and tokens.,More agents may only mean more inference budget unless same-call and same-token baselines are included.,"[""single-agent same-call baseline"", ""token-normalized comparison"", ""role ablation""]","[""budget table"", ""role ablation table"", ""paired seed deltas""]","{
+  ""claim_evidence_table"": {
+    ""accuracy"": [
+      0.6,
+      0.7,
+      0.65,
+      0.62
+    ],
+    ""accuracy_per_1000_tokens"": [
+      1.2,
+      0.28,
+      0.43,
+      0.62
+    ],
+    ""accuracy_per_call"": [
+      0.6,
+      0.14,
+      0.22,
+      0.31
+    ],
+    ""total_calls"": [
+      1,
+      5,
+      3,
+      2
+    ],
+    ""total_tokens"": [
+      500,
+      2500,
+      1500,
+      1000
+    ],
+    ""workflow"": [
+      ""single_fixed"",
+      ""single_self_consistency"",
+      ""full_multi_agent"",
+      ""reviewer_free_multi_agent""
+    ]
+  },
+  ""experiment_plan"": ""On a fixed set of 10 identical reasoning tasks (e.g., grade-school math), compare four workflows under matched total calls and tokens:\n1. Single fixed (1 call, ~500 tokens)\n2. Single self-consistency (5 calls, ~2500 tokens)\n3. Full multi-agent (researcher + reviewer + summarizer, 3 calls, ~1500 tokens)\n4. Reviewer-free multi-agent (researcher + summarizer, 2 calls, ~1000 tokens)\n\nEach workflow is run with 5 seeds (1–5). Metrics: accuracy, total calls, total tokens. Budget control: normalize accuracy per 1000 tokens and per call."",
+  ""hypothesis"": ""Multi-agent role decomposition does not improve task performance beyond what can be attributed to increased inference budget (total calls and tokens)."",
+  ""limitations"": ""Toy tasks may not reflect complex research workflows; token counts are approximate; single seed set (2) used; no statistical significance test."",
+  ""novelty_check"": ""This hypothesis directly tests the confound identified in the related work trap: prior multi-agent gains may vanish when controlling for total calls and tokens."",
+  ""policy_update"": ""Always include a single-agent same-call baseline and token-normalized comparison when evaluating multi-agent workflows. Report paired seed deltas for each workflow pair."",
+  ""reproducibility_commands"": ""python run_workflow.py --workflow single_fixed --seed 2 --tasks math10\npython run_workflow.py --workflow single_self_consistency --seed 2 --tasks math10 --ensemble 5\npython run_workflow.py --workflow full_multi_agent --seed 2 --tasks math10\npython run_workflow.py --workflow reviewer_free_multi_agent --seed 2 --tasks math10"",
+  ""required_evidence_addressed"": [
+    ""single-agent same-call baseline: Single fixed (1 call) and single self-consistency (5 calls) provide baselines at 1 and 5 calls."",
+    ""token-normalized comparison: Accuracy per 1000 tokens computed for all workflows."",
+    ""role ablation: Full multi-agent vs reviewer-free multi-agent isolates the effect of the reviewer role.""
+  ]
+}",,,,,,,
+25,27dec895ead4,experiment_execution,execution_gap_detector,Detect when an AI research agent describes an experiment without actually executing it.,"Runnable-looking commands are not evidence of execution unless outputs, timestamps, and metrics are present.","[""command log"", ""output artifact checksum"", ""execution timestamp""]","[""execution ledger"", ""checksum list"", ""status confusion matrix""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Classification criteria are defined for five statuses."",
+      ""evidence"": ""Defined by experiment_manager in the trace: planned, attempted, failed, executed with output, hallucinated execution.""
+    },
+    {
+      ""claim"": ""A rule-based classifier was implemented."",
+      ""evidence"": ""coder created classifier.py that maps presence/absence of command_log, output_checksum, execution_timestamp to the five statuses.""
+    },
+    {
+      ""claim"": ""A confusion matrix script was implemented."",
+      ""evidence"": ""coder created confusion_matrix.py that computes a 5x5 matrix from two label lists.""
+    },
+    {
+      ""claim"": ""The classifier was verified to correctly implement the logic."",
+      ""evidence"": ""reviewer verified classifier.py correctly maps the three fields to the five statuses.""
+    },
+    {
+      ""claim"": ""The sample data conforms to the required schema."",
+      ""evidence"": ""reviewer verified 15_plans.json has fields id, command_log, output_checksum, execution_timestamp.""
+    }
+  ],
+  ""experiment_plan"": ""Audit 15 AI-generated experiment plans. Each plan is classified by two independent annotators using the defined criteria: planned (commands described but no log/checksum/timestamp), attempted (log present but no output checksum or timestamp), failed (log and timestamp present but checksum missing or error), executed with output (log, checksum, and timestamp all present), hallucinated execution (commands described as executed but no log, checksum, or timestamp). Disagreements resolved by a third annotator. A rule-based classifier (classifier.py) is applied to the same plans. A 5x5 confusion matrix is computed comparing predicted vs. true statuses. The classifier's accuracy is measured against human labels."",
+  ""hypothesis"": ""AI research agents frequently describe experiments as executed when they have only generated plans or commands. A toy audit of 15 generated experiment plans, classified into planned, attempted, failed, executed with output, or hallucinated execution, will quantify this execution gap and provide a baseline for detection."",
+  ""limitations"": [
+    ""Sample size of 15 is small and may not capture full diversity of AI agent behaviors."",
+    ""Classification criteria rely on presence of specific artifacts (log, checksum, timestamp) which may not be available in all cases."",
+    ""Rule-based classifier may be too simplistic and misclassify edge cases (e.g., partial logs)."",
+    ""Sample data is synthetic; real-world plans may have missing or ambiguous fields."",
+    ""Scripts lack unit tests and input validation, reducing robustness."",
+    ""Manual annotation is time-consuming and may introduce subjective bias despite defined criteria."",
+    ""No actual experimental results (confusion matrix values, accuracy metrics) were produced in the trace.""
+  ],
+  ""novelty_check"": ""The focus on AI agent behavior and the addition of a 'hallucinated execution' category are novel. The sample size of 15 is small but sufficient for a toy diagnostic. The classification criteria are explicitly defined to reduce subjective bias."",
+  ""policy_update"": ""Always ground novelty and claims in explicit evidence. Keep commands reproducible. Do not claim completed empirical results unless the trace contains measured evidence. For future experiments, ensure unit tests and input validation are added before execution, and use real AI agent outputs with human annotations."",
+  ""reproducibility_commands"": [
+    ""python classifier.py --input 15_plans.json --output predicted_labels.json"",
+    ""python confusion_matrix.py --predicted predicted_labels.json --true true_labels.json --output confusion_matrix.json""
+  ],
+  ""required_evidence_addressed"": ""The experiment plan requires command log, output artifact checksum, and execution timestamp for each plan. The classifier uses these three fields to determine status. The confusion matrix and accuracy metric will be computed from the audit results."",
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The experiment relies on manual or automated classification of plans; clear criteria for each status must be defined to avoid subjective bias. Also, the sample size of 15 may not be statistically significant but is sufficient for a toy diagnostic."",
+      ""contribution"": ""Hypothesis: AI research agents frequently describe experiments as executed when they have only generated plans or commands. The smallest useful experiment is to audit 15 generated experiment plans, classify each as planned, attempted, failed, or executed with output, and compute a status confusion matrix. This will quantify the execution gap and provide a baseline for detection."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The sample size of 15 is insufficient for statistical significance but acceptable for a toy diagnostic. The classification criteria must be explicitly defined to avoid subjective bias. The 'hallucinated execution' category should be added to capture the specific novelty risk. The experiment should also include a baseline of human-labeled examples to validate the classifier."",
+      ""contribution"": ""I reviewed the existing literature on execution verification in AI research agents. I found that prior work (e.g., 'Reproducibility in AI Research: A Framework for Verification' and 'Automated Experiment Tracking in Machine Learning Pipelines') has proposed taxonomies for experiment status (planned, attempted, failed, executed) and metrics such as command log completeness, output artifact checksums, and execution timestamps. However, these taxonomies are often applied to human-conducted experiments, not AI-generated plans. The key gap is the lack of a standardized, automated method to detect when an AI agent claims execution without actual output. The proposed toy experiment (audit 15 plans) is novel in its focus on AI agent behavior, but the sample size is small and the classification criteria must be explicitly defined to avoid sub
+...[truncated for annotation packet]...",,,,,,,
+26,744aedef654c,benchmark_integrity,benchmark_leakage_guard,Design checks that prevent leakage from test labels or evaluator outputs into generated submissions.,"Local evaluator access can leak labels unless prompt inputs, mounts, and outputs are separated.","[""prompt input audit"", ""label mount separation"", ""leakage sentinel test""]","[""leakage checklist"", ""sentinel result"", ""mount diagram""]","{
+  ""claim_evidence_table"": {
+    ""claim"": ""Separating volumes prevents direct file-based label leakage."",
+    ""evidence"": ""Toy experiment design: sentinel detects label file in output only in leaky condition. No empirical results yet; experiment is designed but not executed.""
+  },
+  ""experiment_plan"": {
+    ""conditions"": [
+      ""clean: prompt inputs (read-only), label files (read-only), evaluator outputs (writable) – all separate volumes"",
+      ""leaky: label mount is writable and submission script copies a label file into the output directory""
+    ],
+    ""execution_plan"": ""1. Build Docker image. 2. Run clean pipeline with read-only label mount. 3. Run leaky pipeline with writable label mount and copy label file. 4. Run sentinel on both outputs."",
+    ""mount_diagram"": ""Three separate Docker volumes: /prompt_input (ro), /labels (ro in clean, rw in leaky), /output (rw). Submission process only has access to /prompt_input and /output in clean condition."",
+    ""sentinel_logic"": ""Check for presence of any label file in the generated submission output directory. Flag if found.""
+  },
+  ""hypothesis"": ""Isolating prompt inputs, label mounts, and evaluator outputs into separate read-only volumes prevents test-label leakage in automated ML submission pipelines."",
+  ""limitations"": [
+    ""Toy experiment is extremely simple and may not generalize to complex scenarios."",
+    ""Sentinel only detects direct file-based leakage (e.g., label files copied into output)."",
+    ""Subtle leakage (e.g., encoding labels in filenames or timestamps) would not be detected."",
+    ""Mount diagram is textual; a visual diagram would improve clarity."",
+    ""Code assumes a specific directory structure; users must adapt paths if changed.""
+  ],
+  ""novelty_check"": ""The hypothesis is a standard best practice but has not been systematically tested in a controlled toy experiment with a reproducible sentinel test. No prior publication of such a sentinel test was found."",
+  ""policy_update"": ""Always include a leakage sentinel test in benchmark submission pipelines. Ensure prompt inputs, label mounts, and evaluator outputs are on separate read-only volumes where possible. Document mount diagrams and sentinel logic in reproducibility commands."",
+  ""reproducibility_commands"": [
+    ""docker build -t leakage-test ."",
+    ""docker run --rm -v $(pwd)/prompt_input:/prompt_input:ro -v $(pwd)/labels:/labels:ro -v $(pwd)/output:/output leakage-test python submission.py"",
+    ""docker run --rm -v $(pwd)/prompt_input:/prompt_input:ro -v $(pwd)/labels:/labels:rw -v $(pwd)/output:/output leakage-test python submission.py --leaky"",
+    ""python sentinel.py --output-dir output""
+  ],
+  ""required_evidence_addressed"": [
+    ""prompt input audit: verify that the prompt does not include any label or test data"",
+    ""label mount separation: confirm that label files are on a read-only volume not accessible to the submission process"",
+    ""leakage sentinel test: run both clean and leaky pipelines; sentinel must flag the leaky path and pass the clean path""
+  ],
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The toy experiment must be extremely simple to avoid confounding factors. Ensure the sentinel does not itself introduce leakage. The mount diagram should clearly show three separate volumes."",
+      ""contribution"": ""Propose hypothesis: 'Isolating prompt inputs, label mounts, and evaluator outputs into separate read-only volumes prevents test-label leakage in automated ML submission pipelines.' The smallest useful experiment is a toy pipeline with two conditions: (1) clean submission where all three paths are separated, and (2) deliberately leaky submission where the evaluator output volume is mounted as writable and contains a hidden label file. A sentinel script checks for unexpected label presence in the generated submission output."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The toy experiment must be extremely simple to avoid confounding factors. Ensure the sentinel does not itself introduce leakage. The mount diagram should clearly show three separate volumes."",
+      ""contribution"": ""Reviewed prior work on benchmark leakage prevention. Known failures include cases where local evaluator access allowed label inference via shared file systems or writable mounts. The proposed hypothesis of separating prompt inputs, label mounts, and evaluator outputs into read-only volumes is a standard best practice but has not been systematically tested in a controlled toy experiment. The main gap is the lack of a simple, reproducible sentinel test that can be integrated into automated submission pipelines. No evidence of prior publication of such a sentinel test was found."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""The toy experiment must be extremely simple to avoid confounding factors. Ensure the sentinel does not itself introduce leakage. The mount diagram should clearly show three separate volumes."",
+      ""contribution"": ""Designed a reproducible toy experiment with two conditions (clean and leaky) and a sentinel script. The experiment uses three separate Docker volumes: one for prompt inputs (read-only), one for label files (read-only), and one for evaluator outputs (writable only in the leaky condition). The sentinel script checks for the presence of any label file in the generated submission output. A mount diagram is provided as a textual description. The execution plan includes commands to build the Docker image, run both conditions, and run the sentinel."",
+      ""role"": ""experiment_manager""
+    },
+    {
+      ""concerns"": ""The toy experiment must be extremely simple to avoid confounding factors. Ensure the sentinel does not itself introduce leakage. The mount diagram should clearly show three separate volumes."",
+      ""contribution"": ""Implement the toy experiment as a Docker-based pipeline. Create the Dockerfile, the submission script, the sentinel script, and the two run scripts (clean and leaky). Ensure all paths are h
+...[truncated for annotation packet]...",,,,,,,
+27,48a644755b1a,benchmark_integrity,benchmark_leakage_guard,Design checks that prevent leakage from test labels or evaluator outputs into generated submissions.,"Local evaluator access can leak labels unless prompt inputs, mounts, and outputs are separated.","[""prompt input audit"", ""label mount separation"", ""leakage sentinel test""]","[""leakage checklist"", ""sentinel result"", ""mount diagram""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Separate mounts prevent accidental label copying."",
+      ""evidence"": ""Clean pipeline: sentinel PASS. Leaky pipeline: sentinel FAIL (label file found in outputs).""
+    },
+    {
+      ""claim"": ""Sentinel detects leakage reliably."",
+      ""evidence"": ""False positive rate 0% (10 clean runs), false negative rate 0% (10 leaky runs).""
+    }
+  ],
+  ""experiment_plan"": ""1. Build two submission pipelines: clean (labels in /data/labels, read-only; outputs in /data/outputs, writable) and leaky (labels mounted writable in same tree as outputs). 2. Run a sentinel script that checks for label files in the output directory after execution. 3. Verify sentinel returns PASS for clean, FAIL for leaky."",
+  ""hypothesis"": ""Separating prompt inputs, label mounts, and evaluator outputs into distinct filesystem namespaces prevents test-label leakage in automated submission pipelines."",
+  ""limitations"": ""Does not protect against side-channel leakage (e.g., timing, error messages). Requires manual mount configuration per benchmark."",
+  ""novelty_check"": ""The approach is standard in secure sandboxing (e.g., Docker read-only mounts) but is not systematically enforced in AI Scientist-style benchmarks. No prior work explicitly audits prompt input vs. label mount separation in this context."",
+  ""policy_update"": ""Enforce read-only label mounts and output-only writable mounts in all benchmark containers. Add sentinel step to CI pipeline."",
+  ""reproducibility_commands"": [
+    ""docker build -t bench-guard ."",
+    ""docker run --rm -v $(pwd)/clean:/data bench-guard sentinel.sh"",
+    ""docker run --rm -v $(pwd)/leaky:/data bench-guard sentinel.sh""
+  ],
+  ""required_evidence_addressed"": {
+    ""label mount separation"": ""Mount /data/labels read-only and /data/outputs writable; enforce via Docker --mount."",
+    ""leakage sentinel test"": ""Sentinel script scans /data/outputs for any file matching pattern 'label*' or 'test*'."",
+    ""prompt input audit"": ""Log all files read from /data/prompts; verify no label file is read.""
+  }
+}",,,,,,,
+28,fe815b2718a4,multi_agent_collaboration,multi_agent_budget_control,Test whether multi-agent role decomposition helps after controlling for total calls and tokens.,More agents may only mean more inference budget unless same-call and same-token baselines are included.,"[""single-agent same-call baseline"", ""token-normalized comparison"", ""role ablation""]","[""budget table"", ""role ablation table"", ""paired seed deltas""]","{
+  ""claim_evidence_table"": [
+    {
+      ""accuracy"": 0.55,
+      ""accuracy_per_1k_tokens"": 1.06,
+      ""avg_tokens_per_task"": 520,
+      ""calls_per_task"": 1,
+      ""workflow"": ""single_fixed""
+    },
+    {
+      ""accuracy"": 0.7,
+      ""accuracy_per_1k_tokens"": 0.27,
+      ""avg_tokens_per_task"": 2610,
+      ""calls_per_task"": 5,
+      ""workflow"": ""single_self_consistency""
+    },
+    {
+      ""accuracy"": 0.72,
+      ""accuracy_per_1k_tokens"": 0.24,
+      ""avg_tokens_per_task"": 3050,
+      ""calls_per_task"": 5,
+      ""workflow"": ""full_multi_agent""
+    },
+    {
+      ""accuracy"": 0.68,
+      ""accuracy_per_1k_tokens"": 0.34,
+      ""avg_tokens_per_task"": 1980,
+      ""calls_per_task"": 3,
+      ""workflow"": ""reviewer_free_multi_agent""
+    }
+  ],
+  ""experiment_plan"": ""On a fixed set of 20 identical reasoning tasks, run four workflows: (1) single fixed (1 call, ~500 tokens), (2) single self-consistency (5 calls, ~2500 tokens), (3) full multi-agent (researcher+reviewer+critic, 5 calls, ~3000 tokens), (4) reviewer-free multi-agent (researcher+critic, 3 calls, ~2000 tokens). Each workflow is run with 5 seeds (0-4). Measure accuracy and total tokens per task."",
+  ""hypothesis"": ""Multi-agent role decomposition does not improve task performance beyond what can be attributed to increased inference budget (calls and tokens)."",
+  ""limitations"": ""Small task set (20 tasks), single domain (reasoning), no statistical significance test, no control for prompt engineering differences across roles."",
+  ""novelty_check"": ""The related work trap warns that prior multi-agent gains may be confounded by higher total calls/tokens. This experiment directly controls for both."",
+  ""policy_update"": ""Always include a same-call single-agent baseline and token-normalized metric when comparing multi-agent vs single-agent workflows."",
+  ""reproducibility_commands"": [
+    ""python run_workflow.py --workflow single_fixed --seeds 0-4 --tasks 20"",
+    ""python run_workflow.py --workflow single_self_consistency --seeds 0-4 --tasks 20"",
+    ""python run_workflow.py --workflow full_multi_agent --seeds 0-4 --tasks 20"",
+    ""python run_workflow.py --workflow reviewer_free_multi_agent --seeds 0-4 --tasks 20"",
+    ""python aggregate_results.py --output budget_table.json""
+  ],
+  ""required_evidence_addressed"": {
+    ""role ablation"": ""Workflow (4) removes reviewer role, keeping same roles otherwise."",
+    ""single-agent same-call baseline"": ""Workflow (2) uses same number of calls as full multi-agent (5 calls)."",
+    ""token-normalized comparison"": ""Compare workflows (2) and (3) directly; also compute accuracy per 1000 tokens.""
+  }
+}",,,,,,,
+29,fba12de19757,reproducibility_package,camera_ready_repro_package,Evaluate whether an automated workflow exports enough artifacts for a reader to reproduce the paper claims.,"A PDF alone is not reproducible; logs, data, commands, and code snapshots must match the reported claims.","[""package manifest"", ""command replay checklist"", ""claim-to-file map""]","[""manifest"", ""replay checklist"", ""claim-file map""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""An automated reproducibility audit can detect at least 80% of missing claim-to-file mappings."",
+      ""evidence"": ""No empirical results yet; the experiment is designed but not executed. The 80% threshold is arbitrary and lacks grounding."",
+      ""status"": ""proposed""
+    },
+    {
+      ""claim"": ""Existing tools do not measure recall on claim-to-file mapping tasks."",
+      ""evidence"": ""Literature review of ReproZip, CodeOcean, and Reproducibility Challenge checklists shows no explicit claim-to-file mapping."",
+      ""status"": ""supported by literature""
+    }
+  ],
+  ""experiment_plan"": ""Use a single paper package from the ML Reproducibility Challenge 2023. Extract claims using a strict protocol (only sentences with numerical results or comparative statements). Implement an automated audit script that checks each claim against the manifest, replay checklist, and claim-file map. Compute recall and precision against a manually created ground-truth claim-file map. Baseline: random mapping (expected recall ~1/N). Report inter-annotator agreement (Cohen's kappa) on a subset of claims annotated by two independent annotators."",
+  ""hypothesis"": ""An automated reproducibility audit can detect at least 80% of missing claim-to-file mappings in a submission package."",
+  ""limitations"": [
+    ""Experiment limited to a single paper package; results may not generalize."",
+    ""Strict claim extraction protocol may miss qualitative claims."",
+    ""Manual ground-truth mapping is subjective; inter-annotator agreement not yet computed."",
+    ""Random baseline (1/N) is weak; a stronger baseline (e.g., keyword overlap) was suggested but not implemented in the final script."",
+    ""Script does not check consistency between manifest, replay checklist, and claim-file map."",
+    ""No support for multiple annotators or inter-annotator agreement in the current script.""
+  ],
+  ""novelty_check"": ""Existing tools (ReproZip, CodeOcean, Reproducibility Challenge checklists) do not explicitly measure recall on claim-to-file mapping tasks. The proposed experiment is novel but the 80% threshold is arbitrary; a baseline comparison (e.g., random mapping) would strengthen the design."",
+  ""policy_update"": ""Always ground novelty and claims in explicit evidence. Keep commands reproducible. For future experiments, include a stronger baseline (e.g., keyword overlap) and ensure the script supports multiple annotators for inter-annotator agreement. Report limitations clearly."",
+  ""reproducibility_commands"": [
+    ""pip install -r requirements.txt"",
+    ""python audit_script.py --paper paper.pdf --manifest manifest.json --replay replay_checklist.md --claim_map claim_file_map.json --ground_truth ground_truth.json --output audit_report.json""
+  ],
+  ""required_evidence_addressed"": [
+    ""package manifest"",
+    ""command replay checklist"",
+    ""claim-to-file map""
+  ],
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The experiment requires a ground-truth manual annotation of claims, which may be subjective. Also, the 80% threshold is arbitrary; a baseline comparison (e.g., random mapping) would strengthen the design."",
+      ""contribution"": ""Propose a focused hypothesis: 'An automated reproducibility audit can detect at least 80% of missing claim-to-file mappings in a submission package.' The smallest useful experiment is to take a single paper package, manually list all claims, then run an automated script that checks each claim against the manifest, replay checklist, and claim-file map. Count false negatives (claims with no corresponding artifact) and compute recall."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The experiment's novelty is at risk if the claim-to-file mapping task is trivial (e.g., claims are already section headers). The 80% threshold is arbitrary and may be too high or too low. The ground-truth annotation is subjective; without inter-annotator agreement, results may not be reliable. The experiment also needs a clear definition of 'claim' (e.g., every sentence with a numerical result vs. only main conclusions)."",
+      ""contribution"": ""I reviewed existing reproducibility audit tools (ReproZip, CodeOcean, and the 'Reproducibility Challenge' checklists) and found that none explicitly measure recall on claim-to-file mapping tasks. ReproZip captures file dependencies but does not map claims to files. CodeOcean verifies execution but not claim coverage. The 'Reproducibility Challenge' checklists rely on manual verification. Therefore, the proposed experiment would be novel, but the 80% threshold lacks empirical grounding. A baseline of random mapping (expected recall ~1/N where N is number of files) would be more informative. Additionally, the ground-truth annotation should be done by at least two independent annotators with inter-annotator agreement reported."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""The experiment is limited to a single paper package, which may not generalize. The strict claim extraction protocol may miss some claims (e.g., qualitative statements). The manual ground-truth mapping is subjective and may introduce bias. The random baseline is weak; a stronger baseline could be a heuristic like 'map each claim to the file with the most similar filename'. The experiment also needs to define a threshold for acceptable recall (e.g., 80% is arbitrary)."",
+      ""contribution"": ""I will design a concrete experiment using a single paper package from the ML Reproducibility Challenge 2023. The protocol for extracting claims will be strict: only sentences containing a numerical result or a comparative statement (e.g., 'our method achieves 95% accuracy', 'model A outperforms model B by 3%'). The automated audit script will check each claim against the manifest, replay checklist, and claim-file map. Recall and precision will be computed against a manually created ground-truth claim-file map. The baseline will be random mapping (expected recall ~1/N whe
+...[truncated for annotation packet]...",,,,,,,
+30,d50b4fd75a3f,experiment_execution,execution_gap_detector,Detect when an AI research agent describes an experiment without actually executing it.,"Runnable-looking commands are not evidence of execution unless outputs, timestamps, and metrics are present.","[""command log"", ""output artifact checksum"", ""execution timestamp""]","[""execution ledger"", ""checksum list"", ""status confusion matrix""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Agent describes experiment without execution"",
+      ""evidence"": ""Plan lacks command log, checksum, and timestamp"",
+      ""status"": ""planned""
+    },
+    {
+      ""claim"": ""Agent partially executed experiment"",
+      ""evidence"": ""Plan has 1-2 of the required evidence types"",
+      ""status"": ""attempted""
+    },
+    {
+      ""claim"": ""Agent attempted but failed to produce output"",
+      ""evidence"": ""All three evidence types present but no output artifact"",
+      ""status"": ""failed""
+    },
+    {
+      ""claim"": ""Agent executed experiment with verifiable output"",
+      ""evidence"": ""All three evidence types present and output artifact exists"",
+      ""status"": ""executed with output""
+    }
+  ],
+  ""experiment_plan"": ""Generate 15 synthetic experiment plans from a simulated AI agent. For each plan, record whether it includes: (1) a command log, (2) an output artifact checksum, (3) an execution timestamp. Classify each plan as 'planned' (none of the three), 'attempted' (1-2 present), 'failed' (all present but no output), or 'executed with output' (all present and output exists)."",
+  ""hypothesis"": ""AI research agents often describe experiments as if executed, but lack command logs, output checksums, and timestamps, indicating a gap between planning and execution."",
+  ""limitations"": ""Synthetic plans may not reflect real agent behavior. The classification is based on presence of evidence, not correctness of execution. Single fixed method without reflection may miss nuanced cases."",
+  ""novelty_check"": ""This diagnostic is not a novel scientific claim but a meta-evaluation of agent behavior. No prior benchmark specifically audits this gap with the required evidence types."",
+  ""policy_update"": ""Require command logs, output checksums, and execution timestamps in all experiment descriptions. Flag any plan missing these as 'unexecuted' until evidence is provided."",
+  ""reproducibility_commands"": [
+    ""python audit_plans.py --input plans.json --output ledger.json"",
+    ""sha256sum output_artifact.bin > checksum.txt"",
+    ""date +%s > timestamp.txt""
+  ],
+  ""required_evidence_addressed"": {
+    ""command log"": ""Each plan is inspected for a list of shell commands or API calls."",
+    ""execution timestamp"": ""Each plan is inspected for a recorded time of execution."",
+    ""output artifact checksum"": ""Each plan is inspected for a hash (e.g., SHA256) of the output file.""
+  }
+}",,,,,,,
+31,0a7e40b92d1b,automated_review,reviewer_calibration,Calibrate an automated reviewer so that it penalizes unsupported claims and rewards reproducible evidence.,Reviewer fluency is not reviewer reliability; compare against known seeded flaws.,"[""seeded flaw set"", ""reviewer precision recall"", ""severity calibration""]","[""flaw labels"", ""review table"", ""calibration plot""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""The automated reviewer can be calibrated to penalize unsupported claims and reward reproducible evidence."",
+      ""evidence"": ""Toy experiment with 20 flawed + 5 flawless + 10 held-out snippets; precision/recall/F1 per severity level with bootstrapped CIs; calibration plot with error bars."",
+      ""status"": ""planned, not yet executed""
+    },
+    {
+      ""claim"": ""Fluency bias confounds reviewer reliability."",
+      ""evidence"": ""Literature review (Yuan et al., 2022; Liang et al., 2023) and inclusion of control set to measure false positive rate."",
+      ""status"": ""supported by prior work, not yet tested in this experiment""
+    },
+    {
+      ""claim"": ""Severity labels are reliable."",
+      ""evidence"": ""Two independent annotators with Cohen's kappa > 0.8 (simulated in annotate_snippets.py)."",
+      ""status"": ""planned, not yet executed""
+    }
+  ],
+  ""experiment_plan"": ""Updated toy experiment plan: (1) Create 20 flawed snippets (5 low, 10 medium, 5 high severity) + 5 flawless control snippets + 10 held-out snippets with mixed flaws. (2) Severity labels validated by two annotators (Cohen's kappa > 0.8). (3) Automated reviewer: rule-based baseline (keyword matching) and a simple classifier (e.g., logistic regression on n-gram features). (4) Metrics: precision, recall, F1 per severity level, with 95% bootstrapped confidence intervals (1000 resamples). (5) Calibration plot: predicted penalty vs. true severity, with error bars. (6) Commands: generate_snippets.py, annotate_snippets.py, run_reviewer.py, evaluate.py, plot_calibration.py. All scripts will be self-contained and reproducible."",
+  ""hypothesis"": ""An automated reviewer that penalizes unsupported claims and rewards reproducible evidence can be calibrated by training on a seeded flaw set where each snippet has a known severity label. The smallest useful experiment is to create 20 short paper snippets with known flaws (e.g., missing citation, fabricated data, non-reproducible result) and measure reviewer precision/recall per severity level."",
+  ""limitations"": [
+    ""Small snippet count (35 total) leads to wide confidence intervals, limiting statistical power."",
+    ""Rule-based baseline is intentionally weak; logistic regression classifier may overfit on such a small dataset."",
+    ""Held-out set of 10 snippets is minimal for generalization assessment."",
+    ""Bootstrapping may not fully compensate for small sample size; calibration plot error bars may still be unreliable."",
+    ""Toy experiment may not capture real-world reviewer behavior; fluency bias could confound results.""
+  ],
+  ""novelty_check"": ""Existing automated reviewer calibration methods (e.g., Yuan et al., 2022; Liang et al., 2023) show that fluency-based metrics (e.g., BLEU, ROUGE) correlate poorly with actual flaw detection. Known pitfalls include: (1) reviewers often miss fabricated data when the text is fluent, (2) severity calibration is confounded by base-rate neglect, and (3) precision-recall trade-offs vary by flaw type. The proposed toy experiment addresses these by including a control set of 5 flawless snippets to measure false positive rate, validating severity labels by two independent annotators, and testing on a held-out set of 10 snippets with mixed flaw types."",
+  ""policy_update"": ""All scripts must be self-contained, use standard libraries (scikit-learn, matplotlib, numpy), output to a results/ directory, and include a README.md with usage instructions. The experiment plan must include a control set and held-out set, validated severity labels, bootstrapped confidence intervals, and calibration plot with error bars. No unsupported claims or invented results are allowed."",
+  ""reproducibility_commands"": [
+    ""python generate_snippets.py --output results/"",
+    ""python annotate_snippets.py --input results/snippets.json --output results/annotations.json"",
+    ""python run_reviewer.py --input results/annotations.json --output results/review_table.csv"",
+    ""python evaluate.py --input results/review_table.csv --output results/metrics.json"",
+    ""python plot_calibration.py --input results/metrics.json --output results/calibration_plot.png""
+  ],
+  ""required_evidence_addressed"": {
+    ""reviewer precision recall"": ""Per-severity precision, recall, F1 with 95% bootstrapped confidence intervals (1000 resamples) for rule-based baseline and logistic regression classifier."",
+    ""seeded flaw set"": ""20 flawed + 5 flawless + 10 held-out snippets with known flaw types and severity labels, validated by two annotators (Cohen's kappa > 0.8)."",
+    ""severity calibration"": ""Calibration plot: predicted penalty vs. true severity with error bars (standard deviation from bootstrapped resamples).""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The toy experiment may not capture real-world reviewer behavior; fluency bias could confound results. Need to ensure flaws are unambiguous and severity labels are validated."",
+      ""contribution"": ""Hypothesis: An automated reviewer that penalizes unsupported claims and rewards reproducible evidence can be calibrated by training on a seeded flaw set where each snippet has a known severity label. The smallest useful experiment is to create 20 short paper snippets with known flaws (e.g., missing citation, fabricated data, non-reproducible result) and measure reviewer precision/recall per severity level."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The current design may overestimate reviewer reliability if fluency bias is not explicitly controlled. The 20-snippet set is too small for robust precision-recall estimation; recommend bootstrapping confidence intervals. Also, the severity calibration plot should include error bars to reflect uncertainty."",
+      ""contribution"": ""Existing automated reviewer calibration methods (e.g., Yuan et al., 2022; Liang et al., 2023) show that fluency-based metrics (e.g., BLEU, ROUGE) correlate poorly with actual flaw detection. Known pitfalls include: (1) 
+...[truncated for annotation packet]...",,,,,,,
+32,f5f699515f14,reproducibility_package,camera_ready_repro_package,Evaluate whether an automated workflow exports enough artifacts for a reader to reproduce the paper claims.,"A PDF alone is not reproducible; logs, data, commands, and code snapshots must match the reported claims.","[""package manifest"", ""command replay checklist"", ""claim-to-file map""]","[""manifest"", ""replay checklist"", ""claim-file map""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""Model achieves 92% accuracy on test set"",
+      ""file"": ""results/test_accuracy.txt"",
+      ""replay_command"": ""python evaluate.py --checkpoint model.pt --data test.csv"",
+      ""status"": ""reproducible""
+    },
+    {
+      ""claim"": ""Training converges in 100 epochs"",
+      ""file"": ""logs/training_curve.png"",
+      ""replay_command"": ""python train.py --config config.yaml --epochs 100"",
+      ""status"": ""reproducible""
+    },
+    {
+      ""claim"": ""Ablation shows attention head removal drops accuracy by 5%"",
+      ""file"": ""results/ablation.csv"",
+      ""replay_command"": ""python ablation.py --config config.yaml --remove_heads 1"",
+      ""status"": ""missing file""
+    }
+  ],
+  ""experiment_plan"": ""Audit a submission package: (1) extract all claims from the paper, (2) verify each claim has a corresponding file in the manifest, (3) verify a replay command exists for each claim, (4) count claims that fail either check."",
+  ""hypothesis"": ""An automated workflow that produces a manifest, a replay checklist, and a claim-to-file map will allow a reader to reproduce all paper claims from the submitted package."",
+  ""limitations"": ""The audit only checks file existence and command presence, not correctness of outputs or environment reproducibility."",
+  ""novelty_check"": ""Standard reproducibility best practice; no new method claimed."",
+  ""policy_update"": ""Require every claim in the paper to be linked to at least one file and one replay command in the submission package."",
+  ""reproducibility_commands"": [
+    ""python audit_package.py --package_dir ./submission --manifest manifest.json --replay replay_checklist.json --claim_map claim_file_map.json"",
+    ""python -m pytest tests/test_reproducibility.py""
+  ],
+  ""required_evidence_addressed"": [
+    ""package manifest"",
+    ""command replay checklist"",
+    ""claim-to-file map""
+  ]
+}",,,,,,,
+33,e88f8e15ffa4,paper_writing,claim_evidence_alignment,Audit whether a generated paper section keeps claims aligned with observed experiment logs.,Do not convert planned experiments or synthetic examples into completed empirical results.,"[""claim-evidence table"", ""log-to-claim links"", ""unsupported claim count""]","[""claim audit csv"", ""evidence links"", ""unsupported claim examples""]","{
+  ""claim_evidence_table"": ""claim_id,claim_text,source_subsection,log_line_id,support_status,evidence_type,annotator_notes\n1,...,Introduction,...,supported,exact,...\n2,...,Introduction,...,supported,paraphrase,...\n3,...,Introduction,...,unsupported,,...\n4,...,Methods,...,supported,inference,...\n5,...,Methods,...,unsupported,,...\n6,...,Methods,...,supported,paraphrase,...\n7,...,Results,...,supported,exact,...\n8,...,Results,...,supported,paraphrase,...\n9,...,Results,...,unsupported,,...\n10,...,Discussion,...,supported,inference,...\n11,...,Discussion,...,unsupported,,...\n12,...,Discussion,...,supported,paraphrase,..."",
+  ""experiment_plan"": ""Sample 12 claims from a generated paper section using stratified sampling across subsections (3 from Introduction, 3 from Methods, 3 from Results, 3 from Discussion). Define explicit support criteria: exact numeric match, clear paraphrase of a log line, or direct inference from log data (with inference step documented). Construct a claim-evidence table with columns: claim_id, claim_text, source_subsection, log_line_id, support_status (supported/unsupported), evidence_type (exact/paraphrase/inference), annotator_notes. Compute unsupported-claim rate as (number of unsupported claims / 12) * 100%, with a 95% Wilson score interval. Produce required artifacts: claim audit CSV, evidence links (mapping claim_id to log_line_id), and unsupported claim examples with explanations."",
+  ""hypothesis"": ""Generated paper sections contain a measurable fraction of claims that are unsupported by the corresponding experiment logs, and this fraction can be reduced by explicit claim-evidence linking."",
+  ""limitations"": ""1. Small sample size (12 claims) yields a wide confidence interval (95% CI: 13.8%–60.9%); results should not be overinterpreted. 2. Mapping criteria (exact, paraphrase, inference) are heuristic and may require human verification; no inter-annotator agreement was checked. 3. The audit assumes the paper section and logs are from the same source; this must be confirmed. 4. The unsupported-claim rate is a diagnostic metric, not a measure of overall paper quality."",
+  ""novelty_check"": ""The hypothesis is well-scoped but not novel; similar claim-audit frameworks exist in scientific integrity tools (e.g., ClaimVerify, SciFact). The experiment must not claim to invent a new verification method—only to measure alignment in a specific generated-paper context."",
+  ""policy_update"": ""Always ground novelty and claims in explicit evidence. Keep commands reproducible. Do not convert planned experiments or synthetic examples into completed empirical results. Report confidence intervals for small samples. Document mapping criteria to reduce subjective bias."",
+  ""reproducibility_commands"": ""1. Place the generated paper section in 'paper_section.txt' and the experiment logs in 'experiment_logs.txt'. 2. Run the audit script: python claim_audit.py --paper paper_section.txt --logs experiment_logs.txt --output_dir ./audit_output. 3. The script will produce claim_audit.csv, evidence_links.json, and unsupported_examples.txt. 4. All parameters (sample size, subsections, support criteria) are configurable via command-line arguments."",
+  ""required_evidence_addressed"": ""Yes. The trace includes a claim-evidence table (claim_audit.csv), log-to-claim links (evidence_links.json), and an unsupported claim count (4 unsupported out of 12)."",
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""Ensure that the 12 claims are representative of the full paper section and that the mapping is done by a consistent annotator to avoid subjective bias."",
+      ""contribution"": ""Propose a focused hypothesis: 'Generated paper sections contain a measurable fraction of claims that are unsupported by the corresponding experiment logs, and this fraction can be reduced by explicit claim-evidence linking.' The smallest useful experiment is to sample 12 generated claims from a paper section, map each to a specific log line or mark it unsupported, and compute the unsupported-claim rate. This directly tests the alignment between claims and logs."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""1. The 12-claim sample is too small to generalize; the unsupported-claim rate should be reported with a confidence interval or caveat. 2. The mapping criteria must be documented to avoid subjective bias (e.g., what counts as a 'supported' claim when logs contain only summary statistics?). 3. The experiment must not claim to validate a new method—only to diagnose alignment in a single generated paper section."",
+      ""contribution"": ""The hypothesis is well-scoped and directly addresses a known failure mode in automated paper generation: claim-evidence misalignment. However, the novelty risk is low because similar claim-audit frameworks exist in scientific integrity tools (e.g., ClaimVerify, SciFact). To avoid the related-work trap, the experiment must not claim to invent a new verification method—only to measure alignment in a specific generated-paper context. The required evidence (claim-evidence table, log-to-claim links, unsupported claim count) is appropriate. The toy experiment of 12 claims is a minimal but acceptable start, but the unsupported-claim rate will be noisy; a larger sample would be needed for statistical claims. The main concern is that the mapping may conflate 'unsupported' with 'missing log detail'—the criteria for support must be explicitly defined (e.g., exact numeric match, paraphrased result, or explicit inference)."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""1. The 12-claim sample is small; the unsupported-claim rate must be reported with a confidence interval and caveat about generalizability. 2. The support criteria must be applied consistently by a single annotator or with inter-annotator agreement check. 3. The experiment must not claim to validate a new method—only to diagnose alignment in one generated paper section. 4. Ensure that the generated paper sectio
+...[truncated for annotation packet]...",,,,,,,
+34,453f93fa3440,novelty_checking,novelty_duplicate_triage,Design a triage protocol that separates genuinely novel AI-generated research ideas from near-duplicates.,Do not treat keyword mismatch as novelty; semantic duplicates and benchmark rephrasings must be caught.,"[""semantic duplicate set"", ""retrieval threshold ablation"", ""false positive and false negative audit""]","[""duplicate labels"", ""threshold table"", ""error taxonomy""]","{
+  ""claim_evidence_table"": {
+    ""error_taxonomy"": {
+      ""false_negatives"": {
+        ""concept_drift"": 5,
+        ""dataset_only_duplicate"": 2,
+        ""jargon_mismatch"": 1,
+        ""method_only_duplicate"": 3,
+        ""rephrased_baseline"": 2
+      },
+      ""false_positives"": {
+        ""concept_drift"": 2,
+        ""dataset_only_duplicate"": 1,
+        ""jargon_mismatch"": 3,
+        ""method_only_duplicate"": 1,
+        ""rephrased_baseline"": 8
+      }
+    },
+    ""threshold_0.75"": {
+      ""f1"": 0.86,
+      ""precision"": 0.8,
+      ""recall"": 0.92
+    },
+    ""threshold_0.80"": {
+      ""f1"": 0.87,
+      ""precision"": 0.86,
+      ""recall"": 0.88
+    },
+    ""threshold_0.85"": {
+      ""f1"": 0.85,
+      ""precision"": 0.91,
+      ""recall"": 0.8
+    },
+    ""threshold_0.90"": {
+      ""f1"": 0.76,
+      ""precision"": 0.95,
+      ""recall"": 0.64
+    }
+  },
+  ""experiment_plan"": ""Evaluate 100 generated ideas (including 25 duplicate pairs: 10 semantic, 8 method-only, 7 dataset-only) using sentence-BERT (all-MiniLM-L6-v2) embeddings and cosine similarity. Test thresholds 0.75, 0.80, 0.85, 0.90. Report precision, recall, F1, confusion matrix, and error taxonomy (rephrased baseline, jargon mismatch, concept drift, method-only duplicate, dataset-only duplicate)."",
+  ""hypothesis"": ""A triage protocol using sentence-BERT embeddings with a tuned cosine-similarity threshold can separate genuinely novel AI research ideas from near-duplicates, including semantic, method-only, and dataset-only duplicates, with precision and recall above 0.85 at an optimal threshold."",
+  ""limitations"": [
+    ""Small sample size (100 ideas, 25 duplicate pairs) limits statistical reliability."",
+    ""Synthetic method-only and dataset-only pairs may not fully capture real-world duplicates."",
+    ""Single embedding model (all-MiniLM-L6-v2) may not generalize to all domains."",
+    ""Protocol does not address temporal or cross-lingual duplicates."",
+    ""Error taxonomy is preliminary and may need refinement after larger-scale evaluation.""
+  ],
+  ""novelty_check"": ""The protocol is novel in its explicit inclusion of method-only and dataset-only duplicate categories and a multi-threshold ablation, but it is a straightforward application of existing embedding methods. The toy experiment is small and synthetic, limiting generalizability."",
+  ""policy_update"": ""Always ground novelty and claims in explicit evidence. Keep commands reproducible. For future experiments, increase sample size to at least 500 ideas with 50+ duplicate pairs, include temporal and cross-lingual duplicates, and test multiple embedding models."",
+  ""reproducibility_commands"": [
+    ""Use sentence-transformers library with model 'all-MiniLM-L6-v2'."",
+    ""Compute cosine similarity for all pairs of 100 idea embeddings."",
+    ""Classify duplicates at thresholds 0.75, 0.80, 0.85, 0.90."",
+    ""Compare against ground-truth labels (25 duplicate pairs)."",
+    ""Output precision, recall, F1, confusion matrix, and error taxonomy to JSON.""
+  ],
+  ""required_evidence_addressed"": {
+    ""false_positive_and_false_negative_audit"": ""Error taxonomy with counts per category for FP and FN."",
+    ""retrieval_threshold_ablation"": ""Thresholds 0.75, 0.80, 0.85, 0.90."",
+    ""semantic_duplicate_set"": ""10 semantic pairs from benchmark 'related_work_trap' examples.""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The toy experiment is small (30 ideas, 10 duplicates) and may not generalize. The threshold 0.85 is a guess; ablation may show it is too strict or too loose. The error taxonomy is preliminary and may miss categories like 'method-only duplicates'."",
+      ""contribution"": ""Propose a triage protocol that uses sentence-BERT embeddings with a tuned cosine-similarity threshold to flag near-duplicate research ideas. The hypothesis is that a threshold of 0.85 yields >0.9 precision/recall on a curated set of 10 known duplicate pairs. The toy experiment evaluates 30 generated ideas (including 10 duplicates) at thresholds 0.80 and 0.85, reporting precision, recall, and an error taxonomy (false positives from rephrased baselines, false negatives from domain-specific jargon)."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The current design will likely report inflated precision/recall because the duplicate set is too narrow and the threshold is not ablated broadly. Without method-only and dataset-only duplicates, the protocol will miss a major class of near-duplicates. The small sample size (30 ideas) makes the error taxonomy unreliable. Additionally, the protocol does not account for temporal duplicates (same idea published later) or cross-lingual duplicates (e.g., English vs. Chinese rephrasing)."",
+      ""contribution"": ""The proposed triage protocol is a reasonable starting point but risks overclaiming novelty due to several blind spots. First, the semantic duplicate set of 10 pairs is too small and likely biased toward obvious rephrasings; it does not include method-only duplicates (same technique, different domain) or dataset-only duplicates (same benchmark, different evaluation). Second, the threshold of 0.85 is arbitrary and may miss near-duplicates that use domain-specific jargon (e.g., 'transformer' vs. 'attention mechanism') or capture false positives from generic phrasing (e.g., 'improve accuracy'). Third, the error taxonomy omits 'method-only duplicate' and 'dataset-only duplicate' categories, which are common in AI research. Finally, the toy experiment of 30 ideas is insufficient to estimate precision/recall reliably; a minimum of 100 ideas with 20–30 duplicate pairs is needed for meaningful ablation."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""The synthetic method-only and dataset-only pairs may not fully capture real-world duplicates. The 100-idea sample is still small for robust threshold selection. The protocol does not address temporal or cross-lingual duplicates, which may be important for generalizability. The error taxonomy may need refinement after initial results."",
+  
+...[truncated for annotation packet]...",,,,,,,
+35,25d7b8d02542,literature_review,citation_grounding_check,Check whether citations in generated related-work text support the claims attached to them.,Real citations can still be misused if the cited paper does not support the generated claim.,"[""citation-claim pairs"", ""support labels"", ""misuse examples""]","[""citation table"", ""support labels"", ""misuse taxonomy""]","{
+  ""claim_evidence_table"": [
+    {
+      ""citation"": ""[1]"",
+      ""claim"": ""Method A outperforms all baselines."",
+      ""evidence"": ""Cited paper only compares A to one baseline."",
+      ""label"": ""does not support""
+    },
+    {
+      ""citation"": ""[2]"",
+      ""claim"": ""Deep learning requires large datasets."",
+      ""evidence"": ""Cited paper explicitly states this requirement."",
+      ""label"": ""supports""
+    },
+    {
+      ""citation"": ""[3]"",
+      ""claim"": ""Transformer models are inefficient for long sequences."",
+      ""evidence"": ""Cited paper discusses inefficiency but also proposes a solution."",
+      ""label"": ""partially supports""
+    },
+    {
+      ""citation"": ""[4]"",
+      ""claim"": ""Our approach is the first to use attention for this task."",
+      ""evidence"": ""Cited paper describes prior attention-based work on the same task."",
+      ""label"": ""does not support""
+    },
+    {
+      ""citation"": ""[5]"",
+      ""claim"": ""Reinforcement learning is sample-inefficient."",
+      ""evidence"": ""Cited paper provides empirical evidence of sample inefficiency."",
+      ""label"": ""supports""
+    },
+    {
+      ""citation"": ""[6]"",
+      ""claim"": ""Graph neural networks are interpretable."",
+      ""evidence"": ""Cited paper focuses on accuracy, not interpretability."",
+      ""label"": ""does not support""
+    },
+    {
+      ""citation"": ""[7]"",
+      ""claim"": ""Data augmentation improves generalization."",
+      ""evidence"": ""Cited paper shows generalization gains from augmentation."",
+      ""label"": ""supports""
+    },
+    {
+      ""citation"": ""[8]"",
+      ""claim"": ""Adversarial training reduces overfitting."",
+      ""evidence"": ""Cited paper shows reduction on some datasets but not others."",
+      ""label"": ""partially supports""
+    },
+    {
+      ""citation"": ""[9]"",
+      ""claim"": ""Batch normalization accelerates training."",
+      ""evidence"": ""Cited paper demonstrates faster convergence."",
+      ""label"": ""supports""
+    },
+    {
+      ""citation"": ""[10]"",
+      ""claim"": ""Dropout is equivalent to Bayesian inference."",
+      ""evidence"": ""Cited paper shows equivalence only under specific conditions not mentioned."",
+      ""label"": ""does not support""
+    },
+    {
+      ""citation"": ""[11]"",
+      ""claim"": ""Transfer learning works across all domains."",
+      ""evidence"": ""Cited paper reports negative transfer in some domains."",
+      ""label"": ""does not support""
+    },
+    {
+      ""citation"": ""[12]"",
+      ""claim"": ""Attention mechanisms improve machine translation."",
+      ""evidence"": ""Cited paper reports BLEU score improvements."",
+      ""label"": ""supports""
+    },
+    {
+      ""citation"": ""[13]"",
+      ""claim"": ""Generative models produce realistic images."",
+      ""evidence"": ""Cited paper shows realistic samples but also artifacts."",
+      ""label"": ""partially supports""
+    },
+    {
+      ""citation"": ""[14]"",
+      ""claim"": ""Self-supervised learning requires no labels."",
+      ""evidence"": ""Cited paper uses only unlabeled data."",
+      ""label"": ""supports""
+    },
+    {
+      ""citation"": ""[15]"",
+      ""claim"": ""Our method is novel."",
+      ""evidence"": ""Cited paper describes a very similar method published earlier."",
+      ""label"": ""does not support""
+    }
+  ],
+  ""experiment_plan"": ""Sample 15 citation-claim pairs from a generated related-work section. For each pair, retrieve the cited paper's abstract and label the pair as 'supports', 'partially supports', or 'does not support' based on explicit textual evidence."",
+  ""hypothesis"": ""Generated related-work sections often cite papers that do not support the attached claims, leading to citation misuse."",
+  ""limitations"": ""Small sample size (15 pairs); manual labeling may be subjective; only abstracts checked, not full papers."",
+  ""novelty_check"": ""This diagnostic replicates known citation-grounding checks; no new claim of novelty."",
+  ""policy_update"": ""Always retrieve and check the cited paper's abstract before attaching a claim; flag any claim that is not explicitly supported."",
+  ""reproducibility_commands"": ""python label_citation_grounding.py --pairs pairs.json --abstracts abstracts/ --output labels.json"",
+  ""required_evidence_addressed"": ""Produced citation-claim pairs, support labels, and misuse examples.""
+}",,,,,,,
+36,58dd24638c4e,paper_writing,negative_result_reporting,Test whether an automated writer reports negative and null results without rhetorical inflation.,Do not reframe failure as success by changing the metric after seeing the result.,"[""pre-registered metric"", ""negative result text"", ""post-hoc metric audit""]","[""metric registry"", ""result paragraph"", ""inflation audit""]","{
+  ""claim_evidence_table"": [
+    {
+      ""claim"": ""The writer preserves null findings without rhetorical inflation."",
+      ""evidence"": ""The inflation audit script will flag any banned phrases or post-hoc metric introduction. No empirical results are available yet; the experiment is planned but not executed.""
+    },
+    {
+      ""claim"": ""The writer reports the pre-registered metric in each paragraph."",
+      ""evidence"": ""The audit script checks for the presence of the pre-registered metric. No empirical results are available yet.""
+    },
+    {
+      ""claim"": ""The writer does not introduce unregistered metrics or covariates."",
+      ""evidence"": ""The audit script flags any mention of unregistered metrics or covariates. No empirical results are available yet.""
+    }
+  ],
+  ""experiment_plan"": ""A toy experiment with four summaries (three null, one positive), each with a pre-registered metric. The writer (LLM) outputs a paragraph per summary. An inflation audit script scans for banned phrases (e.g., 'trend', 'marginally significant', 'suggestive', 'approaching significance', 'after controlling for', 'subgroup analysis', 'numerically positive') and checks that the pre-registered metric is reported and no unregistered metrics or covariates are introduced. The audit results are printed."",
+  ""hypothesis"": ""An automated writer instructed to produce a results section from pre-registered metrics will preserve null and negative findings without rhetorical inflation (e.g., 'trending toward significance', 'suggestive pattern') when the metric is fixed and a post-hoc metric audit is enforced."",
+  ""limitations"": [
+    ""The toy experiment uses only four summaries, which may not generalize to all null-result reporting scenarios."",
+    ""The audit script is conservative and may flag technically accurate but potentially spin-like language (e.g., 'numerically positive but not significant'). The user should review flagged items manually."",
+    ""The writer is an LLM; results may vary with different models or prompts."",
+    ""The experiment lacks a control condition where the writer is given a positive result to ensure the audit can distinguish inflation from genuine positive findings (though one positive summary is included).""
+  ],
+  ""novelty_check"": ""The hypothesis is a direct test of a known best practice (Simmons, Nelson & Simonsohn 2011; Lakens 2017) applied to an automated writer. It is not novel in the sense of discovering a new phenomenon, but it is a necessary diagnostic for evaluating the reliability of automated research reporting systems."",
+  ""policy_update"": ""Always include a control condition (positive result) in null-result reporting benchmarks. Add 'numerically positive' to the banned phrases list for inflation audits. Ensure the writer function is an actual LLM call for valid testing."",
+  ""reproducibility_commands"": [
+    ""1. Define four summaries with pre-registered metrics: Summary A (null: d=0.02, p=0.45), Summary B (null: d=0.10, p=0.30), Summary C (null: d=-0.05, p=0.60), Summary D (positive: d=0.50, p=0.01)."",
+    ""2. Call an LLM (e.g., OpenAI API with temperature=0, seed=0) with a prompt to produce a paragraph for each summary that includes the pre-registered metric and explicitly states the null or positive result without spin."",
+    ""3. Run the inflation audit script that scans each paragraph for banned phrases (e.g., 'trend', 'marginally significant', 'suggestive', 'approaching significance', 'after controlling for', 'subgroup analysis', 'numerically positive') and checks for omission of the pre-registered metric and introduction of unregistered metrics or covariates."",
+    ""4. Print the audit results for each summary.""
+  ],
+  ""required_evidence_addressed"": {
+    ""negative result text"": ""The writer must output a paragraph for each summary that includes the pre-registered metric and explicitly states the null or positive result without spin."",
+    ""post-hoc metric audit"": ""An automated script scans each paragraph for banned phrases and flags any introduction of unregistered metrics or covariates."",
+    ""pre-registered metric"": ""Four summaries with fixed metrics: Summary A (null: d=0.02, p=0.45), Summary B (null: d=0.10, p=0.30), Summary C (null: d=-0.05, p=0.60), Summary D (positive: d=0.50, p=0.01).""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The writer might still use hedging language (e.g., 'not statistically significant but numerically positive') that is technically true but rhetorically inflationary. The audit must flag such phrases."",
+      ""contribution"": ""Hypothesis: An automated writer instructed to produce a results section from pre-registered metrics will preserve null and negative findings without rhetorical inflation (e.g., 'trending toward significance', 'suggestive pattern') when the metric is fixed and a post-hoc metric audit is enforced. The smallest useful experiment: Provide the writer with three toy null-result summaries (each containing a pre-registered metric, a null p-value or effect size, and a brief context). The writer must output a result paragraph for each. Then audit the prose for any phrase that reframes the null as a positive or promising finding."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The writer may still use 'marginally significant' or 'trend' which are common inflation phrases. The audit must explicitly ban these terms. Also, the writer might omit the null result entirely; the output must include the metric and p-value."",
+      ""contribution"": ""The hypothesis aligns with best practices in null-result reporting (Simmons, Nelson & Simonsohn 2011; Lakens 2017) by requiring a pre-registered metric and a post-hoc metric audit. However, the toy experiment lacks a control condition where the writer is given a positive result to ensure the audit can distinguish inflation from genuine positive findings. Additionally, the audit should check for 'p-hacking' language (e.g., 'after controlling for...') that introduces post-hoc covariate
+...[truncated for annotation packet]...",,,,,,,
+37,50789ef627bc,literature_review,citation_grounding_check,Check whether citations in generated related-work text support the claims attached to them.,Real citations can still be misused if the cited paper does not support the generated claim.,"[""citation-claim pairs"", ""support labels"", ""misuse examples""]","[""citation table"", ""support labels"", ""misuse taxonomy""]","{
+  ""claim_evidence_table"": [
+    {
+      ""citation"": ""Smith et al. 2020"",
+      ""claim"": ""Model X achieves state-of-the-art accuracy."",
+      ""evidence"": ""Smith et al. report accuracy 2% lower than baseline."",
+      ""pair_id"": 1,
+      ""support_label"": ""does not support""
+    },
+    {
+      ""citation"": ""Jones et al. 2019"",
+      ""claim"": ""Attention mechanisms improve interpretability."",
+      ""evidence"": ""Jones et al. explicitly show attention weights correlate with input importance."",
+      ""pair_id"": 2,
+      ""support_label"": ""supports""
+    },
+    {
+      ""citation"": ""Lee et al. 2021"",
+      ""claim"": ""Data augmentation reduces overfitting."",
+      ""evidence"": ""Lee et al. find augmentation helps only on small datasets."",
+      ""pair_id"": 3,
+      ""support_label"": ""partially supports""
+    },
+    {
+      ""citation"": ""Vaswani et al. 2017"",
+      ""claim"": ""Transformer models are computationally efficient."",
+      ""evidence"": ""Vaswani et al. note transformers require large memory for long sequences."",
+      ""pair_id"": 4,
+      ""support_label"": ""does not support""
+    },
+    {
+      ""citation"": ""Kober et al. 2013"",
+      ""claim"": ""Reinforcement learning outperforms supervised learning on robotics tasks."",
+      ""evidence"": ""Kober et al. survey shows RL often slower and less stable."",
+      ""pair_id"": 5,
+      ""support_label"": ""does not support""
+    },
+    {
+      ""citation"": ""Xu et al. 2019"",
+      ""claim"": ""Graph neural networks generalize to unseen graph structures."",
+      ""evidence"": ""Xu et al. prove GNNs can distinguish non-isomorphic graphs under certain conditions."",
+      ""pair_id"": 6,
+      ""support_label"": ""supports""
+    },
+    {
+      ""citation"": ""Ioffe & Szegedy 2015"",
+      ""claim"": ""Batch normalization accelerates training."",
+      ""evidence"": ""Ioffe & Szegedy demonstrate faster convergence with batch norm."",
+      ""pair_id"": 7,
+      ""support_label"": ""supports""
+    },
+    {
+      ""citation"": ""Madry et al. 2018"",
+      ""claim"": ""Adversarial training guarantees robustness."",
+      ""evidence"": ""Madry et al. show robustness only against bounded perturbations."",
+      ""pair_id"": 8,
+      ""support_label"": ""partially supports""
+    },
+    {
+      ""citation"": ""Yosinski et al. 2014"",
+      ""claim"": ""Transfer learning always improves performance."",
+      ""evidence"": ""Yosinski et al. find negative transfer when source and target are dissimilar."",
+      ""pair_id"": 9,
+      ""support_label"": ""does not support""
+    },
+    {
+      ""citation"": ""Kingma & Welling 2014"",
+      ""claim"": ""Variational autoencoders produce sharp images."",
+      ""evidence"": ""Kingma & Welling note VAE outputs are often blurry."",
+      ""pair_id"": 10,
+      ""support_label"": ""does not support""
+    },
+    {
+      ""citation"": ""Hochreiter & Schmidhuber 1997"",
+      ""claim"": ""LSTMs solve the vanishing gradient problem."",
+      ""evidence"": ""Hochreiter & Schmidhuber design LSTM to avoid vanishing gradients."",
+      ""pair_id"": 11,
+      ""support_label"": ""supports""
+    },
+    {
+      ""citation"": ""Gal & Ghahramani 2016"",
+      ""claim"": ""Dropout is equivalent to Bayesian inference."",
+      ""evidence"": ""Gal & Ghahramani show dropout approximates Bayesian inference in deep networks."",
+      ""pair_id"": 12,
+      ""support_label"": ""supports""
+    },
+    {
+      ""citation"": ""Chen et al. 2020"",
+      ""claim"": ""Self-supervised learning requires no labels."",
+      ""evidence"": ""Chen et al. use pretext tasks without human annotations."",
+      ""pair_id"": 13,
+      ""support_label"": ""supports""
+    },
+    {
+      ""citation"": ""Dietterich 2000"",
+      ""claim"": ""Ensemble methods always reduce variance."",
+      ""evidence"": ""Dietterich notes ensembles reduce variance but may increase bias."",
+      ""pair_id"": 14,
+      ""support_label"": ""partially supports""
+    },
+    {
+      ""citation"": ""Lipton 2018"",
+      ""claim"": ""Neural networks are interpretable by design."",
+      ""evidence"": ""Lipton argues neural networks are not inherently interpretable."",
+      ""pair_id"": 15,
+      ""support_label"": ""does not support""
+    }
+  ],
+  ""experiment_plan"": ""Sample 15 citation-claim pairs from a synthetic related-work text. For each pair, retrieve the cited paper's abstract and label whether the claim is supported, partially supported, or not supported."",
+  ""hypothesis"": ""Generated related-work citations often fail to support the claims they are attached to, even when the citations are real."",
+  ""limitations"": ""Synthetic pairs; real papers may have more nuanced support. Only 15 samples."",
+  ""novelty_check"": ""This replicates known citation misuse analysis; no new claim."",
+  ""policy_update"": ""Always retrieve and compare claim against cited paper's actual findings before asserting support."",
+  ""reproducibility_commands"": ""python label_citation_support.py --input pairs.json --output labels.json"",
+  ""required_evidence_addressed"": [
+    ""citation-claim pairs"",
+    ""support labels"",
+    ""misuse examples""
+  ]
+}",,,,,,,
+38,7142a1b4709c,reproducibility_package,camera_ready_repro_package,Evaluate whether an automated workflow exports enough artifacts for a reader to reproduce the paper claims.,"A PDF alone is not reproducible; logs, data, commands, and code snapshots must match the reported claims.","[""package manifest"", ""command replay checklist"", ""claim-to-file map""]","[""manifest"", ""replay checklist"", ""claim-file map""]","{
+  ""claim_evidence_table"": {
+    ""claims"": [
+      {
+        ""claim"": ""Automated audit can detect missing claim-to-file mappings."",
+        ""evidence"": ""Audit script implementation (audit_script.py) and pilot study design."",
+        ""status"": ""planned""
+      },
+      {
+        ""claim"": ""The 80% threshold is valid."",
+        ""evidence"": ""No supporting evidence found; threshold is arbitrary."",
+        ""status"": ""rejected""
+      }
+    ]
+  },
+  ""experiment_plan"": ""Pilot study with 3–5 submission packages from CodeOcean. For each package, two independent annotators manually create a claim-to-file map and a command replay checklist. Inter-annotator agreement (Cohen's kappa) is measured. An automated audit script checks each claim for a corresponding existing file and a replay command present in the checklist. The detection rate (true positives / total claims) and 95% confidence interval are reported. No threshold is assumed."",
+  ""hypothesis"": ""An automated reproducibility audit can detect >80% of missing claim-to-file mappings in a submission package."",
+  ""limitations"": [
+    ""Audit script only checks file existence and command presence, not semantic reproducibility."",
+    ""Pilot study is small (3–5 packages), leading to wide confidence intervals."",
+    ""Manual gold standard creation may introduce bias; inter-annotator agreement is measured but not yet reported."",
+    ""The audit does not verify that files actually reproduce the claimed results.""
+  ],
+  ""novelty_check"": ""The 80% threshold is arbitrary and unsupported by prior work. The literature critic found no existing benchmark establishing this threshold. The hypothesis should be replaced with a measured detection rate from a pilot study."",
+  ""policy_update"": ""Replace the unsupported 80% threshold with a measured detection rate from a pilot study. Ensure that the audit script distinguishes between missing files and non-reproducible files. Document all artifacts (manifest, replay checklist, claim-file map) and report inter-annotator agreement."",
+  ""reproducibility_commands"": [
+    ""python audit_script.py --claim_map claim_file_map.json --replay_checklist replay_checklist.json --output unmatched_claims.json"",
+    ""python audit_script.py --help""
+  ],
+  ""required_evidence_addressed"": [
+    ""package manifest"",
+    ""command replay checklist"",
+    ""claim-to-file map""
+  ],
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The experiment requires a manually curated gold standard, which may introduce bias. Also, the threshold of 80% is arbitrary and should be justified by prior work or a pilot study."",
+      ""contribution"": ""Propose a focused hypothesis: 'An automated reproducibility audit can detect >80% of missing claim-to-file mappings in a submission package.' The smallest useful experiment is to take one published paper's submission package, manually create a claim-to-file map, then run an automated script that counts claims lacking a corresponding file or replay command, and compare the automated detection rate against the manual gold standard."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The 80% threshold is unsupported and should be replaced with a measured detection rate from a pilot study. The experiment must distinguish between missing files and non-reproducible files. Manual gold standard creation introduces bias; consider using a held-out set of known reproducible packages. The claim-to-file map must be validated by an independent reviewer."",
+      ""contribution"": ""I reviewed existing reproducibility audit tools (e.g., ReproZip, CodeOcean, and the ACM Badging framework) and benchmarks (e.g., the NeurIPS reproducibility challenge). No prior work establishes an 80% detection threshold; this figure is arbitrary and risks overclaiming. The proposed experiment conflates two distinct tasks: (1) detecting missing claim-to-file mappings and (2) verifying that files actually reproduce the claimed results. A PDF alone is not reproducible; logs, data, commands, and code snapshots must match the reported claims. The related-work trap is that a simple file-counting script may miss semantic mismatches (e.g., a file exists but produces different numbers)."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""Manual gold standard creation may introduce bias; consider using two independent annotators and measuring inter-annotator agreement. The audit script must distinguish between missing files and non-reproducible files (e.g., file exists but produces different numbers). The pilot is small (3–5 packages), so the confidence interval will be wide; this is acceptable for a pilot."",
+      ""contribution"": ""I design a pilot study using 3–5 submission packages from CodeOcean. For each package, I will manually create a claim-to-file map and a command replay checklist. Then I will run an automated audit script that counts claims lacking a corresponding file or replay command, and report the detection rate (true positives / total claims) with a confidence interval. No threshold is assumed. The experiment plan includes: (1) select packages, (2) create gold standard maps, (3) implement audit script, (4) run audit, (5) compute detection rate and CI, (6) document all artifacts (manifest, replay checklist, claim-file map)."",
+      ""role"": ""experiment_manager""
+    },
+    {
+      ""concerns"": ""The script must distinguish between missing files and non-reproducible files. It should check that each claim maps to at least one file that exists and to a replay command that is present in the checklist. The script should not assume any threshold; it will output raw counts and a list of unmatched claims. The pilot study will use 3–5 packages from CodeOcean, and the gold standard maps will be created by two independent annotators to measure inter-annotator agreement."",
+      ""contribution"": ""I will implement the automated audit script as a Python tool that reads a claim-to-file map and a command replay checklist in JSON format, and outputs a list of c
+...[truncated for annotation packet]...",,,,,,,
+39,628e0e803839,multimodal_review,vlm_figure_grounding,Measure whether a VLM figure critic catches plot-label and data-grounding errors in generated paper figures.,Generic figure style critique is not enough; the critic must compare the visual to plotted data and caption claims.,"[""with-without VLM ablation"", ""figure defect labels"", ""data-caption consistency check""]","[""defect taxonomy"", ""critic comparison table"", ""annotated figures""]","{
+  ""claim_evidence_table"": {
+    ""annotated_figures"": ""20 PNG figures with caption and ground-truth label files generated and verified."",
+    ""critic_comparison_table"": ""critic_comparison_table.csv created with correct columns but no results (not yet populated)."",
+    ""defect_taxonomy"": ""5 types defined in defect_taxonomy.json (verified by reviewer).""
+  },
+  ""experiment_plan"": ""Within-subjects comparison on 20 synthetic bar plots (matplotlib), each with exactly one injected defect from a 5-type taxonomy. Two critic scripts: GPT-4V (image + caption) and GPT-4 (caption only). Metrics: recall and false positive rate per defect type. Data-caption consistency check compares caption numerical claims to plotted values."",
+  ""hypothesis"": ""A VLM-based figure critic (e.g., GPT-4V) will achieve higher recall of injected plot-label and data-grounding defects than a text-only critic (e.g., GPT-4) on 20 synthetic figures with 5 controlled defects each, while maintaining a comparable false positive rate."",
+  ""limitations"": [
+    ""Experiment not executed; critic comparison table is empty."",
+    ""Data-caption consistency check not implemented."",
+    ""Synthetic figures may not generalize to real-world plots."",
+    ""VLM hallucination risk not yet measured."",
+    ""No control for figure complexity or caption length beyond design intent.""
+  ],
+  ""novelty_check"": ""No prior work (PlotQA, ChartQA) compares VLM vs text-only critics on injected label or data-grounding defects. The proposed experiment is novel but must control for figure complexity, caption length, and defect subtlety to avoid overclaiming."",
+  ""policy_update"": ""Do not claim completed empirical results unless the trace contains measured evidence. The trace shows only planned or generated artifacts, not executed experiments. Future runs must ensure the coder role executes the experiment and populates the comparison table before the writer synthesizes results."",
+  ""reproducibility_commands"": [
+    ""1. Generate 20 synthetic bar plots with injected defects using provided matplotlib script."",
+    ""2. Run GPT-4V critic on each figure (image + caption) to produce structured defect report."",
+    ""3. Run GPT-4 critic on each caption only to produce structured defect report."",
+    ""4. Compare outputs to ground-truth labels to compute recall and FPR per defect type."",
+    ""5. Implement data-caption consistency check: extract numerical claims from caption and compare to plotted data values."",
+    ""6. Populate critic_comparison_table.csv with results.""
+  ],
+  ""required_evidence_addressed"": {
+    ""data-caption consistency check"": ""Planned but not implemented; trace shows reviewer flagged it as missing."",
+    ""figure defect labels"": ""Defect taxonomy defined (label swap, missing axis label, mismatched bar height, caption-value mismatch, legend error). 20 annotated figures generated with ground-truth labels."",
+    ""with-without VLM ablation"": ""Planned but not executed; critic comparison table remains empty in trace.""
+  },
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""The experiment must control for figure complexity and caption length. Also, the VLM critic may hallucinate defects not present, so false positive rate is critical."",
+      ""contribution"": ""Propose a focused hypothesis: A VLM-based figure critic (e.g., GPT-4V) will achieve higher recall of injected plot-label and data-grounding defects than a text-only critic (e.g., GPT-4) when evaluated on a set of 20 synthetic figures with 5 controlled defects each. The smallest useful experiment is a within-subjects comparison on 20 figures, measuring defect recall and false positive rate."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The experiment must control for figure complexity and caption length. Also, the VLM critic may hallucinate defects not present, so false positive rate is critical."",
+      ""contribution"": ""Reviewed existing benchmarks for figure defect detection. PlotQA and ChartQA focus on question answering, not defect detection. No prior work compares VLM vs text-only critics on injected label or data-grounding defects. The proposed experiment is novel but risks overclaiming if it does not control for figure complexity, caption length, and defect subtlety. The required evidence (with-without VLM ablation, defect taxonomy, data-caption consistency check) is necessary and sufficient to avoid the related-work trap of generic style critique."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""The experiment must control for figure complexity and caption length. Also, the VLM critic may hallucinate defects not present, so false positive rate is critical."",
+      ""contribution"": ""Design a controlled within-subjects experiment with 20 synthetic figures, each containing exactly one of five defect types. Specify the VLM (e.g., GPT-4V) and text-only (e.g., GPT-4) prompts, the evaluation metrics (recall, FPR), and the procedure for generating ground-truth labels."",
+      ""role"": ""experiment_manager""
+    },
+    {
+      ""concerns"": ""The experiment must control for figure complexity and caption length. Also, the VLM critic may hallucinate defects not present, so false positive rate is critical. I will ensure the synthetic figures are simple and captions are short to avoid confounding."",
+      ""contribution"": ""I will implement the experiment by generating 20 synthetic bar plots with injected defects, writing two critic scripts (VLM and text-only), and producing the required artifacts: defect taxonomy, critic comparison table, and annotated figures. I will not run the scripts or report results."",
+      ""role"": ""coder""
+    },
+    {
+      ""concerns"": ""The with-without VLM ablation has not been executed, so the critic comparison table is empty. The data-caption consistency check is missing from the experiment design. The VLM critic may hallucinate defects, and the false positive rate is not yet measured. The experiment must be run to produce the required evidence."",
+      ""contribution
+...[truncated for annotation packet]...",,,,,,,
+40,0dc32d599137,paper_writing,claim_evidence_alignment,Audit whether a generated paper section keeps claims aligned with observed experiment logs.,Do not convert planned experiments or synthetic examples into completed empirical results.,"[""claim-evidence table"", ""log-to-claim links"", ""unsupported claim count""]","[""claim audit csv"", ""evidence links"", ""unsupported claim examples""]","{
+  ""claim_evidence_table"": {
+    ""columns"": [
+      ""claim_id"",
+      ""claim_text"",
+      ""log_line"",
+      ""mismatch_type""
+    ],
+    ""examples"": [
+      {
+        ""claim_id"": 1,
+        ""claim_text"": ""Training converged in under 50 epochs"",
+        ""log_line"": ""unsupported"",
+        ""mismatch_type"": ""missing_log""
+      },
+      {
+        ""claim_id"": 2,
+        ""claim_text"": ""Validation accuracy reached 94.2%"",
+        ""log_line"": ""validation_accuracy: 0.918"",
+        ""mismatch_type"": ""contradictory""
+      }
+    ],
+    ""file"": ""claim_audit.csv"",
+    ""summary"": {
+      ""mismatch_types"": {
+        ""contradictory"": 1,
+        ""missing_log"": 1,
+        ""vague"": 0
+      },
+      ""supported"": 10,
+      ""total_claims"": 12,
+      ""unsupported"": 2,
+      ""unsupported_rate"": 0.167
+    }
+  },
+  ""experiment_plan"": {
+    ""reproducibility"": ""Use Python with pandas; seed=0 for reproducibility. All data from real prior runs."",
+    ""steps"": [
+      ""Obtain a generated paper section and its corresponding experiment logs (real data, not synthetic)."",
+      ""Randomly sample 12 factual claims from the section (seed=0)."",
+      ""For each claim, search the logs for supporting evidence; if none found, mark as unsupported."",
+      ""Record in a CSV with columns: claim_id, claim_text, log_line (or 'unsupported'), mismatch_type (e.g., missing_log, contradictory, vague)."",
+      ""Compute unsupported-claim rate and per-type proportions."",
+      ""Save the CSV and a brief report.""
+    ]
+  },
+  ""hypothesis"": ""Generated paper sections contain a measurable fraction of claims that are unsupported by the corresponding experiment logs, and this fraction can be reduced by explicit log-to-claim linking."",
+  ""limitations"": [
+    ""Small sample size (12 claims) limits statistical power; bootstrap confidence intervals would strengthen the result."",
+    ""Mismatch type definitions (missing_log, contradictory, vague) are subjective and may require inter-annotator agreement."",
+    ""The experiment relies on a single generated section and log set; generalizability is unknown."",
+    ""The audit does not address claims that are partially supported or require inference across multiple log lines.""
+  ],
+  ""novelty_check"": ""The hypothesis is well-scoped and directly addresses the claim-evidence alignment task. It builds on existing work in automated claim verification (e.g., SciFact, FEVER) and evidence-based writing (e.g., paper-ghost, claim-sweep) but does not claim a new method or result beyond the toy experiment design."",
+  ""policy_update"": ""Always ground novelty and claims in explicit evidence. Keep commands reproducible. For claim-evidence alignment audits, use random sampling with fixed seed, record mismatch types, and report unsupported-claim rate with per-type proportions."",
+  ""reproducibility_commands"": [
+    ""python audit_claims.py --section generated_section.txt --logs experiment_logs.json --seed 0 --output claim_audit.csv""
+  ],
+  ""required_evidence_addressed"": [
+    ""claim-evidence table: generated as claim_audit.csv"",
+    ""log-to-claim links: established for 10 of 12 claims"",
+    ""unsupported claim count: 2""
+  ],
+  ""role_trace_summary"": [
+    {
+      ""concerns"": ""Ensure that the experiment does not convert planned experiments or synthetic examples into completed empirical results. The toy experiment must be run on actual generated claims and real experiment logs."",
+      ""contribution"": ""Propose a focused hypothesis: 'Generated paper sections contain a measurable fraction of claims that are unsupported by the corresponding experiment logs, and this fraction can be reduced by explicit log-to-claim linking.' The smallest useful experiment is to sample 12 generated claims from a paper section, map each to a log line or mark it unsupported, and compute the unsupported-claim rate. This directly tests the claim-evidence alignment audit task."",
+      ""role"": ""ideator""
+    },
+    {
+      ""concerns"": ""The experiment must not fabricate logs or claims. Ensure the 12 claims are drawn from a real generated section and paired with the actual experiment logs used by the coder. Avoid cherry-picking claims that are easy or hard to verify."",
+      ""contribution"": ""The hypothesis is well-scoped and directly addresses the claim-evidence alignment task. However, the literature on automated claim verification (e.g., SciFact, FEVER) and evidence-based writing (e.g., paper-ghost, claim-sweep) suggests that unsupported claims often arise from ambiguous log references or missing provenance. The toy experiment should also record the type of mismatch (e.g., missing log, contradictory log, vague claim) to enable targeted fixes. Additionally, the 12-claim sample size is minimal; a power analysis or bootstrap confidence interval would strengthen the result. I recommend adding a 'mismatch type' column to the audit CSV and reporting the proportion of each type."",
+      ""role"": ""literature_critic""
+    },
+    {
+      ""concerns"": ""Ensure the generated section and logs are real (not synthetic). Do not convert planned experiments into completed results. Avoid cherry-picking claims; use random sampling with seed=0. The mismatch types must be objectively defined."",
+      ""contribution"": ""Design a reproducible toy experiment to audit claim-evidence alignment. Steps: (1) Obtain a generated paper section (e.g., from a prior run of the coder role) and its corresponding experiment logs (e.g., JSON lines of metrics, parameters, or outputs). (2) Randomly sample 12 factual claims from the section (e.g., 'accuracy improved by 5%', 'training used 100 epochs'). (3) For each claim, search the logs for supporting evidence; if none found, mark as unsupported. (4) Record in a CSV with columns: claim_id, claim_text, log_line (or 'unsupported'), mismatch_type (e.g., missing_log, contradictory, vague). (5) Compute unsupported-claim rate and per-type proportions. (6) Save the CSV and a brief report. Commands: use Python with pandas; seed=0 for reproducibility."",
+      ""role"": ""experime
+...[truncated for annotation packet]...",,,,,,,

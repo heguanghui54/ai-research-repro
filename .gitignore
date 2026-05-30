@@ -15,4 +15,6 @@ runs/
 *.png
 *.log
 .pytest_cache/
-
+.env
+.env.*
+!.env.example
