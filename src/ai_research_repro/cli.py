@@ -16,6 +16,7 @@ def _cmd_run(args: argparse.Namespace) -> None:
             workspace=Path(args.workspace),
             num_ideas=args.ideas,
             gpt_model=args.model,
+            provider=args.provider,
             run_baseline=not args.no_baseline,
         )
     )
@@ -49,7 +50,8 @@ def build_parser() -> argparse.ArgumentParser:
     run = sub.add_parser("run", help="Run the full idea-to-paper pipeline.")
     run.add_argument("--workspace", required=True)
     run.add_argument("--ideas", type=int, default=3)
-    run.add_argument("--model", default="gpt-4o-mini")
+    run.add_argument("--model", default=None)
+    run.add_argument("--provider", default=None)
     run.add_argument("--no-baseline", action="store_true")
     run.set_defaults(func=_cmd_run)
 
@@ -73,4 +75,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

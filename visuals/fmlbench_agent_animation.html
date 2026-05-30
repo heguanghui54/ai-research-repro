@@ -1,0 +1,1540 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FML-bench 两个任务和 Agent 搜索过程可视化</title>
+  <style>
+    :root {
+      --ink: #16202a;
+      --muted: #5d6976;
+      --paper: #fffaf1;
+      --panel: #ffffff;
+      --line: #eadfcb;
+      --blue: #2f6f9f;
+      --green: #3b8c6e;
+      --orange: #df8f2d;
+      --red: #c85346;
+      --violet: #7562a8;
+      --shadow: 0 18px 45px rgba(46, 35, 18, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(223, 143, 45, 0.18), transparent 28%),
+        radial-gradient(circle at 90% 0%, rgba(47, 111, 159, 0.16), transparent 28%),
+        linear-gradient(135deg, #fff7e7 0%, #f5efe2 48%, #eef6f3 100%);
+      font-family: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 56px 7vw 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      max-width: 980px;
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(24px, 3vw, 38px);
+      letter-spacing: -0.03em;
+    }
+
+    h3 { margin: 0 0 10px; font-size: 21px; }
+
+    p { line-height: 1.75; }
+
+    .lead {
+      margin: 0;
+      max-width: 860px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .badge-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+
+    .badge {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.68);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 14px;
+      color: #3c4652;
+      backdrop-filter: blur(8px);
+    }
+
+    .truth-card {
+      background: #17212b;
+      color: #fff8e9;
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .truth-card:before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: rgba(223, 143, 45, 0.34);
+    }
+
+    .truth-card strong { color: #ffd37b; }
+
+    main { padding: 0 7vw 72px; }
+
+    section {
+      margin: 28px 0;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(234, 223, 203, 0.9);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 38px);
+      backdrop-filter: blur(10px);
+    }
+
+    .grid { display: grid; gap: 18px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: 0 10px 24px rgba(46, 35, 18, 0.07);
+    }
+
+    .card p { margin: 7px 0 0; color: var(--muted); }
+
+    .pill {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #f2eadb;
+      color: #6b5631;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 18px 0 22px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 17px;
+      background: #22303c;
+      color: #fff8e9;
+      cursor: pointer;
+      font: inherit;
+      box-shadow: 0 10px 18px rgba(22, 32, 42, 0.14);
+    }
+
+    button.secondary {
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    button.active { background: var(--orange); color: #23180a; }
+
+    .stage {
+      min-height: 420px;
+      background:
+        linear-gradient(90deg, rgba(47, 111, 159, 0.08) 1px, transparent 1px),
+        linear-gradient(rgba(47, 111, 159, 0.08) 1px, transparent 1px),
+        #fffdf7;
+      background-size: 28px 28px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stage-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .scene-text {
+      max-width: 760px;
+      font-size: 18px;
+      color: #34404c;
+      margin: 0;
+    }
+
+    .diagram {
+      display: grid;
+      grid-template-columns: 0.95fr 1.1fr 0.95fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 20px;
+    }
+
+    .person, .model-box, .score-box {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 230px;
+    }
+
+    .mini-people {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .avatar {
+      min-height: 62px;
+      border-radius: 16px;
+      background: #edf4f8;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      border: 1px solid #d8e6ef;
+      position: relative;
+    }
+
+    .avatar:after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: -18px;
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .arrow {
+      font-size: 42px;
+      color: var(--orange);
+      text-align: center;
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateX(0); opacity: 0.65; }
+      50% { transform: translateX(8px); opacity: 1; }
+    }
+
+    .bar-wrap {
+      margin: 14px 0;
+      background: #eee5d5;
+      height: 18px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid #dfd2bc;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: var(--green);
+      transition: width 900ms ease;
+    }
+
+    .bar.orange { background: var(--orange); }
+    .bar.red { background: var(--red); }
+    .bar.blue { background: var(--blue); }
+
+    .agent-track {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .step-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      min-height: 170px;
+      position: relative;
+      transform: translateY(12px);
+      opacity: 0.45;
+      transition: 420ms ease;
+    }
+
+    .step-card.revealed {
+      transform: translateY(0);
+      opacity: 1;
+      border-color: rgba(59, 140, 110, 0.45);
+    }
+
+    .step-number {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #17212b;
+      color: #fff8e9;
+      font-size: 14px;
+      margin-bottom: 9px;
+    }
+
+    .metric {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-top: 8px;
+    }
+
+    .metric.good { color: var(--green); }
+    .metric.bad { color: var(--red); }
+    .metric.neutral { color: var(--blue); }
+
+    .detail-list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.58;
+    }
+
+    .step-card code {
+      background: #f5eddd;
+      border: 1px solid #e7d9c1;
+      border-radius: 7px;
+      padding: 1px 5px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .strategy-map {
+      min-height: 360px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(59, 140, 110, 0.12), transparent 26%),
+        radial-gradient(circle at 74% 20%, rgba(223, 143, 45, 0.12), transparent 24%),
+        #fffdf8;
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .graph-svg {
+      width: 100%;
+      height: 360px;
+      display: block;
+    }
+
+    .graph-edge {
+      stroke: rgba(47, 111, 159, 0.42);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-dasharray: 420;
+      stroke-dashoffset: 420;
+      transition: stroke-dashoffset 700ms ease, stroke 300ms ease;
+    }
+
+    .graph-edge.active {
+      stroke-dashoffset: 0;
+      stroke: rgba(47, 111, 159, 0.92);
+    }
+
+    .graph-node circle {
+      fill: #fff;
+      stroke: #d8c9b2;
+      stroke-width: 2;
+      transition: 360ms ease;
+    }
+
+    .graph-node text {
+      font-family: "Songti SC", "Noto Serif CJK SC", serif;
+      font-size: 5.3px;
+      fill: #263340;
+      pointer-events: none;
+      font-weight: 800;
+    }
+
+    .graph-node .score {
+      font-size: 4.3px;
+      fill: #687583;
+      font-weight: 500;
+    }
+
+    .graph-node {
+      cursor: pointer;
+    }
+
+    .graph-node.active circle {
+      fill: #fff2cc;
+      stroke: var(--orange);
+      stroke-width: 4;
+      filter: drop-shadow(0 8px 12px rgba(223,143,45,0.25));
+    }
+
+    .graph-node.selected circle {
+      stroke: #17212b;
+      stroke-width: 5;
+      filter: drop-shadow(0 10px 16px rgba(22,32,42,0.28));
+    }
+
+    .graph-node.best circle {
+      fill: #e8f6ee;
+      stroke: var(--green);
+    }
+
+    .graph-node.fail circle {
+      fill: #fdecea;
+      stroke: var(--red);
+    }
+
+    .algorithm-steps {
+      margin: 14px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .strategy-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .node-detail {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.92);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 360px;
+    }
+
+    .node-detail h3 {
+      font-size: 20px;
+    }
+
+    .node-detail p {
+      color: var(--muted);
+      margin: 8px 0;
+    }
+
+    .node-detail ul {
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    .hill {
+      position: absolute;
+      width: 220px;
+      height: 130px;
+      border-radius: 50% 50% 0 0;
+      bottom: 0;
+      background: linear-gradient(180deg, rgba(59, 140, 110, 0.34), rgba(59, 140, 110, 0.06));
+    }
+
+    .hill.one { left: 6%; height: 92px; }
+    .hill.two { left: 36%; height: 145px; width: 280px; }
+    .hill.three { right: 7%; height: 112px; }
+
+    .dot {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 6px rgba(223, 143, 45, 0.2);
+      transition: 700ms ease;
+    }
+
+    .branch {
+      position: absolute;
+      height: 3px;
+      background: rgba(47, 111, 159, 0.38);
+      transform-origin: left center;
+    }
+
+    .legend {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .swatch {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: -1px;
+    }
+
+    .comparison {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .comparison th, .comparison td {
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .comparison th { background: #f5eddd; }
+    .comparison tr:last-child td { border-bottom: 0; }
+
+    .ubuntu-board {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .ubuntu-timeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .ubuntu-step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.88);
+      border-radius: 18px;
+      padding: 12px;
+      cursor: pointer;
+      text-align: left;
+      color: var(--ink);
+      box-shadow: none;
+    }
+
+    .ubuntu-step.active {
+      border-color: var(--orange);
+      background: #fff3d7;
+    }
+
+    .ubuntu-step.done .ubuntu-num {
+      background: var(--green);
+    }
+
+    .ubuntu-num {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #22303c;
+      color: #fff8e9;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .ubuntu-step-title {
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .ubuntu-step-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .ubuntu-detail {
+      border: 1px solid var(--line);
+      background: #fffdf8;
+      border-radius: 24px;
+      padding: 22px;
+      min-height: 520px;
+    }
+
+    .terminal {
+      margin: 14px 0;
+      background: #14202a;
+      color: #f9edcf;
+      border-radius: 18px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .ubuntu-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .ubuntu-meta div {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .ubuntu-meta strong {
+      display: block;
+      font-size: 13px;
+      color: #6b5631;
+      margin-bottom: 4px;
+    }
+
+    footer {
+      margin: 32px 7vw 52px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      header, .diagram, .grid.two, .grid.three, .grid.four, .strategy-layout, .ubuntu-board, .ubuntu-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .agent-track { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>看懂 FML-bench：两个任务，几种 Agent，像看一场实验闯关</h1>
+      <p class="lead">
+        这个页面把我们已经低成本跑通的两个任务做成动画讲解：一个是“治疗到底有没有用”的因果推断，
+        一个是“模型是不是公平”的收入预测。重点不是炫技术，而是让中学生也能看懂：数据是什么、指标是什么、
+        agent 每一步在试什么。
+      </p>
+      <div class="badge-row">
+        <span class="badge">真实跑过：AI Scientist v2 + DeepSeek</span>
+        <span class="badge">步数：每个任务 4 step</span>
+        <span class="badge">指标方向：两个任务都是越低越好</span>
+      </div>
+    </div>
+    <aside class="truth-card">
+      <h3>先说清楚</h3>
+      <p>
+        页面里 <strong>AI Scientist v2 的四步轨迹</strong> 来自真实复现日志。
+        其他 agent 的动画是为了讲搜索策略差异的教学类比，不是我们这次实际跑出的结果。
+      </p>
+    </aside>
+  </header>
+
+  <main>
+    <section>
+      <h2>1. Agent 到底在比什么？</h2>
+      <div class="grid four">
+        <div class="card">
+          <span class="pill">同一张试卷</span>
+          <h3>FML-bench 任务</h3>
+          <p>给定已有代码、数据集、baseline 和评分标准，让 agent 去改代码。</p>
+        </div>
+        <div class="card">
+          <span class="pill">同一个裁判</span>
+          <h3>验证集和测试集</h3>
+          <p>搜索时只能看验证集分数，最后才用测试集判最终成绩。</p>
+        </div>
+        <div class="card">
+          <span class="pill">同样次数</span>
+          <h3>Step budget</h3>
+          <p>每次改代码并跑一次实验算一步。我们省钱版每个任务只跑 4 步。</p>
+        </div>
+        <div class="card">
+          <span class="pill">比方法</span>
+          <h3>搜索策略</h3>
+          <p>比较的是 agent 怎么选择下一次实验，而不是单纯比较底层大模型。</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2. 两个任务是什么？</h2>
+      <div class="tabs">
+        <button class="active" data-task="causality">儿童治疗效果：Causality_causalml</button>
+        <button class="secondary" data-task="fairness">收入公平预测：Fairness_fairlearn</button>
+      </div>
+      <div class="stage" id="task-stage"></div>
+    </section>
+
+    <section>
+      <h2>3. 主流 agent 的搜索方法像什么？</h2>
+      <p class="scene-text">
+        下面改成更直接的“搜索图”。圆点是一版代码，连线表示下一步实验从哪里来。
+        绿色圆点是当前认为最好的候选，红色圆点是报错或被丢弃的候选。
+      </p>
+      <div class="tabs">
+        <button class="active" data-agent="tas2">AI Scientist v2</button>
+        <button class="secondary" data-agent="auto">Autoresearch</button>
+        <button class="secondary" data-agent="aide">AIDE</button>
+        <button class="secondary" data-agent="evolve">OpenEvolve</button>
+      </div>
+      <div class="grid two">
+        <div class="card" id="agent-copy"></div>
+        <div>
+          <button id="play-agent">播放搜索动画</button>
+          <div class="strategy-layout">
+            <div class="strategy-map" id="strategy-map"></div>
+            <aside class="node-detail" id="node-detail"></aside>
+          </div>
+          <div class="legend">
+            <span><span class="swatch" style="background: var(--orange)"></span>正在评估</span>
+            <span><span class="swatch" style="background: var(--blue)"></span>搜索连线</span>
+            <span><span class="swatch" style="background: var(--green)"></span>当前最好</span>
+            <span><span class="swatch" style="background: var(--red)"></span>失败或丢弃</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>4. AI Scientist v2 真实跑过的四步</h2>
+      <p class="scene-text">
+        下面两条轨迹来自我们在 Ubuntu 上跑出的结果。请特别注意：降低指标才是好事。
+        因果任务明显降低了错误；公平任务在 4 步省钱版里没有超过 baseline，还出现了报错。
+      </p>
+      <div class="tabs">
+        <button class="active" data-run="causality">看因果任务轨迹</button>
+        <button class="secondary" data-run="fairness">看公平任务轨迹</button>
+      </div>
+      <button id="play-run">播放四步实验</button>
+      <div class="agent-track" id="run-track"></div>
+    </section>
+
+    <section>
+      <h2>5. 如果换成其他 agent，它们会怎样试？</h2>
+      <p class="scene-text">
+        下面是教学推演，不是本次真实运行结果。它的作用是帮你理解“搜索算法差异”：
+        同一道任务，不同 agent 可能会选择不同的试错路线。
+      </p>
+      <table class="comparison">
+        <thead>
+          <tr>
+            <th>Agent</th>
+            <th>面对因果任务可能试什么</th>
+            <th>面对公平任务可能试什么</th>
+            <th>它的搜索味道</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>AI Scientist v2</td>
+            <td>先试一个较完整的方案，例如集成多个回归器、标准化特征，再根据验证误差继续改。</td>
+            <td>先试去相关、约束优化、后处理阈值等多种公平机器学习办法。</td>
+            <td>像写实验日志的树搜索：保留有希望的方向，继续深挖。</td>
+          </tr>
+          <tr>
+            <td>Autoresearch</td>
+            <td>如果“加 Ridge 正则化”让 MAE 下降，就沿着这个方向继续小调参数。</td>
+            <td>如果“调分类阈值”让群体差距变小，就继续围绕阈值和权重微调。</td>
+            <td>像贪心爬山：只保留眼前更好的改法。</td>
+          </tr>
+          <tr>
+            <td>AIDE</td>
+            <td>可能同时保留“线性模型”“集成模型”“更强正则化”几个候选，并修复报错分支。</td>
+            <td>遇到 Fairlearn API 报错时，会更重视把这条分支修到能跑，再比较分数。</td>
+            <td>像多份草稿 + 修 bug：让更多实验有效完成。</td>
+          </tr>
+          <tr>
+            <td>OpenEvolve</td>
+            <td>让很多候选方案同时变异：有的换模型，有的换损失，有的换数据切分。</td>
+            <td>同时保留多种公平策略，例如预处理、训练中约束、预测后调阈值。</td>
+            <td>像进化比赛：保留一群方案，让它们竞争和变异。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>6. 结果怎么读？</h2>
+      <table class="comparison">
+        <thead>
+          <tr>
+            <th>任务</th>
+            <th>数据集</th>
+            <th>评分标准</th>
+            <th>Baseline</th>
+            <th>真实复现结果</th>
+            <th>中学生版结论</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Causality_causalml</td>
+            <td>IHDP 儿童健康项目数据</td>
+            <td>MAE，平均预测错多少，越低越好</td>
+            <td>1.296</td>
+            <td>验证集 0.599，测试集 0.618</td>
+            <td>这 4 步找到了比原始模型更准的治疗效果估计方法。</td>
+          </tr>
+          <tr>
+            <td>Fairness_fairlearn</td>
+            <td>Adult Census Income 成人收入数据</td>
+            <td>人口统计公平差距，越低越好</td>
+            <td>0.187</td>
+            <td>验证集 0.316，测试集 0.316</td>
+            <td>这 4 步跑通了流程，但没有改好公平性；它是失败样本，也很有教学价值。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>7. Ubuntu 上真实跑实验的全过程</h2>
+      <p class="scene-text">
+        这一段把 SSH 控制 Ubuntu 机器复现 FML-bench 的过程做成时间线。左边点步骤，右边看命令、
+        为什么做、成功标志和产物。命令中的 API key 用 <code>sk-...</code> 隐去。
+      </p>
+      <button id="play-ubuntu">播放 Ubuntu 复现流程</button>
+      <div class="ubuntu-board">
+        <div class="ubuntu-timeline" id="ubuntu-timeline"></div>
+        <article class="ubuntu-detail" id="ubuntu-detail"></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    数据来源：本仓库复现记录和 Ubuntu 运行产物 summary.json。页面中的儿童治疗、猫狗分类、学校补习等例子是教学类比；真实 IHDP 任务的“干预”是是否接受早期干预/治疗，不是让 agent 选择现实中的具体药物或治疗方案。
+  </footer>
+
+  <script>
+    const tasks = {
+      causality: {
+        title: "Causality_causalml：治疗到底有没有用？",
+        dataset: "数据集：IHDP 儿童健康项目数据",
+        intervention: "真实任务里的干预选项是二选一：接受早期干预/治疗，或不接受。它不是让 agent 在多种药物之间做现实医疗选择。",
+        example: "教学例子：如果小明不接受干预，预测结果是 40；接受干预，预测结果是 46；模型认为这次干预效果是 +6。真实答案如果是 +5，模型就错了 1。",
+        leftTitle: "数据像什么",
+        left: "每条数据像一个孩子的档案：家庭背景、健康情况、是否接受早期干预，以及后来的结果。",
+        middleTitle: "模型要猜什么",
+        middle: "不是猜猫狗，而是猜“如果这个孩子接受干预会怎样；如果不接受会怎样”。两种未来的差，就是治疗效果。",
+        scoreTitle: "评价标准",
+        score: "MAE = 平均预测错多少。越低越好。像估分，真实提高 5 分，你猜 4 分，就错 1 分。",
+        labels: ["孩子A", "孩子B", "孩子C", "孩子D"],
+        icons: ["书", "药", "家", "跑"],
+        bar: 48,
+        barClass: "green",
+        analogy: "图像分类类比：猫狗分类看认对多少；这里看治疗效果预测错多少。"
+      },
+      fairness: {
+        title: "Fairness_fairlearn：预测收入时公平吗？",
+        dataset: "数据集：Adult Census Income 成人收入数据",
+        intervention: "这里没有“治疗干预”。这里的关键变量是敏感群体，比如 sex。任务是让模型预测收入时，别让不同群体的预测比例差得太离谱。",
+        example: "教学例子：如果模型把 60% 的男性预测为高收入、30% 的女性预测为高收入，差距就是 0.30；差距越小，越公平。",
+        leftTitle: "数据像什么",
+        left: "每条数据像一个成年人档案：年龄、学历、职业、婚姻、性别等，标签是收入是否超过 5 万美元。",
+        middleTitle: "模型要猜什么",
+        middle: "模型要预测收入高低，但不能只看准确率，还要检查不同群体是不是被明显区别对待。",
+        scoreTitle: "评价标准",
+        score: "Demographic parity difference = 不同群体被预测为高收入的比例差。越接近 0 越公平。",
+        labels: ["男组", "女组", "高学历", "低学历"],
+        icons: ["工", "学", "钱", "秤"],
+        bar: 68,
+        barClass: "orange",
+        analogy: "图像分类类比：不仅看猫狗分类准不准，还看黑猫白猫是不是被同样公平地识别。"
+      }
+    };
+
+    const agents = {
+      tas2: {
+        name: "AI Scientist v2：带日志的最佳优先树搜索",
+        text: "它不是只沿着一条线走，也不是严格广度优先逐层扫完；它更像最佳优先树搜索。先长出几个候选分支，每跑完一次实验，就把分数、失败原因、代码变化写进 journal，然后优先扩展“看起来最有希望”的节点。",
+        steps: [
+          "从 baseline 生出多个 draft idea。",
+          "每个 idea 跑验证集，得到分数或错误。",
+          "把好节点放到更高优先级，继续 improve；这和广度优先“每层都平均展开”不同。",
+          "如果某条分支反复不好，就回到更好的祖先节点继续搜索。"
+        ],
+        nodes: [
+          { id: "B", x: 10, y: 52, label: "B", score: "起点", detailTitle: "B：baseline 起点", detail: "还没有搜索。agent 看到的是原始代码、可修改文件、验证命令和指标方向。", choices: ["可选方向：改模型结构、改损失、改正则化、改阈值。", "AI Scientist v2 会先生成多个 draft idea，而不是只选一个。"] },
+          { id: "D1", x: 34, y: 24, label: "D1", score: "0.599", best: true, detailTitle: "D1：第一个 draft，当前最好", detail: "选择一个较完整的方案：Ridge + Lasso 加权集成，分别建模治疗组和对照组。", choices: ["修改：加入 WeightedEnsemble。", "选择：Ridge 降低过拟合，Lasso 做特征筛选。", "结果：MAE 0.599，明显优于 baseline。"] },
+          { id: "D2", x: 34, y: 72, label: "D2", score: "0.628", detailTitle: "D2：第二个 draft，也有效但较弱", detail: "选择更简单的两个线性模型：治疗组一个模型，对照组一个模型，再相减。", choices: ["修改：LinearRegression 分别拟合 treatment/control。", "尝试：targeted regularization 修正偏差。", "结果：MAE 0.628，比 baseline 好，但不如 D1。"] },
+          { id: "I1", x: 62, y: 24, label: "I1", score: "0.621", detailTitle: "I1：沿 D1 改进，但没有超过 D1", detail: "把模型简化成单 Ridge + 标准化，想提升稳定性。", choices: ["修改：每组一个 Ridge(alpha=1.0)。", "选择理由：减少复杂集成带来的不稳定。", "结果：MAE 0.621，仍弱于 D1。"] },
+          { id: "I2", x: 84, y: 24, label: "I2", score: "0.599", best: true, detailTitle: "I2：回到最好分支", detail: "树搜索发现 D1 方向最好，于是回到 Ridge/Lasso 加权集成路线。", choices: ["修改：恢复 WeightedEnsemble。", "选择：保留交叉验证调权重。", "结果：验证集回到 0.599，并用它做最终测试。"] },
+          { id: "X", x: 62, y: 72, label: "X", score: "丢弃", fail: true, detailTitle: "X：弱分支被放弃", detail: "D2 虽然有效，但分数低于 D1，因此不再优先投入预算。", choices: ["不是代码报错，而是机会成本问题。", "搜索预算有限，AI Scientist v2 把注意力转回更好的 D1 分支。"] }
+        ],
+        edges: [["B","D1"],["B","D2"],["D1","I1"],["I1","I2"],["D2","X"]],
+        order: ["B","D1","D2","I1","I2","X"]
+      },
+      auto: {
+        name: "Autoresearch：贪心爬山",
+        text: "它维护一个当前版本。新改法只要让验证集更好，就替换当前版本；如果变差，立刻回滚。动画里你会看到它几乎是一条线，失败点不会继续长分支。",
+        steps: [
+          "从 baseline 改一点点。",
+          "变好：接受，当前版本前进一步。",
+          "变差：拒绝，回到旧版本。",
+          "继续在当前最好版本附近小修小补。"
+        ],
+        nodes: [
+          { id: "B", x: 10, y: 52, label: "B", score: "起点", detailTitle: "B：当前唯一版本", detail: "贪心/爬山搜索只维护一个当前版本，不保留复杂树。", choices: ["下一步只在当前版本附近做一个小改。"] },
+          { id: "A", x: 30, y: 44, label: "A", score: "接受", best: true, detailTitle: "A：小改 1 被接受", detail: "例如把学习率稍微降低，或加一点 Ridge 正则化。", choices: ["如果验证指标变好，马上替换当前版本。", "搜索路径向这个节点移动。"] },
+          { id: "R", x: 48, y: 70, label: "R", score: "回滚", fail: true, detailTitle: "R：小改 2 被拒绝", detail: "例如把 Lasso 惩罚调太大，导致重要特征也被压掉，验证分数变差。", choices: ["贪心策略不会继续扩展这个节点。", "直接回到 A，继续试别的小改。"] },
+          { id: "C", x: 62, y: 36, label: "C", score: "接受", best: true, detailTitle: "C：小改 3 被接受", detail: "例如只调阈值或 class_weight，让指标进一步改善。", choices: ["只要比 A 好，就成为新的当前版本。", "它不关心远处是否有更大机会，先吃眼前收益。"] },
+          { id: "D", x: 84, y: 28, label: "D", score: "最好", best: true, detailTitle: "D：最终当前版本", detail: "最后一次小改继续变好，因此提交 D。", choices: ["优点：简单、快、省钱。", "缺点：容易卡在局部最优，错过需要先变差再变好的路线。"] }
+        ],
+        edges: [["B","A"],["A","R"],["A","C"],["C","D"]],
+        order: ["B","A","R","C","D"]
+      },
+      aide: {
+        name: "AIDE：候选方案树 + 修 bug",
+        text: "AIDE 也有树，但它特别像会整理草稿的工程同学：哪条分支报错，就生成一个 bug-fix 子节点；哪条分支有效，就继续扩展。",
+        steps: [
+          "同时保留多个候选代码叶子。",
+          "叶子报错时，不马上丢弃，而是开一条修 bug 分支。",
+          "修好后再跑验证集，看是否值得继续。",
+          "最终从所有可运行叶子里选最好的。"
+        ],
+        nodes: [
+          { id: "B", x: 10, y: 52, label: "B", score: "起点", detailTitle: "B：baseline", detail: "AIDE 从原始代码开始，但会维护多个候选叶子。", choices: ["目标：不只是找高分，还要让代码能跑。"] },
+          { id: "A", x: 32, y: 28, label: "A", score: "可跑", detailTitle: "A：可运行方案", detail: "例如添加 Ridge/Lasso 或调阈值，实验能正常完成。", choices: ["AIDE 会保留这个叶子，等待继续扩展。"] },
+          { id: "Bug", x: 32, y: 76, label: "BUG", score: "报错", fail: true, detailTitle: "BUG：失败方案", detail: "例如 Fairlearn 参数不兼容、输入缺少 sex 列、训练脚本崩溃。", choices: ["AIDE 不一定直接丢弃，而是尝试生成修复节点。"] },
+          { id: "Fix", x: 58, y: 76, label: "FIX", score: "修复", detailTitle: "FIX：修 bug 分支", detail: "例如移除不支持的参数、改 API 调用、补齐 sensitive_features。", choices: ["修复后重新跑验证集。", "如果修复后分数不好，仍可能被淘汰。"] },
+          { id: "A2", x: 58, y: 28, label: "A2", score: "更好", best: true, detailTitle: "A2：扩展有效方案", detail: "沿着 A 的可运行路线继续改参数或结构。", choices: ["AIDE 倾向优先扩展既能跑又有潜力的节点。"] },
+          { id: "Pick", x: 84, y: 44, label: "PICK", score: "提交", best: true, detailTitle: "PICK：选择最佳可运行叶子", detail: "最后从所有可运行候选里选验证集最好的。", choices: ["这就是候选方案树的好处：失败分支有机会被修，成功分支也能继续优化。"] }
+        ],
+        edges: [["B","A"],["B","Bug"],["Bug","Fix"],["A","A2"],["A2","Pick"],["Fix","Pick"]],
+        order: ["B","A","Bug","Fix","A2","Pick"]
+      },
+      evolve: {
+        name: "OpenEvolve：进化比赛",
+        text: "它不像树搜索那样只盯着少数祖先，而是保留一群候选。每一轮让候选发生变异：换模型、换损失、换阈值。分数好的留下，差的淘汰。",
+        steps: [
+          "先生成一群不同方案。",
+          "每个方案像生物一样变异出子代。",
+          "按验证集分数选择幸存者。",
+          "幸存者继续变异，保持多样性。"
+        ],
+        nodes: [
+          { id: "B", x: 9, y: 52, label: "B", score: "起点", detailTitle: "B：初始个体", detail: "进化搜索把一份代码看作一个个体。", choices: ["接下来不是只生一个方案，而是生成一群不同方案。"] },
+          { id: "P1", x: 28, y: 22, label: "P1", score: "集成", detailTitle: "P1：种群成员 1", detail: "例如尝试集成模型：Ridge + Lasso 或多个分类器投票。", choices: ["代表一种算法家族。"] },
+          { id: "P2", x: 28, y: 52, label: "P2", score: "阈值", detailTitle: "P2：种群成员 2", detail: "例如尝试调分类阈值，让公平性指标下降。", choices: ["代表后处理路线。"] },
+          { id: "P3", x: 28, y: 82, label: "P3", score: "正则", detailTitle: "P3：种群成员 3", detail: "例如调 Ridge/Lasso 正则强度，防止过拟合。", choices: ["代表稳定化路线。"] },
+          { id: "C1", x: 58, y: 22, label: "C1", score: "幸存", best: true, detailTitle: "C1：好变异保留", detail: "P1 变异后分数更好，所以进入下一代。", choices: ["可能修改集成权重、加入标准化、换子模型。"] },
+          { id: "C2", x: 58, y: 52, label: "C2", score: "一般", detailTitle: "C2：一般变异", detail: "P2 变异后能跑但提升一般，可能保留少量多样性。", choices: ["进化算法不一定只保留最强，也会保留不同类型。"] },
+          { id: "C3", x: 58, y: 82, label: "C3", score: "淘汰", fail: true, detailTitle: "C3：差变异淘汰", detail: "P3 变异后报错或指标变差，被淘汰。", choices: ["例如参数太激进、API 不兼容、过拟合严重。"] },
+          { id: "N", x: 84, y: 34, label: "N", score: "下一代", best: true, detailTitle: "N：下一代种群", detail: "幸存者继续变异，形成下一轮搜索。", choices: ["优点：探索范围大。", "缺点：如果预算很少，可能不如贪心或树搜索集中。"] }
+        ],
+        edges: [["B","P1"],["B","P2"],["B","P3"],["P1","C1"],["P2","C2"],["P3","C3"],["C1","N"],["C2","N"]],
+        order: ["B","P1","P2","P3","C1","C2","C3","N"]
+      }
+    };
+
+    const runs = {
+      causality: {
+        lowerIsBetter: true,
+        steps: [
+          {
+            n: "B",
+            title: "Baseline",
+            action: "原始 Dragonnet",
+            metric: 1.296,
+            status: "起点",
+            detail: "原始模型先估计接受干预和不接受干预的结果，再相减得到治疗效果。",
+            details: [
+              "评分标准是 <code>mae_mean</code>，平均预测错误，越低越好。",
+              "baseline 验证指标是 <code>1.296</code>，说明治疗效果估计误差较大。"
+            ]
+          },
+          {
+            n: 1,
+            title: "Draft 1",
+            action: "加权集成：Ridge + Lasso + 标准化",
+            metric: 0.599,
+            status: "有效，最好",
+            detail: "这一步把单个预测器换成两个“同学”一起估分：Ridge 和 Lasso。",
+            details: [
+              "<code>Ridge</code> 像“别让任何一个特征权重太夸张”，减少过拟合。",
+              "<code>Lasso</code> 像“把不重要的特征权重压到接近 0”，自动做筛选。",
+              "<code>StandardScaler</code> 先把不同量纲的特征拉到相近尺度，避免某些数字大就显得更重要。",
+              "对“接受干预组”和“不接受干预组”分别训练一套集成模型，再相减得到治疗效果。",
+              "还用交叉验证估计 Ridge/Lasso 谁更靠谱，再给它们分配权重。"
+            ]
+          },
+          {
+            n: 2,
+            title: "Draft 2",
+            action: "两个线性模型 + targeted regularization",
+            metric: 0.628,
+            status: "有效，但不如第 1 步",
+            detail: "这一步把模型简化：接受干预的人训练一个线性模型，未接受干预的人训练另一个线性模型。",
+            details: [
+              "<code>LinearRegression</code> 就像画一条最合适的直线来预测结果。",
+              "模型先预测“如果治疗”的结果，再预测“如果不治疗”的结果，两者相减。",
+              "代码还尝试用 <code>LogisticRegression</code> 估计一个人接受干预的概率，再用修正项减少偏差。",
+              "它比 baseline 好，但没有第 1 步的 Ridge/Lasso 集成稳定。"
+            ]
+          },
+          {
+            n: 3,
+            title: "Improve",
+            action: "单 Ridge + 标准化",
+            metric: 0.621,
+            status: "有效，但仍未超过第 1 步",
+            detail: "这一步像在第 2 步基础上加了“别太相信单个特征”的刹车。",
+            details: [
+              "接受干预组使用一个 <code>Ridge(alpha=1.0)</code>。",
+              "不接受干预组也使用一个 <code>Ridge(alpha=1.0)</code>。",
+              "分别对两组做 <code>StandardScaler</code>，让特征尺度更稳。",
+              "结果比第 2 步略好，但仍然不如第 1 步的组合拳。"
+            ]
+          },
+          {
+            n: 4,
+            title: "Improve",
+            action: "回到最佳加权集成路线",
+            metric: 0.599,
+            status: "有效，回到最好分支",
+            detail: "AI Scientist v2 的树搜索在这里表现出来：发现第 1 步最好，就回到那个方向继续保留。",
+            details: [
+              "再次使用 Ridge + Lasso 的 <code>WeightedEnsemble</code>。",
+              "保留交叉验证调权重：误差小的子模型权重大。",
+              "验证集回到 <code>0.599</code>，最后用这个最佳验证版本去测试。",
+              "测试集得到 <code>0.618</code>，说明没有只在验证集上“背答案”。"
+            ]
+          }
+        ]
+      },
+      fairness: {
+        lowerIsBetter: true,
+        steps: [
+          {
+            n: "B",
+            title: "Baseline",
+            action: "普通 Logistic Regression",
+            metric: 0.187,
+            status: "起点",
+            detail: "原始模型只做收入预测，不主动处理公平性。",
+            details: [
+              "评分标准是 <code>abs_demographic_parity_diff_mean</code>，不同群体预测为高收入的比例差，越低越好。",
+              "baseline 是 <code>0.187</code>，这次 4 步搜索没有超过它。"
+            ]
+          },
+          {
+            n: 1,
+            title: "Draft 1",
+            action: "CorrelationRemover + GradientBoosting",
+            metric: 0.316,
+            status: "有效但变差",
+            detail: "这一步想先去掉和性别相关的线索，再用更灵活的树模型分类。",
+            details: [
+              "<code>CorrelationRemover</code> 像把“和性别太相关的影子信息”从特征里擦掉。",
+              "<code>GradientBoostingClassifier</code> 像很多小决策树接力纠错。",
+              "还尝试平衡类别权重，避免模型只偏向人数更多的类别。",
+              "但验证公平差距变成 <code>0.316</code>，比 baseline 更差。"
+            ]
+          },
+          {
+            n: 2,
+            title: "Draft 2",
+            action: "CorrelationRemover + ExponentiatedGradient + ThresholdOptimizer",
+            metric: null,
+            status: "报错",
+            detail: "这一步想把预处理、训练中公平约束、预测后调阈值三种办法叠在一起，但代码没有跑通。",
+            details: [
+              "<code>ExponentiatedGradient</code> 的想法是训练多个分类器，在准确率和公平性之间找平衡。",
+              "<code>ThresholdOptimizer</code> 的想法是预测后给不同群体调判定门槛。",
+              "真实错误：<code>Columns ['sex'] not found in the input data</code>。",
+              "也就是说 CorrelationRemover 期待在输入特征里找到 sex 列，但当时传进去的数据里没有。"
+            ]
+          },
+          {
+            n: 3,
+            title: "Improve",
+            action: "LogisticRegression + ThresholdOptimizer",
+            metric: 0.331,
+            status: "有效但更差",
+            detail: "这一步放弃复杂预处理，先训练普通逻辑回归，再按群体调阈值。",
+            details: [
+              "<code>LogisticRegression</code> 先输出一个人收入 >50K 的概率。",
+              "<code>ThresholdOptimizer</code> 再尝试给不同群体设置不同门槛，让预测比例更接近。",
+              "这次能跑通，但公平差距 <code>0.331</code>，比第 1 步和 baseline 都差。"
+            ]
+          },
+          {
+            n: 4,
+            title: "Improve",
+            action: "再试 ExponentiatedGradient",
+            metric: null,
+            status: "报错",
+            detail: "这一步回到训练中公平约束，但使用了当前 Fairlearn 版本不支持的参数。",
+            details: [
+              "代码设置了 <code>eps=0.01</code>、<code>max_iter=50</code>、<code>run_linprog=True</code> 等参数。",
+              "真实错误：<code>unexpected keyword argument 'run_linprog'</code>。",
+              "意思是当前安装的 Fairlearn API 不认识这个参数。",
+              "所以公平任务这次是一个反面例子：agent 想法合理，但工程兼容性导致搜索失败。"
+            ]
+          }
+        ]
+      }
+    };
+
+    const ubuntuSteps = [
+      {
+        title: "SSH 进入 Ubuntu 主机",
+        subtitle: "把实验放到远程 Ubuntu/GPU 环境里跑",
+        command: "ssh ubuntu-heshi",
+        why: "FML-bench 官方任务依赖 conda 环境、任务仓库和较长运行时间。用 SSH 登录 Ubuntu 后，所有重任务都在远程机器执行，本地 Mac 只负责控制和记录。",
+        success: "能进入 Ubuntu shell，并且后续路径使用 /home/heshi/work。",
+        artifact: "远程工作目录：/home/heshi/work",
+        detail: [
+          "这一步不是机器学习实验本身，而是把控制台切到真正运行实验的机器。",
+          "后面所有 python、conda、benchmark 命令都在 Ubuntu 上执行。"
+        ]
+      },
+      {
+        title: "准备官方 FML-bench 仓库",
+        subtitle: "获取 qrzou/FML-bench 官方代码",
+        command: "mkdir -p ~/work\ncd ~/work\ngit clone https://github.com/qrzou/FML-bench.git\ncd FML-bench",
+        why: "我们要复现的是官方 benchmark 流程，所以先把官方仓库放到 Ubuntu 的 ~/work/FML-bench。",
+        success: "目录 /home/heshi/work/FML-bench 存在，并且能看到 run_agent_benchmark.py、configs/tasks、configs/agents。",
+        artifact: "/home/heshi/work/FML-bench",
+        detail: [
+          "FML-bench 本体负责统一 agent、任务配置、验证集和测试集流程。",
+          "本仓库只提供补丁、helper 和说明，不替代官方仓库。"
+        ]
+      },
+      {
+        title: "安装任务环境",
+        subtitle: "只装低成本最小复现需要的任务",
+        command: "cd /home/heshi/work/FML-bench\npython setup.py --task Causality_causalml\npython setup.py --task Fairness_fairlearn --skip-data",
+        why: "完整 18 个任务会下载更多仓库和数据，成本和时间都高。最小复现只安装实际跑过的 Causality 和 Fairlearn 两个任务。",
+        success: "对应任务环境和 workspace 准备好，后续 benchmark 不会因为缺任务仓库而失败。",
+        artifact: "workspace/Causality_causalml/... 和 workspace/Fairness_fairlearn/...",
+        detail: [
+          "Causality 任务需要 causalml 相关代码和 IHDP 数据处理。",
+          "Fairlearn 任务使用 Adult Census Income 数据和 fairlearn 相关依赖。",
+          "--skip-data 用于避免重复下载已准备的数据。"
+        ]
+      },
+      {
+        title: "确认官方 CLI 能启动",
+        subtitle: "先检查入口，不直接烧 API",
+        command: "cd ~/work/FML-bench\npython3 run_agent_benchmark.py --help",
+        why: "这一步不调用 LLM，只确认官方入口脚本能运行，并且参数接口存在。",
+        success: "终端能看到 --agent-config、--task-config、--model、--provider、--output-dir 等参数。",
+        artifact: "确认 run_agent_benchmark.py 可用",
+        detail: [
+          "这是低成本 sanity check。",
+          "如果这里失败，就说明环境或仓库还没准备好，不应该继续调用 LLM。"
+        ]
+      },
+      {
+        title: "给官方仓库打 DeepSeek provider 补丁",
+        subtitle: "让 provider=DeepSeek 可用",
+        command: "cd ~/work/FML-bench\npython3 /home/heshi/patch_fmlbench_deepseek_provider.py --repo /home/heshi/work/FML-bench",
+        why: "官方仓库默认不一定包含 DeepSeek provider 分支。补丁会让 agents/llm.py 能读取 DEEPSEEK_API_KEY，并使用 https://api.deepseek.com。",
+        success: "运行 benchmark 时可以传 --provider DeepSeek --model deepseek-chat。",
+        artifact: "修改后的 agents/llm.py provider 分支",
+        detail: [
+          "这样可以优先用便宜的 DeepSeek API，把成本控制在几美元内。",
+          "Monica 作为备用 provider，只有 DeepSeek 不可用时才需要。"
+        ]
+      },
+      {
+        title: "验证 Monica 备用 provider",
+        subtitle: "备用通道，不用于本次真实跑分",
+        command: "cd ~/work/FML-bench\npython3 /home/heshi/patch_fmlbench_monica_provider.py --repo /home/heshi/work/FML-bench\nMONICA_API_KEY=testkey python3 - <<'PY'\nfrom agents.llm import create_client\nclient, model = create_client('gpt-4o-mini', 'Monica')\nprint(model)\nprint(client.base_url)\nPY",
+        why: "用户要求 DeepSeek 不行再用 Monica。所以我们验证 Monica client 能构造，并指向 Monica OpenAPI 地址。",
+        success: "输出 base_url 为 https://openapi.monica.im/v1。",
+        artifact: "Monica provider 可作为 fallback",
+        detail: [
+          "这一步没有用 Monica 跑 benchmark，只确认备用 API 通道可用。",
+          "真实两次 benchmark 都使用 DeepSeek。"
+        ]
+      },
+      {
+        title: "配置 DeepSeek 和 GPU",
+        subtitle: "把 API key 和设备写入环境变量",
+        command: "export DEEPSEEK_API_KEY=\"sk-...\"\nexport DEEPSEEK_BASE_URL=\"https://api.deepseek.com\"\nexport CUDA_VISIBLE_DEVICES=0",
+        why: "benchmark 内部调用 agent，agent 调 LLM 生成代码修改。CUDA_VISIBLE_DEVICES=0 指定使用第 0 张 GPU 或统一运行设备设置。",
+        success: "后续 conda run 命令能读取 DeepSeek key 和 base URL。",
+        artifact: "环境变量：DEEPSEEK_API_KEY、DEEPSEEK_BASE_URL、CUDA_VISIBLE_DEVICES",
+        detail: [
+          "网页中隐藏真实 key，避免泄露。",
+          "DeepSeek 是本次实际跑通的 provider。"
+        ]
+      },
+      {
+        title: "运行 Causality_causalml",
+        subtitle: "第一个官方任务，4 步低成本搜索",
+        command: "cd /home/heshi/work/FML-bench\nenv DEEPSEEK_API_KEY=\"sk-...\" DEEPSEEK_BASE_URL=\"https://api.deepseek.com\" \\\n  CUDA_VISIBLE_DEVICES=0 \\\n  /home/heshi/miniconda3/bin/conda run -n fmlbench python run_agent_benchmark.py \\\n  --agent-config configs/agents/ai_scientist_v2.yaml \\\n  --task-config configs/tasks/causality_causalml.yaml \\\n  --model deepseek-chat \\\n  --provider DeepSeek \\\n  --output-dir /home/heshi/work/fmlbench-smoke-results-fixed2 \\\n  agent.ai_scientist_v2.max_steps=4",
+        why: "让 AI Scientist v2 修改 CausalML/DragonNet 相关代码，每一步跑验证集，最后用最佳验证版本跑测试集。",
+        success: "Best Val Metric: 0.5989426968010781；Test Metric: 0.6177188971481032；Total Steps: 4。",
+        artifact: "/home/heshi/work/fmlbench-smoke-results-fixed2/ai_scientist_v2/Causality_causalml/20260530_004241_dced73c8/summary.json",
+        detail: [
+          "baseline primary metric 是 1.2962585694753708。",
+          "第 1 步 Ridge/Lasso 加权集成把验证 MAE 降到 0.5989426968010781。",
+          "最终测试 MAE 是 0.6177188971481032，说明低成本流程跑通且有测试集结果。"
+        ]
+      },
+      {
+        title: "给 Fairlearn 任务打兼容补丁",
+        subtitle: "处理本机 Fairlearn API 差异",
+        command: "python /path/to/ai-research-repro/scripts/patch_fmlbench_fairlearn_compat.py \\\n  --repo /home/heshi/work/FML-bench",
+        why: "当前 Ubuntu 环境里的 Fairlearn 版本和 agent 生成代码有 API 差异，尤其 ExponentiatedGradient 的参数兼容性需要 shim。",
+        success: "Fairness_fairlearn 至少能完整跑出 summary，而不是因为 API 差异在外层直接中断。",
+        artifact: "ml_tasks/Fairness_fairlearn/train_eval_baseline.py 中的兼容 shim",
+        detail: [
+          "这不是为了美化结果，而是为了让官方流程在当前环境里能完成。",
+          "即使有兼容补丁，agent 某些候选代码仍可能因为参数不兼容或缺列而失败。"
+        ]
+      },
+      {
+        title: "运行 Fairness_fairlearn",
+        subtitle: "第二个官方任务，观察公平性搜索和失败分支",
+        command: "cd /home/heshi/work/FML-bench\nenv DEEPSEEK_API_KEY=\"sk-...\" DEEPSEEK_BASE_URL=\"https://api.deepseek.com\" \\\n  CUDA_VISIBLE_DEVICES=0 \\\n  /home/heshi/miniconda3/bin/conda run -n fmlbench python run_agent_benchmark.py \\\n  --agent-config configs/agents/ai_scientist_v2.yaml \\\n  --task-config configs/tasks/fairness_fairlearn.yaml \\\n  --model deepseek-chat \\\n  --provider DeepSeek \\\n  --output-dir /home/heshi/work/fmlbench-fairlearn-results-fixed3 \\\n  agent.ai_scientist_v2.max_steps=4",
+        why: "让 AI Scientist v2 修改 Fairlearn 任务里的 algorithm.py，尝试去相关、训练中公平约束和预测后阈值调整。",
+        success: "benchmark 完成 end-to-end，并写出验证和测试指标；Best Val Metric: 0.3164673438990605；Test Metric: 0.31600465679075357。",
+        artifact: "/home/heshi/work/fmlbench-fairlearn-results-fixed3/ai_scientist_v2/Fairness_fairlearn/20260530_010425_087411ff/summary.json",
+        detail: [
+          "baseline 是 0.18663158848996153，越低越好。",
+          "这次 4 步没有超过 baseline，是一个失败但真实的复现样本。",
+          "第 2 步缺少 sex 列报错，第 4 步 run_linprog 参数不兼容报错。"
+        ]
+      },
+      {
+        title: "读取 summary 和轨迹产物",
+        subtitle: "确认不是只跑了初始化，而是真的完成验证/测试",
+        command: "python3 - <<'PY'\nimport json\nfrom pathlib import Path\nfor f in [\n  '/home/heshi/work/fmlbench-smoke-results-fixed2/ai_scientist_v2/Causality_causalml/20260530_004241_dced73c8/summary.json',\n  '/home/heshi/work/fmlbench-fairlearn-results-fixed3/ai_scientist_v2/Fairness_fairlearn/20260530_010425_087411ff/summary.json',\n]:\n    data=json.loads(Path(f).read_text())\n    print(data['benchmark'], data['best_val_metric'], data['test_result']['primary_metric'])\nPY",
+        why: "最终证据不是终端看起来跑了，而是 summary.json 里有 benchmark、best_val_metric、test_result 和每一步 val_steps。",
+        success: "两个 summary 都能读取，并且包含验证集、测试集和 step_snapshots。",
+        artifact: "summary.json、config_used.yaml、step_snapshots、code_backup、val_info.json",
+        detail: [
+          "Causality 目录里有 step_0001 到 step_0004 的代码快照。",
+          "Fairlearn 目录里也有 4 个 step snapshot，其中两个 step 有 bug 记录。",
+          "网站前面的四步轨迹就是从这些产物整理来的。"
+        ]
+      },
+      {
+        title: "把复现说明和网站推送到 GitHub",
+        subtitle: "保存可复查材料",
+        command: "git add README.md docs scripts visuals\ngit commit -m \"...\"\ngit push origin codex/fmlbench-minimal",
+        why: "实验不只要跑出来，还要把命令、结果、补丁、中文说明和可视化网站都保存到 GitHub，方便之后复查和继续扩展。",
+        success: "GitHub 分支 codex/fmlbench-minimal 包含 runbook、verification log、中文说明和可视化网站。",
+        artifact: "https://github.com/heguanghui54/ai-research-repro/tree/codex/fmlbench-minimal",
+        detail: [
+          "本地网站文件是 visuals/fmlbench_agent_animation.html。",
+          "中文复现说明是 docs/fmlbench_中文复现说明.md。",
+          "Ubuntu 记录是 docs/fmlbench_verification_log.md。"
+        ]
+      }
+    ];
+
+    let activeTask = "causality";
+    let activeAgent = "tas2";
+    let activeRun = "causality";
+    let activeNodeId = "B";
+    let activeUbuntuStep = 0;
+
+    function renderTask() {
+      const t = tasks[activeTask];
+      const stage = document.getElementById("task-stage");
+      stage.innerHTML = `
+        <div class="stage-title">
+          <div>
+            <h3>${t.title}</h3>
+            <p class="scene-text">${t.analogy}</p>
+          </div>
+        </div>
+        <div class="grid two" style="margin-bottom: 18px;">
+          <div class="card">
+            <span class="pill">数据集</span>
+            <p>${t.dataset}</p>
+          </div>
+          <div class="card">
+            <span class="pill">任务里的“干预/敏感变量”</span>
+            <p>${t.intervention}</p>
+            <p class="note">${t.example}</p>
+          </div>
+        </div>
+        <div class="diagram">
+          <div class="person">
+            <h3>${t.leftTitle}</h3>
+            <p>${t.left}</p>
+            <div class="mini-people">
+              ${t.icons.map((icon, i) => `<div class="avatar" data-label="${t.labels[i]}">${icon}</div>`).join("")}
+            </div>
+          </div>
+          <div class="model-box">
+            <h3>${t.middleTitle}</h3>
+            <p>${t.middle}</p>
+            <div class="arrow">→</div>
+            <p class="note">Agent 改的是模型代码，比如换训练方法、加约束、换预测规则，不是去真实世界给孩子选择药物。</p>
+          </div>
+          <div class="score-box">
+            <h3>${t.scoreTitle}</h3>
+            <p>${t.score}</p>
+            <div class="bar-wrap"><div class="bar ${t.barClass}" style="width:${t.bar}%"></div></div>
+            <p class="note">这根条只是帮助理解“差距/错误”的大小，不代表额外实验结果。</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAgent() {
+      const a = agents[activeAgent];
+      document.getElementById("agent-copy").innerHTML = `
+        <span class="pill">搜索策略类比</span>
+        <h3>${a.name}</h3>
+        <p>${a.text}</p>
+        <ol class="algorithm-steps">
+          ${a.steps.map(step => `<li>${step}</li>`).join("")}
+        </ol>
+        <p class="note">注意：这张图展示策略形状，不表示我们实际跑了这个 agent 的两个任务。</p>
+      `;
+      drawStrategy(false);
+      renderNodeDetail(a.nodes[0]);
+    }
+
+    function renderNodeDetail(node) {
+      const panel = document.getElementById("node-detail");
+      if (!panel || !node) return;
+      panel.innerHTML = `
+        <span class="pill">点击节点看细节</span>
+        <h3>${node.detailTitle || node.label}</h3>
+        <p>${node.detail || "这个节点代表一次候选代码或一次选择。"}</p>
+        <ul>
+          ${(node.choices || []).map(item => `<li>${item}</li>`).join("")}
+        </ul>
+        <p class="note">节点编号：<code>${node.id}</code>；图中短字是为了不遮挡搜索结构。</p>
+      `;
+    }
+
+    function selectGraphNode(nodeId) {
+      activeNodeId = nodeId;
+      const a = agents[activeAgent];
+      const node = a.nodes.find(n => n.id === nodeId);
+      document.querySelectorAll(".graph-node").forEach(el => {
+        el.classList.toggle("selected", el.dataset.node === nodeId);
+      });
+      renderNodeDetail(node);
+    }
+
+    function drawStrategy(animated) {
+      const map = document.getElementById("strategy-map");
+      const a = agents[activeAgent];
+      const byId = Object.fromEntries(a.nodes.map(n => [n.id, n]));
+      map.innerHTML = `
+        <svg class="graph-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+          <g class="edges">
+            ${a.edges.map(([from, to], index) => {
+              const f = byId[from];
+              const t = byId[to];
+              return `<line class="graph-edge" data-edge="${index}" x1="${f.x}" y1="${f.y}" x2="${t.x}" y2="${t.y}"></line>`;
+            }).join("")}
+          </g>
+          <g class="nodes">
+            ${a.nodes.map(n => `
+              <g class="graph-node ${n.best ? "best" : ""} ${n.fail ? "fail" : ""}" data-node="${n.id}" tabindex="0" role="button" aria-label="${n.detailTitle || n.label}" transform="translate(${n.x}, ${n.y})">
+                <circle r="7"></circle>
+                <text text-anchor="middle" y="-10">${n.label}</text>
+                <text class="score" text-anchor="middle" y="13">${n.score}</text>
+              </g>
+            `).join("")}
+          </g>
+        </svg>
+      `;
+      map.querySelectorAll(".graph-node").forEach(nodeEl => {
+        nodeEl.addEventListener("click", () => selectGraphNode(nodeEl.dataset.node));
+        nodeEl.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectGraphNode(nodeEl.dataset.node);
+          }
+        });
+      });
+      if (!animated) {
+        map.querySelectorAll(".graph-edge").forEach(edge => edge.classList.add("active"));
+        map.querySelectorAll(".graph-node").forEach(node => node.classList.add("active"));
+        selectGraphNode(activeNodeId && byId[activeNodeId] ? activeNodeId : a.nodes[0].id);
+        return;
+      }
+      a.order.forEach((nodeId, i) => {
+        setTimeout(() => {
+          map.querySelector(`[data-node="${nodeId}"]`)?.classList.add("active");
+          selectGraphNode(nodeId);
+          a.edges.forEach(([from, to], edgeIndex) => {
+            if (to === nodeId || from === nodeId) {
+              map.querySelector(`[data-edge="${edgeIndex}"]`)?.classList.add("active");
+            }
+          });
+        }, i * 650);
+      });
+    }
+
+    function renderRun(revealCount = 0) {
+      const data = runs[activeRun];
+      const track = document.getElementById("run-track");
+      const baseline = data.steps[0].metric;
+      track.innerHTML = data.steps.map((s, i) => {
+        const isError = s.metric === null;
+        const better = !isError && s.metric < baseline;
+        const worse = !isError && s.metric > baseline && i > 0;
+        const metricText = isError ? "报错" : s.metric.toFixed(3);
+        const cls = isError || worse ? "bad" : better ? "good" : "neutral";
+        return `
+          <div class="step-card ${i <= revealCount ? "revealed" : ""}">
+            <div class="step-number">${s.n}</div>
+            <h3>${s.title}</h3>
+            <p><strong>${s.action}</strong></p>
+            <div class="metric ${cls}">${metricText}</div>
+            <p class="note">${s.status}</p>
+            <p class="note">${s.detail}</p>
+            <ul class="detail-list">
+              ${(s.details || []).map(item => `<li>${item}</li>`).join("")}
+            </ul>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderUbuntuTimeline(revealCount = ubuntuSteps.length - 1) {
+      const timeline = document.getElementById("ubuntu-timeline");
+      if (!timeline) return;
+      timeline.innerHTML = ubuntuSteps.map((step, i) => `
+        <button class="ubuntu-step ${i === activeUbuntuStep ? "active" : ""} ${i <= revealCount ? "done" : ""}" data-ubuntu-step="${i}">
+          <span class="ubuntu-num">${i + 1}</span>
+          <span>
+            <span class="ubuntu-step-title">${step.title}</span>
+            <span class="ubuntu-step-subtitle">${step.subtitle}</span>
+          </span>
+        </button>
+      `).join("");
+      timeline.querySelectorAll("[data-ubuntu-step]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeUbuntuStep = Number(btn.dataset.ubuntuStep);
+          renderUbuntuTimeline(revealCount);
+          renderUbuntuDetail();
+        });
+      });
+    }
+
+    function renderUbuntuDetail() {
+      const panel = document.getElementById("ubuntu-detail");
+      if (!panel) return;
+      const step = ubuntuSteps[activeUbuntuStep];
+      panel.innerHTML = `
+        <span class="pill">Ubuntu 复现步骤 ${activeUbuntuStep + 1}/${ubuntuSteps.length}</span>
+        <h3>${step.title}</h3>
+        <p>${step.why}</p>
+        <pre class="terminal">${step.command}</pre>
+        <div class="ubuntu-meta">
+          <div>
+            <strong>成功标志</strong>
+            <span>${step.success}</span>
+          </div>
+          <div>
+            <strong>产物/证据</strong>
+            <span>${step.artifact}</span>
+          </div>
+          <div>
+            <strong>成本控制</strong>
+            <span>只跑 2 个任务、每个 4 step、优先 DeepSeek。</span>
+          </div>
+        </div>
+        <ul class="detail-list">
+          ${step.detail.map(item => `<li>${item}</li>`).join("")}
+        </ul>
+      `;
+    }
+
+    function updateButtons(selector, key, value) {
+      document.querySelectorAll(selector).forEach(btn => {
+        const active = btn.dataset[key] === value;
+        btn.classList.toggle("active", active);
+        btn.classList.toggle("secondary", !active);
+      });
+    }
+
+    document.querySelectorAll("[data-task]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeTask = btn.dataset.task;
+        updateButtons("[data-task]", "task", activeTask);
+        renderTask();
+      });
+    });
+
+    document.querySelectorAll("[data-agent]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeAgent = btn.dataset.agent;
+        activeNodeId = "B";
+        updateButtons("[data-agent]", "agent", activeAgent);
+        renderAgent();
+      });
+    });
+
+    document.querySelectorAll("[data-run]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeRun = btn.dataset.run;
+        updateButtons("[data-run]", "run", activeRun);
+        renderRun(0);
+      });
+    });
+
+    document.getElementById("play-agent").addEventListener("click", () => drawStrategy(true));
+    document.getElementById("play-run").addEventListener("click", () => {
+      runs[activeRun].steps.forEach((_, i) => setTimeout(() => renderRun(i), i * 650));
+    });
+    document.getElementById("play-ubuntu").addEventListener("click", () => {
+      ubuntuSteps.forEach((_, i) => {
+        setTimeout(() => {
+          activeUbuntuStep = i;
+          renderUbuntuTimeline(i);
+          renderUbuntuDetail();
+        }, i * 700);
+      });
+    });
+
+    renderTask();
+    renderAgent();
+    renderRun(0);
+    renderUbuntuTimeline();
+    renderUbuntuDetail();
+  </script>
+</body>
+</html>
