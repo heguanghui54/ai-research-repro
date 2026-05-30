@@ -382,14 +382,20 @@
 
     .graph-node text {
       font-family: "Songti SC", "Noto Serif CJK SC", serif;
-      font-size: 13px;
+      font-size: 5.3px;
       fill: #263340;
       pointer-events: none;
+      font-weight: 800;
     }
 
     .graph-node .score {
-      font-size: 11px;
+      font-size: 4.3px;
       fill: #687583;
+      font-weight: 500;
+    }
+
+    .graph-node {
+      cursor: pointer;
     }
 
     .graph-node.active circle {
@@ -397,6 +403,12 @@
       stroke: var(--orange);
       stroke-width: 4;
       filter: drop-shadow(0 8px 12px rgba(223,143,45,0.25));
+    }
+
+    .graph-node.selected circle {
+      stroke: #17212b;
+      stroke-width: 5;
+      filter: drop-shadow(0 10px 16px rgba(22,32,42,0.28));
     }
 
     .graph-node.best circle {
@@ -414,6 +426,37 @@
       padding-left: 20px;
       color: var(--muted);
       line-height: 1.72;
+    }
+
+    .strategy-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .node-detail {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.92);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 360px;
+    }
+
+    .node-detail h3 {
+      font-size: 20px;
+    }
+
+    .node-detail p {
+      color: var(--muted);
+      margin: 8px 0;
+    }
+
+    .node-detail ul {
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.68;
     }
 
     .hill {
@@ -490,7 +533,7 @@
     }
 
     @media (max-width: 980px) {
-      header, .diagram, .grid.two, .grid.three, .grid.four {
+      header, .diagram, .grid.two, .grid.three, .grid.four, .strategy-layout {
         grid-template-columns: 1fr;
       }
 
@@ -574,7 +617,10 @@
         <div class="card" id="agent-copy"></div>
         <div>
           <button id="play-agent">播放搜索动画</button>
-          <div class="strategy-map" id="strategy-map"></div>
+          <div class="strategy-layout">
+            <div class="strategy-map" id="strategy-map"></div>
+            <aside class="node-detail" id="node-detail"></aside>
+          </div>
           <div class="legend">
             <span><span class="swatch" style="background: var(--orange)"></span>正在评估</span>
             <span><span class="swatch" style="background: var(--blue)"></span>搜索连线</span>
@@ -723,20 +769,20 @@
     const agents = {
       tas2: {
         name: "AI Scientist v2：带日志的最佳优先树搜索",
-        text: "它不是只沿着一条线走，而是先长出几个候选分支。每跑完一次实验，就把分数、失败原因、代码变化写进 journal，然后优先扩展“看起来最有希望”的节点。",
+        text: "它不是只沿着一条线走，也不是严格广度优先逐层扫完；它更像最佳优先树搜索。先长出几个候选分支，每跑完一次实验，就把分数、失败原因、代码变化写进 journal，然后优先扩展“看起来最有希望”的节点。",
         steps: [
           "从 baseline 生出多个 draft idea。",
           "每个 idea 跑验证集，得到分数或错误。",
-          "把好节点放到更高优先级，继续 improve。",
+          "把好节点放到更高优先级，继续 improve；这和广度优先“每层都平均展开”不同。",
           "如果某条分支反复不好，就回到更好的祖先节点继续搜索。"
         ],
         nodes: [
-          { id: "B", x: 10, y: 52, label: "baseline", score: "起点" },
-          { id: "D1", x: 34, y: 24, label: "draft A", score: "0.599", best: true },
-          { id: "D2", x: 34, y: 72, label: "draft B", score: "0.628" },
-          { id: "I1", x: 62, y: 24, label: "improve A", score: "0.621" },
-          { id: "I2", x: 84, y: 24, label: "回到 A", score: "0.599", best: true },
-          { id: "X", x: 62, y: 72, label: "放弃弱分支", score: "较差", fail: true }
+          { id: "B", x: 10, y: 52, label: "B", score: "起点", detailTitle: "B：baseline 起点", detail: "还没有搜索。agent 看到的是原始代码、可修改文件、验证命令和指标方向。", choices: ["可选方向：改模型结构、改损失、改正则化、改阈值。", "AI Scientist v2 会先生成多个 draft idea，而不是只选一个。"] },
+          { id: "D1", x: 34, y: 24, label: "D1", score: "0.599", best: true, detailTitle: "D1：第一个 draft，当前最好", detail: "选择一个较完整的方案：Ridge + Lasso 加权集成，分别建模治疗组和对照组。", choices: ["修改：加入 WeightedEnsemble。", "选择：Ridge 降低过拟合，Lasso 做特征筛选。", "结果：MAE 0.599，明显优于 baseline。"] },
+          { id: "D2", x: 34, y: 72, label: "D2", score: "0.628", detailTitle: "D2：第二个 draft，也有效但较弱", detail: "选择更简单的两个线性模型：治疗组一个模型，对照组一个模型，再相减。", choices: ["修改：LinearRegression 分别拟合 treatment/control。", "尝试：targeted regularization 修正偏差。", "结果：MAE 0.628，比 baseline 好，但不如 D1。"] },
+          { id: "I1", x: 62, y: 24, label: "I1", score: "0.621", detailTitle: "I1：沿 D1 改进，但没有超过 D1", detail: "把模型简化成单 Ridge + 标准化，想提升稳定性。", choices: ["修改：每组一个 Ridge(alpha=1.0)。", "选择理由：减少复杂集成带来的不稳定。", "结果：MAE 0.621，仍弱于 D1。"] },
+          { id: "I2", x: 84, y: 24, label: "I2", score: "0.599", best: true, detailTitle: "I2：回到最好分支", detail: "树搜索发现 D1 方向最好，于是回到 Ridge/Lasso 加权集成路线。", choices: ["修改：恢复 WeightedEnsemble。", "选择：保留交叉验证调权重。", "结果：验证集回到 0.599，并用它做最终测试。"] },
+          { id: "X", x: 62, y: 72, label: "X", score: "丢弃", fail: true, detailTitle: "X：弱分支被放弃", detail: "D2 虽然有效，但分数低于 D1，因此不再优先投入预算。", choices: ["不是代码报错，而是机会成本问题。", "搜索预算有限，AI Scientist v2 把注意力转回更好的 D1 分支。"] }
         ],
         edges: [["B","D1"],["B","D2"],["D1","I1"],["I1","I2"],["D2","X"]],
         order: ["B","D1","D2","I1","I2","X"]
@@ -751,11 +797,11 @@
           "继续在当前最好版本附近小修小补。"
         ],
         nodes: [
-          { id: "B", x: 10, y: 52, label: "baseline", score: "起点" },
-          { id: "A", x: 30, y: 44, label: "小改 1", score: "更好", best: true },
-          { id: "R", x: 48, y: 70, label: "小改 2", score: "变差", fail: true },
-          { id: "C", x: 62, y: 36, label: "小改 3", score: "更好", best: true },
-          { id: "D", x: 84, y: 28, label: "小改 4", score: "最好", best: true }
+          { id: "B", x: 10, y: 52, label: "B", score: "起点", detailTitle: "B：当前唯一版本", detail: "贪心/爬山搜索只维护一个当前版本，不保留复杂树。", choices: ["下一步只在当前版本附近做一个小改。"] },
+          { id: "A", x: 30, y: 44, label: "A", score: "接受", best: true, detailTitle: "A：小改 1 被接受", detail: "例如把学习率稍微降低，或加一点 Ridge 正则化。", choices: ["如果验证指标变好，马上替换当前版本。", "搜索路径向这个节点移动。"] },
+          { id: "R", x: 48, y: 70, label: "R", score: "回滚", fail: true, detailTitle: "R：小改 2 被拒绝", detail: "例如把 Lasso 惩罚调太大，导致重要特征也被压掉，验证分数变差。", choices: ["贪心策略不会继续扩展这个节点。", "直接回到 A，继续试别的小改。"] },
+          { id: "C", x: 62, y: 36, label: "C", score: "接受", best: true, detailTitle: "C：小改 3 被接受", detail: "例如只调阈值或 class_weight，让指标进一步改善。", choices: ["只要比 A 好，就成为新的当前版本。", "它不关心远处是否有更大机会，先吃眼前收益。"] },
+          { id: "D", x: 84, y: 28, label: "D", score: "最好", best: true, detailTitle: "D：最终当前版本", detail: "最后一次小改继续变好，因此提交 D。", choices: ["优点：简单、快、省钱。", "缺点：容易卡在局部最优，错过需要先变差再变好的路线。"] }
         ],
         edges: [["B","A"],["A","R"],["A","C"],["C","D"]],
         order: ["B","A","R","C","D"]
@@ -770,12 +816,12 @@
           "最终从所有可运行叶子里选最好的。"
         ],
         nodes: [
-          { id: "B", x: 10, y: 52, label: "baseline", score: "起点" },
-          { id: "A", x: 32, y: 28, label: "方案 A", score: "可跑" },
-          { id: "Bug", x: 32, y: 76, label: "方案 B", score: "报错", fail: true },
-          { id: "Fix", x: 58, y: 76, label: "修 bug", score: "可跑" },
-          { id: "A2", x: 58, y: 28, label: "改进 A", score: "更好", best: true },
-          { id: "Pick", x: 84, y: 44, label: "选择最佳", score: "提交", best: true }
+          { id: "B", x: 10, y: 52, label: "B", score: "起点", detailTitle: "B：baseline", detail: "AIDE 从原始代码开始，但会维护多个候选叶子。", choices: ["目标：不只是找高分，还要让代码能跑。"] },
+          { id: "A", x: 32, y: 28, label: "A", score: "可跑", detailTitle: "A：可运行方案", detail: "例如添加 Ridge/Lasso 或调阈值，实验能正常完成。", choices: ["AIDE 会保留这个叶子，等待继续扩展。"] },
+          { id: "Bug", x: 32, y: 76, label: "BUG", score: "报错", fail: true, detailTitle: "BUG：失败方案", detail: "例如 Fairlearn 参数不兼容、输入缺少 sex 列、训练脚本崩溃。", choices: ["AIDE 不一定直接丢弃，而是尝试生成修复节点。"] },
+          { id: "Fix", x: 58, y: 76, label: "FIX", score: "修复", detailTitle: "FIX：修 bug 分支", detail: "例如移除不支持的参数、改 API 调用、补齐 sensitive_features。", choices: ["修复后重新跑验证集。", "如果修复后分数不好，仍可能被淘汰。"] },
+          { id: "A2", x: 58, y: 28, label: "A2", score: "更好", best: true, detailTitle: "A2：扩展有效方案", detail: "沿着 A 的可运行路线继续改参数或结构。", choices: ["AIDE 倾向优先扩展既能跑又有潜力的节点。"] },
+          { id: "Pick", x: 84, y: 44, label: "PICK", score: "提交", best: true, detailTitle: "PICK：选择最佳可运行叶子", detail: "最后从所有可运行候选里选验证集最好的。", choices: ["这就是候选方案树的好处：失败分支有机会被修，成功分支也能继续优化。"] }
         ],
         edges: [["B","A"],["B","Bug"],["Bug","Fix"],["A","A2"],["A2","Pick"],["Fix","Pick"]],
         order: ["B","A","Bug","Fix","A2","Pick"]
@@ -790,14 +836,14 @@
           "幸存者继续变异，保持多样性。"
         ],
         nodes: [
-          { id: "B", x: 9, y: 52, label: "baseline", score: "起点" },
-          { id: "P1", x: 28, y: 22, label: "种群 1", score: "集成" },
-          { id: "P2", x: 28, y: 52, label: "种群 2", score: "阈值" },
-          { id: "P3", x: 28, y: 82, label: "种群 3", score: "正则" },
-          { id: "C1", x: 58, y: 22, label: "变异 1", score: "更好", best: true },
-          { id: "C2", x: 58, y: 52, label: "变异 2", score: "一般" },
-          { id: "C3", x: 58, y: 82, label: "变异 3", score: "淘汰", fail: true },
-          { id: "N", x: 84, y: 34, label: "下一代", score: "保留强者", best: true }
+          { id: "B", x: 9, y: 52, label: "B", score: "起点", detailTitle: "B：初始个体", detail: "进化搜索把一份代码看作一个个体。", choices: ["接下来不是只生一个方案，而是生成一群不同方案。"] },
+          { id: "P1", x: 28, y: 22, label: "P1", score: "集成", detailTitle: "P1：种群成员 1", detail: "例如尝试集成模型：Ridge + Lasso 或多个分类器投票。", choices: ["代表一种算法家族。"] },
+          { id: "P2", x: 28, y: 52, label: "P2", score: "阈值", detailTitle: "P2：种群成员 2", detail: "例如尝试调分类阈值，让公平性指标下降。", choices: ["代表后处理路线。"] },
+          { id: "P3", x: 28, y: 82, label: "P3", score: "正则", detailTitle: "P3：种群成员 3", detail: "例如调 Ridge/Lasso 正则强度，防止过拟合。", choices: ["代表稳定化路线。"] },
+          { id: "C1", x: 58, y: 22, label: "C1", score: "幸存", best: true, detailTitle: "C1：好变异保留", detail: "P1 变异后分数更好，所以进入下一代。", choices: ["可能修改集成权重、加入标准化、换子模型。"] },
+          { id: "C2", x: 58, y: 52, label: "C2", score: "一般", detailTitle: "C2：一般变异", detail: "P2 变异后能跑但提升一般，可能保留少量多样性。", choices: ["进化算法不一定只保留最强，也会保留不同类型。"] },
+          { id: "C3", x: 58, y: 82, label: "C3", score: "淘汰", fail: true, detailTitle: "C3：差变异淘汰", detail: "P3 变异后报错或指标变差，被淘汰。", choices: ["例如参数太激进、API 不兼容、过拟合严重。"] },
+          { id: "N", x: 84, y: 34, label: "N", score: "下一代", best: true, detailTitle: "N：下一代种群", detail: "幸存者继续变异，形成下一轮搜索。", choices: ["优点：探索范围大。", "缺点：如果预算很少，可能不如贪心或树搜索集中。"] }
         ],
         edges: [["B","P1"],["B","P2"],["B","P3"],["P1","C1"],["P2","C2"],["P3","C3"],["C1","N"],["C2","N"]],
         order: ["B","P1","P2","P3","C1","C2","C3","N"]
@@ -956,6 +1002,7 @@
     let activeTask = "causality";
     let activeAgent = "tas2";
     let activeRun = "causality";
+    let activeNodeId = "B";
 
     function renderTask() {
       const t = tasks[activeTask];
@@ -1014,6 +1061,31 @@
         <p class="note">注意：这张图展示策略形状，不表示我们实际跑了这个 agent 的两个任务。</p>
       `;
       drawStrategy(false);
+      renderNodeDetail(a.nodes[0]);
+    }
+
+    function renderNodeDetail(node) {
+      const panel = document.getElementById("node-detail");
+      if (!panel || !node) return;
+      panel.innerHTML = `
+        <span class="pill">点击节点看细节</span>
+        <h3>${node.detailTitle || node.label}</h3>
+        <p>${node.detail || "这个节点代表一次候选代码或一次选择。"}</p>
+        <ul>
+          ${(node.choices || []).map(item => `<li>${item}</li>`).join("")}
+        </ul>
+        <p class="note">节点编号：<code>${node.id}</code>；图中短字是为了不遮挡搜索结构。</p>
+      `;
+    }
+
+    function selectGraphNode(nodeId) {
+      activeNodeId = nodeId;
+      const a = agents[activeAgent];
+      const node = a.nodes.find(n => n.id === nodeId);
+      document.querySelectorAll(".graph-node").forEach(el => {
+        el.classList.toggle("selected", el.dataset.node === nodeId);
+      });
+      renderNodeDetail(node);
     }
 
     function drawStrategy(animated) {
@@ -1031,7 +1103,7 @@
           </g>
           <g class="nodes">
             ${a.nodes.map(n => `
-              <g class="graph-node ${n.best ? "best" : ""} ${n.fail ? "fail" : ""}" data-node="${n.id}" transform="translate(${n.x}, ${n.y})">
+              <g class="graph-node ${n.best ? "best" : ""} ${n.fail ? "fail" : ""}" data-node="${n.id}" tabindex="0" role="button" aria-label="${n.detailTitle || n.label}" transform="translate(${n.x}, ${n.y})">
                 <circle r="7"></circle>
                 <text text-anchor="middle" y="-10">${n.label}</text>
                 <text class="score" text-anchor="middle" y="13">${n.score}</text>
@@ -1040,14 +1112,25 @@
           </g>
         </svg>
       `;
+      map.querySelectorAll(".graph-node").forEach(nodeEl => {
+        nodeEl.addEventListener("click", () => selectGraphNode(nodeEl.dataset.node));
+        nodeEl.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectGraphNode(nodeEl.dataset.node);
+          }
+        });
+      });
       if (!animated) {
         map.querySelectorAll(".graph-edge").forEach(edge => edge.classList.add("active"));
         map.querySelectorAll(".graph-node").forEach(node => node.classList.add("active"));
+        selectGraphNode(activeNodeId && byId[activeNodeId] ? activeNodeId : a.nodes[0].id);
         return;
       }
       a.order.forEach((nodeId, i) => {
         setTimeout(() => {
           map.querySelector(`[data-node="${nodeId}"]`)?.classList.add("active");
+          selectGraphNode(nodeId);
           a.edges.forEach(([from, to], edgeIndex) => {
             if (to === nodeId || from === nodeId) {
               map.querySelector(`[data-edge="${edgeIndex}"]`)?.classList.add("active");
@@ -1102,6 +1185,7 @@
     document.querySelectorAll("[data-agent]").forEach(btn => {
       btn.addEventListener("click", () => {
         activeAgent = btn.dataset.agent;
+        activeNodeId = "B";
         updateButtons("[data-agent]", "agent", activeAgent);
         renderAgent();
       });
