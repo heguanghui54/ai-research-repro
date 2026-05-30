@@ -526,6 +526,107 @@
     .comparison th { background: #f5eddd; }
     .comparison tr:last-child td { border-bottom: 0; }
 
+    .ubuntu-board {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.72fr) minmax(0, 1.28fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .ubuntu-timeline {
+      display: grid;
+      gap: 10px;
+    }
+
+    .ubuntu-step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: start;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.88);
+      border-radius: 18px;
+      padding: 12px;
+      cursor: pointer;
+      text-align: left;
+      color: var(--ink);
+      box-shadow: none;
+    }
+
+    .ubuntu-step.active {
+      border-color: var(--orange);
+      background: #fff3d7;
+    }
+
+    .ubuntu-step.done .ubuntu-num {
+      background: var(--green);
+    }
+
+    .ubuntu-num {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #22303c;
+      color: #fff8e9;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .ubuntu-step-title {
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .ubuntu-step-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .ubuntu-detail {
+      border: 1px solid var(--line);
+      background: #fffdf8;
+      border-radius: 24px;
+      padding: 22px;
+      min-height: 520px;
+    }
+
+    .terminal {
+      margin: 14px 0;
+      background: #14202a;
+      color: #f9edcf;
+      border-radius: 18px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .ubuntu-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .ubuntu-meta div {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .ubuntu-meta strong {
+      display: block;
+      font-size: 13px;
+      color: #6b5631;
+      margin-bottom: 4px;
+    }
+
     footer {
       margin: 32px 7vw 52px;
       color: var(--muted);
@@ -533,7 +634,7 @@
     }
 
     @media (max-width: 980px) {
-      header, .diagram, .grid.two, .grid.three, .grid.four, .strategy-layout {
+      header, .diagram, .grid.two, .grid.three, .grid.four, .strategy-layout, .ubuntu-board, .ubuntu-meta {
         grid-template-columns: 1fr;
       }
 
@@ -721,6 +822,19 @@
           </tr>
         </tbody>
       </table>
+    </section>
+
+    <section>
+      <h2>7. Ubuntu 上真实跑实验的全过程</h2>
+      <p class="scene-text">
+        这一段把 SSH 控制 Ubuntu 机器复现 FML-bench 的过程做成时间线。左边点步骤，右边看命令、
+        为什么做、成功标志和产物。命令中的 API key 用 <code>sk-...</code> 隐去。
+      </p>
+      <button id="play-ubuntu">播放 Ubuntu 复现流程</button>
+      <div class="ubuntu-board">
+        <div class="ubuntu-timeline" id="ubuntu-timeline"></div>
+        <article class="ubuntu-detail" id="ubuntu-detail"></article>
+      </div>
     </section>
   </main>
 
@@ -999,10 +1113,163 @@
       }
     };
 
+    const ubuntuSteps = [
+      {
+        title: "SSH 进入 Ubuntu 主机",
+        subtitle: "把实验放到远程 Ubuntu/GPU 环境里跑",
+        command: "ssh ubuntu-heshi",
+        why: "FML-bench 官方任务依赖 conda 环境、任务仓库和较长运行时间。用 SSH 登录 Ubuntu 后，所有重任务都在远程机器执行，本地 Mac 只负责控制和记录。",
+        success: "能进入 Ubuntu shell，并且后续路径使用 /home/heshi/work。",
+        artifact: "远程工作目录：/home/heshi/work",
+        detail: [
+          "这一步不是机器学习实验本身，而是把控制台切到真正运行实验的机器。",
+          "后面所有 python、conda、benchmark 命令都在 Ubuntu 上执行。"
+        ]
+      },
+      {
+        title: "准备官方 FML-bench 仓库",
+        subtitle: "获取 qrzou/FML-bench 官方代码",
+        command: "mkdir -p ~/work\ncd ~/work\ngit clone https://github.com/qrzou/FML-bench.git\ncd FML-bench",
+        why: "我们要复现的是官方 benchmark 流程，所以先把官方仓库放到 Ubuntu 的 ~/work/FML-bench。",
+        success: "目录 /home/heshi/work/FML-bench 存在，并且能看到 run_agent_benchmark.py、configs/tasks、configs/agents。",
+        artifact: "/home/heshi/work/FML-bench",
+        detail: [
+          "FML-bench 本体负责统一 agent、任务配置、验证集和测试集流程。",
+          "本仓库只提供补丁、helper 和说明，不替代官方仓库。"
+        ]
+      },
+      {
+        title: "安装任务环境",
+        subtitle: "只装低成本最小复现需要的任务",
+        command: "cd /home/heshi/work/FML-bench\npython setup.py --task Causality_causalml\npython setup.py --task Fairness_fairlearn --skip-data",
+        why: "完整 18 个任务会下载更多仓库和数据，成本和时间都高。最小复现只安装实际跑过的 Causality 和 Fairlearn 两个任务。",
+        success: "对应任务环境和 workspace 准备好，后续 benchmark 不会因为缺任务仓库而失败。",
+        artifact: "workspace/Causality_causalml/... 和 workspace/Fairness_fairlearn/...",
+        detail: [
+          "Causality 任务需要 causalml 相关代码和 IHDP 数据处理。",
+          "Fairlearn 任务使用 Adult Census Income 数据和 fairlearn 相关依赖。",
+          "--skip-data 用于避免重复下载已准备的数据。"
+        ]
+      },
+      {
+        title: "确认官方 CLI 能启动",
+        subtitle: "先检查入口，不直接烧 API",
+        command: "cd ~/work/FML-bench\npython3 run_agent_benchmark.py --help",
+        why: "这一步不调用 LLM，只确认官方入口脚本能运行，并且参数接口存在。",
+        success: "终端能看到 --agent-config、--task-config、--model、--provider、--output-dir 等参数。",
+        artifact: "确认 run_agent_benchmark.py 可用",
+        detail: [
+          "这是低成本 sanity check。",
+          "如果这里失败，就说明环境或仓库还没准备好，不应该继续调用 LLM。"
+        ]
+      },
+      {
+        title: "给官方仓库打 DeepSeek provider 补丁",
+        subtitle: "让 provider=DeepSeek 可用",
+        command: "cd ~/work/FML-bench\npython3 /home/heshi/patch_fmlbench_deepseek_provider.py --repo /home/heshi/work/FML-bench",
+        why: "官方仓库默认不一定包含 DeepSeek provider 分支。补丁会让 agents/llm.py 能读取 DEEPSEEK_API_KEY，并使用 https://api.deepseek.com。",
+        success: "运行 benchmark 时可以传 --provider DeepSeek --model deepseek-chat。",
+        artifact: "修改后的 agents/llm.py provider 分支",
+        detail: [
+          "这样可以优先用便宜的 DeepSeek API，把成本控制在几美元内。",
+          "Monica 作为备用 provider，只有 DeepSeek 不可用时才需要。"
+        ]
+      },
+      {
+        title: "验证 Monica 备用 provider",
+        subtitle: "备用通道，不用于本次真实跑分",
+        command: "cd ~/work/FML-bench\npython3 /home/heshi/patch_fmlbench_monica_provider.py --repo /home/heshi/work/FML-bench\nMONICA_API_KEY=testkey python3 - <<'PY'\nfrom agents.llm import create_client\nclient, model = create_client('gpt-4o-mini', 'Monica')\nprint(model)\nprint(client.base_url)\nPY",
+        why: "用户要求 DeepSeek 不行再用 Monica。所以我们验证 Monica client 能构造，并指向 Monica OpenAPI 地址。",
+        success: "输出 base_url 为 https://openapi.monica.im/v1。",
+        artifact: "Monica provider 可作为 fallback",
+        detail: [
+          "这一步没有用 Monica 跑 benchmark，只确认备用 API 通道可用。",
+          "真实两次 benchmark 都使用 DeepSeek。"
+        ]
+      },
+      {
+        title: "配置 DeepSeek 和 GPU",
+        subtitle: "把 API key 和设备写入环境变量",
+        command: "export DEEPSEEK_API_KEY=\"sk-...\"\nexport DEEPSEEK_BASE_URL=\"https://api.deepseek.com\"\nexport CUDA_VISIBLE_DEVICES=0",
+        why: "benchmark 内部调用 agent，agent 调 LLM 生成代码修改。CUDA_VISIBLE_DEVICES=0 指定使用第 0 张 GPU 或统一运行设备设置。",
+        success: "后续 conda run 命令能读取 DeepSeek key 和 base URL。",
+        artifact: "环境变量：DEEPSEEK_API_KEY、DEEPSEEK_BASE_URL、CUDA_VISIBLE_DEVICES",
+        detail: [
+          "网页中隐藏真实 key，避免泄露。",
+          "DeepSeek 是本次实际跑通的 provider。"
+        ]
+      },
+      {
+        title: "运行 Causality_causalml",
+        subtitle: "第一个官方任务，4 步低成本搜索",
+        command: "cd /home/heshi/work/FML-bench\nenv DEEPSEEK_API_KEY=\"sk-...\" DEEPSEEK_BASE_URL=\"https://api.deepseek.com\" \\\n  CUDA_VISIBLE_DEVICES=0 \\\n  /home/heshi/miniconda3/bin/conda run -n fmlbench python run_agent_benchmark.py \\\n  --agent-config configs/agents/ai_scientist_v2.yaml \\\n  --task-config configs/tasks/causality_causalml.yaml \\\n  --model deepseek-chat \\\n  --provider DeepSeek \\\n  --output-dir /home/heshi/work/fmlbench-smoke-results-fixed2 \\\n  agent.ai_scientist_v2.max_steps=4",
+        why: "让 AI Scientist v2 修改 CausalML/DragonNet 相关代码，每一步跑验证集，最后用最佳验证版本跑测试集。",
+        success: "Best Val Metric: 0.5989426968010781；Test Metric: 0.6177188971481032；Total Steps: 4。",
+        artifact: "/home/heshi/work/fmlbench-smoke-results-fixed2/ai_scientist_v2/Causality_causalml/20260530_004241_dced73c8/summary.json",
+        detail: [
+          "baseline primary metric 是 1.2962585694753708。",
+          "第 1 步 Ridge/Lasso 加权集成把验证 MAE 降到 0.5989426968010781。",
+          "最终测试 MAE 是 0.6177188971481032，说明低成本流程跑通且有测试集结果。"
+        ]
+      },
+      {
+        title: "给 Fairlearn 任务打兼容补丁",
+        subtitle: "处理本机 Fairlearn API 差异",
+        command: "python /path/to/ai-research-repro/scripts/patch_fmlbench_fairlearn_compat.py \\\n  --repo /home/heshi/work/FML-bench",
+        why: "当前 Ubuntu 环境里的 Fairlearn 版本和 agent 生成代码有 API 差异，尤其 ExponentiatedGradient 的参数兼容性需要 shim。",
+        success: "Fairness_fairlearn 至少能完整跑出 summary，而不是因为 API 差异在外层直接中断。",
+        artifact: "ml_tasks/Fairness_fairlearn/train_eval_baseline.py 中的兼容 shim",
+        detail: [
+          "这不是为了美化结果，而是为了让官方流程在当前环境里能完成。",
+          "即使有兼容补丁，agent 某些候选代码仍可能因为参数不兼容或缺列而失败。"
+        ]
+      },
+      {
+        title: "运行 Fairness_fairlearn",
+        subtitle: "第二个官方任务，观察公平性搜索和失败分支",
+        command: "cd /home/heshi/work/FML-bench\nenv DEEPSEEK_API_KEY=\"sk-...\" DEEPSEEK_BASE_URL=\"https://api.deepseek.com\" \\\n  CUDA_VISIBLE_DEVICES=0 \\\n  /home/heshi/miniconda3/bin/conda run -n fmlbench python run_agent_benchmark.py \\\n  --agent-config configs/agents/ai_scientist_v2.yaml \\\n  --task-config configs/tasks/fairness_fairlearn.yaml \\\n  --model deepseek-chat \\\n  --provider DeepSeek \\\n  --output-dir /home/heshi/work/fmlbench-fairlearn-results-fixed3 \\\n  agent.ai_scientist_v2.max_steps=4",
+        why: "让 AI Scientist v2 修改 Fairlearn 任务里的 algorithm.py，尝试去相关、训练中公平约束和预测后阈值调整。",
+        success: "benchmark 完成 end-to-end，并写出验证和测试指标；Best Val Metric: 0.3164673438990605；Test Metric: 0.31600465679075357。",
+        artifact: "/home/heshi/work/fmlbench-fairlearn-results-fixed3/ai_scientist_v2/Fairness_fairlearn/20260530_010425_087411ff/summary.json",
+        detail: [
+          "baseline 是 0.18663158848996153，越低越好。",
+          "这次 4 步没有超过 baseline，是一个失败但真实的复现样本。",
+          "第 2 步缺少 sex 列报错，第 4 步 run_linprog 参数不兼容报错。"
+        ]
+      },
+      {
+        title: "读取 summary 和轨迹产物",
+        subtitle: "确认不是只跑了初始化，而是真的完成验证/测试",
+        command: "python3 - <<'PY'\nimport json\nfrom pathlib import Path\nfor f in [\n  '/home/heshi/work/fmlbench-smoke-results-fixed2/ai_scientist_v2/Causality_causalml/20260530_004241_dced73c8/summary.json',\n  '/home/heshi/work/fmlbench-fairlearn-results-fixed3/ai_scientist_v2/Fairness_fairlearn/20260530_010425_087411ff/summary.json',\n]:\n    data=json.loads(Path(f).read_text())\n    print(data['benchmark'], data['best_val_metric'], data['test_result']['primary_metric'])\nPY",
+        why: "最终证据不是终端看起来跑了，而是 summary.json 里有 benchmark、best_val_metric、test_result 和每一步 val_steps。",
+        success: "两个 summary 都能读取，并且包含验证集、测试集和 step_snapshots。",
+        artifact: "summary.json、config_used.yaml、step_snapshots、code_backup、val_info.json",
+        detail: [
+          "Causality 目录里有 step_0001 到 step_0004 的代码快照。",
+          "Fairlearn 目录里也有 4 个 step snapshot，其中两个 step 有 bug 记录。",
+          "网站前面的四步轨迹就是从这些产物整理来的。"
+        ]
+      },
+      {
+        title: "把复现说明和网站推送到 GitHub",
+        subtitle: "保存可复查材料",
+        command: "git add README.md docs scripts visuals\ngit commit -m \"...\"\ngit push origin codex/fmlbench-minimal",
+        why: "实验不只要跑出来，还要把命令、结果、补丁、中文说明和可视化网站都保存到 GitHub，方便之后复查和继续扩展。",
+        success: "GitHub 分支 codex/fmlbench-minimal 包含 runbook、verification log、中文说明和可视化网站。",
+        artifact: "https://github.com/heguanghui54/ai-research-repro/tree/codex/fmlbench-minimal",
+        detail: [
+          "本地网站文件是 visuals/fmlbench_agent_animation.html。",
+          "中文复现说明是 docs/fmlbench_中文复现说明.md。",
+          "Ubuntu 记录是 docs/fmlbench_verification_log.md。"
+        ]
+      }
+    ];
+
     let activeTask = "causality";
     let activeAgent = "tas2";
     let activeRun = "causality";
     let activeNodeId = "B";
+    let activeUbuntuStep = 0;
 
     function renderTask() {
       const t = tasks[activeTask];
@@ -1166,6 +1433,56 @@
       }).join("");
     }
 
+    function renderUbuntuTimeline(revealCount = ubuntuSteps.length - 1) {
+      const timeline = document.getElementById("ubuntu-timeline");
+      if (!timeline) return;
+      timeline.innerHTML = ubuntuSteps.map((step, i) => `
+        <button class="ubuntu-step ${i === activeUbuntuStep ? "active" : ""} ${i <= revealCount ? "done" : ""}" data-ubuntu-step="${i}">
+          <span class="ubuntu-num">${i + 1}</span>
+          <span>
+            <span class="ubuntu-step-title">${step.title}</span>
+            <span class="ubuntu-step-subtitle">${step.subtitle}</span>
+          </span>
+        </button>
+      `).join("");
+      timeline.querySelectorAll("[data-ubuntu-step]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeUbuntuStep = Number(btn.dataset.ubuntuStep);
+          renderUbuntuTimeline(revealCount);
+          renderUbuntuDetail();
+        });
+      });
+    }
+
+    function renderUbuntuDetail() {
+      const panel = document.getElementById("ubuntu-detail");
+      if (!panel) return;
+      const step = ubuntuSteps[activeUbuntuStep];
+      panel.innerHTML = `
+        <span class="pill">Ubuntu 复现步骤 ${activeUbuntuStep + 1}/${ubuntuSteps.length}</span>
+        <h3>${step.title}</h3>
+        <p>${step.why}</p>
+        <pre class="terminal">${step.command}</pre>
+        <div class="ubuntu-meta">
+          <div>
+            <strong>成功标志</strong>
+            <span>${step.success}</span>
+          </div>
+          <div>
+            <strong>产物/证据</strong>
+            <span>${step.artifact}</span>
+          </div>
+          <div>
+            <strong>成本控制</strong>
+            <span>只跑 2 个任务、每个 4 step、优先 DeepSeek。</span>
+          </div>
+        </div>
+        <ul class="detail-list">
+          ${step.detail.map(item => `<li>${item}</li>`).join("")}
+        </ul>
+      `;
+    }
+
     function updateButtons(selector, key, value) {
       document.querySelectorAll(selector).forEach(btn => {
         const active = btn.dataset[key] === value;
@@ -1203,10 +1520,21 @@
     document.getElementById("play-run").addEventListener("click", () => {
       runs[activeRun].steps.forEach((_, i) => setTimeout(() => renderRun(i), i * 650));
     });
+    document.getElementById("play-ubuntu").addEventListener("click", () => {
+      ubuntuSteps.forEach((_, i) => {
+        setTimeout(() => {
+          activeUbuntuStep = i;
+          renderUbuntuTimeline(i);
+          renderUbuntuDetail();
+        }, i * 700);
+      });
+    });
 
     renderTask();
     renderAgent();
     renderRun(0);
+    renderUbuntuTimeline();
+    renderUbuntuDetail();
   </script>
 </body>
 </html>
