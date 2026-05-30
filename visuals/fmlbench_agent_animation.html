@@ -271,7 +271,7 @@
 
     .agent-track {
       display: grid;
-      grid-template-columns: repeat(5, minmax(120px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 12px;
       margin-top: 18px;
     }
@@ -317,6 +317,23 @@
     .metric.bad { color: var(--red); }
     .metric.neutral { color: var(--blue); }
 
+    .detail-list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.58;
+    }
+
+    .step-card code {
+      background: #f5eddd;
+      border: 1px solid #e7d9c1;
+      border-radius: 7px;
+      padding: 1px 5px;
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+    }
+
     .note {
       color: var(--muted);
       font-size: 14px;
@@ -324,13 +341,79 @@
     }
 
     .strategy-map {
-      min-height: 280px;
+      min-height: 360px;
       border-radius: 24px;
-      background: #fffdf8;
+      background:
+        radial-gradient(circle at 20% 80%, rgba(59, 140, 110, 0.12), transparent 26%),
+        radial-gradient(circle at 74% 20%, rgba(223, 143, 45, 0.12), transparent 24%),
+        #fffdf8;
       border: 1px solid var(--line);
       position: relative;
       overflow: hidden;
       margin-top: 16px;
+    }
+
+    .graph-svg {
+      width: 100%;
+      height: 360px;
+      display: block;
+    }
+
+    .graph-edge {
+      stroke: rgba(47, 111, 159, 0.42);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-dasharray: 420;
+      stroke-dashoffset: 420;
+      transition: stroke-dashoffset 700ms ease, stroke 300ms ease;
+    }
+
+    .graph-edge.active {
+      stroke-dashoffset: 0;
+      stroke: rgba(47, 111, 159, 0.92);
+    }
+
+    .graph-node circle {
+      fill: #fff;
+      stroke: #d8c9b2;
+      stroke-width: 2;
+      transition: 360ms ease;
+    }
+
+    .graph-node text {
+      font-family: "Songti SC", "Noto Serif CJK SC", serif;
+      font-size: 13px;
+      fill: #263340;
+      pointer-events: none;
+    }
+
+    .graph-node .score {
+      font-size: 11px;
+      fill: #687583;
+    }
+
+    .graph-node.active circle {
+      fill: #fff2cc;
+      stroke: var(--orange);
+      stroke-width: 4;
+      filter: drop-shadow(0 8px 12px rgba(223,143,45,0.25));
+    }
+
+    .graph-node.best circle {
+      fill: #e8f6ee;
+      stroke: var(--green);
+    }
+
+    .graph-node.fail circle {
+      fill: #fdecea;
+      stroke: var(--red);
+    }
+
+    .algorithm-steps {
+      margin: 14px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.72;
     }
 
     .hill {
@@ -478,8 +561,8 @@
     <section>
       <h2>3. 主流 agent 的搜索方法像什么？</h2>
       <p class="scene-text">
-        可以把机器学习研究想成“在山里找最高点”。每个点是一版代码，每跑一次实验就知道这个点高不高。
-        不同 agent 的区别，是它们怎么决定下一步往哪里走。
+        下面改成更直接的“搜索图”。圆点是一版代码，连线表示下一步实验从哪里来。
+        绿色圆点是当前认为最好的候选，红色圆点是报错或被丢弃的候选。
       </p>
       <div class="tabs">
         <button class="active" data-agent="tas2">AI Scientist v2</button>
@@ -491,15 +574,12 @@
         <div class="card" id="agent-copy"></div>
         <div>
           <button id="play-agent">播放搜索动画</button>
-          <div class="strategy-map" id="strategy-map">
-            <div class="hill one"></div>
-            <div class="hill two"></div>
-            <div class="hill three"></div>
-          </div>
+          <div class="strategy-map" id="strategy-map"></div>
           <div class="legend">
-            <span><span class="swatch" style="background: var(--orange)"></span>当前尝试</span>
-            <span><span class="swatch" style="background: var(--blue)"></span>搜索分支</span>
-            <span><span class="swatch" style="background: var(--green)"></span>分数更好的区域</span>
+            <span><span class="swatch" style="background: var(--orange)"></span>正在评估</span>
+            <span><span class="swatch" style="background: var(--blue)"></span>搜索连线</span>
+            <span><span class="swatch" style="background: var(--green)"></span>当前最好</span>
+            <span><span class="swatch" style="background: var(--red)"></span>失败或丢弃</span>
           </div>
         </div>
       </div>
@@ -642,28 +722,85 @@
 
     const agents = {
       tas2: {
-        name: "AI Scientist v2：带实验日志的树搜索",
-        text: "像一个会写实验日记的学生。它先提出几个方向，再看哪个方向更有希望，然后继续往那个方向深入。优点是不会只盯着一个小改法，能利用之前的实验记忆。",
-        path: [[18, 78], [34, 58], [49, 45], [62, 36], [72, 28]],
-        branches: [[34,58,48,70], [49,45,63,58], [49,45,58,32], [62,36,80,42]]
+        name: "AI Scientist v2：带日志的最佳优先树搜索",
+        text: "它不是只沿着一条线走，而是先长出几个候选分支。每跑完一次实验，就把分数、失败原因、代码变化写进 journal，然后优先扩展“看起来最有希望”的节点。",
+        steps: [
+          "从 baseline 生出多个 draft idea。",
+          "每个 idea 跑验证集，得到分数或错误。",
+          "把好节点放到更高优先级，继续 improve。",
+          "如果某条分支反复不好，就回到更好的祖先节点继续搜索。"
+        ],
+        nodes: [
+          { id: "B", x: 10, y: 52, label: "baseline", score: "起点" },
+          { id: "D1", x: 34, y: 24, label: "draft A", score: "0.599", best: true },
+          { id: "D2", x: 34, y: 72, label: "draft B", score: "0.628" },
+          { id: "I1", x: 62, y: 24, label: "improve A", score: "0.621" },
+          { id: "I2", x: 84, y: 24, label: "回到 A", score: "0.599", best: true },
+          { id: "X", x: 62, y: 72, label: "放弃弱分支", score: "较差", fail: true }
+        ],
+        edges: [["B","D1"],["B","D2"],["D1","I1"],["I1","I2"],["D2","X"]],
+        order: ["B","D1","D2","I1","I2","X"]
       },
       auto: {
         name: "Autoresearch：贪心爬山",
-        text: "像爬山时只走眼前更高的一步。改法变好就保留，变差就撤回。优点是简单、省事、很快见效；缺点是可能卡在小山头，看不到远处更高的山。",
-        path: [[15, 76], [25, 68], [34, 60], [42, 54], [50, 49]],
-        branches: [[25,68,32,73], [34,60,40,64]]
+        text: "它维护一个当前版本。新改法只要让验证集更好，就替换当前版本；如果变差，立刻回滚。动画里你会看到它几乎是一条线，失败点不会继续长分支。",
+        steps: [
+          "从 baseline 改一点点。",
+          "变好：接受，当前版本前进一步。",
+          "变差：拒绝，回到旧版本。",
+          "继续在当前最好版本附近小修小补。"
+        ],
+        nodes: [
+          { id: "B", x: 10, y: 52, label: "baseline", score: "起点" },
+          { id: "A", x: 30, y: 44, label: "小改 1", score: "更好", best: true },
+          { id: "R", x: 48, y: 70, label: "小改 2", score: "变差", fail: true },
+          { id: "C", x: 62, y: 36, label: "小改 3", score: "更好", best: true },
+          { id: "D", x: 84, y: 28, label: "小改 4", score: "最好", best: true }
+        ],
+        edges: [["B","A"],["A","R"],["A","C"],["C","D"]],
+        order: ["B","A","R","C","D"]
       },
       aide: {
         name: "AIDE：候选方案树 + 修 bug",
-        text: "像同时写几份草稿，发现某份草稿报错就先修它。它比较重视让实验有效运行，所以适合处理代码容易坏的任务。",
-        path: [[16, 76], [30, 62], [45, 66], [57, 48], [70, 38]],
-        branches: [[30,62,42,52], [30,62,42,74], [57,48,68,62]]
+        text: "AIDE 也有树，但它特别像会整理草稿的工程同学：哪条分支报错，就生成一个 bug-fix 子节点；哪条分支有效，就继续扩展。",
+        steps: [
+          "同时保留多个候选代码叶子。",
+          "叶子报错时，不马上丢弃，而是开一条修 bug 分支。",
+          "修好后再跑验证集，看是否值得继续。",
+          "最终从所有可运行叶子里选最好的。"
+        ],
+        nodes: [
+          { id: "B", x: 10, y: 52, label: "baseline", score: "起点" },
+          { id: "A", x: 32, y: 28, label: "方案 A", score: "可跑" },
+          { id: "Bug", x: 32, y: 76, label: "方案 B", score: "报错", fail: true },
+          { id: "Fix", x: 58, y: 76, label: "修 bug", score: "可跑" },
+          { id: "A2", x: 58, y: 28, label: "改进 A", score: "更好", best: true },
+          { id: "Pick", x: 84, y: 44, label: "选择最佳", score: "提交", best: true }
+        ],
+        edges: [["B","A"],["B","Bug"],["Bug","Fix"],["A","A2"],["A2","Pick"],["Fix","Pick"]],
+        order: ["B","A","Bug","Fix","A2","Pick"]
       },
       evolve: {
         name: "OpenEvolve：进化比赛",
-        text: "像让很多小队同时试方案，每轮保留强的、淘汰弱的，再让强方案变异出新方案。优点是探索范围大；缺点是有时不够聚焦。",
-        path: [[13, 77], [32, 70], [45, 50], [67, 68], [82, 42]],
-        branches: [[13,77,23,62], [13,77,26,84], [32,70,44,77], [45,50,60,35], [67,68,82,58]]
+        text: "它不像树搜索那样只盯着少数祖先，而是保留一群候选。每一轮让候选发生变异：换模型、换损失、换阈值。分数好的留下，差的淘汰。",
+        steps: [
+          "先生成一群不同方案。",
+          "每个方案像生物一样变异出子代。",
+          "按验证集分数选择幸存者。",
+          "幸存者继续变异，保持多样性。"
+        ],
+        nodes: [
+          { id: "B", x: 9, y: 52, label: "baseline", score: "起点" },
+          { id: "P1", x: 28, y: 22, label: "种群 1", score: "集成" },
+          { id: "P2", x: 28, y: 52, label: "种群 2", score: "阈值" },
+          { id: "P3", x: 28, y: 82, label: "种群 3", score: "正则" },
+          { id: "C1", x: 58, y: 22, label: "变异 1", score: "更好", best: true },
+          { id: "C2", x: 58, y: 52, label: "变异 2", score: "一般" },
+          { id: "C3", x: 58, y: 82, label: "变异 3", score: "淘汰", fail: true },
+          { id: "N", x: 84, y: 34, label: "下一代", score: "保留强者", best: true }
+        ],
+        edges: [["B","P1"],["B","P2"],["B","P3"],["P1","C1"],["P2","C2"],["P3","C3"],["C1","N"],["C2","N"]],
+        order: ["B","P1","P2","P3","C1","C2","C3","N"]
       }
     };
 
@@ -671,21 +808,147 @@
       causality: {
         lowerIsBetter: true,
         steps: [
-          { n: "B", title: "Baseline", action: "原始 Dragonnet", metric: 1.296, status: "起点", detail: "原始模型平均预测误差较大。" },
-          { n: 1, title: "Draft 1", action: "加权集成：Linear/Ridge/Lasso + 标准化", metric: 0.599, status: "有效，最好", detail: "像请三个同学一起估分，再加权平均，误差明显下降。" },
-          { n: 2, title: "Draft 2", action: "简化为 treatment/control 两个线性模型", metric: 0.628, status: "有效", detail: "把接受干预和未接受干预分开建模，也有效，但不如第 1 步。" },
-          { n: 3, title: "Improve", action: "继续调集成模型", metric: 0.621, status: "有效", detail: "比 baseline 好，但没有超过第 1 步。" },
-          { n: 4, title: "Improve", action: "回到最佳集成方向", metric: 0.599, status: "有效", detail: "最终选择验证集上最好的版本去测试。" }
+          {
+            n: "B",
+            title: "Baseline",
+            action: "原始 Dragonnet",
+            metric: 1.296,
+            status: "起点",
+            detail: "原始模型先估计接受干预和不接受干预的结果，再相减得到治疗效果。",
+            details: [
+              "评分标准是 <code>mae_mean</code>，平均预测错误，越低越好。",
+              "baseline 验证指标是 <code>1.296</code>，说明治疗效果估计误差较大。"
+            ]
+          },
+          {
+            n: 1,
+            title: "Draft 1",
+            action: "加权集成：Ridge + Lasso + 标准化",
+            metric: 0.599,
+            status: "有效，最好",
+            detail: "这一步把单个预测器换成两个“同学”一起估分：Ridge 和 Lasso。",
+            details: [
+              "<code>Ridge</code> 像“别让任何一个特征权重太夸张”，减少过拟合。",
+              "<code>Lasso</code> 像“把不重要的特征权重压到接近 0”，自动做筛选。",
+              "<code>StandardScaler</code> 先把不同量纲的特征拉到相近尺度，避免某些数字大就显得更重要。",
+              "对“接受干预组”和“不接受干预组”分别训练一套集成模型，再相减得到治疗效果。",
+              "还用交叉验证估计 Ridge/Lasso 谁更靠谱，再给它们分配权重。"
+            ]
+          },
+          {
+            n: 2,
+            title: "Draft 2",
+            action: "两个线性模型 + targeted regularization",
+            metric: 0.628,
+            status: "有效，但不如第 1 步",
+            detail: "这一步把模型简化：接受干预的人训练一个线性模型，未接受干预的人训练另一个线性模型。",
+            details: [
+              "<code>LinearRegression</code> 就像画一条最合适的直线来预测结果。",
+              "模型先预测“如果治疗”的结果，再预测“如果不治疗”的结果，两者相减。",
+              "代码还尝试用 <code>LogisticRegression</code> 估计一个人接受干预的概率，再用修正项减少偏差。",
+              "它比 baseline 好，但没有第 1 步的 Ridge/Lasso 集成稳定。"
+            ]
+          },
+          {
+            n: 3,
+            title: "Improve",
+            action: "单 Ridge + 标准化",
+            metric: 0.621,
+            status: "有效，但仍未超过第 1 步",
+            detail: "这一步像在第 2 步基础上加了“别太相信单个特征”的刹车。",
+            details: [
+              "接受干预组使用一个 <code>Ridge(alpha=1.0)</code>。",
+              "不接受干预组也使用一个 <code>Ridge(alpha=1.0)</code>。",
+              "分别对两组做 <code>StandardScaler</code>，让特征尺度更稳。",
+              "结果比第 2 步略好，但仍然不如第 1 步的组合拳。"
+            ]
+          },
+          {
+            n: 4,
+            title: "Improve",
+            action: "回到最佳加权集成路线",
+            metric: 0.599,
+            status: "有效，回到最好分支",
+            detail: "AI Scientist v2 的树搜索在这里表现出来：发现第 1 步最好，就回到那个方向继续保留。",
+            details: [
+              "再次使用 Ridge + Lasso 的 <code>WeightedEnsemble</code>。",
+              "保留交叉验证调权重：误差小的子模型权重大。",
+              "验证集回到 <code>0.599</code>，最后用这个最佳验证版本去测试。",
+              "测试集得到 <code>0.618</code>，说明没有只在验证集上“背答案”。"
+            ]
+          }
         ]
       },
       fairness: {
         lowerIsBetter: true,
         steps: [
-          { n: "B", title: "Baseline", action: "普通 Logistic Regression", metric: 0.187, status: "起点", detail: "原始公平差距是 0.187，越低越好。" },
-          { n: 1, title: "Draft 1", action: "CorrelationRemover + GradientBoosting", metric: 0.316, status: "有效但变差", detail: "想先去掉和性别相关的线索，再训练分类器；这次公平指标反而变大。" },
-          { n: 2, title: "Draft 2", action: "ExponentiatedGradient 公平约束", metric: null, status: "报错", detail: "想直接用公平约束训练，但当前环境 API 不兼容，实验失败。" },
-          { n: 3, title: "Improve", action: "ThresholdOptimizer 后处理", metric: 0.331, status: "有效但更差", detail: "像给不同群体调不同判定门槛，但这次没有改善主指标。" },
-          { n: 4, title: "Improve", action: "再试 ExponentiatedGradient", metric: null, status: "报错", detail: "仍然遇到兼容性/运行问题；最终没有超过 baseline。" }
+          {
+            n: "B",
+            title: "Baseline",
+            action: "普通 Logistic Regression",
+            metric: 0.187,
+            status: "起点",
+            detail: "原始模型只做收入预测，不主动处理公平性。",
+            details: [
+              "评分标准是 <code>abs_demographic_parity_diff_mean</code>，不同群体预测为高收入的比例差，越低越好。",
+              "baseline 是 <code>0.187</code>，这次 4 步搜索没有超过它。"
+            ]
+          },
+          {
+            n: 1,
+            title: "Draft 1",
+            action: "CorrelationRemover + GradientBoosting",
+            metric: 0.316,
+            status: "有效但变差",
+            detail: "这一步想先去掉和性别相关的线索，再用更灵活的树模型分类。",
+            details: [
+              "<code>CorrelationRemover</code> 像把“和性别太相关的影子信息”从特征里擦掉。",
+              "<code>GradientBoostingClassifier</code> 像很多小决策树接力纠错。",
+              "还尝试平衡类别权重，避免模型只偏向人数更多的类别。",
+              "但验证公平差距变成 <code>0.316</code>，比 baseline 更差。"
+            ]
+          },
+          {
+            n: 2,
+            title: "Draft 2",
+            action: "CorrelationRemover + ExponentiatedGradient + ThresholdOptimizer",
+            metric: null,
+            status: "报错",
+            detail: "这一步想把预处理、训练中公平约束、预测后调阈值三种办法叠在一起，但代码没有跑通。",
+            details: [
+              "<code>ExponentiatedGradient</code> 的想法是训练多个分类器，在准确率和公平性之间找平衡。",
+              "<code>ThresholdOptimizer</code> 的想法是预测后给不同群体调判定门槛。",
+              "真实错误：<code>Columns ['sex'] not found in the input data</code>。",
+              "也就是说 CorrelationRemover 期待在输入特征里找到 sex 列，但当时传进去的数据里没有。"
+            ]
+          },
+          {
+            n: 3,
+            title: "Improve",
+            action: "LogisticRegression + ThresholdOptimizer",
+            metric: 0.331,
+            status: "有效但更差",
+            detail: "这一步放弃复杂预处理，先训练普通逻辑回归，再按群体调阈值。",
+            details: [
+              "<code>LogisticRegression</code> 先输出一个人收入 >50K 的概率。",
+              "<code>ThresholdOptimizer</code> 再尝试给不同群体设置不同门槛，让预测比例更接近。",
+              "这次能跑通，但公平差距 <code>0.331</code>，比第 1 步和 baseline 都差。"
+            ]
+          },
+          {
+            n: 4,
+            title: "Improve",
+            action: "再试 ExponentiatedGradient",
+            metric: null,
+            status: "报错",
+            detail: "这一步回到训练中公平约束，但使用了当前 Fairlearn 版本不支持的参数。",
+            details: [
+              "代码设置了 <code>eps=0.01</code>、<code>max_iter=50</code>、<code>run_linprog=True</code> 等参数。",
+              "真实错误：<code>unexpected keyword argument 'run_linprog'</code>。",
+              "意思是当前安装的 Fairlearn API 不认识这个参数。",
+              "所以公平任务这次是一个反面例子：agent 想法合理，但工程兼容性导致搜索失败。"
+            ]
+          }
         ]
       }
     };
@@ -745,6 +1008,9 @@
         <span class="pill">搜索策略类比</span>
         <h3>${a.name}</h3>
         <p>${a.text}</p>
+        <ol class="algorithm-steps">
+          ${a.steps.map(step => `<li>${step}</li>`).join("")}
+        </ol>
         <p class="note">注意：这张图展示策略形状，不表示我们实际跑了这个 agent 的两个任务。</p>
       `;
       drawStrategy(false);
@@ -752,30 +1018,42 @@
 
     function drawStrategy(animated) {
       const map = document.getElementById("strategy-map");
-      map.querySelectorAll(".dot,.branch").forEach(el => el.remove());
       const a = agents[activeAgent];
-      a.branches.forEach(b => {
-        const branch = document.createElement("div");
-        branch.className = "branch";
-        const dx = b[2] - b[0];
-        const dy = b[3] - b[1];
-        branch.style.left = `${b[0]}%`;
-        branch.style.top = `${b[1]}%`;
-        branch.style.width = `${Math.hypot(dx, dy)}%`;
-        branch.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
-        branch.style.opacity = animated ? 0 : 0.6;
-        map.appendChild(branch);
-        if (animated) setTimeout(() => { branch.style.opacity = 0.6; }, 200);
-      });
-      const dot = document.createElement("div");
-      dot.className = "dot";
-      map.appendChild(dot);
-      const positions = animated ? a.path : [a.path[a.path.length - 1]];
-      positions.forEach((p, i) => {
+      const byId = Object.fromEntries(a.nodes.map(n => [n.id, n]));
+      map.innerHTML = `
+        <svg class="graph-svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+          <g class="edges">
+            ${a.edges.map(([from, to], index) => {
+              const f = byId[from];
+              const t = byId[to];
+              return `<line class="graph-edge" data-edge="${index}" x1="${f.x}" y1="${f.y}" x2="${t.x}" y2="${t.y}"></line>`;
+            }).join("")}
+          </g>
+          <g class="nodes">
+            ${a.nodes.map(n => `
+              <g class="graph-node ${n.best ? "best" : ""} ${n.fail ? "fail" : ""}" data-node="${n.id}" transform="translate(${n.x}, ${n.y})">
+                <circle r="7"></circle>
+                <text text-anchor="middle" y="-10">${n.label}</text>
+                <text class="score" text-anchor="middle" y="13">${n.score}</text>
+              </g>
+            `).join("")}
+          </g>
+        </svg>
+      `;
+      if (!animated) {
+        map.querySelectorAll(".graph-edge").forEach(edge => edge.classList.add("active"));
+        map.querySelectorAll(".graph-node").forEach(node => node.classList.add("active"));
+        return;
+      }
+      a.order.forEach((nodeId, i) => {
         setTimeout(() => {
-          dot.style.left = `calc(${p[0]}% - 8px)`;
-          dot.style.top = `calc(${p[1]}% - 8px)`;
-        }, animated ? i * 650 : 0);
+          map.querySelector(`[data-node="${nodeId}"]`)?.classList.add("active");
+          a.edges.forEach(([from, to], edgeIndex) => {
+            if (to === nodeId || from === nodeId) {
+              map.querySelector(`[data-edge="${edgeIndex}"]`)?.classList.add("active");
+            }
+          });
+        }, i * 650);
       });
     }
 
@@ -797,6 +1075,9 @@
             <div class="metric ${cls}">${metricText}</div>
             <p class="note">${s.status}</p>
             <p class="note">${s.detail}</p>
+            <ul class="detail-list">
+              ${(s.details || []).map(item => `<li>${item}</li>`).join("")}
+            </ul>
           </div>
         `;
       }).join("");
