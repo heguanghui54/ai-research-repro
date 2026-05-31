@@ -4,10 +4,7 @@ import argparse
 import csv
 import json
 import os
-import subprocess
-import sys
 import urllib.error
-import urllib.parse
 import urllib.request
 from collections import Counter
 from pathlib import Path
@@ -163,12 +160,17 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Export Health Qigong web coding submissions from Supabase REST API.")
     parser.add_argument("--supabase-url", default=os.environ.get("SUPABASE_URL", "https://onhfzpxxehumxmnvkxud.supabase.co"))
     parser.add_argument("--supabase-key", default=os.environ.get("SUPABASE_ANON_KEY", "sb_publishable_eqOx34s8pYSS31I7aB55Yg_9JaZdfcS"))
-    parser.add_argument("--admin-code", default=os.environ.get("QIGONG_CODING_ADMIN_CODE", "qigong2026-admin"))
+    parser.add_argument("--admin-code", default=os.environ.get("QIGONG_CODING_ADMIN_CODE"))
     parser.add_argument("--output-csv", default="runs/qigong_platform/formal_merge/web_coding_submissions_export.csv")
     parser.add_argument("--summary-json", default="runs/qigong_platform/formal_merge/web_coding_submissions_export_summary.json")
     parser.add_argument("--summary-md", default="runs/qigong_platform/formal_merge/web_coding_submissions_export_summary.md")
     parser.add_argument("--expected-tasks", type=int, default=120)
     args = parser.parse_args()
+    if not args.admin_code:
+        raise SystemExit(
+            "Missing export admin code. Set QIGONG_CODING_ADMIN_CODE or pass --admin-code. "
+            "See the local private admin access note."
+        )
 
     url = f"{args.supabase_url.rstrip('/')}/rest/v1/rpc/export_qigong_coding_submissions"
     rows = rpc_json(url, args.supabase_key, {"p_admin_code": args.admin_code})
