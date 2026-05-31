@@ -15,4 +15,5 @@ runs/
 *.png
 *.log
 .pytest_cache/
-
+node_modules/
+.next/
