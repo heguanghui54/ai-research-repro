@@ -45,11 +45,12 @@ export async function POST(request) {
   for (const field of codingFields) payload[field] = String(body[field] || "").trim();
 
   const supabase = getSupabase();
-  const { data, error } = await supabase
-    .from("coding_submissions")
-    .upsert(payload, { onConflict: "video_id,student_code,task_role" })
-    .select()
-    .single();
+  const { data, error } = await supabase.rpc("upsert_qigong_coding_submission", {
+    p_student_code: studentCode,
+    p_token: request.headers.get("x-student-token") || "",
+    p_access_code: process.env.STUDENT_ACCESS_CODE || "qigong2026",
+    p_payload: payload,
+  });
 
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
