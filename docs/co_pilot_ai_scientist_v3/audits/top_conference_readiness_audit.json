@@ -6,6 +6,7 @@
     "Chinese PDF paper",
     "English and Chinese usage documents",
     "Reusable Codex skill artifact",
+    "Reusable skill template/schema smoke test",
     "GitHub branch pushed",
     "Clean-clone artifact reproducibility"
   ],
@@ -36,6 +37,14 @@
     "manifest_artifacts_checked": 259,
     "missing_manifest_artifacts": 0,
     "pdfs_rebuilt": 2
+  },
+  "skill_reuse_smoke": {
+    "status": "pass",
+    "required_terms_present": 9,
+    "required_terms_total": 9,
+    "templates_parsed": 3,
+    "generated_gate_validation_errors": 0,
+    "live_llm_research_run": false
   },
   "next_evidence_milestone": "Run a prospective matched-budget end-to-end trajectory with complete taste_insight and attention_cost logs, a matched autonomous baseline, and a final claim-audited manuscript."
 }

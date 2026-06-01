@@ -43,6 +43,8 @@ claim calibration.
   separating delivered artifacts from remaining top-conference evidence gaps.
 - `audits/clean_clone_reproducibility_audit.md`: fresh GitHub-clone check that
   rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
+- `audits/skill_reuse_smoke_audit.md`: local smoke test that instantiates the
+  reusable Codex skill templates and validates a generated human gate log.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.

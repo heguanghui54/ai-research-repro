@@ -1,0 +1,80 @@
+{
+  "gate_id": "skill_reuse_smoke_scientific_taste_prior_001",
+  "gate_type": "scientific_taste_prior",
+  "timestamp_utc": "2026-06-01T17:30:00Z",
+  "research_task_id": "skill_reuse_smoke_001",
+  "options": [
+    {
+      "option_id": "reuse_existing_skill",
+      "summary": "Reuse the Co-Pilot AI Scientist v3 skill with a new task spec and validated human gate log.",
+      "score": 4.0,
+      "evidence": [
+        "SKILL.md exists and includes IGRE workflow terms.",
+        "Task and gate templates can be instantiated.",
+        "Generated gate log validates against the project schema."
+      ],
+      "risks": [
+        "This smoke validates artifact reuse, not research performance."
+      ]
+    },
+    {
+      "option_id": "manual_ad_hoc_workflow",
+      "summary": "Continue using project-specific files without a reusable skill interface.",
+      "score": 2.0,
+      "evidence": [
+        "Manual workflow is flexible."
+      ],
+      "risks": [
+        "Does not satisfy the reusable Codex skill objective.",
+        "Harder to audit human gates consistently."
+      ]
+    }
+  ],
+  "human_decision": "reuse_existing_skill",
+  "rationale": "The reusable skill path better satisfies the project objective because it preserves IGRE gate semantics, template structure, and schema-validated human decision logs across tasks.",
+  "affected_artifacts": [
+    "skills/co-pilot-ai-scientist-v3/SKILL.md",
+    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
+    "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json",
+    "docs/co_pilot_ai_scientist_v3/human_gate_schema.json"
+  ],
+  "downstream_budget": {
+    "skill_validation": "local_smoke",
+    "remote_experiments_launched": 0
+  },
+  "attention_cost": {
+    "human_actor": "codex_validation",
+    "interaction_mode": "posthoc_replay",
+    "prompted_at_utc": null,
+    "decision_at_utc": "2026-06-01T17:30:00Z",
+    "active_review_minutes": null,
+    "wall_clock_latency_minutes": null,
+    "options_reviewed": 2,
+    "artifacts_reviewed_count": 4,
+    "decision_count": 1,
+    "notes": "Smoke test validates reusable skill artifacts; no prospective human timing was measured."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-02",
+    "scores": {
+      "problem_depth": 4,
+      "novelty_potential": 3,
+      "mechanistic_value": 4,
+      "failure_informativeness": 4,
+      "benchmark_taste": 5,
+      "claim_significance": 4,
+      "risk_asymmetry": 3
+    },
+    "taste_insight_score": 3.9,
+    "qualitative_rationale": "A reusable skill matters because it turns the paper's human-taste gates into repeatable research operations rather than one-off prose.",
+    "non_metric_factors": [
+      "workflow transferability",
+      "schema discipline",
+      "benchmark-to-claim fit"
+    ]
+  },
+  "follow_up_checks": [
+    "Run the skill on a fresh research topic with live model calls.",
+    "Record attention_cost prospectively during live human gates."
+  ]
+}

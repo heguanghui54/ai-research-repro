@@ -1,0 +1,26 @@
+{
+  "audit_date": "2026-06-01T17:30:00Z",
+  "overall_status": "pass",
+  "skill_name": "co-pilot-ai-scientist-v3",
+  "required_terms_total": 9,
+  "required_terms_present": 9,
+  "missing_required_terms": [],
+  "templates_parsed": [
+    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
+    "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json",
+    "skills/co-pilot-ai-scientist-v3/templates/claim_audit_template.md"
+  ],
+  "generated_task_spec": "docs/co_pilot_ai_scientist_v3/audits/skill_reuse_smoke_task_spec.md",
+  "generated_gate_log": "docs/co_pilot_ai_scientist_v3/audits/skill_reuse_smoke_human_gate_log.json",
+  "gate_validation_errors": [],
+  "checks": {
+    "skill_file_exists": "pass",
+    "skill_frontmatter_name": "pass",
+    "required_workflow_terms": "pass",
+    "task_template_exists": "pass",
+    "gate_template_parses": "pass",
+    "claim_template_exists": "pass",
+    "human_gate_schema_parses": "pass",
+    "generated_gate_validates": "pass"
+  }
+}
