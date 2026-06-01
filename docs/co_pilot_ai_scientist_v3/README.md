@@ -50,13 +50,16 @@ Expected outputs:
 This is a working research-production scaffold with preliminary Ubuntu-host
 evidence. It includes OpenEvolve-based program search, direct LLM rewrite
 baselines, a richer knapsack heuristic task, and retrospective branch-gate
-replay over prior AI Scientist-v2/FML-bench runs. It now also includes a live
-two-draft FML-bench branch-gate probe and a snapshot-seeded selected-branch
-continuation run, plus a first matched-budget four-step autonomous baseline on
-the same Causality task. The matched baseline reached test MAE `0.421474`,
-while the human-gated continuation reached `0.402170`; this is promising but
-still only one task and one seed. To avoid overfitting the project to
-FML-bench, the package also includes a non-FML MLAgentBench `vectorization`
+replay over prior AI Scientist-v2/FML-bench runs. It now also includes live
+two-draft FML-bench branch-gate probes, snapshot-seeded selected-branch
+continuation runs, and two matched-budget four-step autonomous baselines on the
+Causality task. The first pair weakly favors human-gated continuation on held
+out test MAE (`0.402170` vs. `0.421474`), while the second pair favors the
+autonomous baseline (`0.646224` vs. `0.595685`). The two-pair mean slightly
+favors autonomous, so the manuscript now treats FML as mixed feasibility
+evidence rather than a proof of human-gate superiority. To avoid overfitting the
+project to FML-bench, the package also includes a non-FML MLAgentBench
+`vectorization`
 comparison: direct DeepSeek
 rewrite failed the correctness gate, while a three-iteration OpenEvolve-style
 search found a correct vectorized program with median runtime `0.051882` seconds
@@ -68,6 +71,6 @@ tasks/seeds and independently reviewed for paper quality. A Monica-routed claim
 audit is archived under `audits/` and is reflected in the manuscript's
 claim-audit section. A second paper-quality review pass through Monica-routed
 `gpt-4o-mini` and `claude-3-7-sonnet-latest` is also archived; it now treats the
-single matched-budget run as useful first evidence while still identifying
-multi-task matched comparisons and a full four-loop trajectory as the main
-blockers before a strong venue submission.
+two matched-budget FML pairs as useful but mixed first evidence while still
+identifying multi-task matched comparisons and a full four-loop trajectory as
+the main blockers before a strong venue submission.

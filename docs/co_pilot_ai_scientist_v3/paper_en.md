@@ -207,15 +207,29 @@ uses only a single small task and seed. Nevertheless, it demonstrates an
 executable path from branch gate, to selected snapshot, to additional
 AI Scientist-v2 search budget.
 
-Following the paper-quality review, we added a closer matched-budget autonomous
-baseline. This run used the same Causality_causalml task, the same DeepSeek
-model, two initial ideas, two parallel branches, and four total AI Scientist-v2
-steps, but no human branch selection. It reached validation MAE 0.389451 and
-test MAE 0.421474. The human-gated path therefore remains slightly better on
-held-out test MAE (0.402170 versus 0.421474), while the autonomous baseline is
-slightly better on validation MAE. This single-task comparison removes one
-important compute-budget confound, but it is still not statistical evidence for
-general human-gate superiority.
+Following the paper-quality review, we added closer matched-budget autonomous
+baselines. The first matched run used the same Causality_causalml task, the same
+DeepSeek model, two initial ideas, two parallel branches, and four total AI
+Scientist-v2 steps, but no human branch selection. It reached validation MAE
+0.389451 and test MAE 0.421474. In this pair, the human-gated path remained
+slightly better on held-out test MAE (0.402170 versus 0.421474), while the
+autonomous baseline was slightly better on validation MAE.
+
+We then ran a second matched Causality replicate. The human-gated two-draft
+frontier selected a branch with validation MAE 0.605881 and test MAE 0.646224.
+The snapshot-seeded continuation did not improve the held-out test score,
+ending with validation MAE 0.627837 and test MAE 0.646224. The matched
+autonomous four-step baseline reached validation MAE 0.537972 and test MAE
+0.595685. In this second pair, the autonomous path was better on both
+validation and held-out test metrics.
+
+Across the two matched pairs, one pair favors human-gated continuation and one
+favors the autonomous baseline on held-out test MAE. Mean human-gated test MAE
+is 0.524197, while mean autonomous test MAE is 0.508579. Since lower is better,
+the two-pair mean slightly favors the autonomous baseline. The evidence
+therefore removes one compute-budget confound but remains mixed; it supports
+feasibility of branch-gate insertion and continuation, not general human-gate
+superiority.
 
 ### 4.4 Non-FML Benchmark and Program-Search Probe
 
@@ -258,9 +272,9 @@ outperforms autonomous AI Scientist-v2. We therefore treat those as hypotheses
 for the evaluation protocol rather than as conclusions. The audit supports only
 the narrower empirical claims reported above: OpenEvolve-style search can help
 on some machine-gradeable subproblems but is seed-sensitive under tiny budgets,
-branch-gate insertion is feasible in AI Scientist-v2-style logs, and
-selected-branch continuation has a promising single-task result that still
-requires broader matched-budget validation.
+branch-gate insertion is feasible in AI Scientist-v2-style logs, and the first
+two matched Causality pairs give mixed evidence rather than a reliable
+human-gating advantage.
 
 We also ran a paper-quality review through two Monica-routed reviewer models.
 `gpt-4o-mini` gave a weak-accept recommendation with scores of 4/5 for novelty
@@ -283,8 +297,9 @@ The current contributions are:
 4. Initial remote OpenEvolve and FML-bench probes showing that the
    AlphaEvolve-style subproblem module and AI Scientist-v2 branch-gate module
    can run on the Ubuntu host.
-5. A first matched-budget FML-bench comparison between a human-gated branch
-   continuation and a four-step autonomous AI Scientist-v2 baseline.
+5. Two matched-budget FML-bench Causality comparisons between a human-gated
+   branch continuation and a four-step autonomous AI Scientist-v2 baseline,
+   with mixed outcomes.
 6. A non-FML MLAgentBench program-search probe for broadening benchmark
    coverage beyond FML-bench.
 7. A reusable Codex skill for running the workflow.
@@ -305,9 +320,10 @@ optimize local metrics without improving scientific contribution, and under tiny
 budgets it may not outperform direct LLM editing. Expert paper ratings are
 costly and may vary across reviewers. The first version should make narrow
 claims and report negative results when gates fail to improve outcomes. The
-current selected-branch continuation result is promising, but it is not yet a
-statistically controlled benchmark; stronger claims require more tasks, more
-seeds, matched autonomous budgets, and independent paper-quality review.
+current selected-branch continuation evidence is mixed across two matched pairs
+and is not yet a statistically controlled benchmark; stronger claims require
+more tasks, more seeds, richer budget schedules, and independent paper-quality
+review.
 
 The current implementation also lacks one complete end-to-end demonstration in
 which all four loops operate in a single continuous trajectory. The module probes

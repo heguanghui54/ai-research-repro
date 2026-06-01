@@ -33,9 +33,10 @@ sufficient by itself.
   - fairness/fairlearn smoke task.
   - Role: branch-gate and selected-branch continuation evidence for
     AI Scientist-v2-style search.
-  - Current status: one Causality matched-budget comparison is archived
-    (`0.402170` human-gated test MAE vs. `0.421474` autonomous test MAE), but
-    more tasks and seeds are still required.
+  - Current status: two Causality matched-budget pairs are archived. Pair 1
+    favors the human-gated path on test MAE (`0.402170` vs. `0.421474`), while
+    Pair 2 favors the autonomous path (`0.646224` vs. `0.595685`). More tasks,
+    seeds, and budget schedules are still required.
 - **OpenEvolve-controlled tasks**:
   - function minimization;
   - 0/1 knapsack heuristic search.
@@ -108,7 +109,8 @@ Record every failed branch with:
 ## Minimum Evidence for a First Paper Draft
 
 - At least two runnable tasks from Tier A with logged autonomous and
-  human-gated variants.
+  human-gated variants. The current Causality matched pairs count as an initial
+  matched probe but not as a broad benchmark.
 - One ablation showing which human gate matters most.
 - One OpenEvolve or equivalent programmatic-search demonstration.
 - A justified plan and at least one setup/baseline probe for a Tier B benchmark

@@ -123,6 +123,10 @@ Current replay and live-probe evidence:
 - Matched autonomous 4-step baseline: same task/model with four total steps,
   no human branch selection, reaching validation MAE `0.38945144308464624` and
   test MAE `0.42147360723655275`.
+- Second matched pair: the selected human-gated continuation reached validation
+  MAE `0.627836868090553` and test MAE `0.6462237240158367`, while the paired
+  autonomous 4-step baseline reached validation MAE `0.5379716029896986` and
+  test MAE `0.5956850978622356`. This makes the paired FML evidence mixed.
 
 The current continuation is implemented by snapshot seeding. A stronger future
 version should preserve and resume the original AI Scientist-v2 tree object.
@@ -193,6 +197,12 @@ rm -f "$TMP"
 Archive path:
 `docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/`.
 
+Second-pair archive paths:
+
+- `docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_rep2_gated_drafts/`
+- `docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_rep2_selected_continuation/`
+- `docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_rep2_autonomous_4step/`
+
 ## 8. Non-FML MLAgentBench Baseline
 
 Use MLAgentBench `vectorization` as the first non-FML benchmark path:
@@ -252,8 +262,8 @@ shows seed sensitivity under a tiny search budget.
 
 - Replace snapshot-seeded continuation with native tree-object resume if
   feasible.
-- Repeat the first matched-budget autonomous vs human-gated comparison across
-  more tasks, seeds, and budget schedules.
+- Extend the current two mixed matched-budget Causality pairs across more
+  tasks, seeds, and budget schedules.
 - Add a second MLAgentBench task or expand to ScienceAgentBench, then repeat
   with matched multi-seed budgets.
 - Add external or rubric-based paper-quality scoring.

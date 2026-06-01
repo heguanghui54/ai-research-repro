@@ -75,7 +75,11 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 随后，我们实现了一个最小 selected-branch continuation runner。该 runner 会把人类 gate 选中的代码快照临时写回官方 FML-bench 任务模板，从该状态启动一个短预算 AI Scientist-v2 continuation run，并在结束后恢复模板文件。从被选中的第二个 draft 出发，继续两步后验证 MAE 达到 0.401240，test MAE 达到 0.402170。这个结果优于 live two-draft gate run 的 test MAE 0.640451，也优于早期四步 autonomous smoke run 的 test MAE 0.617719。这个比较仍然是初步的：当前 continuation 是通过 snapshot seeding 实现的，还没有保存原始内存中的 tree 对象；同时它只覆盖一个小任务和一个 seed。因此，我们只把它作为“branch gate -> selected snapshot -> additional AI Scientist-v2 budget”这条路径可以执行的证据，而不是最终统计结论。
 
-根据 paper-quality review 的意见，我们又补了一次更接近同预算的 autonomous baseline。该运行使用同一个 Causality_causalml 任务、同一个 DeepSeek 模型、两个初始 idea、两个并行分支和四个 AI Scientist-v2 总步数，但不进行人类分支选择。它得到验证 MAE 0.389451、test MAE 0.421474。因此，human-gated 路径在 held-out test MAE 上仍略好：0.402170 对比 0.421474；但 autonomous baseline 在验证 MAE 上略好。这个单任务对照消除了一个重要的计算预算混淆因素，但仍不是“人类 gate 普遍有效”的统计证明。
+根据 paper-quality review 的意见，我们又补了更接近同预算的 autonomous baseline。第一组 matched run 使用同一个 Causality_causalml 任务、同一个 DeepSeek 模型、两个初始 idea、两个并行分支和四个 AI Scientist-v2 总步数，但不进行人类分支选择。它得到验证 MAE 0.389451、test MAE 0.421474。在这一组中，human-gated 路径在 held-out test MAE 上略好：0.402170 对比 0.421474；但 autonomous baseline 在验证 MAE 上略好。
+
+随后我们又跑了第二组 matched Causality replicate。human-gated 两 draft frontier 选择了验证 MAE 0.605881、test MAE 0.646224 的分支；snapshot-seeded continuation 没有进一步改善 held-out test，最终验证 MAE 为 0.627837、test MAE 为 0.646224。对应的四步 autonomous baseline 得到验证 MAE 0.537972、test MAE 0.595685。在第二组中，autonomous 路径在验证集和 held-out test 上都更好。
+
+因此，两组同预算对照的结论是 mixed evidence：一组 held-out test 支持 human-gated continuation，另一组支持 autonomous baseline。两组平均后，human-gated test MAE 为 0.524197，autonomous test MAE 为 0.508579；由于该指标越低越好，均值反而略支持 autonomous baseline。这个结果消除了一个重要的计算预算混淆因素，但不支持“人类 gate 普遍优越”的宽泛结论；它只支持 branch gate 可以插入、selected snapshot 可以继续搜索这一可行性主张。
 
 ### 4.4 非 FML benchmark 与程序搜索小实验
 
@@ -87,7 +91,7 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 ### 4.5 主张审计
 
-在完成这些 pilot 实验后，我们做了一次 claim-evidence audit。通过 Monica 路由的 `gpt-4o-mini` 审稿式检查认为：本文的架构贡献是合理的，但当前实验证据还不足以支持“人类 gate 提高论文质量”或“完整 co-pilot 系统优于 autonomous AI Scientist-v2”这类宽泛结论。因此，本文把这些表述保留为 evaluation protocol 要检验的假设，而不是已经证明的结论。当前 audit 只支持较窄的实证主张：OpenEvolve-style search 可以在部分机器可评分子问题上有效，但在极小预算下存在 seed sensitivity；branch gate 可以插入 AI Scientist-v2 风格日志轨迹；selected-branch continuation 在单任务上有积极结果，但仍需要同预算、多 seed 的验证。
+在完成这些 pilot 实验后，我们做了一次 claim-evidence audit。通过 Monica 路由的 `gpt-4o-mini` 审稿式检查认为：本文的架构贡献是合理的，但当前实验证据还不足以支持“人类 gate 提高论文质量”或“完整 co-pilot 系统优于 autonomous AI Scientist-v2”这类宽泛结论。因此，本文把这些表述保留为 evaluation protocol 要检验的假设，而不是已经证明的结论。当前 audit 只支持较窄的实证主张：OpenEvolve-style search 可以在部分机器可评分子问题上有效，但在极小预算下存在 seed sensitivity；branch gate 可以插入 AI Scientist-v2 风格日志轨迹；两组 matched Causality 对照给出的是混合证据，而不是稳定的人类 gate 优势。
 
 我们还通过 Monica 路由了两次 paper-quality review。`gpt-4o-mini` 给出 weak-accept 建议，认为新颖性和可复现性较强，但严谨性和证据仍只有中等水平。`claude-3-7-sonnet-latest` 更严格，认为如果目标是强 ML/NLP systems venue，当前版本应被拒，因为目前证据仍是模块级 pilot probe，而不是同预算端到端对照。两个模型的共同结论是：下一版必须在更多任务和随机种子上比较 autonomous AI Scientist-v2 与 human-gated variants，并记录人类注意力成本。
 
@@ -99,7 +103,7 @@ Co-Pilot AI Scientist v3 包含四个循环。
 2. 一个用于科研 agent 的人类参与节点形式化 schema。
 3. 一个评估“人类注意力是否以及应该放在哪里”的实验协议。
 4. 远程 OpenEvolve 与 FML-bench 小实验，证明 AlphaEvolve-style 子问题模块和 AI Scientist-v2 分支 gate 模块可以在 Ubuntu 主机上运行。
-5. 第一个同预算 FML-bench 对照：human-gated branch continuation 与四步 autonomous AI Scientist-v2 baseline。
+5. 两组同预算 FML-bench Causality 对照：human-gated branch continuation 与四步 autonomous AI Scientist-v2 baseline，结果呈混合状态。
 6. 一个非 FML 的 MLAgentBench 程序搜索小实验，用于扩展 FML-bench 之外的 benchmark 覆盖面。
 7. 一个可在 Codex 中复用的 workflow skill。
 8. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
@@ -109,7 +113,7 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 ## 6. 局限性
 
-本文不预设人类参与一定有效。人类 gate 可能引入偏见、降低搜索速度、压缩探索多样性。程序化搜索可能只优化局部指标，却不能提高论文层面的科学贡献；在极小预算下，它也未必优于直接 LLM 编辑。专家论文评分成本较高，而且不同评审可能存在分歧。因此，第一版实验应保持窄主张，并在 gate 无法改善结果时如实报告负结果。当前 selected-branch continuation 结果很有希望，但还不是统计受控 benchmark；更强主张需要更多任务、更多随机种子、匹配的 autonomous budget，以及独立论文质量评审。
+本文不预设人类参与一定有效。人类 gate 可能引入偏见、降低搜索速度、压缩探索多样性。程序化搜索可能只优化局部指标，却不能提高论文层面的科学贡献；在极小预算下，它也未必优于直接 LLM 编辑。专家论文评分成本较高，而且不同评审可能存在分歧。因此，第一版实验应保持窄主张，并在 gate 无法改善结果时如实报告负结果。当前 selected-branch continuation 证据在两组 matched pair 中呈混合状态，还不是统计受控 benchmark；更强主张需要更多任务、更多随机种子、更丰富的预算分配设置，以及独立论文质量评审。
 
 当前实现还缺少一次所有四个循环连续运行的端到端演示。现有实验主要证明单个模块可以跑通；下一版 systems paper 至少需要报告一条从假设生成到最终 claim-audited manuscript 的完整轨迹。
 

@@ -48,14 +48,18 @@ of Co-Pilot AI Scientist v3.
 
 ## Recommended Next Runs
 
-1. **MLAgentBench vectorization extension**: baseline, direct LLM rewrite, and
+1. **More matched FML/causal tasks**: keep FML-bench as the branch-gate
+   substrate, but extend beyond the current Causality pairs to additional
+   tasks, seeds, and budget schedules before making any human-gate superiority
+   claim.
+2. **MLAgentBench vectorization extension**: baseline, direct LLM rewrite, and
    OpenEvolve-style runtime optimization now run under a correctness-gated
    evaluator with a first three-seed robustness probe; next add a second
    MLAgentBench task or a larger matched seed budget.
-2. **ScienceAgentBench single task**: use one data-driven discovery task to test
+3. **ScienceAgentBench single task**: use one data-driven discovery task to test
    evaluator and claim gates in a more science-like setting.
-3. **MLE-bench Lite dry run or one task**: use only if API/compute budget allows.
-4. **PaperBench-inspired rubric audit**: do not run full PaperBench initially;
+4. **MLE-bench Lite dry run or one task**: use only if API/compute budget allows.
+5. **PaperBench-inspired rubric audit**: do not run full PaperBench initially;
    instead borrow its hierarchical rubric idea for manuscript claim auditing.
 
 ## Primary Sources

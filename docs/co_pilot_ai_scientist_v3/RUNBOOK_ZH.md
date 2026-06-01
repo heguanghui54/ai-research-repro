@@ -116,6 +116,13 @@ python3 scripts/run_openevolve_program_search.py \
 - Selected-branch continuation：应用被选中的 step 2 快照，再继续运行
   AI Scientist-v2 两步，得到验证 MAE `0.4012397173613497` 和 test MAE
   `0.4021701846791075`。
+- Matched autonomous 4-step baseline：同一任务和模型，不做人类分支选择，
+  得到验证 MAE `0.38945144308464624` 和 test MAE
+  `0.42147360723655275`。
+- 第二组 matched pair：human-gated continuation 得到验证 MAE
+  `0.627836868090553` 和 test MAE `0.6462237240158367`；对应 autonomous
+  4-step baseline 得到验证 MAE `0.5379716029896986` 和 test MAE
+  `0.5956850978622356`。因此当前 FML paired evidence 是混合的。
 
 当前 continuation 通过 snapshot seeding 实现。更强版本应保存并恢复原始
 AI Scientist-v2 tree object。
@@ -153,6 +160,12 @@ CUDA_VISIBLE_DEVICES=0 /home/heshi/miniconda3/bin/conda run -n fmlbench \
   --num-parallel 1 \
   --stage-budgets "[1.0, 0.0, 0.0, 0.0]"
 ```
+
+第二组 matched pair 已归档在：
+
+- `docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_rep2_gated_drafts/`
+- `docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_rep2_selected_continuation/`
+- `docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_rep2_autonomous_4step/`
 
 ## 8. 非 FML 的 MLAgentBench baseline
 
@@ -210,7 +223,7 @@ done
 ## 9. 顶会级投稿前仍需补强的证据
 
 - 如果可行，把 snapshot-seeded continuation 升级为原生 tree-object resume。
-- 将第一个同预算 autonomous vs human-gated 对照扩展到更多任务、随机种子和预算分配。
+- 将当前两组 mixed matched pair 扩展到更多任务、随机种子和预算分配。
 - 加入第二个 MLAgentBench task，或扩展到 ScienceAgentBench，然后用匹配的 multi-seed budget 重复验证。
 - 加入外部评审或 rubric-based paper-quality scoring。
 - 跑一次完整四循环轨迹，让 hypothesis、evaluator、branch、program-search 和 claim-audit gates 在同一条连续任务中全部生效。
