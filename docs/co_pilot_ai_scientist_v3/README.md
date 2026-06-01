@@ -69,7 +69,10 @@ controlled non-FML sklearn diabetes tabular regression probe starts from a
 rudimentary mean predictor (`78.572189` RMSE); direct DeepSeek rewrite and three
 OpenEvolve seeds all improve to roughly Ridge-level performance, with direct
 editing matching the median OpenEvolve RMSE (`55.895460`). This adds a useful
-boundary condition: program search should be gated, not automatic. Claims
+boundary condition: program search should be gated, not automatic. A first
+online `Fairness_fairlearn` branch-gate extension was attempted and archived as
+`fml_fairness_gated_drafts_failed/`; both drafts failed validation, so it is a
+failure-mode/evaluator-gate artifact rather than performance evidence. Claims
 remain intentionally conservative until the evidence is expanded across more
 tasks and independently reviewed for paper quality. A Monica-routed claim
 audit is archived under `audits/` and is reflected in the manuscript's

@@ -40,8 +40,8 @@
     "next_gate": "evaluator_approval"
   },
   "follow_up_checks": [
-    "Run an online gated Fairness_fairlearn experiment that repairs compatibility before further search.",
+    "An online gated Fairness_fairlearn experiment was attempted on 2026-06-01 and produced two validation failures; see docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_gated_drafts_failed/.",
+    "Repair the Fairlearn/sklearn API compatibility failure before continuing the branch.",
     "Compare bug count, validation metric, and test metric against autonomous AI Scientist-v2."
   ]
 }
-

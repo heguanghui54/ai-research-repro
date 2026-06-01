@@ -37,6 +37,10 @@ sufficient by itself.
     favors the human-gated path on test MAE (`0.402170` vs. `0.421474`), while
     Pair 2 favors the autonomous path (`0.646224` vs. `0.595685`). More tasks,
     seeds, and budget schedules are still required.
+  - A first online `Fairness_fairlearn` gated-drafts attempt is archived as a
+    failure-mode probe: both generated drafts failed validation before any
+    branch could be continued. It does not count as matched-budget performance
+    evidence.
 - **OpenEvolve-controlled tasks**:
   - function minimization;
   - 0/1 knapsack heuristic search.

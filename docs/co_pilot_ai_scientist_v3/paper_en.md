@@ -289,9 +289,12 @@ for the evaluation protocol rather than as conclusions. The audit supports only
 the narrower empirical claims reported above: OpenEvolve-style search can help
 on some machine-gradeable subproblems but is seed-sensitive under tiny budgets,
 direct editing can match OpenEvolve on a simple tabular modeling probe,
-branch-gate insertion is feasible in AI Scientist-v2-style logs, and the first
-two matched Causality pairs give mixed evidence rather than a reliable
-human-gating advantage.
+branch-gate insertion is feasible in AI Scientist-v2-style logs, evaluator
+gates must reject non-executable branches before continuation, and the first two
+matched Causality pairs give mixed evidence rather than a reliable human-gating
+advantage. A first attempt to extend online branch gating to `Fairness_fairlearn`
+produced two validation failures rather than a score, so we archive it as
+failure-mode evidence rather than matched-budget performance evidence.
 
 We also ran a paper-quality review through two Monica-routed reviewer models.
 `gpt-4o-mini` gave a weak-accept recommendation with scores of 4/5 for novelty

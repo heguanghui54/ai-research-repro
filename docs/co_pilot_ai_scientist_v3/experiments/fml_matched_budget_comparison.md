@@ -61,6 +61,11 @@ and selected-snapshot continuation, not general human-gate superiority.
 
 - One benchmark task family only; two paired replicates are still too few for a
   statistical claim.
+- A first attempt to extend the online branch-gate protocol to
+  `Fairness_fairlearn` produced no successful validation runs: both generated
+  drafts failed the Fairlearn/sklearn API contract. This is archived as
+  `fml_fairness_gated_drafts_failed/` and should be treated as an evaluator-gate
+  failure mode, not as matched-budget performance evidence.
 - The human-gated continuation uses snapshot seeding rather than native tree
   object resume.
 - The autonomous baseline uses a compact four-step budget schedule; further
@@ -78,3 +83,5 @@ and selected-snapshot continuation, not general human-gate superiority.
   `fml_matched_budget_rep2_selected_continuation/`
 - Pair 2 autonomous matched baseline:
   `fml_matched_budget_rep2_autonomous_4step/`
+- Failed Fairness_fairlearn online gated drafts:
+  `fml_fairness_gated_drafts_failed/`
