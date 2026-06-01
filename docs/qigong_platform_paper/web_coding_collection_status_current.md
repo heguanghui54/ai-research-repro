@@ -17,6 +17,20 @@
 
 ## 当前导出审计
 
+线上 Supabase 即时核验（2026-06-01 09:00 左右）：
+
+| 指标 | 当前值 |
+|---|---:|
+| 视频任务总数 | 120 |
+| 已设置复核任务 | 24 |
+| 已提交总行数 | 6 |
+| 主编码提交 | 6 |
+| 复核编码提交 | 0 |
+| 已覆盖主编码视频 | 6 |
+| 已覆盖复核视频 | 0 |
+
+说明：学生端已经开始提交，网页流程可用；但当前仍远未达到正式结果写作门槛。下表是本地导出文件的最近一次审计快照，尚未重新导出线上 6 条提交。
+
 来自 `runs/qigong_platform/formal_merge/web_coding_submissions_export_summary.json`：
 
 | 指标 | 当前值 |
@@ -28,7 +42,7 @@
 | 复核编码提交 | 0 |
 | 主编码剩余下限 | 120 |
 
-网页导出转换管道已通过空提交状态 smoke 测试：`runs/qigong_platform/formal_merge/qigong_human_coding_from_web.csv` 能生成 120 行正式编码表结构；由于当前提交数为 0，完成度审计为 warn，不可解释为正式结果。
+网页导出转换管道已通过空提交状态 smoke 测试：`runs/qigong_platform/formal_merge/qigong_human_coding_from_web.csv` 能生成 120 行正式编码表结构；由于当前本地导出快照仍未包含线上最新提交，完成度审计为 warn，不可解释为正式结果。
 
 当前任务设计为 120 条主编码任务加 24 条复核任务，共 144 个学生端任务位。复核任务不替代主编码任务，只用于计算双编码一致性；若学生编码需要一天时间，等待期间可先推进文献、评论、典型视频预检和论文方法文本。
 
@@ -43,7 +57,7 @@
 - 不能写“人工编码结果显示……”。
 - 不能报告各变量占比、平台差异、卡方检验、聚类、回归或相关分析。
 - 不能把 deepseek-chat 预填结果当作人工编码结果。
-- 不能把 0 提交状态包装成正式经验发现。
+- 不能把“已有少量学生提交”包装成正式经验发现。
 
 ## 下一步
 
@@ -61,4 +75,4 @@
 
 ## 投稿总门槛中的位置
 
-`scripts/build_qigong_current_submission_gate.py` 已将网页人工编码列为 P0 门槛。当前状态为 `complete_rows=0`、`primary_submissions=0`，因此论文不能写人工编码结果。学生完成后，应先导出 Supabase 提交，再运行网页提交转正式编码表脚本和 formal 编码审计。
+`scripts/build_qigong_current_submission_gate.py` 已将网页人工编码列为 P0 门槛。当前线上状态为 `primary_submissions=6/120`、`double_submissions=0/24`，因此论文不能写人工编码结果。学生完成后，应先导出 Supabase 提交，再运行网页提交转正式编码表脚本和 formal 编码审计。

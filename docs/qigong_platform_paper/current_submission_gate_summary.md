@@ -39,7 +39,7 @@ python3 scripts/build_qigong_current_submission_gate.py
 
 | 门槛 | 当前证据 | 下一步 |
 |---|---|---|
-| 网页人工编码提交 | `complete_rows=0`，`primary_submissions=0` | 让 STU01-STU10 完成网页编码 |
+| 网页人工编码提交 | 本地导出快照仍为 `complete_rows=0`；线上即时核验为 `primary_submissions=6/120`、`double_submissions=0/24` | 继续督促 STU01-STU10 完成网页编码，完成后重跑导出流水线 |
 | 网页提交转正式编码表 | `dominant_frame_filled=0/120` | 学生提交后运行 export + ingest + formal coding audit |
 | 典型视频本地权利与文件预检 | `ready_local_rights=0/5`，目标至少 `3/5` | 上传并确认 `TC0001.mp4`、`TC0002.mp4`、`TC0003.mp4` |
 | 全目标完成度审计 | 当前仍有视觉模型、Ubuntu 复现、投稿终审等缺口 | P0 输入齐备后重跑全目标审计 |
@@ -58,7 +58,7 @@ python3 scripts/build_qigong_current_submission_gate.py
 
 ## 下一步优先级
 
-1. 学生完成网页人工编码，先解决 `0/120`。
+1. 学生完成网页人工编码，先把线上 `6/120` 推进到 `120/120`，并完成 `24/24` 复核编码。
 2. 上传至少 3 个本地授权典型视频，先解决 `0/5`。
 3. 补齐评论覆盖或明确降级为近读材料。
 4. 在 Ubuntu 上跑正式复现实验包。

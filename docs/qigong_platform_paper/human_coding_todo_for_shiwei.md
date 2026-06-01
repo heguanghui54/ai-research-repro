@@ -13,6 +13,8 @@
 
 网页分工细则见 `student_web_coding_distribution.md`，论文方法写法见 `web_human_coding_method_note.md`。
 
+学生编码预计需要一天时，按 `student_coding_day_monitor.md` 做中途监控和回收。当前线上已经出现 6 条主编码提交，说明网页流程可用；但正式论文结果仍必须等 120 条主编码与 24 条复核编码完成后再生成。
+
 ## 备用做法：本地表格/HTML 工作台
 
 1. 先读 `human_coding_quick_card.md`，再需要时查 `human_coding_manual.md`。
