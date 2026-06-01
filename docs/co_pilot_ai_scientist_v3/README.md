@@ -30,6 +30,9 @@ claim calibration.
   high-tail research upside without pretending it is a complete reward model.
 - `candidates.json`: candidate research directions and a scoring rubric.
 - `experiment_protocol.md`: minimal benchmark and ablation plan.
+- `prospective_matched_budget_protocol.md`: machine-checkable evidence shape
+  required before strong top-conference claims about co-pilot superiority,
+  human attention efficiency, or paper-quality gains.
 - `paper_en.md`: English manuscript draft.
 - `paper_zh.md`: Chinese manuscript draft.
 - `references.bib`: citation seed file for later LaTeX/PDF generation.
@@ -47,6 +50,8 @@ claim calibration.
   reusable Codex skill templates and validates a generated human gate log.
 - `audits/attention_cost_logging_smoke_audit.md`: synthetic tooling smoke test
   for creating future human gate logs with complete attention-cost fields.
+- `audits/prospective_matched_budget_package_audit.md`: strict audit for
+  whether a non-synthetic prospective matched-budget package exists yet.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.
@@ -183,3 +188,14 @@ and test MAE `0.428516`, outperforming the human-gated continuation on held-out
 test MAE. The matched smoke comparison is archived as
 `experiments/online_smoke_matched_autonomous_comparison.md` and is treated as a
 negative performance result.
+
+The latest measurement-readiness addition is a prospective matched-budget
+package protocol and audit. The validator
+`scripts/audit_prospective_matched_budget_package.py` requires a single
+non-synthetic package to contain a prospective co-pilot trajectory, a matched
+autonomous baseline, complete `attention_cost` and `taste_insight` records for
+every human gate, a claim audit, and a manuscript produced from the same run.
+The current audit fails because no such package exists yet. This failure is
+intentional and useful: it prevents the manuscript from upgrading pilot
+evidence into claims that human gates improve paper quality or outperform
+autonomous AI Scientist-v2.

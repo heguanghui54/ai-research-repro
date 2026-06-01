@@ -119,6 +119,18 @@ benchmark-portfolio and high-tail framing decision, and 17 older records without
 the field. Treat this as initial logging coverage, not as a performance result
 about human scientific taste.
 
+To check whether the repository contains a qualifying prospective matched-budget
+package, run:
+
+```bash
+python3 scripts/audit_prospective_matched_budget_package.py
+```
+
+This audit is the hard gate before stronger claims. It passes only when a
+non-synthetic package contains a prospective co-pilot trajectory, a matched
+autonomous baseline, complete `attention_cost` and `taste_insight` records for
+all human gates, a claim audit, and a manuscript from the same run.
+
 ## Human Gate Types
 
 - `scientific_taste_prior`: choose or rewrite the research hypothesis using

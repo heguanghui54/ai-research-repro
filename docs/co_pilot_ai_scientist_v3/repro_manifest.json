@@ -283,7 +283,12 @@
     "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_matched_autonomous_comparison.json",
     "docs/co_pilot_ai_scientist_v3/audits/taste_insight_coverage_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/taste_insight_coverage_audit.json",
-    "scripts/audit_taste_insight_coverage.py"
+    "scripts/audit_taste_insight_coverage.py",
+    "docs/co_pilot_ai_scientist_v3/prospective_matched_budget_protocol.md",
+    "docs/co_pilot_ai_scientist_v3/prospective_matched_budget_protocol.json",
+    "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.json",
+    "scripts/audit_prospective_matched_budget_package.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -292,6 +297,7 @@
     "Current package satisfies artifact-delivery requirements, but top-conference empirical support remains incomplete; see top_conference_readiness_audit.md."
   ],
   "next_required_evidence": [
+    "Create and run a non-synthetic prospective_matched_* package that passes scripts/audit_prospective_matched_budget_package.py before claiming paper-quality gains, attention efficiency, or superiority over autonomous AI Scientist-v2.",
     "Run more matched autonomous and human-gated variants beyond the current two mixed Causality pairs; Fairness_fairlearn needs a non-degenerate repaired branch that passes executable-code checks and a utility floor before matched continuation.",
     "Upgrade the current online full-gate smoke trajectory into a larger paper-generating trajectory from new hypothesis generation to final manuscript production.",
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
@@ -344,6 +350,15 @@
     "generated_gate": "docs/co_pilot_ai_scientist_v3/audits/attention_cost_logging_smoke_gate.json",
     "real_gate_complete_attention_cost_records": 0,
     "synthetic_gate_complete_attention_cost_record": true,
+    "performance_evidence": false
+  },
+  "prospective_matched_budget_package_audit": {
+    "status": "fail_no_passing_prospective_package",
+    "script": "scripts/audit_prospective_matched_budget_package.py",
+    "audit": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.md",
+    "protocol": "docs/co_pilot_ai_scientist_v3/prospective_matched_budget_protocol.md",
+    "passing_packages": 0,
+    "manifest_files_checked": 0,
     "performance_evidence": false
   }
 }

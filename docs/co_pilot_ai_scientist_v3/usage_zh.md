@@ -106,6 +106,18 @@ python3 scripts/audit_taste_insight_coverage.py
 
 当前归档中已有 1 条完整 taste/insight 记录，来自作者关于 benchmark portfolio 和高尾部科研框架的决策；另外 17 条较早记录仍缺少该字段。应把它视为初始 logging coverage，而不是“人类科研品味有效或无效”的性能结果。
 
+如果要检查当前仓库是否已经包含合格的 prospective matched-budget package，
+运行：
+
+```bash
+python3 scripts/audit_prospective_matched_budget_package.py
+```
+
+这是升级强主张之前的硬门槛。只有当一个非 synthetic package 同时包含
+prospective co-pilot trajectory、同预算 autonomous baseline、所有 human gate
+的完整 `attention_cost` 和 `taste_insight`、claim audit，以及同一次运行生成的
+manuscript 时，这个 audit 才会通过。
+
 ## 人类参与节点
 
 - `scientific_taste_prior`：基于科研品味和上行空间选择或改写研究假设，而不只看当前分数。

@@ -1,0 +1,43 @@
+{
+  "protocol": "prospective_matched_budget_protocol",
+  "purpose": "Minimum evidence shape for evaluating Co-Pilot AI Scientist v3 against autonomous AI Scientist-v2 under prospective human gates.",
+  "qualifying_directory_glob": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_*/prospective_manifest.json",
+  "required_manifest_fields": [
+    "package_id",
+    "status",
+    "co_pilot_trajectory",
+    "autonomous_baseline",
+    "human_gate_logs",
+    "claim_audit",
+    "manuscript",
+    "matched_budget"
+  ],
+  "required_matched_budget_flags": [
+    "same_task",
+    "same_model_family",
+    "same_step_budget",
+    "same_tool_access"
+  ],
+  "required_attention_cost_fields": [
+    "active_review_minutes",
+    "wall_clock_latency_minutes",
+    "options_reviewed",
+    "artifacts_reviewed_count",
+    "decision_count"
+  ],
+  "required_taste_insight_fields": [
+    "rubric_version",
+    "scores",
+    "taste_insight_score",
+    "qualitative_rationale",
+    "non_metric_factors"
+  ],
+  "non_qualifying_artifacts": [
+    "retrospective_gate_chains",
+    "synthetic_logging_smokes",
+    "module_only_program_search_probes",
+    "unmatched_online_smoke_runs"
+  ],
+  "audit_command": "python3 scripts/audit_prospective_matched_budget_package.py",
+  "current_status": "no_qualifying_prospective_package_yet"
+}

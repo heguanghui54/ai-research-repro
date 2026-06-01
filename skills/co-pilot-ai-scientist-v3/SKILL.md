@@ -100,6 +100,10 @@ and claim responsibility can reshape the trajectory.
    - After every online smoke or full trajectory, run or archive a matched
      autonomous baseline under the same task/model/step budget before making
      performance claims. Report negative comparisons directly.
+   - For any claim beyond pilot feasibility, assemble a prospective matched-
+     budget package and run `scripts/audit_prospective_matched_budget_package.py`.
+     If this audit fails, keep superiority, paper-quality, and attention-
+     efficiency claims as hypotheses.
 
 ## Human Gate Schema
 
@@ -213,6 +217,7 @@ Reusable templates are stored next to this skill:
 - attention-cost logging smoke audit;
 - human attention-cost audit;
 - taste/insight coverage audit;
+- prospective matched-budget package audit;
 - full-gate trajectory artifact;
 - executable full-gate trace replay when archived summaries are available;
 - online full-gate smoke trajectory logs when remote execution is available;

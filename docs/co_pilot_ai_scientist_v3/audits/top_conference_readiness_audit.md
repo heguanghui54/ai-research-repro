@@ -22,6 +22,7 @@ to do it later.
 | Human participation at creative or key decision nodes | Supported as logging and orchestration | Human gate schema, 8 standalone gate logs, 10 embedded trajectory gates, one complete scientific-taste prior record. | Record future gates prospectively with both `taste_insight` and `attention_cost`. |
 | Human taste/insight as distinct from generic approval | Partially supported | IGRE framing, taste rubric, scientific-taste prior gate, taste coverage audit. | Show downstream effects against autonomous baselines; current evidence is logging, not performance. |
 | Human attention cost measurement | Tooling supported; real gates not yet measured | Attention-cost audit covers 18 real gates and finds 0 complete measured records. `attention_cost_logging_smoke_audit.md` shows a synthetic gate can be generated with complete prospective timing fields. | Use the logging tool during future live gates; do not count synthetic smoke as performance evidence. |
+| Prospective matched-budget evidence package | Minimum evidence shape defined; no passing package yet | `prospective_matched_budget_package_audit.md` checks for a prospective co-pilot trajectory, matched autonomous baseline, complete `attention_cost` and `taste_insight` records, claim audit, and same-run manuscript. It currently finds 0 manifests and 0 passing packages. | Create a non-synthetic `experiments/prospective_matched_*` package and pass the audit before upgrading performance or paper-quality claims. |
 | Evidence that human collaboration writes better papers | Not yet supported | Claim audit marks this as unsupported; paper-quality reviews remain mixed. | Run expert/rubric-based paper-quality scoring on matched autonomous vs co-pilot outputs. |
 | Evidence that full Co-Pilot v3 outperforms autonomous AI Scientist-v2 | Not yet supported | FML matched pairs are mixed; online smoke comparison is negative. | Run multi-task, multi-seed matched-budget comparisons. |
 | Benchmark coverage beyond FML-Bench | Partially supported | MLAgentBench vectorization is scored; sklearn diabetes/Max-Cut/OpenEvolve tasks broaden subproblem evidence; CIFAR10/debug, IMDB, and ScienceAgentBench are setup probes only. | Obtain a second scored official non-FML benchmark when data access permits. |
@@ -54,7 +55,8 @@ The current package should not yet claim:
 - the paper is ready for a strong ML/NLP systems conference without further
   experiments.
 
-The next evidence milestone is a prospective matched-budget run that records
-`taste_insight` and `attention_cost` for every human gate, includes a matched
-autonomous baseline, and produces a claim-audited manuscript from a fresh
-hypothesis.
+The next evidence milestone is a non-synthetic prospective matched-budget
+package that passes `scripts/audit_prospective_matched_budget_package.py`. It
+must record `taste_insight` and `attention_cost` for every human gate, include a
+matched autonomous baseline, and produce a claim-audited manuscript from the
+same fresh hypothesis run.

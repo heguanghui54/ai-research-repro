@@ -268,6 +268,16 @@ they cannot yet support any efficiency claim about human attention. Future
 prospective matched runs must fill this field before comparing co-pilot and
 autonomous variants.
 
+We further add a prospective matched-budget package audit. This audit is a hard
+evidence-shape gate rather than a result. A package passes only if it contains a
+prospective co-pilot trajectory, a matched autonomous baseline on the same
+task/model/tool budget, complete `attention_cost` and `taste_insight` records
+for every human gate, a final claim audit, and a manuscript generated from the
+same run. The current repository fails this audit because no such package exists
+yet. This failure is deliberate: it prevents retrospective chains, synthetic
+logging smokes, or unmatched online runs from being mistaken for top-conference
+evidence.
+
 To make this principle operational, we maintain a benchmark-to-claim matrix.
 FML-bench Causality supports the branch-gate feasibility claim but does not yet
 show general human-gate superiority. FML-bench Fairness supports the need for
@@ -527,6 +537,9 @@ The current contributions are:
    these fields before making attention-efficiency claims.
 15. A taste/insight coverage audit showing one complete scientific-taste prior
    record and 17 older gates that still lack taste/insight fields.
+16. A prospective matched-budget package validator that defines the minimum
+   non-synthetic evidence shape required before claiming paper-quality gains,
+   human-attention efficiency, or superiority over autonomous AI Scientist-v2.
 
 The current evidence does not yet prove that human gates improve paper quality
 or that the full co-pilot system outperforms autonomous AI Scientist-v2. Those
@@ -563,6 +576,13 @@ decision artifacts, but cannot yet compute active review minutes or
 wall-clock latency. This prevents any claim that the proposed gates improve the
 ratio of research quality to human effort. The next matched-budget experiments
 must record attention cost prospectively.
+
+The new prospective matched-budget package audit also fails in the current
+repository, because no run yet combines prospective gates, a matched autonomous
+baseline, complete attention/taste logs, a claim audit, and a manuscript from
+one continuous experiment package. This is the right failure mode for the
+current stage: it keeps the paper at pilot-system evidence until the stronger
+experiment exists.
 
 The taste/insight evidence is also only at the logging-readiness stage. The
 archive now contains one complete scientific-taste prior record, grounded in

@@ -1,0 +1,31 @@
+{
+  "overall_status": "fail_no_passing_prospective_package",
+  "manifest_files_checked": 0,
+  "passing_packages": 0,
+  "failing_packages": 0,
+  "required_manifest_fields": [
+    "package_id",
+    "status",
+    "co_pilot_trajectory",
+    "autonomous_baseline",
+    "human_gate_logs",
+    "claim_audit",
+    "manuscript",
+    "matched_budget"
+  ],
+  "required_attention_fields": [
+    "active_review_minutes",
+    "wall_clock_latency_minutes",
+    "options_reviewed",
+    "artifacts_reviewed_count",
+    "decision_count"
+  ],
+  "required_taste_fields": [
+    "rubric_version",
+    "scores",
+    "taste_insight_score",
+    "qualitative_rationale",
+    "non_metric_factors"
+  ],
+  "packages": []
+}
