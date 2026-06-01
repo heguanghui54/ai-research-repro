@@ -165,6 +165,7 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 14. human-gate attention-cost audit，显示当前 gate log 还没有记录 active review time 和 latency；未来 prospective run 必须补齐这些字段后，才能提出 attention-efficiency claim。
 15. taste/insight coverage audit，显示当前已有 1 条完整 scientific-taste prior 记录，另有 17 条较早 gate 仍缺少 taste/insight 字段。
 16. prospective matched-budget package validator，用来定义在声称论文质量提升、人类注意力效率提升或优于 autonomous AI Scientist-v2 之前，最低限度需要具备的非 synthetic 证据形状。
+17. 一个 controlled prospective Max-Cut micro-pilot package，已经通过该 validator，并包含完整 attention/taste logging、matched baseline metrics、claim audit 和同次运行生成的 manuscript artifact。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
 
@@ -174,7 +175,7 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 
 当前 human-gate logs 也缺少可度量的人类注意力成本。我们可以统计决策 artifact，但还不能计算 active review minutes 或 wall-clock latency，因此不能声称 gate 提高了单位人类努力产出的科研质量。下一轮 matched-budget 实验必须前瞻性记录 attention cost。
 
-新的 prospective matched-budget package audit 在当前仓库中同样没有通过，因为目前还没有一个连续实验 package 同时包含 prospective gates、matched autonomous baseline、完整 attention/taste logs、claim audit 和同次运行生成的 manuscript。这个失败是当前阶段正确的失败方式：在更强实验出现之前，它把论文主张限制在 pilot-system evidence，而不是把工程烟测包装成顶会级结论。
+新的 prospective matched-budget package audit 现在已经在一个 controlled micro-pilot 上通过。这个进展说明最小证据形状可以被真实远端计算生成和审计，但它不是最终实证强度的证明。该 package 使用的是小型 weighted Max-Cut 任务，而不是 AI Scientist-v2/FML 或 MLAgentBench 科研轨迹，因此当前论文仍应被限制在 pilot-system evidence，直到更强的 prospective matched-budget 实验完成。
 
 taste/insight 证据目前也只是 logging-readiness 阶段。归档中已有 1 条完整 scientific-taste prior 记录，来自作者要求扩展 benchmark 并突出高尾部科研品味的指令；但它还不能证明该决策改善了下游科研结果。下一轮实验必须前瞻性记录 taste rationale，才能检验人类 insight 是否真的改变了科研搜索分布。
 

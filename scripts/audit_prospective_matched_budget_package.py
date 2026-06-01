@@ -246,17 +246,30 @@ def _markdown(summary: dict[str, Any]) -> str:
         for error in package["errors"]:
             lines.append(f"- {error}")
         lines.append("")
-    lines.extend(
-        [
-            "## Interpretation",
-            "",
-            "Until this audit passes on at least one non-synthetic package, the paper",
-            "should not claim that IGRE improves paper quality, human-attention",
-            "efficiency, or autonomous AI Scientist-v2 performance. Passing this audit",
-            "would not by itself prove top-conference-level results, but it is the",
-            "minimum evidence shape needed before those claims can be evaluated.",
-        ]
-    )
+    lines.extend(["## Interpretation", ""])
+    if summary["passing_packages"]:
+        lines.extend(
+            [
+                "At least one non-synthetic package now satisfies the minimum",
+                "prospective matched-budget evidence shape. This permits the paper to",
+                "state that the evaluation package can be produced and audited, but it",
+                "does not by itself prove top-conference-level performance. Strong",
+                "claims about paper quality, human-attention efficiency, or superiority",
+                "over autonomous AI Scientist-v2 still require larger tasks, more seeds,",
+                "and independent paper-quality evaluation.",
+            ]
+        )
+    else:
+        lines.extend(
+            [
+                "Until this audit passes on at least one non-synthetic package, the",
+                "paper should not claim that IGRE improves paper quality,",
+                "human-attention efficiency, or autonomous AI Scientist-v2 performance.",
+                "Passing this audit would not by itself prove top-conference-level",
+                "results, but it is the minimum evidence shape needed before those",
+                "claims can be evaluated.",
+            ]
+        )
     return "\n".join(lines) + "\n"
 
 

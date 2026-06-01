@@ -104,6 +104,9 @@ and claim responsibility can reshape the trajectory.
      budget package and run `scripts/audit_prospective_matched_budget_package.py`.
      If this audit fails, keep superiority, paper-quality, and attention-
      efficiency claims as hypotheses.
+   - To check the package shape on a controlled remote computation, run
+     `scripts/run_prospective_matched_budget_micro_pilot.py`; treat it only as
+     evidence-shape validation, not as AI Scientist-v2 superiority evidence.
 
 ## Human Gate Schema
 
@@ -224,6 +227,8 @@ Reusable templates are stored next to this skill:
 - full-gate trajectory artifact;
 - executable full-gate trace replay when archived summaries are available;
 - online full-gate smoke trajectory logs when remote execution is available;
+- prospective matched-budget micro-pilot package when remote execution is
+  available;
 - experiment logs and metrics;
 - program-search traces;
 - English and Chinese manuscript drafts;

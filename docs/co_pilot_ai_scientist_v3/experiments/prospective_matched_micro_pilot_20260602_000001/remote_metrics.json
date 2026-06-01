@@ -1,0 +1,224 @@
+{
+  "task": "controlled_weighted_maxcut_micro_pilot",
+  "graphs": [
+    {
+      "seed": 20,
+      "n": 8,
+      "edge_count": 14
+    },
+    {
+      "seed": 21,
+      "n": 8,
+      "edge_count": 12
+    },
+    {
+      "seed": 22,
+      "n": 8,
+      "edge_count": 10
+    },
+    {
+      "seed": 23,
+      "n": 8,
+      "edge_count": 14
+    },
+    {
+      "seed": 24,
+      "n": 8,
+      "edge_count": 11
+    },
+    {
+      "seed": 25,
+      "n": 8,
+      "edge_count": 12
+    },
+    {
+      "seed": 26,
+      "n": 8,
+      "edge_count": 13
+    },
+    {
+      "seed": 27,
+      "n": 8,
+      "edge_count": 13
+    },
+    {
+      "seed": 28,
+      "n": 8,
+      "edge_count": 11
+    },
+    {
+      "seed": 29,
+      "n": 8,
+      "edge_count": 13
+    },
+    {
+      "seed": 30,
+      "n": 8,
+      "edge_count": 8
+    },
+    {
+      "seed": 31,
+      "n": 8,
+      "edge_count": 17
+    }
+  ],
+  "autonomous_baseline": {
+    "policy": "alternating_baseline",
+    "instances": [
+      {
+        "seed": 20,
+        "value": 43,
+        "optimum": 43,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 21,
+        "value": 18,
+        "optimum": 47,
+        "normalized_score": 0.3829787234042553
+      },
+      {
+        "seed": 22,
+        "value": 22,
+        "optimum": 33,
+        "normalized_score": 0.6666666666666666
+      },
+      {
+        "seed": 23,
+        "value": 42,
+        "optimum": 60,
+        "normalized_score": 0.7
+      },
+      {
+        "seed": 24,
+        "value": 9,
+        "optimum": 31,
+        "normalized_score": 0.2903225806451613
+      },
+      {
+        "seed": 25,
+        "value": 28,
+        "optimum": 47,
+        "normalized_score": 0.5957446808510638
+      },
+      {
+        "seed": 26,
+        "value": 38,
+        "optimum": 65,
+        "normalized_score": 0.5846153846153846
+      },
+      {
+        "seed": 27,
+        "value": 44,
+        "optimum": 63,
+        "normalized_score": 0.6984126984126984
+      },
+      {
+        "seed": 28,
+        "value": 31,
+        "optimum": 53,
+        "normalized_score": 0.5849056603773585
+      },
+      {
+        "seed": 29,
+        "value": 28,
+        "optimum": 61,
+        "normalized_score": 0.45901639344262296
+      },
+      {
+        "seed": 30,
+        "value": 16,
+        "optimum": 34,
+        "normalized_score": 0.47058823529411764
+      },
+      {
+        "seed": 31,
+        "value": 44,
+        "optimum": 61,
+        "normalized_score": 0.7213114754098361
+      }
+    ],
+    "mean_normalized_score": 0.5962135415932638,
+    "min_normalized_score": 0.2903225806451613
+  },
+  "co_pilot_variant": {
+    "policy": "human_selected_local_search",
+    "instances": [
+      {
+        "seed": 20,
+        "value": 43,
+        "optimum": 43,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 21,
+        "value": 47,
+        "optimum": 47,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 22,
+        "value": 33,
+        "optimum": 33,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 23,
+        "value": 60,
+        "optimum": 60,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 24,
+        "value": 31,
+        "optimum": 31,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 25,
+        "value": 45,
+        "optimum": 47,
+        "normalized_score": 0.9574468085106383
+      },
+      {
+        "seed": 26,
+        "value": 65,
+        "optimum": 65,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 27,
+        "value": 57,
+        "optimum": 63,
+        "normalized_score": 0.9047619047619048
+      },
+      {
+        "seed": 28,
+        "value": 53,
+        "optimum": 53,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 29,
+        "value": 61,
+        "optimum": 61,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 30,
+        "value": 34,
+        "optimum": 34,
+        "normalized_score": 1.0
+      },
+      {
+        "seed": 31,
+        "value": 58,
+        "optimum": 61,
+        "normalized_score": 0.9508196721311475
+      }
+    ],
+    "mean_normalized_score": 0.9844190321169742,
+    "min_normalized_score": 0.9047619047619048
+  },
+  "delta_mean_normalized_score": 0.38820549052371045
+}

@@ -54,7 +54,7 @@ claim calibration.
   showing that future prospective gates can jointly record complete
   attention-cost and scientific-taste fields.
 - `audits/prospective_matched_budget_package_audit.md`: strict audit for
-  whether a non-synthetic prospective matched-budget package exists yet.
+  whether a non-synthetic prospective matched-budget package exists.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.
@@ -198,7 +198,8 @@ package protocol and audit. The validator
 non-synthetic package to contain a prospective co-pilot trajectory, a matched
 autonomous baseline, complete `attention_cost` and `taste_insight` records for
 every human gate, a claim audit, and a manuscript produced from the same run.
-The current audit fails because no such package exists yet. This failure is
-intentional and useful: it prevents the manuscript from upgrading pilot
-evidence into claims that human gates improve paper quality or outperform
-autonomous AI Scientist-v2.
+The repository now contains one passing controlled micro-pilot package under
+`experiments/prospective_matched_micro_pilot_20260602_000001/`. It ran a real
+weighted Max-Cut micro-task on `ubuntu-heshi`, but it is still only
+evidence-shape validation: it does not use AI Scientist-v2 tree search and does
+not support paper-quality or co-pilot-superiority claims.

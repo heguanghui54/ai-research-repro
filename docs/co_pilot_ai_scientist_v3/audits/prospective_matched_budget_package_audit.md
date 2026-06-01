@@ -7,25 +7,26 @@ not count as qualifying performance evidence.
 
 ## Summary
 
-- Overall status: `fail_no_passing_prospective_package`
-- Manifest files checked: 0
-- Passing packages: 0
+- Overall status: `pass`
+- Manifest files checked: 1
+- Passing packages: 1
 - Failing packages: 0
 
-No prospective matched-budget package manifests were found.
+## `prospective_matched_micro_pilot_20260602_000001`
 
-A qualifying package must provide:
+- Status: `pass`
+- Gate records checked: 1
+- Complete attention-cost gates: 1
+- Complete taste/insight gates: 1
+- Errors: 0
 
-1. A co-pilot trajectory generated prospectively.
-2. A matched autonomous baseline on the same task/model/tool budget.
-3. Complete `attention_cost` records for every human gate.
-4. Complete `taste_insight` records for every human gate.
-5. A final claim audit and manuscript generated from the same run.
 
 ## Interpretation
 
-Until this audit passes on at least one non-synthetic package, the paper
-should not claim that IGRE improves paper quality, human-attention
-efficiency, or autonomous AI Scientist-v2 performance. Passing this audit
-would not by itself prove top-conference-level results, but it is the
-minimum evidence shape needed before those claims can be evaluated.
+At least one non-synthetic package now satisfies the minimum
+prospective matched-budget evidence shape. This permits the paper to
+state that the evaluation package can be produced and audited, but it
+does not by itself prove top-conference-level performance. Strong
+claims about paper quality, human-attention efficiency, or superiority
+over autonomous AI Scientist-v2 still require larger tasks, more seeds,
+and independent paper-quality evaluation.

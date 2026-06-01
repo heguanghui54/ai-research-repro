@@ -129,6 +129,17 @@ prospective co-pilot trajectory、同预算 autonomous baseline、所有 human g
 的完整 `attention_cost` 和 `taste_insight`、claim audit，以及同一次运行生成的
 manuscript 时，这个 audit 才会通过。
 
+如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
+
+```bash
+python3 scripts/run_prospective_matched_budget_micro_pilot.py \
+  --host ubuntu-heshi
+python3 scripts/audit_prospective_matched_budget_package.py
+```
+
+它适合验证 package format，但不能替代 AI Scientist-v2/FML 或 MLAgentBench 的
+prospective matched-budget 实验。
+
 ## 人类参与节点
 
 - `scientific_taste_prior`：基于科研品味和上行空间选择或改写研究假设，而不只看当前分数。

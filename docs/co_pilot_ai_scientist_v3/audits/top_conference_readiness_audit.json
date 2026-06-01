@@ -54,12 +54,13 @@
     "real_gate_complete_attention_cost_records": 0,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Run a non-synthetic prospective matched-budget package that passes the package audit: prospective co-pilot trajectory, matched autonomous baseline, complete taste_insight and attention_cost logs, claim audit, and same-run manuscript.",
+  "next_evidence_milestone": "Upgrade the passing controlled prospective micro-pilot into a substantive AI Scientist-v2/FML or MLAgentBench matched-budget package with complete taste_insight and attention_cost logs, claim audit, and same-run manuscript.",
   "prospective_matched_budget_package_audit": {
-    "status": "fail_no_passing_prospective_package",
-    "manifest_files_checked": 0,
-    "passing_packages": 0,
-    "performance_evidence": false,
+    "status": "pass_for_controlled_micro_pilot",
+    "manifest_files_checked": 1,
+    "passing_packages": 1,
+    "passing_package_id": "prospective_matched_micro_pilot_20260602_000001",
+    "performance_evidence": "controlled_micro_pilot_only_not_top_conference_evidence",
     "minimum_evidence_shape_defined": true
   },
   "attention_taste_logging_tooling": {

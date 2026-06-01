@@ -291,7 +291,15 @@
     "scripts/audit_prospective_matched_budget_package.py",
     "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_gate.json",
     "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/prospective_manifest.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/co_pilot_trajectory.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/autonomous_baseline_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/human_gate_logs/frontier_gate_001.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/claim_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/manuscript.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/remote_metrics.json",
+    "scripts/run_prospective_matched_budget_micro_pilot.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -300,7 +308,7 @@
     "Current package satisfies artifact-delivery requirements, but top-conference empirical support remains incomplete; see top_conference_readiness_audit.md."
   ],
   "next_required_evidence": [
-    "Create and run a non-synthetic prospective_matched_* package that passes scripts/audit_prospective_matched_budget_package.py before claiming paper-quality gains, attention efficiency, or superiority over autonomous AI Scientist-v2.",
+    "Upgrade the passing controlled prospective_matched_micro_pilot package to an AI Scientist-v2/FML or MLAgentBench prospective matched-budget package before claiming paper-quality gains, attention efficiency, or superiority over autonomous AI Scientist-v2.",
     "Run more matched autonomous and human-gated variants beyond the current two mixed Causality pairs; Fairness_fairlearn needs a non-degenerate repaired branch that passes executable-code checks and a utility floor before matched continuation.",
     "Upgrade the current online full-gate smoke trajectory into a larger paper-generating trajectory from new hypothesis generation to final manuscript production.",
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
@@ -356,13 +364,14 @@
     "performance_evidence": false
   },
   "prospective_matched_budget_package_audit": {
-    "status": "fail_no_passing_prospective_package",
+    "status": "pass_for_controlled_micro_pilot",
     "script": "scripts/audit_prospective_matched_budget_package.py",
     "audit": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.md",
     "protocol": "docs/co_pilot_ai_scientist_v3/prospective_matched_budget_protocol.md",
-    "passing_packages": 0,
-    "manifest_files_checked": 0,
-    "performance_evidence": false
+    "passing_packages": 1,
+    "manifest_files_checked": 1,
+    "passing_package_id": "prospective_matched_micro_pilot_20260602_000001",
+    "performance_evidence": "controlled_micro_pilot_only_not_top_conference_evidence"
   },
   "attention_taste_logging_tooling": {
     "status": "pass_for_synthetic_smoke",

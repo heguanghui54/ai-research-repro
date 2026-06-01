@@ -142,6 +142,17 @@ non-synthetic package contains a prospective co-pilot trajectory, a matched
 autonomous baseline, complete `attention_cost` and `taste_insight` records for
 all human gates, a claim audit, and a manuscript from the same run.
 
+To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
+
+```bash
+python3 scripts/run_prospective_matched_budget_micro_pilot.py \
+  --host ubuntu-heshi
+python3 scripts/audit_prospective_matched_budget_package.py
+```
+
+This is useful for validating the package format, but it is not a substitute
+for an AI Scientist-v2/FML or MLAgentBench prospective matched-budget run.
+
 ## Human Gate Types
 
 - `scientific_taste_prior`: choose or rewrite the research hypothesis using

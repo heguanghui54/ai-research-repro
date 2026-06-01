@@ -84,5 +84,8 @@ The audit passes only if at least one non-synthetic prospective matched-budget
 package satisfies the required artifact, attention-cost, taste/insight, and
 budget-matching checks.
 
-Current status: no qualifying prospective package exists yet. This is a real
-top-conference evidence gap, not a formatting issue.
+Current status: one controlled Max-Cut micro-pilot package passes the evidence
+shape audit. This is useful infrastructure evidence, but the top-conference
+evidence gap remains: the next package should use AI Scientist-v2/FML,
+MLAgentBench, or another research-agent benchmark and should evaluate paper
+quality, not only task score.
