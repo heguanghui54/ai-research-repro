@@ -1,0 +1,77 @@
+2026-06-01 21:20:54,755 - openevolve.controller - INFO - Logging to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/logs/openevolve_20260601_212054.log
+2026-06-01 21:20:54,760 - openevolve.controller - INFO - Set random seed to 2 for reproducibility
+2026-06-01 21:20:54,817 - openevolve.llm.openai - INFO - Initialized OpenAI LLM with model: deepseek-chat
+2026-06-01 21:20:54,817 - openevolve.llm.ensemble - INFO - Initialized LLM ensemble with models: deepseek-chat (weight: 1.00)
+2026-06-01 21:20:54,818 - openevolve.prompt.sampler - INFO - Initialized prompt sampler
+2026-06-01 21:20:54,819 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 21:20:54,819 - openevolve.database - INFO - Initialized program database with 0 programs
+2026-06-01 21:20:54,819 - openevolve.evaluator - INFO - Successfully loaded evaluation function from /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_task/evaluator.py
+2026-06-01 21:20:54,819 - openevolve.evaluator - INFO - Initialized evaluator with /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_task/evaluator.py
+2026-06-01 21:20:54,819 - openevolve.controller - INFO - Initialized OpenEvolve with /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_task/initial_program.py
+2026-06-01 21:20:54,819 - openevolve.controller - INFO - Adding initial program to database
+2026-06-01 21:21:04,677 - openevolve.evaluator - INFO - Evaluated program f4561841-f072-4f6e-a0a8-ed9e27ac06a5 in 9.86s: combined_score=0.3162, score=0.3162, runtime_seconds=3.1625, best_runtime_seconds=2.9442, mean_runtime_seconds=3.1378, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:04,677 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-06-01 21:21:04,678 - openevolve.process_parallel - INFO - Initialized process parallel controller with 1 workers
+2026-06-01 21:21:04,679 - openevolve.process_parallel - INFO - Started process pool with 1 processes
+2026-06-01 21:21:04,679 - openevolve.controller - INFO - Using island-based evolution with 2 islands
+2026-06-01 21:21:04,679 - openevolve.database - INFO - Island Status:
+2026-06-01 21:21:04,679 - openevolve.database - INFO -  * Island 0: 1 programs, best=0.3162, avg=0.3162, diversity=0.00, gen=0 (best: f4561841-f072-4f6e-a0a8-ed9e27ac06a5)
+2026-06-01 21:21:04,680 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 21:21:04,680 - openevolve.process_parallel - INFO - Starting process-based evolution from iteration 1 for 3 iterations (total: 4)
+2026-06-01 21:21:04,684 - openevolve.process_parallel - INFO - Early stopping disabled
+2026-06-01 21:21:04,765 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 21:21:04,765 - openevolve.evaluator - INFO - Successfully loaded evaluation function from /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_task/evaluator.py
+2026-06-01 21:21:04,765 - openevolve.evaluator - INFO - Initialized evaluator with /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_task/evaluator.py
+2026-06-01 21:21:04,766 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 21:21:05,421 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 21:21:22,833 - openevolve.evaluator - INFO - Evaluated program c0b64cc2-0cfd-4633-8375-cebd0ff39cff in 0.51s: combined_score=101.3411, score=101.3411, runtime_seconds=0.0099, best_runtime_seconds=0.0091, mean_runtime_seconds=0.0103, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:22,835 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 21:21:22,835 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 5}
+2026-06-01 21:21:22,835 - openevolve.database - INFO - New best program c0b64cc2-0cfd-4633-8375-cebd0ff39cff replaces f4561841-f072-4f6e-a0a8-ed9e27ac06a5 (combined_score: 0.3162 → 101.3411, +101.0249)
+2026-06-01 21:21:22,836 - openevolve.process_parallel - INFO - Iteration 1: Program c0b64cc2-0cfd-4633-8375-cebd0ff39cff (parent: f4561841-f072-4f6e-a0a8-ed9e27ac06a5) completed in 18.07s
+2026-06-01 21:21:22,836 - openevolve.process_parallel - INFO - Metrics: combined_score=101.3411, score=101.3411, runtime_seconds=0.0099, best_runtime_seconds=0.0091, mean_runtime_seconds=0.0103, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:22,836 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 1: c0b64cc2-0cfd-4633-8375-cebd0ff39cff
+2026-06-01 21:21:22,836 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 1
+2026-06-01 21:21:22,836 - openevolve.database - INFO - Island Status:
+2026-06-01 21:21:22,836 - openevolve.database - INFO -  * Island 0: 2 programs, best=101.3411, avg=50.8286, diversity=184.80, gen=1 (best: c0b64cc2-0cfd-4633-8375-cebd0ff39cff)
+2026-06-01 21:21:22,836 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 21:21:22,838 - openevolve.database - INFO - Saved database with 2 programs to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/checkpoints/checkpoint_1
+2026-06-01 21:21:22,838 - openevolve.controller - INFO - Saved best program at checkpoint 1 with metrics: combined_score=101.3411, score=101.3411, runtime_seconds=0.0099, best_runtime_seconds=0.0091, mean_runtime_seconds=0.0103, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:22,838 - openevolve.controller - INFO - Saved checkpoint at iteration 1 to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/checkpoints/checkpoint_1
+2026-06-01 21:21:22,998 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 21:21:38,520 - openevolve.evaluator - INFO - Evaluated program 377595e2-e0ed-4fc8-a97e-31caf79523f8 in 0.51s: combined_score=107.3755, score=107.3755, runtime_seconds=0.0093, best_runtime_seconds=0.0092, mean_runtime_seconds=0.0099, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:38,522 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 21:21:38,526 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'complexity': 0, 'diversity': 0}
+2026-06-01 21:21:38,527 - openevolve.database - INFO - New best program 377595e2-e0ed-4fc8-a97e-31caf79523f8 replaces c0b64cc2-0cfd-4633-8375-cebd0ff39cff (combined_score: 101.3411 → 107.3755, +6.0345)
+2026-06-01 21:21:38,527 - openevolve.process_parallel - INFO - Iteration 2: Program 377595e2-e0ed-4fc8-a97e-31caf79523f8 (parent: f4561841-f072-4f6e-a0a8-ed9e27ac06a5) completed in 15.69s
+2026-06-01 21:21:38,527 - openevolve.process_parallel - INFO - Metrics: combined_score=107.3755, score=107.3755, runtime_seconds=0.0093, best_runtime_seconds=0.0092, mean_runtime_seconds=0.0099, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:38,527 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 2: 377595e2-e0ed-4fc8-a97e-31caf79523f8
+2026-06-01 21:21:38,527 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 2
+2026-06-01 21:21:38,527 - openevolve.database - INFO - Island Status:
+2026-06-01 21:21:38,527 - openevolve.database - INFO -  * Island 0: 2 programs, best=101.3411, avg=50.8286, diversity=184.80, gen=1 (best: c0b64cc2-0cfd-4633-8375-cebd0ff39cff)
+2026-06-01 21:21:38,527 - openevolve.database - INFO -    Island 1: 1 programs, best=107.3755, avg=107.3755, diversity=0.00, gen=1 (best: 377595e2-e0ed-4fc8-a97e-31caf79523f8)
+2026-06-01 21:21:38,529 - openevolve.database - INFO - Saved database with 3 programs to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/checkpoints/checkpoint_2
+2026-06-01 21:21:38,529 - openevolve.controller - INFO - Saved best program at checkpoint 2 with metrics: combined_score=107.3755, score=107.3755, runtime_seconds=0.0093, best_runtime_seconds=0.0092, mean_runtime_seconds=0.0099, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:38,529 - openevolve.controller - INFO - Saved checkpoint at iteration 2 to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/checkpoints/checkpoint_2
+2026-06-01 21:21:38,691 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 21:21:50,493 - openevolve.evaluator - INFO - Evaluated program 2624cfd2-08cc-498d-8e57-b3669c7b3721 in 0.55s: combined_score=108.5819, score=108.5819, runtime_seconds=0.0092, best_runtime_seconds=0.0092, mean_runtime_seconds=0.0097, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:50,501 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 0}
+2026-06-01 21:21:50,501 - openevolve.database - INFO - New best program 2624cfd2-08cc-498d-8e57-b3669c7b3721 replaces 377595e2-e0ed-4fc8-a97e-31caf79523f8 (combined_score: 107.3755 → 108.5819, +1.2064)
+2026-06-01 21:21:50,501 - openevolve.process_parallel - INFO - Iteration 3: Program 2624cfd2-08cc-498d-8e57-b3669c7b3721 (parent: c0b64cc2-0cfd-4633-8375-cebd0ff39cff) completed in 11.97s
+2026-06-01 21:21:50,501 - openevolve.process_parallel - INFO - Metrics: combined_score=108.5819, score=108.5819, runtime_seconds=0.0092, best_runtime_seconds=0.0092, mean_runtime_seconds=0.0097, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:50,501 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 3: 2624cfd2-08cc-498d-8e57-b3669c7b3721
+2026-06-01 21:21:50,501 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 3
+2026-06-01 21:21:50,502 - openevolve.database - INFO - Island Status:
+2026-06-01 21:21:50,502 - openevolve.database - INFO -  * Island 0: 3 programs, best=108.5819, avg=70.0797, diversity=136.87, gen=2 (best: 2624cfd2-08cc-498d-8e57-b3669c7b3721)
+2026-06-01 21:21:50,502 - openevolve.database - INFO -    Island 1: 1 programs, best=107.3755, avg=107.3755, diversity=0.00, gen=1 (best: 377595e2-e0ed-4fc8-a97e-31caf79523f8)
+2026-06-01 21:21:50,505 - openevolve.database - INFO - Saved database with 4 programs to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/checkpoints/checkpoint_3
+2026-06-01 21:21:50,505 - openevolve.controller - INFO - Saved best program at checkpoint 3 with metrics: combined_score=108.5819, score=108.5819, runtime_seconds=0.0092, best_runtime_seconds=0.0092, mean_runtime_seconds=0.0097, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:50,505 - openevolve.controller - INFO - Saved checkpoint at iteration 3 to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/checkpoints/checkpoint_3
+2026-06-01 21:21:50,505 - openevolve.process_parallel - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-06-01 21:21:50,507 - openevolve.database - INFO - Saved database with 4 programs to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/checkpoints/checkpoint_3
+2026-06-01 21:21:50,508 - openevolve.controller - INFO - Saved best program at checkpoint 3 with metrics: combined_score=108.5819, score=108.5819, runtime_seconds=0.0092, best_runtime_seconds=0.0092, mean_runtime_seconds=0.0097, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:50,508 - openevolve.controller - INFO - Saved checkpoint at iteration 3 to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/checkpoints/checkpoint_3
+2026-06-01 21:21:50,513 - openevolve.process_parallel - INFO - Stopped process pool
+2026-06-01 21:21:50,513 - openevolve.controller - INFO - Using tracked best program: 2624cfd2-08cc-498d-8e57-b3669c7b3721
+2026-06-01 21:21:50,513 - openevolve.controller - INFO - Evolution complete. Best program has metrics: combined_score=108.5819, score=108.5819, runtime_seconds=0.0092, best_runtime_seconds=0.0092, mean_runtime_seconds=0.0097, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 21:21:50,514 - openevolve.controller - INFO - Saved best program to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/best/best_program.py with program info to /home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed2/run/best/best_program_info.json

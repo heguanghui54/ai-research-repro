@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "iterations": 3,
+  "random_seed": 4,
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "initial_program": "/home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_task/initial_program.py",
+  "evaluator": "/home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_task/evaluator.py",
+  "best_score": 90.98075135895253,
+  "output_dir": "/home/heshi/work/co-pilot-ai-scientist-v3/mlagentbench_vectorization_openevolve_3iter_seed4/run"
+}

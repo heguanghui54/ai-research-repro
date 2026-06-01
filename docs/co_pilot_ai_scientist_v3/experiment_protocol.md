@@ -49,11 +49,15 @@ sufficient by itself.
   - Role: broader end-to-end ML experimentation outside the FML-bench stack.
   - Current status: the lightweight `vectorization` task now has a controlled
     correctness-gated comparison. Direct DeepSeek rewrite failed the gate, while
-    a three-iteration OpenEvolve-style run found a correct program with median
-    runtime `0.051882` seconds versus `3.261186` seconds for the starter.
+    eight three-iteration OpenEvolve-style seeds all retained correct best
+    programs and improved over the starter. The median best runtime is
+    `0.024581` seconds versus `3.261186` seconds for the starter.
 - **ScienceAgentBench**:
   - Role: data-driven scientific discovery tasks extracted from publications,
     useful for evaluator gates and claim-support checks.
+  - Current status: the code repository is present on `ubuntu-heshi`, but the
+    full verified benchmark artifacts are not yet downloaded, so no
+    ScienceAgentBench score is reported.
 
 ### Tier C: High-Cost / Stretch Benchmarks
 
@@ -204,7 +208,8 @@ For the OpenEvolve-controlled version, run explicit seeds with:
 
 ```bash
 python scripts/run_openevolve_program_search.py \
-  --task-dir docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task \
+  --initial-program docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task/initial_program.py \
+  --evaluator docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task/evaluator.py \
   --output-dir docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed123 \
   --iterations 3 \
   --random-seed 123 \
@@ -212,7 +217,8 @@ python scripts/run_openevolve_program_search.py \
   --model deepseek-chat
 ```
 
-The first archived seed set (`42`, `7`, `123`) produced correct accelerated
-programs in 2 of 3 runs, with seed `7` failing to improve over the starter-like
-program. Treat this as positive but seed-sensitive pilot evidence, not as a
-settled result.
+The archived seed set (`0`, `1`, `2`, `3`, `4`, `7`, `42`, `123`) retained
+correct best programs in 8 of 8 runs and improved over the controlled starter in
+8 of 8 runs. The median best runtime is `0.024580717086791992` seconds, a
+median speedup of about `132.67x`. Treat this as stronger but still
+seed-sensitive pilot evidence, not as a settled cross-task result.

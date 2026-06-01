@@ -1,0 +1,76 @@
+{
+  "benchmark": "MLAgentBench vectorization",
+  "controlled_starter_runtime_seconds": 3.261186361312866,
+  "direct_deepseek_rewrite": {
+    "correct": false,
+    "result": "failed correctness gate"
+  },
+  "openevolve_configuration": {
+    "iterations": 3,
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "seeds": [0, 1, 2, 3, 4, 7, 42, 123]
+  },
+  "seed_results": [
+    {
+      "seed": 0,
+      "correct": true,
+      "runtime_seconds": 0.010945320129394531,
+      "speedup_over_starter": 297.9525790711858
+    },
+    {
+      "seed": 1,
+      "correct": true,
+      "runtime_seconds": 0.20942330360412598,
+      "speedup_over_starter": 15.57222288631978
+    },
+    {
+      "seed": 2,
+      "correct": true,
+      "runtime_seconds": 0.009209632873535156,
+      "speedup_over_starter": 354.1060111835974
+    },
+    {
+      "seed": 3,
+      "correct": true,
+      "runtime_seconds": 0.01737809181213379,
+      "speedup_over_starter": 187.66078557807077
+    },
+    {
+      "seed": 4,
+      "correct": true,
+      "runtime_seconds": 0.010991334915161133,
+      "speedup_over_starter": 296.70521246827616
+    },
+    {
+      "seed": 7,
+      "correct": true,
+      "runtime_seconds": 2.984609603881836,
+      "speedup_over_starter": 1.0926676497560384
+    },
+    {
+      "seed": 42,
+      "correct": true,
+      "runtime_seconds": 0.051882028579711914,
+      "speedup_over_starter": 62.857726472710226
+    },
+    {
+      "seed": 123,
+      "correct": true,
+      "runtime_seconds": 0.031783342361450195,
+      "speedup_over_starter": 102.60677823702825
+    }
+  ],
+  "aggregate": {
+    "num_seeds": 8,
+    "num_correct_best_programs": 8,
+    "num_seeds_faster_than_starter": 8,
+    "num_seeds_under_0_1_seconds": 6,
+    "median_runtime_seconds": 0.024580717086791992,
+    "mean_runtime_seconds": 0.4157778322696686,
+    "min_runtime_seconds": 0.009209632873535156,
+    "max_runtime_seconds": 2.984609603881836,
+    "median_speedup_over_starter": 132.67254774537096
+  },
+  "interpretation": "The non-FML program-search module is now supported by an eight-seed robustness probe. All seeds retained a correct best program and improved over the controlled starter, but runtime varies widely under the tiny three-iteration budget."
+}

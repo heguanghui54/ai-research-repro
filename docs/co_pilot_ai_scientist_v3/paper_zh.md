@@ -87,7 +87,7 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 随后，我们把同一个任务封装成更严格的本地 evaluator：在接受运行时间之前，evaluator 会用一个小型确定性输入，把候选 `Conv2DLayer.forward` 的输出和 nested-loop reference 做数值比对。在这个受控 evaluator 下，starter program 的 median runtime 为 3.261186 秒。一次 direct DeepSeek `deepseek-chat` rewrite 生成了看似合理的向量化代码，但因为数值不一致没有通过 correctness gate。相反，使用同一 DeepSeek 模型的三轮 OpenEvolve-style run 在第 1 轮找到了正确候选，median runtime 为 0.051882 秒，相比受控 starter program 约快 62.86 倍。这个结果支持一个较窄但重要的结论：program-search-escalation 节点可以在 FML-bench 之外的机器可评分子问题上发挥作用。但它还不能证明完整 co-pilot 架构能提升整篇论文质量。
 
-为了检查稳健性，我们又用两个额外 random seed 重复同样的三轮 OpenEvolve 设置。seed 7 没有找到加速程序，最终保留近似 starter 的程序，median runtime 为 2.984610 秒；seed 123 找到了正确向量化程序，median runtime 为 0.031783 秒。在 seed 42、7、123 三次运行中，系统有 2 次找到正确加速程序，全 seed 的 best runtime 中位数为 0.051882 秒。这增强了“程序搜索模块可以找到有效代码变换”的证据，同时也说明在极小预算下存在 seed sensitivity。
+为了检查稳健性，我们又用更多 random seed 重复同样的三轮 OpenEvolve 设置。在 seed 0、1、2、3、4、7、42、123 共八次运行中，所有运行都保留了正确 best program，并且都比受控 starter 更快。八个 seed 的 best runtime 中位数为 0.024581 秒，相当于相对 starter 约 132.67 倍的中位加速；其中 6 个 seed 找到低于 0.1 秒的程序。这个结果明显强于最初的三 seed probe，但仍不是确定性成功：seed 7 只有约 1.09 倍加速，seed 1 约 15.57 倍加速。因此，该结果增强了“程序搜索模块可以找到有效代码变换”的证据，同时保留了极小预算下 seed/budget sensitivity 的重要 caveat。
 
 ### 4.5 主张审计
 

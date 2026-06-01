@@ -37,6 +37,9 @@ high-leverage creative, evaluation, search, and claim-audit nodes.
      bench is useful for AI Scientist-v2-style branch search, while
      MLAgentBench, ScienceAgentBench, MLE-bench, PaperBench, or custom
      machine-gradeable tasks may be better for other claims.
+   - Treat benchmark availability as evidence: if a benchmark's code is present
+     but its private/verified data are absent, log that as a setup probe rather
+     than reporting scores.
    - For optimization tasks, add correctness gates before runtime or score
      optimization so fast invalid programs cannot win.
    - Trigger `evaluator_gate` before expensive runs.

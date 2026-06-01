@@ -60,14 +60,14 @@ favors autonomous, so the manuscript now treats FML as mixed feasibility
 evidence rather than a proof of human-gate superiority. To avoid overfitting the
 project to FML-bench, the package also includes a non-FML MLAgentBench
 `vectorization`
-comparison: direct DeepSeek
-rewrite failed the correctness gate, while a three-iteration OpenEvolve-style
-search found a correct vectorized program with median runtime `0.051882` seconds
-versus `3.261186` seconds for the controlled starter program. Two additional
-OpenEvolve seeds produced one failed speedup and one stronger speedup, so the
-paper now reports this as promising but seed-sensitive pilot evidence. Claims
+comparison: direct DeepSeek rewrite failed the correctness gate, while
+three-iteration OpenEvolve-style search over eight random seeds retained a
+correct best program in every seed and achieved median best runtime `0.024581`
+seconds versus `3.261186` seconds for the controlled starter program. The result
+is stronger than the earlier three-seed probe, but still seed-sensitive because
+individual best runtimes range from `0.009210` to `2.984610` seconds. Claims
 remain intentionally conservative until the evidence is expanded across more
-tasks/seeds and independently reviewed for paper quality. A Monica-routed claim
+tasks and independently reviewed for paper quality. A Monica-routed claim
 audit is archived under `audits/` and is reflected in the manuscript's
 claim-audit section. A second paper-quality review pass through Monica-routed
 `gpt-4o-mini` and `claude-3-7-sonnet-latest` is also archived; it now treats the

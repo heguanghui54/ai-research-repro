@@ -241,9 +241,10 @@ adds a correctness gate before accepting runtime. Under that evaluator:
 Repeat the same 3-iteration setting with explicit seeds:
 
 ```bash
-for seed in 42 7 123; do
+for seed in 0 1 2 3 4 7 42 123; do
   python scripts/run_openevolve_program_search.py \
-    --task-dir docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task \
+    --initial-program docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task/initial_program.py \
+    --evaluator docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task/evaluator.py \
     --output-dir "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed${seed}" \
     --iterations 3 \
     --random-seed "${seed}" \
@@ -252,11 +253,12 @@ for seed in 42 7 123; do
 done
 ```
 
-Archived results for seeds `42`, `7`, and `123` found correct accelerated
-programs in 2 of 3 runs. Their best median runtimes were `0.051882028579711914`,
-`2.984609603881836`, and `0.031783342361450195` seconds respectively. The
-multi-seed probe broadens the benchmark evidence beyond FML-Bench, but it also
-shows seed sensitivity under a tiny search budget.
+Archived results for seeds `0`, `1`, `2`, `3`, `4`, `7`, `42`, and `123`
+retained correct best programs in all 8 runs and improved over the controlled
+starter in all 8 runs. The median best runtime was `0.024580717086791992`
+seconds, with a median speedup of about `132.67x`. The multi-seed probe
+broadens the benchmark evidence beyond FML-Bench, but it still shows
+seed/budget sensitivity under a tiny search budget.
 
 ## 9. Remaining Evidence Needed Before Strong Submission Claims
 
@@ -264,8 +266,8 @@ shows seed sensitivity under a tiny search budget.
   feasible.
 - Extend the current two mixed matched-budget Causality pairs across more
   tasks, seeds, and budget schedules.
-- Add a second MLAgentBench task or expand to ScienceAgentBench, then repeat
-  with matched multi-seed budgets.
+- Add a second MLAgentBench task or download the verified ScienceAgentBench
+  artifacts and run a first ScienceAgentBench instance.
 - Add external or rubric-based paper-quality scoring.
 - Run a full four-loop trajectory where hypothesis, evaluator, branch,
   program-search, and claim-audit gates all operate in one continuous run.

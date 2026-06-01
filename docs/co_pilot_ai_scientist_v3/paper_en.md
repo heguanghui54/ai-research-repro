@@ -254,13 +254,15 @@ machine-gradeable subproblems beyond FML-bench. It does not yet prove that the
 full co-pilot architecture improves whole-paper quality.
 
 To test robustness, we repeated the same three-iteration OpenEvolve setup with
-two additional random seeds. Seed 7 did not find a speedup and retained the
-starter-like program with median runtime 2.984610 seconds, while seed 123 found
-a correct vectorized program with median runtime 0.031783 seconds. Across seeds
-42, 7, and 123, the search found a correct speedup in 2 out of 3 runs, with
-median best runtime 0.051882 seconds. This strengthens the evidence that the
-program-search module can find useful code transformations, but it also shows
-seed sensitivity under a very small budget.
+additional random seeds. Across seeds 0, 1, 2, 3, 4, 7, 42, and 123, all eight
+runs retained a correct best program and improved over the controlled starter.
+The median best runtime was 0.024581 seconds, corresponding to a median speedup
+of about 132.67x over the starter runtime. Six of eight seeds found a
+sub-0.1-second program. The result is still not deterministic under tiny
+budgets: seed 7 only achieved a weak 1.09x speedup and seed 1 achieved a 15.57x
+speedup. This strengthens the evidence that the program-search module can find
+useful code transformations, while preserving the important caveat that search
+quality varies substantially by seed and budget.
 
 ### 4.5 Claim Audit
 

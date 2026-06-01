@@ -204,9 +204,10 @@ benchmark time 为 `3.3655309677124023` 秒。该任务分数越低越好。
 用显式 seed 重复同样的 3-iteration 设置：
 
 ```bash
-for seed in 42 7 123; do
+for seed in 0 1 2 3 4 7 42 123; do
   python scripts/run_openevolve_program_search.py \
-    --task-dir docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task \
+    --initial-program docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task/initial_program.py \
+    --evaluator docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task/evaluator.py \
     --output-dir "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed${seed}" \
     --iterations 3 \
     --random-seed "${seed}" \
@@ -215,16 +216,18 @@ for seed in 42 7 123; do
 done
 ```
 
-已归档的 seeds `42`、`7`、`123` 结果显示，3 次运行中有 2 次找到正确加速程序。
-三次 best median runtime 分别为 `0.051882028579711914`、`2.984609603881836`
-和 `0.031783342361450195` 秒。这个 multi-seed probe 扩展了 FML-Bench 之外
-的 benchmark 证据，但也说明在极小搜索预算下存在 seed sensitivity。
+已归档的 seeds `0`、`1`、`2`、`3`、`4`、`7`、`42`、`123` 结果显示，8 次运行
+都保留了正确 best program，并且都快于受控 starter。best runtime 中位数为
+`0.024580717086791992` 秒，中位加速约 `132.67x`。这个 multi-seed probe 扩展了
+FML-Bench 之外的 benchmark 证据，但也说明在极小搜索预算下仍存在
+seed/budget sensitivity。
 
 ## 9. 顶会级投稿前仍需补强的证据
 
 - 如果可行，把 snapshot-seeded continuation 升级为原生 tree-object resume。
 - 将当前两组 mixed matched pair 扩展到更多任务、随机种子和预算分配。
-- 加入第二个 MLAgentBench task，或扩展到 ScienceAgentBench，然后用匹配的 multi-seed budget 重复验证。
+- 加入第二个 MLAgentBench task，或先下载 ScienceAgentBench verified artifacts
+  后运行第一个 ScienceAgentBench instance。
 - 加入外部评审或 rubric-based paper-quality scoring。
 - 跑一次完整四循环轨迹，让 hypothesis、evaluator、branch、program-search 和 claim-audit gates 在同一条连续任务中全部生效。
 - 将完整项目包推送到 GitHub。

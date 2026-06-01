@@ -27,8 +27,8 @@ The benchmark suite is therefore selected by claim type.
 | --- | --- | --- | --- | --- |
 | A | FML-bench | AI Scientist-v2-style ML benchmark search over target code | Branch gate, selected-branch continuation, evaluator failures | Runnable and already used |
 | A | OpenEvolve-controlled tasks | Machine-gradeable program search | AlphaEvolve-style escalation gate and direct-edit ablation | Runnable and already used |
-| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Recommended next benchmark |
-| B | ScienceAgentBench | Data-driven scientific discovery code tasks from publications | Non-FML scientific workflow validation, especially evaluator/claim gates | Recommended next benchmark |
+| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe |
+| B | ScienceAgentBench | Data-driven scientific discovery code tasks from publications | Non-FML scientific workflow validation, especially evaluator/claim gates | Code present; full benchmark artifacts still needed |
 | C | MLE-bench Lite | Kaggle-style ML engineering | High-signal, higher-cost end-to-end ML engineering evidence | Stretch benchmark |
 | C | PaperBench | Replication of ML research papers with hierarchical rubrics | Claim/paper-quality and long-horizon research replication evidence | Stretch benchmark |
 | C | AIRS-Bench | Full ML research lifecycle tasks | Closest match to full automated research lifecycle if setup fits budget | Stretch benchmark |
@@ -54,10 +54,11 @@ of Co-Pilot AI Scientist v3.
    claim.
 2. **MLAgentBench vectorization extension**: baseline, direct LLM rewrite, and
    OpenEvolve-style runtime optimization now run under a correctness-gated
-   evaluator with a first three-seed robustness probe; next add a second
-   MLAgentBench task or a larger matched seed budget.
-3. **ScienceAgentBench single task**: use one data-driven discovery task to test
-   evaluator and claim gates in a more science-like setting.
+   evaluator with an eight-seed robustness probe; next add a second
+   MLAgentBench task.
+3. **ScienceAgentBench single task**: first download the verified benchmark
+   artifacts on the Ubuntu host, then use one data-driven discovery task to
+   test evaluator and claim gates in a more science-like setting.
 4. **MLE-bench Lite dry run or one task**: use only if API/compute budget allows.
 5. **PaperBench-inspired rubric audit**: do not run full PaperBench initially;
    instead borrow its hierarchical rubric idea for manuscript claim auditing.
