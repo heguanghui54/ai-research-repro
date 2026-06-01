@@ -8,7 +8,7 @@
 - 双编码复核任务：24 条。
 - 学生人数：10 人。
 - 每名学生工作量：12 条主编码，加 2-3 条复核编码。
-- 当前线上状态：已提交 6 条主编码，0 条复核编码。
+- 当前线上状态：已提交 6 条主编码，0 条复核编码；6 条均来自 `STU01`。
 
 当天完成标准不是“学生都登录过”，而是线上数据库达到：
 
@@ -36,6 +36,17 @@
 | 第 24 小时 | 导出并运行完整审计 | 决定是否需要返工 |
 
 ## 四、回收后的处理
+
+编码过程中可随时刷新并生成学生进度表：
+
+```bash
+python3 scripts/build_qigong_web_coding_progress.py --refresh
+```
+
+输出文件：
+
+- `runs/qigong_platform/formal_merge/web_coding_student_progress.md`
+- `runs/qigong_platform/formal_merge/web_coding_student_progress.json`
 
 学生完成后运行：
 

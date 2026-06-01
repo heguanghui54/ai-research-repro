@@ -122,6 +122,13 @@ def clean(value: object) -> str:
     return str(value or "").strip()
 
 
+def normalize_task_role(value: object) -> str:
+    role = clean(value).lower()
+    if role in {"double", "double_check", "double-check", "secondary", "review"}:
+        return "double_check"
+    return role or "missing"
+
+
 def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
     if not path.exists():
         return [], []
@@ -241,7 +248,7 @@ def main() -> None:
     for submission in submissions:
         if not submission_is_complete(submission) or video_id(submission) not in base_by_id:
             continue
-        if clean(submission.get("task_role")) == "double_check":
+        if normalize_task_role(submission.get("task_role")) == "double_check":
             double_rows.append(row_for_double_check(base_by_id, submission))
             continue
         complete_primary.append(submission)

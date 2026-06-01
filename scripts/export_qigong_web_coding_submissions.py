@@ -86,6 +86,13 @@ def clean(value: object) -> str:
     return str(value).strip()
 
 
+def normalize_task_role(value: object) -> str:
+    role = clean(value).lower()
+    if role in {"double", "double_check", "double-check", "secondary", "review"}:
+        return "double_check"
+    return role or "missing"
+
+
 def request_json(url: str, key: str) -> list[dict[str, object]]:
     request = urllib.request.Request(
         url,
@@ -144,7 +151,7 @@ def summarize(rows: list[dict[str, object]], expected_tasks: int) -> dict[str, o
         if all(clean(row.get(field)) for field in CORE_FIELDS) and str(row.get("watched")).lower() in {"true", "1"}
     ]
     by_student = Counter(clean(row.get("student_code")) or "missing" for row in rows)
-    by_role = Counter(clean(row.get("task_role")) or "missing" for row in rows)
+    by_role = Counter(normalize_task_role(row.get("task_role")) for row in rows)
     return {
         "expected_primary_tasks": expected_tasks,
         "submission_rows": len(rows),

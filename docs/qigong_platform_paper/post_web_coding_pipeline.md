@@ -15,6 +15,14 @@
 python3 scripts/run_qigong_post_web_coding_pipeline.py --dry-run
 ```
 
+如果只是查看当天进度，而不是进入正式结果分析，先运行：
+
+```bash
+python3 scripts/build_qigong_web_coding_progress.py --refresh
+```
+
+该脚本会生成按学生统计的 `web_coding_student_progress.md/json`，用于提醒尚未完成的编码员。它只服务于数据采集管理，不能替代正式导出、审计和一致性检验。
+
 正式运行：
 
 ```bash
