@@ -131,6 +131,11 @@ Do not estimate missing historical review time; run
 `scripts/audit_human_gate_attention_cost.py` and report missing coverage as a
 measurement gap.
 
+For gates where human scientific taste or insight changes the search frontier,
+also fill `taste_insight` with the project rubric. Run
+`scripts/audit_taste_insight_coverage.py` and report missing historical fields
+as missing rather than reconstructing them after the fact.
+
 ## Model Routing
 
 - Use lower-cost models such as DeepSeek for routine drafting, coding, and
@@ -203,6 +208,7 @@ Reusable templates are stored next to this skill:
 - taste/insight rubric records;
 - human gate logs;
 - human attention-cost audit;
+- taste/insight coverage audit;
 - full-gate trajectory artifact;
 - executable full-gate trace replay when archived summaries are available;
 - online full-gate smoke trajectory logs when remote execution is available;

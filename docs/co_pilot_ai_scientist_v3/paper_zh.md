@@ -91,6 +91,8 @@ Co-Pilot AI Scientist v3 实现的是洞察门控科研演化。IGRE 包含四�
 
 因为 IGRE 的核心贡献是科研品味，而不是普通审批，本文在评估包中加入 taste/insight rubric。该 rubric 从 1 到 5 记录 problem depth、novelty potential、mechanistic value、failure informativeness、benchmark taste、claim significance 和 risk asymmetry，并要求写下简短理由。它刻意不被当作 reward model，而是记录导致人类保留、改写或剪枝某个分支的非指标先验。后续评估应同时报告平均任务表现和高尾部信号：例如一个 autonomous policy 本来会剪掉、但人类保留的分支，是否最终带来更强主张、更好 evaluator 或更有信息量的负结果。
 
+我们也对同一批 17 个已归档 gate records 加入 taste/insight coverage audit。结果显示：当前 0 个记录包含 `taste_insight` 对象，0 个记录拥有完整 taste/insight 字段。这不是性能结果，因为这些历史 gate 产生时 rubric 尚不存在；但它会阻止本文提前声称“人类科研品味已经被实证测量”。后续 prospective matched-budget run 必须同时填写 `taste_insight` 和 `attention_cost`，才能检验 IGRE 关于高尾部科研结果的核心假设。
+
 根据最新 paper-quality review 的意见，我们把人类注意力成本从口头指标变成了可审计 artifact。human-gate schema 现在包含可选的 `attention_cost` 对象，用于记录 active review minutes、wall-clock latency、reviewed options、reviewed artifacts 和 decision count。我们还对现有 17 个 gate records 做了 coverage audit：其中包括 7 个 standalone human-gate logs，以及 2 个 trajectory artifacts 中的 10 个 embedded gates。结果是：当前 17 个 gate records 都没有完整 attention-cost 记录；其中 5 个重新生成的 executable-trace gates 已经显式标注 timing 缺失，较早的记录则是在该字段加入之前生成的。这是一个重要的负向 measurement-readiness 结果：现有日志可以证明决策来源，但还不能支持“人类注意力效率更高”的主张。后续 prospective matched run 必须填写该字段，才能比较 co-pilot 和 autonomous variants 的人类成本。
 
 为了让这一原则可以执行，我们维护了一份 benchmark-to-claim matrix。
@@ -161,6 +163,7 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 12. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
 13. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。
 14. human-gate attention-cost audit，显示当前 gate log 还没有记录 active review time 和 latency；未来 prospective run 必须补齐这些字段后，才能提出 attention-efficiency claim。
+15. taste/insight coverage audit，显示当前历史 gate 早于该 rubric，因此还不能支持“高尾部科研品味已被测量”的主张。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
 
@@ -169,6 +172,8 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 本文不预设人类参与一定有效。人类 gate 可能引入偏见、降低搜索速度、压缩探索多样性；在短预算 benchmark 中，它甚至可能不如完全自动搜索策略。这不是附带 caveat，而是本文方法需要正面评估的一部分。IGRE 把人类科学家视为高方差搜索算子，其价值可能不体现在平均分上，而体现在高尾部：更好的问题品味、更能揭示机制的 evaluator、更尖锐的失败解释，或者愿意追踪一个更冒险但更原创的方向。程序化搜索也可能只优化局部指标，却不能提高论文层面的科学贡献；在极小预算下，它也未必优于直接 LLM 编辑。专家论文评分成本较高，而且不同评审可能存在分歧。因此，第一版实验应保持窄主张，并在 gate 无法改善结果时如实报告负结果。当前 selected-branch continuation 证据在两组 matched pair 中呈混合状态，还不是统计受控 benchmark；retrospective full-gate trajectory 和 executable artifact replay 证明了 schema、决策链和可复现 traversal logic。online smoke trajectory 已经在一次远端运行中覆盖五类 gate，但预算极小、混合了 FML branch task 和 knapsack program-search 子问题，并且 continuation test score 变差；同 FML step autonomous baseline 也优于 human-gated continuation。更强主张需要更多任务、更多随机种子、更丰富的预算分配设置、更大规模在线轨迹、独立论文质量评审，以及能捕捉少数高质量科研结果的指标，而不只是平均任务分数。
 
 当前 human-gate logs 也缺少可度量的人类注意力成本。我们可以统计决策 artifact，但还不能计算 active review minutes 或 wall-clock latency，因此不能声称 gate 提高了单位人类努力产出的科研质量。下一轮 matched-budget 实验必须前瞻性记录 attention cost。
+
+同样，当前日志也还没有完整的 taste/insight 记录。rubric 和 schema 已经存在，但历史 gate 早于它们，不能事后根据成功结果倒推科研品味理由。下一轮实验必须前瞻性记录 taste rationale，才能检验人类 insight 是否真的改变了科研搜索分布。
 
 当前实现还缺少一次从新假设生成到最终论文生产的完整端到端演示。现有 online smoke run 证明了编排可行性，但下一版 systems paper 至少需要报告一条从假设生成到最终 claim-audited manuscript 的更大规模 matched 在线轨迹。
 

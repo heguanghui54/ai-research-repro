@@ -266,7 +266,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_autonomous_matched_3step/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_autonomous_matched_3step/config_used.yaml",
     "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_matched_autonomous_comparison.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_matched_autonomous_comparison.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_matched_autonomous_comparison.json",
+    "docs/co_pilot_ai_scientist_v3/audits/taste_insight_coverage_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/taste_insight_coverage_audit.json",
+    "scripts/audit_taste_insight_coverage.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -281,7 +284,8 @@
     "Run prospective human-gated matched-budget experiments with complete attention_cost records; the current 17 audited gate records include 7 standalone gate logs and 10 embedded trajectory gates across 2 trajectory artifacts, with 0 complete attention-cost records.",
     "Run prospective IGRE matched-budget experiments that fill both attention_cost and taste_insight records, then compare mean benchmark scores against high-tail scientific-upside outcomes.",
     "Extend the online full-gate smoke comparison beyond the current negative 3-step Causality result to more tasks, seeds, and larger budgets.",
-    "Pre-cache CIFAR10 or IMDB, choose another data-ready MLAgentBench task for a second official non-FML score, or run from a network path with HuggingFace access; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics."
+    "Pre-cache CIFAR10 or IMDB, choose another data-ready MLAgentBench task for a second official non-FML score, or run from a network path with HuggingFace access; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics.",
+    "Run prospective IGRE matched-budget experiments with complete taste_insight records; the current 17 audited gate records include 0 records with taste_insight and 0 complete taste/insight records, because the rubric was introduced after the historical gates."
   ],
   "model_routing_policy": {
     "routine_coding_and_smoke_tests": "DeepSeek or low-cost Monica-routed model",

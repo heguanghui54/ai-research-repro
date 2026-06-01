@@ -245,6 +245,15 @@ performance and high-tail signals: whether a human-selected branch that an
 autonomous policy would have pruned later produces a stronger claim, better
 evaluator, or more informative negative result.
 
+We also add a taste/insight coverage audit over the same 17 archived gate
+records used by the attention-cost audit. It finds 0 records containing a
+`taste_insight` object and 0 complete taste/insight records. This is not a
+performance result: the historical gates were created before the rubric existed.
+It does, however, prevent the current paper from claiming that human scientific
+taste has already been measured. Prospective matched-budget runs must fill both
+`taste_insight` and `attention_cost` before IGRE can test its high-tail
+hypothesis.
+
 Following the latest paper-quality review, we made attention cost an explicit
 auditable artifact rather than an informal metric. The human-gate schema now
 contains an optional `attention_cost` object with active review minutes,
@@ -516,6 +525,9 @@ The current contributions are:
 14. A human-gate attention-cost audit showing that current logs lack measured
    active review time and latency, and that future prospective runs must record
    these fields before making attention-efficiency claims.
+15. A taste/insight coverage audit showing that current archived gates predate
+   the rubric and therefore cannot yet support a measured high-tail taste
+   claim.
 
 The current evidence does not yet prove that human gates improve paper quality
 or that the full co-pilot system outperforms autonomous AI Scientist-v2. Those
@@ -552,6 +564,11 @@ decision artifacts, but cannot yet compute active review minutes or
 wall-clock latency. This prevents any claim that the proposed gates improve the
 ratio of research quality to human effort. The next matched-budget experiments
 must record attention cost prospectively.
+
+The same limitation applies to scientific taste and insight. The rubric and
+schema now exist, but the archived gate logs predate them and contain no
+complete `taste_insight` records. Future runs must log taste rationales
+prospectively rather than reconstructing them from successful outcomes.
 
 The current implementation still lacks a complete paper-generating end-to-end
 demonstration in which all four loops operate in a single continuous trajectory

@@ -110,6 +110,9 @@ sufficient by itself.
   problem depth, novelty potential, mechanistic value, failure informativeness,
   benchmark taste, claim significance, and risk asymmetry. It should be reported
   alongside downstream outcomes, not used alone as proof of improvement.
+  Coverage should be checked with
+  `python3 scripts/audit_taste_insight_coverage.py`; missing historical fields
+  should be reported as missing rather than reconstructed.
 
 ## High-Tail Evaluation
 

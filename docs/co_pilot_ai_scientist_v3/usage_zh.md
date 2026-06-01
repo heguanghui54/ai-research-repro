@@ -79,6 +79,14 @@ docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md
 
 当人类因为新颖性、失败价值、benchmark 品味或风险不对称性等非指标原因改变搜索前沿时，在 prospective gate log 中填写可选的 `taste_insight` 区块。不要把这个分数当作 reward model；它是可审计的搜索先验，必须和 autonomous baseline 的下游结果一起比较。
 
+如果要检查已归档 gate 是否包含完整 taste/insight 记录，运行：
+
+```bash
+python3 scripts/audit_taste_insight_coverage.py
+```
+
+当前历史 gate 早于该 rubric，因此完整 taste/insight 记录数为 0。应把它视为下一轮 prospective logging 要求，而不是“人类科研品味无效”的负结果。
+
 ## 人类参与节点
 
 - `scientific_taste_prior`：基于科研品味和上行空间选择或改写研究假设，而不只看当前分数。

@@ -87,6 +87,17 @@ failure value, benchmark taste, or risk asymmetry. Do not treat this score as a
 reward model; report it as an auditable search prior and compare downstream
 outcomes against autonomous baselines.
 
+To audit whether the archived gates contain complete taste/insight records,
+run:
+
+```bash
+python3 scripts/audit_taste_insight_coverage.py
+```
+
+The current archived gates predate the rubric and therefore have 0 complete
+taste/insight records. Treat that as a prospective logging requirement, not as
+a negative result about human scientific taste.
+
 ## Human Gate Types
 
 - `scientific_taste_prior`: choose or rewrite the research hypothesis using

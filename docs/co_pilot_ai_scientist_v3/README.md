@@ -37,6 +37,8 @@ claim calibration.
 - `RUNBOOK_ZH.md`: Chinese reproduction and continuation runbook.
 - `audits/human_gate_attention_cost_audit.md`: coverage audit for whether gate
   logs contain measured human attention cost.
+- `audits/taste_insight_coverage_audit.md`: coverage audit for whether gate
+  logs contain complete scientific taste/insight records.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.
@@ -114,7 +116,13 @@ potential, mechanistic value, failure informativeness, benchmark taste, claim
 significance, and risk asymmetry. This keeps IGRE distinct from generic
 co-pilot approval workflows. The rubric does not prove performance improvement
 by itself; it lets future matched runs test whether human taste changes the
-upper tail of research trajectories.
+upper tail of research trajectories. A new coverage audit applies this rubric
+to the 17 archived gate records and finds 0 records with a `taste_insight`
+object and 0 complete taste/insight records. This is expected because the
+rubric was introduced after the historical gates were produced, but it is now an
+explicit blocker for any high-tail taste claim: future prospective gates must
+record the field before the paper can argue that taste-gated search changed
+research outcomes.
 
 The latest benchmark-expansion probes are deliberately recorded as setup
 evidence rather than inflated results. A second official MLAgentBench
