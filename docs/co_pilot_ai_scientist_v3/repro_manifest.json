@@ -288,7 +288,10 @@
     "docs/co_pilot_ai_scientist_v3/prospective_matched_budget_protocol.json",
     "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.json",
-    "scripts/audit_prospective_matched_budget_package.py"
+    "scripts/audit_prospective_matched_budget_package.py",
+    "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_gate.json",
+    "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_audit.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -302,7 +305,7 @@
     "Upgrade the current online full-gate smoke trajectory into a larger paper-generating trajectory from new hypothesis generation to final manuscript production.",
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "After the next major manuscript revision, rerun independent paper-quality review; current Monica-routed reviews still rate the package as pilot evidence, with GPT weak-accept and Claude reject.",
-    "Run prospective human-gated matched-budget experiments using scripts/create_human_gate_log.py to capture complete attention_cost records; the current 18 real audited gate records still include 0 complete attention-cost records, while synthetic logging tooling now passes.",
+    "Run prospective human-gated matched-budget experiments using scripts/create_human_gate_log.py with --require-complete-attention and --require-complete-taste; current real audited gate records still lack complete attention/taste coverage, while synthetic joint logging tooling now passes.",
     "Run prospective IGRE matched-budget experiments that fill both attention_cost and taste_insight records, then compare mean benchmark scores against high-tail scientific-upside outcomes.",
     "Extend the online full-gate smoke comparison beyond the current negative 3-step Causality result to more tasks, seeds, and larger budgets.",
     "Pre-cache CIFAR10 or IMDB, choose another data-ready MLAgentBench task for a second official non-FML score, or run from a network path with HuggingFace access; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics.",
@@ -359,6 +362,15 @@
     "protocol": "docs/co_pilot_ai_scientist_v3/prospective_matched_budget_protocol.md",
     "passing_packages": 0,
     "manifest_files_checked": 0,
+    "performance_evidence": false
+  },
+  "attention_taste_logging_tooling": {
+    "status": "pass_for_synthetic_smoke",
+    "script": "scripts/create_human_gate_log.py",
+    "smoke_audit": "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_audit.md",
+    "generated_gate": "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_gate.json",
+    "synthetic_gate_complete_attention_cost_record": true,
+    "synthetic_gate_complete_taste_insight_record": true,
     "performance_evidence": false
   }
 }

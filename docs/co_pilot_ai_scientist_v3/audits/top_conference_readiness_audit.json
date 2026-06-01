@@ -61,5 +61,11 @@
     "passing_packages": 0,
     "performance_evidence": false,
     "minimum_evidence_shape_defined": true
+  },
+  "attention_taste_logging_tooling": {
+    "status": "pass_for_synthetic_smoke",
+    "generated_complete_attention_cost_record": true,
+    "generated_complete_taste_insight_record": true,
+    "real_performance_evidence": false
   }
 }

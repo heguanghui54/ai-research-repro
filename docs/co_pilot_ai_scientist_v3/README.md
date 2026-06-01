@@ -50,6 +50,9 @@ claim calibration.
   reusable Codex skill templates and validates a generated human gate log.
 - `audits/attention_cost_logging_smoke_audit.md`: synthetic tooling smoke test
   for creating future human gate logs with complete attention-cost fields.
+- `audits/attention_taste_logging_smoke_audit.md`: synthetic tooling smoke test
+  showing that future prospective gates can jointly record complete
+  attention-cost and scientific-taste fields.
 - `audits/prospective_matched_budget_package_audit.md`: strict audit for
   whether a non-synthetic prospective matched-budget package exists yet.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable

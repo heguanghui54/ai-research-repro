@@ -1,0 +1,39 @@
+{
+  "audit_date": "2026-06-02T02:06:00Z",
+  "overall_status": "pass",
+  "generated_gate_log": "docs/co_pilot_ai_scientist_v3/audits/attention_taste_logging_smoke_gate.json",
+  "complete_attention_cost": true,
+  "complete_taste_insight": true,
+  "validation_errors": [],
+  "attention_cost": {
+    "human_actor": "tooling_smoke",
+    "interaction_mode": "posthoc_replay",
+    "prompted_at_utc": "2026-06-02T02:00:00Z",
+    "decision_at_utc": "2026-06-02T02:06:00Z",
+    "active_review_minutes": 4.25,
+    "wall_clock_latency_minutes": 6.0,
+    "options_reviewed": 2,
+    "artifacts_reviewed_count": 2,
+    "decision_count": 1,
+    "notes": "Synthetic gate used to validate prospective attention-cost plus taste/insight logging; not a real experiment-performance gate."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-02",
+    "scores": {
+      "problem_depth": 5.0,
+      "novelty_potential": 4.0,
+      "mechanistic_value": 4.0,
+      "failure_informativeness": 5.0,
+      "benchmark_taste": 5.0,
+      "claim_significance": 4.0,
+      "risk_asymmetry": 4.0
+    },
+    "taste_insight_score": 4.43,
+    "qualitative_rationale": "Claim-matched benchmark choice is a scientific-taste prior because it changes what the system searches for before metric outcomes are known.",
+    "non_metric_factors": [
+      "benchmark-choice-as-scientific-taste",
+      "high-tail-research-upside"
+    ]
+  },
+  "interpretation": "Synthetic tooling smoke; not counted as real human-gated experiment evidence."
+}

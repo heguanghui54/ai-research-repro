@@ -76,7 +76,7 @@ For future matched-budget experiments, every prospective gate log should fill
 be marked as missing rather than guessed.
 
 To create a schema-compatible prospective gate log with measured attention
-cost, use:
+cost and scientific taste/insight, use:
 
 ```bash
 python3 scripts/create_human_gate_log.py \
@@ -91,7 +91,18 @@ python3 scripts/create_human_gate_log.py \
   --decision-at-utc 2026-06-01T18:04:30Z \
   --active-review-minutes 3.5 \
   --artifacts-reviewed-count 1 \
+  --taste-score problem_depth=5 \
+  --taste-score novelty_potential=4 \
+  --taste-score mechanistic_value=4 \
+  --taste-score failure_informativeness=5 \
+  --taste-score benchmark_taste=5 \
+  --taste-score claim_significance=4 \
+  --taste-score risk_asymmetry=4 \
+  --taste-insight-score 4.43 \
+  --taste-rationale 'Why this changes the search frontier.' \
+  --non-metric-factor 'high-tail-research-upside' \
   --require-complete-attention \
+  --require-complete-taste \
   --output docs/co_pilot_ai_scientist_v3/human_gate_logs/frontier_gate_live_001.json
 ```
 

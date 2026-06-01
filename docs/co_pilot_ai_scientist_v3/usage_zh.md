@@ -71,7 +71,7 @@ python3 scripts/audit_human_gate_attention_cost.py
 `artifacts_reviewed_count` 和 `decision_count`。不要凭记忆估计旧日志；缺失就
 明确记为缺失。
 
-如果要生成带完整 attention cost 的 prospective gate log，可以使用：
+如果要生成同时带完整 attention cost 和 scientific taste/insight 的 prospective gate log，可以使用：
 
 ```bash
 python3 scripts/create_human_gate_log.py \
@@ -86,7 +86,18 @@ python3 scripts/create_human_gate_log.py \
   --decision-at-utc 2026-06-01T18:04:30Z \
   --active-review-minutes 3.5 \
   --artifacts-reviewed-count 1 \
+  --taste-score problem_depth=5 \
+  --taste-score novelty_potential=4 \
+  --taste-score mechanistic_value=4 \
+  --taste-score failure_informativeness=5 \
+  --taste-score benchmark_taste=5 \
+  --taste-score claim_significance=4 \
+  --taste-score risk_asymmetry=4 \
+  --taste-insight-score 4.43 \
+  --taste-rationale 'Why this changes the search frontier.' \
+  --non-metric-factor 'high-tail-research-upside' \
   --require-complete-attention \
+  --require-complete-taste \
   --output docs/co_pilot_ai_scientist_v3/human_gate_logs/frontier_gate_live_001.json
 ```
 

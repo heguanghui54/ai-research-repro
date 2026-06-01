@@ -65,6 +65,15 @@ miss.
 
 ## Audit Command
 
+Create prospective gate logs with:
+
+```bash
+python3 scripts/create_human_gate_log.py \
+  --require-complete-attention \
+  --require-complete-taste \
+  ...
+```
+
 Run:
 
 ```bash

@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DOC_DIR = ROOT / "docs" / "co_pilot_ai_scientist_v3"
 TEMPLATE_PATH = ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "human_gate_log_template.json"
 SCHEMA_PATH = DOC_DIR / "human_gate_schema.json"
+RUBRIC_PATH = DOC_DIR / "taste_insight_rubric.json"
 
 
 REQUIRED_ATTENTION_FIELDS = [
@@ -22,6 +23,14 @@ REQUIRED_ATTENTION_FIELDS = [
     "options_reviewed",
     "artifacts_reviewed_count",
     "decision_count",
+]
+
+REQUIRED_TASTE_FIELDS = [
+    "rubric_version",
+    "scores",
+    "taste_insight_score",
+    "qualitative_rationale",
+    "non_metric_factors",
 ]
 
 
@@ -50,11 +59,41 @@ def _parse_option(value: str) -> dict[str, Any]:
     return {"option_id": parts[0], "summary": parts[1], "score": None, "evidence": [], "risks": []}
 
 
+def _parse_taste_score(value: str) -> tuple[str, float]:
+    parts = value.split("=", 1)
+    if len(parts) != 2 or not parts[0] or not parts[1]:
+        raise argparse.ArgumentTypeError("taste scores must be formatted as dimension=value")
+    try:
+        score = float(parts[1])
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("taste score value must be numeric") from exc
+    return parts[0], score
+
+
 def _is_number(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
-def _validate(schema: dict[str, Any], gate: dict[str, Any], *, require_complete_attention: bool) -> list[str]:
+def _load_rubric_dimensions(rubric: dict[str, Any]) -> list[str]:
+    return [
+        item["name"]
+        for item in rubric.get("dimensions", [])
+        if isinstance(item, dict) and isinstance(item.get("name"), str)
+    ]
+
+
+def _valid_taste_score(value: Any) -> bool:
+    return _is_number(value) and 1 <= float(value) <= 5
+
+
+def _validate(
+    schema: dict[str, Any],
+    gate: dict[str, Any],
+    *,
+    require_complete_attention: bool,
+    require_complete_taste: bool,
+    rubric_dimensions: list[str],
+) -> list[str]:
     errors: list[str] = []
     for field in schema.get("required", []):
         if field not in gate:
@@ -73,6 +112,33 @@ def _validate(schema: dict[str, Any], gate: dict[str, Any], *, require_complete_
                 value = cost.get(field)
                 if not _is_number(value):
                     errors.append(f"incomplete attention_cost.{field}")
+    taste = gate.get("taste_insight")
+    if require_complete_taste:
+        if not isinstance(taste, dict):
+            errors.append("taste_insight must be an object")
+        else:
+            for field in REQUIRED_TASTE_FIELDS:
+                if field not in taste:
+                    errors.append(f"incomplete taste_insight.{field}")
+            score_map = taste.get("scores")
+            if not isinstance(score_map, dict):
+                errors.append("taste_insight.scores must be an object")
+            else:
+                for dimension in rubric_dimensions:
+                    if not _valid_taste_score(score_map.get(dimension)):
+                        errors.append(f"incomplete taste_insight.scores.{dimension}")
+            if not _valid_taste_score(taste.get("taste_insight_score")):
+                errors.append("incomplete taste_insight.taste_insight_score")
+            rationale = taste.get("qualitative_rationale")
+            if not isinstance(rationale, str) or not rationale.strip():
+                errors.append("incomplete taste_insight.qualitative_rationale")
+            factors = taste.get("non_metric_factors")
+            if (
+                not isinstance(factors, list)
+                or not factors
+                or not all(isinstance(item, str) and item.strip() for item in factors)
+            ):
+                errors.append("incomplete taste_insight.non_metric_factors")
     return errors
 
 
@@ -91,6 +157,7 @@ def _markdown(summary: dict[str, Any]) -> str:
         f"- Overall status: {summary['overall_status']}",
         f"- Generated gate log: `{summary['generated_gate_log']}`",
         f"- Complete attention-cost record: {summary['complete_attention_cost']}",
+        f"- Complete taste/insight record: {summary['complete_taste_insight']}",
         f"- Validation errors: {len(summary['validation_errors'])}",
         "",
         "## Attention Cost",
@@ -98,6 +165,12 @@ def _markdown(summary: dict[str, Any]) -> str:
     ]
     for key, value in summary["attention_cost"].items():
         lines.append(f"- `{key}`: {value}")
+    lines.extend(["", "## Taste/Insight", ""])
+    if summary.get("taste_insight"):
+        for key, value in summary["taste_insight"].items():
+            lines.append(f"- `{key}`: {value}")
+    else:
+        lines.append("- Not recorded.")
     lines.extend(
         [
             "",
@@ -106,7 +179,8 @@ def _markdown(summary: dict[str, Any]) -> str:
             "The current archived human-gate logs still lack measured attention cost,",
             "but the package now includes a runnable path for prospective gates to",
             "record active review minutes, wall-clock latency, options reviewed,",
-            "artifacts reviewed, and decision count.",
+            "artifacts reviewed, decision count, and optional scientific",
+            "taste/insight fields required by prospective matched-budget runs.",
         ]
     )
     return "\n".join(lines) + "\n"
@@ -132,7 +206,12 @@ def main() -> None:
     parser.add_argument("--decision-count", type=int, default=1)
     parser.add_argument("--notes", default="")
     parser.add_argument("--follow-up-check", action="append", default=[])
+    parser.add_argument("--taste-score", action="append", type=_parse_taste_score, default=[])
+    parser.add_argument("--taste-insight-score", type=float)
+    parser.add_argument("--taste-rationale")
+    parser.add_argument("--non-metric-factor", action="append", default=[])
     parser.add_argument("--require-complete-attention", action="store_true")
+    parser.add_argument("--require-complete-taste", action="store_true")
     parser.add_argument("--output", required=True)
     parser.add_argument("--audit-json")
     parser.add_argument("--audit-md")
@@ -140,8 +219,11 @@ def main() -> None:
 
     template = _load_json(TEMPLATE_PATH)
     schema = _load_json(SCHEMA_PATH)
+    rubric = _load_json(RUBRIC_PATH)
+    rubric_dimensions = _load_rubric_dimensions(rubric)
     downstream_budget = json.loads(args.downstream_budget_json)
     wall_clock = _minutes_between(args.prompted_at_utc, args.decision_at_utc)
+    taste_scores = dict(args.taste_score)
 
     gate = dict(template)
     gate.update(
@@ -170,8 +252,22 @@ def main() -> None:
             "follow_up_checks": args.follow_up_check,
         }
     )
+    if args.taste_score or args.taste_insight_score is not None or args.taste_rationale or args.non_metric_factor:
+        gate["taste_insight"] = {
+            "rubric_version": rubric.get("rubric_version"),
+            "scores": {dimension: taste_scores.get(dimension) for dimension in rubric_dimensions},
+            "taste_insight_score": args.taste_insight_score,
+            "qualitative_rationale": args.taste_rationale or "",
+            "non_metric_factors": args.non_metric_factor,
+        }
 
-    validation_errors = _validate(schema, gate, require_complete_attention=args.require_complete_attention)
+    validation_errors = _validate(
+        schema,
+        gate,
+        require_complete_attention=args.require_complete_attention,
+        require_complete_taste=args.require_complete_taste,
+        rubric_dimensions=rubric_dimensions,
+    )
     output = ROOT / args.output
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(gate, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -180,9 +276,17 @@ def main() -> None:
         "audit_date": args.decision_at_utc,
         "overall_status": "pass" if not validation_errors else "fail",
         "generated_gate_log": str(output.relative_to(ROOT)),
-        "complete_attention_cost": not validation_errors,
+        "complete_attention_cost": not any(
+            error.startswith("incomplete attention_cost") or error == "attention_cost must be an object"
+            for error in validation_errors
+        ),
+        "complete_taste_insight": bool(gate.get("taste_insight")) and not any(
+            error.startswith("incomplete taste_insight") or error == "taste_insight must be an object"
+            for error in validation_errors
+        ),
         "validation_errors": validation_errors,
         "attention_cost": gate["attention_cost"],
+        "taste_insight": gate.get("taste_insight"),
         "interpretation": "Synthetic tooling smoke; not counted as real human-gated experiment evidence.",
     }
     if args.audit_json:

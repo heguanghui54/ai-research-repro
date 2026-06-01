@@ -136,7 +136,9 @@ Do not estimate missing historical review time; run
 measurement gap.
 Use `scripts/create_human_gate_log.py` during prospective runs to create a
 schema-compatible gate log with active review minutes, wall-clock latency,
-options reviewed, artifacts reviewed, and decision count.
+options reviewed, artifacts reviewed, decision count, and scientific
+taste/insight fields. Use `--require-complete-attention` and
+`--require-complete-taste` for matched-budget packages.
 
 For gates where human scientific taste or insight changes the search frontier,
 also fill `taste_insight` with the project rubric. Run
@@ -215,6 +217,7 @@ Reusable templates are stored next to this skill:
 - taste/insight rubric records;
 - human gate logs;
 - attention-cost logging smoke audit;
+- attention+taste logging smoke audit;
 - human attention-cost audit;
 - taste/insight coverage audit;
 - prospective matched-budget package audit;
