@@ -1,0 +1,6 @@
+﻿video_id,local_video_path,source_dataset,platform,url_hash,case_role,comparison_group,routine,action_segment,rights_status,expected_use,notes
+TC0001,,official_standard,,,standard_reference,official,八段锦,左右开弓似射雕,rights_confirmed,pose_feature_and_frame_coding,
+TC0002,,platform_sample,,,platform_variant,platform,八段锦,左右开弓似射雕,manual_view_only,pose_feature_and_frame_coding,
+TC0003,,platform_sample,,,platform_variant,platform,五禽戏,鸟戏,manual_view_only,pose_feature_and_frame_coding,
+TC0004,,platform_sample,,,platform_variant,platform,六字诀,嘘字诀,manual_view_only,frame_coding_only,
+TC0005,,platform_sample,,,platform_variant,platform,易筋经,韦驮献杵,manual_view_only,frame_coding_only,
