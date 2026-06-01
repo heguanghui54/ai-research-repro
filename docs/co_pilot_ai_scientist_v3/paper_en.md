@@ -300,6 +300,18 @@ human scientific taste is a logged, high-variance intervention whose value must
 be tested across a distribution of research trajectories, not assumed from a
 single favorable case.
 
+Finally, we add a first matched mini-manuscript quality probe for the FML-bench
+prospective package. The probe generates an autonomous mini-manuscript from the
+same baseline evidence, anonymizes the co-pilot package manuscript as A and the
+autonomous manuscript as B, and asks Monica-routed `gpt-4o-mini` and
+`claude-3-7-sonnet-latest` to score claim calibration, evidence use,
+methodological completeness, limitation honesty, clarity, and overall quality.
+Both reviewers prefer A, with overall scores `4` versus `3`. The rationales
+credit the co-pilot manuscript for stronger claim calibration and more explicit
+limitations despite its worse benchmark score. This is only a
+measurement-readiness result: the artifacts are short package manuscripts from
+one FML task, not complete end-to-end generated papers.
+
 To make this principle operational, we maintain a benchmark-to-claim matrix.
 FML-bench Causality supports the branch-gate feasibility claim but does not yet
 show general human-gate superiority. FML-bench Fairness supports the need for

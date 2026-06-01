@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_updated_paper_quality_review_and_mixed_prospective_evidence",
+  "status": "pilot_package_with_matched_mini_manuscript_quality_probe",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -310,7 +310,15 @@
     "scripts/run_prospective_fml_matched_package.py",
     "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.json",
     "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md",
-    "scripts/summarize_prospective_matched_packages.py"
+    "scripts/summarize_prospective_matched_packages.py",
+    "scripts/score_matched_manuscripts.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/autonomous_manuscript.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/gpt-4o-mini.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/gpt-4o-mini.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/claude-3-7-sonnet-latest.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/claude-3-7-sonnet-latest.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -320,6 +328,7 @@
   ],
   "next_required_evidence": [
     "Run at least 5 matched-budget pairs per task across at least 3 tasks, with means, variance, and paired tests before making superiority claims.",
+    "Run matched mini-manuscript scoring on complete end-to-end co-pilot and autonomous manuscripts, not only package mini-manuscripts.",
     "Demonstrate one continuous end-to-end trajectory from new hypothesis generation to experiments, claim audit, and final manuscript, plus a matched autonomous manuscript baseline.",
     "Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.",
     "Obtain at least one scored official non-FML benchmark with a complete matched comparison when data access permits.",
@@ -411,5 +420,19 @@
       "claude-3-7-sonnet-latest"
     ],
     "interpretation": "external_model_review_still_rates_top_conference_evidence_as_incomplete"
+  },
+  "matched_mini_manuscript_quality_probe": {
+    "status": "weak_positive_for_co_pilot_mini_manuscript_not_full_paper_claim",
+    "script": "scripts/score_matched_manuscripts.py",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.md",
+    "package_id": "prospective_matched_fml_causality_20260602_000001",
+    "co_pilot_wins": 2,
+    "autonomous_wins": 0,
+    "ties": 0,
+    "reviewers": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "interpretation": "measurement_readiness_and_weak_mini_manuscript_signal_only"
   }
 }

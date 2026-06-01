@@ -51,6 +51,18 @@ single end-to-end paper-generating trajectory has been demonstrated.
 - Keep AlphaEvolve wording as `OpenEvolve-based` or `AlphaEvolve-style` unless
   official AlphaEvolve code becomes available.
 
+## Mini-Manuscript Probe
+
+After the review pass, we added a narrow matched mini-manuscript scoring probe
+for `prospective_matched_fml_causality_20260602_000001`. The probe generates an
+autonomous baseline mini-manuscript from the same package evidence and asks
+Monica-routed `gpt-4o-mini` and `claude-3-7-sonnet-latest` to score anonymized
+manuscripts A/B. Both reviewers prefer the co-pilot package mini-manuscript,
+with overall scores `4` versus `3`. This is a useful measurement-readiness
+signal, but it should not be read as evidence that the full co-pilot system
+writes better papers: it covers one short package manuscript, not a complete
+end-to-end manuscript generated under matched conditions.
+
 ## Paper Treatment
 
 The manuscript should present Co-Pilot AI Scientist v3 as an architecture,

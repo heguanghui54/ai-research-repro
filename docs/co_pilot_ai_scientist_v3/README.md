@@ -58,6 +58,9 @@ claim calibration.
 - `audits/prospective_matched_package_summary.md`: metric-level summary of
   currently passing prospective packages, separating positive micro-task
   evidence from negative FML-bench evidence.
+- `experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/`:
+  matched mini-manuscript quality probe comparing the co-pilot package
+  manuscript against an autonomous baseline manuscript.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.
@@ -225,3 +228,14 @@ FML-bench loss for the co-pilot branch. Both packages have complete
 intended evidence discipline for IGRE: human taste/insight is treated as a
 high-variance search intervention to be measured, not as an assumed positive
 effect.
+
+The package now includes a first matched mini-manuscript quality probe under
+`experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/`.
+The probe generates an autonomous baseline mini-manuscript from the same
+package evidence and asks Monica-routed `gpt-4o-mini` and
+`claude-3-7-sonnet-latest` to score anonymized manuscripts A/B. Both reviewers
+prefer the co-pilot package mini-manuscript (`overall 4` versus `3`), mainly
+because it is better calibrated and more explicit about limitations. This is
+useful measurement-readiness evidence, but it is not a full paper-quality
+result: the artifacts are short package manuscripts from one FML task, not
+complete end-to-end generated papers.

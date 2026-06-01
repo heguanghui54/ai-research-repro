@@ -108,6 +108,14 @@
       "complete end-to-end paper-generating trajectory",
       "human attention/taste measurement in prospective gates",
       "independent paper-quality comparison"
-    ]
+    ],
+    "matched_mini_manuscript_probe": {
+      "status": "weak_positive_single_package_probe",
+      "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.md",
+      "co_pilot_wins": 2,
+      "autonomous_wins": 0,
+      "ties": 0,
+      "limitation": "single FML package mini-manuscripts only; not full end-to-end paper quality evidence"
+    }
   }
 }

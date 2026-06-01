@@ -139,6 +139,16 @@ python3 scripts/summarize_prospective_matched_packages.py
 “证据形状通过”和“benchmark 结果是否正向”。当前 summary 包含一个 controlled
 micro-task 的 co-pilot 正结果，以及一个 FML-bench 的 co-pilot 负结果。
 
+如果要给当前 matched FML mini-manuscripts 做质量评分，运行：
+
+```bash
+python3 scripts/score_matched_manuscripts.py
+```
+
+它会为同一个 package 生成 autonomous mini-manuscript，并写出
+`experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.md`。
+这只是窄范围 manuscript-quality probe，不能当作完整 paper-quality 证明。
+
 如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
 
 ```bash

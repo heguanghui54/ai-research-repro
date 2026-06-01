@@ -108,6 +108,10 @@ and claim responsibility can reshape the trajectory.
      `scripts/summarize_prospective_matched_packages.py` and report the metric
      direction, co-pilot score, autonomous score, winner, and claim implication.
      Do not treat a passed package audit as a positive performance result.
+   - If the package contains a manuscript artifact, run
+     `scripts/score_matched_manuscripts.py` to create a matched autonomous
+     mini-manuscript and score anonymized A/B manuscript quality. Treat this as
+     measurement-readiness unless full end-to-end manuscripts are scored.
    - To check the package shape on a controlled remote computation, run
      `scripts/run_prospective_matched_budget_micro_pilot.py`; treat it only as
      evidence-shape validation, not as AI Scientist-v2 superiority evidence.

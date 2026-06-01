@@ -1,0 +1,87 @@
+{
+  "package_id": "prospective_matched_fml_causality_20260602_000001",
+  "status": "mini_manuscript_quality_probe",
+  "co_pilot_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/manuscript.md",
+  "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/autonomous_manuscript.md",
+  "review_count": 2,
+  "successful_reviews": 2,
+  "co_pilot_wins": 2,
+  "autonomous_wins": 0,
+  "ties": 0,
+  "reviews": [
+    {
+      "model": "gpt-4o-mini",
+      "status_code": 200,
+      "raw_json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/gpt-4o-mini.json",
+      "markdown": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/gpt-4o-mini.md",
+      "parsed": {
+        "recommendation": "A",
+        "scores": {
+          "A": {
+            "claim_calibration": 4,
+            "evidence_use": 4,
+            "methodological_completeness": 4,
+            "limitation_honesty": 5,
+            "clarity": 4,
+            "overall": 4
+          },
+          "B": {
+            "claim_calibration": 3,
+            "evidence_use": 3,
+            "methodological_completeness": 3,
+            "limitation_honesty": 4,
+            "clarity": 3,
+            "overall": 3
+          }
+        },
+        "rationale": "Manuscript A presents a clearer and more comprehensive claim about its findings, acknowledges its limitations effectively, and uses evidence in a way that supports its conclusions. Manuscript B, while providing a valid baseline, lacks the depth in claim calibration and evidence use, making it less compelling overall.",
+        "required_next_evidence": [
+          "comparison of additional metrics",
+          "broader applicability of findings",
+          "further exploration of human factors in AI performance"
+        ]
+      },
+      "interpretation": "co_pilot_preferred"
+    },
+    {
+      "model": "claude-3-7-sonnet-latest",
+      "status_code": 200,
+      "raw_json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/claude-3-7-sonnet-latest.json",
+      "markdown": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/claude-3-7-sonnet-latest.md",
+      "parsed": {
+        "recommendation": "A",
+        "scores": {
+          "A": {
+            "claim_calibration": 4,
+            "evidence_use": 4,
+            "methodological_completeness": 4,
+            "limitation_honesty": 4,
+            "clarity": 4,
+            "overall": 4
+          },
+          "B": {
+            "claim_calibration": 3,
+            "evidence_use": 3,
+            "methodological_completeness": 3,
+            "limitation_honesty": 3,
+            "clarity": 3,
+            "overall": 3
+          }
+        },
+        "rationale": "Manuscript A is the more complete and self-aware document. It frames the experiment as a prospective matched-budget pilot, explicitly contextualizes the result against a prior micro-pilot, and honestly acknowledges that the co-pilot variant performed worse on the held-out metric while still articulating what the package does and does not prove. The claim is well-calibrated: it neither over-sells the co-pilot result nor dismisses the experiment. Manuscript B is essentially a stripped-down mirror document that reports the same numbers from the autonomous baseline's perspective. While it correctly notes the autonomous run wins on test MAE and appropriately disclaims what it does not measure, it provides less methodological context (e.g., no mention of the frontier-steering gate structure, no comparison to prior work), and its claim section is narrower and less informative. Both manuscripts are brief and share the same underlying data, but A does more intellectual work with that data and situates it more honestly within the broader research question.",
+        "required_next_evidence": [
+          "Ablation or sensitivity analysis showing whether the MAE gap is within run-to-run variance (e.g., multiple seeds or repeated runs under the same budget)",
+          "Human gate log details for the co-pilot run: what decisions were made at the frontier-steering gate and how they affected the search trajectory",
+          "A broader task sweep (more than one FML-bench task) to assess whether the autonomous advantage over co-pilot is consistent or task-specific"
+        ]
+      },
+      "interpretation": "co_pilot_preferred"
+    }
+  ],
+  "limitations": [
+    "Scores mini-manuscripts, not complete generated papers.",
+    "Single task and single prospective package.",
+    "A is co-pilot and B is autonomous; anonymized to reviewers but not randomized.",
+    "Model review is an audit aid, not human expert peer review."
+  ]
+}

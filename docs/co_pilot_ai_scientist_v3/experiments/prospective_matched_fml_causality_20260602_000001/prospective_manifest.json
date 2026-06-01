@@ -21,5 +21,16 @@
     "No independent human-subject timing.",
     "Does not evaluate final paper quality.",
     "Does not include OpenEvolve subproblem escalation."
-  ]
+  ],
+  "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/autonomous_manuscript.md",
+  "paper_quality_probe": {
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.json",
+    "models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "result": "both_reviewers_prefer_co_pilot_mini_manuscript_over_autonomous_mini_manuscript",
+    "limitation": "mini_manuscript_single_package_not_full_paper_quality_evidence"
+  }
 }

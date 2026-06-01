@@ -153,6 +153,16 @@ separate evidence-shape success from actual benchmark outcomes. The current
 summary contains one controlled micro-task co-pilot win and one FML-bench
 co-pilot loss.
 
+To score the current matched FML mini-manuscripts, run:
+
+```bash
+python3 scripts/score_matched_manuscripts.py
+```
+
+This generates an autonomous mini-manuscript for the package and writes
+`experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.md`.
+Treat this as a narrow manuscript-quality probe, not a full paper-quality claim.
+
 To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
 
 ```bash
