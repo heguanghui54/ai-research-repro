@@ -53,6 +53,8 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 此外，本文还提供了一个可重新运行的 full-gate trace 脚本。该脚本读取当前已归档的实验摘要，连续重新计算 idea、evaluator、branch、program-search 和 claim 五类 gate 决策，并输出 JSON 与 Markdown artifact。这证明 gate policy 可以在当前证据包上被程序化执行；但它被明确标注为 executable artifact replay，而不是新的在线训练 run。
 
+在 replay artifact 之后，我们又在 `ubuntu-heshi` 上跑了一次新的 online full-gate smoke trajectory。该 orchestrator 生成 idea gate，审批低成本 evaluator bundle，启动新的两 draft FML-bench Causality frontier，选择验证 MAE 更低的分支，从所选 snapshot 继续运行一步 AI Scientist-v2，同时在同一轨迹中跑一次一轮 OpenEvolve knapsack 搜索，并写出 claim-audit gate。branch frontier 选择 step 2（验证 MAE `0.627837`）而不是 step 1（验证 MAE `0.677448`）。随后一 步 continuation 的 test MAE 为 `0.862015`，差于所选 frontier 的 test MAE `0.646224`；同一轨迹中的 knapsack OpenEvolve smoke 达到 best score `1.000000`。这是第一条覆盖五类 gate 的在线编排证据，但它只是 smoke test，且 continuation 是负结果，不能作为 co-pilot 优越性的证据。
+
 ## 4. Benchmark 选择与评估计划
 
 我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化和 0/1 knapsack 启发式搜索。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力，并进一步记录了 MLAgentBench CIFAR10/debug 与 ScienceAgentBench 的 setup probes。当前证据还没有第二个已打分的官方非 FML benchmark：CIFAR10/debug 被慢速数据下载阻塞，ScienceAgentBench 的元数据和 verified artifacts 在 Ubuntu 主机上暂时不可达。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
@@ -115,21 +117,22 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 2. 一个用于科研 agent 的人类参与节点形式化 schema。
 3. 一条 retrospective full-gate trajectory，展示 idea、evaluator、branch、program-search 和 claim-audit gate 都可以用同一 schema 记录。
 4. 一个可重新运行的 full-gate trace 脚本，可以从已归档实验摘要中重新计算 gate chain，并明确把输出标记为 artifact replay。
-5. 一个评估“人类注意力是否以及应该放在哪里”的实验协议。
-6. 远程 OpenEvolve 与 FML-bench 小实验，证明 AlphaEvolve-style 子问题模块和 AI Scientist-v2 分支 gate 模块可以在 Ubuntu 主机上运行。
-7. 两组同预算 FML-bench Causality 对照：human-gated branch continuation 与四步 autonomous AI Scientist-v2 baseline，结果呈混合状态。
-8. 两个非 FML 程序搜索小实验，分别覆盖 runtime optimization 和 tabular regression，用于扩展 FML-bench 之外的 benchmark 覆盖面。
-9. 一个可在 Codex 中复用的 workflow skill。
-10. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
-11. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。
+5. 第一条 online full-gate smoke trajectory，在一次远端运行中覆盖 idea、evaluator、branch、program-search 和 claim gate，同时记录了负向 continuation 结果。
+6. 一个评估“人类注意力是否以及应该放在哪里”的实验协议。
+7. 远程 OpenEvolve 与 FML-bench 小实验，证明 AlphaEvolve-style 子问题模块和 AI Scientist-v2 分支 gate 模块可以在 Ubuntu 主机上运行。
+8. 两组同预算 FML-bench Causality 对照：human-gated branch continuation 与四步 autonomous AI Scientist-v2 baseline，结果呈混合状态。
+9. 两个非 FML 程序搜索小实验，分别覆盖 runtime optimization 和 tabular regression，用于扩展 FML-bench 之外的 benchmark 覆盖面。
+10. 一个可在 Codex 中复用的 workflow skill。
+11. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
+12. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
 
 ## 6. 局限性
 
-本文不预设人类参与一定有效。人类 gate 可能引入偏见、降低搜索速度、压缩探索多样性。程序化搜索可能只优化局部指标，却不能提高论文层面的科学贡献；在极小预算下，它也未必优于直接 LLM 编辑。专家论文评分成本较高，而且不同评审可能存在分歧。因此，第一版实验应保持窄主张，并在 gate 无法改善结果时如实报告负结果。当前 selected-branch continuation 证据在两组 matched pair 中呈混合状态，还不是统计受控 benchmark；retrospective full-gate trajectory 和 executable artifact replay 证明了 schema、决策链和可复现 traversal logic，但不是一次所有 gate 都在线运行的实验。更强主张需要更多任务、更多随机种子、更丰富的预算分配设置、真正在线的四循环轨迹，以及独立论文质量评审。
+本文不预设人类参与一定有效。人类 gate 可能引入偏见、降低搜索速度、压缩探索多样性。程序化搜索可能只优化局部指标，却不能提高论文层面的科学贡献；在极小预算下，它也未必优于直接 LLM 编辑。专家论文评分成本较高，而且不同评审可能存在分歧。因此，第一版实验应保持窄主张，并在 gate 无法改善结果时如实报告负结果。当前 selected-branch continuation 证据在两组 matched pair 中呈混合状态，还不是统计受控 benchmark；retrospective full-gate trajectory 和 executable artifact replay 证明了 schema、决策链和可复现 traversal logic。online smoke trajectory 已经在一次远端运行中覆盖五类 gate，但预算极小、混合了 FML branch task 和 knapsack program-search 子问题，并且 continuation test score 变差。更强主张需要更多任务、更多随机种子、更丰富的预算分配设置、同一 online trajectory 的 matched autonomous baseline，以及独立论文质量评审。
 
-当前实现还缺少一次所有四个循环连续运行的端到端演示。现有实验和 executable artifact replay 主要证明单个模块以及 gate-chain traversal 可以跑通；下一版 systems paper 至少需要报告一条从假设生成到最终 claim-audited manuscript 的完整在线轨迹。
+当前实现还缺少一次从新假设生成到最终论文生产的完整端到端演示。现有 online smoke run 证明了编排可行性，但下一版 systems paper 至少需要报告一条从假设生成到最终 claim-audited manuscript 的更大规模 matched 在线轨迹。
 
 ## 7. 结论
 

@@ -34,6 +34,20 @@ This writes `experiments/full_gate_executable_trace/trajectory.json` and
 `README.md`. Treat it as a reproducibility check over archived artifacts, not
 as a fresh online full-gate experiment.
 
+To launch a small fresh online full-gate smoke trajectory on `ubuntu-heshi`,
+run:
+
+```bash
+python3 scripts/run_online_full_gate_smoke.py \
+  --branch-steps 2 \
+  --continuation-steps 1 \
+  --program-iterations 1
+```
+
+This runs FML-bench and OpenEvolve remotely. It is intended to prove
+orchestration feasibility; it still needs a matched autonomous baseline before
+any performance claim.
+
 For a Monica-routed paper-quality review, source the global environment and run:
 
 ```bash

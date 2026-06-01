@@ -121,6 +121,19 @@ Markdown artifacts. This verifies that the gate policy can be executed over the
 current evidence package. It is deliberately labeled as an executable artifact
 replay rather than a fresh online training run.
 
+After that replay artifact, we ran a first fresh online full-gate smoke
+trajectory on `ubuntu-heshi`. The orchestrator generated an idea gate, approved
+a low-cost evaluator bundle, launched a new two-draft FML-bench Causality
+frontier, selected the lower-validation-MAE branch, continued the selected
+snapshot for one AI Scientist-v2 step, ran a one-iteration OpenEvolve knapsack
+search, and wrote a claim-audit gate. The branch frontier selected step 2
+(`0.627837` validation MAE) over step 1 (`0.677448`). The one-step continuation
+then reached test MAE `0.862015`, worse than the selected frontier's test MAE
+`0.646224`; the simultaneous knapsack OpenEvolve smoke reached best score
+`1.000000`. This is the first online orchestration evidence for all five gate
+types, but it is a smoke test and a negative continuation outcome, not evidence
+of co-pilot superiority.
+
 ## 4. Benchmark Selection and Evaluation Plan
 
 We evaluate six variants: autonomous baseline, idea gate only, branch gate only,
@@ -364,20 +377,23 @@ The current contributions are:
    program-search, and claim-audit gates serialized under the shared schema.
 4. A rerunnable full-gate trace script that recomputes the gate chain from
    archived experiment summaries while marking the output as artifact replay.
-5. An evaluation protocol for measuring whether and where human attention
+5. A first online full-gate smoke trajectory that exercises idea, evaluator,
+   branch, program-search, and claim gates in one remote run, while producing a
+   negative continuation outcome.
+6. An evaluation protocol for measuring whether and where human attention
    improves agentic research.
-6. Initial remote OpenEvolve and FML-bench probes showing that the
+7. Initial remote OpenEvolve and FML-bench probes showing that the
    AlphaEvolve-style subproblem module and AI Scientist-v2 branch-gate module
    can run on the Ubuntu host.
-7. Two matched-budget FML-bench Causality comparisons between a human-gated
+8. Two matched-budget FML-bench Causality comparisons between a human-gated
    branch continuation and a four-step autonomous AI Scientist-v2 baseline,
    with mixed outcomes.
-8. Non-FML program-search probes for runtime optimization and tabular
+9. Non-FML program-search probes for runtime optimization and tabular
    regression, broadening benchmark coverage beyond FML-bench.
-9. A reusable Codex skill for running the workflow.
-10. Bilingual paper, usage artifacts, and claim-audit artifacts for
+10. A reusable Codex skill for running the workflow.
+11. Bilingual paper, usage artifacts, and claim-audit artifacts for
    reproducibility.
-11. A Monica-routed paper-quality review artifact that records external model
+12. A Monica-routed paper-quality review artifact that records external model
    criticism before the next revision.
 
 The current evidence does not yet prove that human gates improve paper quality
@@ -395,15 +411,18 @@ claims and report negative results when gates fail to improve outcomes. The
 current selected-branch continuation evidence is mixed across two matched pairs
 and is not yet a statistically controlled benchmark. The retrospective
 full-gate trajectory and executable artifact replay show the schema, decision
-chain, and reproducible traversal logic, but neither is a single online run with
-all gates active. Stronger claims require more tasks, more seeds, richer budget
-schedules, a true online four-loop trajectory, and independent paper-quality
-review.
+chain, and reproducible traversal logic. The online smoke trajectory does
+exercise all five gates in one remote run, but it uses a tiny budget, mixes an
+FML branch task with a knapsack program-search subproblem, and produced a worse
+continuation test score. Stronger claims require more tasks, more seeds, richer
+budget schedules, a matched autonomous baseline for the same online trajectory,
+and independent paper-quality review.
 
-The current implementation also lacks one complete end-to-end demonstration in
-which all four loops operate in a single continuous trajectory. The module probes
-show feasibility for individual components, but the next systems-paper draft
-must report at least one full trajectory from hypothesis generation to final
+The current implementation still lacks a complete paper-generating end-to-end
+demonstration in which all four loops operate in a single continuous trajectory
+from new hypothesis generation through final manuscript production. The online
+smoke run proves orchestration feasibility, but the next systems-paper draft
+must report a larger matched trajectory from hypothesis generation to final
 claim-audited manuscript.
 
 ## 7. Conclusion

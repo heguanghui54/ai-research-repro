@@ -22,6 +22,7 @@ Reviewer routes:
 | Programmatic search should be gated rather than always used. | Function-minimization direct baseline `0.038021` beats 1-iter OpenEvolve `0.037816` and 5-iter OpenEvolve `0.038007`; sklearn diabetes direct rewrite matches median OpenEvolve RMSE `55.895460`; knapsack/MLAgentBench favor OpenEvolve. | Supported | State as a design lesson: use escalation gate based on evaluator richness, expected search value, and budget. |
 | Benchmark expansion beyond FML-bench is underway but incomplete. | MLAgentBench vectorization has an official baseline and controlled eight-seed probe. MLAgentBench CIFAR10/debug setup repaired `torchvision` but stopped at slow dataset download. ScienceAgentBench repository is present, but verified artifacts are missing and HuggingFace metadata was unreachable from `ubuntu-heshi`. | Supported as setup/progress evidence only | Do not report CIFAR10 or ScienceAgentBench scores. Use these probes to justify next evidence requirements. |
 | The full set of proposed gate types can be represented as structured artifacts. | `idea_gate_001.json`, `evaluator_gate_fairness_metric_guardrail.json`, `branch_gate_causality_online_two_drafts.json`, `program_search_gate_001.json`, `claim_gate_001.json`, `full_gate_retrospective_trajectory.md`, and `full_gate_executable_trace/trajectory.json`. | Supported as retrospective/executable artifact evidence | Present as an auditable and rerunnable gate-chain artifact, not as a completed online end-to-end run. |
+| All five proposed gate types can be exercised in one fresh online smoke trajectory. | `online_full_gate_smoke_20260601_145720/trajectory.json`: fresh FML two-draft frontier, selected-snapshot continuation, one-iteration OpenEvolve knapsack, and claim audit on `ubuntu-heshi`. | Supported as online orchestration smoke evidence | Present as feasibility only; the one-step continuation worsened held-out test MAE and no matched autonomous baseline was run for this exact trajectory. |
 | AI Scientist-v2 branch frontiers can expose actionable human gate points. | Retrospective FML replay and live two-draft Causality probe with logged branch metrics. | Supported as feasibility | Present as feasible insertion point, not proof that humans improve outcomes generally. |
 | Evaluator gates must reject non-executable and metric-gaming branches before continuation. | `fml_fairness_gated_drafts_failed/`: two Fairness_fairlearn drafts failed validation due Fairlearn/sklearn API incompatibilities before producing a score. `fml_fairness_evaluator_gate_repair.md`: an executable repaired candidate worsened test demographic parity difference (`0.317603` vs baseline `0.173030`), while a degenerate all-negative predictor achieved `0.000000` demographic parity difference but only `0.500000` balanced accuracy. | Supported as failure-mode/evaluator-design evidence | Present as a gate-design lesson. Do not count the Fairness probe as matched-budget performance evidence or a fairness improvement. |
 | Matched-budget human-gated branch continuation has mixed evidence against autonomous AI Scientist-v2. | Pair 1: human-gated test MAE `0.402170`, autonomous test MAE `0.421474`. Pair 2: human-gated test MAE `0.646224`, autonomous test MAE `0.595685`. Two-pair mean favors autonomous by `0.015618` MAE. | Supported as mixed evidence | Present as feasibility plus mixed outcome; do not claim human-gate superiority. |
@@ -51,6 +52,10 @@ Reviewer routes:
   `experiments/full_gate_executable_trace/trajectory.json` as a reproducible
   artifact replay of the gate chain, while preserving the caveat that it is not
   a fresh online run.
+- Add `scripts/run_online_full_gate_smoke.py` and
+  `experiments/online_full_gate_smoke_20260601_145720/` as a first fresh online
+  five-gate smoke trajectory; report it as orchestration feasibility and
+  negative continuation evidence, not as a win.
 
 ## Remaining Evidence Needed
 
@@ -60,7 +65,7 @@ Reviewer routes:
 - Expert or rubric-based paper-quality scoring.
 - A second scored non-FML benchmark task. Current CIFAR10/debug and
   ScienceAgentBench probes are setup evidence only.
-- A complete online four-loop end-to-end trajectory with all gates operating in
-  one run. The current full-gate trajectory is retrospective/executable
-  artifact replay only.
+- A larger online four-loop end-to-end trajectory that goes from new hypothesis
+  generation to final manuscript production, with a matched autonomous baseline
+  under the same budget.
 - GitHub publication and independent reproducibility check.
