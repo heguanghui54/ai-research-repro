@@ -153,6 +153,18 @@ python3 scripts/audit_prospective_matched_budget_package.py
 This is useful for validating the package format, but it is not a substitute
 for an AI Scientist-v2/FML or MLAgentBench prospective matched-budget run.
 
+To run the smallest current FML-bench prospective matched package, use:
+
+```bash
+python3 scripts/run_prospective_fml_matched_package.py \
+  --host ubuntu-heshi \
+  --max-steps 2
+python3 scripts/audit_prospective_matched_budget_package.py
+```
+
+The archived FML package is a negative result for co-pilot performance at this
+budget, so treat it as pilot evidence and a template for larger runs.
+
 ## Human Gate Types
 
 - `scientific_taste_prior`: choose or rewrite the research hypothesis using

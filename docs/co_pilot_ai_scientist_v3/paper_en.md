@@ -279,6 +279,16 @@ generated and audited on a real remote computation, but it is not
 top-conference performance evidence: it does not use AI Scientist-v2 tree
 search and does not evaluate paper quality.
 
+We then upgraded this evidence shape to an AI Scientist-v2-style FML-bench
+pilot. The new package runs fresh `Causality_causalml` co-pilot and autonomous
+baselines under the same DeepSeek model and two-step budget, records complete
+attention/taste fields for the human frontier gate, and writes a claim audit
+plus mini-manuscript. The result is negative for co-pilot performance in this
+small run: co-pilot test MAE is `0.646224`, while the matched autonomous run
+reaches `0.624703` (lower is better). This is valuable because it verifies the
+prospective evidence package on an AI Scientist-v2-style task while reinforcing
+that superiority remains unproven.
+
 To make this principle operational, we maintain a benchmark-to-claim matrix.
 FML-bench Causality supports the branch-gate feasibility claim but does not yet
 show general human-gate superiority. FML-bench Fairness supports the need for
@@ -544,6 +554,9 @@ The current contributions are:
 17. A controlled prospective Max-Cut micro-pilot package that passes this
    validator, with complete attention/taste logging, matched baseline metrics,
    claim audit, and same-run manuscript artifact.
+18. A prospective FML-bench Causality package with complete attention/taste
+   logging and matched autonomous baseline, yielding a negative co-pilot
+   performance result in the small two-step setting.
 
 The current evidence does not yet prove that human gates improve paper quality
 or that the full co-pilot system outperforms autonomous AI Scientist-v2. Those
@@ -582,10 +595,11 @@ ratio of research quality to human effort. The next matched-budget experiments
 must record attention cost prospectively.
 
 The new prospective matched-budget package audit now passes on one controlled
-micro-pilot. This is progress in evidence shape, not in final empirical
-strength. The package uses a small weighted Max-Cut task rather than
-AI Scientist-v2/FML or MLAgentBench research trajectories, so it keeps the paper
-at pilot-system evidence until a stronger prospective experiment exists.
+micro-pilot and one FML-bench Causality pilot. This is progress in evidence
+shape, not in final empirical strength. The FML pilot is negative for co-pilot
+performance at this budget, and neither package evaluates paper quality. The
+paper therefore remains at pilot-system evidence until larger prospective
+experiments exist.
 
 The taste/insight evidence is also only at the logging-readiness stage. The
 archive now contains one complete scientific-taste prior record, grounded in

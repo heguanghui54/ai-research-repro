@@ -140,6 +140,17 @@ python3 scripts/audit_prospective_matched_budget_package.py
 它适合验证 package format，但不能替代 AI Scientist-v2/FML 或 MLAgentBench 的
 prospective matched-budget 实验。
 
+如果要运行当前最小的 FML-bench prospective matched package，使用：
+
+```bash
+python3 scripts/run_prospective_fml_matched_package.py \
+  --host ubuntu-heshi \
+  --max-steps 2
+python3 scripts/audit_prospective_matched_budget_package.py
+```
+
+当前归档的 FML package 在这个预算下是 co-pilot performance 负结果，因此应把它作为 pilot evidence 和后续更大运行的模板。
+
 ## 人类参与节点
 
 - `scientific_taste_prior`：基于科研品味和上行空间选择或改写研究假设，而不只看当前分数。

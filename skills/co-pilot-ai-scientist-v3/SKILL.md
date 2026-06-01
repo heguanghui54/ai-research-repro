@@ -107,6 +107,9 @@ and claim responsibility can reshape the trajectory.
    - To check the package shape on a controlled remote computation, run
      `scripts/run_prospective_matched_budget_micro_pilot.py`; treat it only as
      evidence-shape validation, not as AI Scientist-v2 superiority evidence.
+   - To create a small AI Scientist-v2-style prospective package, run
+     `scripts/run_prospective_fml_matched_package.py` on the configured Ubuntu
+     host, then audit it. Report negative matched results directly.
 
 ## Human Gate Schema
 

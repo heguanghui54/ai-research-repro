@@ -54,13 +54,15 @@
     "real_gate_complete_attention_cost_records": 0,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Upgrade the passing controlled prospective micro-pilot into a substantive AI Scientist-v2/FML or MLAgentBench matched-budget package with complete taste_insight and attention_cost logs, claim audit, and same-run manuscript.",
+  "next_evidence_milestone": "Scale the passing FML prospective package beyond one small negative Causality run: more tasks, seeds, larger budgets, paper-quality scoring, and independent human timing.",
   "prospective_matched_budget_package_audit": {
-    "status": "pass_for_controlled_micro_pilot",
-    "manifest_files_checked": 1,
-    "passing_packages": 1,
-    "passing_package_id": "prospective_matched_micro_pilot_20260602_000001",
-    "performance_evidence": "controlled_micro_pilot_only_not_top_conference_evidence",
+    "status": "pass_with_fml_negative_pilot",
+    "manifest_files_checked": 2,
+    "passing_packages": 2,
+    "strongest_package_id": "prospective_matched_fml_causality_20260602_000001",
+    "fml_co_pilot_test_mae": 0.646223724015837,
+    "fml_autonomous_test_mae": 0.6247032882621405,
+    "performance_evidence": "small_fml_pilot_negative_for_co_pilot_not_top_conference_evidence",
     "minimum_evidence_shape_defined": true
   },
   "attention_taste_logging_tooling": {

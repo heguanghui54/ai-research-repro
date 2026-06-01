@@ -84,8 +84,10 @@ The audit passes only if at least one non-synthetic prospective matched-budget
 package satisfies the required artifact, attention-cost, taste/insight, and
 budget-matching checks.
 
-Current status: one controlled Max-Cut micro-pilot package passes the evidence
-shape audit. This is useful infrastructure evidence, but the top-conference
-evidence gap remains: the next package should use AI Scientist-v2/FML,
-MLAgentBench, or another research-agent benchmark and should evaluate paper
-quality, not only task score.
+Current status: one controlled Max-Cut micro-pilot package and one FML-bench
+Causality package pass the evidence-shape audit. The FML package is a negative
+co-pilot performance result at a small two-step budget. This is useful
+infrastructure and pilot evidence, but the top-conference evidence gap remains:
+the next packages should cover more AI Scientist-v2/FML or MLAgentBench tasks,
+more seeds, larger budgets, and paper-quality outcomes rather than only task
+score.

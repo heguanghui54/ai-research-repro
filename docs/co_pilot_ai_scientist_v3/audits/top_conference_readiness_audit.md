@@ -23,7 +23,7 @@ to do it later.
 | Human taste/insight as distinct from generic approval | Partially supported | IGRE framing, taste rubric, scientific-taste prior gate, taste coverage audit. | Show downstream effects against autonomous baselines; current evidence is logging, not performance. |
 | Human attention cost measurement | Tooling supported; real gates not yet measured | Attention-cost audit covers 18 real gates and finds 0 complete measured records. `attention_cost_logging_smoke_audit.md` shows a synthetic gate can be generated with complete prospective timing fields. | Use the logging tool during future live gates; do not count synthetic smoke as performance evidence. |
 | Joint attention+taste gate logging | Tooling supported; real matched run not yet measured | `attention_taste_logging_smoke_audit.md` shows `create_human_gate_log.py` can generate a schema-compatible gate with complete `attention_cost` and `taste_insight`. | Use `--require-complete-attention` and `--require-complete-taste` during the next prospective matched-budget package. |
-| Prospective matched-budget evidence package | Passes only as controlled micro-pilot | `prospective_matched_budget_package_audit.md` now finds 1 passing package: `prospective_matched_micro_pilot_20260602_000001`, with complete `attention_cost` and `taste_insight`, matched baseline, claim audit, and same-run manuscript. | Upgrade this from a controlled Max-Cut micro-pilot to an AI Scientist-v2/FML or MLAgentBench package before upgrading performance or paper-quality claims. |
+| Prospective matched-budget evidence package | Passes with one controlled micro-pilot and one FML negative pilot | `prospective_matched_budget_package_audit.md` now finds 2 passing packages. The stronger one, `prospective_matched_fml_causality_20260602_000001`, uses FML-bench Causality with complete `attention_cost` and `taste_insight`; autonomous test MAE `0.624703` beats co-pilot test MAE `0.646224`. | Scale beyond one small negative FML run before upgrading performance or paper-quality claims. |
 | Evidence that human collaboration writes better papers | Not yet supported | Claim audit marks this as unsupported; paper-quality reviews remain mixed. | Run expert/rubric-based paper-quality scoring on matched autonomous vs co-pilot outputs. |
 | Evidence that full Co-Pilot v3 outperforms autonomous AI Scientist-v2 | Not yet supported | FML matched pairs are mixed; online smoke comparison is negative. | Run multi-task, multi-seed matched-budget comparisons. |
 | Benchmark coverage beyond FML-Bench | Partially supported | MLAgentBench vectorization is scored; sklearn diabetes/Max-Cut/OpenEvolve tasks broaden subproblem evidence; CIFAR10/debug, IMDB, and ScienceAgentBench are setup probes only. | Obtain a second scored official non-FML benchmark when data access permits. |
@@ -56,8 +56,9 @@ The current package should not yet claim:
 - the paper is ready for a strong ML/NLP systems conference without further
   experiments.
 
-The next evidence milestone is a substantive prospective matched-budget package
-that passes `scripts/audit_prospective_matched_budget_package.py` on an
-AI Scientist-v2/FML or MLAgentBench task. The controlled micro-pilot proves the
-evidence shape can be generated; it does not yet prove paper-quality gains,
-attention efficiency, or superiority over autonomous AI Scientist-v2.
+The next evidence milestone is to scale the passing FML prospective package
+beyond one small negative Causality run: more tasks, seeds, larger budgets,
+paper-quality scoring, and independent human timing. The FML package proves the
+evidence shape can be generated on an AI Scientist-v2-style benchmark; it does
+not prove paper-quality gains, attention efficiency, or superiority over
+autonomous AI Scientist-v2.

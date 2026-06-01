@@ -203,3 +203,13 @@ The repository now contains one passing controlled micro-pilot package under
 weighted Max-Cut micro-task on `ubuntu-heshi`, but it is still only
 evidence-shape validation: it does not use AI Scientist-v2 tree search and does
 not support paper-quality or co-pilot-superiority claims.
+
+The repository also now contains a stronger FML-bench prospective matched
+package under `experiments/prospective_matched_fml_causality_20260602_000001/`.
+It ran fresh `Causality_causalml` co-pilot and autonomous runs on `ubuntu-heshi`
+with the same DeepSeek model and two-step budget, complete attention/taste gate
+logging, claim audit, and same-run manuscript. The result is negative for
+co-pilot performance in this small run: co-pilot test MAE is `0.646224`, while
+the autonomous matched baseline reaches `0.624703` (lower is better). This is
+useful evidence because it upgrades the package shape to AI Scientist-v2-style
+FML-bench while still keeping the paper's superiority claim unproven.
