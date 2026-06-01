@@ -61,6 +61,8 @@ Do not default to FML-bench for every claim. Use benchmarks by claim type:
 - OpenEvolve-controlled tasks for machine-gradeable algorithm search.
 - MLAgentBench for non-FML ML experimentation and correctness-gated code
   optimization.
+- Controlled sklearn tabular probes for cheap non-FML modeling evidence and
+  escalation-boundary tests when external benchmark credentials are unavailable.
 - ScienceAgentBench for data-driven scientific discovery only after the
   verified benchmark artifacts are downloaded on the Ubuntu host.
 - PaperBench-style rubrics for claim and manuscript-quality audits when a full

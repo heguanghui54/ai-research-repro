@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "iterations": 3,
+  "random_seed": 1,
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "initial_program": "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/initial_program.py",
+  "evaluator": "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py",
+  "best_score": -55.94653917583724,
+  "output_dir": "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run"
+}

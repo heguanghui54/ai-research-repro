@@ -172,7 +172,28 @@
     "skills/co-pilot-ai-scientist-v3/SKILL.md",
     "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
     "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json",
-    "skills/co-pilot-ai-scientist-v3/templates/claim_audit_template.md"
+    "skills/co-pilot-ai-scientist-v3/templates/claim_audit_template.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/initial_program.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_direct_deepseek_dummy/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_direct_deepseek_dummy/candidate_program.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_direct_deepseek_dummy/raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed0/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed0/run/logs/openevolve_20260601_214232.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed0/run/best/best_program.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed0/run/best/best_program_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/logs/openevolve_20260601_214307.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/best/best_program.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/best/best_program_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed2/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed2/run/logs/openevolve_20260601_214325.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed2/run/best/best_program.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed2/run/best/best_program_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_comparison.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_house_price_setup_probe/README.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -185,7 +206,7 @@
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "Generate expert or rubric-based paper quality scores.",
     "Run a complete four-loop trajectory with all gates active.",
-    "Download verified ScienceAgentBench artifacts or add a second MLAgentBench task for broader non-FML coverage."
+    "Download verified ScienceAgentBench artifacts or add a second official MLAgentBench task for broader non-FML coverage; current sklearn tabular probe is controlled evidence, not an official benchmark score."
   ],
   "model_routing_policy": {
     "routine_coding_and_smoke_tests": "DeepSeek or low-cost Monica-routed model",

@@ -40,6 +40,8 @@ high-leverage creative, evaluation, search, and claim-audit nodes.
    - Treat benchmark availability as evidence: if a benchmark's code is present
      but its private/verified data are absent, log that as a setup probe rather
      than reporting scores.
+   - When official benchmark data are blocked, prefer a small controlled probe
+     with explicit caveats over silently narrowing back to an easier benchmark.
    - For optimization tasks, add correctness gates before runtime or score
      optimization so fast invalid programs cannot win.
    - Trigger `evaluator_gate` before expensive runs.
@@ -119,6 +121,10 @@ python3 scripts/run_openevolve_program_search.py \
 Compare OpenEvolve against a direct LLM-edit baseline using the same evaluator,
 iteration budget, and model routing before claiming the programmatic-search
 module improves research quality.
+
+If direct editing matches or beats OpenEvolve on a simple task, record that as
+an escalation-boundary result. The program-search gate is meant to decide when
+deeper search is worth the cost, not to force OpenEvolve onto every subproblem.
 
 For runtime-optimization benchmarks, expose a single `combined_score` that
 OpenEvolve should maximize, and keep raw metrics such as `runtime_seconds` for

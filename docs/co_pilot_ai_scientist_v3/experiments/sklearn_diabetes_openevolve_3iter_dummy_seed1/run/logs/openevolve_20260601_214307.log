@@ -1,0 +1,73 @@
+2026-06-01 21:43:07,062 - openevolve.controller - INFO - Logging to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/logs/openevolve_20260601_214307.log
+2026-06-01 21:43:07,067 - openevolve.controller - INFO - Set random seed to 1 for reproducibility
+2026-06-01 21:43:07,125 - openevolve.llm.openai - INFO - Initialized OpenAI LLM with model: deepseek-chat
+2026-06-01 21:43:07,125 - openevolve.llm.ensemble - INFO - Initialized LLM ensemble with models: deepseek-chat (weight: 1.00)
+2026-06-01 21:43:07,126 - openevolve.prompt.sampler - INFO - Initialized prompt sampler
+2026-06-01 21:43:07,126 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 21:43:07,127 - openevolve.database - INFO - Initialized program database with 0 programs
+2026-06-01 21:43:07,618 - openevolve.evaluator - INFO - Successfully loaded evaluation function from docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py
+2026-06-01 21:43:07,618 - openevolve.evaluator - INFO - Initialized evaluator with docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py
+2026-06-01 21:43:07,618 - openevolve.controller - INFO - Initialized OpenEvolve with docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/initial_program.py
+2026-06-01 21:43:07,618 - openevolve.controller - INFO - Adding initial program to database
+2026-06-01 21:43:07,632 - openevolve.evaluator - INFO - Evaluated program 5969818c-dbfb-46bb-b414-8c32e413f14b in 0.01s: combined_score=-78.5722, score=-78.5722, mean_rmse=78.5722, std_rmse=4.3220, mean_mae=66.9591, mean_r2=-0.0123, mean_elapsed_seconds=0.0000, splits=5.0000
+2026-06-01 21:43:07,632 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-06-01 21:43:07,633 - openevolve.process_parallel - INFO - Initialized process parallel controller with 1 workers
+2026-06-01 21:43:07,634 - openevolve.process_parallel - INFO - Started process pool with 1 processes
+2026-06-01 21:43:07,634 - openevolve.controller - INFO - Using island-based evolution with 2 islands
+2026-06-01 21:43:07,634 - openevolve.database - INFO - Island Status:
+2026-06-01 21:43:07,634 - openevolve.database - INFO -  * Island 0: 1 programs, best=-78.5722, avg=-78.5722, diversity=0.00, gen=0 (best: 5969818c-dbfb-46bb-b414-8c32e413f14b)
+2026-06-01 21:43:07,634 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 21:43:07,634 - openevolve.process_parallel - INFO - Starting process-based evolution from iteration 1 for 3 iterations (total: 4)
+2026-06-01 21:43:07,639 - openevolve.process_parallel - INFO - Early stopping disabled
+2026-06-01 21:43:07,733 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 21:43:07,733 - openevolve.evaluator - INFO - Successfully loaded evaluation function from docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py
+2026-06-01 21:43:07,733 - openevolve.evaluator - INFO - Initialized evaluator with docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py
+2026-06-01 21:43:07,734 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 21:43:08,370 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 21:43:13,246 - openevolve.evaluator - INFO - Evaluated program fe9ec9e7-33e0-49b0-bce1-32ab37dae146 in 0.02s: combined_score=-55.9465, score=-55.9465, mean_rmse=55.9465, std_rmse=1.7070, mean_mae=45.0049, mean_r2=0.4845, mean_elapsed_seconds=0.0004, splits=5.0000
+2026-06-01 21:43:13,248 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 21:43:13,253 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-06-01 21:43:13,254 - openevolve.database - INFO - New best program fe9ec9e7-33e0-49b0-bce1-32ab37dae146 replaces 5969818c-dbfb-46bb-b414-8c32e413f14b (combined_score: -78.5722 → -55.9465, +22.6257)
+2026-06-01 21:43:13,254 - openevolve.process_parallel - INFO - Iteration 1: Program fe9ec9e7-33e0-49b0-bce1-32ab37dae146 (parent: 5969818c-dbfb-46bb-b414-8c32e413f14b) completed in 5.51s
+2026-06-01 21:43:13,254 - openevolve.process_parallel - INFO - Metrics: combined_score=-55.9465, score=-55.9465, mean_rmse=55.9465, std_rmse=1.7070, mean_mae=45.0049, mean_r2=0.4845, mean_elapsed_seconds=0.0004, splits=5.0000
+2026-06-01 21:43:13,254 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 1: fe9ec9e7-33e0-49b0-bce1-32ab37dae146
+2026-06-01 21:43:13,255 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 1
+2026-06-01 21:43:13,255 - openevolve.database - INFO - Island Status:
+2026-06-01 21:43:13,255 - openevolve.database - INFO -  * Island 0: 2 programs, best=-55.9465, avg=-67.2594, diversity=158.20, gen=1 (best: fe9ec9e7-33e0-49b0-bce1-32ab37dae146)
+2026-06-01 21:43:13,255 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 21:43:13,258 - openevolve.database - INFO - Saved database with 2 programs to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/checkpoints/checkpoint_1
+2026-06-01 21:43:13,258 - openevolve.controller - INFO - Saved best program at checkpoint 1 with metrics: combined_score=-55.9465, score=-55.9465, mean_rmse=55.9465, std_rmse=1.7070, mean_mae=45.0049, mean_r2=0.4845, mean_elapsed_seconds=0.0004, splits=5.0000
+2026-06-01 21:43:13,259 - openevolve.controller - INFO - Saved checkpoint at iteration 1 to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/checkpoints/checkpoint_1
+2026-06-01 21:43:13,401 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 21:43:18,651 - openevolve.evaluator - INFO - Evaluated program 5565fe6e-1fef-40f5-8d25-01d5bd907ca7 in 0.07s: combined_score=-59.9072, score=-59.9072, mean_rmse=59.9072, std_rmse=2.2010, mean_mae=46.9175, mean_r2=0.4050, mean_elapsed_seconds=0.0039, splits=5.0000
+2026-06-01 21:43:18,654 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 21:43:18,658 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'complexity': 9, 'diversity': 0}
+2026-06-01 21:43:18,658 - openevolve.process_parallel - INFO - Iteration 2: Program 5565fe6e-1fef-40f5-8d25-01d5bd907ca7 (parent: 5969818c-dbfb-46bb-b414-8c32e413f14b) completed in 5.40s
+2026-06-01 21:43:18,659 - openevolve.process_parallel - INFO - Metrics: combined_score=-59.9072, score=-59.9072, mean_rmse=59.9072, std_rmse=2.2010, mean_mae=46.9175, mean_r2=0.4050, mean_elapsed_seconds=0.0039, splits=5.0000
+2026-06-01 21:43:18,659 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 2
+2026-06-01 21:43:18,659 - openevolve.database - INFO - Island Status:
+2026-06-01 21:43:18,659 - openevolve.database - INFO -  * Island 0: 2 programs, best=-55.9465, avg=-67.2594, diversity=158.20, gen=1 (best: fe9ec9e7-33e0-49b0-bce1-32ab37dae146)
+2026-06-01 21:43:18,659 - openevolve.database - INFO -    Island 1: 1 programs, best=-59.9072, avg=-59.9072, diversity=0.00, gen=1 (best: 5565fe6e-1fef-40f5-8d25-01d5bd907ca7)
+2026-06-01 21:43:18,662 - openevolve.database - INFO - Saved database with 3 programs to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/checkpoints/checkpoint_2
+2026-06-01 21:43:18,663 - openevolve.controller - INFO - Saved best program at checkpoint 2 with metrics: combined_score=-55.9465, score=-55.9465, mean_rmse=55.9465, std_rmse=1.7070, mean_mae=45.0049, mean_r2=0.4845, mean_elapsed_seconds=0.0004, splits=5.0000
+2026-06-01 21:43:18,663 - openevolve.controller - INFO - Saved checkpoint at iteration 2 to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/checkpoints/checkpoint_2
+2026-06-01 21:43:18,770 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 21:43:24,741 - openevolve.evaluator - INFO - Evaluated program 9704761a-c9f9-4bfe-80c8-13245f128fa6 in 0.02s: combined_score=-59.8168, score=-59.8168, mean_rmse=59.8168, std_rmse=2.4724, mean_mae=49.6917, mean_r2=0.4119, mean_elapsed_seconds=0.0002, splits=5.0000
+2026-06-01 21:43:24,745 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 2}
+2026-06-01 21:43:24,745 - openevolve.process_parallel - INFO - Iteration 3: Program 9704761a-c9f9-4bfe-80c8-13245f128fa6 (parent: fe9ec9e7-33e0-49b0-bce1-32ab37dae146) completed in 6.09s
+2026-06-01 21:43:24,745 - openevolve.process_parallel - INFO - Metrics: combined_score=-59.8168, score=-59.8168, mean_rmse=59.8168, std_rmse=2.4724, mean_mae=49.6917, mean_r2=0.4119, mean_elapsed_seconds=0.0002, splits=5.0000
+2026-06-01 21:43:24,745 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 3
+2026-06-01 21:43:24,746 - openevolve.database - INFO - Island Status:
+2026-06-01 21:43:24,746 - openevolve.database - INFO -  * Island 0: 3 programs, best=-55.9465, avg=-64.7785, diversity=163.07, gen=2 (best: fe9ec9e7-33e0-49b0-bce1-32ab37dae146)
+2026-06-01 21:43:24,746 - openevolve.database - INFO -    Island 1: 1 programs, best=-59.9072, avg=-59.9072, diversity=0.00, gen=1 (best: 5565fe6e-1fef-40f5-8d25-01d5bd907ca7)
+2026-06-01 21:43:24,750 - openevolve.database - INFO - Saved database with 4 programs to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/checkpoints/checkpoint_3
+2026-06-01 21:43:24,750 - openevolve.controller - INFO - Saved best program at checkpoint 3 with metrics: combined_score=-55.9465, score=-55.9465, mean_rmse=55.9465, std_rmse=1.7070, mean_mae=45.0049, mean_r2=0.4845, mean_elapsed_seconds=0.0004, splits=5.0000
+2026-06-01 21:43:24,750 - openevolve.controller - INFO - Saved checkpoint at iteration 3 to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/checkpoints/checkpoint_3
+2026-06-01 21:43:24,750 - openevolve.process_parallel - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-06-01 21:43:24,754 - openevolve.database - INFO - Saved database with 4 programs to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/checkpoints/checkpoint_3
+2026-06-01 21:43:24,755 - openevolve.controller - INFO - Saved best program at checkpoint 3 with metrics: combined_score=-55.9465, score=-55.9465, mean_rmse=55.9465, std_rmse=1.7070, mean_mae=45.0049, mean_r2=0.4845, mean_elapsed_seconds=0.0004, splits=5.0000
+2026-06-01 21:43:24,755 - openevolve.controller - INFO - Saved checkpoint at iteration 3 to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/checkpoints/checkpoint_3
+2026-06-01 21:43:24,770 - openevolve.process_parallel - INFO - Stopped process pool
+2026-06-01 21:43:24,771 - openevolve.controller - INFO - Using tracked best program: fe9ec9e7-33e0-49b0-bce1-32ab37dae146
+2026-06-01 21:43:24,771 - openevolve.controller - INFO - Evolution complete. Best program has metrics: combined_score=-55.9465, score=-55.9465, mean_rmse=55.9465, std_rmse=1.7070, mean_mae=45.0049, mean_r2=0.4845, mean_elapsed_seconds=0.0004, splits=5.0000
+2026-06-01 21:43:24,772 - openevolve.controller - INFO - Saved best program to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/best/best_program.py with program info to docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed1/run/best/best_program_info.json

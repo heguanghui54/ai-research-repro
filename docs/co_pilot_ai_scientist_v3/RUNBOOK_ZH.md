@@ -222,17 +222,54 @@ done
 FML-Bench 之外的 benchmark 证据，但也说明在极小搜索预算下仍存在
 seed/budget sensitivity。
 
-## 9. 顶会级投稿前仍需补强的证据
+## 9. 受控 tabular modeling probe
+
+sklearn diabetes tabular regression probe 是第二条非 FML 路径，不依赖 Kaggle
+凭证：
+
+```bash
+source ~/.codex/env
+python scripts/run_direct_llm_program_baseline.py \
+  --initial-program docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/initial_program.py \
+  --evaluator docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py \
+  --output-dir docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_direct_deepseek_dummy \
+  --signature "def train_and_predict(X_train, y_train, X_eval):" \
+  --task-description "Improve predictive performance on the sklearn diabetes tabular regression task." \
+  --provider deepseek \
+  --model deepseek-chat
+```
+
+再跑小预算 OpenEvolve seeds：
+
+```bash
+for seed in 0 1 2; do
+  python scripts/run_openevolve_program_search.py \
+    --initial-program docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/initial_program.py \
+    --evaluator docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py \
+    --output-dir "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed${seed}/run" \
+    --iterations 3 \
+    --random-seed "${seed}" \
+    --provider deepseek \
+    --model deepseek-chat
+done
+```
+
+已归档结果：初始均值预测器 RMSE 为 `78.572189`；direct DeepSeek rewrite
+RMSE 为 `55.895460`；OpenEvolve seeds `0`、`1`、`2` 都明显优于均值预测器，
+中位 RMSE 为 `55.895460`。这是一个边界条件：在简单标准建模改进上，direct
+editing 可以匹配 OpenEvolve。
+
+## 10. 顶会级投稿前仍需补强的证据
 
 - 如果可行，把 snapshot-seeded continuation 升级为原生 tree-object resume。
 - 将当前两组 mixed matched pair 扩展到更多任务、随机种子和预算分配。
-- 加入第二个 MLAgentBench task，或先下载 ScienceAgentBench verified artifacts
-  后运行第一个 ScienceAgentBench instance。
+- 加入第二个官方 MLAgentBench task，或先下载 ScienceAgentBench verified
+  artifacts 后运行第一个 ScienceAgentBench instance。
 - 加入外部评审或 rubric-based paper-quality scoring。
 - 跑一次完整四循环轨迹，让 hypothesis、evaluator、branch、program-search 和 claim-audit gates 在同一条连续任务中全部生效。
 - 将完整项目包推送到 GitHub。
 
-## 10. Monica 路由的论文质量评审
+## 11. Monica 路由的论文质量评审
 
 当前项目包已经包含两个模型审稿 artifact。可用下面命令重跑：
 

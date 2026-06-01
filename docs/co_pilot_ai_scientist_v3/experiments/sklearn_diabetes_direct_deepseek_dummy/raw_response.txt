@@ -1,0 +1,17 @@
+```python
+import numpy as np
+from sklearn.linear_model import Ridge
+from sklearn.preprocessing import StandardScaler
+
+
+def train_and_predict(X_train, y_train, X_eval):
+    """Return predictions using Ridge regression with scaling."""
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_eval_scaled = scaler.transform(X_eval)
+    
+    model = Ridge(alpha=1.0)
+    model.fit(X_train_scaled, y_train)
+    
+    return model.predict(X_eval_scaled)
+```

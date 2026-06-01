@@ -1,0 +1,46 @@
+{
+  "task": "sklearn_diabetes_tabular_regression",
+  "benchmark_type": "controlled_non_fml_tabular_ml",
+  "official_benchmark_score": false,
+  "reason_selected": "Adds a non-FML, non-runtime-only machine-gradeable ML modeling probe without external dataset credentials.",
+  "setup_context": {
+    "mlagentbench_house_price_attempted": true,
+    "mlagentbench_house_price_blocker": "prepare_task required Kaggle tooling/authentication; kaggle CLI was unavailable on ubuntu-heshi.",
+    "replacement_scope": "controlled sklearn built-in dataset probe, not an official MLAgentBench score"
+  },
+  "metric": "mean_rmse_across_5_deterministic_splits",
+  "lower_is_better": true,
+  "initial_mean_predictor": {
+    "mean_rmse": 78.5721894308206,
+    "std_rmse": 4.322028165063491,
+    "mean_mae": 66.95906480498624,
+    "mean_r2": -0.012285467400330052
+  },
+  "direct_deepseek_rewrite": {
+    "mean_rmse": 55.89546025654621,
+    "std_rmse": 1.8100310349064392,
+    "mean_mae": 44.90484304699707,
+    "mean_r2": 0.4854746758674356,
+    "score": -55.89547662649647
+  },
+  "openevolve_3iter": {
+    "provider": "deepseek",
+    "model": "deepseek-chat",
+    "seeds": [0, 1, 2],
+    "mean_rmse_by_seed": {
+      "0": 55.89546025654621,
+      "1": 55.946534883023176,
+      "2": 55.89546025654621
+    },
+    "best_iteration_by_seed": {
+      "0": 2,
+      "1": 1,
+      "2": 1
+    },
+    "all_improved_over_initial": true,
+    "median_rmse": 55.89546025654621,
+    "mean_rmse": 55.912485131371866,
+    "rmse_improvement_over_initial_median": 22.67672917427439
+  },
+  "interpretation": "Both direct editing and OpenEvolve recover a standard supervised-learning baseline from a rudimentary mean predictor. This supports benchmark coverage and boundary-condition analysis, but not a claim that OpenEvolve dominates direct editing on simple tabular modeling."
+}

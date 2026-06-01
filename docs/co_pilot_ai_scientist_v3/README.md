@@ -59,13 +59,17 @@ autonomous baseline (`0.646224` vs. `0.595685`). The two-pair mean slightly
 favors autonomous, so the manuscript now treats FML as mixed feasibility
 evidence rather than a proof of human-gate superiority. To avoid overfitting the
 project to FML-bench, the package also includes a non-FML MLAgentBench
-`vectorization`
-comparison: direct DeepSeek rewrite failed the correctness gate, while
+`vectorization` comparison: direct DeepSeek rewrite failed the correctness gate, while
 three-iteration OpenEvolve-style search over eight random seeds retained a
 correct best program in every seed and achieved median best runtime `0.024581`
 seconds versus `3.261186` seconds for the controlled starter program. The result
 is stronger than the earlier three-seed probe, but still seed-sensitive because
-individual best runtimes range from `0.009210` to `2.984610` seconds. Claims
+individual best runtimes range from `0.009210` to `2.984610` seconds. A second
+controlled non-FML sklearn diabetes tabular regression probe starts from a
+rudimentary mean predictor (`78.572189` RMSE); direct DeepSeek rewrite and three
+OpenEvolve seeds all improve to roughly Ridge-level performance, with direct
+editing matching the median OpenEvolve RMSE (`55.895460`). This adds a useful
+boundary condition: program search should be gated, not automatic. Claims
 remain intentionally conservative until the evidence is expanded across more
 tasks and independently reviewed for paper quality. A Monica-routed claim
 audit is archived under `audits/` and is reflected in the manuscript's

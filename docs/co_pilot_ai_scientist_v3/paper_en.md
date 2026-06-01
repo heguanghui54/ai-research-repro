@@ -264,6 +264,20 @@ speedup. This strengthens the evidence that the program-search module can find
 useful code transformations, while preserving the important caveat that search
 quality varies substantially by seed and budget.
 
+To avoid making the non-FML evidence only about low-level runtime optimization,
+we added a second controlled probe using the built-in sklearn diabetes tabular
+regression dataset. This probe does not require Kaggle credentials and should
+not be reported as an official MLAgentBench score. It starts from a deliberately
+rudimentary mean predictor with mean RMSE 78.572189 across five deterministic
+splits. A direct DeepSeek rewrite recovered a standard Ridge-style baseline with
+mean RMSE 55.895460. Three 3-iteration OpenEvolve seeds also improved strongly
+over the mean predictor, with best RMSEs 55.895460, 55.946535, and 55.895460.
+The median OpenEvolve RMSE was 55.895460, matching the direct rewrite. This
+result broadens the benchmark coverage to a tabular modeling subproblem, but it
+also gives an important boundary condition: when the improvement is a standard
+small modeling change, direct editing can be as effective as program search.
+Thus the program-search gate should be selective, not automatic.
+
 ### 4.5 Claim Audit
 
 We ran a claim-evidence audit after the pilot experiments. A Monica-routed
@@ -274,6 +288,7 @@ outperforms autonomous AI Scientist-v2. We therefore treat those as hypotheses
 for the evaluation protocol rather than as conclusions. The audit supports only
 the narrower empirical claims reported above: OpenEvolve-style search can help
 on some machine-gradeable subproblems but is seed-sensitive under tiny budgets,
+direct editing can match OpenEvolve on a simple tabular modeling probe,
 branch-gate insertion is feasible in AI Scientist-v2-style logs, and the first
 two matched Causality pairs give mixed evidence rather than a reliable
 human-gating advantage.
@@ -302,8 +317,8 @@ The current contributions are:
 5. Two matched-budget FML-bench Causality comparisons between a human-gated
    branch continuation and a four-step autonomous AI Scientist-v2 baseline,
    with mixed outcomes.
-6. A non-FML MLAgentBench program-search probe for broadening benchmark
-   coverage beyond FML-bench.
+6. Non-FML program-search probes for runtime optimization and tabular
+   regression, broadening benchmark coverage beyond FML-bench.
 7. A reusable Codex skill for running the workflow.
 8. Bilingual paper, usage artifacts, and claim-audit artifacts for
    reproducibility.

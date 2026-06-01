@@ -52,6 +52,14 @@ sufficient by itself.
     eight three-iteration OpenEvolve-style seeds all retained correct best
     programs and improved over the starter. The median best runtime is
     `0.024581` seconds versus `3.261186` seconds for the starter.
+- **sklearn diabetes tabular regression probe**:
+  - Role: non-FML, non-runtime-only controlled ML modeling task that does not
+    require external dataset credentials.
+  - Current status: the initial mean predictor has mean RMSE `78.572189`.
+    Direct DeepSeek rewrite improves to `55.895460`. Three 3-iteration
+    OpenEvolve seeds all improve over the initial predictor, with median RMSE
+    `55.895460`, matching direct rewrite. This supports a selective
+    program-search gate rather than automatic escalation.
 - **ScienceAgentBench**:
   - Role: data-driven scientific discovery tasks extracted from publications,
     useful for evaluator gates and claim-support checks.

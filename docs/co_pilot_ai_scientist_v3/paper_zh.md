@@ -89,9 +89,11 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 为了检查稳健性，我们又用更多 random seed 重复同样的三轮 OpenEvolve 设置。在 seed 0、1、2、3、4、7、42、123 共八次运行中，所有运行都保留了正确 best program，并且都比受控 starter 更快。八个 seed 的 best runtime 中位数为 0.024581 秒，相当于相对 starter 约 132.67 倍的中位加速；其中 6 个 seed 找到低于 0.1 秒的程序。这个结果明显强于最初的三 seed probe，但仍不是确定性成功：seed 7 只有约 1.09 倍加速，seed 1 约 15.57 倍加速。因此，该结果增强了“程序搜索模块可以找到有效代码变换”的证据，同时保留了极小预算下 seed/budget sensitivity 的重要 caveat。
 
+为了避免非 FML 证据只覆盖底层 runtime optimization，我们又加入了一个使用 sklearn 内置 diabetes regression dataset 的受控 tabular modeling probe。这个 probe 不需要 Kaggle 凭证，也不应被报告为官方 MLAgentBench 分数。初始程序是刻意粗糙的均值预测器，在五个确定性 split 上 mean RMSE 为 78.572189。一次 direct DeepSeek rewrite 找回了标准 Ridge 风格 baseline，mean RMSE 为 55.895460。三个三轮 OpenEvolve seed 也都明显优于均值预测器，best RMSE 分别为 55.895460、55.946535 和 55.895460；其中位 RMSE 为 55.895460，基本与 direct rewrite 持平。这个结果把 benchmark 覆盖扩展到了表格建模子问题，同时也给出了重要边界条件：当改进只是一个标准的小型建模修改时，direct editing 可以和 program search 一样有效。因此 program-search gate 应该选择性触发，而不是自动触发。
+
 ### 4.5 主张审计
 
-在完成这些 pilot 实验后，我们做了一次 claim-evidence audit。通过 Monica 路由的 `gpt-4o-mini` 审稿式检查认为：本文的架构贡献是合理的，但当前实验证据还不足以支持“人类 gate 提高论文质量”或“完整 co-pilot 系统优于 autonomous AI Scientist-v2”这类宽泛结论。因此，本文把这些表述保留为 evaluation protocol 要检验的假设，而不是已经证明的结论。当前 audit 只支持较窄的实证主张：OpenEvolve-style search 可以在部分机器可评分子问题上有效，但在极小预算下存在 seed sensitivity；branch gate 可以插入 AI Scientist-v2 风格日志轨迹；两组 matched Causality 对照给出的是混合证据，而不是稳定的人类 gate 优势。
+在完成这些 pilot 实验后，我们做了一次 claim-evidence audit。通过 Monica 路由的 `gpt-4o-mini` 审稿式检查认为：本文的架构贡献是合理的，但当前实验证据还不足以支持“人类 gate 提高论文质量”或“完整 co-pilot 系统优于 autonomous AI Scientist-v2”这类宽泛结论。因此，本文把这些表述保留为 evaluation protocol 要检验的假设，而不是已经证明的结论。当前 audit 只支持较窄的实证主张：OpenEvolve-style search 可以在部分机器可评分子问题上有效，但在极小预算下存在 seed sensitivity；direct editing 在简单 tabular modeling probe 上可以匹配 OpenEvolve；branch gate 可以插入 AI Scientist-v2 风格日志轨迹；两组 matched Causality 对照给出的是混合证据，而不是稳定的人类 gate 优势。
 
 我们还通过 Monica 路由了两次 paper-quality review。`gpt-4o-mini` 给出 weak-accept 建议，认为新颖性和可复现性较强，但严谨性和证据仍只有中等水平。`claude-3-7-sonnet-latest` 更严格，认为如果目标是强 ML/NLP systems venue，当前版本应被拒，因为目前证据仍是模块级 pilot probe，而不是同预算端到端对照。两个模型的共同结论是：下一版必须在更多任务和随机种子上比较 autonomous AI Scientist-v2 与 human-gated variants，并记录人类注意力成本。
 
@@ -104,7 +106,7 @@ Co-Pilot AI Scientist v3 包含四个循环。
 3. 一个评估“人类注意力是否以及应该放在哪里”的实验协议。
 4. 远程 OpenEvolve 与 FML-bench 小实验，证明 AlphaEvolve-style 子问题模块和 AI Scientist-v2 分支 gate 模块可以在 Ubuntu 主机上运行。
 5. 两组同预算 FML-bench Causality 对照：human-gated branch continuation 与四步 autonomous AI Scientist-v2 baseline，结果呈混合状态。
-6. 一个非 FML 的 MLAgentBench 程序搜索小实验，用于扩展 FML-bench 之外的 benchmark 覆盖面。
+6. 两个非 FML 程序搜索小实验，分别覆盖 runtime optimization 和 tabular regression，用于扩展 FML-bench 之外的 benchmark 覆盖面。
 7. 一个可在 Codex 中复用的 workflow skill。
 8. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
 9. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。

@@ -55,6 +55,8 @@ API key 使用全局环境变量，不在日志中打印。建议：
 - FML-bench：用于 AI Scientist-v2 风格 branch gate 和 continuation。
 - OpenEvolve-controlled tasks：用于机器可评分的算法/程序搜索。
 - MLAgentBench：用于非 FML 的 ML 实验与 correctness-gated 代码优化。
+- 受控 sklearn tabular probes：当外部 benchmark 凭证不可用时，用于低成本非
+  FML 建模证据和 escalation 边界测试。
 - ScienceAgentBench：用于数据驱动科学发现，但必须先在 Ubuntu 主机下载
   verified benchmark artifacts。
 - PaperBench-style rubric：当完整 PaperBench 太贵时，用于 claim 和 manuscript

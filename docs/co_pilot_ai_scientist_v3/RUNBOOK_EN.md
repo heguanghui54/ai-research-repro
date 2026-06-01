@@ -260,20 +260,57 @@ seconds, with a median speedup of about `132.67x`. The multi-seed probe
 broadens the benchmark evidence beyond FML-Bench, but it still shows
 seed/budget sensitivity under a tiny search budget.
 
-## 9. Remaining Evidence Needed Before Strong Submission Claims
+## 9. Controlled Tabular Modeling Probe
+
+The sklearn diabetes tabular regression probe is a second non-FML path that
+does not depend on Kaggle credentials:
+
+```bash
+source ~/.codex/env
+python scripts/run_direct_llm_program_baseline.py \
+  --initial-program docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/initial_program.py \
+  --evaluator docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py \
+  --output-dir docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_direct_deepseek_dummy \
+  --signature "def train_and_predict(X_train, y_train, X_eval):" \
+  --task-description "Improve predictive performance on the sklearn diabetes tabular regression task." \
+  --provider deepseek \
+  --model deepseek-chat
+```
+
+Then run small OpenEvolve seeds:
+
+```bash
+for seed in 0 1 2; do
+  python scripts/run_openevolve_program_search.py \
+    --initial-program docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/initial_program.py \
+    --evaluator docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_task/evaluator.py \
+    --output-dir "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_openevolve_3iter_dummy_seed${seed}/run" \
+    --iterations 3 \
+    --random-seed "${seed}" \
+    --provider deepseek \
+    --model deepseek-chat
+done
+```
+
+Archived results: initial mean predictor RMSE `78.572189`; direct DeepSeek
+rewrite RMSE `55.895460`; OpenEvolve seeds `0`, `1`, and `2` all improve over
+the mean predictor with median RMSE `55.895460`. This is a boundary condition:
+direct editing matches OpenEvolve on a simple standard modeling change.
+
+## 10. Remaining Evidence Needed Before Strong Submission Claims
 
 - Replace snapshot-seeded continuation with native tree-object resume if
   feasible.
 - Extend the current two mixed matched-budget Causality pairs across more
   tasks, seeds, and budget schedules.
-- Add a second MLAgentBench task or download the verified ScienceAgentBench
-  artifacts and run a first ScienceAgentBench instance.
+- Add a second official MLAgentBench task or download the verified
+  ScienceAgentBench artifacts and run a first ScienceAgentBench instance.
 - Add external or rubric-based paper-quality scoring.
 - Run a full four-loop trajectory where hypothesis, evaluator, branch,
   program-search, and claim-audit gates all operate in one continuous run.
 - Push the complete repository package to GitHub.
 
-## 10. Monica-Routed Paper-Quality Review
+## 11. Monica-Routed Paper-Quality Review
 
 The current package includes two model-review artifacts. Re-run them with:
 
