@@ -1,0 +1,15 @@
+Loading Adult Census Income dataset...
+Train: 34186, Val: 4399, Test: 10257 (hidden)
+split_config: val_ratio=0.114, val_seed=42
+Training model...
+Saved checkpoint to model_checkpoint/model.pkl
+
+=== VAL Results ===
+  accuracy: 0.854512
+  balanced_accuracy: 0.772576
+  equalized_odds_diff: 0.130206
+  demographic_parity_diff: 0.186632
+  abs_equalized_odds_diff: 0.130206
+  abs_demographic_parity_diff: 0.186632
+
+Saved results to results_tmp/val_info.json

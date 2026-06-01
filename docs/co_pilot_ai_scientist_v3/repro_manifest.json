@@ -198,7 +198,27 @@
     "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_gated_drafts_failed/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_gated_drafts_failed/config_used.yaml",
     "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_gated_drafts_failed/bug_records/bug_val_20260601_215829.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_gated_drafts_failed/bug_records/bug_val_20260601_215842.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_gated_drafts_failed/bug_records/bug_val_20260601_215842.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_gate_repair.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_gate_repair_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_baseline_eval/algorithm.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_baseline_eval/split_config.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_baseline_eval/test.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_baseline_eval/test_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_baseline_eval/val.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_baseline_eval/val_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_repair_eval/algorithm.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_repair_eval/split_config.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_repair_eval/test.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_repair_eval/test_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_repair_eval/val.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_repair_eval/val_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/algorithm.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/split_config.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/test.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/test_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/val.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/val_info.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -206,7 +226,7 @@
     "The full co-pilot v3 system outperforms autonomous AI Scientist-v2 on selected tasks."
   ],
   "next_required_evidence": [
-    "Run more matched autonomous and human-gated variants beyond the current two mixed Causality pairs; the first Fairness_fairlearn online attempt failed validation and needs evaluator/algorithm repair before matched continuation.",
+    "Run more matched autonomous and human-gated variants beyond the current two mixed Causality pairs; Fairness_fairlearn needs a non-degenerate repaired branch that passes executable-code checks and a utility floor before matched continuation.",
     "Collect additional structured human gate logs on new tasks.",
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "Generate expert or rubric-based paper quality scores.",

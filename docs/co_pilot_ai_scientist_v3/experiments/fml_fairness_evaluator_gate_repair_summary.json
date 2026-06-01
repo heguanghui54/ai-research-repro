@@ -1,0 +1,62 @@
+{
+  "task": "FML-Bench Fairness_fairlearn evaluator-gate repair probe",
+  "metric": "abs_demographic_parity_diff_mean",
+  "metric_direction": "lower",
+  "gate_lesson": "Primary fairness metric alone can be gamed by degenerate all-negative predictions; evaluator gate should require a balanced-accuracy floor before continuation.",
+  "variants": {
+    "baseline": {
+      "val": {
+        "accuracy_mean": 0.8545123891793589,
+        "balanced_accuracy_mean": 0.7725757506092235,
+        "equalized_odds_diff_mean": 0.13020581113801455,
+        "demographic_parity_diff_mean": 0.18663158848996153,
+        "abs_equalized_odds_diff_mean": 0.13020581113801455,
+        "abs_demographic_parity_diff_mean": 0.18663158848996153
+      },
+      "test": {
+        "accuracy_mean": 0.8525884761626207,
+        "balanced_accuracy_mean": 0.763862137532834,
+        "equalized_odds_diff_mean": 0.08620044876589372,
+        "demographic_parity_diff_mean": 0.1730295772151227,
+        "abs_equalized_odds_diff_mean": 0.08620044876589372,
+        "abs_demographic_parity_diff_mean": 0.1730295772151227
+      }
+    },
+    "repair": {
+      "val": {
+        "accuracy_mean": 0.8045010229597636,
+        "balanced_accuracy_mean": 0.8233289000374077,
+        "equalized_odds_diff_mean": 0.23001759895619983,
+        "demographic_parity_diff_mean": 0.331207411697454,
+        "abs_equalized_odds_diff_mean": 0.23001759895619983,
+        "abs_demographic_parity_diff_mean": 0.331207411697454
+      },
+      "test": {
+        "accuracy_mean": 0.8073510773130546,
+        "balanced_accuracy_mean": 0.8184913049867661,
+        "equalized_odds_diff_mean": 0.21187828399433278,
+        "demographic_parity_diff_mean": 0.3176026776118661,
+        "abs_equalized_odds_diff_mean": 0.21187828399433278,
+        "abs_demographic_parity_diff_mean": 0.3176026776118661
+      }
+    },
+    "degenerate": {
+      "val": {
+        "accuracy_mean": 0.760627415321664,
+        "balanced_accuracy_mean": 0.5,
+        "equalized_odds_diff_mean": 0.0,
+        "demographic_parity_diff_mean": 0.0,
+        "abs_equalized_odds_diff_mean": 0.0,
+        "abs_demographic_parity_diff_mean": 0.0
+      },
+      "test": {
+        "accuracy_mean": 0.7607487569464756,
+        "balanced_accuracy_mean": 0.5,
+        "equalized_odds_diff_mean": 0.0,
+        "demographic_parity_diff_mean": 0.0,
+        "abs_equalized_odds_diff_mean": 0.0,
+        "abs_demographic_parity_diff_mean": 0.0
+      }
+    }
+  }
+}

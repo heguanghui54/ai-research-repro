@@ -72,9 +72,13 @@ editing matching the median OpenEvolve RMSE (`55.895460`). This adds a useful
 boundary condition: program search should be gated, not automatic. A first
 online `Fairness_fairlearn` branch-gate extension was attempted and archived as
 `fml_fairness_gated_drafts_failed/`; both drafts failed validation, so it is a
-failure-mode/evaluator-gate artifact rather than performance evidence. Claims
-remain intentionally conservative until the evidence is expanded across more
-tasks and independently reviewed for paper quality. A Monica-routed claim
+failure-mode/evaluator-gate artifact rather than performance evidence. A
+follow-up Fairness evaluator-gate repair probe is archived in
+`fml_fairness_evaluator_gate_repair.md`: the API-repaired branch runs but is
+worse on the target fairness metric, while an all-negative predictor gets
+perfect demographic parity by collapsing balanced accuracy to `0.500000`.
+Claims remain intentionally conservative until the evidence is expanded across
+more tasks and independently reviewed for paper quality. A Monica-routed claim
 audit is archived under `audits/` and is reflected in the manuscript's
 claim-audit section. A second paper-quality review pass through Monica-routed
 `gpt-4o-mini` and `claude-3-7-sonnet-latest` is also archived; it now treats the

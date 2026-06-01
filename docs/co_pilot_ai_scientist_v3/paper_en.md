@@ -290,11 +290,18 @@ the narrower empirical claims reported above: OpenEvolve-style search can help
 on some machine-gradeable subproblems but is seed-sensitive under tiny budgets,
 direct editing can match OpenEvolve on a simple tabular modeling probe,
 branch-gate insertion is feasible in AI Scientist-v2-style logs, evaluator
-gates must reject non-executable branches before continuation, and the first two
-matched Causality pairs give mixed evidence rather than a reliable human-gating
-advantage. A first attempt to extend online branch gating to `Fairness_fairlearn`
-produced two validation failures rather than a score, so we archive it as
-failure-mode evidence rather than matched-budget performance evidence.
+gates must reject non-executable and metric-gaming branches before
+continuation, and the first two matched Causality pairs give mixed evidence
+rather than a reliable human-gating advantage. A first attempt to extend online
+branch gating to `Fairness_fairlearn` produced two validation failures rather
+than a score, so we archive it as failure-mode evidence rather than
+matched-budget performance evidence. A follow-up evaluator-gate repair probe
+made the lesson sharper: an API-repaired fairness candidate was executable but
+worse on demographic parity difference (test 0.317603 versus the baseline
+0.173030), while a degenerate all-negative predictor achieved a perfect target
+metric of 0.000000 but collapsed balanced accuracy to 0.500000. For fairness
+tasks, the gate therefore needs both an execution check and a utility floor
+before accepting a branch.
 
 We also ran a paper-quality review through two Monica-routed reviewer models.
 `gpt-4o-mini` gave a weak-accept recommendation with scores of 4/5 for novelty

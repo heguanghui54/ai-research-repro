@@ -44,6 +44,10 @@ high-leverage creative, evaluation, search, and claim-audit nodes.
      with explicit caveats over silently narrowing back to an easier benchmark.
    - For optimization tasks, add correctness gates before runtime or score
      optimization so fast invalid programs cannot win.
+   - For fairness, safety, or robustness tasks, use multi-metric guardrails.
+     Do not accept a branch on a single primary metric if a degenerate solution
+     can game it; require a utility floor such as balanced accuracy or task
+     success before continuation.
    - Trigger `evaluator_gate` before expensive runs.
 
 4. **Run Agentic Search**
@@ -157,5 +161,6 @@ Reusable templates are stored next to this skill:
 - Do not invent results, citations, or benchmark numbers.
 - Separate proposed architecture from verified experimental findings.
 - Prefer narrow claims until logs prove broader claims.
+- Reject metric-gaming results even when the primary metric improves.
 - Treat human decisions as data, not informal chat context.
 - Keep the final paper aligned with actual experiment artifacts.

@@ -1,0 +1,13 @@
+Loading Adult Census Income dataset...
+Loading checkpoint from model_checkpoint/model.pkl (skipping training)
+Test: 10257 (hidden)
+
+=== TEST Results ===
+  accuracy: 0.760749
+  balanced_accuracy: 0.500000
+  equalized_odds_diff: 0.000000
+  demographic_parity_diff: 0.000000
+  abs_equalized_odds_diff: 0.000000
+  abs_demographic_parity_diff: 0.000000
+
+Saved results to results_tmp/test_info.json

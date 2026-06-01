@@ -41,6 +41,11 @@ sufficient by itself.
     failure-mode probe: both generated drafts failed validation before any
     branch could be continued. It does not count as matched-budget performance
     evidence.
+  - A follow-up `Fairness_fairlearn` evaluator-gate repair probe is archived.
+    The repaired candidate is executable but worse on the target fairness
+    metric, while a degenerate all-negative predictor gets perfect demographic
+    parity with balanced accuracy `0.500000`. Future Fairness continuation must
+    require a utility floor in addition to the primary fairness metric.
 - **OpenEvolve-controlled tasks**:
   - function minimization;
   - 0/1 knapsack heuristic search.
