@@ -1,0 +1,20 @@
+{
+  "gate_id": "idea_gate_001",
+  "gate_type": "idea_selection",
+  "timestamp_utc": "YYYY-MM-DDTHH:MM:SSZ",
+  "research_task_id": "task_id_here",
+  "options": [
+    {
+      "option_id": "option_a",
+      "summary": "Concise option summary.",
+      "score": null,
+      "evidence": [],
+      "risks": []
+    }
+  ],
+  "human_decision": "option_a",
+  "rationale": "Why the human selected, rejected, or rewrote this option.",
+  "affected_artifacts": [],
+  "downstream_budget": {},
+  "follow_up_checks": []
+}

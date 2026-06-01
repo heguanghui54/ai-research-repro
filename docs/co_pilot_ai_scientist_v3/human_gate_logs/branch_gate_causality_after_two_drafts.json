@@ -1,0 +1,47 @@
+{
+  "gate_id": "branch_gate_causality_after_two_drafts",
+  "gate_type": "branch_selection",
+  "timestamp_utc": "2026-06-01T10:58:00Z",
+  "research_task_id": "fmlbench_causality_causalml_replay",
+  "options": [
+    {
+      "option_id": "step_1_draft",
+      "summary": "First AI Scientist-v2 draft achieved validation MAE 0.5989426968, improving over baseline 1.2962585695.",
+      "score": 0.5989426968010781,
+      "evidence": [
+        "replay.json tasks.causality.steps[0]",
+        "Remote summary best_val_metric=0.5989426968010781"
+      ],
+      "risks": [
+        "Retrospective replay, not an online gate."
+      ]
+    },
+    {
+      "option_id": "step_2_draft",
+      "summary": "Second draft achieved validation MAE 0.6278368681, worse than step 1.",
+      "score": 0.627836868090553,
+      "evidence": [
+        "replay.json tasks.causality.steps[1]"
+      ],
+      "risks": [
+        "Continuing this branch would spend budget on a weaker candidate."
+      ]
+    }
+  ],
+  "human_decision": "continue_from_step_1_and_stop_exploring_step_2",
+  "rationale": "The first draft has the lower validation MAE and later logged steps did not surpass it. A branch gate would preserve the strong first branch and avoid at least one low-value follow-up attempt.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_branch_gate_replay/replay.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_branch_gate_replay/README.md"
+  ],
+  "downstream_budget": {
+    "would_continue_branch": "step_1_draft",
+    "would_stop_branch": "step_2_draft",
+    "retrospective_saved_steps": 1
+  },
+  "follow_up_checks": [
+    "Run an online gated Causality_causalml experiment where the gate acts after two drafts.",
+    "Compare final test metric and budget against autonomous AI Scientist-v2."
+  ]
+}
+

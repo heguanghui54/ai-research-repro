@@ -1,0 +1,47 @@
+2026-06-01 18:38:35,321 - openevolve.controller - INFO - Logging to /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/out/logs/openevolve_20260601_183835.log
+2026-06-01 18:38:35,325 - openevolve.controller - INFO - Set random seed to 42 for reproducibility
+2026-06-01 18:38:35,382 - openevolve.llm.openai - INFO - Initialized OpenAI LLM with model: deepseek-chat
+2026-06-01 18:38:35,382 - openevolve.llm.ensemble - INFO - Initialized LLM ensemble with models: deepseek-chat (weight: 1.00)
+2026-06-01 18:38:35,383 - openevolve.prompt.sampler - INFO - Initialized prompt sampler
+2026-06-01 18:38:35,384 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 18:38:35,384 - openevolve.database - INFO - Initialized program database with 0 programs
+2026-06-01 18:38:35,385 - openevolve.evaluator - INFO - Successfully loaded evaluation function from /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/evaluator.py
+2026-06-01 18:38:35,385 - openevolve.evaluator - INFO - Initialized evaluator with /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/evaluator.py
+2026-06-01 18:38:35,385 - openevolve.controller - INFO - Initialized OpenEvolve with /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/initial_program.py
+2026-06-01 18:38:35,385 - openevolve.controller - INFO - Adding initial program to database
+2026-06-01 18:38:35,387 - openevolve.evaluator - INFO - Evaluated program 732e94b3-775a-4366-afea-79523209f7aa in 0.00s: combined_score=0.0345, score=0.0345, best_x=1.3568, best_val=-0.0345
+2026-06-01 18:38:35,387 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-06-01 18:38:35,388 - openevolve.process_parallel - INFO - Initialized process parallel controller with 1 workers
+2026-06-01 18:38:35,389 - openevolve.process_parallel - INFO - Started process pool with 1 processes
+2026-06-01 18:38:35,389 - openevolve.controller - INFO - Using island-based evolution with 2 islands
+2026-06-01 18:38:35,389 - openevolve.database - INFO - Island Status:
+2026-06-01 18:38:35,389 - openevolve.database - INFO -  * Island 0: 1 programs, best=0.0345, avg=0.0345, diversity=0.00, gen=0 (best: 732e94b3-775a-4366-afea-79523209f7aa)
+2026-06-01 18:38:35,389 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 18:38:35,389 - openevolve.process_parallel - INFO - Starting process-based evolution from iteration 1 for 1 iterations (total: 2)
+2026-06-01 18:38:35,392 - openevolve.process_parallel - INFO - Early stopping disabled
+2026-06-01 18:38:35,487 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 18:38:35,487 - openevolve.evaluator - INFO - Successfully loaded evaluation function from /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/evaluator.py
+2026-06-01 18:38:35,487 - openevolve.evaluator - INFO - Initialized evaluator with /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/evaluator.py
+2026-06-01 18:38:35,488 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 18:38:36,138 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 18:38:43,356 - openevolve.evaluator - INFO - Evaluated program a637a2cf-d272-438a-9a16-3ec0975a5493 in 0.00s: combined_score=0.0378, score=0.0378, best_x=1.3103, best_val=-0.0378
+2026-06-01 18:38:43,361 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-06-01 18:38:43,361 - openevolve.database - INFO - New best program a637a2cf-d272-438a-9a16-3ec0975a5493 replaces 732e94b3-775a-4366-afea-79523209f7aa (combined_score: 0.0345 → 0.0378, +0.0033)
+2026-06-01 18:38:43,362 - openevolve.process_parallel - INFO - Iteration 1: Program a637a2cf-d272-438a-9a16-3ec0975a5493 (parent: 732e94b3-775a-4366-afea-79523209f7aa) completed in 7.87s
+2026-06-01 18:38:43,362 - openevolve.process_parallel - INFO - Metrics: combined_score=0.0378, score=0.0378, best_x=1.3103, best_val=-0.0378
+2026-06-01 18:38:43,362 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 1: a637a2cf-d272-438a-9a16-3ec0975a5493
+2026-06-01 18:38:43,362 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 1
+2026-06-01 18:38:43,363 - openevolve.database - INFO - Island Status:
+2026-06-01 18:38:43,363 - openevolve.database - INFO -  * Island 0: 2 programs, best=0.0378, avg=0.0362, diversity=519.00, gen=1 (best: a637a2cf-d272-438a-9a16-3ec0975a5493)
+2026-06-01 18:38:43,363 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 18:38:43,365 - openevolve.database - INFO - Saved database with 2 programs to /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/out/checkpoints/checkpoint_1
+2026-06-01 18:38:43,366 - openevolve.controller - INFO - Saved best program at checkpoint 1 with metrics: combined_score=0.0378, score=0.0378, best_x=1.3103, best_val=-0.0378
+2026-06-01 18:38:43,366 - openevolve.controller - INFO - Saved checkpoint at iteration 1 to /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/out/checkpoints/checkpoint_1
+2026-06-01 18:38:43,366 - openevolve.process_parallel - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-06-01 18:38:43,368 - openevolve.database - INFO - Saved database with 2 programs to /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/out/checkpoints/checkpoint_1
+2026-06-01 18:38:43,369 - openevolve.controller - INFO - Saved best program at checkpoint 1 with metrics: combined_score=0.0378, score=0.0378, best_x=1.3103, best_val=-0.0378
+2026-06-01 18:38:43,369 - openevolve.controller - INFO - Saved checkpoint at iteration 1 to /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/out/checkpoints/checkpoint_1
+2026-06-01 18:38:43,376 - openevolve.process_parallel - INFO - Stopped process pool
+2026-06-01 18:38:43,376 - openevolve.controller - INFO - Using tracked best program: a637a2cf-d272-438a-9a16-3ec0975a5493
+2026-06-01 18:38:43,376 - openevolve.controller - INFO - Evolution complete. Best program has metrics: combined_score=0.0378, score=0.0378, best_x=1.3103, best_val=-0.0378
+2026-06-01 18:38:43,377 - openevolve.controller - INFO - Saved best program to /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/out/best/best_program.py with program info to /home/heshi/work/co-pilot-ai-scientist-v3/openevolve_smoke/out/best/best_program_info.json

@@ -1,0 +1,47 @@
+{
+  "gate_id": "branch_gate_fairness_after_two_attempts",
+  "gate_type": "branch_selection",
+  "timestamp_utc": "2026-06-01T10:58:00Z",
+  "research_task_id": "fmlbench_fairness_fairlearn_replay",
+  "options": [
+    {
+      "option_id": "step_1_draft",
+      "summary": "First fairness draft produced abs demographic parity difference 0.3164673439, worse than the baseline 0.1866315885.",
+      "score": 0.3164673438990605,
+      "evidence": [
+        "replay.json tasks.fairness.steps[0]",
+        "Remote summary baseline_primary_metric=0.18663158848996153"
+      ],
+      "risks": [
+        "The intervention appears counterproductive relative to the baseline."
+      ]
+    },
+    {
+      "option_id": "step_2_draft",
+      "summary": "Second fairness draft failed validation with a Fairlearn preprocessing/API issue.",
+      "score": null,
+      "evidence": [
+        "replay.json tasks.fairness.steps[1]"
+      ],
+      "risks": [
+        "Continuing without repair risks repeated API or evaluator incompatibilities."
+      ]
+    }
+  ],
+  "human_decision": "pause_branch_and_request_evaluator_or_algorithm_reset",
+  "rationale": "The branch is worse than baseline and already unstable. A human gate would stop spending budget on the same trajectory and route the system to a compatibility/evaluator gate or a safer fairness strategy.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_branch_gate_replay/replay.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_branch_gate_replay/README.md"
+  ],
+  "downstream_budget": {
+    "would_pause_branch": true,
+    "retrospective_avoided_steps": 2,
+    "next_gate": "evaluator_approval"
+  },
+  "follow_up_checks": [
+    "Run an online gated Fairness_fairlearn experiment that repairs compatibility before further search.",
+    "Compare bug count, validation metric, and test metric against autonomous AI Scientist-v2."
+  ]
+}
+

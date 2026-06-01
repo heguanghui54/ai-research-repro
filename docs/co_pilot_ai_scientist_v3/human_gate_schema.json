@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Co-Pilot AI Scientist v3 Human Gate Log",
+  "type": "object",
+  "required": [
+    "gate_id",
+    "gate_type",
+    "timestamp_utc",
+    "research_task_id",
+    "options",
+    "human_decision",
+    "rationale",
+    "affected_artifacts",
+    "downstream_budget",
+    "follow_up_checks"
+  ],
+  "properties": {
+    "gate_id": {
+      "type": "string",
+      "description": "Stable unique ID such as idea_gate_001."
+    },
+    "gate_type": {
+      "type": "string",
+      "enum": [
+        "idea_selection",
+        "hypothesis_refinement",
+        "evaluator_approval",
+        "branch_selection",
+        "program_search_escalation",
+        "claim_audit"
+      ]
+    },
+    "timestamp_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "research_task_id": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["option_id", "summary"],
+        "properties": {
+          "option_id": { "type": "string" },
+          "summary": { "type": "string" },
+          "score": { "type": ["number", "null"] },
+          "evidence": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "risks": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "human_decision": {
+      "type": "string",
+      "description": "Selected option IDs or a concise free-text decision."
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "affected_artifacts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "downstream_budget": {
+      "type": "object",
+      "description": "Budget allocation after the gate, e.g. steps, dollars, GPU hours."
+    },
+    "follow_up_checks": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}
+

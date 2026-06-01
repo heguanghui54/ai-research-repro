@@ -5,6 +5,7 @@ __pycache__/
 venv/
 dist/
 build/
+!docs/co_pilot_ai_scientist_v3/build/
 *.egg-info/
 artifacts/
 data/private/
@@ -15,6 +16,9 @@ runs/
 *.pdf
 *.png
 *.log
+!docs/co_pilot_ai_scientist_v3/build/*.pdf
+!docs/co_pilot_ai_scientist_v3/build/**
+!docs/co_pilot_ai_scientist_v3/**/*.log
 .pytest_cache/
 node_modules/
 .next/

@@ -1,0 +1,15 @@
+{
+  "status": "completed",
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "initial_program": "openevolve_smoke/initial_program.py",
+  "evaluator": "openevolve_smoke/evaluator.py",
+  "candidate_program": "direct_llm_edit_baseline/candidate_program.py",
+  "metrics": {
+    "combined_score": 0.03802139712357032,
+    "score": 0.03802139712357032,
+    "best_x": 1.3198669341118094,
+    "best_val": -0.03802139712357032
+  }
+}

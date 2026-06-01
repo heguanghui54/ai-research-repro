@@ -1,0 +1,16 @@
+{
+  "status": "completed",
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "initial_program": "mlagentbench_vectorization_task/initial_program.py",
+  "evaluator": "mlagentbench_vectorization_task/evaluator.py",
+  "candidate_program": "mlagentbench_vectorization_direct_deepseek/candidate_program.py",
+  "signature": "Complete Python file preserving Conv2DLayer.forward(features_batch) semantics and writing runtime to submission.csv when executed as __main__. Use only numpy for vectorization.",
+  "metrics": {
+    "score": 0.0,
+    "runtime_seconds": 1000000000.0,
+    "correct": false,
+    "error": "numerical mismatch against reference convolution"
+  }
+}

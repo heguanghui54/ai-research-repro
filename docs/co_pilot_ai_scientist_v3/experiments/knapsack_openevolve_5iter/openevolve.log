@@ -1,0 +1,103 @@
+2026-06-01 18:53:11,344 - openevolve.controller - INFO - Logging to knapsack_openevolve_5iter/out/logs/openevolve_20260601_185311.log
+2026-06-01 18:53:11,349 - openevolve.controller - INFO - Set random seed to 42 for reproducibility
+2026-06-01 18:53:11,406 - openevolve.llm.openai - INFO - Initialized OpenAI LLM with model: deepseek-chat
+2026-06-01 18:53:11,406 - openevolve.llm.ensemble - INFO - Initialized LLM ensemble with models: deepseek-chat (weight: 1.00)
+2026-06-01 18:53:11,407 - openevolve.prompt.sampler - INFO - Initialized prompt sampler
+2026-06-01 18:53:11,408 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 18:53:11,408 - openevolve.database - INFO - Initialized program database with 0 programs
+2026-06-01 18:53:11,409 - openevolve.evaluator - INFO - Successfully loaded evaluation function from knapsack_task/evaluator.py
+2026-06-01 18:53:11,409 - openevolve.evaluator - INFO - Initialized evaluator with knapsack_task/evaluator.py
+2026-06-01 18:53:11,409 - openevolve.controller - INFO - Initialized OpenEvolve with knapsack_task/initial_program.py
+2026-06-01 18:53:11,409 - openevolve.controller - INFO - Adding initial program to database
+2026-06-01 18:53:11,484 - openevolve.evaluator - INFO - Evaluated program 9353ee2c-132e-42e4-a0f4-83e3ebb86439 in 0.07s: combined_score=0.9915, score=0.9915, avg_ratio=0.9915, invalid=0.0000, total_value=17337.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:11,484 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-06-01 18:53:11,485 - openevolve.process_parallel - INFO - Initialized process parallel controller with 1 workers
+2026-06-01 18:53:11,486 - openevolve.process_parallel - INFO - Started process pool with 1 processes
+2026-06-01 18:53:11,486 - openevolve.controller - INFO - Using island-based evolution with 2 islands
+2026-06-01 18:53:11,486 - openevolve.database - INFO - Island Status:
+2026-06-01 18:53:11,486 - openevolve.database - INFO -  * Island 0: 1 programs, best=0.9915, avg=0.9915, diversity=0.00, gen=0 (best: 9353ee2c-132e-42e4-a0f4-83e3ebb86439)
+2026-06-01 18:53:11,486 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 18:53:11,486 - openevolve.process_parallel - INFO - Starting process-based evolution from iteration 1 for 5 iterations (total: 6)
+2026-06-01 18:53:11,491 - openevolve.process_parallel - INFO - Early stopping disabled
+2026-06-01 18:53:11,577 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 18:53:11,578 - openevolve.evaluator - INFO - Successfully loaded evaluation function from knapsack_task/evaluator.py
+2026-06-01 18:53:11,578 - openevolve.evaluator - INFO - Initialized evaluator with knapsack_task/evaluator.py
+2026-06-01 18:53:11,579 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 18:53:12,184 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 18:53:20,300 - openevolve.evaluator - INFO - Evaluated program e13a09e8-343e-4e8c-b8f8-671778877dd6 in 0.12s: combined_score=0.9952, score=0.9952, avg_ratio=0.9952, invalid=0.0000, total_value=17405.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:20,302 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 18:53:20,304 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 5}
+2026-06-01 18:53:20,304 - openevolve.database - INFO - New best program e13a09e8-343e-4e8c-b8f8-671778877dd6 replaces 9353ee2c-132e-42e4-a0f4-83e3ebb86439 (combined_score: 0.9915 → 0.9952, +0.0037)
+2026-06-01 18:53:20,305 - openevolve.process_parallel - INFO - Iteration 1: Program e13a09e8-343e-4e8c-b8f8-671778877dd6 (parent: 9353ee2c-132e-42e4-a0f4-83e3ebb86439) completed in 8.72s
+2026-06-01 18:53:20,305 - openevolve.process_parallel - INFO - Metrics: combined_score=0.9952, score=0.9952, avg_ratio=0.9952, invalid=0.0000, total_value=17405.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:20,305 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 1: e13a09e8-343e-4e8c-b8f8-671778877dd6
+2026-06-01 18:53:20,305 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 1
+2026-06-01 18:53:20,305 - openevolve.database - INFO - Island Status:
+2026-06-01 18:53:20,306 - openevolve.database - INFO -  * Island 0: 2 programs, best=0.9952, avg=0.9934, diversity=694.20, gen=1 (best: e13a09e8-343e-4e8c-b8f8-671778877dd6)
+2026-06-01 18:53:20,306 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 18:53:20,308 - openevolve.database - INFO - Saved database with 2 programs to knapsack_openevolve_5iter/out/checkpoints/checkpoint_1
+2026-06-01 18:53:20,309 - openevolve.controller - INFO - Saved best program at checkpoint 1 with metrics: combined_score=0.9952, score=0.9952, avg_ratio=0.9952, invalid=0.0000, total_value=17405.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:20,309 - openevolve.controller - INFO - Saved checkpoint at iteration 1 to knapsack_openevolve_5iter/out/checkpoints/checkpoint_1
+2026-06-01 18:53:20,905 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 18:53:28,079 - openevolve.evaluator - INFO - Evaluated program 567eac4e-5efe-49c7-9477-a651fab88bd1 in 0.06s: combined_score=0.9956, score=0.9956, avg_ratio=0.9956, invalid=0.0000, total_value=17413.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:28,083 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 18:53:28,088 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'complexity': 6, 'diversity': 0}
+2026-06-01 18:53:28,088 - openevolve.database - INFO - New best program 567eac4e-5efe-49c7-9477-a651fab88bd1 replaces e13a09e8-343e-4e8c-b8f8-671778877dd6 (combined_score: 0.9952 → 0.9956, +0.0004)
+2026-06-01 18:53:28,088 - openevolve.process_parallel - INFO - Iteration 2: Program 567eac4e-5efe-49c7-9477-a651fab88bd1 (parent: 9353ee2c-132e-42e4-a0f4-83e3ebb86439) completed in 7.78s
+2026-06-01 18:53:28,088 - openevolve.process_parallel - INFO - Metrics: combined_score=0.9956, score=0.9956, avg_ratio=0.9956, invalid=0.0000, total_value=17413.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:28,088 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 2: 567eac4e-5efe-49c7-9477-a651fab88bd1
+2026-06-01 18:53:28,089 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 2
+2026-06-01 18:53:28,089 - openevolve.database - INFO - Island Status:
+2026-06-01 18:53:28,089 - openevolve.database - INFO -  * Island 0: 2 programs, best=0.9952, avg=0.9934, diversity=694.20, gen=1 (best: e13a09e8-343e-4e8c-b8f8-671778877dd6)
+2026-06-01 18:53:28,089 - openevolve.database - INFO -    Island 1: 1 programs, best=0.9956, avg=0.9956, diversity=0.00, gen=1 (best: 567eac4e-5efe-49c7-9477-a651fab88bd1)
+2026-06-01 18:53:28,092 - openevolve.database - INFO - Saved database with 3 programs to knapsack_openevolve_5iter/out/checkpoints/checkpoint_2
+2026-06-01 18:53:28,093 - openevolve.controller - INFO - Saved best program at checkpoint 2 with metrics: combined_score=0.9956, score=0.9956, avg_ratio=0.9956, invalid=0.0000, total_value=17413.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:28,093 - openevolve.controller - INFO - Saved checkpoint at iteration 2 to knapsack_openevolve_5iter/out/checkpoints/checkpoint_2
+2026-06-01 18:53:28,191 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 18:53:39,412 - openevolve.evaluator - INFO - Evaluated program afc6104d-1a02-4c90-87e7-a159cb3b5ec1 in 0.07s: combined_score=0.9994, score=0.9994, avg_ratio=0.9994, invalid=0.0000, total_value=17474.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:39,415 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 18:53:39,417 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 9, 'diversity': 9}
+2026-06-01 18:53:39,418 - openevolve.database - INFO - New best program afc6104d-1a02-4c90-87e7-a159cb3b5ec1 replaces 567eac4e-5efe-49c7-9477-a651fab88bd1 (combined_score: 0.9956 → 0.9994, +0.0038)
+2026-06-01 18:53:39,418 - openevolve.process_parallel - INFO - Iteration 3: Program afc6104d-1a02-4c90-87e7-a159cb3b5ec1 (parent: e13a09e8-343e-4e8c-b8f8-671778877dd6) completed in 11.33s
+2026-06-01 18:53:39,418 - openevolve.process_parallel - INFO - Metrics: combined_score=0.9994, score=0.9994, avg_ratio=0.9994, invalid=0.0000, total_value=17474.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:39,418 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 3: afc6104d-1a02-4c90-87e7-a159cb3b5ec1
+2026-06-01 18:53:39,418 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 3
+2026-06-01 18:53:39,419 - openevolve.database - INFO - Island Status:
+2026-06-01 18:53:39,419 - openevolve.database - INFO -  * Island 0: 3 programs, best=0.9994, avg=0.9954, diversity=995.67, gen=2 (best: afc6104d-1a02-4c90-87e7-a159cb3b5ec1)
+2026-06-01 18:53:39,419 - openevolve.database - INFO -    Island 1: 1 programs, best=0.9956, avg=0.9956, diversity=0.00, gen=1 (best: 567eac4e-5efe-49c7-9477-a651fab88bd1)
+2026-06-01 18:53:39,423 - openevolve.database - INFO - Saved database with 4 programs to knapsack_openevolve_5iter/out/checkpoints/checkpoint_3
+2026-06-01 18:53:39,424 - openevolve.controller - INFO - Saved best program at checkpoint 3 with metrics: combined_score=0.9994, score=0.9994, avg_ratio=0.9994, invalid=0.0000, total_value=17474.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:39,424 - openevolve.controller - INFO - Saved checkpoint at iteration 3 to knapsack_openevolve_5iter/out/checkpoints/checkpoint_3
+2026-06-01 18:53:39,545 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 18:53:47,477 - openevolve.evaluator - INFO - Evaluated program 4906465a-5153-41d6-ab3f-2e33c2cdbc79 in 0.06s: combined_score=0.9956, score=0.9956, avg_ratio=0.9956, invalid=0.0000, total_value=17413.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:47,480 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'complexity': 5, 'diversity': 2}
+2026-06-01 18:53:47,481 - openevolve.process_parallel - INFO - Iteration 4: Program 4906465a-5153-41d6-ab3f-2e33c2cdbc79 (parent: 567eac4e-5efe-49c7-9477-a651fab88bd1) completed in 8.06s
+2026-06-01 18:53:47,481 - openevolve.process_parallel - INFO - Metrics: combined_score=0.9956, score=0.9956, avg_ratio=0.9956, invalid=0.0000, total_value=17413.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:47,481 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 4
+2026-06-01 18:53:47,481 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 18:53:47,482 - openevolve.database - INFO - Island Status:
+2026-06-01 18:53:47,482 - openevolve.database - INFO -  * Island 0: 3 programs, best=0.9994, avg=0.9954, diversity=995.67, gen=2 (best: afc6104d-1a02-4c90-87e7-a159cb3b5ec1)
+2026-06-01 18:53:47,482 - openevolve.database - INFO -    Island 1: 2 programs, best=0.9956, avg=0.9956, diversity=414.90, gen=2 (best: 567eac4e-5efe-49c7-9477-a651fab88bd1)
+2026-06-01 18:53:47,487 - openevolve.database - INFO - Saved database with 5 programs to knapsack_openevolve_5iter/out/checkpoints/checkpoint_4
+2026-06-01 18:53:47,488 - openevolve.controller - INFO - Saved best program at checkpoint 4 with metrics: combined_score=0.9994, score=0.9994, avg_ratio=0.9994, invalid=0.0000, total_value=17474.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:47,488 - openevolve.controller - INFO - Saved checkpoint at iteration 4 to knapsack_openevolve_5iter/out/checkpoints/checkpoint_4
+2026-06-01 18:53:47,615 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 18:53:58,603 - openevolve.evaluator - INFO - Evaluated program 80012a45-625a-4aee-9a3e-f0d34788d733 in 0.07s: combined_score=0.9994, score=0.9994, avg_ratio=0.9994, invalid=0.0000, total_value=17474.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:58,615 - openevolve.database - INFO - Island 0 MAP-Elites cell improved: {'complexity': 9, 'diversity': 5} (fitness: 0.995 -> 0.999)
+2026-06-01 18:53:58,615 - openevolve.process_parallel - INFO - Iteration 5: Program 80012a45-625a-4aee-9a3e-f0d34788d733 (parent: e13a09e8-343e-4e8c-b8f8-671778877dd6) completed in 11.12s
+2026-06-01 18:53:58,615 - openevolve.process_parallel - INFO - Metrics: combined_score=0.9994, score=0.9994, avg_ratio=0.9994, invalid=0.0000, total_value=17474.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:58,615 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 5
+2026-06-01 18:53:58,616 - openevolve.database - INFO - Island Status:
+2026-06-01 18:53:58,616 - openevolve.database - INFO -  * Island 0: 3 programs, best=0.9994, avg=0.9968, diversity=995.33, gen=3 (best: afc6104d-1a02-4c90-87e7-a159cb3b5ec1)
+2026-06-01 18:53:58,617 - openevolve.database - INFO -    Island 1: 2 programs, best=0.9956, avg=0.9956, diversity=414.90, gen=2 (best: 567eac4e-5efe-49c7-9477-a651fab88bd1)
+2026-06-01 18:53:58,622 - openevolve.database - INFO - Saved database with 6 programs to knapsack_openevolve_5iter/out/checkpoints/checkpoint_5
+2026-06-01 18:53:58,623 - openevolve.controller - INFO - Saved best program at checkpoint 5 with metrics: combined_score=0.9994, score=0.9994, avg_ratio=0.9994, invalid=0.0000, total_value=17474.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:58,623 - openevolve.controller - INFO - Saved checkpoint at iteration 5 to knapsack_openevolve_5iter/out/checkpoints/checkpoint_5
+2026-06-01 18:53:58,623 - openevolve.process_parallel - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-06-01 18:53:58,629 - openevolve.database - INFO - Saved database with 6 programs to knapsack_openevolve_5iter/out/checkpoints/checkpoint_5
+2026-06-01 18:53:58,630 - openevolve.controller - INFO - Saved best program at checkpoint 5 with metrics: combined_score=0.9994, score=0.9994, avg_ratio=0.9994, invalid=0.0000, total_value=17474.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:58,630 - openevolve.controller - INFO - Saved checkpoint at iteration 5 to knapsack_openevolve_5iter/out/checkpoints/checkpoint_5
+2026-06-01 18:53:58,644 - openevolve.process_parallel - INFO - Stopped process pool
+2026-06-01 18:53:58,644 - openevolve.controller - INFO - Using tracked best program: afc6104d-1a02-4c90-87e7-a159cb3b5ec1
+2026-06-01 18:53:58,644 - openevolve.controller - INFO - Evolution complete. Best program has metrics: combined_score=0.9994, score=0.9994, avg_ratio=0.9994, invalid=0.0000, total_value=17474.0000, total_opt=17484.0000, instances=18.0000
+2026-06-01 18:53:58,645 - openevolve.controller - INFO - Saved best program to knapsack_openevolve_5iter/out/best/best_program.py with program info to knapsack_openevolve_5iter/out/best/best_program_info.json

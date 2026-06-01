@@ -1,0 +1,10 @@
+{
+  "status": "completed",
+  "iterations": 5,
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "best_score": 0.038007149562376566,
+  "best_program_path": "",
+  "output_dir": "/home/heshi/work/co-pilot-ai-scientist-v3/openevolve_5iter/out"
+}

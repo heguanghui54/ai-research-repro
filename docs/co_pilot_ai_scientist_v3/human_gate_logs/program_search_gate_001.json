@@ -1,0 +1,50 @@
+{
+  "gate_id": "program_search_gate_001",
+  "gate_type": "program_search_escalation",
+  "timestamp_utc": "2026-06-01T10:38:35Z",
+  "research_task_id": "openevolve_smoke_function_minimization",
+  "options": [
+    {
+      "option_id": "direct_llm_edit",
+      "summary": "Ask an LLM to directly rewrite the baseline minimizer once, then evaluate the result.",
+      "score": null,
+      "evidence": [
+        "Cheaper baseline for later ablation."
+      ],
+      "risks": [
+        "Does not test the OpenEvolve program database, island search, or checkpoint path."
+      ]
+    },
+    {
+      "option_id": "openevolve_smoke",
+      "summary": "Run a one-iteration OpenEvolve smoke test with a deterministic evaluator on the Ubuntu host.",
+      "score": null,
+      "evidence": [
+        "OpenEvolve is the chosen open-source AlphaEvolve-style substrate.",
+        "The subproblem has an executable evaluator."
+      ],
+      "risks": [
+        "One iteration is only a plumbing check, not a full scientific result."
+      ]
+    }
+  ],
+  "human_decision": "openevolve_smoke",
+  "rationale": "The user explicitly requested using algorithmicsuperintelligence/openevolve as the practical reference because AlphaEvolve's core algorithm is not open sourced. A minimal smoke run is the fastest way to turn the design into executable evidence.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/openevolve_smoke/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openevolve_smoke/openevolve.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/openevolve_smoke/best_program.py"
+  ],
+  "downstream_budget": {
+    "iterations": 1,
+    "provider": "DeepSeek",
+    "model": "deepseek-chat",
+    "remote_host": "ubuntu-heshi"
+  },
+  "follow_up_checks": [
+    "Run a direct LLM-edit baseline with the same evaluator and budget.",
+    "Run a longer OpenEvolve job only after the smoke result is stable.",
+    "Add a human branch-selection gate for an AI Scientist-v2/FML-bench task."
+  ]
+}
+

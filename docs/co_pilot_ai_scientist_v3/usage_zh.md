@@ -1,0 +1,60 @@
+# Co-Pilot AI Scientist v3 使用说明
+
+## 这个流程做什么
+
+这个 workflow 把一个研究主题转化为“人类参与的自动科研循环”。它保留 AI Scientist-v2 的自动化能力，但在人类判断最有价值的位置加入明确的 gate。
+
+## 最小运行流程
+
+1. 从 `problem_statement.md` 开始确认研究问题。
+2. 生成候选假设，并写入 `candidates.json`。
+3. 让人类研究者审批或改写最好的假设。
+4. 把通过的假设转化为 benchmark、baseline 和 evaluator。
+5. 在同样预算下运行完全自动版本和 human-gated 版本。
+6. 对机器可评分的子问题调用 OpenEvolve 或类似代码进化循环。
+7. 只根据日志和指标写论文，不编造结果。
+8. 生成 PDF 前进行最终主张审计。
+
+当前项目包已经包含一次示例 claim audit，位于
+`docs/co_pilot_ai_scientist_v3/audits/`。后续运行也应沿用这个模式：在最终
+PDF 生成前，把每条主张标记为 supported、partially supported、unsupported
+或 overstated。
+
+## 人类参与节点
+
+- `idea_selection`：选择或改写研究假设。
+- `evaluator_approval`：审批指标、baseline 和失败条件。
+- `branch_selection`：决定哪些实验分支继续获得预算。
+- `program_search_escalation`：决定某个子问题是否值得深度代码进化。
+- `claim_audit`：删除或弱化缺乏证据支持的论文主张。
+
+## 环境建议
+
+API key 使用全局环境变量，不在日志中打印。建议：
+
+- DeepSeek 用于低成本代码生成和 smoke test。
+- Monica 聚合的 GPT/Gemini/Anthropic 用于假设辩论、高风险审稿和最终写作。
+- 较重 benchmark 放到 SSH 控制的 Ubuntu 机器上运行。
+
+## OpenEvolve 子问题搜索
+
+使用 OpenEvolve 作为 AlphaEvolve-style 优化的开源替代实现。官方
+AlphaEvolve 系统没有开源，所以论文中应写成 “AlphaEvolve-style” 或
+“基于 OpenEvolve”，不能声称复现了官方 AlphaEvolve。
+
+使用本仓库 wrapper 的最小 OpenEvolve 命令：
+
+```bash
+python3 scripts/run_openevolve_program_search.py \
+  --initial-program docs/co_pilot_ai_scientist_v3/experiments/knapsack_task/initial_program.py \
+  --evaluator docs/co_pilot_ai_scientist_v3/experiments/knapsack_task/evaluator.py \
+  --output-dir /tmp/knapsack_openevolve_5iter/run \
+  --iterations 5 \
+  --provider deepseek \
+  --model deepseek-chat
+```
+
+如果走 Monica 聚合接口，使用 `--provider monica --model <model-name>`，并确保
+shell 中已有 `MONICA_API_KEY` 和 `MONICA_BASE_URL`。
+
+完整复现路径见 `RUNBOOK_ZH.md`。

@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "initial_program": "knapsack_task/initial_program.py",
+  "evaluator": "knapsack_task/evaluator.py",
+  "candidate_program": "knapsack_direct_baseline/candidate_program.py",
+  "signature": "def select_items(items, capacity):",
+  "metrics": {
+    "combined_score": 0.9952700988954383,
+    "score": 0.9952700988954383,
+    "avg_ratio": 0.9952700988954383,
+    "invalid": 0,
+    "total_value": 17415,
+    "total_opt": 17484,
+    "instances": 18
+  }
+}

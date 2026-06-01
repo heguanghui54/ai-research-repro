@@ -1,0 +1,19 @@
+{
+  "benchmark": "MLAgentBench",
+  "task": "vectorization",
+  "agent_type": "Agent baseline",
+  "final_score_seconds": 3.17250394821167,
+  "total_time_seconds": 3.3655309677124023,
+  "submitted_final_answer": true,
+  "error": "",
+  "extra": {
+    "oom_error": false,
+    "connection_error": false,
+    "error": false,
+    "json_error": false,
+    "long_prompt_error": false
+  },
+  "remote_repo": "/home/heshi/work/bench-probes/MLAgentBench",
+  "remote_log_dir": "/home/heshi/work/copilotv3-mlagentbench-vectorization-baseline",
+  "repo_commit": "5d71205"
+}

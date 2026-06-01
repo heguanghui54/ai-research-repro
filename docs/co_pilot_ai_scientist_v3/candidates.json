@@ -1,0 +1,78 @@
+{
+  "rubric": {
+    "novelty": "Does the direction add a real architectural or evaluation contribution beyond existing agents?",
+    "testability": "Can it be evaluated with available compute and logs?",
+    "paper_value": "Would the results support a credible workshop or conference paper?",
+    "human_leverage": "Does it test where human participation matters?",
+    "risk": "Lower is better; high risk means weak evidence or excessive scope."
+  },
+  "candidates": [
+    {
+      "id": "hitl-gated-tree-search",
+      "title": "Human-Gated Agentic Tree Search for Automated Research",
+      "core_hypothesis": "Adding structured human gates to AI Scientist-v2 tree search improves final paper quality by pruning weak branches and enriching promising ones.",
+      "related_work_gap": "AI Scientist-v2 automates tree search but does not systematically evaluate human intervention placement.",
+      "minimal_experiment": "Run matched research tasks with no human gates, idea-only gates, branch-selection gates, and claim-audit gates.",
+      "evaluation_target": "Expert paper-quality score, unsupported-claim count, experiment budget wasted on discarded branches.",
+      "main_risk": "Human feedback may be too subjective unless captured in a strict schema.",
+      "scores": {
+        "novelty": 4,
+        "testability": 4,
+        "paper_value": 4,
+        "human_leverage": 5,
+        "risk": 2
+      }
+    },
+    {
+      "id": "co-scientist-front-end",
+      "title": "Co-Scientist Front-End for AI Scientist-v2",
+      "core_hypothesis": "AI Co-Scientist-style debate before experiment generation yields stronger hypotheses than AI Scientist-v2 ideation alone.",
+      "related_work_gap": "Existing systems separate hypothesis debate from full experiment/writeup loops.",
+      "minimal_experiment": "Compare AI Scientist-v2 topic-file ideation against multi-agent hypothesis debate on the same benchmark tasks.",
+      "evaluation_target": "Novelty, feasibility, evidence grounding, and downstream experiment success.",
+      "main_risk": "The benefit may disappear once constrained by runnable benchmarks.",
+      "scores": {
+        "novelty": 4,
+        "testability": 3,
+        "paper_value": 4,
+        "human_leverage": 4,
+        "risk": 3
+      }
+    },
+    {
+      "id": "alphaevolve-subproblem-optimizer",
+      "title": "AlphaEvolve-Style Subproblem Optimization Inside Automated Research",
+      "core_hypothesis": "Delegating machine-gradeable subproblems to evolutionary code search improves experiment results without requiring full-paper autonomy.",
+      "related_work_gap": "AlphaEvolve shows strong code evolution, but integration into AI Scientist-v2-style paper loops is underexplored.",
+      "minimal_experiment": "Use OpenEvolve on selected algorithmic or ML-pipeline components within a research task and compare against direct LLM edit search.",
+      "evaluation_target": "Metric gain, number of valid candidate programs, wall-clock/API cost, paper-level usefulness.",
+      "main_risk": "Local metric improvements may not change the final research conclusion.",
+      "scores": {
+        "novelty": 5,
+        "testability": 3,
+        "paper_value": 5,
+        "human_leverage": 4,
+        "risk": 3
+      }
+    },
+    {
+      "id": "full-copilot-v3-system",
+      "title": "Co-Pilot AI Scientist v3 End-to-End System",
+      "core_hypothesis": "A unified co-pilot architecture with human creative nodes, automated experiments, and programmatic search can produce better papers than autonomous-only pipelines.",
+      "related_work_gap": "Prior systems each cover one layer: hypothesis, experiment/paper automation, or program search.",
+      "minimal_experiment": "Build an orchestration layer with logged human gates and run two small research tasks end to end.",
+      "evaluation_target": "End-to-end reproducibility, expert review, benchmark results, and artifact completeness.",
+      "main_risk": "Scope is large; requires careful staging to avoid a broad but weak paper.",
+      "scores": {
+        "novelty": 5,
+        "testability": 2,
+        "paper_value": 5,
+        "human_leverage": 5,
+        "risk": 4
+      }
+    }
+  ],
+  "current_best_direction": "hitl-gated-tree-search",
+  "reason": "It is the narrowest experimentally defensible core contribution and can later absorb the Co-Scientist and AlphaEvolve components as modules."
+}
+

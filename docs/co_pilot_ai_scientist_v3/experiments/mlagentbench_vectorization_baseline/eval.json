@@ -1,0 +1,22 @@
+{
+    "/home/heshi/work/copilotv3-mlagentbench-vectorization-baseline/env_log/trace.json": {
+        "path": "/home/heshi/work/copilotv3-mlagentbench-vectorization-baseline/env_log/trace.json",
+        "summary": "",
+        "rubric_questions": {},
+        "score": [
+            3.17250394821167
+        ],
+        "score_steps": [],
+        "submitted_final_answer": true,
+        "final_score": 3.17250394821167,
+        "total_time": 3.3655309677124023,
+        "error": "",
+        "extra": {
+            "oom_error": false,
+            "connection_error": false,
+            "error": false,
+            "json_error": false,
+            "long_prompt_error": false
+        }
+    }
+}

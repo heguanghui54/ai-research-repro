@@ -1,0 +1,50 @@
+```python
+import random
+import math
+
+
+def minimize_function(func, bounds, max_evals=80):
+    low, high = bounds
+    best_x = None
+    best_val = float("inf")
+    
+    # Initial random sampling
+    for _ in range(max_evals // 4):
+        x = random.uniform(low, high)
+        val = func(x)
+        if val < best_val:
+            best_x = x
+            best_val = val
+    
+    # Local refinement around best point
+    if best_x is not None:
+        for _ in range(max_evals // 4):
+            x = best_x + random.uniform(-0.5, 0.5) * (high - low) / 10
+            x = max(low, min(high, x))
+            val = func(x)
+            if val < best_val:
+                best_x = x
+                best_val = val
+    
+    # More focused local search
+    if best_x is not None:
+        for _ in range(max_evals // 4):
+            x = best_x + random.uniform(-0.1, 0.1) * (high - low) / 10
+            x = max(low, min(high, x))
+            val = func(x)
+            if val < best_val:
+                best_x = x
+                best_val = val
+    
+    # Final fine-tuning
+    if best_x is not None:
+        for _ in range(max_evals - 3 * (max_evals // 4)):
+            x = best_x + random.uniform(-0.01, 0.01) * (high - low) / 10
+            x = max(low, min(high, x))
+            val = func(x)
+            if val < best_val:
+                best_x = x
+                best_val = val
+    
+    return best_x, best_val
+```

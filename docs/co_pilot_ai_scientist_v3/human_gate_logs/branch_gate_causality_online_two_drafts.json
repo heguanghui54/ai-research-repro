@@ -1,0 +1,56 @@
+{
+  "gate_id": "branch_gate_causality_online_two_drafts",
+  "gate_type": "branch_selection",
+  "timestamp_utc": "2026-06-01T11:31:30Z",
+  "research_task_id": "fml_causality_causalml_online_two_draft_probe",
+  "options": [
+    {
+      "option_id": "step_1_draft_d71a0cdf1c7d",
+      "summary": "First live draft branch from AI Scientist-v2 on Causality_causalml.",
+      "score": 1.1496098661684393,
+      "evidence": [
+        "Validation MAE from docs/co_pilot_ai_scientist_v3/experiments/fml_online_branch_gate_drafts/summary.json",
+        "Lower MAE is better for this task.",
+        "Step snapshot archived at docs/co_pilot_ai_scientist_v3/experiments/fml_online_branch_gate_drafts/step_0001_code.json"
+      ],
+      "risks": [
+        "Validation score is worse than step 2 and only modestly better than the baseline."
+      ]
+    },
+    {
+      "option_id": "step_2_draft_8044da16b861",
+      "summary": "Second live draft branch from AI Scientist-v2 on Causality_causalml.",
+      "score": 0.6212624733836205,
+      "evidence": [
+        "Validation MAE from docs/co_pilot_ai_scientist_v3/experiments/fml_online_branch_gate_drafts/summary.json",
+        "Lower MAE is better for this task.",
+        "Step snapshot archived at docs/co_pilot_ai_scientist_v3/experiments/fml_online_branch_gate_drafts/step_0002_code.json",
+        "The benchmark's automatic final test on the best validation branch produced test MAE 0.6404510911628365."
+      ],
+      "risks": [
+        "This probe does not yet resume the selected branch for additional human-gated search.",
+        "The final test metric is slightly worse than the earlier four-step autonomous run, so this is evidence of gate feasibility rather than superiority."
+      ]
+    }
+  ],
+  "human_decision": "Select step_2_draft_8044da16b861 for downstream budget; prune step_1_draft_d71a0cdf1c7d.",
+  "rationale": "The second draft has substantially lower validation MAE than the first draft on the live two-branch frontier. Selecting it is the decision a human co-pilot would make before allocating additional search budget.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_online_branch_gate_drafts/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_online_branch_gate_drafts/step_0001_code.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_online_branch_gate_drafts/step_0002_code.json"
+  ],
+  "downstream_budget": {
+    "selected_branch": "step_2_draft_8044da16b861",
+    "pruned_branch": "step_1_draft_d71a0cdf1c7d",
+    "recommended_next_steps": 2,
+    "provider": "DeepSeek",
+    "model": "deepseek-chat",
+    "remote_host": "ubuntu-heshi"
+  },
+  "follow_up_checks": [
+    "Implement or patch a resume path that continues from the selected branch only.",
+    "Run the matched autonomous baseline with the same draft-stage budget.",
+    "Repeat on Fairness_fairlearn after the evaluator compatibility issue is controlled."
+  ]
+}
