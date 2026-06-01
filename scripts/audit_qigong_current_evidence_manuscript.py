@@ -64,12 +64,20 @@ def audit(manuscript: Path) -> list[Item]:
     items: list[Item] = []
 
     add(items, "manuscript_exists", manuscript.exists(), str(manuscript), "Create the current-evidence manuscript.")
+    complete_rows = int(web.get("complete_rows", 0) or 0) if isinstance(web, dict) else 0
+    primary_rows = int(web.get("primary_submissions", 0) or 0) if isinstance(web, dict) else 0
+    if complete_rows >= 120 and primary_rows >= 120:
+        web_state_ok = ("完整提交 0 条" not in text and "主编码提交 0 条" not in text)
+        web_rec = "When web coding is complete, manuscript should report audited coding results rather than the old pending state."
+    else:
+        web_state_ok = "完整提交 0 条" in text and "主编码提交 0 条" in text and "STU01-STU10" in text
+        web_rec = "Current draft must state that student web coding has started but has no complete submissions yet."
     add(
         items,
         "web_coding_state_matches_export",
-        "完整提交 0 条" in text and "主编码提交 0 条" in text and "STU01-STU10" in text,
+        web_state_ok,
         f"web_summary={web}",
-        "Current draft must state that student web coding has started but has no complete submissions yet.",
+        web_rec,
     )
     add(
         items,
