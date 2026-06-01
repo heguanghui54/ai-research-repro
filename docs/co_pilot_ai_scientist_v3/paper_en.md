@@ -106,6 +106,14 @@ free-text rationale, affected artifacts, and downstream consequences. This makes
 human participation part of the reproducibility record rather than an invisible
 side channel.
 
+The current artifact package contains a retrospective full-gate trajectory
+covering all proposed gate types. It links an idea gate selecting the narrow
+human-gated tree-search contribution, an evaluator gate rejecting a fairness
+metric-gaming branch, a live branch gate selecting among two Causality drafts, a
+program-search gate escalating to OpenEvolve, and a claim gate demoting
+unsupported superiority claims to future work. This trajectory demonstrates the
+log format and evidence chain, but it is not yet a single online end-to-end run.
+
 ## 4. Benchmark Selection and Evaluation Plan
 
 We evaluate six variants: autonomous baseline, idea gate only, branch gate only,
@@ -334,20 +342,22 @@ The current contributions are:
 
 1. A modular architecture for collaborative automated research.
 2. A formal schema for human intervention nodes in research agents.
-3. An evaluation protocol for measuring whether and where human attention
+3. A retrospective full-gate trajectory showing idea, evaluator, branch,
+   program-search, and claim-audit gates serialized under the shared schema.
+4. An evaluation protocol for measuring whether and where human attention
    improves agentic research.
-4. Initial remote OpenEvolve and FML-bench probes showing that the
+5. Initial remote OpenEvolve and FML-bench probes showing that the
    AlphaEvolve-style subproblem module and AI Scientist-v2 branch-gate module
    can run on the Ubuntu host.
-5. Two matched-budget FML-bench Causality comparisons between a human-gated
+6. Two matched-budget FML-bench Causality comparisons between a human-gated
    branch continuation and a four-step autonomous AI Scientist-v2 baseline,
    with mixed outcomes.
-6. Non-FML program-search probes for runtime optimization and tabular
+7. Non-FML program-search probes for runtime optimization and tabular
    regression, broadening benchmark coverage beyond FML-bench.
-7. A reusable Codex skill for running the workflow.
-8. Bilingual paper, usage artifacts, and claim-audit artifacts for
+8. A reusable Codex skill for running the workflow.
+9. Bilingual paper, usage artifacts, and claim-audit artifacts for
    reproducibility.
-9. A Monica-routed paper-quality review artifact that records external model
+10. A Monica-routed paper-quality review artifact that records external model
    criticism before the next revision.
 
 The current evidence does not yet prove that human gates improve paper quality
@@ -363,9 +373,11 @@ budgets it may not outperform direct LLM editing. Expert paper ratings are
 costly and may vary across reviewers. The first version should make narrow
 claims and report negative results when gates fail to improve outcomes. The
 current selected-branch continuation evidence is mixed across two matched pairs
-and is not yet a statistically controlled benchmark; stronger claims require
-more tasks, more seeds, richer budget schedules, and independent paper-quality
-review.
+and is not yet a statistically controlled benchmark. The retrospective
+full-gate trajectory shows the schema and decision chain, but it is not a
+single online run with all gates active. Stronger claims require more tasks,
+more seeds, richer budget schedules, a true online four-loop trajectory, and
+independent paper-quality review.
 
 The current implementation also lacks one complete end-to-end demonstration in
 which all four loops operate in a single continuous trajectory. The module probes

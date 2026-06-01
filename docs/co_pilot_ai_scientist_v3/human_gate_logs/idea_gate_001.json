@@ -1,0 +1,78 @@
+{
+  "gate_id": "idea_gate_001",
+  "gate_type": "idea_selection",
+  "timestamp_utc": "2026-06-01T14:30:00Z",
+  "research_task_id": "copilot_v3_research_direction_selection",
+  "options": [
+    {
+      "option_id": "hitl-gated-tree-search",
+      "summary": "Human-gated agentic tree search: narrow, experimentally defensible core contribution focused on where human branch and claim gates change an AI Scientist-v2 trajectory.",
+      "score": 19,
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/candidates.json current_best_direction",
+        "High human_leverage score 5 and lower risk score 2"
+      ],
+      "risks": [
+        "Requires matched autonomous versus human-gated comparisons before claiming superiority."
+      ]
+    },
+    {
+      "option_id": "co-scientist-front-end",
+      "summary": "AI Co-Scientist-style debate front-end before AI Scientist-v2 experiment generation.",
+      "score": 18,
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/candidates.json"
+      ],
+      "risks": [
+        "Benefit may disappear once hypotheses are constrained by runnable benchmarks."
+      ]
+    },
+    {
+      "option_id": "alphaevolve-subproblem-optimizer",
+      "summary": "AlphaEvolve-style subproblem optimization inside automated research, implemented with OpenEvolve because official AlphaEvolve core code is unavailable.",
+      "score": 17,
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/candidates.json"
+      ],
+      "risks": [
+        "Local program improvements may not improve paper-level scientific quality."
+      ]
+    },
+    {
+      "option_id": "full-copilot-v3-system",
+      "summary": "Full end-to-end co-pilot architecture combining hypothesis debate, AI Scientist-v2 automation, human gates, and OpenEvolve program search.",
+      "score": 17,
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/candidates.json"
+      ],
+      "risks": [
+        "Highest scope risk; needs staging to avoid a broad but weak paper."
+      ]
+    }
+  ],
+  "human_decision": "Select hitl-gated-tree-search as the narrow core paper, while retaining co-scientist and OpenEvolve modules as supporting layers.",
+  "rationale": "The selected direction has the best balance of novelty, testability, paper value, human leverage, and risk. It lets the paper make a defensible systems contribution now while treating the full co-pilot v3 architecture as the broader target.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/candidates.json",
+    "docs/co_pilot_ai_scientist_v3/problem_statement.md",
+    "docs/co_pilot_ai_scientist_v3/paper_en.md",
+    "docs/co_pilot_ai_scientist_v3/paper_zh.md"
+  ],
+  "downstream_budget": {
+    "selected_core_direction": "hitl-gated-tree-search",
+    "kept_supporting_modules": [
+      "co-scientist-front-end",
+      "alphaevolve-subproblem-optimizer"
+    ],
+    "initial_evaluation_focus": [
+      "branch_gate",
+      "program_search_gate",
+      "claim_gate"
+    ]
+  },
+  "follow_up_checks": [
+    "Run matched autonomous versus human-gated branch continuations before claiming outcome improvement.",
+    "Keep full-system superiority as a target claim until multi-task evidence exists.",
+    "Record every later human gate with the shared JSON schema."
+  ]
+}

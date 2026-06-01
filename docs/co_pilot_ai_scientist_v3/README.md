@@ -29,6 +29,9 @@ delegating machine-gradeable subproblems to AlphaEvolve-style code evolution.
 - `references.bib`: citation seed file for later LaTeX/PDF generation.
 - `RUNBOOK_EN.md`: English reproduction and continuation runbook.
 - `RUNBOOK_ZH.md`: Chinese reproduction and continuation runbook.
+- `experiments/full_gate_retrospective_trajectory.md`: auditable
+  retrospective chain linking idea, evaluator, branch, program-search, and
+  claim gates.
 - `build/`: generated PDFs and other render outputs.
 
 ## Build PDFs
@@ -94,3 +97,9 @@ half a minute. A ScienceAgentBench metadata probe confirmed the code repository
 and the April 2026 verified-artifact requirement, but HuggingFace metadata was
 not reachable from the Ubuntu host. Neither probe is reported as a benchmark
 score.
+
+The package now also includes a retrospective full-gate trajectory. It links
+the selected research direction, Fairness evaluator guardrail, live Causality
+branch gate, OpenEvolve program-search escalation, and claim-audit decision into
+one auditable chain. This is evidence that the schema covers all proposed human
+gate types, but it is not yet a single online end-to-end co-pilot run.

@@ -67,6 +67,14 @@ high-leverage creative, evaluation, search, and claim-audit nodes.
    - Trigger `claim_gate` to audit unsupported claims before final polishing.
    - Produce bilingual usage notes when requested.
 
+7. **Assemble Gate Trajectory**
+   - Link idea, evaluator, branch, program-search, and claim gates into a
+     trajectory artifact.
+   - Mark whether the trajectory is a single online run or a retrospective
+     chain assembled from separate probes.
+   - Never use a retrospective gate chain as evidence of end-to-end
+     performance superiority.
+
 ## Human Gate Schema
 
 Each human intervention should be stored as structured data:
@@ -150,6 +158,7 @@ Reusable templates are stored next to this skill:
 - candidate hypotheses and scores;
 - literature and benchmark notes;
 - human gate logs;
+- full-gate trajectory artifact;
 - experiment logs and metrics;
 - program-search traces;
 - English and Chinese manuscript drafts;
@@ -162,5 +171,7 @@ Reusable templates are stored next to this skill:
 - Separate proposed architecture from verified experimental findings.
 - Prefer narrow claims until logs prove broader claims.
 - Reject metric-gaming results even when the primary metric improves.
+- Distinguish retrospective gate-chain evidence from a true online end-to-end
+  run with all gates active.
 - Treat human decisions as data, not informal chat context.
 - Keep the final paper aligned with actual experiment artifacts.

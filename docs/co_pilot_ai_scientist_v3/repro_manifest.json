@@ -226,7 +226,12 @@
     "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/huggingface_metadata_error.log",
     "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/repo_probe.log",
-    "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/summary.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/summary.json",
+    "docs/co_pilot_ai_scientist_v3/human_gate_logs/idea_gate_001.json",
+    "docs/co_pilot_ai_scientist_v3/human_gate_logs/evaluator_gate_fairness_metric_guardrail.json",
+    "docs/co_pilot_ai_scientist_v3/human_gate_logs/claim_gate_001.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -235,10 +240,10 @@
   ],
   "next_required_evidence": [
     "Run more matched autonomous and human-gated variants beyond the current two mixed Causality pairs; Fairness_fairlearn needs a non-degenerate repaired branch that passes executable-code checks and a utility floor before matched continuation.",
-    "Collect additional structured human gate logs on new tasks.",
+    "Run a single online four-loop trajectory with idea, evaluator, branch, program-search, and claim gates active in one continuous experiment; current full-gate trajectory is retrospective only.",
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "Generate expert or rubric-based paper quality scores.",
-    "Run a complete four-loop trajectory with all gates active.",
+    "Compare the online full-gate trajectory against an autonomous AI Scientist-v2 baseline under a matched budget.",
     "Pre-cache CIFAR10 or choose another data-ready MLAgentBench task for a second official non-FML score; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics."
   ],
   "model_routing_policy": {

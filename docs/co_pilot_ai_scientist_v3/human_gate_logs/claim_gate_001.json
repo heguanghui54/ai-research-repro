@@ -1,0 +1,64 @@
+{
+  "gate_id": "claim_gate_001",
+  "gate_type": "claim_audit",
+  "timestamp_utc": "2026-06-01T14:40:00Z",
+  "research_task_id": "copilot_v3_manuscript_claim_audit",
+  "options": [
+    {
+      "option_id": "strong_superiority_claim",
+      "summary": "Claim that Co-Pilot AI Scientist v3 improves paper quality and outperforms autonomous AI Scientist-v2.",
+      "score": null,
+      "evidence": [
+        "No expert or rubric-based paper-quality score yet",
+        "No broad matched multi-task autonomous versus full co-pilot benchmark yet",
+        "Two matched Causality pairs are mixed"
+      ],
+      "risks": [
+        "Unsupported by current evidence.",
+        "Contradicted by Pair 2 and by the two-pair mean favoring autonomous on test MAE."
+      ]
+    },
+    {
+      "option_id": "pilot_architecture_claim",
+      "summary": "Claim a modular co-pilot architecture with pilot evidence for feasible human gates, OpenEvolve-style subproblem search, evaluator-gate failure handling, and mixed matched-budget results.",
+      "score": null,
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md",
+        "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_comparison.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_multiseed_summary.json"
+      ],
+      "risks": [
+        "Still below top-conference evidence bar without broader matched comparisons."
+      ]
+    }
+  ],
+  "human_decision": "Use pilot_architecture_claim; demote strong_superiority_claim to future work.",
+  "rationale": "The evidence supports a reproducible architecture and several narrow feasibility claims, but does not support a broad superiority claim. The manuscript should be conservative and explicit about remaining evidence requirements.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",
+    "docs/co_pilot_ai_scientist_v3/paper_en.md",
+    "docs/co_pilot_ai_scientist_v3/paper_zh.md"
+  ],
+  "downstream_budget": {
+    "allowed_claims": [
+      "architecture/proposal contribution",
+      "feasible branch-gate insertion",
+      "OpenEvolve-style search can help some machine-gradeable subproblems",
+      "program search should be gated rather than automatic",
+      "evaluator gates should reject non-executable and metric-gaming branches",
+      "matched Causality evidence is mixed"
+    ],
+    "blocked_claims": [
+      "human gates improve paper quality",
+      "full co-pilot v3 outperforms autonomous AI Scientist-v2",
+      "current paper is top-conference ready"
+    ]
+  },
+  "follow_up_checks": [
+    "Run more matched autonomous versus human-gated comparisons across tasks and seeds.",
+    "Add expert or rubric-based paper-quality scores.",
+    "Run one complete online four-loop trajectory with all gates active before upgrading the central claim."
+  ]
+}

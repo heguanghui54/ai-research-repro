@@ -1,0 +1,56 @@
+{
+  "gate_id": "evaluator_gate_fairness_metric_guardrail",
+  "gate_type": "evaluator_approval",
+  "timestamp_utc": "2026-06-01T14:35:00Z",
+  "research_task_id": "fml_fairness_fairlearn_evaluator_gate",
+  "options": [
+    {
+      "option_id": "primary_metric_only",
+      "summary": "Accept branches solely by abs_demographic_parity_diff_mean, the primary Fairness_fairlearn metric.",
+      "score": 0.0,
+      "evidence": [
+        "Degenerate all-negative predictor achieves validation and test abs_demographic_parity_diff_mean 0.000000"
+      ],
+      "risks": [
+        "Metric can be gamed by predicting only one class.",
+        "Balanced accuracy collapses to 0.500000."
+      ]
+    },
+    {
+      "option_id": "execution_plus_utility_floor",
+      "summary": "Require executable code and a minimum utility guardrail such as balanced accuracy before accepting any claimed fairness improvement.",
+      "score": null,
+      "evidence": [
+        "Original baseline test DPD 0.173030 with balanced accuracy 0.763862",
+        "API-repaired candidate runs but worsens test DPD to 0.317603 despite balanced accuracy 0.818491",
+        "Degenerate all-negative candidate has perfect DPD 0.000000 but balanced accuracy 0.500000",
+        "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_gate_repair.md"
+      ],
+      "risks": [
+        "Requires explicit multi-metric acceptance criteria for fairness tasks."
+      ]
+    }
+  ],
+  "human_decision": "Reject primary-metric-only acceptance; require executable code plus a balanced-accuracy utility floor before any Fairness_fairlearn branch can continue.",
+  "rationale": "The target fairness metric alone rewards a degenerate classifier. A human evaluator gate should prevent both non-executable candidates and metric-gaming candidates from consuming continuation budget.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_gate_repair.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_gate_repair_summary.json",
+    "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md",
+    "skills/co-pilot-ai-scientist-v3/SKILL.md"
+  ],
+  "downstream_budget": {
+    "continue_fairness_branch": false,
+    "required_before_continuation": [
+      "code executes on validation split",
+      "primary fairness metric improves over baseline",
+      "balanced accuracy remains above a baseline-relative utility floor"
+    ],
+    "recommended_next_step": "design a non-degenerate Fairlearn-compatible candidate before matched continuation"
+  },
+  "follow_up_checks": [
+    "Define an explicit balanced-accuracy threshold before the next Fairness run.",
+    "Report fairness results as evaluator-gate evidence unless a non-degenerate candidate passes both fairness and utility checks.",
+    "Keep demographic parity and equalized odds metrics separated in future summaries."
+  ]
+}

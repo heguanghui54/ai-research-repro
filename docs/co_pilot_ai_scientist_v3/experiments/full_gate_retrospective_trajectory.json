@@ -1,0 +1,54 @@
+{
+  "trajectory_id": "full_gate_retrospective_trajectory_001",
+  "trajectory_type": "retrospective_gate_chain",
+  "is_single_online_run": false,
+  "purpose": "Connect existing human gate logs into one auditable Co-Pilot AI Scientist v3 decision chain without claiming end-to-end superiority.",
+  "gates": [
+    {
+      "order": 1,
+      "gate_id": "idea_gate_001",
+      "gate_type": "idea_selection",
+      "decision": "Select hitl-gated-tree-search as the narrow core direction.",
+      "log_path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/idea_gate_001.json"
+    },
+    {
+      "order": 2,
+      "gate_id": "evaluator_gate_fairness_metric_guardrail",
+      "gate_type": "evaluator_approval",
+      "decision": "Require executable code and a balanced-accuracy utility floor for Fairness_fairlearn.",
+      "log_path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/evaluator_gate_fairness_metric_guardrail.json"
+    },
+    {
+      "order": 3,
+      "gate_id": "branch_gate_causality_online_two_drafts",
+      "gate_type": "branch_selection",
+      "decision": "Select the second live Causality draft for continuation.",
+      "log_path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/branch_gate_causality_online_two_drafts.json"
+    },
+    {
+      "order": 4,
+      "gate_id": "program_search_gate_001",
+      "gate_type": "program_search_escalation",
+      "decision": "Run an OpenEvolve smoke test as the AlphaEvolve-style substrate check.",
+      "log_path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/program_search_gate_001.json"
+    },
+    {
+      "order": 5,
+      "gate_id": "claim_gate_001",
+      "gate_type": "claim_audit",
+      "decision": "Keep only pilot architecture and narrow feasibility claims; demote superiority claims to future work.",
+      "log_path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/claim_gate_001.json"
+    }
+  ],
+  "supports_claims": [
+    "human gates can be logged as reproducible artifacts",
+    "the current architecture has concrete gate schemas across idea, evaluator, branch, program-search, and claim-audit stages",
+    "claim discipline is grounded in explicit evidence audit"
+  ],
+  "does_not_support_claims": [
+    "human gates improve final paper quality",
+    "full co-pilot v3 outperforms autonomous AI Scientist-v2",
+    "top-conference readiness"
+  ],
+  "next_required_evidence": "Run a single online four-loop experiment with all gates active and compare it against autonomous AI Scientist-v2 under a matched budget."
+}

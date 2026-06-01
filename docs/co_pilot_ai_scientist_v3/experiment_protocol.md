@@ -133,6 +133,21 @@ Record every failed branch with:
 - reason the branch was pruned;
 - whether the branch suggests a future research direction.
 
+## Current Gate-Chain Artifact
+
+The repository includes a retrospective full-gate trajectory under
+`experiments/full_gate_retrospective_trajectory.md`. It connects:
+
+- `idea_gate_001`;
+- `evaluator_gate_fairness_metric_guardrail`;
+- `branch_gate_causality_online_two_drafts`;
+- `program_search_gate_001`;
+- `claim_gate_001`.
+
+This artifact verifies that all planned gate types can be logged under the
+shared schema. It does not replace the required future online run where all
+gates operate inside one continuous experiment.
+
 ## Minimum Evidence for a First Paper Draft
 
 - At least two runnable tasks from Tier A with logged autonomous and
