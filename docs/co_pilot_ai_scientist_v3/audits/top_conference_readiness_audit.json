@@ -33,10 +33,11 @@
   },
   "clean_clone_reproducibility": {
     "status": "pass",
-    "commit": "a82a19bb0cd90b319af2c9380d96de834e89ae00",
-    "manifest_artifacts_checked": 259,
+    "commit": "6dfbdc8ee3fef693bdb6ee01910a901fe8e35de1",
+    "manifest_artifacts_checked": 266,
     "missing_manifest_artifacts": 0,
-    "pdfs_rebuilt": 2
+    "pdfs_rebuilt": 2,
+    "skill_reuse_smoke_reran": true
   },
   "skill_reuse_smoke": {
     "status": "pass",

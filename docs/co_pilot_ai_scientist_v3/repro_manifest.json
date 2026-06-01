@@ -297,7 +297,7 @@
     "Extend the online full-gate smoke comparison beyond the current negative 3-step Causality result to more tasks, seeds, and larger budgets.",
     "Pre-cache CIFAR10 or IMDB, choose another data-ready MLAgentBench task for a second official non-FML score, or run from a network path with HuggingFace access; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics.",
     "Run prospective IGRE matched-budget experiments with complete taste_insight records at every new human gate; the current 18 audited gate records include 1 complete scientific_taste_prior record and 17 older records without taste_insight fields.",
-    "Tag or merge a stable release after the next evidence milestone; clean-clone artifact reproducibility now passes at commit a82a19bb0, but remote Ubuntu experiment reruns still need independent reproduction.",
+    "Tag or merge a stable release after the next evidence milestone; clean-clone artifact reproducibility now passes at commit 6dfbdc8ee with 266/266 manifest artifacts, but remote Ubuntu experiment reruns still need independent reproduction.",
     "Run the reusable Codex skill on a fresh research topic with live model calls and prospective attention_cost logging."
   ],
   "model_routing_policy": {
@@ -314,14 +314,16 @@
     "required_comparison": "direct LLM edit baseline under the same evaluator and iteration budget"
   },
   "clean_clone_reproducibility_audit": {
-    "commit": "a82a19bb0cd90b319af2c9380d96de834e89ae00",
+    "commit": "6dfbdc8ee3fef693bdb6ee01910a901fe8e35de1",
     "status": "pass_for_artifact_rebuild",
-    "manifest_artifacts_checked": 259,
+    "manifest_artifacts_checked": 266,
     "missing_manifest_artifacts": 0,
     "pdfs_rebuilt": 2,
     "taste_insight_audit_reran": true,
     "attention_cost_audit_reran": true,
-    "remote_ubuntu_experiments_rerun": false
+    "remote_ubuntu_experiments_rerun": false,
+    "skill_reuse_smoke_reran": true,
+    "skill_smoke_status": "pass"
   },
   "skill_reuse_smoke_audit": {
     "status": "pass",

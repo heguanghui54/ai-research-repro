@@ -6,7 +6,7 @@ Repository source:
 
 - URL: `https://github.com/heguanghui54/ai-research-repro.git`
 - Branch: `codex/co-pilot-ai-scientist-v3`
-- Commit: `a82a19bb0cd90b319af2c9380d96de834e89ae00`
+- Commit: `6dfbdc8ee3fef693bdb6ee01910a901fe8e35de1`
 - Clean clone path used for audit: `/tmp/copilot-v3-clean-clone`
 
 ## Commands Run
@@ -20,6 +20,7 @@ cd /tmp/copilot-v3-clean-clone
 python3 -m pip install -q -r requirements.txt
 python3 scripts/audit_taste_insight_coverage.py
 python3 scripts/audit_human_gate_attention_cost.py
+python3 scripts/validate_copilot_skill.py
 python3 scripts/build_copilot_v3_pdfs.py --language both
 python3 - <<'PY'
 import json
@@ -32,10 +33,13 @@ assert not missing, missing
 
 taste = json.loads(Path("docs/co_pilot_ai_scientist_v3/audits/taste_insight_coverage_audit.json").read_text())
 attention = json.loads(Path("docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.json").read_text())
+skill = json.loads(Path("docs/co_pilot_ai_scientist_v3/audits/skill_reuse_smoke_audit.json").read_text())
 assert taste["gate_records_audited"] == 18
 assert taste["complete_taste_insight_records"] == 1
 assert attention["gate_records_audited"] == 18
 assert attention["complete_attention_cost_logs"] == 0
+assert skill["overall_status"] == "pass"
+assert skill["required_terms_present"] == 9
 
 for pdf in [
     Path("docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf"),
@@ -53,8 +57,9 @@ PY
 | Python dependencies installed from `requirements.txt` | Pass |
 | Taste/insight coverage audit reran | Pass |
 | Attention-cost audit reran | Pass |
+| Skill reuse smoke audit reran | Pass |
 | English and Chinese PDFs rebuilt | Pass |
-| Manifest artifacts found | Pass: 259/259 |
+| Manifest artifacts found | Pass: 266/266 |
 | Missing manifest artifacts | 0 |
 | Taste/insight gate records audited | 18 |
 | Complete taste/insight records | 1 |
@@ -70,7 +75,7 @@ every artifact listed in the reproducibility manifest.
 
 This audit does not rerun the remote Ubuntu experiments or prove the central
 performance claims. It strengthens the artifact-delivery and reproducibility
-portion of the objective, while the top-conference evidence gaps remain:
+portion of the objective. It also verifies the reusable skill at the template/schema smoke-test level, while the top-conference evidence gaps remain:
 multi-task matched-budget experiments, a full paper-generating trajectory,
 prospective human attention-cost measurement, and downstream tests of
 taste-gated high-tail outcomes.
