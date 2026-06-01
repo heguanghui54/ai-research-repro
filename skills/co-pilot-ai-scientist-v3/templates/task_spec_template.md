@@ -14,6 +14,9 @@ One paragraph describing the research problem.
 - Minimum acceptable improvement:
 - Paper-quality target:
 - Reproducibility target:
+- Taste/insight target:
+  - Which non-metric scientific factor matters most?
+  - What high-tail outcome would justify preserving a risky branch?
 
 ## Failure Criteria
 
@@ -23,11 +26,19 @@ One paragraph describing the research problem.
 
 ## Human Gates
 
-- `idea_selection`:
-- `evaluator_approval`:
-- `branch_selection`:
-- `program_search_escalation`:
-- `claim_audit`:
+- `scientific_taste_prior`:
+- `evaluator_stress_test`:
+- `frontier_steering`:
+- `verifiable_micro_evolution`:
+- `claim_calibration`:
+
+## Taste/Insight Rubric
+
+- Use `docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md`.
+- Record `taste_insight` in every prospective gate where qualitative scientific
+  judgment changes the search frontier.
+- Do not optimize the agent directly against this score; use it as an auditable
+  search prior and compare downstream outcomes against autonomous baselines.
 
 ## Baselines
 

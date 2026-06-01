@@ -75,14 +75,29 @@ For future matched-budget experiments, every prospective gate log should fill
 `artifacts_reviewed_count`, and `decision_count`. Retrospective estimates should
 be marked as missing rather than guessed.
 
+To record scientific taste and insight, use:
+
+```text
+docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md
+```
+
+Fill the optional `taste_insight` block in prospective gate logs when a human
+decision changes the search frontier for non-metric reasons such as novelty,
+failure value, benchmark taste, or risk asymmetry. Do not treat this score as a
+reward model; report it as an auditable search prior and compare downstream
+outcomes against autonomous baselines.
+
 ## Human Gate Types
 
-- `idea_selection`: choose or rewrite the research hypothesis.
-- `evaluator_approval`: approve metrics, baselines, and failure conditions.
-- `branch_selection`: choose which experiment branches receive more budget.
-- `program_search_escalation`: decide whether a subproblem deserves deeper
+- `scientific_taste_prior`: choose or rewrite the research hypothesis using
+  scientific taste and upside, not only current scores.
+- `evaluator_stress_test`: approve metrics, baselines, and anti-gaming failure
+  conditions.
+- `frontier_steering`: choose which experiment branches receive more budget,
+  including high-upside non-best branches.
+- `verifiable_micro_evolution`: decide whether a subproblem deserves deeper
   code evolution.
-- `claim_audit`: remove or weaken unsupported paper claims.
+- `claim_calibration`: remove, weaken, or reframe unsupported paper claims.
 
 ## Environment
 

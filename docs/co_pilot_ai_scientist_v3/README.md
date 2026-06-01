@@ -26,6 +26,8 @@ claim calibration.
 - `benchmark_selection.md`: tiered benchmark strategy beyond FML-bench.
 - `benchmark_claim_matrix.md`: claim-to-benchmark matrix recording what each
   benchmark can and cannot prove.
+- `taste_insight_rubric.md`: IGRE rubric for logging scientific taste and
+  high-tail research upside without pretending it is a complete reward model.
 - `candidates.json`: candidate research directions and a scoring rubric.
 - `experiment_protocol.md`: minimal benchmark and ablation plan.
 - `paper_en.md`: English manuscript draft.
@@ -105,6 +107,14 @@ claim-audit section. A second paper-quality review pass through Monica-routed
 two matched-budget FML pairs as useful but mixed first evidence while still
 identifying multi-task matched comparisons and a full four-loop trajectory as
 the main blockers before a strong venue submission.
+
+The package now includes a scientific taste and insight rubric. It records
+non-metric human judgment as an auditable search prior: problem depth, novelty
+potential, mechanistic value, failure informativeness, benchmark taste, claim
+significance, and risk asymmetry. This keeps IGRE distinct from generic
+co-pilot approval workflows. The rubric does not prove performance improvement
+by itself; it lets future matched runs test whether human taste changes the
+upper tail of research trajectories.
 
 The latest benchmark-expansion probes are deliberately recorded as setup
 evidence rather than inflated results. A second official MLAgentBench

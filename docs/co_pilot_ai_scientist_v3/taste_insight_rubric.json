@@ -1,0 +1,51 @@
+{
+  "rubric_version": "2026-06-02",
+  "purpose": "Audit human scientific taste and insight as a qualitative search prior, not as a complete reward model.",
+  "scale": {
+    "min": 1,
+    "max": 5,
+    "interpretation": {
+      "1": "weak or absent",
+      "3": "plausible but ordinary",
+      "5": "unusually strong; worth preserving even if early metrics are not best"
+    }
+  },
+  "dimensions": [
+    {
+      "name": "problem_depth",
+      "question": "Is the question conceptually deep rather than merely convenient?",
+      "high_score": "The problem can reveal something general about automated science or scientific practice."
+    },
+    {
+      "name": "novelty_potential",
+      "question": "Could this direction produce a non-obvious result?",
+      "high_score": "The branch is not a minor benchmark tweak and could surprise a knowledgeable reviewer."
+    },
+    {
+      "name": "mechanistic_value",
+      "question": "Would success or failure explain why a method works?",
+      "high_score": "The trajectory can teach a reusable mechanism, not only improve a number."
+    },
+    {
+      "name": "failure_informativeness",
+      "question": "Would a negative result still be useful?",
+      "high_score": "Failure would expose an important boundary condition, evaluator flaw, or hidden assumption."
+    },
+    {
+      "name": "benchmark_taste",
+      "question": "Is the evaluator well matched to the claim?",
+      "high_score": "The benchmark is hard to game, claim-relevant, and not chosen only because it is easy."
+    },
+    {
+      "name": "claim_significance",
+      "question": "If the result is positive, would the claim matter?",
+      "high_score": "A modest metric gain could still support a meaningful scientific or systems insight."
+    },
+    {
+      "name": "risk_asymmetry",
+      "question": "Is the upside worth the extra uncertainty or human attention?",
+      "high_score": "The possible high-tail outcome is large enough to justify preserving the branch."
+    }
+  ],
+  "reporting_rule": "Do not claim performance improvement from taste scores alone. Report taste_insight as a logged search prior and evaluate downstream trajectories against autonomous baselines."
+}

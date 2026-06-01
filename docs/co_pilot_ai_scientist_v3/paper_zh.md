@@ -89,6 +89,8 @@ Co-Pilot AI Scientist v3 实现的是洞察门控科研演化。IGRE 包含四�
 
 指标包括任务分数、论文质量、主张支持率、搜索效率、人类注意力成本和假设多样性。对于程序化搜索模块，关键消融是：在相同 evaluator 和迭代预算下，比较 OpenEvolve 与直接重复 LLM 代码编辑。因此，FML-bench 应被理解为当前证据来源之一，而不是整个项目的完整 benchmark 定义。
 
+因为 IGRE 的核心贡献是科研品味，而不是普通审批，本文在评估包中加入 taste/insight rubric。该 rubric 从 1 到 5 记录 problem depth、novelty potential、mechanistic value、failure informativeness、benchmark taste、claim significance 和 risk asymmetry，并要求写下简短理由。它刻意不被当作 reward model，而是记录导致人类保留、改写或剪枝某个分支的非指标先验。后续评估应同时报告平均任务表现和高尾部信号：例如一个 autonomous policy 本来会剪掉、但人类保留的分支，是否最终带来更强主张、更好 evaluator 或更有信息量的负结果。
+
 根据最新 paper-quality review 的意见，我们把人类注意力成本从口头指标变成了可审计 artifact。human-gate schema 现在包含可选的 `attention_cost` 对象，用于记录 active review minutes、wall-clock latency、reviewed options、reviewed artifacts 和 decision count。我们还对现有 17 个 gate records 做了 coverage audit：其中包括 7 个 standalone human-gate logs，以及 2 个 trajectory artifacts 中的 10 个 embedded gates。结果是：当前 17 个 gate records 都没有完整 attention-cost 记录；其中 5 个重新生成的 executable-trace gates 已经显式标注 timing 缺失，较早的记录则是在该字段加入之前生成的。这是一个重要的负向 measurement-readiness 结果：现有日志可以证明决策来源，但还不能支持“人类注意力效率更高”的主张。后续 prospective matched run 必须填写该字段，才能比较 co-pilot 和 autonomous variants 的人类成本。
 
 为了让这一原则可以执行，我们维护了一份 benchmark-to-claim matrix。

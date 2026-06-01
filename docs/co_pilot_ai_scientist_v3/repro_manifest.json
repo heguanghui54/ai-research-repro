@@ -20,6 +20,8 @@
     "docs/co_pilot_ai_scientist_v3/benchmark_selection.md",
     "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md",
     "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.json",
+    "docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md",
+    "docs/co_pilot_ai_scientist_v3/taste_insight_rubric.json",
     "docs/co_pilot_ai_scientist_v3/candidates.json",
     "docs/co_pilot_ai_scientist_v3/experiment_protocol.md",
     "docs/co_pilot_ai_scientist_v3/paper_en.md",
@@ -277,6 +279,7 @@
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "After the next major manuscript revision, rerun independent paper-quality review; current Monica-routed reviews still rate the package as pilot evidence, with GPT weak-accept and Claude reject.",
     "Run prospective human-gated matched-budget experiments with complete attention_cost records; the current 17 audited gate records include 7 standalone gate logs and 10 embedded trajectory gates across 2 trajectory artifacts, with 0 complete attention-cost records.",
+    "Run prospective IGRE matched-budget experiments that fill both attention_cost and taste_insight records, then compare mean benchmark scores against high-tail scientific-upside outcomes.",
     "Extend the online full-gate smoke comparison beyond the current negative 3-step Causality result to more tasks, seeds, and larger budgets.",
     "Pre-cache CIFAR10 or IMDB, choose another data-ready MLAgentBench task for a second official non-FML score, or run from a network path with HuggingFace access; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics."
   ],

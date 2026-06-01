@@ -105,6 +105,30 @@ sufficient by itself.
   candidate program.
 - **Human attention cost**: minutes and number of edits per gate.
 - **Diversity**: number of distinct surviving hypotheses or branch families.
+- **Taste/insight audit**: qualitative scientific-taste score recorded with
+  `taste_insight_rubric.md`. This captures non-metric search priors such as
+  problem depth, novelty potential, mechanistic value, failure informativeness,
+  benchmark taste, claim significance, and risk asymmetry. It should be reported
+  alongside downstream outcomes, not used alone as proof of improvement.
+
+## High-Tail Evaluation
+
+IGRE is not evaluated only by mean benchmark score. A human gate can be useful
+even when the average task metric is worse if it preserves a trajectory with
+high scientific upside. For every matched-budget comparison, report:
+
+- the mean validation/test score across seeds;
+- the best trajectory under the task metric;
+- the best trajectory under the taste/insight rubric;
+- whether the human gate selected a branch the autonomous policy would have
+  pruned;
+- whether that branch later produced a stronger claim, a better evaluator, or a
+  more informative negative result;
+- the attention cost required to obtain that decision.
+
+Do not collapse these into a single scalar. The point is to test whether human
+scientific taste changes the distribution of research outcomes, especially the
+upper tail.
 
 ## Ablations
 

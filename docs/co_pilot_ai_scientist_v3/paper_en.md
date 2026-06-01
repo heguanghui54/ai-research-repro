@@ -234,6 +234,17 @@ the same evaluator and iteration budget. FML-bench should therefore be read as
 one current evidence source, not as the complete benchmark definition for the
 project.
 
+Because IGRE's key contribution is scientific taste rather than generic
+approval, we add a taste/insight rubric to the evaluation package. The rubric
+scores problem depth, novelty potential, mechanistic value, failure
+informativeness, benchmark taste, claim significance, and risk asymmetry from 1
+to 5, with short rationales. This is deliberately not a reward model. It is a
+structured record of the non-metric prior that caused a human to preserve,
+rewrite, or prune a branch. Future evaluations should report both mean task
+performance and high-tail signals: whether a human-selected branch that an
+autonomous policy would have pruned later produces a stronger claim, better
+evaluator, or more informative negative result.
+
 Following the latest paper-quality review, we made attention cost an explicit
 auditable artifact rather than an informal metric. The human-gate schema now
 contains an optional `attention_cost` object with active review minutes,

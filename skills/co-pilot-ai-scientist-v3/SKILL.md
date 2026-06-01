@@ -35,6 +35,8 @@ and claim responsibility can reshape the trajectory.
    - Attach evidence, missing evidence, feasibility notes, and risks.
    - Ask the human scientist to select, merge, or rewrite directions using
      field taste, upside asymmetry, and failure value, not only early scores.
+   - Use `docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md` to record
+     non-metric scientific taste without pretending it is a full reward model.
    - Trigger the first human gate: `scientific_taste_prior`.
 
 3. **Stress-Test Evaluators**
@@ -189,6 +191,8 @@ Reusable templates are stored next to this skill:
 - `templates/human_gate_log_template.json`: structured human gate log matching
   the project schema.
 - `templates/claim_audit_template.md`: claim-by-claim paper audit.
+- `docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md`: project rubric for
+  recording scientific taste, insight, and high-tail upside.
 
 ## Output Artifacts
 
@@ -196,6 +200,7 @@ Reusable templates are stored next to this skill:
 - candidate hypotheses and scores;
 - literature and benchmark notes;
 - benchmark-to-claim matrix;
+- taste/insight rubric records;
 - human gate logs;
 - human attention-cost audit;
 - full-gate trajectory artifact;

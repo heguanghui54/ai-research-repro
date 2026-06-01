@@ -71,13 +71,21 @@ python3 scripts/audit_human_gate_attention_cost.py
 `artifacts_reviewed_count` 和 `decision_count`。不要凭记忆估计旧日志；缺失就
 明确记为缺失。
 
+如果要记录科研品味和 insight，使用：
+
+```text
+docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md
+```
+
+当人类因为新颖性、失败价值、benchmark 品味或风险不对称性等非指标原因改变搜索前沿时，在 prospective gate log 中填写可选的 `taste_insight` 区块。不要把这个分数当作 reward model；它是可审计的搜索先验，必须和 autonomous baseline 的下游结果一起比较。
+
 ## 人类参与节点
 
-- `idea_selection`：选择或改写研究假设。
-- `evaluator_approval`：审批指标、baseline 和失败条件。
-- `branch_selection`：决定哪些实验分支继续获得预算。
-- `program_search_escalation`：决定某个子问题是否值得深度代码进化。
-- `claim_audit`：删除或弱化缺乏证据支持的论文主张。
+- `scientific_taste_prior`：基于科研品味和上行空间选择或改写研究假设，而不只看当前分数。
+- `evaluator_stress_test`：审批指标、baseline 和防投机失败条件。
+- `frontier_steering`：决定哪些实验分支继续获得预算，包括当前分数不是最好但上行空间更大的分支。
+- `verifiable_micro_evolution`：决定某个子问题是否值得深度代码进化。
+- `claim_calibration`：删除、弱化或重写缺乏证据支持的论文主张。
 
 ## 环境建议
 

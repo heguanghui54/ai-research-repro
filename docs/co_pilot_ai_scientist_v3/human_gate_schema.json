@@ -22,6 +22,11 @@
     "gate_type": {
       "type": "string",
       "enum": [
+        "scientific_taste_prior",
+        "evaluator_stress_test",
+        "frontier_steering",
+        "verifiable_micro_evolution",
+        "claim_calibration",
         "idea_selection",
         "hypothesis_refinement",
         "evaluator_approval",
@@ -114,6 +119,39 @@
         },
         "notes": {
           "type": "string"
+        }
+      }
+    },
+    "taste_insight": {
+      "type": "object",
+      "description": "Optional scientific-taste audit record. This is a qualitative search prior, not a complete reward model.",
+      "properties": {
+        "rubric_version": {
+          "type": "string"
+        },
+        "scores": {
+          "type": "object",
+          "properties": {
+            "problem_depth": { "type": ["number", "null"], "minimum": 1, "maximum": 5 },
+            "novelty_potential": { "type": ["number", "null"], "minimum": 1, "maximum": 5 },
+            "mechanistic_value": { "type": ["number", "null"], "minimum": 1, "maximum": 5 },
+            "failure_informativeness": { "type": ["number", "null"], "minimum": 1, "maximum": 5 },
+            "benchmark_taste": { "type": ["number", "null"], "minimum": 1, "maximum": 5 },
+            "claim_significance": { "type": ["number", "null"], "minimum": 1, "maximum": 5 },
+            "risk_asymmetry": { "type": ["number", "null"], "minimum": 1, "maximum": 5 }
+          }
+        },
+        "taste_insight_score": {
+          "type": ["number", "null"],
+          "minimum": 1,
+          "maximum": 5
+        },
+        "qualitative_rationale": {
+          "type": "string"
+        },
+        "non_metric_factors": {
+          "type": "array",
+          "items": { "type": "string" }
         }
       }
     },
