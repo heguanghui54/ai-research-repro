@@ -213,5 +213,18 @@ done
 - 在同等预算下比较 autonomous baseline、单个 human gate 和 full co-pilot variant。
 - 加入第二个 MLAgentBench task，或扩展到 ScienceAgentBench，然后用匹配的 multi-seed budget 重复验证。
 - 加入外部评审或 rubric-based paper-quality scoring。
-- 如果预算允许，通过 Monica 路由跑一次 frontier model claim audit。
+- 跑一次完整四循环轨迹，让 hypothesis、evaluator、branch、program-search 和 claim-audit gates 在同一条连续任务中全部生效。
 - 将完整项目包推送到 GitHub。
+
+## 10. Monica 路由的论文质量评审
+
+当前项目包已经包含两个模型审稿 artifact。可用下面命令重跑：
+
+```bash
+source ~/.codex/env
+python3 scripts/run_paper_quality_review.py \
+  --models gpt-4o-mini claude-3-7-sonnet-latest \
+  --max-tokens 4096
+```
+
+已归档审稿在推荐结果上不一致（`Weak accept` 与 `Reject`），但共同认为：在提出强投稿主张前，必须补同预算 human-gate 对照实验和完整四循环轨迹。

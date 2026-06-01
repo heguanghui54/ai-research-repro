@@ -222,6 +222,21 @@ shows seed sensitivity under a tiny search budget.
 - Add a second MLAgentBench task or expand to ScienceAgentBench, then repeat
   with matched multi-seed budgets.
 - Add external or rubric-based paper-quality scoring.
-- Run at least one frontier-model claim-audit pass through Monica routing if
-  budget allows.
+- Run a full four-loop trajectory where hypothesis, evaluator, branch,
+  program-search, and claim-audit gates all operate in one continuous run.
 - Push the complete repository package to GitHub.
+
+## 10. Monica-Routed Paper-Quality Review
+
+The current package includes two model-review artifacts. Re-run them with:
+
+```bash
+source ~/.codex/env
+python3 scripts/run_paper_quality_review.py \
+  --models gpt-4o-mini claude-3-7-sonnet-latest \
+  --max-tokens 4096
+```
+
+The archived reviews disagree on recommendation (`Weak accept` versus
+`Reject`) but agree that matched-budget human-gate comparisons and a complete
+four-loop trajectory are required before strong submission claims.

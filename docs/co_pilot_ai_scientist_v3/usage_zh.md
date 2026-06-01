@@ -14,11 +14,23 @@
 6. 对机器可评分的子问题调用 OpenEvolve 或类似代码进化循环。
 7. 只根据日志和指标写论文，不编造结果。
 8. 生成 PDF 前进行最终主张审计。
+9. 跑一次 paper-quality review，并根据审稿意见弱化缺乏证据的顶会级主张。
 
 当前项目包已经包含一次示例 claim audit，位于
 `docs/co_pilot_ai_scientist_v3/audits/`。后续运行也应沿用这个模式：在最终
 PDF 生成前，把每条主张标记为 supported、partially supported、unsupported
 或 overstated。
+
+如果要通过 Monica 做论文质量评审，先加载全局环境变量，然后运行：
+
+```bash
+source ~/.codex/env
+python3 scripts/run_paper_quality_review.py \
+  --models gpt-4o-mini claude-3-7-sonnet-latest \
+  --max-tokens 4096
+```
+
+这个输出应作为审稿证据使用，而不是“已经被接收”的证明。
 
 ## 人类参与节点
 

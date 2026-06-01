@@ -58,6 +58,28 @@ end-to-end solutions.
 
 Co-Pilot AI Scientist v3 contains four loops.
 
+Figure 1 gives the operational data flow. A research goal enters the hypothesis
+loop, passes through experiment construction and AI Scientist-v2-style search,
+optionally delegates machine-gradeable subproblems to OpenEvolve-based program
+search, and finally reaches manuscript generation and claim auditing. Each
+human gate consumes a structured frontier and produces a logged decision
+artifact.
+
+```text
+Research goal -> hypothesis loop -> experiment loop -> search loop
+          |             |                 |               |
+      idea gate   evaluator gate     branch gate   program-search gate
+                                                        |
+                                                        v
+                                             OpenEvolve subproblem search
+                                                        |
+                                                        v
+                                   draft manuscript -> claim-audit gate
+                                                        |
+                                                        v
+                                          evidence-aligned paper package
+```
+
 First, a hypothesis loop generates candidate research directions, critiques
 them, links them to evidence, and asks the human scientist to select or rewrite
 the most promising directions.
@@ -230,6 +252,16 @@ branch-gate insertion is feasible in AI Scientist-v2-style logs, and
 selected-branch continuation has a promising single-task result that still
 requires matched-budget validation.
 
+We also ran a paper-quality review through two Monica-routed reviewer models.
+`gpt-4o-mini` gave a weak-accept recommendation with scores of 4/5 for novelty
+and reproducibility but 3/5 for rigor and evidence. `claude-3-7-sonnet-latest`
+was stricter and gave a reject recommendation for a strong ML/NLP systems venue,
+mainly because the current system is evaluated through isolated module probes
+rather than a matched-budget end-to-end comparison. Both reviewers converged on
+the same required next step: run autonomous AI Scientist-v2 and human-gated
+variants under equal budgets across more tasks and seeds, and measure human
+attention cost.
+
 ## 5. Current Contributions and Unproven Claims
 
 The current contributions are:
@@ -246,6 +278,8 @@ The current contributions are:
 6. A reusable Codex skill for running the workflow.
 7. Bilingual paper, usage artifacts, and claim-audit artifacts for
    reproducibility.
+8. A Monica-routed paper-quality review artifact that records external model
+   criticism before the next revision.
 
 The current evidence does not yet prove that human gates improve paper quality
 or that the full co-pilot system outperforms autonomous AI Scientist-v2. Those
@@ -262,6 +296,12 @@ claims and report negative results when gates fail to improve outcomes. The
 current selected-branch continuation result is promising, but it is not yet a
 statistically controlled benchmark; stronger claims require more tasks, more
 seeds, matched autonomous budgets, and independent paper-quality review.
+
+The current implementation also lacks one complete end-to-end demonstration in
+which all four loops operate in a single continuous trajectory. The module probes
+show feasibility for individual components, but the next systems-paper draft
+must report at least one full trajectory from hypothesis generation to final
+claim-audited manuscript.
 
 ## 7. Conclusion
 

@@ -17,11 +17,23 @@ where expert judgment is most valuable.
    loop.
 7. Write the paper from logs and metrics only.
 8. Run a final claim audit before producing PDFs.
+9. Run a paper-quality review pass and revise unsupported top-conference claims.
 
 The current package includes an example claim audit under
 `docs/co_pilot_ai_scientist_v3/audits/`. Use it as the model for future runs:
 claims must be marked as supported, partially supported, unsupported, or
 overstated before the final PDF build.
+
+For a Monica-routed paper-quality review, source the global environment and run:
+
+```bash
+source ~/.codex/env
+python3 scripts/run_paper_quality_review.py \
+  --models gpt-4o-mini claude-3-7-sonnet-latest \
+  --max-tokens 4096
+```
+
+Treat the output as review evidence, not as proof of acceptance.
 
 ## Human Gate Types
 

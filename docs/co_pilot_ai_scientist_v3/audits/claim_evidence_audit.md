@@ -7,6 +7,10 @@ Reviewer routes:
 - Human/Codex rules audit against local artifacts.
 - Monica OpenAI-compatible `gpt-4o-mini` review:
   `audits/claim_audit_monica_gpt4o_mini.md`.
+- Monica-routed paper-quality reviews:
+  `audits/paper_quality_reviews/gpt-4o-mini.md`,
+  `audits/paper_quality_reviews/claude-3-7-sonnet-latest.md`, and
+  `audits/paper_quality_review_summary.md`.
 
 ## Claim Table
 
@@ -20,7 +24,7 @@ Reviewer routes:
 | Selected-branch continuation improves over the live two-draft and earlier smoke runs. | Snapshot-seeded continuation test MAE `0.402170` vs live two-draft test MAE `0.640451` and earlier four-step smoke test MAE `0.617719`. | Partially supported | Keep caveat: one task/seed, snapshot seeding, not matched autonomous budget. |
 | Human gates improve paper quality. | No expert or rubric-based paper-quality scores yet. | Unsupported | Keep only as hypothesis/future evaluation target. |
 | Full Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2. | No matched multi-task autonomous vs full co-pilot benchmark yet. | Unsupported | Do not claim as result. State as target claim requiring future evidence. |
-| The current paper is top-conference ready. | Pilot evidence exists, but no statistical tests, broad benchmark suite, or independent paper scoring. | Unsupported | Present as a research package moving toward top-conference strength, with remaining requirements. |
+| The current paper is top-conference ready. | Pilot evidence exists, but no statistical tests or broad matched-budget benchmark suite. GPT-4o-mini paper review gives weak accept; Claude 3.7 Sonnet review gives reject for strong ML/NLP systems venue. | Unsupported | Present as a research package moving toward top-conference strength, with remaining requirements. |
 
 ## Required Edits Applied
 
@@ -29,6 +33,8 @@ Reviewer routes:
 - Keep "improves paper quality" and "outperforms autonomous AI Scientist-v2" as hypotheses, not conclusions.
 - Report the MLAgentBench seed-7 non-improvement alongside successful seeds.
 - Add the Monica model audit as an artifact rather than silently relying on it.
+- Add paper-quality review artifacts and explicitly report that reviewers disagree
+  on recommendation but agree on the missing matched-budget evidence.
 
 ## Remaining Evidence Needed
 
@@ -36,4 +42,5 @@ Reviewer routes:
 - Native tree-object resume instead of snapshot-seeded branch continuation, if feasible.
 - Expert or rubric-based paper-quality scoring.
 - A second non-FML benchmark task or ScienceAgentBench-style scientific workflow.
+- A complete four-loop end-to-end trajectory with all gates operating in one run.
 - GitHub publication and independent reproducibility check.

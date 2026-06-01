@@ -22,6 +22,23 @@ AI Co-Scientist 将科学发现建模为假设生成、讨论和演化，优势�
 
 Co-Pilot AI Scientist v3 包含四个循环。
 
+图 1 展示了系统的数据流：研究目标先进入假设循环，再进入实验构造和 AI Scientist-v2 风格搜索；对于机器可评分子问题，系统可以升级到基于 OpenEvolve 的程序搜索；最后进入论文生成和主张审计。每个人类 gate 都接收结构化的候选前沿，并输出可复现的决策记录。
+
+```text
+研究目标 -> 假设循环 -> 实验循环 -> 搜索循环
+        |          |          |          |
+    创意 gate   评估器 gate  分支 gate  程序搜索升级 gate
+                                      |
+                                      v
+                         OpenEvolve 子问题程序搜索
+                                      |
+                                      v
+                         论文草稿 -> 主张审计 gate
+                                      |
+                                      v
+                         证据对齐的论文包
+```
+
 第一是假设循环：系统生成候选研究方向，批评这些方向，将其连接到文献证据，并让人类科学家选择或改写最有潜力的方向。
 
 第二是实验循环：系统把被选中的假设转化为 benchmark 任务、baseline、消融实验和可执行脚本。昂贵实验开始前，人类科学家可以审查并批准评估器。
@@ -70,6 +87,8 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 在完成这些 pilot 实验后，我们做了一次 claim-evidence audit。通过 Monica 路由的 `gpt-4o-mini` 审稿式检查认为：本文的架构贡献是合理的，但当前实验证据还不足以支持“人类 gate 提高论文质量”或“完整 co-pilot 系统优于 autonomous AI Scientist-v2”这类宽泛结论。因此，本文把这些表述保留为 evaluation protocol 要检验的假设，而不是已经证明的结论。当前 audit 只支持较窄的实证主张：OpenEvolve-style search 可以在部分机器可评分子问题上有效，但在极小预算下存在 seed sensitivity；branch gate 可以插入 AI Scientist-v2 风格日志轨迹；selected-branch continuation 在单任务上有积极结果，但仍需要同预算、多 seed 的验证。
 
+我们还通过 Monica 路由了两次 paper-quality review。`gpt-4o-mini` 给出 weak-accept 建议，认为新颖性和可复现性较强，但严谨性和证据仍只有中等水平。`claude-3-7-sonnet-latest` 更严格，认为如果目标是强 ML/NLP systems venue，当前版本应被拒，因为目前证据仍是模块级 pilot probe，而不是同预算端到端对照。两个模型的共同结论是：下一版必须在更多任务和随机种子上比较 autonomous AI Scientist-v2 与 human-gated variants，并记录人类注意力成本。
+
 ## 5. 当前贡献与尚未证明的主张
 
 本文当前贡献包括：
@@ -81,12 +100,15 @@ Co-Pilot AI Scientist v3 包含四个循环。
 5. 一个非 FML 的 MLAgentBench 程序搜索小实验，用于扩展 FML-bench 之外的 benchmark 覆盖面。
 6. 一个可在 Codex 中复用的 workflow skill。
 7. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
+8. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
 
 ## 6. 局限性
 
 本文不预设人类参与一定有效。人类 gate 可能引入偏见、降低搜索速度、压缩探索多样性。程序化搜索可能只优化局部指标，却不能提高论文层面的科学贡献；在极小预算下，它也未必优于直接 LLM 编辑。专家论文评分成本较高，而且不同评审可能存在分歧。因此，第一版实验应保持窄主张，并在 gate 无法改善结果时如实报告负结果。当前 selected-branch continuation 结果很有希望，但还不是统计受控 benchmark；更强主张需要更多任务、更多随机种子、匹配的 autonomous budget，以及独立论文质量评审。
+
+当前实现还缺少一次所有四个循环连续运行的端到端演示。现有实验主要证明单个模块可以跑通；下一版 systems paper 至少需要报告一条从假设生成到最终 claim-audited manuscript 的完整轨迹。
 
 ## 7. 结论
 

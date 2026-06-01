@@ -20,6 +20,7 @@ delegating machine-gradeable subproblems to AlphaEvolve-style code evolution.
 - `problem_statement.md`: precise research framing, success criteria, and risks.
 - `literature_matrix.md`: how AI Co-Scientist, AI Scientist-v2, AlphaEvolve,
   Coscientist, and related systems map into this proposal.
+- `architecture.md`: data-flow view of the four loops and five human gates.
 - `benchmark_selection.md`: tiered benchmark strategy beyond FML-bench.
 - `candidates.json`: candidate research directions and a scoring rubric.
 - `experiment_protocol.md`: minimal benchmark and ablation plan.
@@ -61,4 +62,7 @@ paper now reports this as promising but seed-sensitive pilot evidence. Claims
 remain intentionally conservative until the evidence is expanded across more
 tasks/seeds and independently reviewed for paper quality. A Monica-routed claim
 audit is archived under `audits/` and is reflected in the manuscript's
-claim-audit section.
+claim-audit section. A second paper-quality review pass through Monica-routed
+`gpt-4o-mini` and `claude-3-7-sonnet-latest` is also archived; it identifies
+matched-budget human-gate comparisons and a full four-loop trajectory as the
+main blockers before a strong venue submission.
