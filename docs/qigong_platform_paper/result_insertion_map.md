@@ -14,6 +14,7 @@ This map prevents the paper from drifting away from the experiment log. Do not c
 | 2.3 Method path | LLM coding credibility | `llm/llm_semantic_coding.csv`, `analysis/llm_coding_quality.csv`, `analysis/llm_human_agreement.csv`, `analysis/llm_review_workbook.csv` | Concrete model name, image_count, prompt_version, unknown-rate, low-confidence queue, review workbook, and human spot-check agreement reported |
 | 2.3 Method path / Results | Mechanism modeling | `modeling/meaning_frame_model_audit.json`, `modeling/meaning_frame_model_metrics.csv`, `modeling/meaning_frame_feature_importance.csv` | Cross-validated prediction and permutation importance run only after enough human-coded rows and class diversity exist; results framed as predictive association, not causality |
 | 2.3.4 Typical-case body evidence | SportsLabKit/fallback evidence | `audit/video_manifest_audit.json`, `audit/sportslabkit_environment_audit.json`, `features/video_features.csv` | SportsLabKit or OpenCV/MediaPipe/OpenCV-only fallback reported honestly; 3-5 typical videos available; official/platform case roles and rights status are auditable; pose/body-visibility claims require MediaPipe/SportsLabKit, while OpenCV-only evidence can support motion, smoothness, tempo-change, and shot-change claims |
+| 2.3.4 Typical-case body evidence | Post-upload video gate | `formal_merge/video_file_preflight.json`, `formal_merge/sportslabkit_environment_audit.json`, `formal_merge/video_features_from_typical_cases.csv` | `ready_local_rights >= 3`; at least one standard reference and two platform variants; features extracted only after rights confirmation; tool name in manuscript matches actual extractor |
 | 3 Dual-axis model | Theoretical model | `figures/fig_0_differance_image_trace_model.png` | Model figure generated; text explains both axes without treating model as result |
 | 4.1 Visibility center | 可视性中心 finding | `formal_merge/qigong_human_coding_from_web.csv`, `formal_merge/tables_from_web_coding/table_1_sample_distribution.csv`, optional `llm_semantic_coding.csv` | `visibility_centrality` filled for 120 human-coded sample rows; distribution supports the claim |
 | 4.2 Tempo discipline | 节奏规训 finding | `formal_merge/qigong_human_coding_from_web.csv`, `features/video_features.csv`, `table_2_features_by_meaning_frame.csv` | `tempo_discipline` filled; 3-5 typical video feature rows show rhythm, `motion_smoothness`, `tempo_change_rate`, and shot-change evidence |
@@ -34,6 +35,14 @@ python3 scripts/run_qigong_post_web_coding_pipeline.py
 
 The command requires the private `QIGONG_CODING_ADMIN_CODE` environment variable. Do not write that code into the manuscript, GitHub, or public docs. If the command reports `ready_for_formal_audit: False`, keep the manuscript as the current-evidence v0.8 draft.
 
+After TC0001-TC0003 local videos are uploaded and rights-reviewed, run:
+
+```bash
+python3 scripts/run_qigong_post_video_upload_pipeline.py
+```
+
+Use `--mark-rights-confirmed` only after human rights review confirms local computational analysis permission. If `video_file_preflight.json` is not ready, keep video analysis as method design only.
+
 ## Wording rules
 
 - If an artifact is missing, write `本文拟` or `研究设计` language only.
@@ -46,6 +55,8 @@ The command requires the private `QIGONG_CODING_ADMIN_CODE` environment variable
 - If `analysis/llm_review_workbook.csv` is absent, do not present LLM coding as formally quality-controlled.
 - If `llm_human_agreement.csv` has low agreement on `dominant_frame`/`semantic_frame`, use LLM results only as qualitative assistance and let human coding drive the quantitative results.
 - If `modeling/meaning_frame_model_audit.json` is non-pass, do not report feature importance or predictive accuracy as a substantive result.
+- If `formal_merge/video_file_preflight.json` reports fewer than three ready rights-confirmed local files, do not report any video feature or pose result.
+- If `formal_merge/video_features_from_typical_cases.csv` was produced by OpenCV-only fallback, restrict claims to motion energy, smoothness, tempo-change, and shot-change.
 - If pose/video features are absent, do not mention trajectory deviation, center instability, or rhythm disorder as empirical findings. If only OpenCV motion features exist, restrict claims to motion energy, smoothness, tempo-change, and shot-change; do not claim pose keypoint completeness, body visibility area, or body-center jitter.
 - If `source_dataset`, `video_id`, `local_video_path`, or notes contain `synthetic` or `smoke`, treat the feature rows as pipeline tests only. They may verify code execution but must not support any manuscript finding.
 - If `audit/video_manifest_audit.json` is non-pass, use typical videos only as method preparation or exploratory examples, not as embodied evidence.

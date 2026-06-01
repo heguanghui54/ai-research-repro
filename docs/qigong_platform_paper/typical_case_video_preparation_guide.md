@@ -75,6 +75,21 @@ TC0005.mp4
 
 ## 推荐操作顺序
 
+快速流程可直接运行：
+
+```bash
+python3 scripts/run_qigong_post_video_upload_pipeline.py --dry-run
+python3 scripts/run_qigong_post_video_upload_pipeline.py
+```
+
+若已完成所有上传视频的人工权利确认，可显式加入：
+
+```bash
+python3 scripts/run_qigong_post_video_upload_pipeline.py --mark-rights-confirmed
+```
+
+默认流程不会自动把视频改成 `rights_confirmed`，以避免把“本地文件存在”误写成“可计算分析证据”。
+
 1. 准备标准参照视频 `TC0001.mp4`。
 
    可使用官方公开标准视频、机构授权视频，或自行录制的标准示范视频。若自行录制，应在 notes 中说明“self-recorded reference”。
