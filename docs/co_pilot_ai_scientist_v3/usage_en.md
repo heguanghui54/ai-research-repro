@@ -86,7 +86,8 @@ Use API keys from global environment variables. Suggested routing:
 Do not default to FML-bench for every claim. Use benchmarks by claim type:
 
 - FML-bench for AI Scientist-v2-style branch gates and continuation.
-- OpenEvolve-controlled tasks for machine-gradeable algorithm search.
+- OpenEvolve-controlled tasks, currently including function minimization,
+  knapsack, and Max-Cut, for machine-gradeable algorithm search.
 - MLAgentBench for non-FML ML experimentation and correctness-gated code
   optimization.
 - Controlled sklearn tabular probes for cheap non-FML modeling evidence and

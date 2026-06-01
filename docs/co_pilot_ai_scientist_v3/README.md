@@ -60,7 +60,7 @@ Expected outputs:
 
 This is a working research-production scaffold with preliminary Ubuntu-host
 evidence. It includes OpenEvolve-based program search, direct LLM rewrite
-baselines, a richer knapsack heuristic task, and retrospective branch-gate
+baselines, richer knapsack and Max-Cut heuristic tasks, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes live
 two-draft FML-bench branch-gate probes, snapshot-seeded selected-branch
 continuation runs, and two matched-budget four-step autonomous baselines on the
@@ -80,7 +80,12 @@ controlled non-FML sklearn diabetes tabular regression probe starts from a
 rudimentary mean predictor (`78.572189` RMSE); direct DeepSeek rewrite and three
 OpenEvolve seeds all improve to roughly Ridge-level performance, with direct
 editing matching the median OpenEvolve RMSE (`55.895460`). This adds a useful
-boundary condition: program search should be gated, not automatic. A first
+boundary condition: program search should be gated, not automatic. A controlled
+Max-Cut heuristic probe gives a second non-FML algorithmic subproblem for the
+AlphaEvolve-style module: a direct DeepSeek rewrite improved the starter from
+`0.734680` to `0.962237`, while a five-iteration OpenEvolve run reached
+`0.970833`. The margin is small and single-seed, so it supports selective
+escalation rather than automatic program search. A first
 online `Fairness_fairlearn` branch-gate extension was attempted and archived as
 `fml_fairness_gated_drafts_failed/`; both drafts failed validation, so it is a
 failure-mode/evaluator-gate artifact rather than performance evidence. A

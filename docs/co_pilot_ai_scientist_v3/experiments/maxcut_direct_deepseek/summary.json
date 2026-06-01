@@ -1,0 +1,19 @@
+{
+  "status": "completed",
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "initial_program": "maxcut_task/initial_program.py",
+  "evaluator": "maxcut_task/evaluator.py",
+  "candidate_program": "maxcut_direct_deepseek/candidate_program.py",
+  "signature": "def partition_graph(num_nodes, edges, seed=0):",
+  "metrics": {
+    "combined_score": 0.9622372742462382,
+    "score": 0.9622372742462382,
+    "avg_ratio": 0.9622372742462382,
+    "invalid": 0,
+    "total_value": 11189,
+    "total_reference": 11621,
+    "instances": 16
+  }
+}

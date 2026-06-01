@@ -48,7 +48,8 @@ sufficient by itself.
     require a utility floor in addition to the primary fairness metric.
 - **OpenEvolve-controlled tasks**:
   - function minimization;
-  - 0/1 knapsack heuristic search.
+  - 0/1 knapsack heuristic search;
+  - weighted Max-Cut heuristic search.
   - Role: AlphaEvolve-style programmatic search, direct-edit ablation, and
     program-search escalation gate.
 
@@ -213,6 +214,31 @@ python3 scripts/run_openevolve_program_search.py \
   --provider deepseek \
   --model deepseek-chat
 ```
+
+The same wrapper is used for the Max-Cut heuristic control:
+
+```bash
+python3 scripts/run_direct_llm_program_baseline.py \
+  --initial-program docs/co_pilot_ai_scientist_v3/experiments/maxcut_task/initial_program.py \
+  --evaluator docs/co_pilot_ai_scientist_v3/experiments/maxcut_task/evaluator.py \
+  --output-dir /tmp/maxcut_direct_deepseek \
+  --signature "def partition_graph(num_nodes, edges, seed=0):" \
+  --task-description "Return one side of a weighted Max-Cut partition." \
+  --provider deepseek
+
+python3 scripts/run_openevolve_program_search.py \
+  --initial-program docs/co_pilot_ai_scientist_v3/experiments/maxcut_task/initial_program.py \
+  --evaluator docs/co_pilot_ai_scientist_v3/experiments/maxcut_task/evaluator.py \
+  --output-dir /tmp/maxcut_openevolve_5iter/run \
+  --iterations 5 \
+  --provider deepseek \
+  --random-seed 11
+```
+
+Current Max-Cut result: starter `0.734680`, direct DeepSeek rewrite `0.962237`,
+and five-iteration OpenEvolve `0.970833`. This is a positive but small-margin
+single-seed result, so it is used as controlled subproblem evidence rather than
+as a broad reliability claim.
 
 4. Wrap the resulting best program and score as an AI Scientist-v3 branch
    artifact:

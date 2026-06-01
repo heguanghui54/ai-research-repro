@@ -150,8 +150,8 @@ should be selected by claim type rather than by a single favorite benchmark.
 For AI Scientist-v2-style experiment search, FML-bench is a useful near-term
 benchmark because it is already runnable in our Ubuntu environment and exposes
 branch-level logs. For machine-gradeable algorithmic subproblems, we use
-OpenEvolve-controlled tasks such as function minimization and knapsack heuristic
-search. For broader evidence beyond FML-bench, we include an initial
+OpenEvolve-controlled tasks such as function minimization, knapsack heuristic
+search, and weighted Max-Cut. For broader evidence beyond FML-bench, we include an initial
 MLAgentBench vectorization probe for end-to-end ML experimentation and track
 setup probes for additional MLAgentBench and ScienceAgentBench tasks. The
 current evidence still does not include a second scored official non-FML
@@ -173,9 +173,9 @@ To make this principle operational, we maintain a benchmark-to-claim matrix.
 FML-bench Causality supports the branch-gate feasibility claim but does not yet
 show general human-gate superiority. FML-bench Fairness supports the need for
 evaluator gates because executable repairs and degenerate predictors reveal
-metric-gaming risk. OpenEvolve function minimization, knapsack, MLAgentBench
-vectorization, and sklearn diabetes probes test the program-search escalation
-policy under different subproblem types. ScienceAgentBench, MLE-bench Lite,
+metric-gaming risk. OpenEvolve function minimization, knapsack, Max-Cut,
+MLAgentBench vectorization, and sklearn diabetes probes test the program-search
+escalation policy under different subproblem types. ScienceAgentBench, MLE-bench Lite,
 PaperBench, and AIRS-Bench remain expansion targets rather than current scored
 claims. Future runs should therefore be chosen by the weakest unsupported claim,
 not by convenience.
@@ -210,6 +210,17 @@ one-item and two-item removals followed by greedy refill. This provides a
 positive example for the escalation gate: OpenEvolve-style search can be useful
 when the subproblem has a richer combinatorial structure and an automatic
 evaluator.
+
+We then added a second controlled combinatorial task, weighted Max-Cut, to
+avoid relying on one hand-built knapsack result. The starter program alternates
+node labels and reaches normalized score 0.734680 against a deterministic
+multi-start local-search reference over 16 graph instances. A direct DeepSeek
+rewrite improves the score to 0.962237. A five-iteration OpenEvolve run with
+the same model and evaluator reaches 0.970833, improving over the direct rewrite
+by 0.008596 with no invalid instances. The margin is small and from one seed,
+but it is a second positive algorithmic subproblem result. Combined with the
+negative function-minimization boundary case, it supports the selective
+program-search gate rather than an unconditional OpenEvolve policy.
 
 ### 4.2 Retrospective AI Scientist-v2 Branch-Gate Replay
 

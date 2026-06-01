@@ -65,7 +65,7 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 为了让这一原则可以执行，我们维护了一份 benchmark-to-claim matrix。
 FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人类 gate
-整体优于 autonomous baseline。FML-bench Fairness 支持 evaluator gate 的必要性，因为可执行性修复和退化预测器暴露了单指标投机风险。OpenEvolve 函数最小化、knapsack、MLAgentBench vectorization 和 sklearn diabetes probe 分别从不同子问题类型检验 program-search escalation policy。ScienceAgentBench、MLE-bench Lite、PaperBench 和 AIRS-Bench 仍是下一阶段扩展目标，而不是当前已打分主张。因此，后续实验应按“最弱且尚未被支持的主张”来选择，而不是按哪个 benchmark 最方便来选择。
+整体优于 autonomous baseline。FML-bench Fairness 支持 evaluator gate 的必要性，因为可执行性修复和退化预测器暴露了单指标投机风险。OpenEvolve 函数最小化、knapsack、Max-Cut、MLAgentBench vectorization 和 sklearn diabetes probe 分别从不同子问题类型检验 program-search escalation policy。ScienceAgentBench、MLE-bench Lite、PaperBench 和 AIRS-Bench 仍是下一阶段扩展目标，而不是当前已打分主张。因此，后续实验应按“最弱且尚未被支持的主张”来选择，而不是按哪个 benchmark 最方便来选择。
 
 ### 4.1 初步程序化搜索 smoke test
 
@@ -74,6 +74,8 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 我们还在相同 DeepSeek 模型、相同初始程序和相同 evaluator 下运行了 direct one-shot LLM-edit baseline。该直接编辑基线得分为 0.038021，略高于一次迭代 OpenEvolve 的 0.037816，也略高于五次迭代 OpenEvolve 的 0.038007。这个边界结果支持 Co-Pilot AI Scientist v3 的一个核心设计：程序化搜索不应该默认总是启动，而应该由明确的升级 gate 控制。对于极小预算或简单局部改写，直接编辑可能已经足够；当搜索空间更丰富、预算更大时，OpenEvolve 风格的种群搜索才更可能发挥价值。
 
 为了测试后一种情况，我们进一步加入了一个更复杂的 0/1 knapsack 启发式任务。初始 value/weight 贪心程序在 18 个确定性实例上的平均最优比为 0.991519。direct LLM rewrite 将分数提升到 0.995270。五次迭代 OpenEvolve 进一步提升到 0.999439，且没有非法实例。进化出的程序加入了局部改进：移除一个或两个已选物品后，再用贪心方式重新填充容量。这个结果为升级 gate 提供了正例：当子问题具有更丰富的组合结构，并且存在自动 evaluator 时，OpenEvolve-style search 确实可能优于直接编辑。
+
+为了避免只依赖一个手工 knapsack 结果，我们又加入了第二个受控组合优化任务：加权 Max-Cut。初始程序交替分配节点，在 16 个确定性图实例上相对于多起点局部搜索 reference 的归一化得分为 0.734680。一次 direct DeepSeek rewrite 将得分提升到 0.962237。使用相同模型和 evaluator 的五次迭代 OpenEvolve run 达到 0.970833，比 direct rewrite 高 0.008596，且没有非法实例。这个优势很小，而且只有一个 seed，但它给出了第二个算法子问题正例。结合函数最小化任务中的负边界结果，这更支持 selective program-search gate，而不是无条件启动 OpenEvolve。
 
 ### 4.2 AI Scientist-v2 分支 gate 回放分析
 

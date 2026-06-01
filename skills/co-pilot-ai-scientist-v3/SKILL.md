@@ -145,7 +145,9 @@ python3 scripts/run_openevolve_program_search.py \
 
 Compare OpenEvolve against a direct LLM-edit baseline using the same evaluator,
 iteration budget, and model routing before claiming the programmatic-search
-module improves research quality.
+module improves research quality. Current archived examples include function
+minimization, knapsack, weighted Max-Cut, MLAgentBench vectorization, and
+sklearn diabetes tabular regression.
 
 If direct editing matches or beats OpenEvolve on a simple task, record that as
 an escalation-boundary result. The program-search gate is meant to decide when

@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "iterations": 5,
+  "random_seed": 11,
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "initial_program": "maxcut_task/initial_program.py",
+  "evaluator": "maxcut_task/evaluator.py",
+  "best_score": 0.9708331929140476,
+  "output_dir": "maxcut_openevolve_5iter/run"
+}

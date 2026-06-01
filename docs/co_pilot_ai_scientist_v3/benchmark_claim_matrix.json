@@ -18,10 +18,10 @@
     },
     {
       "claim_family": "AlphaEvolve-style subproblem search",
-      "benchmark_or_probe": "OpenEvolve function minimization and knapsack",
-      "current_evidence": "Direct edit beats or matches tiny function search; OpenEvolve improves the richer knapsack heuristic to 0.999439 average optimality ratio.",
+      "benchmark_or_probe": "OpenEvolve function minimization, knapsack, and Max-Cut",
+      "current_evidence": "Direct edit beats or matches tiny function search; OpenEvolve improves the richer knapsack heuristic to 0.999439 average optimality ratio and the controlled Max-Cut heuristic to 0.970833 versus direct rewrite 0.962237.",
       "supports": "Program search should be controlled by an escalation gate and can help on richer machine-gradeable subproblems.",
-      "does_not_prove": "That OpenEvolve should always replace direct editing."
+      "does_not_prove": "That OpenEvolve should always replace direct editing; the Max-Cut margin is small and from one seed."
     },
     {
       "claim_family": "Non-FML ML experimentation",

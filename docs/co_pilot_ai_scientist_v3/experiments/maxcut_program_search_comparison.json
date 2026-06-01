@@ -1,0 +1,38 @@
+{
+  "task": "controlled weighted Max-Cut heuristic search",
+  "benchmark_role": "non-FML machine-gradeable algorithmic subproblem",
+  "initial_program": {
+    "score": 0.7346801198296883,
+    "avg_ratio": 0.7346801198296883,
+    "total_value": 8431,
+    "total_reference": 11621,
+    "instances": 16,
+    "invalid": 0
+  },
+  "direct_deepseek_rewrite": {
+    "score": 0.9622372742462382,
+    "avg_ratio": 0.9622372742462382,
+    "total_value": 11189,
+    "total_reference": 11621,
+    "instances": 16,
+    "invalid": 0
+  },
+  "openevolve_5iter": {
+    "score": 0.9708331929140476,
+    "avg_ratio": 0.9708331929140476,
+    "total_value": 11271,
+    "total_reference": 11621,
+    "instances": 16,
+    "invalid": 0,
+    "iterations": 5,
+    "random_seed": 11,
+    "provider": "deepseek",
+    "model": "deepseek-chat"
+  },
+  "deltas": {
+    "direct_minus_initial": 0.2275571544165499,
+    "openevolve_minus_initial": 0.2361530730843593,
+    "openevolve_minus_direct": 0.0085959186678094
+  },
+  "interpretation": "OpenEvolve-style search slightly outperformed a strong direct DeepSeek rewrite on this richer Max-Cut heuristic task, providing a second positive controlled algorithmic subproblem beyond knapsack. The gain is small and from one seed, so it supports selective escalation rather than automatic use of program search."
+}

@@ -80,7 +80,8 @@ API key 使用全局环境变量，不在日志中打印。建议：
 不要把所有主张都默认交给 FML-bench。应按主张类型选择 benchmark：
 
 - FML-bench：用于 AI Scientist-v2 风格 branch gate 和 continuation。
-- OpenEvolve-controlled tasks：用于机器可评分的算法/程序搜索。
+- OpenEvolve-controlled tasks：当前包括函数最小化、knapsack 和 Max-Cut，
+  用于机器可评分的算法/程序搜索。
 - MLAgentBench：用于非 FML 的 ML 实验与 correctness-gated 代码优化。
 - 受控 sklearn tabular probes：当外部 benchmark 凭证不可用时，用于低成本非
   FML 建模证据和 escalation 边界测试。
