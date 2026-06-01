@@ -89,4 +89,16 @@ Current output:
 
 The current target-journal shortlist contains 28 records. All 28 can be traced back to the local Wuhan journal catalog matrix with author, title, journal, year, volume, issue, pages, and DOI. They are ready for drafting, but still require final manual checking against CNKI or the journal page before submission.
 
-The remaining reference risk is outside the target-journal catalog: Derrida/deconstruction sources, sports video benchmark papers, tool-method references, and platform health communication literature. Do not use target-journal articles as substitutes for these layers.
+For the external theory and technical layers, run:
+
+```bash
+python scripts/build_qigong_external_reference_pack.py
+```
+
+Current output:
+
+- `docs/qigong_platform_paper/external_reference_verification_pack.md`
+- `docs/qigong_platform_paper/external_reference_verification_pack.csv`
+- `docs/qigong_platform_paper/external_reference_verification_pack.json`
+
+The external pack currently contains 13 records: 2 core Derrida/deconstruction references, 3 sports video benchmark references, 3 tool-method references, and 5 short fitness / health communication references. These records close the major non-target-journal citation gap for drafting. Their use remains conditional: SportsLabKit may enter the results layer only if the Ubuntu video-analysis run actually succeeds, and benchmark datasets may enter only as method background or calibration baselines, not as substitutes for real short-video platform samples.
