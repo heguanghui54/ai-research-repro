@@ -194,3 +194,20 @@ Archived official baseline: final runtime score `3.17250394821167` seconds and
 total benchmark time `3.3655309677124023` seconds. Lower is better. The
 controlled evaluator adds correctness checking and produces the comparison
 summarized in `experiments/mlagentbench_vectorization_comparison.md`.
+
+For the OpenEvolve-controlled version, run explicit seeds with:
+
+```bash
+python scripts/run_openevolve_program_search.py \
+  --task-dir docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task \
+  --output-dir docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed123 \
+  --iterations 3 \
+  --random-seed 123 \
+  --provider deepseek \
+  --model deepseek-chat
+```
+
+The first archived seed set (`42`, `7`, `123`) produced correct accelerated
+programs in 2 of 3 runs, with seed `7` failing to improve over the starter-like
+program. Treat this as positive but seed-sensitive pilot evidence, not as a
+settled result.

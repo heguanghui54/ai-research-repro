@@ -93,9 +93,10 @@ For AI Scientist-v2-style experiment search, FML-bench is a useful near-term
 benchmark because it is already runnable in our Ubuntu environment and exposes
 branch-level logs. For machine-gradeable algorithmic subproblems, we use
 OpenEvolve-controlled tasks such as function minimization and knapsack heuristic
-search. For broader follow-up evidence, the next benchmarks should include
-MLAgentBench for end-to-end ML experimentation and ScienceAgentBench for
-data-driven scientific discovery tasks. Higher-cost stretch benchmarks include
+search. For broader evidence beyond FML-bench, we include an initial
+MLAgentBench vectorization probe for end-to-end ML experimentation; the next
+step should add ScienceAgentBench for data-driven scientific discovery tasks.
+Higher-cost stretch benchmarks include
 MLE-bench Lite for Kaggle-style ML engineering, PaperBench for paper-to-code
 replication and hierarchical rubric grading, and AIRS-Bench for full ML research
 lifecycle evaluation.
@@ -206,6 +207,15 @@ claim that the program-search-escalation node can be valuable on
 machine-gradeable subproblems beyond FML-bench. It does not yet prove that the
 full co-pilot architecture improves whole-paper quality.
 
+To test robustness, we repeated the same three-iteration OpenEvolve setup with
+two additional random seeds. Seed 7 did not find a speedup and retained the
+starter-like program with median runtime 2.984610 seconds, while seed 123 found
+a correct vectorized program with median runtime 0.031783 seconds. Across seeds
+42, 7, and 123, the search found a correct speedup in 2 out of 3 runs, with
+median best runtime 0.051882 seconds. This strengthens the evidence that the
+program-search module can find useful code transformations, but it also shows
+seed sensitivity under a very small budget.
+
 ### 4.5 Claim Audit
 
 We ran a claim-evidence audit after the pilot experiments. A Monica-routed
@@ -215,9 +225,10 @@ claims that human gates improve paper quality or that the full co-pilot system
 outperforms autonomous AI Scientist-v2. We therefore treat those as hypotheses
 for the evaluation protocol rather than as conclusions. The audit supports only
 the narrower empirical claims reported above: OpenEvolve-style search can help
-on some machine-gradeable subproblems, branch-gate insertion is feasible in
-AI Scientist-v2-style logs, and selected-branch continuation has a promising
-single-task result that still requires matched-budget validation.
+on some machine-gradeable subproblems but is seed-sensitive under tiny budgets,
+branch-gate insertion is feasible in AI Scientist-v2-style logs, and
+selected-branch continuation has a promising single-task result that still
+requires matched-budget validation.
 
 ## 5. Current Contributions and Unproven Claims
 

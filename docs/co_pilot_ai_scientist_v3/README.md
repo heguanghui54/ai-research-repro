@@ -55,8 +55,10 @@ continuation run. To avoid overfitting the project to FML-bench, the package
 also includes a non-FML MLAgentBench `vectorization` comparison: direct DeepSeek
 rewrite failed the correctness gate, while a three-iteration OpenEvolve-style
 search found a correct vectorized program with median runtime `0.051882` seconds
-versus `3.261186` seconds for the controlled starter program. Claims remain
-intentionally conservative until the evidence is expanded across more
+versus `3.261186` seconds for the controlled starter program. Two additional
+OpenEvolve seeds produced one failed speedup and one stronger speedup, so the
+paper now reports this as promising but seed-sensitive pilot evidence. Claims
+remain intentionally conservative until the evidence is expanded across more
 tasks/seeds and independently reviewed for paper quality. A Monica-routed claim
 audit is archived under `audits/` and is reflected in the manuscript's
 claim-audit section.

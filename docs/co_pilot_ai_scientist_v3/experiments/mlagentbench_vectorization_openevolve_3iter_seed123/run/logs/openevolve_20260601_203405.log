@@ -1,0 +1,75 @@
+2026-06-01 20:34:05,142 - openevolve.controller - INFO - Logging to mlagentbench_vectorization_openevolve_3iter_seed123/run/logs/openevolve_20260601_203405.log
+2026-06-01 20:34:05,147 - openevolve.controller - INFO - Set random seed to 123 for reproducibility
+2026-06-01 20:34:05,205 - openevolve.llm.openai - INFO - Initialized OpenAI LLM with model: deepseek-chat
+2026-06-01 20:34:05,205 - openevolve.llm.ensemble - INFO - Initialized LLM ensemble with models: deepseek-chat (weight: 1.00)
+2026-06-01 20:34:05,206 - openevolve.prompt.sampler - INFO - Initialized prompt sampler
+2026-06-01 20:34:05,206 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 20:34:05,206 - openevolve.database - INFO - Initialized program database with 0 programs
+2026-06-01 20:34:05,207 - openevolve.evaluator - INFO - Successfully loaded evaluation function from mlagentbench_vectorization_task/evaluator.py
+2026-06-01 20:34:05,207 - openevolve.evaluator - INFO - Initialized evaluator with mlagentbench_vectorization_task/evaluator.py
+2026-06-01 20:34:05,207 - openevolve.controller - INFO - Initialized OpenEvolve with mlagentbench_vectorization_task/initial_program.py
+2026-06-01 20:34:05,207 - openevolve.controller - INFO - Adding initial program to database
+2026-06-01 20:34:16,812 - openevolve.evaluator - INFO - Evaluated program 6ebdf2ff-2d4f-40a9-baaf-6a87698ec531 in 11.60s: combined_score=0.2720, score=0.2720, runtime_seconds=3.6765, best_runtime_seconds=3.2026, mean_runtime_seconds=3.7181, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:34:16,813 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 5, 'diversity': 0}
+2026-06-01 20:34:16,814 - openevolve.process_parallel - INFO - Initialized process parallel controller with 1 workers
+2026-06-01 20:34:16,815 - openevolve.process_parallel - INFO - Started process pool with 1 processes
+2026-06-01 20:34:16,815 - openevolve.controller - INFO - Using island-based evolution with 2 islands
+2026-06-01 20:34:16,815 - openevolve.database - INFO - Island Status:
+2026-06-01 20:34:16,815 - openevolve.database - INFO -  * Island 0: 1 programs, best=0.2720, avg=0.2720, diversity=0.00, gen=0 (best: 6ebdf2ff-2d4f-40a9-baaf-6a87698ec531)
+2026-06-01 20:34:16,815 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 20:34:16,815 - openevolve.process_parallel - INFO - Starting process-based evolution from iteration 1 for 3 iterations (total: 4)
+2026-06-01 20:34:16,819 - openevolve.process_parallel - INFO - Early stopping disabled
+2026-06-01 20:34:16,899 - openevolve.prompt.sampler - INFO - Set custom templates: system=evaluator_system_message, user=None
+2026-06-01 20:34:16,900 - openevolve.evaluator - INFO - Successfully loaded evaluation function from mlagentbench_vectorization_task/evaluator.py
+2026-06-01 20:34:16,900 - openevolve.evaluator - INFO - Initialized evaluator with mlagentbench_vectorization_task/evaluator.py
+2026-06-01 20:34:16,901 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 20:34:17,613 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 20:34:34,002 - openevolve.evaluator - INFO - Evaluated program 80a74c43-73cc-488b-9525-b58c913bf1d6 in 0.60s: combined_score=31.2742, score=31.2742, runtime_seconds=0.0320, best_runtime_seconds=0.0318, mean_runtime_seconds=0.0339, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:34:34,004 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 20:34:34,012 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 0, 'diversity': 5}
+2026-06-01 20:34:34,012 - openevolve.database - INFO - New best program 80a74c43-73cc-488b-9525-b58c913bf1d6 replaces 6ebdf2ff-2d4f-40a9-baaf-6a87698ec531 (combined_score: 0.2720 → 31.2742, +31.0022)
+2026-06-01 20:34:34,012 - openevolve.process_parallel - INFO - Iteration 1: Program 80a74c43-73cc-488b-9525-b58c913bf1d6 (parent: 6ebdf2ff-2d4f-40a9-baaf-6a87698ec531) completed in 17.10s
+2026-06-01 20:34:34,012 - openevolve.process_parallel - INFO - Metrics: combined_score=31.2742, score=31.2742, runtime_seconds=0.0320, best_runtime_seconds=0.0318, mean_runtime_seconds=0.0339, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:34:34,012 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 1: 80a74c43-73cc-488b-9525-b58c913bf1d6
+2026-06-01 20:34:34,012 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 1
+2026-06-01 20:34:34,013 - openevolve.database - INFO - Island Status:
+2026-06-01 20:34:34,013 - openevolve.database - INFO -  * Island 0: 2 programs, best=31.2742, avg=15.7731, diversity=147.90, gen=1 (best: 80a74c43-73cc-488b-9525-b58c913bf1d6)
+2026-06-01 20:34:34,013 - openevolve.database - INFO -    Island 1: 0 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=0
+2026-06-01 20:34:34,014 - openevolve.database - INFO - Saved database with 2 programs to mlagentbench_vectorization_openevolve_3iter_seed123/run/checkpoints/checkpoint_1
+2026-06-01 20:34:34,014 - openevolve.controller - INFO - Saved best program at checkpoint 1 with metrics: combined_score=31.2742, score=31.2742, runtime_seconds=0.0320, best_runtime_seconds=0.0318, mean_runtime_seconds=0.0339, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:34:34,015 - openevolve.controller - INFO - Saved checkpoint at iteration 1 to mlagentbench_vectorization_openevolve_3iter_seed123/run/checkpoints/checkpoint_1
+2026-06-01 20:34:34,144 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 20:34:49,154 - openevolve.evaluator - INFO - Evaluated program f3f220cf-acdd-46df-9374-d2801e2a6b49 in 0.01s: combined_score=0.0000, score=0.0000, runtime_seconds=1000000000.0000, correct=0.0000, error=Since axis is `None`, must provide window_shape for all dimensions of `x`; got 3 window_shape elements and `x.ndim` is 4.
+2026-06-01 20:34:49,158 - openevolve.llm.ensemble - INFO - Sampled model: deepseek-chat
+2026-06-01 20:34:49,159 - openevolve.database - INFO - New MAP-Elites cell occupied in island 1: {'complexity': 0, 'diversity': 9}
+2026-06-01 20:34:49,159 - openevolve.process_parallel - INFO - Iteration 2: Program f3f220cf-acdd-46df-9374-d2801e2a6b49 (parent: 6ebdf2ff-2d4f-40a9-baaf-6a87698ec531) completed in 15.15s
+2026-06-01 20:34:49,159 - openevolve.process_parallel - INFO - Metrics: combined_score=0.0000, score=0.0000, runtime_seconds=1000000000.0000, correct=0.0000, error=Since axis is `None`, must provide window_shape for all dimensions of `x`; got 3 window_shape elements and `x.ndim` is 4.
+2026-06-01 20:34:49,159 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 2
+2026-06-01 20:34:49,160 - openevolve.database - INFO - Island Status:
+2026-06-01 20:34:49,160 - openevolve.database - INFO -  * Island 0: 2 programs, best=31.2742, avg=15.7731, diversity=147.90, gen=1 (best: 80a74c43-73cc-488b-9525-b58c913bf1d6)
+2026-06-01 20:34:49,161 - openevolve.database - INFO -    Island 1: 1 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=1 (best: f3f220cf-acdd-46df-9374-d2801e2a6b49)
+2026-06-01 20:34:49,164 - openevolve.database - INFO - Saved database with 3 programs to mlagentbench_vectorization_openevolve_3iter_seed123/run/checkpoints/checkpoint_2
+2026-06-01 20:34:49,165 - openevolve.controller - INFO - Saved best program at checkpoint 2 with metrics: combined_score=31.2742, score=31.2742, runtime_seconds=0.0320, best_runtime_seconds=0.0318, mean_runtime_seconds=0.0339, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:34:49,165 - openevolve.controller - INFO - Saved checkpoint at iteration 2 to mlagentbench_vectorization_openevolve_3iter_seed123/run/checkpoints/checkpoint_2
+2026-06-01 20:34:49,448 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-06-01 20:35:04,863 - openevolve.evaluator - INFO - Evaluated program 026ae42b-25ed-4ac9-9f54-92fa622ee2dd in 0.55s: combined_score=31.4630, score=31.4630, runtime_seconds=0.0318, best_runtime_seconds=0.0318, mean_runtime_seconds=0.0340, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:35:04,871 - openevolve.database - INFO - New MAP-Elites cell occupied in island 0: {'complexity': 6, 'diversity': 0}
+2026-06-01 20:35:04,872 - openevolve.database - INFO - New best program 026ae42b-25ed-4ac9-9f54-92fa622ee2dd replaces 80a74c43-73cc-488b-9525-b58c913bf1d6 (combined_score: 31.2742 → 31.4630, +0.1889)
+2026-06-01 20:35:04,872 - openevolve.process_parallel - INFO - Iteration 3: Program 026ae42b-25ed-4ac9-9f54-92fa622ee2dd (parent: 6ebdf2ff-2d4f-40a9-baaf-6a87698ec531) completed in 15.71s
+2026-06-01 20:35:04,872 - openevolve.process_parallel - INFO - Metrics: combined_score=31.4630, score=31.4630, runtime_seconds=0.0318, best_runtime_seconds=0.0318, mean_runtime_seconds=0.0340, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:35:04,872 - openevolve.process_parallel - INFO - 🌟 New best solution found at iteration 3: 026ae42b-25ed-4ac9-9f54-92fa622ee2dd
+2026-06-01 20:35:04,872 - openevolve.process_parallel - INFO - Checkpoint interval reached at iteration 3
+2026-06-01 20:35:04,872 - openevolve.database - INFO - Island Status:
+2026-06-01 20:35:04,873 - openevolve.database - INFO -  * Island 0: 3 programs, best=31.4630, avg=21.0031, diversity=98.60, gen=2 (best: 026ae42b-25ed-4ac9-9f54-92fa622ee2dd)
+2026-06-01 20:35:04,873 - openevolve.database - INFO -    Island 1: 1 programs, best=0.0000, avg=0.0000, diversity=0.00, gen=1 (best: f3f220cf-acdd-46df-9374-d2801e2a6b49)
+2026-06-01 20:35:04,875 - openevolve.database - INFO - Saved database with 4 programs to mlagentbench_vectorization_openevolve_3iter_seed123/run/checkpoints/checkpoint_3
+2026-06-01 20:35:04,875 - openevolve.controller - INFO - Saved best program at checkpoint 3 with metrics: combined_score=31.4630, score=31.4630, runtime_seconds=0.0318, best_runtime_seconds=0.0318, mean_runtime_seconds=0.0340, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:35:04,875 - openevolve.controller - INFO - Saved checkpoint at iteration 3 to mlagentbench_vectorization_openevolve_3iter_seed123/run/checkpoints/checkpoint_3
+2026-06-01 20:35:04,875 - openevolve.process_parallel - INFO - ✅ Evolution completed - Maximum iterations reached
+2026-06-01 20:35:04,877 - openevolve.database - INFO - Saved database with 4 programs to mlagentbench_vectorization_openevolve_3iter_seed123/run/checkpoints/checkpoint_3
+2026-06-01 20:35:04,878 - openevolve.controller - INFO - Saved best program at checkpoint 3 with metrics: combined_score=31.4630, score=31.4630, runtime_seconds=0.0318, best_runtime_seconds=0.0318, mean_runtime_seconds=0.0340, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:35:04,878 - openevolve.controller - INFO - Saved checkpoint at iteration 3 to mlagentbench_vectorization_openevolve_3iter_seed123/run/checkpoints/checkpoint_3
+2026-06-01 20:35:04,887 - openevolve.process_parallel - INFO - Stopped process pool
+2026-06-01 20:35:04,887 - openevolve.controller - INFO - Using tracked best program: 026ae42b-25ed-4ac9-9f54-92fa622ee2dd
+2026-06-01 20:35:04,887 - openevolve.controller - INFO - Evolution complete. Best program has metrics: combined_score=31.4630, score=31.4630, runtime_seconds=0.0318, best_runtime_seconds=0.0318, mean_runtime_seconds=0.0340, num_runs=3.0000, correct=1.0000, error=
+2026-06-01 20:35:04,888 - openevolve.controller - INFO - Saved best program to mlagentbench_vectorization_openevolve_3iter_seed123/run/best/best_program.py with program info to mlagentbench_vectorization_openevolve_3iter_seed123/run/best/best_program_info.json

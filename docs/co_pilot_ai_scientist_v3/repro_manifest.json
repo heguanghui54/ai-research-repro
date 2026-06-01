@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "scaffold_created_with_preliminary_pdfs_and_live_gate_probe",
+  "status": "pilot_package_with_live_gate_probe_and_multi_benchmark_evidence",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -91,6 +91,14 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter/run/logs/openevolve_20260601_201955.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter/run/best/best_program.py",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter/run/best/best_program_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed7/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed7/run/logs/openevolve_20260601_203315.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed7/run/best/best_program.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed7/run/best/best_program_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed123/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed123/run/logs/openevolve_20260601_203405.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed123/run/best/best_program.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed123/run/best/best_program_info.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_comparison.md",
     "docs/co_pilot_ai_scientist_v3/audits/claim_audit_monica_gpt4o_mini.md",
     "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md",

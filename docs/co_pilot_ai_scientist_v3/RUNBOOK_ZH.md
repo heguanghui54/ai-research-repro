@@ -188,11 +188,30 @@ benchmark time 为 `3.3655309677124023` 秒。该任务分数越低越好。
 - OpenEvolve-style search，3 iterations：找到正确 best program，median
   runtime 为 `0.051882028579711914` 秒。
 
+用显式 seed 重复同样的 3-iteration 设置：
+
+```bash
+for seed in 42 7 123; do
+  python scripts/run_openevolve_program_search.py \
+    --task-dir docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task \
+    --output-dir "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed${seed}" \
+    --iterations 3 \
+    --random-seed "${seed}" \
+    --provider deepseek \
+    --model deepseek-chat
+done
+```
+
+已归档的 seeds `42`、`7`、`123` 结果显示，3 次运行中有 2 次找到正确加速程序。
+三次 best median runtime 分别为 `0.051882028579711914`、`2.984609603881836`
+和 `0.031783342361450195` 秒。这个 multi-seed probe 扩展了 FML-Bench 之外
+的 benchmark 证据，但也说明在极小搜索预算下存在 seed sensitivity。
+
 ## 9. 顶会级投稿前仍需补强的证据
 
 - 如果可行，把 snapshot-seeded continuation 升级为原生 tree-object resume。
 - 在同等预算下比较 autonomous baseline、单个 human gate 和 full co-pilot variant。
-- 在 MLAgentBench `vectorization` 上做更多 seed，或加入第二个 MLAgentBench task，然后再决定是否扩展到 ScienceAgentBench。
+- 加入第二个 MLAgentBench task，或扩展到 ScienceAgentBench，然后用匹配的 multi-seed budget 重复验证。
 - 加入外部评审或 rubric-based paper-quality scoring。
 - 如果预算允许，通过 Monica 路由跑一次 frontier model claim audit。
 - 将完整项目包推送到 GitHub。

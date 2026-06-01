@@ -50,7 +50,8 @@ of Co-Pilot AI Scientist v3.
 
 1. **MLAgentBench vectorization extension**: baseline, direct LLM rewrite, and
    OpenEvolve-style runtime optimization now run under a correctness-gated
-   evaluator; next repeat with more seeds or a second MLAgentBench task.
+   evaluator with a first three-seed robustness probe; next add a second
+   MLAgentBench task or a larger matched seed budget.
 2. **ScienceAgentBench single task**: use one data-driven discovery task to test
    evaluator and claim gates in a more science-like setting.
 3. **MLE-bench Lite dry run or one task**: use only if API/compute budget allows.

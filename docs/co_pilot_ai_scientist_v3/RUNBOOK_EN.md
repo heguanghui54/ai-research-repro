@@ -193,14 +193,34 @@ adds a correctness gate before accepting runtime. Under that evaluator:
 - OpenEvolve-style search, 3 iterations: correct best program with median
   runtime `0.051882028579711914` seconds.
 
+Repeat the same 3-iteration setting with explicit seeds:
+
+```bash
+for seed in 42 7 123; do
+  python scripts/run_openevolve_program_search.py \
+    --task-dir docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_task \
+    --output-dir "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed${seed}" \
+    --iterations 3 \
+    --random-seed "${seed}" \
+    --provider deepseek \
+    --model deepseek-chat
+done
+```
+
+Archived results for seeds `42`, `7`, and `123` found correct accelerated
+programs in 2 of 3 runs. Their best median runtimes were `0.051882028579711914`,
+`2.984609603881836`, and `0.031783342361450195` seconds respectively. The
+multi-seed probe broadens the benchmark evidence beyond FML-Bench, but it also
+shows seed sensitivity under a tiny search budget.
+
 ## 9. Remaining Evidence Needed Before Strong Submission Claims
 
 - Replace snapshot-seeded continuation with native tree-object resume if
   feasible.
 - Compare autonomous baseline, selected human gates, and full co-pilot variant
   under the same budget.
-- Repeat the MLAgentBench `vectorization` comparison with more seeds or add a
-  second MLAgentBench task, then decide whether to expand to ScienceAgentBench.
+- Add a second MLAgentBench task or expand to ScienceAgentBench, then repeat
+  with matched multi-seed budgets.
 - Add external or rubric-based paper-quality scoring.
 - Run at least one frontier-model claim-audit pass through Monica routing if
   budget allows.

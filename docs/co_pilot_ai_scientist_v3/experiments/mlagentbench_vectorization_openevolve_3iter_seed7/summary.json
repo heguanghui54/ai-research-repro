@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "iterations": 3,
+  "random_seed": 7,
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "initial_program": "mlagentbench_vectorization_task/initial_program.py",
+  "evaluator": "mlagentbench_vectorization_task/evaluator.py",
+  "best_score": 0.33505219522323126,
+  "output_dir": "mlagentbench_vectorization_openevolve_3iter_seed7/run"
+}

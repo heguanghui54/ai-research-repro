@@ -44,6 +44,7 @@ def main() -> None:
     parser.add_argument("--population-size", type=int, default=16)
     parser.add_argument("--archive-size", type=int, default=16)
     parser.add_argument("--num-islands", type=int, default=2)
+    parser.add_argument("--random-seed", type=int, default=42)
     args = parser.parse_args()
 
     api_base, api_key, model = _provider_config(args.provider, args.model)
@@ -51,7 +52,7 @@ def main() -> None:
     cfg = Config(
         max_iterations=args.iterations,
         checkpoint_interval=1,
-        random_seed=42,
+        random_seed=args.random_seed,
         log_level="INFO",
     )
     cfg.llm.api_base = api_base
@@ -85,6 +86,7 @@ def main() -> None:
     summary = {
         "status": "completed",
         "iterations": args.iterations,
+        "random_seed": args.random_seed,
         "provider": args.provider,
         "model": model,
         "api_base_host": api_base.split("//")[-1].split("/")[0],
@@ -99,4 +101,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

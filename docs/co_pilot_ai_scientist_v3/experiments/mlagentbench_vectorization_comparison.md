@@ -28,11 +28,31 @@ using an AlphaEvolve/OpenEvolve-style module on small machine-gradeable
 subproblems, but it should not be interpreted as proof that the full co-pilot
 system improves whole-paper quality.
 
+## Multi-Seed Check
+
+After the initial run, we repeated the same 3-iteration OpenEvolve configuration
+with two additional random seeds. This checks whether the program-search result
+is robust under a tiny search budget.
+
+| Seed | Correct best program | Best runtime seconds | Best iteration | Interpretation |
+| ---: | --- | ---: | ---: | --- |
+| 42 | yes | 0.051882 | 1 | Found a strong vectorized solution. |
+| 7 | yes | 2.984610 | 0 | Did not find a speedup; retained the starter program. |
+| 123 | yes | 0.031783 | 3 | Found the strongest vectorized solution. |
+
+Under this small 3-iteration budget, OpenEvolve-style search found a correct
+speedup in 2 of 3 seeds. The median best runtime across all three seeds was
+0.051882 seconds, but the failed seed shows that the result is seed-sensitive
+and should be repeated with larger budgets before making broad reliability
+claims.
+
 ## Artifact Paths
 
 - Task wrapper: `mlagentbench_vectorization_task/`
 - Direct LLM failed candidate: `mlagentbench_vectorization_direct_deepseek/`
 - OpenEvolve run: `mlagentbench_vectorization_openevolve_3iter/`
+- OpenEvolve seed 7 run: `mlagentbench_vectorization_openevolve_3iter_seed7/`
+- OpenEvolve seed 123 run: `mlagentbench_vectorization_openevolve_3iter_seed123/`
 - Best program: `mlagentbench_vectorization_openevolve_3iter/run/best/best_program.py`
 - Best metrics: `mlagentbench_vectorization_openevolve_3iter/run/best/best_program_info.json`
 

@@ -34,7 +34,7 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 ## 4. Benchmark 选择与评估计划
 
-我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化和 0/1 knapsack 启发式搜索。对于更广泛的后续证据，下一步应加入 MLAgentBench 来测试端到端 ML 实验能力，并加入 ScienceAgentBench 来测试更接近科学发现的数据驱动任务。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
+我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化和 0/1 knapsack 启发式搜索。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力；下一步应加入 ScienceAgentBench 来测试更接近科学发现的数据驱动任务。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
 
 指标包括任务分数、论文质量、主张支持率、搜索效率、人类注意力成本和假设多样性。对于程序化搜索模块，关键消融是：在相同 evaluator 和迭代预算下，比较 OpenEvolve 与直接重复 LLM 代码编辑。因此，FML-bench 应被理解为当前证据来源之一，而不是整个项目的完整 benchmark 定义。
 
@@ -64,9 +64,11 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 随后，我们把同一个任务封装成更严格的本地 evaluator：在接受运行时间之前，evaluator 会用一个小型确定性输入，把候选 `Conv2DLayer.forward` 的输出和 nested-loop reference 做数值比对。在这个受控 evaluator 下，starter program 的 median runtime 为 3.261186 秒。一次 direct DeepSeek `deepseek-chat` rewrite 生成了看似合理的向量化代码，但因为数值不一致没有通过 correctness gate。相反，使用同一 DeepSeek 模型的三轮 OpenEvolve-style run 在第 1 轮找到了正确候选，median runtime 为 0.051882 秒，相比受控 starter program 约快 62.86 倍。这个结果支持一个较窄但重要的结论：program-search-escalation 节点可以在 FML-bench 之外的机器可评分子问题上发挥作用。但它还不能证明完整 co-pilot 架构能提升整篇论文质量。
 
+为了检查稳健性，我们又用两个额外 random seed 重复同样的三轮 OpenEvolve 设置。seed 7 没有找到加速程序，最终保留近似 starter 的程序，median runtime 为 2.984610 秒；seed 123 找到了正确向量化程序，median runtime 为 0.031783 秒。在 seed 42、7、123 三次运行中，系统有 2 次找到正确加速程序，全 seed 的 best runtime 中位数为 0.051882 秒。这增强了“程序搜索模块可以找到有效代码变换”的证据，同时也说明在极小预算下存在 seed sensitivity。
+
 ### 4.5 主张审计
 
-在完成这些 pilot 实验后，我们做了一次 claim-evidence audit。通过 Monica 路由的 `gpt-4o-mini` 审稿式检查认为：本文的架构贡献是合理的，但当前实验证据还不足以支持“人类 gate 提高论文质量”或“完整 co-pilot 系统优于 autonomous AI Scientist-v2”这类宽泛结论。因此，本文把这些表述保留为 evaluation protocol 要检验的假设，而不是已经证明的结论。当前 audit 只支持较窄的实证主张：OpenEvolve-style search 可以在部分机器可评分子问题上有效；branch gate 可以插入 AI Scientist-v2 风格日志轨迹；selected-branch continuation 在单任务上有积极结果，但仍需要同预算、多 seed 的验证。
+在完成这些 pilot 实验后，我们做了一次 claim-evidence audit。通过 Monica 路由的 `gpt-4o-mini` 审稿式检查认为：本文的架构贡献是合理的，但当前实验证据还不足以支持“人类 gate 提高论文质量”或“完整 co-pilot 系统优于 autonomous AI Scientist-v2”这类宽泛结论。因此，本文把这些表述保留为 evaluation protocol 要检验的假设，而不是已经证明的结论。当前 audit 只支持较窄的实证主张：OpenEvolve-style search 可以在部分机器可评分子问题上有效，但在极小预算下存在 seed sensitivity；branch gate 可以插入 AI Scientist-v2 风格日志轨迹；selected-branch continuation 在单任务上有积极结果，但仍需要同预算、多 seed 的验证。
 
 ## 5. 当前贡献与尚未证明的主张
 
