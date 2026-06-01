@@ -245,7 +245,7 @@ def write_outputs(gates: list[Gate], output_md: Path, output_json: Path) -> None
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build the current submission gate for the Health Qigong short-video paper.")
-    parser.add_argument("--manuscript", default="docs/qigong_platform_paper/manuscript_draft_v0_7_current_evidence.md")
+    parser.add_argument("--manuscript", default="docs/qigong_platform_paper/manuscript_draft_v0_8_current_evidence.md")
     parser.add_argument("--author-metadata", default="docs/qigong_platform_paper/author_metadata.json")
     parser.add_argument("--metadata", default="data/qigong_platform_metadata_formal.csv")
     parser.add_argument("--web-summary", default="runs/qigong_platform/formal_merge/web_coding_submissions_export_summary.json")
