@@ -289,6 +289,17 @@ reaches `0.624703` (lower is better). This is valuable because it verifies the
 prospective evidence package on an AI Scientist-v2-style task while reinforcing
 that superiority remains unproven.
 
+We additionally report a metric-level prospective package summary rather than
+only a pass/fail artifact audit. It currently contains two passing packages:
+one controlled Max-Cut micro-task in which the human-selected branch wins on
+mean normalized score (`0.984419` versus `0.596214`), and one FML-bench
+Causality package in which the autonomous run wins on test MAE (`0.624703`
+versus `0.646224`). Both human gates have complete attention-cost and
+taste/insight records. This mixed summary is central to the IGRE framing:
+human scientific taste is a logged, high-variance intervention whose value must
+be tested across a distribution of research trajectories, not assumed from a
+single favorable case.
+
 To make this principle operational, we maintain a benchmark-to-claim matrix.
 FML-bench Causality supports the branch-gate feasibility claim but does not yet
 show general human-gate superiority. FML-bench Fairness supports the need for

@@ -167,6 +167,7 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 16. prospective matched-budget package validator，用来定义在声称论文质量提升、人类注意力效率提升或优于 autonomous AI Scientist-v2 之前，最低限度需要具备的非 synthetic 证据形状。
 17. 一个 controlled prospective Max-Cut micro-pilot package，已经通过该 validator，并包含完整 attention/taste logging、matched baseline metrics、claim audit 和同次运行生成的 manuscript artifact。
 18. 一个 prospective FML-bench Causality package，包含完整 attention/taste logging 和 matched autonomous baseline；在这个两步小预算设置中，co-pilot test MAE 为 0.646224，autonomous baseline 为 0.624703，因此是负向 co-pilot performance 结果。
+19. 一个 prospective package 指标汇总表，把通过 audit 的 package 按任务、指标方向、co-pilot 分数、autonomous 分数和 claim implication 汇总；当前结果是 1 个 controlled micro-task 正向结果和 1 个 FML-bench 负向结果。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
 
@@ -177,6 +178,8 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 当前 human-gate logs 也缺少可度量的人类注意力成本。我们可以统计决策 artifact，但还不能计算 active review minutes 或 wall-clock latency，因此不能声称 gate 提高了单位人类努力产出的科研质量。下一轮 matched-budget 实验必须前瞻性记录 attention cost。
 
 新的 prospective matched-budget package audit 现在已经在一个 controlled micro-pilot 和一个 FML-bench Causality pilot 上通过。这个进展说明最小证据形状可以被真实远端计算生成和审计，而且已经延伸到 AI Scientist-v2 风格 benchmark；但 FML pilot 在当前小预算设置中是负向结果，且两个 package 都还没有评价论文质量。因此当前论文仍应被限制在 pilot-system evidence，直到更多任务、更多 seed、更大预算和独立论文质量评审完成。
+
+我们还新增了 package 指标汇总，而不只报告 artifact audit 是否通过。当前两个 passing package 中，controlled Max-Cut micro-task 的 human-selected branch 在 mean normalized score 上胜出（0.984419 对 0.596214），但这只是微任务；FML-bench Causality package 则由 autonomous baseline 在 test MAE 上胜出（0.624703 对 0.646224）。两条 human gate 都已经记录完整 attention-cost 和 taste/insight。这个混合结果正是 IGRE 需要坚持的证据纪律：人类科研品味是高方差搜索干预，必须跨任务、seed、预算和论文质量结果检验，而不能从单个正例预设有效。
 
 taste/insight 证据目前也只是 logging-readiness 阶段。归档中已有 1 条完整 scientific-taste prior 记录，来自作者要求扩展 benchmark 并突出高尾部科研品味的指令；但它还不能证明该决策改善了下游科研结果。下一轮实验必须前瞻性记录 taste rationale，才能检验人类 insight 是否真的改变了科研搜索分布。
 

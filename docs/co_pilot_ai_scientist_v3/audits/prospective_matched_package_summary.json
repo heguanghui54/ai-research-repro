@@ -1,0 +1,84 @@
+{
+  "status": "summary_only",
+  "package_count": 2,
+  "co_pilot_wins": 1,
+  "autonomous_or_tie_wins": 1,
+  "gate_count": 2,
+  "complete_attention_gates": 2,
+  "complete_taste_gates": 2,
+  "total_active_review_minutes": 5.0,
+  "packages": [
+    {
+      "package_id": "prospective_matched_fml_causality_20260602_000001",
+      "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/prospective_manifest.json",
+      "status": "prospective_pilot",
+      "matched_budget": {
+        "same_task": true,
+        "same_model_family": true,
+        "same_step_budget": true,
+        "same_tool_access": true,
+        "notes": "Both runs used Causality_causalml, deepseek-chat, DeepSeek, and max_steps=2."
+      },
+      "metrics": {
+        "task": "Causality_causalml",
+        "benchmark_family": "FML-bench",
+        "metric": "mae_mean",
+        "metric_direction": "lower",
+        "co_pilot_score": 0.646223724015837,
+        "autonomous_score": 0.6247032882621405,
+        "co_pilot_minus_autonomous": 0.021520435753696554,
+        "winner": "autonomous_or_tie"
+      },
+      "gate_summary": {
+        "gate_count": 1,
+        "complete_attention_gates": 1,
+        "complete_taste_gates": 1,
+        "total_active_review_minutes": 3.0,
+        "mean_taste_insight_score": 3.57
+      },
+      "claim_implication": "Negative co-pilot performance result for this small FML budget; supports prospective package feasibility, not superiority.",
+      "limitations": [
+        "Single FML task and single budget.",
+        "No independent human-subject timing.",
+        "Does not evaluate final paper quality.",
+        "Does not include OpenEvolve subproblem escalation."
+      ]
+    },
+    {
+      "package_id": "prospective_matched_micro_pilot_20260602_000001",
+      "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/prospective_manifest.json",
+      "status": "prospective_pilot",
+      "matched_budget": {
+        "same_task": true,
+        "same_model_family": true,
+        "same_step_budget": true,
+        "same_tool_access": true,
+        "notes": "Both variants used the same deterministic generated graph instances and evaluator; no LLM calls were used in this controlled micro-pilot."
+      },
+      "metrics": {
+        "task": "controlled_weighted_maxcut_micro_pilot",
+        "benchmark_family": "controlled_micro_task",
+        "metric": "mean_normalized_score",
+        "metric_direction": "higher",
+        "co_pilot_score": 0.9844190321169742,
+        "autonomous_score": 0.5962135415932638,
+        "co_pilot_minus_autonomous": 0.38820549052371045,
+        "winner": "co_pilot"
+      },
+      "gate_summary": {
+        "gate_count": 1,
+        "complete_attention_gates": 1,
+        "complete_taste_gates": 1,
+        "total_active_review_minutes": 2.0,
+        "mean_taste_insight_score": 3.14
+      },
+      "claim_implication": "Positive controlled micro-task result; supports evidence-shape and mechanistic feasibility, not paper-quality or general superiority.",
+      "limitations": [
+        "Controlled micro-task only.",
+        "No AI Scientist-v2 tree search.",
+        "No paper-quality outcome comparison.",
+        "Operator-recorded gate, not independent human-subject timing."
+      ]
+    }
+  ]
+}

@@ -104,6 +104,10 @@ and claim responsibility can reshape the trajectory.
      budget package and run `scripts/audit_prospective_matched_budget_package.py`.
      If this audit fails, keep superiority, paper-quality, and attention-
      efficiency claims as hypotheses.
+   - After the package audit passes, run
+     `scripts/summarize_prospective_matched_packages.py` and report the metric
+     direction, co-pilot score, autonomous score, winner, and claim implication.
+     Do not treat a passed package audit as a positive performance result.
    - To check the package shape on a controlled remote computation, run
      `scripts/run_prospective_matched_budget_micro_pilot.py`; treat it only as
      evidence-shape validation, not as AI Scientist-v2 superiority evidence.

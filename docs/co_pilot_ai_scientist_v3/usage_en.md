@@ -142,6 +142,17 @@ non-synthetic package contains a prospective co-pilot trajectory, a matched
 autonomous baseline, complete `attention_cost` and `taste_insight` records for
 all human gates, a claim audit, and a manuscript from the same run.
 
+To summarize the measured outcomes of the passing packages, run:
+
+```bash
+python3 scripts/summarize_prospective_matched_packages.py
+```
+
+This writes `audits/prospective_matched_package_summary.md/json`. Use it to
+separate evidence-shape success from actual benchmark outcomes. The current
+summary contains one controlled micro-task co-pilot win and one FML-bench
+co-pilot loss.
+
 To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
 
 ```bash

@@ -54,16 +54,23 @@
     "real_gate_complete_attention_cost_records": 0,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Scale the passing FML prospective package beyond one small negative Causality run: more tasks, seeds, larger budgets, paper-quality scoring, and independent human timing.",
+  "next_evidence_milestone": "Scale beyond the current mixed prospective summary: more FML and non-FML tasks, seeds, budgets, paper-quality scoring, and independent human timing.",
   "prospective_matched_budget_package_audit": {
-    "status": "pass_with_fml_negative_pilot",
+    "status": "pass_with_mixed_metric_outcomes",
     "manifest_files_checked": 2,
     "passing_packages": 2,
     "strongest_package_id": "prospective_matched_fml_causality_20260602_000001",
     "fml_co_pilot_test_mae": 0.646223724015837,
     "fml_autonomous_test_mae": 0.6247032882621405,
-    "performance_evidence": "small_fml_pilot_negative_for_co_pilot_not_top_conference_evidence",
-    "minimum_evidence_shape_defined": true
+    "performance_evidence": "mixed_two_package_pilot_not_top_conference_evidence",
+    "minimum_evidence_shape_defined": true,
+    "package_summary": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md",
+    "micro_pilot_result": {
+      "co_pilot_mean_normalized_score": 0.9844187226218487,
+      "autonomous_mean_normalized_score": 0.5962135415932638,
+      "higher_is_better": true,
+      "interpretation": "positive_controlled_micro_task_not_paper_quality_evidence"
+    }
   },
   "attention_taste_logging_tooling": {
     "status": "pass_for_synthetic_smoke",

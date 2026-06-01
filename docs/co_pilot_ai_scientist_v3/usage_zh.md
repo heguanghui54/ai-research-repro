@@ -129,6 +129,16 @@ prospective co-pilot trajectory、同预算 autonomous baseline、所有 human g
 的完整 `attention_cost` 和 `taste_insight`、claim audit，以及同一次运行生成的
 manuscript 时，这个 audit 才会通过。
 
+如果要汇总这些通过 package 的实际指标结果，运行：
+
+```bash
+python3 scripts/summarize_prospective_matched_packages.py
+```
+
+它会写出 `audits/prospective_matched_package_summary.md/json`。这张表用于区分
+“证据形状通过”和“benchmark 结果是否正向”。当前 summary 包含一个 controlled
+micro-task 的 co-pilot 正结果，以及一个 FML-bench 的 co-pilot 负结果。
+
 如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
 
 ```bash

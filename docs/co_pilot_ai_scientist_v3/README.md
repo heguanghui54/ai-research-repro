@@ -55,6 +55,9 @@ claim calibration.
   attention-cost and scientific-taste fields.
 - `audits/prospective_matched_budget_package_audit.md`: strict audit for
   whether a non-synthetic prospective matched-budget package exists.
+- `audits/prospective_matched_package_summary.md`: metric-level summary of
+  currently passing prospective packages, separating positive micro-task
+  evidence from negative FML-bench evidence.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.
@@ -213,3 +216,12 @@ co-pilot performance in this small run: co-pilot test MAE is `0.646224`, while
 the autonomous matched baseline reaches `0.624703` (lower is better). This is
 useful evidence because it upgrades the package shape to AI Scientist-v2-style
 FML-bench while still keeping the paper's superiority claim unproven.
+
+The metric-level package summary is archived as
+`audits/prospective_matched_package_summary.md`. It currently summarizes 2
+passing packages: 1 controlled micro-task win for a human-selected branch and 1
+FML-bench loss for the co-pilot branch. Both packages have complete
+`attention_cost` and `taste_insight` gate records. This mixed result is the
+intended evidence discipline for IGRE: human taste/insight is treated as a
+high-variance search intervention to be measured, not as an assumed positive
+effect.

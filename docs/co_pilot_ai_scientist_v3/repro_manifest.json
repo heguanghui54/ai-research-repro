@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_mixed_matched_budget_and_multi_benchmark_evidence",
+  "status": "pilot_package_with_mixed_prospective_matched_summary_evidence",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -307,7 +307,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/human_gate_logs/frontier_gate_001.json",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/claim_audit.md",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/manuscript.md",
-    "scripts/run_prospective_fml_matched_package.py"
+    "scripts/run_prospective_fml_matched_package.py",
+    "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.json",
+    "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md",
+    "scripts/summarize_prospective_matched_packages.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -396,5 +399,15 @@
     "synthetic_gate_complete_attention_cost_record": true,
     "synthetic_gate_complete_taste_insight_record": true,
     "performance_evidence": false
+  },
+  "prospective_matched_package_summary": {
+    "status": "mixed_metric_outcomes",
+    "script": "scripts/summarize_prospective_matched_packages.py",
+    "summary": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.json",
+    "package_count": 2,
+    "co_pilot_wins": 1,
+    "autonomous_or_tie_wins": 1,
+    "interpretation": "evidence_shape_and_logging_supported; superiority_not_supported"
   }
 }
