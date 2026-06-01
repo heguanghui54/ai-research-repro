@@ -1,30 +1,36 @@
 # Co-Pilot AI Scientist v3 Architecture
 
-The architecture is organized as four loops with five explicit human gates. The
-gates are not generic approvals: each gate receives a structured frontier and
-must write a reproducible decision log.
+The architecture implements **Insight-Gated Research Evolution (IGRE)**. IGRE
+is a co-pilot search pattern, not a direct copy of any prior research agent. It
+keeps broad executable search in the machine loop, then uses human scientific
+taste and insight as explicit, logged, high-variance operators at points where
+the search frontier can be reshaped.
+
+The architecture is organized as four loops with five explicit gates. The gates
+are not generic approvals: each gate receives a structured frontier and must
+write a reproducible decision log.
 
 ```text
 Research goal
     |
     v
-Hypothesis loop  -- idea_selection gate ------------------------------+
+Hypothesis loop  -- scientific_taste_prior gate ----------------------+
     |                                                                 |
     v                                                                 |
-Experiment loop  -- evaluator_approval gate --------------------------+
+Experiment loop  -- evaluator_stress_test gate -----------------------+
     |                                                                 |
     v                                                                 |
-AI Scientist-v2 search loop -- branch_selection gate -----------------+
+Executable frontier search loop -- frontier_steering gate ------------+
     |                                      |                          |
     |                                      v                          |
-    |                         program_search_escalation gate          |
+    |                         verifiable_micro_evolution gate         |
     |                                      |                          |
     |                         OpenEvolve-controlled subproblem search |
     |                                      |                          |
     +--------------------------------------+--------------------------+
                                            |
                                            v
-Draft manuscript and artifacts -- claim_audit gate
+Draft manuscript and artifacts -- claim_calibration gate
                                            |
                                            v
 Evidence-aligned paper package
@@ -34,11 +40,20 @@ Evidence-aligned paper package
 
 | Gate | Input | Human action | Output artifact |
 | --- | --- | --- | --- |
-| `idea_selection` | candidate hypotheses, literature notes, novelty risks | select, merge, or rewrite hypotheses | structured gate log plus approved topic |
-| `evaluator_approval` | benchmark, metric, baseline, failure conditions | approve or revise evaluator design | evaluator approval log |
-| `branch_selection` | branch frontier with metrics, code snapshots, errors | allocate further search budget | branch-gate log and selected snapshot |
-| `program_search_escalation` | machine-gradeable subproblem and direct-edit baseline | decide whether population search is worth the cost | OpenEvolve run plan and result log |
-| `claim_audit` | draft paper, metrics, citations, experiment logs | weaken or remove unsupported claims | claim-evidence audit |
+| `scientific_taste_prior` | candidate hypotheses, literature notes, novelty risks | select, merge, or rewrite hypotheses by taste, upside, and failure value | structured gate log plus approved topic |
+| `evaluator_stress_test` | benchmark, metric, baseline, failure conditions | approve or revise evaluator design and anti-gaming checks | evaluator approval log |
+| `frontier_steering` | branch frontier with metrics, code snapshots, errors, novelty notes | allocate further search budget, including to high-upside non-best branches | branch-gate log and selected snapshot |
+| `verifiable_micro_evolution` | machine-gradeable subproblem and direct-edit baseline | decide whether population search is worth the cost | OpenEvolve run plan and result log |
+| `claim_calibration` | draft paper, metrics, citations, experiment logs | weaken, remove, or reframe unsupported claims | claim-evidence audit |
+
+## Tail-Seeking Objective
+
+IGRE does not assume that human participation improves every metric or every
+run. Human gates can hurt average short-budget benchmark performance. Their
+scientific value is hypothesized to appear in the upper tail: selecting more
+original questions, preserving risky but promising branches, detecting weak
+evidence, and preventing overclaiming. Evaluations should therefore report both
+mean task performance and signals of high-quality research upside.
 
 ## Current Implementation Status
 

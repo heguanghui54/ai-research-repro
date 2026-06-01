@@ -1,0 +1,52 @@
+$ .venv/bin/python -m pip show datasets
+Name: datasets
+Version: 4.8.5
+Summary: HuggingFace community-driven open-source library of datasets
+Home-page: https://github.com/huggingface/datasets
+Author: HuggingFace Inc.
+Author-email: thomas@huggingface.co
+License: Apache 2.0
+Location: /home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages
+Requires: dill, filelock, fsspec, httpx, huggingface-hub, multiprocess, numpy, packaging, pandas, pyarrow, pyyaml, requests, tqdm, xxhash
+Required-by: 
+
+$ timeout 180 .venv/bin/python - <<PY
+'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/imdb/resolve/main/README.md
+Retrying in 1s [Retry 1/5].
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/datasets/load.py", line 1688, in load_dataset
+    builder_instance = load_dataset_builder(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/datasets/load.py", line 1315, in load_dataset_builder
+    dataset_module = dataset_module_factory(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/datasets/load.py", line 1207, in dataset_module_factory
+    raise e1 from None
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/datasets/load.py", line 1114, in dataset_module_factory
+    dataset_readme_path = api.hf_hub_download(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/hf_api.py", line 6373, in hf_hub_download
+    return hf_hub_download(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1010, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1143, in _hf_hub_download_to_cache_dir
+    _get_metadata_or_catch_error(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1682, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1604, in get_hf_file_metadata
+    response = _httpx_follow_relative_redirects_with_backoff(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 685, in _httpx_follow_relative_redirects_with_backoff
+    response = http_backoff(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 559, in http_backoff
+    return next(
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 467, in _http_backoff_base
+    response = client.request(method=method, url=url, **kwargs)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/httpx/_client.py", line 825, in request
+    return self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/httpx/_client.py", line 901, in send
+    raise RuntimeError("Cannot send a request, as the client has been closed.")
+RuntimeError: Cannot send a request, as the client has been closed.

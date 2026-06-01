@@ -1,26 +1,28 @@
 # Co-Pilot AI Scientist v3 Research Package
 
-This package tracks the paper and reproducibility artifacts for a proposed
-human-in-the-loop upgrade to AI Scientist-v2.
+This package tracks the paper and reproducibility artifacts for Co-Pilot AI
+Scientist v3 and its core method, Insight-Gated Research Evolution (IGRE).
 
 ## Working Title
 
-Co-Pilot AI Scientist v3: Human-Guided Hypothesis Evolution and Programmatic
-Search for Collaborative Automated Research
+Co-Pilot AI Scientist v3: Insight-Gated Research Evolution for Collaborative
+Automated Science
 
 ## Target Claim
 
-AI Scientist-v2 can be converted from a mostly autonomous paper-generation
-pipeline into a collaborative research co-pilot by adding structured human
-intervention nodes at high-leverage creative and decision points, and by
-delegating machine-gradeable subproblems to AlphaEvolve-style code evolution.
+Automated research systems should be evaluated not only by average short-budget
+benchmark score, but also by whether human scientific taste can reshape the
+search frontier toward rarer, higher-novelty, higher-impact outcomes. IGRE
+turns human participation into explicit, logged gates for scientific taste,
+evaluator stress-testing, frontier steering, verifiable micro-evolution, and
+claim calibration.
 
 ## Artifact Map
 
 - `problem_statement.md`: precise research framing, success criteria, and risks.
 - `literature_matrix.md`: how AI Co-Scientist, AI Scientist-v2, AlphaEvolve,
   Coscientist, and related systems map into this proposal.
-- `architecture.md`: data-flow view of the four loops and five human gates.
+- `architecture.md`: IGRE data-flow view of the four loops and five gates.
 - `benchmark_selection.md`: tiered benchmark strategy beyond FML-bench.
 - `benchmark_claim_matrix.md`: claim-to-benchmark matrix recording what each
   benchmark can and cannot prove.
@@ -84,7 +86,7 @@ OpenEvolve seeds all improve to roughly Ridge-level performance, with direct
 editing matching the median OpenEvolve RMSE (`55.895460`). This adds a useful
 boundary condition: program search should be gated, not automatic. A controlled
 Max-Cut heuristic probe gives a second non-FML algorithmic subproblem for the
-AlphaEvolve-style module: a direct DeepSeek rewrite improved the starter from
+verifiable micro-evolution operator: a direct DeepSeek rewrite improved the starter from
 `0.734680` to `0.962237`, while a five-iteration OpenEvolve run reached
 `0.970833`. The margin is small and single-seed, so it supports selective
 escalation rather than automatic program search. A first
@@ -108,7 +110,9 @@ The latest benchmark-expansion probes are deliberately recorded as setup
 evidence rather than inflated results. A second official MLAgentBench
 `debug`/CIFAR10 attempt repaired the missing `torchvision` dependency but was
 stopped when the 170 MB CIFAR10 archive downloaded at only a few hundred KB over
-half a minute. A ScienceAgentBench metadata probe confirmed the code repository
+half a minute. An additional MLAgentBench `imdb` attempt repaired the missing
+`datasets` dependency, but the Ubuntu host could not reach HuggingFace to load
+even a five-example split. A ScienceAgentBench metadata probe confirmed the code repository
 and the April 2026 verified-artifact requirement, but HuggingFace metadata was
 not reachable from the Ubuntu host. Neither probe is reported as a benchmark
 score.

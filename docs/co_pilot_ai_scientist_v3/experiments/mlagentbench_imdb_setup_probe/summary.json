@@ -1,0 +1,16 @@
+{
+  "task": "MLAgentBench imdb benchmark",
+  "status": "setup_blocked_by_huggingface_network",
+  "official_score_reported": false,
+  "runner_command_reached": "datasets.load_dataset(\"imdb\", split=\"test[:5]\")",
+  "environment_repair": {
+    "issue": "missing HuggingFace datasets dependency required by the official imdb eval.py",
+    "fix": "installed datasets==4.8.5 in the MLAgentBench virtual environment"
+  },
+  "blocker": {
+    "service": "huggingface.co",
+    "error": "[Errno 101] Network is unreachable",
+    "reason_to_stop": "official task data could not be loaded from the Ubuntu host"
+  },
+  "next_step": "pre-cache IMDB on ubuntu-heshi, run from a network path with HuggingFace access, or choose a different official MLAgentBench task with local data"
+}

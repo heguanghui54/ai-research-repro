@@ -1,22 +1,27 @@
 ---
 name: co-pilot-ai-scientist-v3
-description: Human-in-the-loop automated research workflow that combines AI Co-Scientist-style hypothesis generation, AI Scientist-v2-style experiment and paper automation, and AlphaEvolve/OpenEvolve-style programmatic search.
+description: Insight-Gated Research Evolution workflow for collaborative automated science, using human scientific taste, evaluator stress tests, frontier steering, verifiable micro-evolution, and claim calibration.
 ---
 
 # Co-Pilot AI Scientist v3
 
 ## Purpose
 
-Run collaborative automated research where human scientists intervene at
-high-leverage creative, evaluation, search, and claim-audit nodes.
+Run collaborative automated research using Insight-Gated Research Evolution
+(IGRE): machines maintain broad executable search frontiers, while human
+scientists intervene as explicit high-variance operators where taste, insight,
+and claim responsibility can reshape the trajectory.
 
 ## Use This Skill When
 
 - A user wants to turn a broad research idea into a paper with human guidance.
-- A project should combine hypothesis generation, benchmark execution, paper
-  writing, and code-evolution subproblem search.
+- A project needs hypothesis generation, benchmark execution, paper writing,
+  and code-evolution subproblem search organized as one co-pilot method rather
+  than a loose combination of prior systems.
 - The user wants a co-pilot workflow rather than a fully autonomous pipeline.
 - Human feedback must be logged as part of the reproducibility record.
+- The evaluation should consider both mean benchmark performance and the chance
+  of rare high-novelty, high-impact research outcomes.
 
 ## Core Workflow
 
@@ -24,13 +29,15 @@ high-leverage creative, evaluation, search, and claim-audit nodes.
    - Convert the topic into a testable research question.
    - Define success metrics, failure conditions, and target venue level.
 
-2. **Generate Hypotheses**
+2. **Set Scientific Taste Prior**
    - Use multiple agents or model passes to generate, critique, and refine
      hypotheses.
    - Attach evidence, missing evidence, feasibility notes, and risks.
-   - Trigger the first human gate: `idea_gate`.
+   - Ask the human scientist to select, merge, or rewrite directions using
+     field taste, upside asymmetry, and failure value, not only early scores.
+   - Trigger the first human gate: `scientific_taste_prior`.
 
-3. **Design Evaluators**
+3. **Stress-Test Evaluators**
    - Convert selected hypotheses into benchmarks, baselines, metrics, and
      runnable scripts.
    - Select benchmarks by claim type rather than defaulting to one suite. FML-
@@ -51,28 +58,32 @@ high-leverage creative, evaluation, search, and claim-audit nodes.
      Do not accept a branch on a single primary metric if a degenerate solution
      can game it; require a utility floor such as balanced accuracy or task
      success before continuation.
-   - Trigger `evaluator_gate` before expensive runs.
+   - Trigger `evaluator_stress_test` before expensive runs.
 
-4. **Run Agentic Search**
+4. **Steer The Frontier**
    - Use AI Scientist-v2-style tree search over experiment branches.
    - Log every branch, score, failure, and artifact path.
-   - Trigger `branch_gate` at fixed budget checkpoints.
+   - Trigger `frontier_steering` at fixed budget checkpoints.
+   - Permit a human scientist to keep a branch that is not metric-best when it
+     has stronger novelty, failure-analysis value, or high-tail upside.
 
-5. **Optimize Subproblems**
+5. **Run Verifiable Micro-Evolution**
    - When a subproblem is machine-gradeable, launch OpenEvolve as the
-     open-source AlphaEvolve-style code evolution layer.
+     open-source code-evolution layer used for verifiable micro-evolution.
    - State clearly that OpenEvolve is a substitute implementation because
      official AlphaEvolve is not open sourced.
-   - Trigger `program_search_gate` before escalating to expensive evaluation.
+   - Trigger `verifiable_micro_evolution` before escalating to expensive
+     population search.
 
-6. **Write and Audit**
+6. **Write and Calibrate Claims**
    - Generate the paper from actual logs, metrics, and citations.
-   - Trigger `claim_gate` to audit unsupported claims before final polishing.
+   - Trigger `claim_calibration` to weaken, remove, or reframe unsupported
+     claims before final polishing.
    - Produce bilingual usage notes when requested.
 
 7. **Assemble Gate Trajectory**
-   - Link idea, evaluator, branch, program-search, and claim gates into a
-     trajectory artifact.
+   - Link scientific-taste, evaluator-stress, frontier-steering,
+     micro-evolution, and claim-calibration gates into a trajectory artifact.
    - Mark whether the trajectory is a single online run or a retrospective
      chain assembled from separate probes.
    - Never use a retrospective gate chain as evidence of end-to-end
@@ -94,8 +105,8 @@ Each human intervention should be stored as structured data:
 
 ```json
 {
-  "gate_id": "branch_gate_001",
-  "gate_type": "branch_selection",
+  "gate_id": "frontier_gate_001",
+  "gate_type": "frontier_steering",
   "timestamp": "YYYY-MM-DDTHH:MM:SSZ",
   "options": [],
   "human_decision": "",
@@ -204,5 +215,7 @@ Reusable templates are stored next to this skill:
 - Reject metric-gaming results even when the primary metric improves.
 - Distinguish retrospective gate-chain evidence from a true online end-to-end
   run with all gates active.
-- Treat human decisions as data, not informal chat context.
+- Treat human decisions as high-variance search data, not informal chat context.
+- Do not assume human participation always helps. Report negative results and
+  distinguish mean benchmark performance from high-tail scientific upside.
 - Keep the final paper aligned with actual experiment artifacts.

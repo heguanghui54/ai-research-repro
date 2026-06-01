@@ -31,6 +31,13 @@
       "does_not_prove": "Whole-paper quality improvement or robust success under larger official MLAgentBench tasks."
     },
     {
+      "claim_family": "Official non-FML benchmark expansion",
+      "benchmark_or_probe": "MLAgentBench debug/CIFAR10 and imdb setup probes",
+      "current_evidence": "CIFAR10 dependency repair reached data download but was too slow; IMDB dependency repair installed datasets==4.8.5 but HuggingFace access failed with [Errno 101] Network is unreachable.",
+      "supports": "Benchmark choice is being broadened by claim fit and availability rather than convenience; blocked official tasks are logged as evidence.",
+      "does_not_prove": "A second scored official non-FML benchmark result."
+    },
+    {
       "claim_family": "Non-runtime modeling boundary",
       "benchmark_or_probe": "sklearn diabetes tabular regression probe",
       "current_evidence": "Direct rewrite and three OpenEvolve seeds all improve from RMSE 78.572189 to roughly 55.9; direct rewrite matches median OpenEvolve.",

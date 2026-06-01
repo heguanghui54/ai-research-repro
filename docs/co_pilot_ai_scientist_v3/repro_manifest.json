@@ -242,6 +242,9 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_setup_probe/env_versions.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_setup_probe/run.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_setup_probe/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/run.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/huggingface_metadata_error.log",
     "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/repo_probe.log",
@@ -275,7 +278,7 @@
     "After the next major manuscript revision, rerun independent paper-quality review; current Monica-routed reviews still rate the package as pilot evidence, with GPT weak-accept and Claude reject.",
     "Run prospective human-gated matched-budget experiments with complete attention_cost records; the current 17 audited gate records include 7 standalone gate logs and 10 embedded trajectory gates across 2 trajectory artifacts, with 0 complete attention-cost records.",
     "Extend the online full-gate smoke comparison beyond the current negative 3-step Causality result to more tasks, seeds, and larger budgets.",
-    "Pre-cache CIFAR10 or choose another data-ready MLAgentBench task for a second official non-FML score; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics."
+    "Pre-cache CIFAR10 or IMDB, choose another data-ready MLAgentBench task for a second official non-FML score, or run from a network path with HuggingFace access; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics."
   ],
   "model_routing_policy": {
     "routine_coding_and_smoke_tests": "DeepSeek or low-cost Monica-routed model",

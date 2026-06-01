@@ -1,4 +1,4 @@
-# Co-Pilot AI Scientist v3: Human-Guided Hypothesis Evolution and Programmatic Search for Collaborative Automated Research
+# Co-Pilot AI Scientist v3: Insight-Gated Research Evolution for Collaborative Automated Science
 
 **Author:** He Shi, School of Computing, National University of Singapore
 
@@ -8,38 +8,39 @@ Autonomous research agents have begun to connect idea generation, experiment
 execution, benchmark evaluation, and paper writing. Yet fully autonomous
 pipelines still struggle at the creative and strategic decisions where human
 scientists contribute taste, field knowledge, and responsibility for claims.
-We propose Co-Pilot AI Scientist v3, a human-in-the-loop architecture that
-upgrades AI Scientist-v2 by adding structured intervention nodes at hypothesis
-formation, branch selection, evaluator design, and final claim auditing. The
-system combines three complementary ideas: AI Co-Scientist-style hypothesis
-generation and debate, AI Scientist-v2-style experiment automation and
-manuscript generation, and AlphaEvolve-style programmatic search for
-machine-gradeable subproblems. We define a reproducible evaluation protocol
-that compares autonomous, partially gated, and fully collaborative variants on
-small automated-research tasks. The central hypothesis is that limited human
-attention, placed at high-leverage nodes, can improve novelty, rigor, and
-evidence alignment without giving up the scalability of agentic search.
+We propose Co-Pilot AI Scientist v3 and its underlying method, Insight-Gated
+Research Evolution (IGRE). IGRE is not a direct composition of prior research
+agents. It reorganizes their useful lessons into a tail-seeking research
+process: automated systems maintain broad executable frontiers, while humans
+inject scientific taste, risk tolerance, and claim responsibility at explicit
+decision gates. We define a reproducible evaluation protocol that compares
+autonomous, partially gated, and fully collaborative variants on small
+automated-research tasks. The central hypothesis is intentionally asymmetric:
+human input may reduce average short-budget benchmark performance, but can
+raise the probability of rare, high-novelty, high-impact research outcomes that
+matter most for scientific discovery.
 
 ## 1. Introduction
 
 The next useful version of automated research is unlikely to be a scientist-free
 paper factory. Scientific work is not only a sequence of executable steps; it is
 also a process of choosing valuable questions, recognizing weak evidence,
-reframing failures, and deciding which claims deserve to be made. AI
-Scientist-v2 demonstrates that agentic tree search can turn hypotheses into
-experiments and draft papers. AI Co-Scientist demonstrates that multi-agent
-systems can generate, debate, and refine scientific hypotheses. AlphaEvolve
-demonstrates that LLM-guided program evolution can produce strong discoveries
-when automatic evaluators exist. These systems point toward a combined
-architecture: an automated research co-pilot that lets machines search broadly
-while allowing humans to intervene where judgment matters most.
+reframing failures, and deciding which claims deserve to be made. Prior systems
+offer useful ingredients: hypothesis debate, executable experiment search, and
+automatic-evaluator code evolution. This paper uses those ingredients as
+inspiration, but the method is defined around a different objective. Scientific
+co-piloting should not only maximize the mean score of short benchmark runs. It
+should also increase the chance that a run crosses into a qualitatively better
+research direction: a sharper question, a more revealing evaluator, a surprising
+failure interpretation, or a claim that opens a new line of work.
 
-This paper proposes Co-Pilot AI Scientist v3. The goal is not to slow an
-autonomous pipeline with arbitrary approvals, but to identify specific
-intervention nodes where human input changes the trajectory of research. The
-proposed nodes are: the creative hypothesis node, the benchmark/evaluator node,
-the tree-search branch node, the programmatic-search escalation node, and the
-final claim-audit node.
+This paper proposes Co-Pilot AI Scientist v3 and formalizes it as Insight-Gated
+Research Evolution (IGRE). The goal is not to slow an autonomous pipeline with
+arbitrary approvals. IGRE treats human intervention as a scarce, high-variance
+operator that should be invoked only where scientific judgment can change the
+shape of the search frontier. The proposed gates are: scientific taste prior,
+evaluator stress test, frontier steering, verifiable micro-evolution, and claim
+calibration.
 
 ## 2. Related Work
 
@@ -51,55 +52,118 @@ on code evolution driven by automatic evaluation. FunSearch provides an earlier
 example of LLM-guided program search for mathematical discovery. Coscientist
 shows how LLM agents can connect to chemistry tools and laboratory automation.
 
-Our proposal treats these systems as complementary layers rather than competing
-end-to-end solutions.
+IGRE borrows design pressure from these systems, not their control logic. From
+hypothesis agents it takes the need for diverse conjectures, but replaces
+free-form debate with a logged scientific-taste prior. From automated paper
+agents it takes executable experiment search, but inserts frontier steering and
+claim calibration where benchmark score is not enough. From program evolution it
+takes deep search on machine-gradeable subproblems, but exposes that search only
+through a selective escalation gate. The result is a co-pilot pattern whose
+unit of optimization is not a single task metric, but an evidence-aligned
+research trajectory with higher upside.
+
+### 2.1 Distinction from Generic Research Co-Pilots
+
+Many co-pilot systems treat humans as approvers, prompt writers, preference
+labelers, or emergency supervisors. IGRE makes a different algorithmic claim:
+the most important human contribution to automated science is often a
+non-metric prior over what is scientifically tasteful. This prior is difficult
+to reduce to a scalar reward. It includes judgments such as whether a question
+has depth, whether a negative result is revealing, whether a benchmark is too
+easy to game, whether a surprising branch is worth preserving, and whether a
+claim would still matter if the primary metric improved only slightly.
+
+IGRE therefore separates three concepts that are often conflated in
+human-in-the-loop agents. **Preference** means choosing what looks better among
+finished options. **Oversight** means preventing invalid or unsafe actions.
+**Scientific taste** means changing what the system searches for before the
+outcome is known. The last role is the distinctive one. In IGRE, taste is not
+forced into a complete reward model; it is captured as a structured,
+auditable-but-partly-qualitative gate record that changes the search frontier.
+This lets the system evaluate human input honestly: it may hurt the mean score,
+but it should be judged by whether it increases the chance of rare,
+field-opening trajectories.
 
 ## 3. Method
 
-Co-Pilot AI Scientist v3 contains four loops.
+Co-Pilot AI Scientist v3 implements Insight-Gated Research Evolution. IGRE has
+four machine loops and five human-facing operators. The machine loops preserve
+the scalability of automated research: hypothesis expansion, experiment
+construction, executable frontier search, and verifiable micro-evolution. The
+human-facing operators are designed for places where scientific taste can alter
+which frontier is worth expanding.
 
 Figure 1 gives the operational data flow. A research goal enters the hypothesis
-loop, passes through experiment construction and AI Scientist-v2-style search,
-optionally delegates machine-gradeable subproblems to OpenEvolve-based program
-search, and finally reaches manuscript generation and claim auditing. Each
-human gate consumes a structured frontier and produces a logged decision
-artifact.
+loop, passes through experiment construction and executable frontier search,
+optionally delegates machine-gradeable subproblems to OpenEvolve-based
+micro-evolution, and finally reaches manuscript generation and claim
+calibration. Each gate consumes a structured frontier and produces a logged
+decision artifact.
 
 ```text
 Research goal -> hypothesis loop -> experiment loop -> search loop
           |             |                 |               |
-      idea gate   evaluator gate     branch gate   program-search gate
+   taste prior  evaluator stress  frontier gate   micro-evolution gate
                                                         |
                                                         v
-                                             OpenEvolve subproblem search
+                                      Verifiable micro-evolution
                                                         |
                                                         v
-                                   draft manuscript -> claim-audit gate
+                                   draft manuscript -> claim-calibration gate
                                                         |
                                                         v
                                           evidence-aligned paper package
 ```
 
-First, a hypothesis loop generates candidate research directions, critiques
-them, links them to evidence, and asks the human scientist to select or rewrite
-the most promising directions.
+First, the scientific-taste prior asks the human scientist to select, merge, or
+rewrite candidate directions using criteria that are not fully captured by
+early metrics: conceptual freshness, field relevance, asymmetry of upside, and
+whether a failure would still teach something.
 
-Second, an experiment loop converts selected hypotheses into benchmark tasks,
-baselines, ablations, and executable scripts. The human scientist can approve
-the evaluator before expensive runs begin.
+Second, the evaluator stress-test gate converts selected hypotheses into
+benchmark tasks, baselines, ablations, executable scripts, and rejection
+conditions. The gate asks not only whether the metric is convenient, but whether
+it can be gamed, whether it misses utility, and whether it would support the
+paper claim if the result were positive.
 
-Third, a search loop runs AI Scientist-v2-style tree search over experimental
-branches. At predefined checkpoints, the system summarizes the branch frontier
-and asks the human scientist to allocate further budget.
+Third, the frontier-steering gate runs over executable experiment branches. At
+predefined checkpoints, the system summarizes metrics, code snapshots, errors,
+and novelty notes. The human scientist may allocate budget to a branch that is
+not currently best on the primary metric if it has higher scientific upside or
+reveals a more important failure mode.
 
-Fourth, a programmatic optimization loop sends machine-gradeable subproblems to
-an AlphaEvolve-like engine. Since AlphaEvolve itself is not open sourced, our
-reproducible implementation uses OpenEvolve as the practical substrate for this
-module. OpenEvolve provides an evolutionary coding loop with custom evaluators,
-OpenAI-compatible model routing, MAP-Elites quality-diversity search,
-island-based populations, and reproducible seeds. The module evolves code,
-stores candidate programs, and returns verified improvements to the main
-research pipeline.
+Fourth, the verifiable micro-evolution gate sends only machine-gradeable
+subproblems to a code-evolution engine. Since AlphaEvolve itself is not open
+sourced, our reproducible implementation uses OpenEvolve as the practical
+substrate for this operator. OpenEvolve provides an evolutionary coding loop
+with custom evaluators, OpenAI-compatible model routing, MAP-Elites
+quality-diversity search, island-based populations, and reproducible seeds. The
+operator evolves code, stores candidate programs, and returns verified
+improvements to the main research pipeline.
+
+Fifth, the claim-calibration gate audits the final paper draft against the
+evidence record. It weakens, removes, or reframes claims that are not supported,
+and it records which stronger claims remain hypotheses for the next benchmark
+stage.
+
+```text
+Algorithm 1: Insight-Gated Research Evolution (IGRE)
+Input: research goal g, benchmark budget B, human attention budget H
+1. Generate a diverse hypothesis frontier F_h from g.
+2. Apply scientific_taste_prior(F_h, H) to select or rewrite high-upside
+   hypotheses, including branches whose value is not yet metric-visible.
+3. Convert selected hypotheses into evaluators, baselines, and failure tests.
+4. Apply evaluator_stress_test to reject metrics that are non-executable,
+   easily gamed, or too weak to support the intended claim.
+5. Run executable frontier search under budget B and log branch states.
+6. At checkpoints, apply frontier_steering to allocate budget using both
+   metrics and qualitative upside/failure value.
+7. For machine-gradeable subproblems, apply verifiable_micro_evolution only
+   when direct editing is insufficient and the evaluator is reliable.
+8. Draft the paper from logs, then apply claim_calibration to align claims with
+   evidence and demote unsupported conclusions to future hypotheses.
+Output: evidence-aligned paper package plus auditable gate trajectory.
+```
 
 Each human intervention is recorded as structured data: decision type, options,
 free-text rationale, affected artifacts, and downstream consequences. This makes
@@ -156,8 +220,9 @@ MLAgentBench vectorization probe for end-to-end ML experimentation and track
 setup probes for additional MLAgentBench and ScienceAgentBench tasks. The
 current evidence still does not include a second scored official non-FML
 benchmark: the MLAgentBench CIFAR10/debug run was blocked by slow dataset
-download, and ScienceAgentBench metadata/artifacts were not reachable from the
-Ubuntu host. Higher-cost stretch benchmarks include
+download, the MLAgentBench IMDB probe repaired the missing `datasets`
+dependency but could not reach HuggingFace from the Ubuntu host, and
+ScienceAgentBench metadata/artifacts were not reachable. Higher-cost stretch benchmarks include
 MLE-bench Lite for Kaggle-style ML engineering, PaperBench for paper-to-code
 replication and hierarchical rubric grading, and AIRS-Bench for full ML research
 lifecycle evaluation.
@@ -353,7 +418,7 @@ also gives an important boundary condition: when the improvement is a standard
 small modeling change, direct editing can be as effective as program search.
 Thus the program-search gate should be selective, not automatic.
 
-We also attempted two benchmark-expansion probes. First, we tried to add a
+We also attempted three benchmark-expansion probes. First, we tried to add a
 second official MLAgentBench `debug` task, which maps to CIFAR10. The setup
 probe repaired a missing `torchvision` dependency by installing the matching
 CPU wheel for the local `torch` version, but the run stopped during dataset
@@ -362,8 +427,13 @@ the interactive budget. Second, we probed ScienceAgentBench. The repository was
 present on the Ubuntu host, and its README points to the April 2026 verified
 split and `benchmark_verified.zip`, but the local benchmark directory did not
 contain the verified artifacts and the HuggingFace metadata request failed with
-`[Errno 101] Network is unreachable`. We therefore report both as setup
-artifacts and not as benchmark scores.
+`[Errno 101] Network is unreachable`. Third, we probed the official
+MLAgentBench `imdb` folder. After installing the missing `datasets` dependency
+required by its official `eval.py`, even a five-example dataset load failed
+with the same HuggingFace network error. We therefore report these as setup
+artifacts and not as benchmark scores. The next official non-FML score requires
+pre-cached data or a different network path, not a convenient retreat back to
+FML-bench alone.
 
 ### 4.5 Claim Audit
 
@@ -415,11 +485,11 @@ The current contributions are:
 5. A first online full-gate smoke trajectory that exercises idea, evaluator,
    branch, program-search, and claim gates in one remote run, while producing a
    negative continuation outcome.
-6. An evaluation protocol for measuring whether and where human attention
-   improves agentic research.
+6. An evaluation protocol for measuring both mean benchmark performance and
+   high-tail scientific upside under human intervention.
 7. Initial remote OpenEvolve and FML-bench probes showing that the
-   AlphaEvolve-style subproblem module and AI Scientist-v2 branch-gate module
-   can run on the Ubuntu host.
+   verifiable micro-evolution and frontier-steering operators can run on the
+   Ubuntu host.
 8. Two matched-budget FML-bench Causality comparisons between a human-gated
    branch continuation and a four-step autonomous AI Scientist-v2 baseline,
    with mixed outcomes.
@@ -443,21 +513,28 @@ remain target claims for the next benchmark stage.
 ## 6. Limitations
 
 This proposal does not assume that human involvement always helps. Human gates
-can introduce bias, slow search, and reduce exploration. Programmatic search can
-optimize local metrics without improving scientific contribution, and under tiny
-budgets it may not outperform direct LLM editing. Expert paper ratings are
-costly and may vary across reviewers. The first version should make narrow
-claims and report negative results when gates fail to improve outcomes. The
-current selected-branch continuation evidence is mixed across two matched pairs
-and is not yet a statistically controlled benchmark. The retrospective
-full-gate trajectory and executable artifact replay show the schema, decision
-chain, and reproducible traversal logic. The online smoke trajectory does
-exercise all five gates in one remote run, but it uses a tiny budget, mixes an
-FML branch task with a knapsack program-search subproblem, and produced a worse
-continuation test score. A same-FML-step autonomous baseline also outperformed
-the human-gated continuation. Stronger claims require more tasks, more seeds,
-richer budget schedules, larger online trajectories, and independent
-paper-quality review.
+can introduce bias, slow search, reduce exploration, and in short-budget
+benchmarks they may underperform a fully autonomous search policy. That is not
+a side note; it is part of the method's intended evaluation. IGRE treats human
+scientists as high-variance search operators whose value may appear in the
+upper tail rather than the mean: better problem taste, a more revealing
+evaluator, a sharper interpretation of failure, or a willingness to pursue a
+riskier but more original direction. Programmatic search can likewise optimize
+local metrics without improving scientific contribution, and under tiny budgets
+it may not outperform direct LLM editing. Expert paper ratings are costly and
+may vary across reviewers. The first version should make narrow claims and
+report negative results when gates fail to improve outcomes. The current
+selected-branch continuation evidence is mixed across two matched pairs and is
+not yet a statistically controlled benchmark. The retrospective full-gate
+trajectory and executable artifact replay show the schema, decision chain, and
+reproducible traversal logic. The online smoke trajectory does exercise all five
+gates in one remote run, but it uses a tiny budget, mixes an FML branch task
+with a knapsack program-search subproblem, and produced a worse continuation
+test score. A same-FML-step autonomous baseline also outperformed the
+human-gated continuation. Stronger claims require more tasks, more seeds,
+richer budget schedules, larger online trajectories, independent paper-quality
+review, and metrics that capture rare high-quality research outcomes rather
+than only average task score.
 
 The current human-gate logs also lack measured attention cost. We can count
 decision artifacts, but cannot yet compute active review minutes or
@@ -474,11 +551,15 @@ claim-audited manuscript.
 
 ## 7. Conclusion
 
-Co-Pilot AI Scientist v3 reframes automated scientific discovery as collaborative
-search. The system preserves the strengths of autonomous agents while giving
-human scientists explicit, logged, and experimentally testable points of
-influence. If future matched benchmarks support the central hypothesis, this
-architecture could produce better research papers not by removing humans from
-science, but by using human attention where it has the highest marginal value.
-The present paper should be read as a reproducible system proposal with pilot
-evidence, not as a final proof of superiority.
+Co-Pilot AI Scientist v3 reframes automated scientific discovery as
+insight-gated research evolution. The system preserves the strengths of
+autonomous agents while giving human scientists explicit, logged, and
+experimentally testable points of influence. Its strongest claim is not that
+humans always improve average benchmark performance. The deeper claim is that
+human scientific taste and insight can reshape the search distribution toward
+rarer, more original, and potentially field-opening outcomes. If future matched
+benchmarks support this high-tail hypothesis, co-pilot research systems may
+produce better papers not by removing humans from science, but by using human
+attention where it can change what kind of science is attempted. The present
+paper should be read as a reproducible system proposal with pilot evidence, not
+as a final proof of superiority.

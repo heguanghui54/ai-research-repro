@@ -1,51 +1,77 @@
-# Co-Pilot AI Scientist v3：面向协作式自动科研的人类引导假设演化与程序化搜索
+# Co-Pilot AI Scientist v3：面向协作式自动科研的洞察门控科研演化
 
 **作者：**何石，新加坡国立大学计算机学院
 
 ## 摘要
 
-自动科研智能体已经开始把创意生成、实验执行、benchmark 评估和论文写作连接成闭环。然而，完全自动化的科研流水线仍然难以处理一些关键节点：选择什么问题值得做、如何判断证据强弱、如何解释失败结果、以及哪些结论可以负责任地写进论文。本文提出 Co-Pilot AI Scientist v3，一种面向人类科研工作者的协作式自动科研架构。它在 AI Scientist-v2 的基础上加入结构化人类参与节点，覆盖假设形成、分支选择、评估器设计和最终论证审计。同时，该系统综合 AI Co-Scientist 的假设生成与辩论机制、AI Scientist-v2 的实验与论文自动化机制，以及 AlphaEvolve 的可自动评估子问题程序搜索机制。本文定义一个可复现评估协议，用于比较完全自动、局部人类参与和完整 co-pilot 版本在小型自动科研任务上的表现。核心假设是：如果把有限的人类注意力放在高杠杆节点，系统可以在保留 agentic search 可扩展性的同时，提高论文的新颖性、严谨性和证据对齐程度。
+自动科研智能体已经开始把创意生成、实验执行、benchmark 评估和论文写作连接成闭环。然而，完全自动化的科研流水线仍然难以处理一些关键节点：选择什么问题值得做、如何判断证据强弱、如何解释失败结果、以及哪些结论可以负责任地写进论文。本文提出 Co-Pilot AI Scientist v3 及其核心方法：洞察门控科研演化（Insight-Gated Research Evolution, IGRE）。IGRE 不是把已有科研 agent 直接拼装在一起，而是把其中有用的设计压力重新组织成一个面向高尾部科研产出的过程：自动系统维持广泛、可执行的搜索前沿，人类则在显式 gate 中注入科研品味、风险偏好和主张责任。本文定义一个可复现评估协议，用于比较完全自动、局部 gate 和完整 co-pilot 版本在小型自动科研任务上的表现。核心假设是非对称的：人类参与可能降低短预算 benchmark 的平均表现，但可能提高产生高新颖性、高影响力科研结果的概率，而这类高尾部结果才是科学发现中最重要的部分。
 
 ## 1. 引言
 
-自动科研的下一步，不应该只是“无人参与的论文工厂”。科学研究不仅是可执行步骤的串联，也包括选择有价值问题、识别弱证据、重新解释失败、决定哪些主张值得提出。AI Scientist-v2 展示了 agentic tree search 如何把假设变成实验和论文；AI Co-Scientist 展示了多智能体系统如何生成、讨论并演化科学假设；AlphaEvolve 展示了在存在自动评估函数时，LLM 引导的程序进化可以产生强发现。这些系统共同指向一种新架构：让机器进行大规模搜索，同时让人类在最需要判断力的节点介入。
+自动科研的下一步，不应该只是“无人参与的论文工厂”。科学研究不仅是可执行步骤的串联，也包括选择有价值问题、识别弱证据、重新解释失败、决定哪些主张值得提出。已有系统提供了重要启发：假设辩论、可执行实验搜索、以及自动评估驱动的代码演化。但本文的方法目标不同：科研 co-pilot 不应只最大化短期 benchmark 的平均分，还应提高系统进入质变方向的概率，例如更尖锐的问题、更能揭示机制的 evaluator、更有解释力的失败、或者能打开新研究线索的主张。
 
-本文提出 Co-Pilot AI Scientist v3。目标不是用随意审批拖慢自动流水线，而是识别哪些人类参与节点真正能改变研究轨迹。我们关注五类节点：创意假设节点、benchmark/评估器节点、树搜索分支节点、程序化搜索升级节点，以及最终论文主张审计节点。
+本文提出 Co-Pilot AI Scientist v3，并把它形式化为洞察门控科研演化。目标不是用随意审批拖慢自动流水线，而是把人类介入视为一种稀缺、高方差的搜索算子，只在科研判断能改变搜索前沿形状的位置触发。本文定义五类 gate：科研品味先验、评估器压力测试、前沿转向、可验证微演化，以及主张校准。
 
 ## 2. 相关工作
 
 AI Co-Scientist 将科学发现建模为假设生成、讨论和演化，优势在于研究早期的想象力和证据组织。AI Scientist-v2 通过 agentic tree search 将候选想法转化为可运行实验和论文。AlphaEvolve 使用自动评估驱动代码进化，适合机器可评分问题。FunSearch 是 LLM 引导程序搜索用于数学发现的早期代表。Coscientist 则展示了 LLM agent 如何连接化学工具和实验自动化。
 
-本文把这些系统视为互补层，而不是彼此替代的端到端方案。
+IGRE 借鉴这些系统带来的设计压力，但不照搬它们的控制逻辑。它从假设生成系统中吸收多样化 conjecture 的需求，但把自由辩论改造成可记录的科研品味先验；它从自动论文系统中吸收可执行实验搜索，但在 benchmark 分数不足以决定方向的地方加入前沿转向和主张校准；它从程序演化系统中吸收机器可评分子问题的深度搜索，但通过选择性升级 gate 控制成本和适用范围。因此，本文优化的不是单个任务指标，而是一条证据对齐、上限更高的科研轨迹。
+
+### 2.1 与一般科研 co-pilot 的区别
+
+很多 co-pilot 系统把人类看作审批者、提示词编写者、偏好标注者或异常兜底者。IGRE 的算法主张不同：人类对自动科研最重要的贡献，往往是对“什么样的科研值得做”的非指标化先验，也就是科研品味。这种先验很难压缩成单一 reward。它包括：一个问题是否有深度，一个负结果是否揭示机制，一个 benchmark 是否太容易被投机，一个看似当前分数不高的分支是否值得保留，以及一个主指标只小幅提升的结果是否仍然值得写成论文主张。
+
+因此，IGRE 区分了三种在人机协作 agent 中经常被混在一起的角色。**偏好**是在人类已经看到若干完成选项后选择更喜欢的一个；**监督**是阻止无效或不安全行为；**科研品味**则是在结果尚未显现之前改变系统应该搜索什么。第三种才是本文的核心区别。IGRE 不把 taste 强行拟合成完整 reward model，而是把它记录为结构化、可审计、但保留部分定性判断的 gate record，用它改变搜索前沿。这样，系统可以诚实评估人类输入：它可能降低平均分，但应该被检验的是它是否提高了少数开创性科研轨迹出现的概率。
 
 ## 3. 方法
 
-Co-Pilot AI Scientist v3 包含四个循环。
+Co-Pilot AI Scientist v3 实现的是洞察门控科研演化。IGRE 包含四个机器循环和五个面向人类的算子。机器循环保留自动科研的规模化能力：假设扩展、实验构造、可执行前沿搜索和可验证微演化。人类算子则放在科研品味可能改变“哪些前沿值得继续展开”的位置。
 
-图 1 展示了系统的数据流：研究目标先进入假设循环，再进入实验构造和 AI Scientist-v2 风格搜索；对于机器可评分子问题，系统可以升级到基于 OpenEvolve 的程序搜索；最后进入论文生成和主张审计。每个人类 gate 都接收结构化的候选前沿，并输出可复现的决策记录。
+图 1 展示了系统的数据流：研究目标先进入假设循环，再进入实验构造和可执行前沿搜索；对于机器可评分子问题，系统可以升级到基于 OpenEvolve 的可验证微演化；最后进入论文生成和主张校准。每个 gate 都接收结构化的候选前沿，并输出可复现的决策记录。
 
 ```text
 研究目标 -> 假设循环 -> 实验循环 -> 搜索循环
         |          |          |          |
-    创意 gate   评估器 gate  分支 gate  程序搜索升级 gate
+  科研品味先验  评估器压力测试  前沿转向  微演化 gate
                                       |
                                       v
-                         OpenEvolve 子问题程序搜索
+                         可验证微演化
                                       |
                                       v
-                         论文草稿 -> 主张审计 gate
+                         论文草稿 -> 主张校准 gate
                                       |
                                       v
                          证据对齐的论文包
 ```
 
-第一是假设循环：系统生成候选研究方向，批评这些方向，将其连接到文献证据，并让人类科学家选择或改写最有潜力的方向。
+第一，科研品味先验让人类科学家根据早期指标难以捕捉的标准选择、合并或改写方向：概念新鲜度、领域重要性、上行空间的不对称性，以及即使失败也是否能带来有价值的知识。
 
-第二是实验循环：系统把被选中的假设转化为 benchmark 任务、baseline、消融实验和可执行脚本。昂贵实验开始前，人类科学家可以审查并批准评估器。
+第二，评估器压力测试把被选中的假设转化为 benchmark、baseline、消融实验、可执行脚本和拒绝条件。这个 gate 不只问指标是否方便，还要问指标是否会被投机、是否漏掉最低效用、以及如果结果为正是否真的能支撑论文主张。
 
-第三是搜索循环：系统运行 AI Scientist-v2 风格的实验树搜索。在预设检查点，系统总结当前分支前沿，并让人类科学家决定预算继续投向哪些方向。
+第三，前沿转向 gate 运行在可执行实验分支之上。在预设检查点，系统总结指标、代码快照、错误和新颖性线索。人类科学家可以把预算分给当前主指标并非最优、但科研上行空间更大或失败模式更重要的分支。
 
-第四是程序化优化循环：系统把机器可评分的子问题交给 AlphaEvolve 风格的引擎。由于官方 AlphaEvolve 没有开源核心系统，本文的可复现实验使用 OpenEvolve 作为实际实现底座。OpenEvolve 提供自定义 evaluator、OpenAI-compatible 模型路由、MAP-Elites 质量多样性搜索、岛屿种群和可复现随机种子。该循环进化代码、保存候选程序，并把通过验证的改进返回主科研流程。
+第四，可验证微演化 gate 只把机器可评分的子问题交给代码演化引擎。由于官方 AlphaEvolve 没有开源核心系统，本文的可复现实验使用 OpenEvolve 作为实际实现底座。OpenEvolve 提供自定义 evaluator、OpenAI-compatible 模型路由、MAP-Elites 质量多样性搜索、岛屿种群和可复现随机种子。该算子进化代码、保存候选程序，并把通过验证的改进返回主科研流程。
+
+第五，主张校准 gate 把最终论文草稿和证据记录逐条对齐。它会削弱、删除或重写尚未被支持的主张，并记录哪些更强主张仍然只是下一阶段 benchmark 要检验的假设。
+
+```text
+算法 1：洞察门控科研演化（IGRE）
+输入：研究目标 g，benchmark 预算 B，人类注意力预算 H
+1. 从 g 生成多样化假设前沿 F_h。
+2. 执行 scientific_taste_prior(F_h, H)，选择或改写高上行空间假设，
+   包括当前指标尚未显现价值的分支。
+3. 将被选假设转化为 evaluator、baseline 和失败测试。
+4. 执行 evaluator_stress_test，拒绝不可执行、易被投机、
+   或不足以支撑论文主张的指标。
+5. 在预算 B 下运行可执行前沿搜索，并记录分支状态。
+6. 在检查点执行 frontier_steering，用指标、定性上行空间和失败价值共同分配预算。
+7. 对机器可评分子问题，仅当直接编辑不足且 evaluator 可靠时，
+   执行 verifiable_micro_evolution。
+8. 根据日志生成论文草稿，再执行 claim_calibration，
+   将主张与证据对齐，并把未支持结论降级为未来假设。
+输出：证据对齐的论文包和可审计 gate 轨迹。
+```
 
 每一次人类介入都被记录为结构化数据，包括决策类型、候选选项、理由、影响到的产物和后续结果。这样，人类参与不是隐藏的旁路，而是可复现记录的一部分。
 
@@ -59,7 +85,7 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 ## 4. Benchmark 选择与评估计划
 
-我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化、0/1 knapsack 启发式搜索和加权 Max-Cut。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力，并进一步记录了 MLAgentBench CIFAR10/debug 与 ScienceAgentBench 的 setup probes。当前证据还没有第二个已打分的官方非 FML benchmark：CIFAR10/debug 被慢速数据下载阻塞，ScienceAgentBench 的元数据和 verified artifacts 在 Ubuntu 主机上暂时不可达。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
+我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化、0/1 knapsack 启发式搜索和加权 Max-Cut。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力，并进一步记录了 MLAgentBench CIFAR10/debug、MLAgentBench IMDB 与 ScienceAgentBench 的 setup probes。当前证据还没有第二个已打分的官方非 FML benchmark：CIFAR10/debug 被慢速数据下载阻塞，IMDB 在补齐 `datasets` 依赖后仍因 Ubuntu 主机无法访问 HuggingFace 而失败，ScienceAgentBench 的元数据和 verified artifacts 也暂时不可达。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
 
 指标包括任务分数、论文质量、主张支持率、搜索效率、人类注意力成本和假设多样性。对于程序化搜索模块，关键消融是：在相同 evaluator 和迭代预算下，比较 OpenEvolve 与直接重复 LLM 代码编辑。因此，FML-bench 应被理解为当前证据来源之一，而不是整个项目的完整 benchmark 定义。
 
@@ -107,7 +133,7 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 
 为了避免非 FML 证据只覆盖底层 runtime optimization，我们又加入了一个使用 sklearn 内置 diabetes regression dataset 的受控 tabular modeling probe。这个 probe 不需要 Kaggle 凭证，也不应被报告为官方 MLAgentBench 分数。初始程序是刻意粗糙的均值预测器，在五个确定性 split 上 mean RMSE 为 78.572189。一次 direct DeepSeek rewrite 找回了标准 Ridge 风格 baseline，mean RMSE 为 55.895460。三个三轮 OpenEvolve seed 也都明显优于均值预测器，best RMSE 分别为 55.895460、55.946535 和 55.895460；其中位 RMSE 为 55.895460，基本与 direct rewrite 持平。这个结果把 benchmark 覆盖扩展到了表格建模子问题，同时也给出了重要边界条件：当改进只是一个标准的小型建模修改时，direct editing 可以和 program search 一样有效。因此 program-search gate 应该选择性触发，而不是自动触发。
 
-我们还尝试了两个 benchmark 扩展 probe。首先，我们尝试加入第二个官方 MLAgentBench `debug` 任务，它映射到 CIFAR10。该 setup probe 先修复了远端环境缺少 `torchvision` 的问题，并安装了与本地 `torch` 匹配的 CPU wheel；但运行在数据准备阶段停止，因为 170 MB 的 CIFAR10 压缩包下载速度过慢，不适合当前交互预算。其次，我们检查了 ScienceAgentBench。该仓库已经存在于 Ubuntu 主机，README 指向 2026 年 4 月 verified split 和 `benchmark_verified.zip`，但本地 benchmark 目录缺少 verified artifacts，而且 HuggingFace metadata 请求返回 `[Errno 101] Network is unreachable`。因此，本文只把这两项记录为 setup artifacts，而不报告 benchmark 分数。
+我们还尝试了三个 benchmark 扩展 probe。首先，我们尝试加入第二个官方 MLAgentBench `debug` 任务，它映射到 CIFAR10。该 setup probe 先修复了远端环境缺少 `torchvision` 的问题，并安装了与本地 `torch` 匹配的 CPU wheel；但运行在数据准备阶段停止，因为 170 MB 的 CIFAR10 压缩包下载速度过慢，不适合当前交互预算。其次，我们检查了 ScienceAgentBench。该仓库已经存在于 Ubuntu 主机，README 指向 2026 年 4 月 verified split 和 `benchmark_verified.zip`，但本地 benchmark 目录缺少 verified artifacts，而且 HuggingFace metadata 请求返回 `[Errno 101] Network is unreachable`。第三，我们尝试官方 MLAgentBench `imdb` 任务：补齐其官方 `eval.py` 需要的 `datasets` 依赖后，即使只加载 5 条测试样本也因为同样的 HuggingFace 网络错误失败。因此，本文只把这些记录为 setup artifacts，而不报告 benchmark 分数；下一步需要预缓存数据或换一条可访问的数据路径，而不是因为方便就退回只用 FML-bench。
 
 ### 4.5 主张审计
 
@@ -124,8 +150,8 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 3. 一条 retrospective full-gate trajectory，展示 idea、evaluator、branch、program-search 和 claim-audit gate 都可以用同一 schema 记录。
 4. 一个可重新运行的 full-gate trace 脚本，可以从已归档实验摘要中重新计算 gate chain，并明确把输出标记为 artifact replay。
 5. 第一条 online full-gate smoke trajectory，在一次远端运行中覆盖 idea、evaluator、branch、program-search 和 claim gate，同时记录了负向 continuation 结果。
-6. 一个评估“人类注意力是否以及应该放在哪里”的实验协议。
-7. 远程 OpenEvolve 与 FML-bench 小实验，证明 AlphaEvolve-style 子问题模块和 AI Scientist-v2 分支 gate 模块可以在 Ubuntu 主机上运行。
+6. 一个同时评估平均 benchmark 表现和人类参与下高尾部科研上限的实验协议。
+7. 远程 OpenEvolve 与 FML-bench 小实验，证明可验证微演化和前沿转向两个 IGRE 算子可以在 Ubuntu 主机上运行。
 8. 两组同预算 FML-bench Causality 对照：human-gated branch continuation 与四步 autonomous AI Scientist-v2 baseline，结果呈混合状态。
 9. 第一条 online full-gate smoke 的同 FML step autonomous baseline，显示 human-gated continuation 在该 smoke 对照中表现更差。
 10. 两个非 FML 程序搜索小实验，分别覆盖 runtime optimization 和 tabular regression，用于扩展 FML-bench 之外的 benchmark 覆盖面。
@@ -138,7 +164,7 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 
 ## 6. 局限性
 
-本文不预设人类参与一定有效。人类 gate 可能引入偏见、降低搜索速度、压缩探索多样性。程序化搜索可能只优化局部指标，却不能提高论文层面的科学贡献；在极小预算下，它也未必优于直接 LLM 编辑。专家论文评分成本较高，而且不同评审可能存在分歧。因此，第一版实验应保持窄主张，并在 gate 无法改善结果时如实报告负结果。当前 selected-branch continuation 证据在两组 matched pair 中呈混合状态，还不是统计受控 benchmark；retrospective full-gate trajectory 和 executable artifact replay 证明了 schema、决策链和可复现 traversal logic。online smoke trajectory 已经在一次远端运行中覆盖五类 gate，但预算极小、混合了 FML branch task 和 knapsack program-search 子问题，并且 continuation test score 变差；同 FML step autonomous baseline 也优于 human-gated continuation。更强主张需要更多任务、更多随机种子、更丰富的预算分配设置、更大规模在线轨迹，以及独立论文质量评审。
+本文不预设人类参与一定有效。人类 gate 可能引入偏见、降低搜索速度、压缩探索多样性；在短预算 benchmark 中，它甚至可能不如完全自动搜索策略。这不是附带 caveat，而是本文方法需要正面评估的一部分。IGRE 把人类科学家视为高方差搜索算子，其价值可能不体现在平均分上，而体现在高尾部：更好的问题品味、更能揭示机制的 evaluator、更尖锐的失败解释，或者愿意追踪一个更冒险但更原创的方向。程序化搜索也可能只优化局部指标，却不能提高论文层面的科学贡献；在极小预算下，它也未必优于直接 LLM 编辑。专家论文评分成本较高，而且不同评审可能存在分歧。因此，第一版实验应保持窄主张，并在 gate 无法改善结果时如实报告负结果。当前 selected-branch continuation 证据在两组 matched pair 中呈混合状态，还不是统计受控 benchmark；retrospective full-gate trajectory 和 executable artifact replay 证明了 schema、决策链和可复现 traversal logic。online smoke trajectory 已经在一次远端运行中覆盖五类 gate，但预算极小、混合了 FML branch task 和 knapsack program-search 子问题，并且 continuation test score 变差；同 FML step autonomous baseline 也优于 human-gated continuation。更强主张需要更多任务、更多随机种子、更丰富的预算分配设置、更大规模在线轨迹、独立论文质量评审，以及能捕捉少数高质量科研结果的指标，而不只是平均任务分数。
 
 当前 human-gate logs 也缺少可度量的人类注意力成本。我们可以统计决策 artifact，但还不能计算 active review minutes 或 wall-clock latency，因此不能声称 gate 提高了单位人类努力产出的科研质量。下一轮 matched-budget 实验必须前瞻性记录 attention cost。
 
@@ -146,4 +172,4 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 
 ## 7. 结论
 
-Co-Pilot AI Scientist v3 将自动科学发现重新定义为协作式搜索。该系统保留自动 agent 的大规模搜索能力，同时给人类科学家提供明确、可记录、可实验检验的影响节点。如果未来 matched benchmark 支持中心假设，该架构可能通过把人类注意力放在边际价值最高的位置来提高科研质量，而不是把人类排除在科学之外。当前论文应被理解为一个带 pilot evidence 的可复现系统 proposal，而不是最终优越性证明。
+Co-Pilot AI Scientist v3 将自动科学发现重新定义为洞察门控科研演化。该系统保留自动 agent 的大规模搜索能力，同时给人类科学家提供明确、可记录、可实验检验的影响节点。它最重要的主张不是“人类总能提高平均 benchmark 表现”，而是人类科研品味和 insight 可以改变搜索分布，使系统更有机会产生少数但更原创、更可能开创新方向的成果。如果未来 matched benchmark 支持这一高尾部假设，co-pilot 科研系统可能通过改变“系统尝试什么样的科学”来写出更好的论文，而不是简单把人类排除在科学之外。当前论文应被理解为一个带 pilot evidence 的可复现系统 proposal，而不是最终优越性证明。
