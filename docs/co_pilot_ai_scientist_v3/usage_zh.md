@@ -44,6 +44,10 @@ python3 scripts/run_online_full_gate_smoke.py \
 这会远端运行 FML-bench 和 OpenEvolve。它用于证明编排可行性；在任何性能
 主张之前，仍需要同预算 autonomous baseline。
 
+当前已归档 smoke 的同预算 autonomous comparison 位于
+`experiments/online_smoke_matched_autonomous_comparison.md`。autonomous
+baseline 在 held-out test MAE 上胜出，因此它应作为负结果模板使用。
+
 如果要通过 Monica 做论文质量评审，先加载全局环境变量，然后运行：
 
 ```bash

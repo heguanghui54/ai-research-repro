@@ -48,6 +48,10 @@ This runs FML-bench and OpenEvolve remotely. It is intended to prove
 orchestration feasibility; it still needs a matched autonomous baseline before
 any performance claim.
 
+The archived smoke has a matched autonomous comparison in
+`experiments/online_smoke_matched_autonomous_comparison.md`. The autonomous
+baseline wins on held-out test MAE, so use it as a negative-result template.
+
 For a Monica-routed paper-quality review, source the global environment and run:
 
 ```bash

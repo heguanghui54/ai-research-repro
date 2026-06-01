@@ -128,3 +128,11 @@ and ran a one-iteration OpenEvolve knapsack search in the same trajectory. The
 continuation test MAE was `0.862015`, worse than the selected frontier's test
 MAE `0.646224`, so this artifact supports online orchestration feasibility
 rather than performance improvement.
+
+A same-FML-step autonomous baseline was then run for the online smoke. It used
+the same Causality task and DeepSeek model for three AI Scientist-v2 steps with
+no human branch gate. The autonomous baseline reached validation MAE `0.354147`
+and test MAE `0.428516`, outperforming the human-gated continuation on held-out
+test MAE. The matched smoke comparison is archived as
+`experiments/online_smoke_matched_autonomous_comparison.md` and is treated as a
+negative performance result.

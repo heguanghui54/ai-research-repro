@@ -84,6 +84,9 @@ high-leverage creative, evaluation, search, and claim-audit nodes.
    - For a small fresh online smoke trajectory on the configured Ubuntu host,
      run `scripts/run_online_full_gate_smoke.py`. Treat a successful smoke run
      as orchestration evidence only until a matched autonomous baseline exists.
+   - After every online smoke or full trajectory, run or archive a matched
+     autonomous baseline under the same task/model/step budget before making
+     performance claims. Report negative comparisons directly.
 
 ## Human Gate Schema
 

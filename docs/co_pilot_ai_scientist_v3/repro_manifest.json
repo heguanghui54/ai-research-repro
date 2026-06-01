@@ -242,7 +242,11 @@
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json",
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/branch_frontier_summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/selected_continuation_summary.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/program_search_summary.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/program_search_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_autonomous_matched_3step/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_autonomous_matched_3step/config_used.yaml",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_matched_autonomous_comparison.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_matched_autonomous_comparison.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -254,7 +258,7 @@
     "Upgrade the current online full-gate smoke trajectory into a larger paper-generating trajectory from new hypothesis generation to final manuscript production.",
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "Generate expert or rubric-based paper quality scores.",
-    "Compare the online full-gate smoke/full trajectory against an autonomous AI Scientist-v2 baseline under a matched budget.",
+    "Extend the online full-gate smoke comparison beyond the current negative 3-step Causality result to more tasks, seeds, and larger budgets.",
     "Pre-cache CIFAR10 or choose another data-ready MLAgentBench task for a second official non-FML score; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics."
   ],
   "model_routing_policy": {

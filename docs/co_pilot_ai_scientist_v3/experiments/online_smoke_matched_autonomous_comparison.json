@@ -1,0 +1,20 @@
+{
+  "comparison_id": "online_smoke_matched_autonomous_3step_001",
+  "human_gated_path": {
+    "description": "online full-gate smoke FML component: 2 draft frontier plus 1 selected-snapshot continuation",
+    "branch_frontier_best_val_mae": 0.627836868090553,
+    "branch_frontier_test_mae": 0.646223724015837,
+    "continuation_best_val_mae": 1.1496098661684393,
+    "continuation_test_mae": 0.8620153718142042,
+    "fml_steps": 3
+  },
+  "autonomous_baseline": {
+    "description": "AI Scientist-v2 Causality_causalml, 3 steps, no human branch gate",
+    "best_val_mae": 0.35414670263529335,
+    "test_mae": 0.4285158167033551,
+    "fml_steps": 3
+  },
+  "lower_is_better": true,
+  "test_mae_delta_autonomous_minus_human_gated": -0.4334995551108491,
+  "interpretation": "Negative result for the smoke comparison: the matched autonomous 3-step baseline outperformed the one-step human-gated continuation on held-out test MAE. The online smoke still supports orchestration feasibility, not performance superiority."
+}

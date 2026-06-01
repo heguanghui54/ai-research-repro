@@ -162,6 +162,12 @@ exercises all five gate types in one run, but its one-step continuation worsens
 held-out test MAE, so it should be treated as orchestration evidence and
 negative continuation evidence rather than performance evidence.
 
+The same smoke now has a same-FML-step autonomous baseline archived under
+`experiments/online_smoke_autonomous_matched_3step/`, with the comparison in
+`experiments/online_smoke_matched_autonomous_comparison.md`. The autonomous
+baseline outperformed the human-gated continuation on held-out test MAE, so the
+online smoke is not evidence of human-gate performance improvement.
+
 ## Minimum Evidence for a First Paper Draft
 
 - At least two runnable tasks from Tier A with logged autonomous and

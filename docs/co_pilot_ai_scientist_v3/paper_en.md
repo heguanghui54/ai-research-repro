@@ -134,6 +134,14 @@ then reached test MAE `0.862015`, worse than the selected frontier's test MAE
 types, but it is a smoke test and a negative continuation outcome, not evidence
 of co-pilot superiority.
 
+We then ran a same-FML-step autonomous baseline for the online smoke. The
+baseline used the same Causality task and DeepSeek model for three AI
+Scientist-v2 steps, but without a human branch gate. It reached validation MAE
+`0.354147` and held-out test MAE `0.428516`, substantially outperforming the
+human-gated smoke continuation's test MAE `0.862015`. This paired smoke result
+is negative for performance improvement, while still supporting the narrower
+claim that online co-pilot orchestration is executable.
+
 ## 4. Benchmark Selection and Evaluation Plan
 
 We evaluate six variants: autonomous baseline, idea gate only, branch gate only,
@@ -388,12 +396,14 @@ The current contributions are:
 8. Two matched-budget FML-bench Causality comparisons between a human-gated
    branch continuation and a four-step autonomous AI Scientist-v2 baseline,
    with mixed outcomes.
-9. Non-FML program-search probes for runtime optimization and tabular
+9. A same-FML-step autonomous baseline for the first online full-gate smoke,
+   showing a negative performance result for the human-gated continuation.
+10. Non-FML program-search probes for runtime optimization and tabular
    regression, broadening benchmark coverage beyond FML-bench.
-10. A reusable Codex skill for running the workflow.
-11. Bilingual paper, usage artifacts, and claim-audit artifacts for
+11. A reusable Codex skill for running the workflow.
+12. Bilingual paper, usage artifacts, and claim-audit artifacts for
    reproducibility.
-12. A Monica-routed paper-quality review artifact that records external model
+13. A Monica-routed paper-quality review artifact that records external model
    criticism before the next revision.
 
 The current evidence does not yet prove that human gates improve paper quality
@@ -414,9 +424,10 @@ full-gate trajectory and executable artifact replay show the schema, decision
 chain, and reproducible traversal logic. The online smoke trajectory does
 exercise all five gates in one remote run, but it uses a tiny budget, mixes an
 FML branch task with a knapsack program-search subproblem, and produced a worse
-continuation test score. Stronger claims require more tasks, more seeds, richer
-budget schedules, a matched autonomous baseline for the same online trajectory,
-and independent paper-quality review.
+continuation test score. A same-FML-step autonomous baseline also outperformed
+the human-gated continuation. Stronger claims require more tasks, more seeds,
+richer budget schedules, larger online trajectories, and independent
+paper-quality review.
 
 The current implementation still lacks a complete paper-generating end-to-end
 demonstration in which all four loops operate in a single continuous trajectory
