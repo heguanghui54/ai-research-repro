@@ -56,3 +56,7 @@
 ## 与视频证据层的关系
 
 网页人工编码负责 120 条样本的传播语义、身体可见性和延异变量；SportsLabKit/典型视频层只负责少量本地授权视频的身体证据补强。两者不能互相替代：学生网页编码可以先行收集，典型视频分析必须等待 `data/private/qigong_typical_videos/` 中至少 3 个本地视频通过权利与文件预检。
+
+## 投稿总门槛中的位置
+
+`scripts/build_qigong_current_submission_gate.py` 已将网页人工编码列为 P0 门槛。当前状态为 `complete_rows=0`、`primary_submissions=0`，因此论文不能写人工编码结果。学生完成后，应先导出 Supabase 提交，再运行网页提交转正式编码表脚本和 formal 编码审计。

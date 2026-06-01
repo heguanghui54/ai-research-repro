@@ -91,3 +91,6 @@ python3 scripts/extract_qigong_video_features.py --manifest data/qigong_video_ma
 - 不可写平台变体相对标准参照的量化差异。
 - 不可把 HF/MultiSports 等通用数据集替代真实健身气功平台视频。
 
+## 投稿总门槛中的位置
+
+`scripts/build_qigong_current_submission_gate.py` 已将典型视频本地权利与文件预检列为 P0 门槛。当前状态为 `ready_local_rights=0/5`，目标至少为 `3/5`。因此，SportsLabKit/视觉模型部分目前只能保留为方法设计和待执行管道，不能进入正式结果或摘要。
