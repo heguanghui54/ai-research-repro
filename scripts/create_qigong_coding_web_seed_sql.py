@@ -6,6 +6,10 @@ import json
 from pathlib import Path
 
 
+DEFAULT_DOUBLE_CHECK_COUNT = 24
+DEFAULT_DOUBLE_STUDENT_OFFSET = 4
+
+
 DDL = """
 create extension if not exists pgcrypto;
 
@@ -151,26 +155,60 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(f))
 
 
-def build_insert(rows: list[dict[str, str]]) -> str:
-    return "\n".join(build_insert_chunks(rows, chunk_size=len(rows)))
+def assign_primary_student(index: int) -> int:
+    return ((index - 1) % 10) + 1
 
 
-def build_insert_chunks(rows: list[dict[str, str]], chunk_size: int = 40) -> list[str]:
+def assign_double_student(index: int, primary_student: int, *, double_check_count: int, offset: int) -> int | None:
+    if index > double_check_count:
+        return None
+    double_student = ((primary_student + offset - 1) % 10) + 1
+    if double_student == primary_student:
+        raise ValueError("double_student must differ from primary_student")
+    return double_student
+
+
+def row_assignment(index: int, *, double_check_count: int, offset: int) -> tuple[int, int | None]:
+    primary_student = assign_primary_student(index)
+    double_student = assign_double_student(index, primary_student, double_check_count=double_check_count, offset=offset)
+    return primary_student, double_student
+
+
+def build_insert(rows: list[dict[str, str]], *, double_check_count: int, offset: int) -> str:
+    return "\n".join(build_insert_chunks(rows, chunk_size=len(rows), double_check_count=double_check_count, offset=offset))
+
+
+def build_insert_chunks(
+    rows: list[dict[str, str]],
+    chunk_size: int = 40,
+    *,
+    double_check_count: int,
+    offset: int,
+) -> list[str]:
     chunks: list[str] = []
     for chunk_start in range(0, len(rows), chunk_size):
         chunk_rows = rows[chunk_start : chunk_start + chunk_size]
-        chunks.append(build_insert_chunk(chunk_rows, offset=chunk_start))
+        chunks.append(
+            build_insert_chunk(
+                chunk_rows,
+                offset=chunk_start,
+                double_check_count=double_check_count,
+                double_student_offset=offset,
+            )
+        )
     return chunks
 
 
-def build_insert_chunk(rows: list[dict[str, str]], *, offset: int) -> str:
+def build_insert_chunk(rows: list[dict[str, str]], *, offset: int, double_check_count: int, double_student_offset: int) -> str:
     values = []
     for local_index, row in enumerate(rows, start=1):
         index = offset + local_index
         suggested = {field.replace("suggested_", ""): clean(row.get(field)) for field in SUGGESTION_FIELDS if clean(row.get(field))}
-        primary_student = ((index - 1) % 10) + 1
-        # A small double-coding subset: every fifth row is assigned to another student.
-        double_student = ((primary_student + 4 - 1) % 10) + 1 if index <= 30 and index % 5 == 0 else None
+        primary_student, double_student = row_assignment(
+            index,
+            double_check_count=double_check_count,
+            offset=double_student_offset,
+        )
         batch_no = ((index - 1) // 10) + 1
         values.append(
             "("
@@ -228,19 +266,57 @@ on conflict (video_id) do update set
     )
 
 
-def write_summary(path: Path, rows: list[dict[str, str]]) -> None:
+def build_double_update_sql(rows: list[dict[str, str]], *, double_check_count: int, offset: int) -> str:
+    cases = []
+    ids = []
+    for index, row in enumerate(rows, start=1):
+        primary_student, double_student = row_assignment(index, double_check_count=double_check_count, offset=offset)
+        if double_student is None:
+            continue
+        video_id = sql_text(row.get("video_id"))
+        cases.append(f"    when {video_id} then {double_student}")
+        ids.append(video_id)
+
+    if not cases:
+        return "update public.coding_videos set double_student = null;\n"
+
+    return (
+        "-- Non-destructive update: keeps existing coding_submissions, only refreshes double-coding task assignment.\n"
+        "update public.coding_videos set double_student = null;\n\n"
+        "update public.coding_videos\n"
+        "set double_student = case video_id\n"
+        + "\n".join(cases)
+        + "\n"
+        "    else null\n"
+        "  end\n"
+        "where video_id in (\n  "
+        + ",\n  ".join(ids)
+        + "\n);\n"
+    )
+
+
+def write_summary(path: Path, rows: list[dict[str, str]], *, double_check_count: int, offset: int) -> None:
     by_student = {f"STU{i:02d}": 0 for i in range(1, 11)}
+    double_by_student = {f"STU{i:02d}": 0 for i in range(1, 11)}
     linked = 0
     for index, row in enumerate(rows, start=1):
-        by_student[f"STU{((index - 1) % 10) + 1:02d}"] += 1
+        primary_student, double_student = row_assignment(index, double_check_count=double_check_count, offset=offset)
+        by_student[f"STU{primary_student:02d}"] += 1
+        if double_student is not None:
+            double_by_student[f"STU{double_student:02d}"] += 1
         if clean(row.get("video_url")):
             linked += 1
+    total_by_student = {student: by_student[student] + double_by_student[student] for student in by_student}
     summary = {
         "rows": len(rows),
         "linked_rows": linked,
         "missing_link_rows": len(rows) - linked,
         "primary_tasks_by_student": by_student,
-        "double_check_rule": "Rows 5,10,15,20,25,30 are assigned to a second student offset by +4.",
+        "double_check_count": min(double_check_count, len(rows)),
+        "double_student_offset": offset,
+        "double_check_rule": f"Rows 1-{min(double_check_count, len(rows))} are assigned to a second student offset by +{offset}.",
+        "double_tasks_by_student": double_by_student,
+        "total_task_slots_by_student": total_by_student,
     }
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -253,23 +329,42 @@ def main() -> None:
     parser.add_argument("--seed-sql", default="runs/qigong_platform/formal_merge/coding_web_seed.sql")
     parser.add_argument("--seed-chunk-dir", default="runs/qigong_platform/formal_merge/coding_web_seed_chunks")
     parser.add_argument("--summary-json", default="runs/qigong_platform/formal_merge/coding_web_seed_summary.json")
+    parser.add_argument("--double-update-sql", default="runs/qigong_platform/formal_merge/coding_web_double_check_update.sql")
+    parser.add_argument("--double-check-count", type=int, default=DEFAULT_DOUBLE_CHECK_COUNT)
+    parser.add_argument("--double-student-offset", type=int, default=DEFAULT_DOUBLE_STUDENT_OFFSET)
     args = parser.parse_args()
 
     rows = read_csv(Path(args.input))
+    if args.double_check_count < 0:
+        raise ValueError("--double-check-count must be non-negative")
+    if args.double_student_offset % 10 == 0:
+        raise ValueError("--double-student-offset must not be a multiple of 10")
     Path(args.schema_sql).parent.mkdir(parents=True, exist_ok=True)
     Path(args.schema_sql).write_text(DDL.strip() + "\n", encoding="utf-8")
     seed_prefix = "delete from public.coding_submissions;\ndelete from public.coding_videos;\n\n"
-    Path(args.seed_sql).write_text(seed_prefix + build_insert(rows), encoding="utf-8")
+    Path(args.seed_sql).write_text(
+        seed_prefix + build_insert(rows, double_check_count=args.double_check_count, offset=args.double_student_offset),
+        encoding="utf-8",
+    )
+    Path(args.double_update_sql).parent.mkdir(parents=True, exist_ok=True)
+    Path(args.double_update_sql).write_text(
+        build_double_update_sql(rows, double_check_count=args.double_check_count, offset=args.double_student_offset),
+        encoding="utf-8",
+    )
     chunk_dir = Path(args.seed_chunk_dir)
     chunk_dir.mkdir(parents=True, exist_ok=True)
     for old_chunk in chunk_dir.glob("seed_chunk_*.sql"):
         old_chunk.unlink()
-    for index, chunk in enumerate(build_insert_chunks(rows), start=1):
+    for index, chunk in enumerate(
+        build_insert_chunks(rows, double_check_count=args.double_check_count, offset=args.double_student_offset),
+        start=1,
+    ):
         prefix = seed_prefix if index == 1 else ""
         (chunk_dir / f"seed_chunk_{index:02d}.sql").write_text(prefix + chunk, encoding="utf-8")
-    write_summary(Path(args.summary_json), rows)
+    write_summary(Path(args.summary_json), rows, double_check_count=args.double_check_count, offset=args.double_student_offset)
     print(args.schema_sql)
     print(args.seed_sql)
+    print(args.double_update_sql)
     print(args.summary_json)
 
 

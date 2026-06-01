@@ -10,9 +10,11 @@
 - 核心变量：`dominant_frame`、`visibility_centrality`、`tempo_discipline`、`efficacy_tagging`、`image_trace_strength`、`media_temporality`、`embodied_dissolution`。
 - 统计指标：percent agreement、Cohen's kappa、nominal Krippendorff's alpha。
 
-## 当前风险
+## 当前配置
 
-网页系统当前已经设置了少量复核任务，但若只有 6 条复核任务，则不足以支撑投稿级一致性声明。6 条可以作为流程测试或编码员训练反馈，不能作为正式可靠性证据。
+网页任务分配已扩展为 24 条复核任务：前 24 条正式样本由不同于主编码员的学生进行第二次独立编码。这一配置达到 120 条正式样本的 20% 双编码门槛，可用于后续投稿级一致性检验。
+
+如数据库中仍保留旧的 6 条复核任务配置，可使用 `runs/qigong_platform/formal_merge/coding_web_double_check_update.sql` 进行非破坏性更新。该 SQL 只更新 `coding_videos.double_student`，不会删除学生已经提交的 `coding_submissions`。
 
 ## 数据回收后运行
 

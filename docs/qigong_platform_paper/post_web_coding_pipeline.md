@@ -73,7 +73,7 @@ QIGONG_CODING_ADMIN_CODE=本机私有导出码 python3 scripts/run_qigong_post_w
 ## 五、后续仍需完成
 
 - 双编码一致性：基于 `qigong_double_coding_from_web.csv` 计算一致性，并生成分歧复核表。
-- 复核任务数量：当前网页系统已设置少量双编码任务；正式投稿建议双编码不少于 120 条样本的 20%，即至少 24 条。
+- 复核任务数量：当前网页系统已设置 24 条双编码复核任务，达到 120 条正式样本的 20% 投稿门槛。
 - 评论补采：按 `comment_collection_targets.md` 补齐评论覆盖率。
 - 典型视频：上传 TC0001-TC0003 后重跑视频预检和 SportsLabKit/后备视频分析。
 - 稿件更新：只有数据门槛通过后，才把 v0.8 当前证据稿升级为正式结果稿。
