@@ -52,6 +52,7 @@ def write_report(path: Path, steps: list[Step], *, dry_run: bool) -> None:
         "steps": [asdict(step) for step in steps],
         "web_export_summary": read_json(ROOT / "runs/qigong_platform/formal_merge/web_coding_submissions_export_summary.json"),
         "web_ingest_audit": read_json(ROOT / "runs/qigong_platform/formal_merge/web_coding_ingest_audit.json"),
+        "web_reliability_gate": read_json(ROOT / "runs/qigong_platform/formal_merge/web_reliability_gate.json"),
         "current_submission_gate": read_json(ROOT / "runs/qigong_platform/formal_merge/current_submission_gate.json"),
     }
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -76,6 +77,8 @@ def write_report(path: Path, steps: list[Step], *, dry_run: bool) -> None:
 
     web = summary["web_export_summary"]
     ingest = summary["web_ingest_audit"]
+    reliability_gate = summary["web_reliability_gate"]
+    reliability_fail = sum(1 for row in reliability_gate if isinstance(row, dict) and row.get("status") == "fail") if isinstance(reliability_gate, list) else "NA"
     lines.extend(
         [
             "",
@@ -86,13 +89,16 @@ def write_report(path: Path, steps: list[Step], *, dry_run: bool) -> None:
             f"- 双编码提交: {web.get('double_check_submissions', 'NA')}",
             f"- 合并后完整主编码: {ingest.get('complete_main_rows_after_merge', 'NA')}",
             f"- ready_for_formal_audit: {ingest.get('ready_for_formal_audit', 'NA')}",
+            f"- reliability_fail_gates: {reliability_fail}",
             "",
             "## Interpretation",
             "",
         ]
     )
-    if ingest.get("ready_for_formal_audit"):
-        lines.append("网页人工编码已经达到进入正式编码值审计和结果表生成的最低门槛。下一步检查双编码一致性和结果表。")
+    if ingest.get("ready_for_formal_audit") and reliability_fail == 0:
+        lines.append("网页人工编码和双编码可靠性已经达到进入正式结果写作的最低门槛。下一步可把结果表转入 v0.9 正式结果稿。")
+    elif ingest.get("ready_for_formal_audit"):
+        lines.append("网页人工编码已经达到正式编码表门槛，但双编码可靠性尚未通过。论文可以准备描述性表格，但不能把关键变量写成正式发现。")
     else:
         lines.append("网页人工编码尚未达到正式结果写作门槛。论文仍应保持 v0.8 当前证据稿写法，不报告人工编码分布。")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -150,6 +156,43 @@ def main() -> None:
                 "runs/qigong_platform/formal_merge/qigong_human_coding_from_web.csv",
                 "--output-dir",
                 "runs/qigong_platform/formal_merge/tables_from_web_coding",
+            ],
+        ),
+        (
+            "analyze_web_double_coding_reliability",
+            [
+                py,
+                "scripts/analyze_qigong_coding.py",
+                "--coding",
+                "runs/qigong_platform/formal_merge/qigong_human_coding_from_web.csv",
+                "--coder-b",
+                "runs/qigong_platform/formal_merge/qigong_double_coding_from_web.csv",
+                "--output-dir",
+                "runs/qigong_platform/formal_merge/web_reliability",
+                "--min-matched",
+                "20",
+            ],
+        ),
+        (
+            "create_reconciliation_workbook",
+            [
+                py,
+                "scripts/create_qigong_coding_reconciliation.py",
+                "--coder-a",
+                "runs/qigong_platform/formal_merge/qigong_human_coding_from_web.csv",
+                "--coder-b",
+                "runs/qigong_platform/formal_merge/qigong_double_coding_from_web.csv",
+                "--output-csv",
+                "runs/qigong_platform/formal_merge/web_reliability/coding_reconciliation.csv",
+                "--output-md",
+                "runs/qigong_platform/formal_merge/web_reliability/coding_reconciliation.md",
+            ],
+        ),
+        (
+            "audit_web_reliability_gate",
+            [
+                py,
+                "scripts/audit_qigong_web_reliability_gate.py",
             ],
         ),
         (

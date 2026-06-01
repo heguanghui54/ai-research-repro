@@ -37,9 +37,15 @@ QIGONG_CODING_ADMIN_CODE=本机私有导出码 python3 scripts/run_qigong_post_w
    `runs/qigong_platform/formal_merge/web_human_coding_values_audit.md`
 6. 生成初步结果表：
    `runs/qigong_platform/formal_merge/tables_from_web_coding/`
-7. 刷新当前投稿门槛总表：
+7. 计算双编码一致性：
+   `runs/qigong_platform/formal_merge/web_reliability/coding_reliability.csv`
+8. 生成分歧复核表：
+   `runs/qigong_platform/formal_merge/web_reliability/coding_reconciliation.csv`
+9. 审计双编码可靠性是否达到投稿门槛：
+   `runs/qigong_platform/formal_merge/web_reliability_gate.md`
+10. 刷新当前投稿门槛总表：
    `runs/qigong_platform/formal_merge/current_submission_gate.md`
-8. 生成本次流水线报告：
+11. 生成本次流水线报告：
    `runs/qigong_platform/formal_merge/post_web_coding_pipeline_report.md`
 
 ## 三、结果能否写进论文的判断
@@ -49,7 +55,8 @@ QIGONG_CODING_ADMIN_CODE=本机私有导出码 python3 scripts/run_qigong_post_w
 1. `web_coding_submissions_export_summary.md` 中 `完整提交行数 >= 120`。
 2. `web_coding_ingest_audit.md` 中 `ready_for_formal_audit: True`。
 3. `web_human_coding_values_audit.md` 中正式编码值审计无 fail。
-4. `current_submission_gate.md` 中“网页人工编码提交”和“网页提交转正式编码表”均为 pass。
+4. `web_reliability_gate.md` 中双编码可靠性无 fail。
+5. `current_submission_gate.md` 中“网页人工编码提交”和“网页提交转正式编码表”均为 pass。
 
 如果上述任一条件没有满足，论文仍保持 v0.8 当前证据稿写法，只能写“网页人工编码平台已建立、学生编码正在进行”，不能写“编码结果显示”。
 
@@ -66,6 +73,7 @@ QIGONG_CODING_ADMIN_CODE=本机私有导出码 python3 scripts/run_qigong_post_w
 ## 五、后续仍需完成
 
 - 双编码一致性：基于 `qigong_double_coding_from_web.csv` 计算一致性，并生成分歧复核表。
+- 复核任务数量：当前网页系统已设置少量双编码任务；正式投稿建议双编码不少于 120 条样本的 20%，即至少 24 条。
 - 评论补采：按 `comment_collection_targets.md` 补齐评论覆盖率。
 - 典型视频：上传 TC0001-TC0003 后重跑视频预检和 SportsLabKit/后备视频分析。
 - 稿件更新：只有数据门槛通过后，才把 v0.8 当前证据稿升级为正式结果稿。
