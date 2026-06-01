@@ -9,6 +9,7 @@
 3. 学生登录后只填写系统分配给自己的任务；缺视频链接的条目会显示“缺视频链接，暂缓编码”，不要要求学生硬填。
 4. 每条任务必须点击“打开视频”并人工观看后填写。LLM 辅助建议只能用于提示，不能替代人工判断。
 5. 学生完成后，研究者运行导出脚本，检查完整提交数、缺失字段、复核任务和异常值。
+6. 网页提交导出后会用 `scripts/ingest_qigong_web_coding_submissions.py` 转成正式编码表，再进入正式审计和论文结果表。
 
 网页分工细则见 `student_web_coding_distribution.md`，论文方法写法见 `web_human_coding_method_note.md`。
 

@@ -8,8 +8,22 @@ const fieldGroups = [
     fields: [
       ["dominant_frame", "主导身体框架"],
       ["body_visibility", "身体可见性"],
+      ["body_count", "出镜人数"],
       ["movement_tempo", "动作节奏"],
+      ["camera_relation", "镜头关系"],
+      ["text_occlusion", "文字遮挡"],
       ["origin_reference", "来源/正统性引用"],
+    ],
+  },
+  {
+    title: "身体经验线索",
+    fields: [
+      ["breath_cue", "呼吸提示"],
+      ["mind_cue", "意念/放松提示"],
+      ["qi_meridian_cue", "气/经络提示"],
+      ["risk_cue", "风险/禁忌提示"],
+      ["call_to_action", "行动号召"],
+      ["platform_trace", "平台踪迹"],
     ],
   },
   {
@@ -17,6 +31,7 @@ const fieldGroups = [
     fields: [
       ["supplement_mode", "平台补充方式"],
       ["binary_reversal", "二元反转/张力结构"],
+      ["recontextualization_scene", "再语境化场景"],
       ["visibility_centrality", "可视性中心化"],
       ["tempo_discipline", "节奏规训"],
     ],
@@ -27,6 +42,7 @@ const fieldGroups = [
       ["efficacy_tagging", "功效标签化"],
       ["image_trace_strength", "影像痕迹强度"],
       ["media_temporality", "媒介时间性"],
+      ["cyber_wellness_symbol", "赛博养生符号"],
       ["meme_density", "玩梗密度"],
       ["embodied_dissolution", "具身消解"],
     ],
@@ -50,11 +66,43 @@ const options = {
     ["close_up", "特写/口播为主"],
     ["unclear", "无法判断"],
   ],
+  body_count: [["single", "单人"], ["two_three", "2-3人"], ["group", "多人/群体"], ["unclear", "无法判断"]],
   movement_tempo: [
     ["slow_continuous", "慢速连续跟练"],
     ["segmented_teaching", "分段教学"],
     ["fast_montage", "快速剪辑/加速"],
     ["mixed", "混合"],
+    ["unclear", "无法判断"],
+  ],
+  camera_relation: [
+    ["frontal_teaching", "正面教学/跟练"],
+    ["side_demo", "侧面示范"],
+    ["group_panorama", "群体全景"],
+    ["cinematic", "审美/表演镜头"],
+    ["talking_head", "口播/头肩画面"],
+    ["mixed", "混合"],
+    ["unclear", "无法判断"],
+  ],
+  text_occlusion: [["none", "无"], ["low", "低"], ["medium", "中"], ["high", "高"], ["unclear", "无法判断"]],
+  breath_cue: [["0", "无"], ["1", "有"]],
+  mind_cue: [["0", "无"], ["1", "有"]],
+  qi_meridian_cue: [["0", "无"], ["1", "有"]],
+  risk_cue: [["0", "无"], ["1", "有"]],
+  call_to_action: [
+    ["none", "无"],
+    ["follow_along", "跟练"],
+    ["check_in", "打卡"],
+    ["buy_course", "购买课程/引流"],
+    ["share_collect", "分享/收藏"],
+    ["unclear", "无法判断"],
+  ],
+  platform_trace: [
+    ["none", "无"],
+    ["hashtag", "标签话题"],
+    ["hot_music", "热门音乐"],
+    ["bullet_comment", "弹幕/评论可见"],
+    ["duet_remix", "合拍/混剪/二创"],
+    ["live_stream", "直播"],
     ["unclear", "无法判断"],
   ],
   origin_reference: [
@@ -69,11 +117,13 @@ const options = {
   supplement_mode: [
     ["none", "无明显补充"],
     ["caption", "字幕补充"],
-    ["caption_explanation", "字幕解释"],
-    ["music_reframing", "音乐再语境化"],
-    ["comment_interaction", "评论互动"],
-    ["hashtag_recontextualization", "标签再语境化"],
-    ["commercial_linkage", "商业链接/引流"],
+    ["slow_motion", "慢动作/分解"],
+    ["split_screen", "分屏对照"],
+    ["comment_checkin", "评论/打卡互动"],
+    ["hashtag_topic", "标签话题再语境化"],
+    ["commercial_link", "商业链接/引流"],
+    ["ai_filter", "AI滤镜/特效"],
+    ["music_edit", "音乐剪辑再语境化"],
     ["mixed", "混合"],
     ["unclear", "无法判断"],
   ],
@@ -83,7 +133,18 @@ const options = {
     ["tradition_modern", "传统/现代反转"],
     ["inner_outer", "内在气感/外在形态反转"],
     ["health_traffic", "健康/流量反转"],
+    ["master_influencer", "师承/网红反转"],
     ["slow_fast", "慢练/快节奏反转"],
+    ["unclear", "无法判断"],
+  ],
+  recontextualization_scene: [
+    ["home_fitness", "居家健身"],
+    ["public_square", "广场/公共空间"],
+    ["scenic_spot", "景区/自然空间"],
+    ["classroom", "课堂/教学场"],
+    ["studio", "工作室/棚拍"],
+    ["commerce", "商业/课程场景"],
+    ["challenge", "挑战/热点场景"],
     ["unclear", "无法判断"],
   ],
   visibility_centrality: [["low", "低"], ["medium", "中"], ["high", "高"], ["unclear", "无法判断"]],
@@ -91,22 +152,35 @@ const options = {
   efficacy_tagging: [["none", "无"], ["mild_health", "温和养生"], ["strong_health", "强功效健康"], ["medicalized", "医学化/治疗化"], ["anxiety_marketing", "焦虑营销"], ["unclear", "无法判断"]],
   image_trace_strength: [["none", "无"], ["weak", "弱"], ["moderate", "中等"], ["strong", "强"], ["unclear", "无法判断"]],
   media_temporality: [["continuous", "连续"], ["fragmented", "碎片化"], ["looped", "循环"], ["hot_trend", "热点/挑战"], ["live_stream", "直播"], ["mixed", "混合"], ["unclear", "无法判断"]],
+  cyber_wellness_symbol: [["0", "无"], ["1", "有"]],
   meme_density: [["none", "无"], ["low", "低"], ["medium", "中"], ["high", "高"], ["unclear", "无法判断"]],
   embodied_dissolution: [["none", "无"], ["weak", "弱"], ["moderate", "中等"], ["strong", "强"], ["unclear", "无法判断"]],
 };
 
 const blankForm = {
   dominant_frame: "",
+  secondary_frames: "",
   body_visibility: "",
+  body_count: "",
   movement_tempo: "",
+  camera_relation: "",
+  text_occlusion: "",
+  breath_cue: "",
+  mind_cue: "",
+  qi_meridian_cue: "",
+  risk_cue: "",
+  call_to_action: "",
+  platform_trace: "",
   origin_reference: "",
   supplement_mode: "",
   binary_reversal: "",
+  recontextualization_scene: "",
   visibility_centrality: "",
   tempo_discipline: "",
   efficacy_tagging: "",
   image_trace_strength: "",
   media_temporality: "",
+  cyber_wellness_symbol: "",
   meme_density: "",
   embodied_dissolution: "",
   trace_markers: "",
@@ -324,6 +398,10 @@ export default function Page() {
             <section className="fieldGroup">
               <h3>证据记录</h3>
               <div className="textGrid">
+                <label>
+                  次要身体框架
+                  <input value={form.secondary_frames || ""} onChange={(e) => setForm({ ...form, secondary_frames: e.target.value })} placeholder="可选，如：therapeutic_body;cultural_body" />
+                </label>
                 <label>
                   证据标记
                   <textarea value={form.trace_markers || ""} onChange={(e) => setForm({ ...form, trace_markers: e.target.value })} placeholder="如：口令跟练;呼吸提示" />
