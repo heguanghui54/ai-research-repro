@@ -41,6 +41,8 @@ claim calibration.
   logs contain complete scientific taste/insight records.
 - `audits/top_conference_readiness_audit.md`: strict objective-level audit
   separating delivered artifacts from remaining top-conference evidence gaps.
+- `audits/clean_clone_reproducibility_audit.md`: fresh GitHub-clone check that
+  rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.

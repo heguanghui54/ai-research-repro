@@ -6,7 +6,8 @@
     "Chinese PDF paper",
     "English and Chinese usage documents",
     "Reusable Codex skill artifact",
-    "GitHub branch pushed"
+    "GitHub branch pushed",
+    "Clean-clone artifact reproducibility"
   ],
   "partially_supported_method_requirements": [
     "AI Co-Scientist-style hypothesis organization",
@@ -28,6 +29,13 @@
     "embedded_trajectory_gates": 10,
     "complete_taste_insight_records": 1,
     "complete_attention_cost_records": 0
+  },
+  "clean_clone_reproducibility": {
+    "status": "pass",
+    "commit": "a82a19bb0cd90b319af2c9380d96de834e89ae00",
+    "manifest_artifacts_checked": 259,
+    "missing_manifest_artifacts": 0,
+    "pdfs_rebuilt": 2
   },
   "next_evidence_milestone": "Run a prospective matched-budget end-to-end trajectory with complete taste_insight and attention_cost logs, a matched autonomous baseline, and a final claim-audited manuscript."
 }
