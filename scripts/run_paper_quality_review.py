@@ -57,9 +57,14 @@ def _prompt() -> str:
     paper = _read(ROOT / "docs/co_pilot_ai_scientist_v3/paper_en.md")
     audit = _read(ROOT / "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md")
     benchmark = _read(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_selection.md")
+    benchmark_matrix = _read(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md")
     comparison = _read(
         ROOT
         / "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_comparison.md"
+    )
+    maxcut = _read(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/maxcut_program_search_comparison.md"
     )
     return f"""Review the following draft as if it were a submission targetting a strong ML/NLP systems venue.
 
@@ -86,9 +91,19 @@ Benchmark selection:
 {benchmark}
 ```
 
+Benchmark-to-claim matrix:
+```markdown
+{benchmark_matrix}
+```
+
 MLAgentBench comparison:
 ```markdown
 {comparison}
+```
+
+Max-Cut program-search comparison:
+```markdown
+{maxcut}
 ```
 """
 

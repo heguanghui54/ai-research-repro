@@ -9,19 +9,20 @@ Reviewer routes:
 
 ## Aggregate Verdict
 
-The two model reviewers agree on the main diagnosis: the architecture and
-reproducibility package are promising, but the current evidence is still pilot
-evidence rather than top-conference proof. GPT-4o-mini gives a more generous
-`Weak accept` recommendation, while Claude 3.7 Sonnet gives `Reject` for a
-strong ML/NLP systems venue because the central human-gating claim lacks broad
-matched-budget evidence.
+The two model reviewers agree on the main diagnosis after the updated Max-Cut
+and matched online-smoke evidence: the architecture and reproducibility package
+are promising, but the current evidence is still pilot evidence rather than
+top-conference proof. GPT-4o-mini gives a more generous `Weak accept`
+recommendation, while Claude 3.7 Sonnet gives `Reject` for a strong ML/NLP
+systems venue because the central human-gating claim lacks broad matched-budget
+evidence and no full paper-generating end-to-end trajectory has been shown.
 
 ## Rubric Snapshot
 
 | Reviewer | Recommendation | Novelty | Rigor | Clarity | Evidence | Reproducibility | Significance |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 4 | 3 |
-| `claude-3-7-sonnet-latest` | Reject | 3 | 1 | 3 | 1 | 3 | 2 |
+| `claude-3-7-sonnet-latest` | Reject | 3 | 1 | 2 | 1 | 3 | 2 |
 
 ## Shared Required Revisions
 
@@ -34,6 +35,9 @@ matched-budget evidence.
 - Add statistical or uncertainty analysis across tasks and seeds.
 - Make the human-gate contribution concrete with decision logs, attention cost,
   and downstream effect analysis.
+- Separate the manuscript's system design, completed experiments, negative
+  results, and future work more sharply; Claude specifically says the current
+  draft still reads like a lab notebook in places.
 - Keep AlphaEvolve wording as `OpenEvolve-based` or `AlphaEvolve-style` unless
   official AlphaEvolve code is available.
 

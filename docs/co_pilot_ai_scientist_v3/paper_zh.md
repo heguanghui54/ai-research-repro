@@ -111,7 +111,7 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 
 在完成这些 pilot 实验后，我们做了一次 claim-evidence audit。通过 Monica 路由的 `gpt-4o-mini` 审稿式检查认为：本文的架构贡献是合理的，但当前实验证据还不足以支持“人类 gate 提高论文质量”或“完整 co-pilot 系统优于 autonomous AI Scientist-v2”这类宽泛结论。因此，本文把这些表述保留为 evaluation protocol 要检验的假设，而不是已经证明的结论。当前 audit 只支持较窄的实证主张：OpenEvolve-style search 可以在部分机器可评分子问题上有效，但在极小预算下存在 seed sensitivity；direct editing 在简单 tabular modeling probe 上可以匹配 OpenEvolve；branch gate 可以插入 AI Scientist-v2 风格日志轨迹；evaluator gate 必须在 continuation 前拒绝无法执行以及指标投机的分支；两组 matched Causality 对照给出的是混合证据，而不是稳定的人类 gate 优势。第一次把 online branch gate 扩展到 `Fairness_fairlearn` 时，两条候选都在 validation 阶段失败，因此本文只把它作为 failure-mode evidence 归档，而不计入 matched-budget performance evidence。后续 evaluator-gate repair probe 进一步暴露了这个问题：一个修复 API 后可运行的公平性候选在 demographic parity difference 上反而更差，test 指标为 0.317603，而 baseline 为 0.173030；一个退化的全负类预测器虽然把目标公平性指标做到 0.000000，却把 balanced accuracy 降到 0.500000。因此，在公平性任务中，gate 不能只看单一 fairness metric，还必须同时检查代码可执行性和最低效用下限。
 
-我们还通过 Monica 路由了两次 paper-quality review。`gpt-4o-mini` 给出 weak-accept 建议，认为新颖性和可复现性较强，但严谨性和证据仍只有中等水平。`claude-3-7-sonnet-latest` 更严格，认为如果目标是强 ML/NLP systems venue，当前版本应被拒，因为目前证据仍是模块级 pilot probe，而不是同预算端到端对照。两个模型的共同结论是：下一版必须在更多任务和随机种子上比较 autonomous AI Scientist-v2 与 human-gated variants，并记录人类注意力成本。
+在加入 Max-Cut 和 online-smoke matched baseline 证据后，我们又通过 Monica 路由刷新了两次 paper-quality review。`gpt-4o-mini` 给出 weak-accept 建议，认为新颖性和可复现性较强，但严谨性和证据仍只有中等水平。`claude-3-7-sonnet-latest` 更严格，认为如果目标是强 ML/NLP systems venue，当前版本应被拒，因为目前证据仍是模块级 pilot probe 和小规模 matched comparison，而不是完整 paper-generating end-to-end 对照。两个模型的共同结论是：下一版必须在更多任务和随机种子上比较 autonomous AI Scientist-v2 与 human-gated variants，记录人类注意力成本，并更清楚地区分已经完成的系统证据和 future work。
 
 ## 5. 当前贡献与尚未证明的主张
 
