@@ -1,0 +1,33 @@
+{
+  "audit_date": "2026-06-01",
+  "overall_status": "pilot_package_not_yet_top_conference_ready",
+  "satisfied_artifact_requirements": [
+    "English PDF paper",
+    "Chinese PDF paper",
+    "English and Chinese usage documents",
+    "Reusable Codex skill artifact",
+    "GitHub branch pushed"
+  ],
+  "partially_supported_method_requirements": [
+    "AI Co-Scientist-style hypothesis organization",
+    "AI Scientist-v2-style experiment execution and paper writing",
+    "AlphaEvolve-style search via OpenEvolve",
+    "Human participation at creative or key decision nodes",
+    "Human scientific taste as a distinct logged prior",
+    "Benchmark coverage beyond FML-Bench"
+  ],
+  "unsupported_performance_requirements": [
+    "Human collaboration improves paper quality",
+    "Full Co-Pilot v3 outperforms autonomous AI Scientist-v2",
+    "Human attention cost is measured",
+    "Top-conference-level empirical support"
+  ],
+  "current_counts": {
+    "human_gate_records_audited": 18,
+    "standalone_human_gate_logs": 8,
+    "embedded_trajectory_gates": 10,
+    "complete_taste_insight_records": 1,
+    "complete_attention_cost_records": 0
+  },
+  "next_evidence_milestone": "Run a prospective matched-budget end-to-end trajectory with complete taste_insight and attention_cost logs, a matched autonomous baseline, and a final claim-audited manuscript."
+}

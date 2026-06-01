@@ -172,6 +172,8 @@
     "docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",
+    "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/paper_quality_reviews/gpt-4o-mini.md",
     "docs/co_pilot_ai_scientist_v3/audits/paper_quality_reviews/gpt-4o-mini.json",
     "docs/co_pilot_ai_scientist_v3/audits/paper_quality_reviews/claude-3-7-sonnet-latest.md",
@@ -275,7 +277,8 @@
   "unverified_claims": [
     "Human gates improve paper quality.",
     "OpenEvolve-style subproblem optimization improves downstream research outcomes.",
-    "The full co-pilot v3 system outperforms autonomous AI Scientist-v2 on selected tasks."
+    "The full co-pilot v3 system outperforms autonomous AI Scientist-v2 on selected tasks.",
+    "Current package satisfies artifact-delivery requirements, but top-conference empirical support remains incomplete; see top_conference_readiness_audit.md."
   ],
   "next_required_evidence": [
     "Run more matched autonomous and human-gated variants beyond the current two mixed Causality pairs; Fairness_fairlearn needs a non-degenerate repaired branch that passes executable-code checks and a utility floor before matched continuation.",
@@ -286,7 +289,8 @@
     "Run prospective IGRE matched-budget experiments that fill both attention_cost and taste_insight records, then compare mean benchmark scores against high-tail scientific-upside outcomes.",
     "Extend the online full-gate smoke comparison beyond the current negative 3-step Causality result to more tasks, seeds, and larger budgets.",
     "Pre-cache CIFAR10 or IMDB, choose another data-ready MLAgentBench task for a second official non-FML score, or run from a network path with HuggingFace access; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics.",
-    "Run prospective IGRE matched-budget experiments with complete taste_insight records at every new human gate; the current 18 audited gate records include 1 complete scientific_taste_prior record and 17 older records without taste_insight fields."
+    "Run prospective IGRE matched-budget experiments with complete taste_insight records at every new human gate; the current 18 audited gate records include 1 complete scientific_taste_prior record and 17 older records without taste_insight fields.",
+    "Complete an independent clean-clone reproducibility check and tag or merge a stable release after the next evidence milestone."
   ],
   "model_routing_policy": {
     "routine_coding_and_smoke_tests": "DeepSeek or low-cost Monica-routed model",
