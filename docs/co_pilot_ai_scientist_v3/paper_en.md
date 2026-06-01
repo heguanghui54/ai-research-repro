@@ -173,9 +173,11 @@ Following the latest paper-quality review, we made attention cost an explicit
 auditable artifact rather than an informal metric. The human-gate schema now
 contains an optional `attention_cost` object with active review minutes,
 wall-clock latency, number of options reviewed, artifacts reviewed, and decision
-count. We also added a coverage audit over the existing seven gate logs. The
-audit finds zero complete attention-cost records, because the current logs were
-created before this field existed. This is an important negative
+count. We also added a coverage audit over 17 existing gate records: 7
+standalone human-gate logs and 10 embedded trajectory gates across 2 trajectory
+artifacts. The audit finds zero complete attention-cost records; the 5
+regenerated executable-trace gates now explicitly mark missing timing, while
+the older records were created before this field existed. This is an important negative
 measurement-readiness result: the archived gates show decision provenance, but
 they cannot yet support any efficiency claim about human attention. Future
 prospective matched runs must fill this field before comparing co-pilot and

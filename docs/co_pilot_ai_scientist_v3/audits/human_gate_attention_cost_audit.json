@@ -1,7 +1,10 @@
 {
-  "gate_logs_audited": 7,
+  "gate_records_audited": 17,
+  "gate_logs_audited": 17,
+  "standalone_gate_logs_audited": 7,
+  "trajectory_files_audited": 2,
   "complete_attention_cost_logs": 0,
-  "incomplete_attention_cost_logs": 7,
+  "incomplete_attention_cost_logs": 17,
   "required_attention_cost_fields": [
     "active_review_minutes",
     "wall_clock_latency_minutes",
@@ -13,6 +16,7 @@
   "gates": [
     {
       "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/branch_gate_causality_after_two_drafts.json",
+      "source": "human_gate_log",
       "gate_id": "branch_gate_causality_after_two_drafts",
       "gate_type": "branch_selection",
       "research_task_id": "fmlbench_causality_causalml_replay",
@@ -29,6 +33,7 @@
     },
     {
       "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/branch_gate_causality_online_two_drafts.json",
+      "source": "human_gate_log",
       "gate_id": "branch_gate_causality_online_two_drafts",
       "gate_type": "branch_selection",
       "research_task_id": "fml_causality_causalml_online_two_draft_probe",
@@ -45,6 +50,7 @@
     },
     {
       "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/branch_gate_fairness_after_two_attempts.json",
+      "source": "human_gate_log",
       "gate_id": "branch_gate_fairness_after_two_attempts",
       "gate_type": "branch_selection",
       "research_task_id": "fmlbench_fairness_fairlearn_replay",
@@ -61,6 +67,7 @@
     },
     {
       "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/claim_gate_001.json",
+      "source": "human_gate_log",
       "gate_id": "claim_gate_001",
       "gate_type": "claim_audit",
       "research_task_id": "copilot_v3_manuscript_claim_audit",
@@ -77,6 +84,7 @@
     },
     {
       "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/evaluator_gate_fairness_metric_guardrail.json",
+      "source": "human_gate_log",
       "gate_id": "evaluator_gate_fairness_metric_guardrail",
       "gate_type": "evaluator_approval",
       "research_task_id": "fml_fairness_fairlearn_evaluator_gate",
@@ -93,6 +101,7 @@
     },
     {
       "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/idea_gate_001.json",
+      "source": "human_gate_log",
       "gate_id": "idea_gate_001",
       "gate_type": "idea_selection",
       "research_task_id": "copilot_v3_research_direction_selection",
@@ -109,9 +118,185 @@
     },
     {
       "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/program_search_gate_001.json",
+      "source": "human_gate_log",
       "gate_id": "program_search_gate_001",
       "gate_type": "program_search_escalation",
       "research_task_id": "openevolve_smoke_function_minimization",
+      "has_attention_cost": false,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes",
+        "options_reviewed",
+        "artifacts_reviewed_count",
+        "decision_count"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {}
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json",
+      "source": "trajectory_gate[0]",
+      "gate_id": "idea_gate_executable_trace_001",
+      "gate_type": "idea_selection",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "has_attention_cost": true,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {
+        "options_reviewed": 4.0,
+        "artifacts_reviewed_count": 1.0,
+        "decision_count": 1.0
+      }
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json",
+      "source": "trajectory_gate[1]",
+      "gate_id": "evaluator_gate_executable_trace_001",
+      "gate_type": "evaluator_approval",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "has_attention_cost": true,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {
+        "options_reviewed": 2.0,
+        "artifacts_reviewed_count": 2.0,
+        "decision_count": 1.0
+      }
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json",
+      "source": "trajectory_gate[2]",
+      "gate_id": "branch_gate_executable_trace_001",
+      "gate_type": "branch_selection",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "has_attention_cost": true,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {
+        "options_reviewed": 2.0,
+        "artifacts_reviewed_count": 2.0,
+        "decision_count": 1.0
+      }
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json",
+      "source": "trajectory_gate[3]",
+      "gate_id": "program_search_gate_executable_trace_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "has_attention_cost": true,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {
+        "options_reviewed": 2.0,
+        "artifacts_reviewed_count": 3.0,
+        "decision_count": 1.0
+      }
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json",
+      "source": "trajectory_gate[4]",
+      "gate_id": "claim_gate_executable_trace_001",
+      "gate_type": "claim_audit",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "has_attention_cost": true,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {
+        "options_reviewed": 2.0,
+        "artifacts_reviewed_count": 3.0,
+        "decision_count": 1.0
+      }
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json",
+      "source": "trajectory_gate[0]",
+      "gate_id": "idea_gate_online_smoke_001",
+      "gate_type": "idea_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "has_attention_cost": false,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes",
+        "options_reviewed",
+        "artifacts_reviewed_count",
+        "decision_count"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {}
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json",
+      "source": "trajectory_gate[1]",
+      "gate_id": "evaluator_gate_online_smoke_001",
+      "gate_type": "evaluator_approval",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "has_attention_cost": false,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes",
+        "options_reviewed",
+        "artifacts_reviewed_count",
+        "decision_count"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {}
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json",
+      "source": "trajectory_gate[2]",
+      "gate_id": "branch_gate_online_smoke_001",
+      "gate_type": "branch_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "has_attention_cost": false,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes",
+        "options_reviewed",
+        "artifacts_reviewed_count",
+        "decision_count"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {}
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json",
+      "source": "trajectory_gate[3]",
+      "gate_id": "program_search_gate_online_smoke_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "has_attention_cost": false,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes",
+        "options_reviewed",
+        "artifacts_reviewed_count",
+        "decision_count"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {}
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json",
+      "source": "trajectory_gate[4]",
+      "gate_id": "claim_gate_online_smoke_001",
+      "gate_type": "claim_audit",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
       "has_attention_cost": false,
       "missing_attention_cost_fields": [
         "active_review_minutes",

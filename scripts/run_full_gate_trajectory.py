@@ -43,6 +43,26 @@ def _step_metric(step: dict[str, Any]) -> float | None:
         return None
 
 
+def _mark_attention_cost_missing(gates: list[dict[str, Any]], *, mode: str) -> None:
+    """Attach explicit missing attention-cost fields to generated gate records."""
+    for gate in gates:
+        gate.setdefault(
+            "attention_cost",
+            {
+                "human_actor": None,
+                "interaction_mode": mode,
+                "prompted_at_utc": None,
+                "decision_at_utc": None,
+                "active_review_minutes": None,
+                "wall_clock_latency_minutes": None,
+                "options_reviewed": len(gate.get("options", [])),
+                "artifacts_reviewed_count": len(gate.get("affected_artifacts", [])),
+                "decision_count": 1,
+                "notes": "Generated artifact marks missing human timing; do not use for attention-efficiency claims.",
+            },
+        )
+
+
 def build_trajectory() -> dict[str, Any]:
     timestamp = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
@@ -262,6 +282,7 @@ def build_trajectory() -> dict[str, Any]:
             ],
         },
     ]
+    _mark_attention_cost_missing(gates, mode="posthoc_replay")
 
     return {
         "trajectory_id": "copilot_v3_executable_full_gate_trace_001",

@@ -1,7 +1,7 @@
 # Executable Full-Gate Trajectory
 
 - Trajectory ID: `copilot_v3_executable_full_gate_trace_001`
-- Generated at: `2026-06-01T14:39:13Z`
+- Generated at: `2026-06-01T15:47:16Z`
 - Mode: `executable_artifact_replay`
 - Single online training run: `False`
 

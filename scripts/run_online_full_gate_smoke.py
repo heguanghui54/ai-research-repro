@@ -96,6 +96,26 @@ def primary_metric(summary: dict[str, Any]) -> float | None:
         return None
 
 
+def mark_attention_cost_missing(gates: list[dict[str, Any]]) -> None:
+    """Attach explicit missing attention-cost fields to online smoke gates."""
+    for gate in gates:
+        gate.setdefault(
+            "attention_cost",
+            {
+                "human_actor": None,
+                "interaction_mode": "async_review",
+                "prompted_at_utc": None,
+                "decision_at_utc": None,
+                "active_review_minutes": None,
+                "wall_clock_latency_minutes": None,
+                "options_reviewed": len(gate.get("options", [])),
+                "artifacts_reviewed_count": len(gate.get("affected_artifacts", [])),
+                "decision_count": 1,
+                "notes": "Online smoke generated without measured human timing; fill this prospectively for matched claims.",
+            },
+        )
+
+
 def latest_summary_remote(host: str, remote_dir: str) -> str:
     script = f"find {shlex.quote(remote_dir)} -name summary.json -type f | sort | tail -n 1"
     out = ssh(host, script)
@@ -441,6 +461,7 @@ def main() -> int:
             "follow_up_checks": ["Run matched autonomous baseline and repeat across tasks/seeds."],
         },
     ]
+    mark_attention_cost_missing(gates)
 
     trajectory = {
         "trajectory_id": f"online_full_gate_smoke_{run_id}",

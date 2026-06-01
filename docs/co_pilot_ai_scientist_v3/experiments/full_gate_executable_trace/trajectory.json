@@ -1,6 +1,6 @@
 {
   "trajectory_id": "copilot_v3_executable_full_gate_trace_001",
-  "generated_at_utc": "2026-06-01T14:39:13Z",
+  "generated_at_utc": "2026-06-01T15:47:16Z",
   "mode": "executable_artifact_replay",
   "is_single_online_training_run": false,
   "claim_scope": "This is one continuous executable traversal over archived experiment artifacts. It verifies gate logic and evidence linkage, but it is not a fresh online run of all four loops.",
@@ -8,7 +8,7 @@
     {
       "gate_id": "idea_gate_executable_trace_001",
       "gate_type": "idea_selection",
-      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "timestamp_utc": "2026-06-01T15:47:16Z",
       "research_task_id": "copilot_v3_executable_full_gate_trace",
       "options": [
         {
@@ -70,12 +70,24 @@
       },
       "follow_up_checks": [
         "Keep full-system superiority as an unproven target claim."
-      ]
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "posthoc_replay",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 4,
+        "artifacts_reviewed_count": 1,
+        "decision_count": 1,
+        "notes": "Generated artifact marks missing human timing; do not use for attention-efficiency claims."
+      }
     },
     {
       "gate_id": "evaluator_gate_executable_trace_001",
       "gate_type": "evaluator_approval",
-      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "timestamp_utc": "2026-06-01T15:47:16Z",
       "research_task_id": "copilot_v3_executable_full_gate_trace",
       "options": [
         {
@@ -113,12 +125,24 @@
       },
       "follow_up_checks": [
         "Report invalid or metric-gamed candidates as failures, not wins."
-      ]
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "posthoc_replay",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 2,
+        "artifacts_reviewed_count": 2,
+        "decision_count": 1,
+        "notes": "Generated artifact marks missing human timing; do not use for attention-efficiency claims."
+      }
     },
     {
       "gate_id": "branch_gate_executable_trace_001",
       "gate_type": "branch_selection",
-      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "timestamp_utc": "2026-06-01T15:47:16Z",
       "research_task_id": "copilot_v3_executable_full_gate_trace",
       "options": [
         {
@@ -158,12 +182,24 @@
       },
       "follow_up_checks": [
         "Compare selected continuation with an equal-budget autonomous baseline."
-      ]
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "posthoc_replay",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 2,
+        "artifacts_reviewed_count": 2,
+        "decision_count": 1,
+        "notes": "Generated artifact marks missing human timing; do not use for attention-efficiency claims."
+      }
     },
     {
       "gate_id": "program_search_gate_executable_trace_001",
       "gate_type": "program_search_escalation",
-      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "timestamp_utc": "2026-06-01T15:47:16Z",
       "research_task_id": "copilot_v3_executable_full_gate_trace",
       "options": [
         {
@@ -204,12 +240,24 @@
       },
       "follow_up_checks": [
         "Require direct-edit baselines before claiming program-search gains."
-      ]
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "posthoc_replay",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 2,
+        "artifacts_reviewed_count": 3,
+        "decision_count": 1,
+        "notes": "Generated artifact marks missing human timing; do not use for attention-efficiency claims."
+      }
     },
     {
       "gate_id": "claim_gate_executable_trace_001",
       "gate_type": "claim_audit",
-      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "timestamp_utc": "2026-06-01T15:47:16Z",
       "research_task_id": "copilot_v3_executable_full_gate_trace",
       "options": [
         {
@@ -250,7 +298,19 @@
       "follow_up_checks": [
         "Run more matched tasks and seeds.",
         "Add independent paper-quality ratings after a true online full trajectory."
-      ]
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "posthoc_replay",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 2,
+        "artifacts_reviewed_count": 3,
+        "decision_count": 1,
+        "notes": "Generated artifact marks missing human timing; do not use for attention-efficiency claims."
+      }
     }
   ],
   "summary": {

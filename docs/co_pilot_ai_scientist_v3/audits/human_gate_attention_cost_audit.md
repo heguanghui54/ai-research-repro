@@ -6,22 +6,34 @@ as missing rather than estimated.
 
 ## Summary
 
-- Gate logs audited: 7
+- Gate records audited: 17
+- Standalone gate log files audited: 7
+- Trajectory files audited: 2
 - Logs with complete attention-cost records: 0
-- Logs missing one or more required attention-cost fields: 7
+- Logs missing one or more required attention-cost fields: 17
 - Aggregate attention cost: unavailable because no complete gate log has measured minutes.
 
 ## Per-Gate Coverage
 
-| Gate | Type | Complete | Missing fields |
-| --- | --- | --- | --- |
-| `branch_gate_causality_after_two_drafts` | `branch_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
-| `branch_gate_causality_online_two_drafts` | `branch_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
-| `branch_gate_fairness_after_two_attempts` | `branch_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
-| `claim_gate_001` | `claim_audit` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
-| `evaluator_gate_fairness_metric_guardrail` | `evaluator_approval` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
-| `idea_gate_001` | `idea_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
-| `program_search_gate_001` | `program_search_escalation` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| Gate | Source | Type | Complete | Missing fields |
+| --- | --- | --- | --- | --- |
+| `branch_gate_causality_after_two_drafts` | `human_gate_log` | `branch_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `branch_gate_causality_online_two_drafts` | `human_gate_log` | `branch_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `branch_gate_fairness_after_two_attempts` | `human_gate_log` | `branch_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `claim_gate_001` | `human_gate_log` | `claim_audit` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `evaluator_gate_fairness_metric_guardrail` | `human_gate_log` | `evaluator_approval` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `idea_gate_001` | `human_gate_log` | `idea_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `program_search_gate_001` | `human_gate_log` | `program_search_escalation` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `idea_gate_executable_trace_001` | `trajectory_gate[0]` | `idea_selection` | no | active_review_minutes, wall_clock_latency_minutes |
+| `evaluator_gate_executable_trace_001` | `trajectory_gate[1]` | `evaluator_approval` | no | active_review_minutes, wall_clock_latency_minutes |
+| `branch_gate_executable_trace_001` | `trajectory_gate[2]` | `branch_selection` | no | active_review_minutes, wall_clock_latency_minutes |
+| `program_search_gate_executable_trace_001` | `trajectory_gate[3]` | `program_search_escalation` | no | active_review_minutes, wall_clock_latency_minutes |
+| `claim_gate_executable_trace_001` | `trajectory_gate[4]` | `claim_audit` | no | active_review_minutes, wall_clock_latency_minutes |
+| `idea_gate_online_smoke_001` | `trajectory_gate[0]` | `idea_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `evaluator_gate_online_smoke_001` | `trajectory_gate[1]` | `evaluator_approval` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `branch_gate_online_smoke_001` | `trajectory_gate[2]` | `branch_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `program_search_gate_online_smoke_001` | `trajectory_gate[3]` | `program_search_escalation` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `claim_gate_online_smoke_001` | `trajectory_gate[4]` | `claim_audit` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
 
 ## Interpretation
 

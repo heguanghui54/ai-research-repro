@@ -122,7 +122,8 @@ gate types, but it is not yet a single online end-to-end co-pilot run.
 Following the latest paper-quality review, the schema and template now include
 an `attention_cost` block for active review minutes, wall-clock latency, options
 reviewed, artifacts reviewed, and decision count. The current attention-cost
-audit covers seven archived gate logs and finds zero complete measured
+audit covers 17 gate records: 7 standalone archived gate logs and 10 embedded
+trajectory gates across 2 trajectory artifacts. It finds zero complete measured
 attention-cost records. This is treated as a measurement-readiness gap: the
 logs support decision provenance, but not yet any claim that gates improve
 research quality per unit of human effort.

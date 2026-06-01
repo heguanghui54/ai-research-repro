@@ -30,8 +30,7 @@ def _is_number(value: Any) -> bool:
     return isinstance(value, (int, float)) and not isinstance(value, bool)
 
 
-def audit_gate(path: Path) -> dict[str, Any]:
-    data = _load_json(path)
+def audit_gate(path: Path, data: dict[str, Any], *, source: str) -> dict[str, Any]:
     cost = data.get("attention_cost")
     missing: list[str] = []
     numeric: dict[str, float] = {}
@@ -48,6 +47,7 @@ def audit_gate(path: Path) -> dict[str, Any]:
 
     return {
         "path": str(path.relative_to(ROOT)),
+        "source": source,
         "gate_id": data.get("gate_id"),
         "gate_type": data.get("gate_type"),
         "research_task_id": data.get("research_task_id"),
@@ -68,7 +68,9 @@ def _markdown(summary: dict[str, Any]) -> str:
         "",
         "## Summary",
         "",
-        f"- Gate logs audited: {summary['gate_logs_audited']}",
+        f"- Gate records audited: {summary['gate_records_audited']}",
+        f"- Standalone gate log files audited: {summary['standalone_gate_logs_audited']}",
+        f"- Trajectory files audited: {summary['trajectory_files_audited']}",
         f"- Logs with complete attention-cost records: {summary['complete_attention_cost_logs']}",
         f"- Logs missing one or more required attention-cost fields: {summary['incomplete_attention_cost_logs']}",
     ]
@@ -89,14 +91,16 @@ def _markdown(summary: dict[str, Any]) -> str:
             "",
             "## Per-Gate Coverage",
             "",
-            "| Gate | Type | Complete | Missing fields |",
-            "| --- | --- | --- | --- |",
+            "| Gate | Source | Type | Complete | Missing fields |",
+            "| --- | --- | --- | --- | --- |",
         ]
     )
     for gate in summary["gates"]:
         missing = ", ".join(gate["missing_attention_cost_fields"]) or "-"
         complete = "yes" if gate["complete_attention_cost"] else "no"
-        lines.append(f"| `{gate['gate_id']}` | `{gate['gate_type']}` | {complete} | {missing} |")
+        lines.append(
+            f"| `{gate['gate_id']}` | `{gate['source']}` | `{gate['gate_type']}` | {complete} | {missing} |"
+        )
 
     lines.extend(
         [
@@ -122,6 +126,15 @@ def main() -> None:
         default="docs/co_pilot_ai_scientist_v3/human_gate_logs",
     )
     parser.add_argument(
+        "--trajectory-glob",
+        action="append",
+        default=[
+            "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json",
+            "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_*/trajectory.json",
+        ],
+        help="Trajectory JSON glob(s) whose embedded gates should be audited.",
+    )
+    parser.add_argument(
         "--output-json",
         default="docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.json",
     )
@@ -132,7 +145,17 @@ def main() -> None:
     args = parser.parse_args()
 
     logs_dir = ROOT / args.logs_dir
-    gates = [audit_gate(path) for path in sorted(logs_dir.glob("*.json"))]
+    gates = [
+        audit_gate(path, _load_json(path), source="human_gate_log")
+        for path in sorted(logs_dir.glob("*.json"))
+    ]
+    for pattern in args.trajectory_glob:
+        for path in sorted(ROOT.glob(pattern)):
+            trajectory = _load_json(path)
+            for index, gate in enumerate(trajectory.get("gates", [])):
+                if isinstance(gate, dict):
+                    source = f"trajectory_gate[{index}]"
+                    gates.append(audit_gate(path, gate, source=source))
     complete = [gate for gate in gates if gate["complete_attention_cost"]]
 
     aggregate = None
@@ -146,7 +169,10 @@ def main() -> None:
         }
 
     summary = {
+        "gate_records_audited": len(gates),
         "gate_logs_audited": len(gates),
+        "standalone_gate_logs_audited": len(list(logs_dir.glob("*.json"))),
+        "trajectory_files_audited": sum(1 for pattern in args.trajectory_glob for _ in ROOT.glob(pattern)),
         "complete_attention_cost_logs": len(complete),
         "incomplete_attention_cost_logs": len(gates) - len(complete),
         "required_attention_cost_fields": REQUIRED_COST_FIELDS,

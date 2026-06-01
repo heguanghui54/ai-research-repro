@@ -273,7 +273,7 @@
     "Upgrade the current online full-gate smoke trajectory into a larger paper-generating trajectory from new hypothesis generation to final manuscript production.",
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "After the next major manuscript revision, rerun independent paper-quality review; current Monica-routed reviews still rate the package as pilot evidence, with GPT weak-accept and Claude reject.",
-    "Run prospective human-gated matched-budget experiments with complete attention_cost records; the current seven archived gate logs have 0 complete attention-cost records.",
+    "Run prospective human-gated matched-budget experiments with complete attention_cost records; the current 17 audited gate records include 7 standalone gate logs and 10 embedded trajectory gates across 2 trajectory artifacts, with 0 complete attention-cost records.",
     "Extend the online full-gate smoke comparison beyond the current negative 3-step Causality result to more tasks, seeds, and larger budgets.",
     "Pre-cache CIFAR10 or choose another data-ready MLAgentBench task for a second official non-FML score; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics."
   ],
