@@ -75,6 +75,26 @@ For future matched-budget experiments, every prospective gate log should fill
 `artifacts_reviewed_count`, and `decision_count`. Retrospective estimates should
 be marked as missing rather than guessed.
 
+To create a schema-compatible prospective gate log with measured attention
+cost, use:
+
+```bash
+python3 scripts/create_human_gate_log.py \
+  --gate-id frontier_gate_live_001 \
+  --gate-type frontier_steering \
+  --research-task-id your_task_id \
+  --option 'branch_a::Continue branch A' \
+  --option 'branch_b::Stop branch B' \
+  --human-decision branch_a \
+  --rationale 'Human rationale here.' \
+  --prompted-at-utc 2026-06-01T18:00:00Z \
+  --decision-at-utc 2026-06-01T18:04:30Z \
+  --active-review-minutes 3.5 \
+  --artifacts-reviewed-count 1 \
+  --require-complete-attention \
+  --output docs/co_pilot_ai_scientist_v3/human_gate_logs/frontier_gate_live_001.json
+```
+
 To record scientific taste and insight, use:
 
 ```text

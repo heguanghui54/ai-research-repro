@@ -21,7 +21,7 @@
   "unsupported_performance_requirements": [
     "Human collaboration improves paper quality",
     "Full Co-Pilot v3 outperforms autonomous AI Scientist-v2",
-    "Human attention cost is measured",
+    "Human attention cost is measured for real gates",
     "Top-conference-level empirical support"
   ],
   "current_counts": {
@@ -46,6 +46,12 @@
     "templates_parsed": 3,
     "generated_gate_validation_errors": 0,
     "live_llm_research_run": false
+  },
+  "attention_cost_logging_tooling": {
+    "status": "pass_for_synthetic_smoke",
+    "generated_complete_attention_cost_record": true,
+    "real_gate_complete_attention_cost_records": 0,
+    "performance_evidence": false
   },
   "next_evidence_milestone": "Run a prospective matched-budget end-to-end trajectory with complete taste_insight and attention_cost logs, a matched autonomous baseline, and a final claim-audited manuscript."
 }

@@ -130,6 +130,9 @@ For prospective matched-budget runs, fill `attention_cost` at every human gate.
 Do not estimate missing historical review time; run
 `scripts/audit_human_gate_attention_cost.py` and report missing coverage as a
 measurement gap.
+Use `scripts/create_human_gate_log.py` during prospective runs to create a
+schema-compatible gate log with active review minutes, wall-clock latency,
+options reviewed, artifacts reviewed, and decision count.
 
 For gates where human scientific taste or insight changes the search frontier,
 also fill `taste_insight` with the project rubric. Run
@@ -207,6 +210,7 @@ Reusable templates are stored next to this skill:
 - benchmark-to-claim matrix;
 - taste/insight rubric records;
 - human gate logs;
+- attention-cost logging smoke audit;
 - human attention-cost audit;
 - taste/insight coverage audit;
 - full-gate trajectory artifact;

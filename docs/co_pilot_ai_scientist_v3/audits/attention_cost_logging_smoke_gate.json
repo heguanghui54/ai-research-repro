@@ -1,0 +1,61 @@
+{
+  "gate_id": "attention_cost_logging_smoke_001",
+  "gate_type": "frontier_steering",
+  "timestamp_utc": "2026-06-01T18:04:30Z",
+  "research_task_id": "attention_cost_logging_smoke",
+  "options": [
+    {
+      "option_id": "continue_branch",
+      "summary": "Continue a high-upside branch with measured human review time",
+      "score": null,
+      "evidence": [],
+      "risks": []
+    },
+    {
+      "option_id": "stop_branch",
+      "summary": "Stop the branch and allocate budget to autonomous baseline",
+      "score": null,
+      "evidence": [],
+      "risks": []
+    }
+  ],
+  "human_decision": "continue_branch",
+  "rationale": "Synthetic tooling smoke showing that future human gates can record complete attention-cost fields prospectively.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md"
+  ],
+  "downstream_budget": {
+    "remote_experiments_launched": 0,
+    "purpose": "logging_smoke"
+  },
+  "attention_cost": {
+    "human_actor": "tooling_smoke",
+    "interaction_mode": "posthoc_replay",
+    "prompted_at_utc": "2026-06-01T18:00:00Z",
+    "decision_at_utc": "2026-06-01T18:04:30Z",
+    "active_review_minutes": 3.5,
+    "wall_clock_latency_minutes": 4.5,
+    "options_reviewed": 2,
+    "artifacts_reviewed_count": 1,
+    "decision_count": 1,
+    "notes": "Synthetic gate used to validate prospective attention-cost logging tooling; not a real experiment-performance gate."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-02",
+    "scores": {
+      "problem_depth": null,
+      "novelty_potential": null,
+      "mechanistic_value": null,
+      "failure_informativeness": null,
+      "benchmark_taste": null,
+      "claim_significance": null,
+      "risk_asymmetry": null
+    },
+    "taste_insight_score": null,
+    "qualitative_rationale": "Record why this decision reflects scientific taste or insight beyond the current metric.",
+    "non_metric_factors": []
+  },
+  "follow_up_checks": [
+    "Use this tool during the next live matched-budget human gate."
+  ]
+}

@@ -71,6 +71,25 @@ python3 scripts/audit_human_gate_attention_cost.py
 `artifacts_reviewed_count` 和 `decision_count`。不要凭记忆估计旧日志；缺失就
 明确记为缺失。
 
+如果要生成带完整 attention cost 的 prospective gate log，可以使用：
+
+```bash
+python3 scripts/create_human_gate_log.py \
+  --gate-id frontier_gate_live_001 \
+  --gate-type frontier_steering \
+  --research-task-id your_task_id \
+  --option 'branch_a::Continue branch A' \
+  --option 'branch_b::Stop branch B' \
+  --human-decision branch_a \
+  --rationale 'Human rationale here.' \
+  --prompted-at-utc 2026-06-01T18:00:00Z \
+  --decision-at-utc 2026-06-01T18:04:30Z \
+  --active-review-minutes 3.5 \
+  --artifacts-reviewed-count 1 \
+  --require-complete-attention \
+  --output docs/co_pilot_ai_scientist_v3/human_gate_logs/frontier_gate_live_001.json
+```
+
 如果要记录科研品味和 insight，使用：
 
 ```text

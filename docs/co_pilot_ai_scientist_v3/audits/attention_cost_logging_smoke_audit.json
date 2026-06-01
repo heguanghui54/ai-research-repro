@@ -1,0 +1,20 @@
+{
+  "audit_date": "2026-06-01T18:04:30Z",
+  "overall_status": "pass",
+  "generated_gate_log": "docs/co_pilot_ai_scientist_v3/audits/attention_cost_logging_smoke_gate.json",
+  "complete_attention_cost": true,
+  "validation_errors": [],
+  "attention_cost": {
+    "human_actor": "tooling_smoke",
+    "interaction_mode": "posthoc_replay",
+    "prompted_at_utc": "2026-06-01T18:00:00Z",
+    "decision_at_utc": "2026-06-01T18:04:30Z",
+    "active_review_minutes": 3.5,
+    "wall_clock_latency_minutes": 4.5,
+    "options_reviewed": 2,
+    "artifacts_reviewed_count": 1,
+    "decision_count": 1,
+    "notes": "Synthetic gate used to validate prospective attention-cost logging tooling; not a real experiment-performance gate."
+  },
+  "interpretation": "Synthetic tooling smoke; not counted as real human-gated experiment evidence."
+}

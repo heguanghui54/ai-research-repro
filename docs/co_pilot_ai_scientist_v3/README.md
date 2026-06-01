@@ -45,6 +45,8 @@ claim calibration.
   rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
 - `audits/skill_reuse_smoke_audit.md`: local smoke test that instantiates the
   reusable Codex skill templates and validates a generated human gate log.
+- `audits/attention_cost_logging_smoke_audit.md`: synthetic tooling smoke test
+  for creating future human gate logs with complete attention-cost fields.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.
