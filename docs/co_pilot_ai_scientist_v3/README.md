@@ -58,6 +58,9 @@ claim calibration.
 - `audits/prospective_matched_package_summary.md`: metric-level summary of
   currently passing prospective packages, separating positive micro-task
   evidence from negative FML-bench evidence.
+- `audits/fml_matched_comparison_summary.md`: machine-generated aggregate of
+  archived FML matched-budget comparisons, separating the formal two-pair
+  Causality replicate from the online smoke comparison.
 - `experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/`:
   matched mini-manuscript quality probe comparing the co-pilot package
   manuscript against an autonomous baseline manuscript.
@@ -98,7 +101,10 @@ Causality task. The first pair weakly favors human-gated continuation on held
 out test MAE (`0.402170` vs. `0.421474`), while the second pair favors the
 autonomous baseline (`0.646224` vs. `0.595685`). The two-pair mean slightly
 favors autonomous, so the manuscript now treats FML as mixed feasibility
-evidence rather than a proof of human-gate superiority. To avoid overfitting the
+evidence rather than a proof of human-gate superiority. This result is also
+captured in the machine-generated `audits/fml_matched_comparison_summary.md`,
+which adds win counts, mean delta, and SEM while explicitly marking the
+statistical claim as unsupported because `n=2`. To avoid overfitting the
 project to FML-bench, the package also includes a non-FML MLAgentBench
 `vectorization` comparison: direct DeepSeek rewrite failed the correctness gate, while
 three-iteration OpenEvolve-style search over eight random seeds retained a

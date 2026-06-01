@@ -1,0 +1,60 @@
+{
+  "status": "mixed_underpowered_fml_matched_evidence",
+  "metric": "IHDP test MAE",
+  "metric_direction": "lower",
+  "formal_pair_count": 2,
+  "formal_pairs": [
+    {
+      "pair_id": "causality_pair_1",
+      "task": "Causality_causalml",
+      "human_path": "docs/co_pilot_ai_scientist_v3/experiments/fml_selected_branch_continuation/summary.json",
+      "autonomous_path": "docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/summary.json",
+      "human_val_mae": 0.4012397173613497,
+      "human_test_mae": 0.4021701846791075,
+      "autonomous_val_mae": 0.38945144308464624,
+      "autonomous_test_mae": 0.42147360723655275,
+      "delta_autonomous_minus_human": 0.01930342255744527,
+      "winner": "human_gated",
+      "notes": "Two draft frontier steps plus two selected-snapshot continuation steps vs. autonomous four-step baseline."
+    },
+    {
+      "pair_id": "causality_pair_2",
+      "task": "Causality_causalml",
+      "human_path": "docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_rep2_selected_continuation/summary.json",
+      "autonomous_path": "docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_rep2_autonomous_4step/summary.json",
+      "human_val_mae": 0.627836868090553,
+      "human_test_mae": 0.6462237240158367,
+      "autonomous_val_mae": 0.5379716029896986,
+      "autonomous_test_mae": 0.5956850978622356,
+      "delta_autonomous_minus_human": -0.05053862615360116,
+      "winner": "autonomous_or_tie",
+      "notes": "Second matched replicate using the same task/model budget shape."
+    }
+  ],
+  "formal_aggregate": {
+    "human_gated_mean_test_mae": 0.524196954347472,
+    "autonomous_mean_test_mae": 0.5085793525493941,
+    "mean_delta_autonomous_minus_human": -0.015617601798077946,
+    "delta_sem": 0.03492102435552322,
+    "human_gated_wins": 1,
+    "autonomous_or_tie_wins": 1,
+    "statistical_claim": "not_supported_n_too_small"
+  },
+  "smoke_comparisons": [
+    {
+      "comparison_id": "online_smoke_matched_autonomous_3step_001",
+      "task": "Causality_causalml",
+      "human_test_mae": 0.8620153718142042,
+      "autonomous_test_mae": 0.4285158167033551,
+      "delta_autonomous_minus_human": -0.4334995551108491,
+      "winner": "autonomous_or_tie",
+      "fml_steps": {
+        "human_gated": 3,
+        "autonomous": 3
+      },
+      "interpretation": "Negative result for the smoke comparison: the matched autonomous 3-step baseline outperformed the one-step human-gated continuation on held-out test MAE. The online smoke still supports orchestration feasibility, not performance superiority.",
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_matched_autonomous_comparison.json"
+    }
+  ],
+  "claim_implication": "The formal FML Causality pairs are mixed and slightly favor autonomous on the two-pair mean. The online smoke comparison is also negative for co-pilot performance. These artifacts support branch-gate feasibility and evidence discipline, not superiority."
+}

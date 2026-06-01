@@ -435,6 +435,14 @@ therefore removes one compute-budget confound but remains mixed; it supports
 feasibility of branch-gate insertion and continuation, not general human-gate
 superiority.
 
+We now also generate this FML matched-comparison aggregate with a script rather
+than relying only on the hand-written table. The generated audit reports one
+human-gated win and one autonomous/tie win across the two formal pairs, mean
+autonomous-minus-human delta `-0.015618`, delta SEM `0.034921`, and statistical
+claim `not_supported_n_too_small`. The separate online-smoke comparison is also
+negative for co-pilot performance (`0.862015` versus `0.428516` test MAE). This
+scripted summary is the current authoritative FML performance evidence.
+
 ### 4.4 Non-FML Benchmark and Program-Search Probe
 
 Following the benchmark-selection principle above, we also used MLAgentBench as

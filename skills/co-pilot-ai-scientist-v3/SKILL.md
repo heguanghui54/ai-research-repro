@@ -100,6 +100,9 @@ and claim responsibility can reshape the trajectory.
    - After every online smoke or full trajectory, run or archive a matched
      autonomous baseline under the same task/model/step budget before making
      performance claims. Report negative comparisons directly.
+   - When multiple FML matched comparisons are archived, run
+     `scripts/summarize_fml_matched_comparisons.py` to report win counts, mean
+     deltas, and the explicit statistical limitation before updating claims.
    - For any claim beyond pilot feasibility, assemble a prospective matched-
      budget package and run `scripts/audit_prospective_matched_budget_package.py`.
      If this audit fails, keep superiority, paper-quality, and attention-

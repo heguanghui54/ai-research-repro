@@ -153,6 +153,15 @@ separate evidence-shape success from actual benchmark outcomes. The current
 summary contains one controlled micro-task co-pilot win and one FML-bench
 co-pilot loss.
 
+To regenerate the aggregate FML matched-comparison table, run:
+
+```bash
+python3 scripts/summarize_fml_matched_comparisons.py
+```
+
+This writes `audits/fml_matched_comparison_summary.md/json`. It keeps the formal
+two-pair Causality replicate separate from the online smoke comparison.
+
 To score the current matched FML mini-manuscripts, run:
 
 ```bash

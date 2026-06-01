@@ -127,6 +127,8 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 
 因此，两组同预算对照的结论是 mixed evidence：一组 held-out test 支持 human-gated continuation，另一组支持 autonomous baseline。两组平均后，human-gated test MAE 为 0.524197，autonomous test MAE 为 0.508579；由于该指标越低越好，均值反而略支持 autonomous baseline。这个结果消除了一个重要的计算预算混淆因素，但不支持“人类 gate 普遍优越”的宽泛结论；它只支持 branch gate 可以插入、selected snapshot 可以继续搜索这一可行性主张。
 
+我们现在还用脚本生成这组 FML matched-comparison aggregate，而不只依赖手写表格。生成的 audit 显示：两组正式 pair 中，human-gated 胜 1 次，autonomous/tie 胜 1 次；autonomous-minus-human 的平均 delta 为 -0.015618，delta SEM 为 0.034921，并显式标注 statistical claim 为 `not_supported_n_too_small`。单独的 online-smoke comparison 对 co-pilot performance 也是负结果：test MAE 为 0.862015 对 0.428516。因此，这份脚本化 summary 是当前 FML performance evidence 的权威汇总。
+
 ### 4.4 非 FML benchmark 与程序搜索小实验
 
 根据上面的 benchmark 选择原则，我们还把 MLAgentBench 作为非 FML 评估来源。我们在 Ubuntu 主机上克隆 MLAgentBench，并先运行其轻量 `vectorization` 任务，使用内置 `Agent` baseline。该 baseline 只执行 starter `train.py` 并提交结果。官方 baseline 成功完成，final score 为 3.172504 秒，total benchmark time 为 3.365531 秒，且没有错误标记。

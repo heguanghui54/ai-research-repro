@@ -117,5 +117,15 @@
       "ties": 0,
       "limitation": "single FML package mini-manuscripts only; not full end-to-end paper quality evidence"
     }
+  },
+  "fml_matched_comparison_summary": {
+    "status": "mixed_underpowered_fml_matched_evidence",
+    "summary": "docs/co_pilot_ai_scientist_v3/audits/fml_matched_comparison_summary.md",
+    "formal_pair_count": 2,
+    "human_gated_wins": 1,
+    "autonomous_or_tie_wins": 1,
+    "mean_delta_autonomous_minus_human": -0.015617601798077935,
+    "online_smoke_winner": "autonomous_or_tie",
+    "claim_implication": "branch_gate_feasibility_supported_superiority_not_supported"
   }
 }

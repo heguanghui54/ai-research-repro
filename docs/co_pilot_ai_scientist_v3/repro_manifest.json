@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_matched_mini_manuscript_quality_probe",
+  "status": "pilot_package_with_scripted_fml_matched_aggregate",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -318,7 +318,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/gpt-4o-mini.md",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/gpt-4o-mini.json",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/claude-3-7-sonnet-latest.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/claude-3-7-sonnet-latest.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/claude-3-7-sonnet-latest.json",
+    "scripts/summarize_fml_matched_comparisons.py",
+    "docs/co_pilot_ai_scientist_v3/audits/fml_matched_comparison_summary.md",
+    "docs/co_pilot_ai_scientist_v3/audits/fml_matched_comparison_summary.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -434,5 +437,16 @@
       "claude-3-7-sonnet-latest"
     ],
     "interpretation": "measurement_readiness_and_weak_mini_manuscript_signal_only"
+  },
+  "fml_matched_comparison_summary": {
+    "status": "mixed_underpowered_fml_matched_evidence",
+    "script": "scripts/summarize_fml_matched_comparisons.py",
+    "summary": "docs/co_pilot_ai_scientist_v3/audits/fml_matched_comparison_summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/fml_matched_comparison_summary.json",
+    "formal_pair_count": 2,
+    "human_gated_wins": 1,
+    "autonomous_or_tie_wins": 1,
+    "mean_delta_autonomous_minus_human": -0.015617601798077935,
+    "statistical_claim": "not_supported_n_too_small"
   }
 }
