@@ -7,6 +7,10 @@ than one benchmark can measure.
 
 The benchmark suite is therefore selected by claim type.
 
+The companion `benchmark_claim_matrix.md` file records the current mapping from
+claims to evidence. It should be updated whenever a new benchmark is added or a
+setup probe becomes a scored run.
+
 ## Selection Criteria
 
 1. **Matches a paper claim**: the benchmark must measure one part of the

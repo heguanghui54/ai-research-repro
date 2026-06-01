@@ -22,6 +22,8 @@ delegating machine-gradeable subproblems to AlphaEvolve-style code evolution.
   Coscientist, and related systems map into this proposal.
 - `architecture.md`: data-flow view of the four loops and five human gates.
 - `benchmark_selection.md`: tiered benchmark strategy beyond FML-bench.
+- `benchmark_claim_matrix.md`: claim-to-benchmark matrix recording what each
+  benchmark can and cannot prove.
 - `candidates.json`: candidate research directions and a scoring rubric.
 - `experiment_protocol.md`: minimal benchmark and ablation plan.
 - `paper_en.md`: English manuscript draft.

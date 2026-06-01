@@ -57,6 +57,10 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 指标包括任务分数、论文质量、主张支持率、搜索效率、人类注意力成本和假设多样性。对于程序化搜索模块，关键消融是：在相同 evaluator 和迭代预算下，比较 OpenEvolve 与直接重复 LLM 代码编辑。因此，FML-bench 应被理解为当前证据来源之一，而不是整个项目的完整 benchmark 定义。
 
+为了让这一原则可以执行，我们维护了一份 benchmark-to-claim matrix。
+FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人类 gate
+整体优于 autonomous baseline。FML-bench Fairness 支持 evaluator gate 的必要性，因为可执行性修复和退化预测器暴露了单指标投机风险。OpenEvolve 函数最小化、knapsack、MLAgentBench vectorization 和 sklearn diabetes probe 分别从不同子问题类型检验 program-search escalation policy。ScienceAgentBench、MLE-bench Lite、PaperBench 和 AIRS-Bench 仍是下一阶段扩展目标，而不是当前已打分主张。因此，后续实验应按“最弱且尚未被支持的主张”来选择，而不是按哪个 benchmark 最方便来选择。
+
 ### 4.1 初步程序化搜索 smoke test
 
 作为可行性检查，我们已经在 SSH 控制的 Ubuntu 主机上运行了 OpenEvolve 0.2.27，并通过 OpenAI-compatible API 调用 DeepSeek。任务是一个小型函数最小化 evaluator，初始程序为随机搜索。一次 OpenEvolve 迭代后，系统将 evaluator 分数从 0.0345 提高到 0.0378，并保存了一个模拟退火风格的 evolved program。这个结果只是 smoke test：它证明远程 OpenEvolve 路径、evaluator 加载、模型路由、checkpoint 和 artifact 捕获可以跑通，但还不能证明本文核心主张，即 human-gated research 能提升最终论文质量。

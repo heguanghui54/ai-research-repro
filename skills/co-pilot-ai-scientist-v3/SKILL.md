@@ -37,6 +37,9 @@ high-leverage creative, evaluation, search, and claim-audit nodes.
      bench is useful for AI Scientist-v2-style branch search, while
      MLAgentBench, ScienceAgentBench, MLE-bench, PaperBench, or custom
      machine-gradeable tasks may be better for other claims.
+   - Maintain a benchmark-to-claim matrix that states what each benchmark can
+     support and what it cannot prove yet. Use this matrix to choose the next
+     run by the weakest unsupported claim.
    - Treat benchmark availability as evidence: if a benchmark's code is present
      but its private/verified data are absent, log that as a setup probe rather
      than reporting scores.
@@ -157,6 +160,7 @@ Reusable templates are stored next to this skill:
 - problem statement;
 - candidate hypotheses and scores;
 - literature and benchmark notes;
+- benchmark-to-claim matrix;
 - human gate logs;
 - full-gate trajectory artifact;
 - experiment logs and metrics;

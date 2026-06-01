@@ -18,6 +18,8 @@
     "docs/co_pilot_ai_scientist_v3/architecture.md",
     "docs/co_pilot_ai_scientist_v3/literature_matrix.md",
     "docs/co_pilot_ai_scientist_v3/benchmark_selection.md",
+    "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md",
+    "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.json",
     "docs/co_pilot_ai_scientist_v3/candidates.json",
     "docs/co_pilot_ai_scientist_v3/experiment_protocol.md",
     "docs/co_pilot_ai_scientist_v3/paper_en.md",

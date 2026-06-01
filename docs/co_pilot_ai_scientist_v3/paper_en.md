@@ -141,6 +141,17 @@ the same evaluator and iteration budget. FML-bench should therefore be read as
 one current evidence source, not as the complete benchmark definition for the
 project.
 
+To make this principle operational, we maintain a benchmark-to-claim matrix.
+FML-bench Causality supports the branch-gate feasibility claim but does not yet
+show general human-gate superiority. FML-bench Fairness supports the need for
+evaluator gates because executable repairs and degenerate predictors reveal
+metric-gaming risk. OpenEvolve function minimization, knapsack, MLAgentBench
+vectorization, and sklearn diabetes probes test the program-search escalation
+policy under different subproblem types. ScienceAgentBench, MLE-bench Lite,
+PaperBench, and AIRS-Bench remain expansion targets rather than current scored
+claims. Future runs should therefore be chosen by the weakest unsupported claim,
+not by convenience.
+
 ### 4.1 Preliminary Programmatic-Search Smoke Test
 
 As an initial feasibility check, we ran OpenEvolve 0.2.27 on the SSH-controlled

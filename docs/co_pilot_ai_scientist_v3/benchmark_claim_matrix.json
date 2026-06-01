@@ -1,0 +1,57 @@
+{
+  "purpose": "Tie each benchmark to the specific paper claim it can support.",
+  "selection_rule": "Choose future runs by the weakest unsupported claim, not by benchmark convenience.",
+  "entries": [
+    {
+      "claim_family": "AI Scientist-v2 branch-gate feasibility",
+      "benchmark_or_probe": "FML-bench Causality_causalml",
+      "current_evidence": "Live two-draft branch gate, selected-snapshot continuation, and two matched autonomous four-step baselines.",
+      "supports": "A human branch gate can be inserted into real AI Scientist-v2-style logs and continued from the selected snapshot.",
+      "does_not_prove": "General human-gate superiority; the two matched pairs are mixed and the mean test MAE slightly favors autonomous."
+    },
+    {
+      "claim_family": "Evaluator-gate necessity",
+      "benchmark_or_probe": "FML-bench Fairness_fairlearn",
+      "current_evidence": "Failed two-draft extension plus repair and degenerate-predictor analysis.",
+      "supports": "Gates must reject non-executable branches and metric-gaming fairness solutions before continuation.",
+      "does_not_prove": "A successful fairness-task improvement."
+    },
+    {
+      "claim_family": "AlphaEvolve-style subproblem search",
+      "benchmark_or_probe": "OpenEvolve function minimization and knapsack",
+      "current_evidence": "Direct edit beats or matches tiny function search; OpenEvolve improves the richer knapsack heuristic to 0.999439 average optimality ratio.",
+      "supports": "Program search should be controlled by an escalation gate and can help on richer machine-gradeable subproblems.",
+      "does_not_prove": "That OpenEvolve should always replace direct editing."
+    },
+    {
+      "claim_family": "Non-FML ML experimentation",
+      "benchmark_or_probe": "MLAgentBench vectorization plus controlled evaluator",
+      "current_evidence": "Official baseline runs; controlled OpenEvolve search keeps correct programs in 8/8 seeds with median runtime 0.024581 seconds versus 3.261186 starter runtime.",
+      "supports": "Program-search escalation works beyond FML-bench on correctness-gated ML code optimization.",
+      "does_not_prove": "Whole-paper quality improvement or robust success under larger official MLAgentBench tasks."
+    },
+    {
+      "claim_family": "Non-runtime modeling boundary",
+      "benchmark_or_probe": "sklearn diabetes tabular regression probe",
+      "current_evidence": "Direct rewrite and three OpenEvolve seeds all improve from RMSE 78.572189 to roughly 55.9; direct rewrite matches median OpenEvolve.",
+      "supports": "Direct editing can be enough for standard small modeling changes, so the escalation gate must be selective.",
+      "does_not_prove": "Official benchmark performance or a program-search advantage."
+    },
+    {
+      "claim_family": "Scientific workflow benchmark expansion",
+      "benchmark_or_probe": "ScienceAgentBench setup probe",
+      "current_evidence": "Repository present, but verified artifacts and HuggingFace metadata are unavailable from the Ubuntu host.",
+      "supports": "The benchmark is relevant but currently blocked; setup failures are logged instead of inflated into scores.",
+      "does_not_prove": "Any ScienceAgentBench task score."
+    },
+    {
+      "claim_family": "Higher-cost end-to-end ML engineering",
+      "benchmark_or_probe": "MLE-bench Lite, PaperBench, AIRS-Bench",
+      "current_evidence": "Not run in the current budget.",
+      "supports": "Stretch targets for future top-conference-level evaluation.",
+      "does_not_prove": "Any current empirical claim."
+    }
+  ],
+  "next_highest_value_run": "A single online trajectory with idea, evaluator, branch, program-search, and claim gates active in one continuous experiment, followed by a matched autonomous baseline under the same budget.",
+  "next_benchmark_expansion": "At least one scored official non-FML task that exercises end-to-end experimentation rather than only a controlled subproblem."
+}
