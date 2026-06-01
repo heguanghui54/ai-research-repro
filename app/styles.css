@@ -145,6 +145,11 @@ button:disabled {
   gap: 6px;
 }
 
+.progressBox small {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 .studentBox button {
   background: #fff;
   color: var(--text);
@@ -174,6 +179,29 @@ button:disabled {
 .videoHeader p,
 .suggestionBox p {
   color: var(--muted);
+}
+
+.roleBadge {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 12px;
+  line-height: 1.4;
+  border: 1px solid #c7d0da;
+  background: #f7f9fc;
+  color: var(--muted);
+}
+
+.roleBadge.double_check {
+  border-color: #b98700;
+  background: #fff7df;
+  color: var(--warn);
+}
+
+.roleBadge.primary {
+  border-color: #b8c7ea;
+  background: #eef5ff;
+  color: #1d4f9a;
 }
 
 .content {

@@ -191,6 +191,15 @@ const blankForm = {
 
 const studentCodes = Array.from({ length: 10 }, (_, i) => `STU${String(i + 1).padStart(2, "0")}`);
 
+function taskRole(task) {
+  const role = String(task?.task_role || "").toLowerCase();
+  return ["double", "double_check", "double-check", "secondary", "review"].includes(role) ? "double_check" : "primary";
+}
+
+function taskRoleLabel(task) {
+  return taskRole(task) === "double_check" ? "复核编码" : "主编码";
+}
+
 export default function Page() {
   const [session, setSession] = useState(null);
   const [login, setLogin] = useState({ student_name: "", student_code: "STU01", access_code: "" });
@@ -212,6 +221,10 @@ export default function Page() {
 
   const activeTask = useMemo(() => tasks.find((task) => task.video_id === activeId), [tasks, activeId]);
   const completed = tasks.filter((task) => task.my_submission).length;
+  const primaryTasks = tasks.filter((task) => taskRole(task) === "primary");
+  const reviewTasks = tasks.filter((task) => taskRole(task) === "double_check");
+  const primaryCompleted = primaryTasks.filter((task) => task.my_submission).length;
+  const reviewCompleted = reviewTasks.filter((task) => task.my_submission).length;
 
   async function submitLogin(event) {
     event.preventDefault();
@@ -331,11 +344,13 @@ export default function Page() {
         <div className="progressBox">
           <span>我的进度</span>
           <strong>{completed} / {tasks.length}</strong>
+          <small>主编码 {primaryCompleted}/{primaryTasks.length} · 复核 {reviewCompleted}/{reviewTasks.length}</small>
         </div>
         <div className="taskList">
           {tasks.map((task) => (
             <button key={task.video_id} className={task.video_id === activeId ? "active" : ""} onClick={() => selectTask(task)}>
               <span>{task.priority}. {task.video_id}</span>
+              <span className={`roleBadge ${taskRole(task)}`}>{taskRoleLabel(task)}</span>
               <small>{task.platform} · {task.keyword} {task.my_submission ? "· 已填" : ""}</small>
             </button>
           ))}
@@ -349,6 +364,7 @@ export default function Page() {
             <li>先点击“打开视频”，至少看完能判断动作、字幕、口令、剪辑节奏和标题标签的部分。</li>
             <li>LLM 建议只能作参考，最终编码以你的人工观看判断为准。</li>
             <li>看不到视频或证据不足时填“无法判断”，不要凭标题硬猜。</li>
+            <li>“复核编码”是研究信度检验任务，需要独立观看和判断，不要询问主编码同学的答案。</li>
             <li>备注只写匿名化证据短语，例如“口令跟练;呼吸提示”“热歌快剪;全身可见”。</li>
           </ol>
         </section>
@@ -357,7 +373,8 @@ export default function Page() {
           <form className="codingForm" onSubmit={saveSubmission}>
             <section className="videoHeader">
               <div>
-                <p className="eyebrow">{activeTask.platform} · {activeTask.keyword} · {activeTask.task_role}</p>
+                <p className="eyebrow">{activeTask.platform} · {activeTask.keyword}</p>
+                <span className={`roleBadge ${taskRole(activeTask)}`}>{taskRoleLabel(activeTask)}</span>
                 <h2>{activeTask.title}</h2>
                 <p>{activeTask.hashtags}</p>
               </div>
