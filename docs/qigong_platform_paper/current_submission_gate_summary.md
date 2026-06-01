@@ -52,6 +52,10 @@ python3 scripts/build_qigong_current_submission_gate.py
 | SportsLabKit/OpenCV 环境 | 当前本机 `sportslabkit=False`，`opencv_motion=True`，本地视频 0 | 未跑通前不能写 SportsLabKit 结果 |
 | HF/benchmark 边界 | 已通过 | HF/MultiSports 只作为基线和校准，不替代真实短视频平台样本 |
 
+## 参考文献层状态
+
+目标刊题录引用已生成投稿前核验包：`docs/qigong_platform_paper/reference_verification_pack.md`。当前 28 条目标刊候选均可从本地题录矩阵反查到作者、题名、期刊、年卷期页和 DOI，可用于初稿写作；但投稿前仍需逐条对照 CNKI 或期刊官网。外部理论与技术文献仍需单独核验，不能用目标刊文献替代德里达、SportsLabKit/MultiSports/P2ANet、平台健康传播等文献层。
+
 ## 下一步优先级
 
 1. 学生完成网页人工编码，先解决 `0/120`。
