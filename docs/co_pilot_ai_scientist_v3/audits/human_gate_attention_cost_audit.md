@@ -6,11 +6,11 @@ as missing rather than estimated.
 
 ## Summary
 
-- Gate records audited: 17
-- Standalone gate log files audited: 7
+- Gate records audited: 18
+- Standalone gate log files audited: 8
 - Trajectory files audited: 2
 - Logs with complete attention-cost records: 0
-- Logs missing one or more required attention-cost fields: 17
+- Logs missing one or more required attention-cost fields: 18
 - Aggregate attention cost: unavailable because no complete gate log has measured minutes.
 
 ## Per-Gate Coverage
@@ -24,6 +24,7 @@ as missing rather than estimated.
 | `evaluator_gate_fairness_metric_guardrail` | `human_gate_log` | `evaluator_approval` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
 | `idea_gate_001` | `human_gate_log` | `idea_selection` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
 | `program_search_gate_001` | `human_gate_log` | `program_search_escalation` | no | active_review_minutes, wall_clock_latency_minutes, options_reviewed, artifacts_reviewed_count, decision_count |
+| `scientific_taste_prior_benchmark_portfolio_001` | `human_gate_log` | `scientific_taste_prior` | no | active_review_minutes, wall_clock_latency_minutes |
 | `idea_gate_executable_trace_001` | `trajectory_gate[0]` | `idea_selection` | no | active_review_minutes, wall_clock_latency_minutes |
 | `evaluator_gate_executable_trace_001` | `trajectory_gate[1]` | `evaluator_approval` | no | active_review_minutes, wall_clock_latency_minutes |
 | `branch_gate_executable_trace_001` | `trajectory_gate[2]` | `branch_selection` | no | active_review_minutes, wall_clock_latency_minutes |

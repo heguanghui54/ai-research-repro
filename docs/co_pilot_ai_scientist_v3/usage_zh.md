@@ -85,7 +85,7 @@ docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md
 python3 scripts/audit_taste_insight_coverage.py
 ```
 
-当前历史 gate 早于该 rubric，因此完整 taste/insight 记录数为 0。应把它视为下一轮 prospective logging 要求，而不是“人类科研品味无效”的负结果。
+当前归档中已有 1 条完整 taste/insight 记录，来自作者关于 benchmark portfolio 和高尾部科研框架的决策；另外 17 条较早记录仍缺少该字段。应把它视为初始 logging coverage，而不是“人类科研品味有效或无效”的性能结果。
 
 ## 人类参与节点
 

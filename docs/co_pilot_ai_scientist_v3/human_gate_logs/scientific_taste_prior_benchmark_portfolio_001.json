@@ -1,0 +1,105 @@
+{
+  "gate_id": "scientific_taste_prior_benchmark_portfolio_001",
+  "gate_type": "scientific_taste_prior",
+  "timestamp_utc": "2026-06-01T16:19:13Z",
+  "research_task_id": "copilot_v3_benchmark_portfolio_and_high_tail_framing",
+  "options": [
+    {
+      "option_id": "fml_centric_mean_score",
+      "summary": "Keep the paper centered on FML-bench matched-budget scores and treat human participation mainly as branch approval.",
+      "score": 2.8,
+      "evidence": [
+        "FML-bench Causality already has two matched-budget pairs and an online smoke comparison.",
+        "Existing FML results are mixed and include a negative online-smoke comparison."
+      ],
+      "risks": [
+        "Would make the paper look like a narrow AI Scientist-v2 benchmark patch.",
+        "Average short-budget scores do not capture the user's target claim about rare high-impact scientific outcomes."
+      ]
+    },
+    {
+      "option_id": "claim_matched_benchmark_portfolio",
+      "summary": "Use a claim-matched benchmark portfolio and evaluate both mean task performance and high-tail scientific upside from human taste/insight gates.",
+      "score": 4.6,
+      "evidence": [
+        "User explicitly requested that benchmarks should not be limited to FML-Bench.",
+        "User emphasized that human participation may lower average performance while increasing the chance of original, field-opening work.",
+        "Current artifacts already include FML-bench, OpenEvolve-controlled tasks, MLAgentBench vectorization, sklearn diabetes, and setup probes for larger official benchmarks."
+      ],
+      "risks": [
+        "Requires stricter claim calibration because the portfolio remains pilot-level.",
+        "Needs prospective taste_insight and attention_cost logging before any high-tail effect claim."
+      ]
+    },
+    {
+      "option_id": "generic_copilot_approval_workflow",
+      "summary": "Frame human involvement as ordinary approval, preference selection, or post-hoc oversight over an autonomous research system.",
+      "score": 2.1,
+      "evidence": [
+        "This is easier to implement and resembles common co-pilot workflows."
+      ],
+      "risks": [
+        "Insufficient methodological distinction from other co-pilot-style automated research papers.",
+        "Does not operationalize non-quantifiable scientific taste or insight."
+      ]
+    }
+  ],
+  "human_decision": "Select claim_matched_benchmark_portfolio and make scientific taste/insight, not generic approval, the core IGRE distinction.",
+  "rationale": "The paper should not optimize for the easiest benchmark story. The strongest research contribution is to test whether human scientific taste can reshape the search frontier toward rare, high-upside trajectories even when mean short-budget benchmark scores are mixed or worse. This requires a claim-matched benchmark portfolio and explicit high-tail evaluation, while preserving negative results and measurement-readiness gaps.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/benchmark_selection.md",
+    "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md",
+    "docs/co_pilot_ai_scientist_v3/experiment_protocol.md",
+    "docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md",
+    "docs/co_pilot_ai_scientist_v3/paper_en.md",
+    "docs/co_pilot_ai_scientist_v3/paper_zh.md"
+  ],
+  "downstream_budget": {
+    "selected_framing": "claim_matched_benchmark_portfolio",
+    "priority_next_runs": [
+      "prospective taste_insight logging for all future human gates",
+      "second scored official non-FML benchmark when host data access permits",
+      "multi-seed matched-budget FML and non-FML comparisons",
+      "high-tail trajectory review alongside mean benchmark score"
+    ],
+    "claim_policy": "Do not claim human-gate superiority from taste scores alone; compare downstream trajectories against autonomous baselines."
+  },
+  "attention_cost": {
+    "human_actor": "author_instruction",
+    "interaction_mode": "async_review",
+    "prompted_at_utc": null,
+    "decision_at_utc": "2026-06-01T16:19:13Z",
+    "active_review_minutes": null,
+    "wall_clock_latency_minutes": null,
+    "options_reviewed": 3,
+    "artifacts_reviewed_count": 6,
+    "decision_count": 1,
+    "notes": "The decision is grounded in explicit user guidance during the paper revision thread; active review time was not measured prospectively."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-02",
+    "scores": {
+      "problem_depth": 5,
+      "novelty_potential": 4,
+      "mechanistic_value": 4,
+      "failure_informativeness": 5,
+      "benchmark_taste": 5,
+      "claim_significance": 5,
+      "risk_asymmetry": 4
+    },
+    "taste_insight_score": 4.6,
+    "qualitative_rationale": "The selected framing preserves a scientifically meaningful high-tail hypothesis: human insight may be noisy or harmful on average, but can still matter by redirecting search toward deeper questions, better evaluators, and more original claims. The benchmark portfolio is chosen for claim fit rather than convenience.",
+    "non_metric_factors": [
+      "scientific originality",
+      "field-level question taste",
+      "high-upside branch preservation",
+      "negative-result informativeness",
+      "benchmark-to-claim fit"
+    ]
+  },
+  "follow_up_checks": [
+    "Rerun taste/insight coverage audit and report this as the first complete prospective taste record.",
+    "Keep attention-cost claims blocked because active review minutes remain unmeasured.",
+    "Update the manuscript to distinguish this gate from preference labeling, approval, and safety oversight."
+  ]
+}

@@ -94,9 +94,10 @@ run:
 python3 scripts/audit_taste_insight_coverage.py
 ```
 
-The current archived gates predate the rubric and therefore have 0 complete
-taste/insight records. Treat that as a prospective logging requirement, not as
-a negative result about human scientific taste.
+The current archive has 1 complete taste/insight record, from the author's
+benchmark-portfolio and high-tail framing decision, and 17 older records without
+the field. Treat this as initial logging coverage, not as a performance result
+about human scientific taste.
 
 ## Human Gate Types
 

@@ -1,9 +1,9 @@
 {
-  "gate_records_audited": 17,
-  "standalone_gate_logs_audited": 7,
+  "gate_records_audited": 18,
+  "standalone_gate_logs_audited": 8,
   "trajectory_files_audited": 2,
-  "records_with_taste_insight": 0,
-  "complete_taste_insight_records": 0,
+  "records_with_taste_insight": 1,
+  "complete_taste_insight_records": 1,
   "incomplete_taste_insight_records": 17,
   "required_taste_fields": [
     "rubric_version",
@@ -21,7 +21,9 @@
     "claim_significance",
     "risk_asymmetry"
   ],
-  "aggregate_taste_insight": null,
+  "aggregate_taste_insight": {
+    "mean_taste_insight_score": 4.6
+  },
   "gates": [
     {
       "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/branch_gate_causality_after_two_drafts.json",
@@ -197,6 +199,26 @@
       "complete_taste_insight": false,
       "numeric_scores": {},
       "taste_insight_score": null
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/scientific_taste_prior_benchmark_portfolio_001.json",
+      "source": "human_gate_log",
+      "gate_id": "scientific_taste_prior_benchmark_portfolio_001",
+      "gate_type": "scientific_taste_prior",
+      "research_task_id": "copilot_v3_benchmark_portfolio_and_high_tail_framing",
+      "has_taste_insight": true,
+      "missing_taste_insight_fields": [],
+      "complete_taste_insight": true,
+      "numeric_scores": {
+        "problem_depth": 5.0,
+        "novelty_potential": 4.0,
+        "mechanistic_value": 4.0,
+        "failure_informativeness": 5.0,
+        "benchmark_taste": 5.0,
+        "claim_significance": 5.0,
+        "risk_asymmetry": 4.0
+      },
+      "taste_insight_score": 4.6
     },
     {
       "path": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json",

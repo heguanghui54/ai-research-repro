@@ -116,13 +116,14 @@ potential, mechanistic value, failure informativeness, benchmark taste, claim
 significance, and risk asymmetry. This keeps IGRE distinct from generic
 co-pilot approval workflows. The rubric does not prove performance improvement
 by itself; it lets future matched runs test whether human taste changes the
-upper tail of research trajectories. A new coverage audit applies this rubric
-to the 17 archived gate records and finds 0 records with a `taste_insight`
-object and 0 complete taste/insight records. This is expected because the
-rubric was introduced after the historical gates were produced, but it is now an
-explicit blocker for any high-tail taste claim: future prospective gates must
-record the field before the paper can argue that taste-gated search changed
-research outcomes.
+upper tail of research trajectories. A new coverage audit now covers 18 gate
+records: 8 standalone human-gate logs and 10 embedded trajectory gates across 2
+trajectory artifacts. It finds 1 complete `taste_insight` record, the
+scientific-taste prior that captures the author's benchmark-portfolio and
+high-tail framing decision, and 17 older gates without taste/insight fields.
+This is an initial logging artifact, not performance evidence: future
+prospective gates must record the field before the paper can argue that
+taste-gated search changed research outcomes.
 
 The latest benchmark-expansion probes are deliberately recorded as setup
 evidence rather than inflated results. A second official MLAgentBench
@@ -144,7 +145,7 @@ gate types, but it is not yet a single online end-to-end co-pilot run.
 Following the latest paper-quality review, the schema and template now include
 an `attention_cost` block for active review minutes, wall-clock latency, options
 reviewed, artifacts reviewed, and decision count. The current attention-cost
-audit covers 17 gate records: 7 standalone archived gate logs and 10 embedded
+audit covers 18 gate records: 8 standalone archived gate logs and 10 embedded
 trajectory gates across 2 trajectory artifacts. It finds zero complete measured
 attention-cost records. This is treated as a measurement-readiness gap: the
 logs support decision provenance, but not yet any claim that gates improve

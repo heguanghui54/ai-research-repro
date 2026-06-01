@@ -1,10 +1,10 @@
 {
-  "gate_records_audited": 17,
-  "gate_logs_audited": 17,
-  "standalone_gate_logs_audited": 7,
+  "gate_records_audited": 18,
+  "gate_logs_audited": 18,
+  "standalone_gate_logs_audited": 8,
   "trajectory_files_audited": 2,
   "complete_attention_cost_logs": 0,
-  "incomplete_attention_cost_logs": 17,
+  "incomplete_attention_cost_logs": 18,
   "required_attention_cost_fields": [
     "active_review_minutes",
     "wall_clock_latency_minutes",
@@ -132,6 +132,24 @@
       ],
       "complete_attention_cost": false,
       "numeric_attention_cost": {}
+    },
+    {
+      "path": "docs/co_pilot_ai_scientist_v3/human_gate_logs/scientific_taste_prior_benchmark_portfolio_001.json",
+      "source": "human_gate_log",
+      "gate_id": "scientific_taste_prior_benchmark_portfolio_001",
+      "gate_type": "scientific_taste_prior",
+      "research_task_id": "copilot_v3_benchmark_portfolio_and_high_tail_framing",
+      "has_attention_cost": true,
+      "missing_attention_cost_fields": [
+        "active_review_minutes",
+        "wall_clock_latency_minutes"
+      ],
+      "complete_attention_cost": false,
+      "numeric_attention_cost": {
+        "options_reviewed": 3.0,
+        "artifacts_reviewed_count": 6.0,
+        "decision_count": 1.0
+      }
     },
     {
       "path": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json",
