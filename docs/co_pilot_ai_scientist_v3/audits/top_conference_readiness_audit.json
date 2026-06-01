@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-01",
+  "audit_date": "2026-06-02",
   "overall_status": "pilot_package_not_yet_top_conference_ready",
   "satisfied_artifact_requirements": [
     "English PDF paper",
@@ -22,8 +22,7 @@
     "Human collaboration improves paper quality",
     "Full Co-Pilot v3 outperforms autonomous AI Scientist-v2",
     "Human attention cost is measured for real gates",
-    "Top-conference-level empirical support",
-    "A non-synthetic prospective matched-budget package with complete attention/taste logs and manuscript output"
+    "Top-conference-level empirical support"
   ],
   "current_counts": {
     "human_gate_records_audited": 18,
@@ -70,12 +69,45 @@
       "autonomous_mean_normalized_score": 0.5962135415932638,
       "higher_is_better": true,
       "interpretation": "positive_controlled_micro_task_not_paper_quality_evidence"
-    }
+    },
+    "complete_attention_cost_gates": 2,
+    "complete_taste_insight_gates": 2
   },
   "attention_taste_logging_tooling": {
     "status": "pass_for_synthetic_smoke",
     "generated_complete_attention_cost_record": true,
     "generated_complete_taste_insight_record": true,
     "real_performance_evidence": false
+  },
+  "paper_quality_review": {
+    "status": "mixed_model_review_not_top_conference_ready",
+    "review_date": "2026-06-02",
+    "summary": "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",
+    "models": {
+      "gpt-4o-mini": {
+        "recommendation": "Weak accept",
+        "novelty": 4,
+        "rigor": 3,
+        "clarity": 4,
+        "evidence": 3,
+        "reproducibility": 4,
+        "significance": 3
+      },
+      "claude-3-7-sonnet-latest": {
+        "recommendation": "Reject",
+        "novelty": 3,
+        "rigor": 1,
+        "clarity": 2,
+        "evidence": 1,
+        "reproducibility": 3,
+        "significance": 2
+      }
+    },
+    "shared_blockers": [
+      "more matched tasks/seeds/budgets",
+      "complete end-to-end paper-generating trajectory",
+      "human attention/taste measurement in prospective gates",
+      "independent paper-quality comparison"
+    ]
   }
 }

@@ -1,21 +1,30 @@
 # Paper Quality Review Summary
 
-Review date: 2026-06-01
+Review date: 2026-06-02
 
 Reviewer routes:
 
 - Monica OpenAI-compatible `gpt-4o-mini`
 - Monica OpenAI-compatible `claude-3-7-sonnet-latest`
 
+## Review Context
+
+This review pass was run after adding the prospective matched-budget package
+summary. The reviewers therefore saw the mixed prospective evidence: one
+controlled Max-Cut micro-task favors the human-selected branch, while the
+stronger FML-bench Causality prospective package favors the autonomous baseline.
+
 ## Aggregate Verdict
 
-The two model reviewers agree on the main diagnosis after the updated Max-Cut
-and matched online-smoke evidence: the architecture and reproducibility package
-are promising, but the current evidence is still pilot evidence rather than
-top-conference proof. GPT-4o-mini gives a more generous `Weak accept`
-recommendation, while Claude 3.7 Sonnet gives `Reject` for a strong ML/NLP
-systems venue because the central human-gating claim lacks broad matched-budget
-evidence and no full paper-generating end-to-end trajectory has been shown.
+The two model reviewers agree on the main diagnosis: the IGRE architecture and
+reproducibility package are promising, but the current paper remains a pilot
+systems/reproducibility package rather than a top-conference empirical result.
+`gpt-4o-mini` gives a generous `Weak accept`, mainly crediting novelty,
+structured human intervention, and reproducibility. `claude-3-7-sonnet-latest`
+gives `Reject` for a strong ML/NLP systems venue because the central
+human-gating and paper-quality claims remain unsupported, the strongest
+FML-bench prospective package is negative for co-pilot performance, and no
+single end-to-end paper-generating trajectory has been demonstrated.
 
 ## Rubric Snapshot
 
@@ -27,24 +36,27 @@ evidence and no full paper-generating end-to-end trajectory has been shown.
 ## Shared Required Revisions
 
 - Run matched-budget comparisons between autonomous AI Scientist-v2 and
-  human-gated variants. Two Causality pairs are now archived, with one pair
-  favoring the human-gated path and one favoring the autonomous path; the
-  requirement remains open for multiple tasks and seeds.
-- Demonstrate at least one complete four-loop trajectory, not only isolated
-  module probes.
+  human-gated variants across more tasks, seeds, and budgets. Current
+  prospective evidence is mixed and underpowered.
+- Demonstrate at least one complete end-to-end trajectory from new hypothesis
+  generation to experiments, claim audit, and final manuscript, plus a matched
+  autonomous manuscript baseline.
 - Add statistical or uncertainty analysis across tasks and seeds.
-- Make the human-gate contribution concrete with decision logs, attention cost,
-  and downstream effect analysis.
-- Separate the manuscript's system design, completed experiments, negative
-  results, and future work more sharply; Claude specifically says the current
-  draft still reads like a lab notebook in places.
+- Populate `attention_cost` and `taste_insight` fields in future prospective
+  human gates, then test whether those gates change downstream outcomes.
+- Add at least one scored official non-FML benchmark with a complete matched
+  comparison when data access permits.
+- Rewrite the main paper into a more focused conference structure, moving
+  progress logs and setup failures into appendices or repository artifacts.
 - Keep AlphaEvolve wording as `OpenEvolve-based` or `AlphaEvolve-style` unless
-  official AlphaEvolve code is available.
+  official AlphaEvolve code becomes available.
 
 ## Paper Treatment
 
-The manuscript should present Co-Pilot AI Scientist v3 as an architecture and
-reproducibility package with pilot evidence. It should report the matched-budget
-FML results as mixed evidence, not as support for human-gate superiority, and it
-should not claim top-conference readiness, paper-quality improvement, or
-full-system superiority until the broader benchmark stage is complete.
+The manuscript should present Co-Pilot AI Scientist v3 as an architecture,
+logging schema, and reproducibility package with pilot evidence. It should
+report the prospective matched-budget package summary as mixed evidence, not as
+support for human-gate superiority. It should not claim top-conference
+readiness, paper-quality improvement, attention efficiency, or full-system
+superiority until broader matched-budget evaluation and independent paper
+quality scoring are complete.

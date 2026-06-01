@@ -58,6 +58,11 @@ def _prompt() -> str:
     audit = _read(ROOT / "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md")
     benchmark = _read(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_selection.md")
     benchmark_matrix = _read(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md")
+    prospective_summary = _read(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md"
+    )
+    readiness = _read(ROOT / "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md")
     comparison = _read(
         ROOT
         / "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_comparison.md"
@@ -94,6 +99,16 @@ Benchmark selection:
 Benchmark-to-claim matrix:
 ```markdown
 {benchmark_matrix}
+```
+
+Prospective matched-budget package summary:
+```markdown
+{prospective_summary}
+```
+
+Top-conference readiness audit:
+```markdown
+{readiness}
 ```
 
 MLAgentBench comparison:

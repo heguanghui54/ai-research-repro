@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_mixed_prospective_matched_summary_evidence",
+  "status": "pilot_package_with_updated_paper_quality_review_and_mixed_prospective_evidence",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -319,18 +319,11 @@
     "Current package satisfies artifact-delivery requirements, but top-conference empirical support remains incomplete; see top_conference_readiness_audit.md."
   ],
   "next_required_evidence": [
-    "Scale the passing FML prospective matched package beyond one small negative Causality run: add more FML/MLAgentBench tasks, seeds, larger budgets, paper-quality scoring, and independent human timing before claiming paper-quality gains, attention efficiency, or superiority over autonomous AI Scientist-v2.",
-    "Run more matched autonomous and human-gated variants beyond the current two mixed Causality pairs; Fairness_fairlearn needs a non-degenerate repaired branch that passes executable-code checks and a utility floor before matched continuation.",
-    "Upgrade the current online full-gate smoke trajectory into a larger paper-generating trajectory from new hypothesis generation to final manuscript production.",
-    "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
-    "After the next major manuscript revision, rerun independent paper-quality review; current Monica-routed reviews still rate the package as pilot evidence, with GPT weak-accept and Claude reject.",
-    "Run prospective human-gated matched-budget experiments using scripts/create_human_gate_log.py with --require-complete-attention and --require-complete-taste; current real audited gate records still lack complete attention/taste coverage, while synthetic joint logging tooling now passes.",
-    "Run prospective IGRE matched-budget experiments that fill both attention_cost and taste_insight records, then compare mean benchmark scores against high-tail scientific-upside outcomes.",
-    "Extend the online full-gate smoke comparison beyond the current negative 3-step Causality result to more tasks, seeds, and larger budgets.",
-    "Pre-cache CIFAR10 or IMDB, choose another data-ready MLAgentBench task for a second official non-FML score, or run from a network path with HuggingFace access; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics.",
-    "Run prospective IGRE matched-budget experiments with complete taste_insight records at every new human gate; the current 18 audited gate records include 1 complete scientific_taste_prior record and 17 older records without taste_insight fields.",
-    "Tag or merge a stable release after the next evidence milestone; clean-clone artifact reproducibility now passes at commit 6dfbdc8ee with 266/266 manifest artifacts, but remote Ubuntu experiment reruns still need independent reproduction.",
-    "Run the reusable Codex skill on a fresh research topic with live model calls and prospective attention_cost logging."
+    "Run at least 5 matched-budget pairs per task across at least 3 tasks, with means, variance, and paired tests before making superiority claims.",
+    "Demonstrate one continuous end-to-end trajectory from new hypothesis generation to experiments, claim audit, and final manuscript, plus a matched autonomous manuscript baseline.",
+    "Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.",
+    "Obtain at least one scored official non-FML benchmark with a complete matched comparison when data access permits.",
+    "Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package."
   ],
   "model_routing_policy": {
     "routine_coding_and_smoke_tests": "DeepSeek or low-cost Monica-routed model",
@@ -409,5 +402,14 @@
     "co_pilot_wins": 1,
     "autonomous_or_tie_wins": 1,
     "interpretation": "evidence_shape_and_logging_supported; superiority_not_supported"
+  },
+  "paper_quality_review": {
+    "status": "gpt_weak_accept_claude_reject_after_prospective_summary",
+    "summary": "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",
+    "models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "interpretation": "external_model_review_still_rates_top_conference_evidence_as_incomplete"
   }
 }

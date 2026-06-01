@@ -513,16 +513,17 @@ tasks, the gate therefore needs both an execution check and a utility floor
 before accepting a branch.
 
 We also ran a refreshed paper-quality review through two Monica-routed reviewer
-models after adding the Max-Cut and matched online-smoke evidence.
-`gpt-4o-mini` gave a weak-accept recommendation with scores of 4/5 for novelty
-and reproducibility but 3/5 for rigor and evidence. `claude-3-7-sonnet-latest`
-was stricter and gave a reject recommendation for a strong ML/NLP systems venue,
-mainly because the current system is still evaluated through module probes and
-small matched comparisons rather than a paper-generating end-to-end comparison.
-Both reviewers converged on the same required next step: run autonomous AI
-Scientist-v2 and human-gated variants under equal budgets across more tasks and
-seeds, measure human attention cost, and separate completed system evidence
-from future plans more sharply.
+models after adding the prospective matched-budget metric summary. `gpt-4o-mini`
+gave a weak-accept recommendation with scores of 4/5 for novelty and
+reproducibility but 3/5 for rigor and evidence. `claude-3-7-sonnet-latest` was
+stricter and gave a reject recommendation for a strong ML/NLP systems venue,
+mainly because the central human-gating and paper-quality claims remain
+unsupported, the strongest FML-bench prospective package is negative for
+co-pilot performance, and the system still lacks a paper-generating end-to-end
+comparison. Both reviewers converged on the same required next step: run
+autonomous AI Scientist-v2 and human-gated variants under equal budgets across
+more tasks and seeds, measure human attention cost, and separate completed
+system evidence from future plans more sharply.
 
 ## 5. Current Contributions and Unproven Claims
 

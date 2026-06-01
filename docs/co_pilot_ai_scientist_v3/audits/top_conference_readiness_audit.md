@@ -1,6 +1,6 @@
 # Top-Conference Readiness Audit
 
-Audit date: 2026-06-01
+Audit date: 2026-06-02
 
 This audit checks the current Co-Pilot AI Scientist v3 package against the
 original project objective. It is intentionally strict: an item is marked
@@ -24,7 +24,7 @@ to do it later.
 | Human attention cost measurement | Tooling supported; real gates not yet measured | Attention-cost audit covers 18 real gates and finds 0 complete measured records. `attention_cost_logging_smoke_audit.md` shows a synthetic gate can be generated with complete prospective timing fields. | Use the logging tool during future live gates; do not count synthetic smoke as performance evidence. |
 | Joint attention+taste gate logging | Tooling supported; real matched run not yet measured | `attention_taste_logging_smoke_audit.md` shows `create_human_gate_log.py` can generate a schema-compatible gate with complete `attention_cost` and `taste_insight`. | Use `--require-complete-attention` and `--require-complete-taste` during the next prospective matched-budget package. |
 | Prospective matched-budget evidence package | Passes with mixed metric outcomes | `prospective_matched_budget_package_audit.md` now finds 2 passing packages, and `prospective_matched_package_summary.md` separates their outcomes: the controlled micro-pilot favors the human-selected branch (`0.984419` vs. `0.596214` mean normalized score), while the stronger FML-bench Causality package is negative for co-pilot performance (`0.646224` vs. `0.624703` test MAE; lower is better). | Scale beyond one small negative FML run before upgrading performance or paper-quality claims. |
-| Evidence that human collaboration writes better papers | Not yet supported | Claim audit marks this as unsupported; paper-quality reviews remain mixed. | Run expert/rubric-based paper-quality scoring on matched autonomous vs co-pilot outputs. |
+| Evidence that human collaboration writes better papers | Not yet supported | The refreshed Monica-routed paper-quality review saw the prospective package summary. `gpt-4o-mini` gives `Weak accept`, while `claude-3-7-sonnet-latest` gives `Reject`; both require broader matched evaluation and a full end-to-end paper-generating comparison. | Run expert/rubric-based paper-quality scoring on matched autonomous vs co-pilot manuscript outputs. |
 | Evidence that full Co-Pilot v3 outperforms autonomous AI Scientist-v2 | Not yet supported | FML matched pairs are mixed; online smoke comparison is negative. | Run multi-task, multi-seed matched-budget comparisons. |
 | Benchmark coverage beyond FML-Bench | Partially supported | MLAgentBench vectorization is scored; sklearn diabetes/Max-Cut/OpenEvolve tasks broaden subproblem evidence; CIFAR10/debug, IMDB, and ScienceAgentBench are setup probes only. | Obtain a second scored official non-FML benchmark when data access permits. |
 | Top-conference-level empirical support | Not yet supported | Monica-routed reviewers agree broader matched-budget evidence and full trajectory are missing; Claude rejects for strong venue. | Treat current paper as a strong pilot/reproducibility package, not a completed top-conference submission. |
@@ -56,8 +56,8 @@ The current package should not yet claim:
 - the paper is ready for a strong ML/NLP systems conference without further
   experiments.
 
-The next evidence milestone is to scale the passing FML prospective package
-beyond one small negative Causality run: more tasks, seeds, larger budgets,
+The next evidence milestone is to scale beyond the current mixed prospective
+summary: more tasks, seeds, larger budgets, matched manuscript generation,
 paper-quality scoring, and independent human timing. The FML package proves the
 evidence shape can be generated on an AI Scientist-v2-style benchmark; it does
 not prove paper-quality gains, attention efficiency, or superiority over
