@@ -16,5 +16,17 @@
   "rationale": "Why the human selected, rejected, or rewrote this option.",
   "affected_artifacts": [],
   "downstream_budget": {},
+  "attention_cost": {
+    "human_actor": null,
+    "interaction_mode": null,
+    "prompted_at_utc": null,
+    "decision_at_utc": null,
+    "active_review_minutes": null,
+    "wall_clock_latency_minutes": null,
+    "options_reviewed": 1,
+    "artifacts_reviewed_count": 0,
+    "decision_count": 1,
+    "notes": "Fill active_review_minutes and latency for every prospective matched-budget run."
+  },
   "follow_up_checks": []
 }

@@ -169,6 +169,18 @@ the same evaluator and iteration budget. FML-bench should therefore be read as
 one current evidence source, not as the complete benchmark definition for the
 project.
 
+Following the latest paper-quality review, we made attention cost an explicit
+auditable artifact rather than an informal metric. The human-gate schema now
+contains an optional `attention_cost` object with active review minutes,
+wall-clock latency, number of options reviewed, artifacts reviewed, and decision
+count. We also added a coverage audit over the existing seven gate logs. The
+audit finds zero complete attention-cost records, because the current logs were
+created before this field existed. This is an important negative
+measurement-readiness result: the archived gates show decision provenance, but
+they cannot yet support any efficiency claim about human attention. Future
+prospective matched runs must fill this field before comparing co-pilot and
+autonomous variants.
+
 To make this principle operational, we maintain a benchmark-to-claim matrix.
 FML-bench Causality supports the branch-gate feasibility claim but does not yet
 show general human-gate superiority. FML-bench Fairness supports the need for
@@ -418,6 +430,9 @@ The current contributions are:
    reproducibility.
 13. A Monica-routed paper-quality review artifact that records external model
    criticism before the next revision.
+14. A human-gate attention-cost audit showing that current logs lack measured
+   active review time and latency, and that future prospective runs must record
+   these fields before making attention-efficiency claims.
 
 The current evidence does not yet prove that human gates improve paper quality
 or that the full co-pilot system outperforms autonomous AI Scientist-v2. Those
@@ -441,6 +456,12 @@ continuation test score. A same-FML-step autonomous baseline also outperformed
 the human-gated continuation. Stronger claims require more tasks, more seeds,
 richer budget schedules, larger online trajectories, and independent
 paper-quality review.
+
+The current human-gate logs also lack measured attention cost. We can count
+decision artifacts, but cannot yet compute active review minutes or
+wall-clock latency. This prevents any claim that the proposed gates improve the
+ratio of research quality to human effort. The next matched-budget experiments
+must record attention cost prospectively.
 
 The current implementation still lacks a complete paper-generating end-to-end
 demonstration in which all four loops operate in a single continuous trajectory

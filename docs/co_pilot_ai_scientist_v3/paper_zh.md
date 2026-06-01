@@ -59,9 +59,11 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 ## 4. Benchmark 选择与评估计划
 
-我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化和 0/1 knapsack 启发式搜索。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力，并进一步记录了 MLAgentBench CIFAR10/debug 与 ScienceAgentBench 的 setup probes。当前证据还没有第二个已打分的官方非 FML benchmark：CIFAR10/debug 被慢速数据下载阻塞，ScienceAgentBench 的元数据和 verified artifacts 在 Ubuntu 主机上暂时不可达。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
+我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化、0/1 knapsack 启发式搜索和加权 Max-Cut。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力，并进一步记录了 MLAgentBench CIFAR10/debug 与 ScienceAgentBench 的 setup probes。当前证据还没有第二个已打分的官方非 FML benchmark：CIFAR10/debug 被慢速数据下载阻塞，ScienceAgentBench 的元数据和 verified artifacts 在 Ubuntu 主机上暂时不可达。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
 
 指标包括任务分数、论文质量、主张支持率、搜索效率、人类注意力成本和假设多样性。对于程序化搜索模块，关键消融是：在相同 evaluator 和迭代预算下，比较 OpenEvolve 与直接重复 LLM 代码编辑。因此，FML-bench 应被理解为当前证据来源之一，而不是整个项目的完整 benchmark 定义。
+
+根据最新 paper-quality review 的意见，我们把人类注意力成本从口头指标变成了可审计 artifact。human-gate schema 现在包含可选的 `attention_cost` 对象，用于记录 active review minutes、wall-clock latency、reviewed options、reviewed artifacts 和 decision count。我们还对现有 7 个 gate log 做了 coverage audit。结果是：当前 7 个日志都没有完整 attention-cost 记录，因为这些日志是在该字段加入之前生成的。这是一个重要的负向 measurement-readiness 结果：现有日志可以证明决策来源，但还不能支持“人类注意力效率更高”的主张。后续 prospective matched run 必须填写该字段，才能比较 co-pilot 和 autonomous variants 的人类成本。
 
 为了让这一原则可以执行，我们维护了一份 benchmark-to-claim matrix。
 FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人类 gate
@@ -130,12 +132,15 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 11. 一个可在 Codex 中复用的 workflow skill。
 12. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
 13. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。
+14. human-gate attention-cost audit，显示当前 gate log 还没有记录 active review time 和 latency；未来 prospective run 必须补齐这些字段后，才能提出 attention-efficiency claim。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
 
 ## 6. 局限性
 
 本文不预设人类参与一定有效。人类 gate 可能引入偏见、降低搜索速度、压缩探索多样性。程序化搜索可能只优化局部指标，却不能提高论文层面的科学贡献；在极小预算下，它也未必优于直接 LLM 编辑。专家论文评分成本较高，而且不同评审可能存在分歧。因此，第一版实验应保持窄主张，并在 gate 无法改善结果时如实报告负结果。当前 selected-branch continuation 证据在两组 matched pair 中呈混合状态，还不是统计受控 benchmark；retrospective full-gate trajectory 和 executable artifact replay 证明了 schema、决策链和可复现 traversal logic。online smoke trajectory 已经在一次远端运行中覆盖五类 gate，但预算极小、混合了 FML branch task 和 knapsack program-search 子问题，并且 continuation test score 变差；同 FML step autonomous baseline 也优于 human-gated continuation。更强主张需要更多任务、更多随机种子、更丰富的预算分配设置、更大规模在线轨迹，以及独立论文质量评审。
+
+当前 human-gate logs 也缺少可度量的人类注意力成本。我们可以统计决策 artifact，但还不能计算 active review minutes 或 wall-clock latency，因此不能声称 gate 提高了单位人类努力产出的科研质量。下一轮 matched-budget 实验必须前瞻性记录 attention cost。
 
 当前实现还缺少一次从新假设生成到最终论文生产的完整端到端演示。现有 online smoke run 证明了编排可行性，但下一版 systems paper 至少需要报告一条从假设生成到最终 claim-audited manuscript 的更大规模 matched 在线轨迹。
 

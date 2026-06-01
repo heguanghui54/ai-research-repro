@@ -63,6 +63,18 @@ python3 scripts/run_paper_quality_review.py \
 
 Treat the output as review evidence, not as proof of acceptance.
 
+To audit whether human gates contain measured attention cost, run:
+
+```bash
+python3 scripts/audit_human_gate_attention_cost.py
+```
+
+For future matched-budget experiments, every prospective gate log should fill
+`attention_cost.active_review_minutes`,
+`attention_cost.wall_clock_latency_minutes`, `options_reviewed`,
+`artifacts_reviewed_count`, and `decision_count`. Retrospective estimates should
+be marked as missing rather than guessed.
+
 ## Human Gate Types
 
 - `idea_selection`: choose or rewrite the research hypothesis.

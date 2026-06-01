@@ -72,10 +72,54 @@
       "type": "object",
       "description": "Budget allocation after the gate, e.g. steps, dollars, GPU hours."
     },
+    "attention_cost": {
+      "type": "object",
+      "description": "Optional human-attention cost record. Required for future matched-budget claims.",
+      "properties": {
+        "human_actor": {
+          "type": ["string", "null"],
+          "description": "Human role or anonymized identifier."
+        },
+        "interaction_mode": {
+          "type": ["string", "null"],
+          "enum": ["async_review", "live_review", "pair_programming", "posthoc_replay", null]
+        },
+        "prompted_at_utc": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "decision_at_utc": {
+          "type": ["string", "null"],
+          "format": "date-time"
+        },
+        "active_review_minutes": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "wall_clock_latency_minutes": {
+          "type": ["number", "null"],
+          "minimum": 0
+        },
+        "options_reviewed": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "artifacts_reviewed_count": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "decision_count": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
     "follow_up_checks": {
       "type": "array",
       "items": { "type": "string" }
     }
   }
 }
-

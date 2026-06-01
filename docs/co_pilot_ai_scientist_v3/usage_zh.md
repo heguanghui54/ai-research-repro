@@ -59,6 +59,18 @@ python3 scripts/run_paper_quality_review.py \
 
 这个输出应作为审稿证据使用，而不是“已经被接收”的证明。
 
+如果要检查 human gate 是否记录了可度量的人类注意力成本，运行：
+
+```bash
+python3 scripts/audit_human_gate_attention_cost.py
+```
+
+后续 matched-budget 实验中的每个 prospective gate log 都应该填写
+`attention_cost.active_review_minutes`、
+`attention_cost.wall_clock_latency_minutes`、`options_reviewed`、
+`artifacts_reviewed_count` 和 `decision_count`。不要凭记忆估计旧日志；缺失就
+明确记为缺失。
+
 ## 人类参与节点
 
 - `idea_selection`：选择或改写研究假设。

@@ -31,6 +31,8 @@ delegating machine-gradeable subproblems to AlphaEvolve-style code evolution.
 - `references.bib`: citation seed file for later LaTeX/PDF generation.
 - `RUNBOOK_EN.md`: English reproduction and continuation runbook.
 - `RUNBOOK_ZH.md`: Chinese reproduction and continuation runbook.
+- `audits/human_gate_attention_cost_audit.md`: coverage audit for whether gate
+  logs contain measured human attention cost.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.
@@ -116,6 +118,14 @@ the selected research direction, Fairness evaluator guardrail, live Causality
 branch gate, OpenEvolve program-search escalation, and claim-audit decision into
 one auditable chain. This is evidence that the schema covers all proposed human
 gate types, but it is not yet a single online end-to-end co-pilot run.
+
+Following the latest paper-quality review, the schema and template now include
+an `attention_cost` block for active review minutes, wall-clock latency, options
+reviewed, artifacts reviewed, and decision count. The current attention-cost
+audit covers seven archived gate logs and finds zero complete measured
+attention-cost records. This is treated as a measurement-readiness gap: the
+logs support decision provenance, but not yet any claim that gates improve
+research quality per unit of human effort.
 
 The latest addition is an executable full-gate trace runner:
 `scripts/run_full_gate_trajectory.py`. The runner reads the current archived

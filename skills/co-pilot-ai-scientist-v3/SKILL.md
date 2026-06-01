@@ -102,9 +102,21 @@ Each human intervention should be stored as structured data:
   "rationale": "",
   "affected_artifacts": [],
   "downstream_budget": {},
+  "attention_cost": {
+    "active_review_minutes": null,
+    "wall_clock_latency_minutes": null,
+    "options_reviewed": null,
+    "artifacts_reviewed_count": null,
+    "decision_count": 1
+  },
   "follow_up_checks": []
 }
 ```
+
+For prospective matched-budget runs, fill `attention_cost` at every human gate.
+Do not estimate missing historical review time; run
+`scripts/audit_human_gate_attention_cost.py` and report missing coverage as a
+measurement gap.
 
 ## Model Routing
 
@@ -174,6 +186,7 @@ Reusable templates are stored next to this skill:
 - literature and benchmark notes;
 - benchmark-to-claim matrix;
 - human gate logs;
+- human attention-cost audit;
 - full-gate trajectory artifact;
 - executable full-gate trace replay when archived summaries are available;
 - online full-gate smoke trajectory logs when remote execution is available;
