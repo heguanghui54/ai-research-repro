@@ -79,11 +79,13 @@ python3 scripts/run_qigong_post_video_upload_pipeline.py
 可写入视频分析结果的最低条件：
 
 1. `video_file_preflight.md` 显示 `ready_local_rights >= 3`。
-2. 至少包含 `TC0001` 标准参照和 `TC0002`、`TC0003` 两个变体。
+2. 必需视频 `TC0001`、`TC0002`、`TC0003` 均显示 `ready_for_local_extraction=True`。
 3. `sportslabkit_environment_audit.md` 明确工具链状态。
 4. 若使用 SportsLabKit，必须在 Ubuntu 上实际跑通并保留日志。
 5. 若只使用 OpenCV/MediaPipe 后备链路，论文中必须写成 OpenCV/MediaPipe，不得写成 SportsLabKit 结果。
 6. `video_features_from_typical_cases.csv` 存在且不含 smoke/synthetic 标记。
+
+说明：`TC0004`、`TC0005` 是可选扩展案例。它们缺失时会在预检中显示为待补充，但不应阻止 `TC0001`-`TC0003` 三个必需视频进入最低视频证据层。
 
 未通过时，论文只能写：
 

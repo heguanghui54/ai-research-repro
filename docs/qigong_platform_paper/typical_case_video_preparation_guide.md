@@ -21,7 +21,7 @@
 | TC0004 | 平台变体 | 六字诀 | 嘘字诀 | frame_coding_only |
 | TC0005 | 平台变体 | 易筋经 | 韦驮献杵 | frame_coding_only |
 
-最小可分析门槛：至少 3 个 `rights_confirmed` 且 `local_video_path` 存在的本地视频，其中应包含 1 个标准参照和至少 2 个平台变体。
+最小可分析门槛：`TC0001`、`TC0002`、`TC0003` 三个必需视频均为 `rights_confirmed` 且 `local_video_path` 存在，其中 `TC0001` 是标准参照，`TC0002`、`TC0003` 是平台变体。`TC0004`、`TC0005` 是可选扩展案例，缺失时不阻止最低视频证据层启动。
 
 ## 文件放置与命名
 
@@ -160,7 +160,7 @@ python scripts/create_qigong_vision_model_packets.py --manifest data/qigong_vide
 
 正式稿中若要保留视频分析结果，至少需要：
 
-1. `video_file_preflight.md` 显示 ready local rights-confirmed files >= 3。
+1. `video_file_preflight.md` 显示 ready local rights-confirmed files >= 3，且 `TC0001`、`TC0002`、`TC0003` 均通过必需视频检查。
 2. `video_manifest_audit.md` 无 P0 失败。
 3. `sportslabkit_environment_audit.md` 显示可用环境。
 4. `llm_frames_index.csv` 存在且覆盖可分析视频。
