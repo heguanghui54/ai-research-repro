@@ -148,6 +148,12 @@ This artifact verifies that all planned gate types can be logged under the
 shared schema. It does not replace the required future online run where all
 gates operate inside one continuous experiment.
 
+The repository also includes `scripts/run_full_gate_trajectory.py`, which
+recomputes a full gate sequence from archived experiment summaries and writes
+`experiments/full_gate_executable_trace/trajectory.json`. This is an executable
+artifact replay: it checks that the gate policy can traverse the evidence
+package reproducibly, but it is still not a fresh online four-loop run.
+
 ## Minimum Evidence for a First Paper Draft
 
 - At least two runnable tasks from Tier A with logged autonomous and

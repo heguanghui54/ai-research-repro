@@ -24,6 +24,16 @@ The current package includes an example claim audit under
 claims must be marked as supported, partially supported, unsupported, or
 overstated before the final PDF build.
 
+To regenerate the current executable gate-chain replay, run:
+
+```bash
+python3 scripts/run_full_gate_trajectory.py
+```
+
+This writes `experiments/full_gate_executable_trace/trajectory.json` and
+`README.md`. Treat it as a reproducibility check over archived artifacts, not
+as a fresh online full-gate experiment.
+
 For a Monica-routed paper-quality review, source the global environment and run:
 
 ```bash

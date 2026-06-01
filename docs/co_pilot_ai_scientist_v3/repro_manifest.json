@@ -170,6 +170,7 @@
     "scripts/run_direct_llm_program_baseline.py",
     "scripts/run_openevolve_program_search.py",
     "scripts/run_fmlbench_snapshot_continuation.py",
+    "scripts/run_full_gate_trajectory.py",
     "scripts/run_paper_quality_review.py",
     "skills/co-pilot-ai-scientist-v3/SKILL.md",
     "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
@@ -233,7 +234,9 @@
     "docs/co_pilot_ai_scientist_v3/human_gate_logs/evaluator_gate_fairness_metric_guardrail.json",
     "docs/co_pilot_ai_scientist_v3/human_gate_logs/claim_gate_001.json",
     "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -242,7 +245,7 @@
   ],
   "next_required_evidence": [
     "Run more matched autonomous and human-gated variants beyond the current two mixed Causality pairs; Fairness_fairlearn needs a non-degenerate repaired branch that passes executable-code checks and a utility floor before matched continuation.",
-    "Run a single online four-loop trajectory with idea, evaluator, branch, program-search, and claim gates active in one continuous experiment; current full-gate trajectory is retrospective only.",
+    "Run a single online four-loop trajectory with idea, evaluator, branch, program-search, and claim gates active in one continuous experiment; current full-gate trajectory is retrospective/executable-artifact replay only.",
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "Generate expert or rubric-based paper quality scores.",
     "Compare the online full-gate trajectory against an autonomous AI Scientist-v2 baseline under a matched budget.",

@@ -1,0 +1,270 @@
+{
+  "trajectory_id": "copilot_v3_executable_full_gate_trace_001",
+  "generated_at_utc": "2026-06-01T14:39:13Z",
+  "mode": "executable_artifact_replay",
+  "is_single_online_training_run": false,
+  "claim_scope": "This is one continuous executable traversal over archived experiment artifacts. It verifies gate logic and evidence linkage, but it is not a fresh online run of all four loops.",
+  "gates": [
+    {
+      "gate_id": "idea_gate_executable_trace_001",
+      "gate_type": "idea_selection",
+      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "options": [
+        {
+          "option_id": "hitl-gated-tree-search",
+          "summary": "Human-Gated Agentic Tree Search for Automated Research",
+          "score": 15,
+          "evidence": [
+            "Run matched research tasks with no human gates, idea-only gates, branch-selection gates, and claim-audit gates.",
+            "Expert paper-quality score, unsupported-claim count, experiment budget wasted on discarded branches."
+          ],
+          "risks": [
+            "Human feedback may be too subjective unless captured in a strict schema."
+          ]
+        },
+        {
+          "option_id": "co-scientist-front-end",
+          "summary": "Co-Scientist Front-End for AI Scientist-v2",
+          "score": 12,
+          "evidence": [
+            "Compare AI Scientist-v2 topic-file ideation against multi-agent hypothesis debate on the same benchmark tasks.",
+            "Novelty, feasibility, evidence grounding, and downstream experiment success."
+          ],
+          "risks": [
+            "The benefit may disappear once constrained by runnable benchmarks."
+          ]
+        },
+        {
+          "option_id": "alphaevolve-subproblem-optimizer",
+          "summary": "AlphaEvolve-Style Subproblem Optimization Inside Automated Research",
+          "score": 14,
+          "evidence": [
+            "Use OpenEvolve on selected algorithmic or ML-pipeline components within a research task and compare against direct LLM edit search.",
+            "Metric gain, number of valid candidate programs, wall-clock/API cost, paper-level usefulness."
+          ],
+          "risks": [
+            "Local metric improvements may not change the final research conclusion."
+          ]
+        },
+        {
+          "option_id": "full-copilot-v3-system",
+          "summary": "Co-Pilot AI Scientist v3 End-to-End System",
+          "score": 13,
+          "evidence": [
+            "Build an orchestration layer with logged human gates and run two small research tasks end to end.",
+            "End-to-end reproducibility, expert review, benchmark results, and artifact completeness."
+          ],
+          "risks": [
+            "Scope is large; requires careful staging to avoid a broad but weak paper."
+          ]
+        }
+      ],
+      "human_decision": "hitl-gated-tree-search",
+      "rationale": "Select the narrow human-gated tree-search contribution because it is the most experimentally defensible core and can absorb Co-Scientist and OpenEvolve modules as supporting layers.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/candidates.json"
+      ],
+      "downstream_budget": {
+        "next_gate": "evaluator_gate_executable_trace_001"
+      },
+      "follow_up_checks": [
+        "Keep full-system superiority as an unproven target claim."
+      ]
+    },
+    {
+      "gate_id": "evaluator_gate_executable_trace_001",
+      "gate_type": "evaluator_approval",
+      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "options": [
+        {
+          "option_id": "primary_metric_only",
+          "summary": "Accept candidates using only their target metric.",
+          "score": null,
+          "evidence": [
+            "Fairness degenerate predictor can game demographic parity."
+          ],
+          "risks": [
+            "Metric gaming and non-executable branches can pass too late."
+          ]
+        },
+        {
+          "option_id": "correctness_and_utility_guardrails",
+          "summary": "Require execution/correctness checks and task-utility floors before continuation.",
+          "score": 1.0,
+          "evidence": [
+            "MLAgentBench vectorization direct rewrite failed correctness gate.",
+            "Fairness repair probe shows single-metric gaming risk."
+          ],
+          "risks": [
+            "May reject some creative but initially incomplete branches."
+          ]
+        }
+      ],
+      "human_decision": "correctness_and_utility_guardrails",
+      "rationale": "The current artifact set contains both invalid fast code and fairness metric-gaming examples, so the evaluator gate must approve guardrails before additional search budget is spent.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_multiseed_summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_gate_repair_summary.json"
+      ],
+      "downstream_budget": {
+        "next_gate": "branch_gate_executable_trace_001"
+      },
+      "follow_up_checks": [
+        "Report invalid or metric-gamed candidates as failures, not wins."
+      ]
+    },
+    {
+      "gate_id": "branch_gate_executable_trace_001",
+      "gate_type": "branch_selection",
+      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "options": [
+        {
+          "option_id": "step_0001",
+          "summary": "draft branch draft_d71a0cdf1c7d on Causality_causalml",
+          "score": 1.1496098661684393,
+          "evidence": [
+            "validation_mae=1.149610",
+            "lower_is_better"
+          ],
+          "risks": [
+            "Only two-draft frontier; not a statistical comparison."
+          ]
+        },
+        {
+          "option_id": "step_0002",
+          "summary": "draft branch draft_8044da16b861 on Causality_causalml",
+          "score": 0.6212624733836205,
+          "evidence": [
+            "validation_mae=0.621262",
+            "lower_is_better"
+          ],
+          "risks": [
+            "Only two-draft frontier; not a statistical comparison."
+          ]
+        }
+      ],
+      "human_decision": "step_0002",
+      "rationale": "Select the lower-validation-MAE branch from the live Causality frontier (0.621262).",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/experiments/fml_online_branch_gate_drafts/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/fml_selected_branch_continuation/summary.json"
+      ],
+      "downstream_budget": {
+        "selected_snapshot_continuation_steps": 2,
+        "continuation_test_mae": 0.4021701846791075
+      },
+      "follow_up_checks": [
+        "Compare selected continuation with an equal-budget autonomous baseline."
+      ]
+    },
+    {
+      "gate_id": "program_search_gate_executable_trace_001",
+      "gate_type": "program_search_escalation",
+      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "options": [
+        {
+          "option_id": "direct_edit_only",
+          "summary": "Use direct LLM edits for all machine-gradeable subproblems.",
+          "score": 0.9952700988954383,
+          "evidence": [
+            "Knapsack direct score=0.995270",
+            "Sklearn direct RMSE=55.895460"
+          ],
+          "risks": [
+            "Can fail correctness gates on vectorization and may under-explore combinatorial tasks."
+          ]
+        },
+        {
+          "option_id": "selective_openevolve",
+          "summary": "Escalate richer automatic-evaluator subproblems to OpenEvolve.",
+          "score": 0.9994394752555711,
+          "evidence": [
+            "Knapsack OpenEvolve score=0.999439",
+            "MLAgentBench vectorization median speedup=132.67x",
+            "Sklearn median OpenEvolve RMSE=55.895460"
+          ],
+          "risks": [
+            "Tiny-budget search is seed-sensitive and does not always beat direct editing."
+          ]
+        }
+      ],
+      "human_decision": "selective_openevolve",
+      "rationale": "Escalate selectively: OpenEvolve is useful for richer or correctness-gated subproblems, while the sklearn tabular result shows direct editing can match it on standard small modeling changes.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/experiments/knapsack_program_search_comparison.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_comparison.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_comparison.md"
+      ],
+      "downstream_budget": {
+        "next_gate": "claim_gate_executable_trace_001"
+      },
+      "follow_up_checks": [
+        "Require direct-edit baselines before claiming program-search gains."
+      ]
+    },
+    {
+      "gate_id": "claim_gate_executable_trace_001",
+      "gate_type": "claim_audit",
+      "timestamp_utc": "2026-06-01T14:39:13Z",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "options": [
+        {
+          "option_id": "claim_human_gate_superiority",
+          "summary": "Claim that Co-Pilot v3 outperforms autonomous AI Scientist-v2.",
+          "score": null,
+          "evidence": [
+            "Pair-1 gated test MAE=0.402170; autonomous=0.421474"
+          ],
+          "risks": [
+            "Current broader matched evidence is mixed and too small."
+          ]
+        },
+        {
+          "option_id": "claim_feasibility_and_boundary_conditions",
+          "summary": "Claim feasibility, evaluability, and boundary conditions while reserving superiority claims.",
+          "score": 1.0,
+          "evidence": [
+            "Branch gate and continuation are executable.",
+            "Program-search escalation has positive and boundary-condition probes.",
+            "Paper-quality reviews ask for more matched tasks and seeds."
+          ],
+          "risks": [
+            "A narrower claim is less ambitious but better supported."
+          ]
+        }
+      ],
+      "human_decision": "claim_feasibility_and_boundary_conditions",
+      "rationale": "The selected continuation beats the first matched autonomous baseline by 0.019303 MAE in this pair, but the full evidence set is still mixed. The paper should claim an executable co-pilot architecture and logged boundary conditions, not general superiority.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/paper_en.md",
+        "docs/co_pilot_ai_scientist_v3/paper_zh.md",
+        "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md"
+      ],
+      "downstream_budget": {
+        "next_required_run": "single online four-loop trajectory with equal-budget autonomous baseline"
+      },
+      "follow_up_checks": [
+        "Run more matched tasks and seeds.",
+        "Add independent paper-quality ratings after a true online full trajectory."
+      ]
+    }
+  ],
+  "summary": {
+    "selected_research_direction": "hitl-gated-tree-search",
+    "selected_branch": "step_0002",
+    "selected_branch_val_mae": 0.6212624733836205,
+    "selected_continuation_test_mae": 0.4021701846791075,
+    "matched_autonomous_test_mae": 0.42147360723655275,
+    "pair1_test_mae_delta_autonomous_minus_gated": 0.01930342255744527,
+    "knapsack_direct_score": 0.9952700988954383,
+    "knapsack_openevolve_score": 0.9994394752555711,
+    "mlagentbench_vectorization_median_speedup": 132.67254774537096,
+    "sklearn_direct_rmse": 55.89546025654621,
+    "sklearn_openevolve_median_rmse": 55.89546025654621
+  },
+  "remaining_gap": "A true online full-gate experiment must generate ideas, approve evaluators, select branches, run program search, and audit claims in one continuous run, then compare against a matched autonomous baseline."
+}

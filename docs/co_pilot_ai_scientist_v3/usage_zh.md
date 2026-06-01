@@ -21,6 +21,16 @@
 PDF 生成前，把每条主张标记为 supported、partially supported、unsupported
 或 overstated。
 
+如果要重新生成当前 executable gate-chain replay，运行：
+
+```bash
+python3 scripts/run_full_gate_trajectory.py
+```
+
+这会写入 `experiments/full_gate_executable_trace/trajectory.json` 和
+`README.md`。它是对已归档 artifact 的可复现检查，不是一次新的在线
+full-gate 实验。
+
 如果要通过 Monica 做论文质量评审，先加载全局环境变量，然后运行：
 
 ```bash

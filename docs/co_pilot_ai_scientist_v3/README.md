@@ -34,6 +34,9 @@ delegating machine-gradeable subproblems to AlphaEvolve-style code evolution.
 - `experiments/full_gate_retrospective_trajectory.md`: auditable
   retrospective chain linking idea, evaluator, branch, program-search, and
   claim gates.
+- `experiments/full_gate_executable_trace/`: output from a rerunnable
+  full-gate trajectory runner that traverses archived experiment artifacts in
+  one continuous gate sequence.
 - `build/`: generated PDFs and other render outputs.
 
 ## Build PDFs
@@ -105,3 +108,11 @@ the selected research direction, Fairness evaluator guardrail, live Causality
 branch gate, OpenEvolve program-search escalation, and claim-audit decision into
 one auditable chain. This is evidence that the schema covers all proposed human
 gate types, but it is not yet a single online end-to-end co-pilot run.
+
+The latest addition is an executable full-gate trace runner:
+`scripts/run_full_gate_trajectory.py`. The runner reads the current archived
+experiment summaries and emits
+`experiments/full_gate_executable_trace/trajectory.json` plus a Markdown
+summary. This is stronger than a hand-written retrospective chain because the
+gate decisions are recomputed from artifact files, but it is still explicitly
+marked as `executable_artifact_replay`, not as a fresh online training run.

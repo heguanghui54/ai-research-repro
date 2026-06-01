@@ -77,6 +77,10 @@ high-leverage creative, evaluation, search, and claim-audit nodes.
      chain assembled from separate probes.
    - Never use a retrospective gate chain as evidence of end-to-end
      performance superiority.
+   - When archived experiment summaries already exist, run
+     `scripts/run_full_gate_trajectory.py` to regenerate an executable
+     artifact replay of the gate chain. Treat this as a reproducibility check,
+     not as a substitute for a fresh online trajectory.
 
 ## Human Gate Schema
 
@@ -163,6 +167,7 @@ Reusable templates are stored next to this skill:
 - benchmark-to-claim matrix;
 - human gate logs;
 - full-gate trajectory artifact;
+- executable full-gate trace replay when archived summaries are available;
 - experiment logs and metrics;
 - program-search traces;
 - English and Chinese manuscript drafts;

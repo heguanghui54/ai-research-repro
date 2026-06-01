@@ -21,7 +21,7 @@ Reviewer routes:
 | Programmatic search is useful on some machine-gradeable subproblems. | Knapsack: direct `0.995270`, OpenEvolve `0.999439`; MLAgentBench controlled starter `3.261186s`; eight OpenEvolve seeds all retained correct best programs with median best runtime `0.024581s`; direct rewrite invalid; sklearn diabetes OpenEvolve seeds improve mean predictor RMSE `78.572189` to median `55.895460`. | Supported narrowly, with seed sensitivity | Limit to "some machine-gradeable subproblems"; do not claim downstream paper-quality improvement or deterministic reliability under tiny budgets. |
 | Programmatic search should be gated rather than always used. | Function-minimization direct baseline `0.038021` beats 1-iter OpenEvolve `0.037816` and 5-iter OpenEvolve `0.038007`; sklearn diabetes direct rewrite matches median OpenEvolve RMSE `55.895460`; knapsack/MLAgentBench favor OpenEvolve. | Supported | State as a design lesson: use escalation gate based on evaluator richness, expected search value, and budget. |
 | Benchmark expansion beyond FML-bench is underway but incomplete. | MLAgentBench vectorization has an official baseline and controlled eight-seed probe. MLAgentBench CIFAR10/debug setup repaired `torchvision` but stopped at slow dataset download. ScienceAgentBench repository is present, but verified artifacts are missing and HuggingFace metadata was unreachable from `ubuntu-heshi`. | Supported as setup/progress evidence only | Do not report CIFAR10 or ScienceAgentBench scores. Use these probes to justify next evidence requirements. |
-| The full set of proposed gate types can be represented as structured artifacts. | `idea_gate_001.json`, `evaluator_gate_fairness_metric_guardrail.json`, `branch_gate_causality_online_two_drafts.json`, `program_search_gate_001.json`, `claim_gate_001.json`, and `full_gate_retrospective_trajectory.md`. | Supported as retrospective schema evidence | Present as an auditable gate-chain artifact, not as a completed online end-to-end run. |
+| The full set of proposed gate types can be represented as structured artifacts. | `idea_gate_001.json`, `evaluator_gate_fairness_metric_guardrail.json`, `branch_gate_causality_online_two_drafts.json`, `program_search_gate_001.json`, `claim_gate_001.json`, `full_gate_retrospective_trajectory.md`, and `full_gate_executable_trace/trajectory.json`. | Supported as retrospective/executable artifact evidence | Present as an auditable and rerunnable gate-chain artifact, not as a completed online end-to-end run. |
 | AI Scientist-v2 branch frontiers can expose actionable human gate points. | Retrospective FML replay and live two-draft Causality probe with logged branch metrics. | Supported as feasibility | Present as feasible insertion point, not proof that humans improve outcomes generally. |
 | Evaluator gates must reject non-executable and metric-gaming branches before continuation. | `fml_fairness_gated_drafts_failed/`: two Fairness_fairlearn drafts failed validation due Fairlearn/sklearn API incompatibilities before producing a score. `fml_fairness_evaluator_gate_repair.md`: an executable repaired candidate worsened test demographic parity difference (`0.317603` vs baseline `0.173030`), while a degenerate all-negative predictor achieved `0.000000` demographic parity difference but only `0.500000` balanced accuracy. | Supported as failure-mode/evaluator-design evidence | Present as a gate-design lesson. Do not count the Fairness probe as matched-budget performance evidence or a fairness improvement. |
 | Matched-budget human-gated branch continuation has mixed evidence against autonomous AI Scientist-v2. | Pair 1: human-gated test MAE `0.402170`, autonomous test MAE `0.421474`. Pair 2: human-gated test MAE `0.646224`, autonomous test MAE `0.595685`. Two-pair mean favors autonomous by `0.015618` MAE. | Supported as mixed evidence | Present as feasibility plus mixed outcome; do not claim human-gate superiority. |
@@ -47,6 +47,10 @@ Reviewer routes:
   metadata access; keep both as blockers, not scores.
 - Add idea, evaluator, and claim gate logs plus a retrospective full-gate
   trajectory; keep the online four-loop run as future evidence.
+- Add `scripts/run_full_gate_trajectory.py` and
+  `experiments/full_gate_executable_trace/trajectory.json` as a reproducible
+  artifact replay of the gate chain, while preserving the caveat that it is not
+  a fresh online run.
 
 ## Remaining Evidence Needed
 
@@ -57,5 +61,6 @@ Reviewer routes:
 - A second scored non-FML benchmark task. Current CIFAR10/debug and
   ScienceAgentBench probes are setup evidence only.
 - A complete online four-loop end-to-end trajectory with all gates operating in
-  one run. The current full-gate trajectory is retrospective only.
+  one run. The current full-gate trajectory is retrospective/executable
+  artifact replay only.
 - GitHub publication and independent reproducibility check.
