@@ -1,0 +1,13 @@
+No module named 'helm'
+Could not load CRFM API key crfm_api_key.txt.
+[Errno 2] No such file or directory: 'claude_api_key.txt'
+Could not load anthropic API key claude_api_key.txt.
+[Errno 2] No such file or directory: 'openai_api_key.txt'
+Could not load OpenAI API key openai_api_key.txt.
+No module named 'vertexai'
+Could not load VertexAI API.
+Failed to import AutoGPTAgent; Make sure you have installed the autogpt dependencies if you want to use it.
+Namespace(task='debug', log_dir='/home/heshi/work/copilotv3-mlagentbench-cifar10-debug-baseline', work_dir='/home/heshi/work/copilotv3-mlagentbench-cifar10-debug-workspace', max_steps=1, max_time=18000, device=0, python='/home/heshi/work/bench-probes/MLAgentBench/.venv/bin/python', interactive=False, resume=None, resume_step=0, agent_type='Agent', llm_name='claude-v1', fast_llm_name='claude-v1', edit_script_llm_name='claude-v1', edit_script_llm_max_tokens=4000, agent_max_steps=1, actions_remove_from_prompt=[], actions_add_to_prompt=[], retrieval=False, valid_format_entires=None, max_steps_in_context=3, max_observation_steps_in_context=3, max_retries=5, langchain_agent='zero-shot-react-description')
+log_dir /home/heshi/work/copilotv3-mlagentbench-cifar10-debug-baseline/env_log already exists
+Running prepare.py ...
+  0%|                                               | 0.00/170M [00:00<?, ?B/s]  0%|                                    | 32.8k/170M [00:00<1:17:14, 36.8kB/s]  0%|                                    | 65.5k/170M [00:02<1:44:14, 27.2kB/s]  0%|                                    | 98.3k/170M [00:05<3:13:09, 14.7kB/s]  0%|                                     | 131k/170M [00:09<4:17:23, 11.0kB/s]  0%|                                     | 164k/170M [00:12<3:52:25, 12.2kB/s]  0%|                                     | 197k/170M [00:15<4:09:40, 11.4kB/s]  0%|                                     | 229k/170M [00:17<3:54:04, 12.1kB/s]  0%|                                     | 262k/170M [00:20<4:01:37, 11.7kB/s]  0%|                                     | 295k/170M [00:24<4:23:33, 10.8kB/s]  0%|                                     | 328k/170M [00:26<4:07:45, 11.4kB/s]  0%|                                     | 360k/170M [00:30<4:25:54, 10.7kB/s]  0%|                                     | 393k/170M [00:32<4:14:02, 11.2kB/s]  0%|                                     | 426k/170M [00:35<4:16:50, 11.0kB/s]

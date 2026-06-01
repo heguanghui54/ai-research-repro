@@ -61,6 +61,10 @@ sufficient by itself.
     eight three-iteration OpenEvolve-style seeds all retained correct best
     programs and improved over the starter. The median best runtime is
     `0.024581` seconds versus `3.261186` seconds for the starter.
+  - A second official `debug`/CIFAR10 setup probe repaired a missing
+    `torchvision` dependency but stopped during dataset preparation because the
+    170 MB CIFAR10 archive was downloading too slowly for the interactive run.
+    It is archived as setup evidence, not as a score.
 - **sklearn diabetes tabular regression probe**:
   - Role: non-FML, non-runtime-only controlled ML modeling task that does not
     require external dataset credentials.
@@ -73,8 +77,10 @@ sufficient by itself.
   - Role: data-driven scientific discovery tasks extracted from publications,
     useful for evaluator gates and claim-support checks.
   - Current status: the code repository is present on `ubuntu-heshi`, but the
-    full verified benchmark artifacts are not yet downloaded, so no
-    ScienceAgentBench score is reported.
+    full verified benchmark artifacts are not yet downloaded. A metadata probe
+    also failed to reach HuggingFace from the Ubuntu host with
+    `[Errno 101] Network is unreachable`, so no ScienceAgentBench score is
+    reported.
 
 ### Tier C: High-Cost / Stretch Benchmarks
 

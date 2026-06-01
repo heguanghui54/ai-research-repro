@@ -1,0 +1,19 @@
+{
+  "task": "MLAgentBench debug task mapped to CIFAR10",
+  "status": "setup_blocked_by_slow_dataset_download",
+  "official_score_reported": false,
+  "runner_command_reached": "cifar10 prepare.py",
+  "environment_repair": {
+    "issue": "torchvision missing, then ABI mismatch from generic PyPI wheel",
+    "fix": "installed torchvision==0.27.0+cpu from the PyTorch CPU wheel index",
+    "torch": "2.12.0+cpu",
+    "torchvision": "0.27.0+cpu"
+  },
+  "blocker": {
+    "dataset": "CIFAR10",
+    "archive_size": "170 MB",
+    "observed_progress": "approximately 426 KB after about 35 seconds",
+    "reason_to_stop": "interactive run would take hours at observed download speed"
+  },
+  "next_step": "pre-cache CIFAR10 on ubuntu-heshi or choose another official MLAgentBench task with available data"
+}

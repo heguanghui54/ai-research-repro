@@ -85,3 +85,12 @@ claim-audit section. A second paper-quality review pass through Monica-routed
 two matched-budget FML pairs as useful but mixed first evidence while still
 identifying multi-task matched comparisons and a full four-loop trajectory as
 the main blockers before a strong venue submission.
+
+The latest benchmark-expansion probes are deliberately recorded as setup
+evidence rather than inflated results. A second official MLAgentBench
+`debug`/CIFAR10 attempt repaired the missing `torchvision` dependency but was
+stopped when the 170 MB CIFAR10 archive downloaded at only a few hundred KB over
+half a minute. A ScienceAgentBench metadata probe confirmed the code repository
+and the April 2026 verified-artifact requirement, but HuggingFace metadata was
+not reachable from the Ubuntu host. Neither probe is reported as a benchmark
+score.

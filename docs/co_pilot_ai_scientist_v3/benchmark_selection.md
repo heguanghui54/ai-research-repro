@@ -27,9 +27,9 @@ The benchmark suite is therefore selected by claim type.
 | --- | --- | --- | --- | --- |
 | A | FML-bench | AI Scientist-v2-style ML benchmark search over target code | Branch gate, selected-branch continuation, evaluator failures | Runnable and already used |
 | A | OpenEvolve-controlled tasks | Machine-gradeable program search | AlphaEvolve-style escalation gate and direct-edit ablation | Runnable and already used |
-| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe |
+| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10 debug setup is blocked by slow dataset download |
 | B | sklearn diabetes tabular probe | Lightweight supervised-learning model search | Non-FML, non-runtime-only boundary test for direct edit vs program search | Three OpenEvolve seeds and one direct rewrite archived |
-| B | ScienceAgentBench | Data-driven scientific discovery code tasks from publications | Non-FML scientific workflow validation, especially evaluator/claim gates | Code present; full benchmark artifacts still needed |
+| B | ScienceAgentBench | Data-driven scientific discovery code tasks from publications | Non-FML scientific workflow validation, especially evaluator/claim gates | Code present; HuggingFace metadata and verified artifacts currently unreachable from Ubuntu host |
 | C | MLE-bench Lite | Kaggle-style ML engineering | High-signal, higher-cost end-to-end ML engineering evidence | Stretch benchmark |
 | C | PaperBench | Replication of ML research papers with hierarchical rubrics | Claim/paper-quality and long-horizon research replication evidence | Stretch benchmark |
 | C | AIRS-Bench | Full ML research lifecycle tasks | Closest match to full automated research lifecycle if setup fits budget | Stretch benchmark |
@@ -60,11 +60,15 @@ of Co-Pilot AI Scientist v3.
    escalation policy.
 3. **MLAgentBench vectorization extension**: baseline, direct LLM rewrite, and
    OpenEvolve-style runtime optimization now run under a correctness-gated
-   evaluator with an eight-seed robustness probe; next add a second official
-   MLAgentBench task when data access is available.
+   evaluator with an eight-seed robustness probe. A follow-up official
+   CIFAR10/debug setup probe repaired the missing `torchvision` dependency but
+   stopped at slow CIFAR10 data download, so no second official score is
+   reported yet.
 4. **ScienceAgentBench single task**: first download the verified benchmark
-   artifacts on the Ubuntu host, then use one data-driven discovery task to
-   test evaluator and claim gates in a more science-like setting.
+   artifacts on the Ubuntu host. A metadata setup probe confirmed that the
+   repository is present but HuggingFace metadata access fails from the Ubuntu
+   host with network unreachable, so ScienceAgentBench remains a planned
+   benchmark rather than a scored result.
 5. **MLE-bench Lite dry run or one task**: use only if API/compute budget allows.
 6. **PaperBench-inspired rubric audit**: do not run full PaperBench initially;
    instead borrow its hierarchical rubric idea for manuscript claim auditing.

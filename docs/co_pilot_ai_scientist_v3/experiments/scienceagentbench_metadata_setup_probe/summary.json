@@ -1,0 +1,21 @@
+{
+  "benchmark": "ScienceAgentBench",
+  "status": "metadata_and_verified_artifacts_not_yet_accessible",
+  "score_reported": false,
+  "repository_path": "/home/heshi/work/bench-probes/ScienceAgentBench",
+  "local_benchmark_contents": [
+    "benchmark/README.md"
+  ],
+  "missing_verified_artifacts": [
+    "benchmark/datasets",
+    "benchmark/eval_programs",
+    "benchmark/gold_programs",
+    "benchmark/scoring_rubrics"
+  ],
+  "huggingface_metadata_attempt": {
+    "dataset": "osunlp/ScienceAgentBench",
+    "result": "failed",
+    "error": "[Errno 101] Network is unreachable"
+  },
+  "next_step": "download verified split metadata and benchmark_verified.zip through a reachable network path before running or reporting ScienceAgentBench metrics"
+}

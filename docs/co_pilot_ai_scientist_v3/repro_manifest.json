@@ -218,7 +218,15 @@
     "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/test.log",
     "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/test_info.json",
     "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/val.log",
-    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/val_info.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/val_info.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_setup_probe/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_setup_probe/env_versions.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_setup_probe/run.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_setup_probe/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/huggingface_metadata_error.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/repo_probe.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/summary.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -231,7 +239,7 @@
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "Generate expert or rubric-based paper quality scores.",
     "Run a complete four-loop trajectory with all gates active.",
-    "Download verified ScienceAgentBench artifacts or add a second official MLAgentBench task for broader non-FML coverage; current sklearn tabular probe is controlled evidence, not an official benchmark score."
+    "Pre-cache CIFAR10 or choose another data-ready MLAgentBench task for a second official non-FML score; download verified ScienceAgentBench metadata and benchmark_verified.zip through a reachable network path before reporting ScienceAgentBench metrics."
   ],
   "model_routing_policy": {
     "routine_coding_and_smoke_tests": "DeepSeek or low-cost Monica-routed model",

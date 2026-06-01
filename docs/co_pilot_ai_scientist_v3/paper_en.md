@@ -116,9 +116,12 @@ benchmark because it is already runnable in our Ubuntu environment and exposes
 branch-level logs. For machine-gradeable algorithmic subproblems, we use
 OpenEvolve-controlled tasks such as function minimization and knapsack heuristic
 search. For broader evidence beyond FML-bench, we include an initial
-MLAgentBench vectorization probe for end-to-end ML experimentation; the next
-step should add ScienceAgentBench for data-driven scientific discovery tasks.
-Higher-cost stretch benchmarks include
+MLAgentBench vectorization probe for end-to-end ML experimentation and track
+setup probes for additional MLAgentBench and ScienceAgentBench tasks. The
+current evidence still does not include a second scored official non-FML
+benchmark: the MLAgentBench CIFAR10/debug run was blocked by slow dataset
+download, and ScienceAgentBench metadata/artifacts were not reachable from the
+Ubuntu host. Higher-cost stretch benchmarks include
 MLE-bench Lite for Kaggle-style ML engineering, PaperBench for paper-to-code
 replication and hierarchical rubric grading, and AIRS-Bench for full ML research
 lifecycle evaluation.
@@ -277,6 +280,18 @@ result broadens the benchmark coverage to a tabular modeling subproblem, but it
 also gives an important boundary condition: when the improvement is a standard
 small modeling change, direct editing can be as effective as program search.
 Thus the program-search gate should be selective, not automatic.
+
+We also attempted two benchmark-expansion probes. First, we tried to add a
+second official MLAgentBench `debug` task, which maps to CIFAR10. The setup
+probe repaired a missing `torchvision` dependency by installing the matching
+CPU wheel for the local `torch` version, but the run stopped during dataset
+preparation because the 170 MB CIFAR10 archive was downloading too slowly for
+the interactive budget. Second, we probed ScienceAgentBench. The repository was
+present on the Ubuntu host, and its README points to the April 2026 verified
+split and `benchmark_verified.zip`, but the local benchmark directory did not
+contain the verified artifacts and the HuggingFace metadata request failed with
+`[Errno 101] Network is unreachable`. We therefore report both as setup
+artifacts and not as benchmark scores.
 
 ### 4.5 Claim Audit
 

@@ -51,7 +51,7 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 ## 4. Benchmark 选择与评估计划
 
-我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化和 0/1 knapsack 启发式搜索。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力；下一步应加入 ScienceAgentBench 来测试更接近科学发现的数据驱动任务。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
+我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化和 0/1 knapsack 启发式搜索。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力，并进一步记录了 MLAgentBench CIFAR10/debug 与 ScienceAgentBench 的 setup probes。当前证据还没有第二个已打分的官方非 FML benchmark：CIFAR10/debug 被慢速数据下载阻塞，ScienceAgentBench 的元数据和 verified artifacts 在 Ubuntu 主机上暂时不可达。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
 
 指标包括任务分数、论文质量、主张支持率、搜索效率、人类注意力成本和假设多样性。对于程序化搜索模块，关键消融是：在相同 evaluator 和迭代预算下，比较 OpenEvolve 与直接重复 LLM 代码编辑。因此，FML-bench 应被理解为当前证据来源之一，而不是整个项目的完整 benchmark 定义。
 
@@ -90,6 +90,8 @@ Co-Pilot AI Scientist v3 包含四个循环。
 为了检查稳健性，我们又用更多 random seed 重复同样的三轮 OpenEvolve 设置。在 seed 0、1、2、3、4、7、42、123 共八次运行中，所有运行都保留了正确 best program，并且都比受控 starter 更快。八个 seed 的 best runtime 中位数为 0.024581 秒，相当于相对 starter 约 132.67 倍的中位加速；其中 6 个 seed 找到低于 0.1 秒的程序。这个结果明显强于最初的三 seed probe，但仍不是确定性成功：seed 7 只有约 1.09 倍加速，seed 1 约 15.57 倍加速。因此，该结果增强了“程序搜索模块可以找到有效代码变换”的证据，同时保留了极小预算下 seed/budget sensitivity 的重要 caveat。
 
 为了避免非 FML 证据只覆盖底层 runtime optimization，我们又加入了一个使用 sklearn 内置 diabetes regression dataset 的受控 tabular modeling probe。这个 probe 不需要 Kaggle 凭证，也不应被报告为官方 MLAgentBench 分数。初始程序是刻意粗糙的均值预测器，在五个确定性 split 上 mean RMSE 为 78.572189。一次 direct DeepSeek rewrite 找回了标准 Ridge 风格 baseline，mean RMSE 为 55.895460。三个三轮 OpenEvolve seed 也都明显优于均值预测器，best RMSE 分别为 55.895460、55.946535 和 55.895460；其中位 RMSE 为 55.895460，基本与 direct rewrite 持平。这个结果把 benchmark 覆盖扩展到了表格建模子问题，同时也给出了重要边界条件：当改进只是一个标准的小型建模修改时，direct editing 可以和 program search 一样有效。因此 program-search gate 应该选择性触发，而不是自动触发。
+
+我们还尝试了两个 benchmark 扩展 probe。首先，我们尝试加入第二个官方 MLAgentBench `debug` 任务，它映射到 CIFAR10。该 setup probe 先修复了远端环境缺少 `torchvision` 的问题，并安装了与本地 `torch` 匹配的 CPU wheel；但运行在数据准备阶段停止，因为 170 MB 的 CIFAR10 压缩包下载速度过慢，不适合当前交互预算。其次，我们检查了 ScienceAgentBench。该仓库已经存在于 Ubuntu 主机，README 指向 2026 年 4 月 verified split 和 `benchmark_verified.zip`，但本地 benchmark 目录缺少 verified artifacts，而且 HuggingFace metadata 请求返回 `[Errno 101] Network is unreachable`。因此，本文只把这两项记录为 setup artifacts，而不报告 benchmark 分数。
 
 ### 4.5 主张审计
 
