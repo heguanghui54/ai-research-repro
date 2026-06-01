@@ -52,8 +52,12 @@ evidence. It includes OpenEvolve-based program search, direct LLM rewrite
 baselines, a richer knapsack heuristic task, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes a live
 two-draft FML-bench branch-gate probe and a snapshot-seeded selected-branch
-continuation run. To avoid overfitting the project to FML-bench, the package
-also includes a non-FML MLAgentBench `vectorization` comparison: direct DeepSeek
+continuation run, plus a first matched-budget four-step autonomous baseline on
+the same Causality task. The matched baseline reached test MAE `0.421474`,
+while the human-gated continuation reached `0.402170`; this is promising but
+still only one task and one seed. To avoid overfitting the project to
+FML-bench, the package also includes a non-FML MLAgentBench `vectorization`
+comparison: direct DeepSeek
 rewrite failed the correctness gate, while a three-iteration OpenEvolve-style
 search found a correct vectorized program with median runtime `0.051882` seconds
 versus `3.261186` seconds for the controlled starter program. Two additional
@@ -63,6 +67,7 @@ remain intentionally conservative until the evidence is expanded across more
 tasks/seeds and independently reviewed for paper quality. A Monica-routed claim
 audit is archived under `audits/` and is reflected in the manuscript's
 claim-audit section. A second paper-quality review pass through Monica-routed
-`gpt-4o-mini` and `claude-3-7-sonnet-latest` is also archived; it identifies
-matched-budget human-gate comparisons and a full four-loop trajectory as the
-main blockers before a strong venue submission.
+`gpt-4o-mini` and `claude-3-7-sonnet-latest` is also archived; it now treats the
+single matched-budget run as useful first evidence while still identifying
+multi-task matched comparisons and a full four-loop trajectory as the main
+blockers before a strong venue submission.

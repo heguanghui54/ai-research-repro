@@ -75,6 +75,8 @@ Co-Pilot AI Scientist v3 包含四个循环。
 
 随后，我们实现了一个最小 selected-branch continuation runner。该 runner 会把人类 gate 选中的代码快照临时写回官方 FML-bench 任务模板，从该状态启动一个短预算 AI Scientist-v2 continuation run，并在结束后恢复模板文件。从被选中的第二个 draft 出发，继续两步后验证 MAE 达到 0.401240，test MAE 达到 0.402170。这个结果优于 live two-draft gate run 的 test MAE 0.640451，也优于早期四步 autonomous smoke run 的 test MAE 0.617719。这个比较仍然是初步的：当前 continuation 是通过 snapshot seeding 实现的，还没有保存原始内存中的 tree 对象；同时它只覆盖一个小任务和一个 seed。因此，我们只把它作为“branch gate -> selected snapshot -> additional AI Scientist-v2 budget”这条路径可以执行的证据，而不是最终统计结论。
 
+根据 paper-quality review 的意见，我们又补了一次更接近同预算的 autonomous baseline。该运行使用同一个 Causality_causalml 任务、同一个 DeepSeek 模型、两个初始 idea、两个并行分支和四个 AI Scientist-v2 总步数，但不进行人类分支选择。它得到验证 MAE 0.389451、test MAE 0.421474。因此，human-gated 路径在 held-out test MAE 上仍略好：0.402170 对比 0.421474；但 autonomous baseline 在验证 MAE 上略好。这个单任务对照消除了一个重要的计算预算混淆因素，但仍不是“人类 gate 普遍有效”的统计证明。
+
 ### 4.4 非 FML benchmark 与程序搜索小实验
 
 根据上面的 benchmark 选择原则，我们还把 MLAgentBench 作为非 FML 评估来源。我们在 Ubuntu 主机上克隆 MLAgentBench，并先运行其轻量 `vectorization` 任务，使用内置 `Agent` baseline。该 baseline 只执行 starter `train.py` 并提交结果。官方 baseline 成功完成，final score 为 3.172504 秒，total benchmark time 为 3.365531 秒，且没有错误标记。
@@ -97,10 +99,11 @@ Co-Pilot AI Scientist v3 包含四个循环。
 2. 一个用于科研 agent 的人类参与节点形式化 schema。
 3. 一个评估“人类注意力是否以及应该放在哪里”的实验协议。
 4. 远程 OpenEvolve 与 FML-bench 小实验，证明 AlphaEvolve-style 子问题模块和 AI Scientist-v2 分支 gate 模块可以在 Ubuntu 主机上运行。
-5. 一个非 FML 的 MLAgentBench 程序搜索小实验，用于扩展 FML-bench 之外的 benchmark 覆盖面。
-6. 一个可在 Codex 中复用的 workflow skill。
-7. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
-8. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。
+5. 第一个同预算 FML-bench 对照：human-gated branch continuation 与四步 autonomous AI Scientist-v2 baseline。
+6. 一个非 FML 的 MLAgentBench 程序搜索小实验，用于扩展 FML-bench 之外的 benchmark 覆盖面。
+7. 一个可在 Codex 中复用的 workflow skill。
+8. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
+9. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
 

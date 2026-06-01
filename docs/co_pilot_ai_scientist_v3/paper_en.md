@@ -207,6 +207,16 @@ uses only a single small task and seed. Nevertheless, it demonstrates an
 executable path from branch gate, to selected snapshot, to additional
 AI Scientist-v2 search budget.
 
+Following the paper-quality review, we added a closer matched-budget autonomous
+baseline. This run used the same Causality_causalml task, the same DeepSeek
+model, two initial ideas, two parallel branches, and four total AI Scientist-v2
+steps, but no human branch selection. It reached validation MAE 0.389451 and
+test MAE 0.421474. The human-gated path therefore remains slightly better on
+held-out test MAE (0.402170 versus 0.421474), while the autonomous baseline is
+slightly better on validation MAE. This single-task comparison removes one
+important compute-budget confound, but it is still not statistical evidence for
+general human-gate superiority.
+
 ### 4.4 Non-FML Benchmark and Program-Search Probe
 
 Following the benchmark-selection principle above, we also used MLAgentBench as
@@ -250,7 +260,7 @@ the narrower empirical claims reported above: OpenEvolve-style search can help
 on some machine-gradeable subproblems but is seed-sensitive under tiny budgets,
 branch-gate insertion is feasible in AI Scientist-v2-style logs, and
 selected-branch continuation has a promising single-task result that still
-requires matched-budget validation.
+requires broader matched-budget validation.
 
 We also ran a paper-quality review through two Monica-routed reviewer models.
 `gpt-4o-mini` gave a weak-accept recommendation with scores of 4/5 for novelty
@@ -273,12 +283,14 @@ The current contributions are:
 4. Initial remote OpenEvolve and FML-bench probes showing that the
    AlphaEvolve-style subproblem module and AI Scientist-v2 branch-gate module
    can run on the Ubuntu host.
-5. A non-FML MLAgentBench program-search probe for broadening benchmark
+5. A first matched-budget FML-bench comparison between a human-gated branch
+   continuation and a four-step autonomous AI Scientist-v2 baseline.
+6. A non-FML MLAgentBench program-search probe for broadening benchmark
    coverage beyond FML-bench.
-6. A reusable Codex skill for running the workflow.
-7. Bilingual paper, usage artifacts, and claim-audit artifacts for
+7. A reusable Codex skill for running the workflow.
+8. Bilingual paper, usage artifacts, and claim-audit artifacts for
    reproducibility.
-8. A Monica-routed paper-quality review artifact that records external model
+9. A Monica-routed paper-quality review artifact that records external model
    criticism before the next revision.
 
 The current evidence does not yet prove that human gates improve paper quality

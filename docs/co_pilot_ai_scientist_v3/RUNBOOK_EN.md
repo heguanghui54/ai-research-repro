@@ -120,6 +120,9 @@ Current replay and live-probe evidence:
 - Selected-branch continuation: apply the selected step 2 snapshot and continue
   AI Scientist-v2 for two more steps, reaching validation MAE
   `0.4012397173613497` and test MAE `0.4021701846791075`.
+- Matched autonomous 4-step baseline: same task/model with four total steps,
+  no human branch selection, reaching validation MAE `0.38945144308464624` and
+  test MAE `0.42147360723655275`.
 
 The current continuation is implemented by snapshot seeding. A stronger future
 version should preserve and resume the original AI Scientist-v2 tree object.
@@ -157,6 +160,38 @@ CUDA_VISIBLE_DEVICES=0 /home/heshi/miniconda3/bin/conda run -n fmlbench \
   --num-parallel 1 \
   --stage-budgets "[1.0, 0.0, 0.0, 0.0]"
 ```
+
+Run the matched autonomous baseline from the official FML-bench repository:
+
+```bash
+ssh ubuntu-heshi
+source /home/heshi/miniconda3/etc/profile.d/conda.sh
+source ~/.codex/env
+cd /home/heshi/work/FML-bench
+TMP=$(mktemp /tmp/copilotv3_autonomous_matched_XXXX.yaml)
+python3 - <<PY
+from pathlib import Path
+text = Path("configs/agents/ai_scientist_v2.yaml").read_text()
+text = text.replace("num_ideas: 3", "num_ideas: 2")
+text = text.replace("num_parallel: 4", "num_parallel: 2")
+text = text.replace(
+    "stage_budgets: [0.10, 0.20, 0.50, 0.20]",
+    "stage_budgets: [0.50, 0.50, 0.0, 0.0]",
+)
+Path("$TMP").write_text(text)
+PY
+conda run -n fmlbench python run_agent_benchmark.py \
+  --agent-config "$TMP" \
+  --task-config configs/tasks/causality_causalml.yaml \
+  --model deepseek-chat \
+  --provider DeepSeek \
+  --output-dir /home/heshi/work/copilotv3-autonomous-matched-budget-4step \
+  agent.ai_scientist_v2.max_steps=4
+rm -f "$TMP"
+```
+
+Archive path:
+`docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/`.
 
 ## 8. Non-FML MLAgentBench Baseline
 
@@ -217,8 +252,8 @@ shows seed sensitivity under a tiny search budget.
 
 - Replace snapshot-seeded continuation with native tree-object resume if
   feasible.
-- Compare autonomous baseline, selected human gates, and full co-pilot variant
-  under the same budget.
+- Repeat the first matched-budget autonomous vs human-gated comparison across
+  more tasks, seeds, and budget schedules.
 - Add a second MLAgentBench task or expand to ScienceAgentBench, then repeat
   with matched multi-seed budgets.
 - Add external or rubric-based paper-quality scoring.

@@ -74,6 +74,14 @@
     "docs/co_pilot_ai_scientist_v3/experiments/fml_selected_branch_continuation/config_used.yaml",
     "docs/co_pilot_ai_scientist_v3/experiments/fml_selected_branch_continuation/step_0001_code.json",
     "docs/co_pilot_ai_scientist_v3/experiments/fml_selected_branch_continuation/step_0002_code.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/config_used.yaml",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/step_0001_code.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/step_0002_code.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/step_0003_code.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_autonomous_matched_budget_4step/step_0004_code.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_comparison.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/eval.json",
@@ -131,7 +139,7 @@
     "The full co-pilot v3 system outperforms autonomous AI Scientist-v2 on selected tasks."
   ],
   "next_required_evidence": [
-    "Run more matched autonomous and human-gated variants beyond the current pilot tasks.",
+    "Run more matched autonomous and human-gated variants beyond the current single-task matched pilot.",
     "Collect additional structured human gate logs on new tasks.",
     "Replace snapshot-seeded selected-branch continuation with native tree-object resume if feasible.",
     "Generate expert or rubric-based paper quality scores.",

@@ -33,6 +33,9 @@ sufficient by itself.
   - fairness/fairlearn smoke task.
   - Role: branch-gate and selected-branch continuation evidence for
     AI Scientist-v2-style search.
+  - Current status: one Causality matched-budget comparison is archived
+    (`0.402170` human-gated test MAE vs. `0.421474` autonomous test MAE), but
+    more tasks and seeds are still required.
 - **OpenEvolve-controlled tasks**:
   - function minimization;
   - 0/1 knapsack heuristic search.

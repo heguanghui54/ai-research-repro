@@ -210,7 +210,7 @@ done
 ## 9. 顶会级投稿前仍需补强的证据
 
 - 如果可行，把 snapshot-seeded continuation 升级为原生 tree-object resume。
-- 在同等预算下比较 autonomous baseline、单个 human gate 和 full co-pilot variant。
+- 将第一个同预算 autonomous vs human-gated 对照扩展到更多任务、随机种子和预算分配。
 - 加入第二个 MLAgentBench task，或扩展到 ScienceAgentBench，然后用匹配的 multi-seed budget 重复验证。
 - 加入外部评审或 rubric-based paper-quality scoring。
 - 跑一次完整四循环轨迹，让 hypothesis、evaluator、branch、program-search 和 claim-audit gates 在同一条连续任务中全部生效。

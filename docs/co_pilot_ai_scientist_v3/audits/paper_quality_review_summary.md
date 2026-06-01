@@ -26,7 +26,8 @@ matched-budget evidence.
 ## Shared Required Revisions
 
 - Run matched-budget comparisons between autonomous AI Scientist-v2 and
-  human-gated variants.
+  human-gated variants. One single-task four-step comparison is now archived,
+  but the requirement remains open for multiple tasks and seeds.
 - Demonstrate at least one complete four-loop trajectory, not only isolated
   module probes.
 - Add statistical or uncertainty analysis across tasks and seeds.
