@@ -39,9 +39,10 @@ on the main remaining blockers.
 - The strongest current claim should be narrowed further: expert review text
   can be mapped to workflow-control signals, and review-guided regeneration
   shows a modest positive signal that needs independent human validation.
-- The OpenReview regeneration probe has an information-quantity confound:
-  review-guided artifacts receive more and richer text than the title/abstract
-  baseline.
+- The first OpenReview regeneration probe had an information-quantity confound.
+  A follow-up equal-context ablation now compares real paper-specific reviews
+  against matched-length unrelated OpenReview snippets; this reduces the
+  confound but still relies on model-routed scoring.
 - The manuscript needs a unified result table with metric, co-pilot result,
   autonomous/baseline result, delta, and interpretation.
 - The evidence still lacks independent human expert ratings, inter-rater
@@ -50,11 +51,9 @@ on the main remaining blockers.
 
 ## Next Required Evidence
 
-1. Add an equal-context ablation for OpenReview regeneration, such as random
-   non-review text or generic critique text with matched length.
-2. Obtain blind human expert ratings on the paired regenerated mini-manuscripts.
-3. Expand matched autonomous versus human-gated runs across more tasks, seeds,
+1. Obtain blind human expert ratings on the paired regenerated mini-manuscripts.
+2. Expand matched autonomous versus human-gated runs across more tasks, seeds,
    and budgets.
-4. Report all benchmark and artifact-quality probes in one consolidated table.
-5. Keep the paper's main claim at workflow-design and measurement-readiness
+3. Report all benchmark and artifact-quality probes in one consolidated table.
+4. Keep the paper's main claim at workflow-design and measurement-readiness
    level until the above evidence exists.

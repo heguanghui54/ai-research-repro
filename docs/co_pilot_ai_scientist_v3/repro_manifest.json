@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_focused_reviewed_conference_manuscript",
+  "status": "pilot_package_with_openreview_equal_context_ablation_and_focused_revision",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -519,7 +519,20 @@
     "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md",
     "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.json",
     "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/summary.json",
-    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md"
+    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/source_summary_path.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/control_inputs.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/generation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/context_control_artifacts.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/review_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/gpt-4o-mini_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/gpt-4o-mini_review.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/claude-3-7-sonnet-latest_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/claude-3-7-sonnet-latest_review.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/README.md",
+    "scripts/run_openreview_equal_context_ablation.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -920,6 +933,23 @@
     "gpt_recommendation": "Weak accept",
     "claude_recommendation": "Weak reject",
     "summary": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md",
-    "claim_boundary": "Focused manuscript improves structure but remains a pilot workflow-design paper; independent human review and equal-context OpenReview ablation are still missing."
+    "claim_boundary": "Focused manuscript now incorporates the equal-context OpenReview ablation; independent human expert review remains missing."
+  },
+  "openreview_equal_context_ablation": {
+    "run_id": "openreview_equal_context_ablation_20260602_142000",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json",
+    "source_run_id": "openreview_guided_regeneration_probe_20260602_073500",
+    "pair_count": 6,
+    "review_models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "review_guided_wins": 8,
+    "context_control_wins": 1,
+    "ties": 3,
+    "mean_delta_across_models": 0.5,
+    "claude_review_guided_wins": 3,
+    "claude_ties": 3,
+    "claim_boundary": "This ablation controls for extra context by comparing real paper-specific review guidance against matched-length unrelated review context. It still uses model-routed scoring rather than independent human expert review, and does not rerun the original experiments."
   }
 }

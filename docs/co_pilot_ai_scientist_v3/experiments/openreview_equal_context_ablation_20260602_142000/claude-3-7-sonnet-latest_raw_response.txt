@@ -1,0 +1,168 @@
+```json
+{
+  "per_paper": [
+    {
+      "paper_id": "openreview_sample_1",
+      "winner": "review_guided",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 4
+        }
+      },
+      "specific_review_value": "The review insight about constructing preference data with (correct, refuse), (refuse, incorrect), (correct, incorrect) triples is a concrete methodological detail that meaningfully sharpens the method sketch beyond generic RL framing. The focus on arithmetic/math datasets as a specific evaluation domain also grounds the experiment plan.",
+      "remaining_confounds": "Both outputs are fairly generic; the review_guided version's advantage is modest. The preference-data construction detail could have been inferred from the abstract's RL framing."
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "winner": "review_guided",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 4,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "specific_review_value": "The review insight about unclear motivation and comparison to related works surfaces a genuine limitation that the context_control misses entirely. This improves limitation honesty marginally. The SDE mathematical framework mention adds some methodological specificity.",
+      "remaining_confounds": "The improvement is small. Both versions are similarly generic in experiment planning and novelty framing. The SDE detail could be inferred from the abstract's 'score-based' language."
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "winner": "tie",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "specific_review_value": "The review insights ('straightforward and reproducible', 'empirical privacy guarantees') are positive but shallow. The limitation about baseline justification is useful but generic. Neither version substantially outperforms the other in any dimension.",
+      "remaining_confounds": "The context_control's generic pressures are irrelevant (BN/DReLU), so they don't help, but the review_guided insights are also thin. Both outputs converge to similar quality."
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "winner": "tie",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "specific_review_value": "The review insight about the probe technique needing better description is a real methodological clarity issue, but it only surfaces as a vague limitation note. The 'low-level algorithmic operations' framing adds slight specificity. Neither version meaningfully improves problem framing or experiment design.",
+      "remaining_confounds": "Both versions are similarly generic. The context_control's Lyapunov pressure is irrelevant but doesn't harm the output. The review_guided insights are too surface-level to drive meaningful differentiation."
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "winner": "review_guided",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 3
+        }
+      },
+      "specific_review_value": "The review insight that 'improvements are modest' directly improves claim calibration and limitation honesty, preventing overclaiming. The context_control version is more optimistic without this grounding. This is a genuine contribution of the review signal.",
+      "remaining_confounds": "The improvement is narrow—only claim calibration and limitation honesty benefit. The method sketch and experiment plan are essentially identical between versions."
+    },
+    {
+      "paper_id": "openreview_sample_64",
+      "winner": "tie",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "specific_review_value": "The review insights ('well-motivated', 'clarity needs improvement', 'technical correctness requires validation') are generic reviewer boilerplate. They don't add domain-specific insight about causal graph construction, flow architecture, or evaluation metrics. Both versions are essentially equivalent.",
+      "remaining_confounds": "The context_control's generic pressures about KL minimization are irrelevant but similarly don't harm the output. The review_guided version's 'technical correctness requires validation' is a generic concern that could apply to any paper."
+    }
+  ],
+  "design_lessons": [
+    "Review insights that specify concrete methodological details (e.g., preference data triple construction in RLKF) provide genuine value over generic reviewer pressure, but this is rare—most review insights in this set are surface-level and produce only marginal differentiation.",
+    "Claim calibration and limitation honesty are the dimensions most reliably improved by real review signals, particularly when reviewers explicitly flag modest improvements or overclaiming; experiment planning and novelty framing are rarely improved by the review insights seen here.",
+    "Generic positive review statements ('well-motivated', 'straightforward', 'interesting insights') provide essentially no advantage over context_control, suggesting that only critical, specific review feedback drives meaningful output differentiation in this ablation design."
+  ],
+  "claim_boundary": "Across these six papers, review_guided outputs outperform context_control in only two cases (samples 1 and 49) with a marginal edge in sample 2, while three cases are effectively ties. The review signal adds value primarily when it contains specific methodological details or explicit calibration warnings about modest results. When review insights are generic praise or vague calls for clarity improvement, they fail to improve problem framing, method design, or experiment planning beyond what generic reviewer pressure achieves. This suggests the equal-context ablation design successfully isolates cases where paper-specific review content matters, but also reveals that a substantial fraction of real OpenReview feedback is too generic to provide differential signal."
+}
+```

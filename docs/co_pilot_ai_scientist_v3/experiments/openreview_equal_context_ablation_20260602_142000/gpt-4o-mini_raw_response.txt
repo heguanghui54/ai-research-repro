@@ -1,0 +1,166 @@
+{
+  "per_paper": [
+    {
+      "paper_id": "openreview_sample_1",
+      "winner": "review_guided",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 4,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 4,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "specific_review_value": "The review-guided version provides clearer insights into the empirical validation of the proposed method, enhancing the overall framing and experimental design.",
+      "remaining_confounds": "The context control still presents a solid foundation but lacks the depth of specific insights provided by the reviews."
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "winner": "review_guided",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "specific_review_value": "The review-guided version introduces a novel technique and emphasizes the versatility of the method across multiple tasks, improving the framing.",
+      "remaining_confounds": "The context control lacks the specific insights that enhance the understanding of the method's contributions."
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "winner": "review_guided",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "specific_review_value": "The review-guided version provides empirical privacy guarantees and a clearer methodology, enhancing the overall quality.",
+      "remaining_confounds": "The context control lacks the depth of empirical validation and clarity found in the review-guided version."
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "winner": "review_guided",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "specific_review_value": "The review-guided version enhances clarity and provides a more comprehensive exploration of the implications of the findings.",
+      "remaining_confounds": "The context control lacks the detailed exploration of the implications and clarity present in the review-guided version."
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "winner": "context_control",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "specific_review_value": "Both versions present similar insights, but the context control maintains a clearer focus on the proposed training strategy.",
+      "remaining_confounds": "The review-guided version does not significantly enhance the framing or insights compared to the context control."
+    },
+    {
+      "paper_id": "openreview_sample_64",
+      "winner": "review_guided",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "specific_review_value": "The review-guided version provides a clearer motivation and a more structured approach to the generative process, enhancing overall clarity.",
+      "remaining_confounds": "The context control lacks the structured approach and clarity found in the review-guided version."
+    }
+  ],
+  "design_lessons": [
+    "Incorporating specific reviewer insights can significantly enhance the clarity and depth of the research framing.",
+    "Empirical validation and clear methodology are crucial for establishing the credibility of novel approaches.",
+    "Maintaining a focus on the implications of findings can improve the overall impact of the research."
+  ],
+  "claim_boundary": "The findings and claims made in these papers are primarily relevant to their specific contexts and may not generalize across all domains of machine learning or generative modeling."
+}

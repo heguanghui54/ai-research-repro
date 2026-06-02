@@ -56,6 +56,9 @@ claim calibration.
   manuscript review showing the rewrite improves structure but still needs
   independent human review, equal-context OpenReview ablations, and broader
   matched experiments.
+- `experiments/openreview_equal_context_ablation_20260602_142000/`: follow-up
+  OpenReview regeneration ablation comparing real paper-specific review
+  guidance against matched-length unrelated review context.
 - `audits/clean_clone_reproducibility_audit.md`: fresh GitHub-clone check that
   rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
 - `audits/skill_reuse_smoke_audit.md`: local smoke test that instantiates the

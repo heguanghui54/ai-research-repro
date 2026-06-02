@@ -53,6 +53,7 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 | Review utility map | 398 条可行动片段 | 64 条噪声片段 | 共 473 条片段 | 专家评审包含可路由的 taste/insight 信号。 |
 | OpenReview 再生成，同模型评分 | review-guided 胜 5 次 | baseline 胜 1 次 | mean overall +0.8333 | 正向，但可能受同模型评分和额外上下文影响。 |
 | OpenReview 再生成，Claude 复审 | review-guided 胜 3 次 | baseline 胜 1 次，平 2 次 | mean overall +0.1667 | 有温和正向信号，但不是自动提升。 |
+| OpenReview 等上下文消融 | review-guided 票数 8 | context-control 票数 1，平 3 | 跨模型 mean delta +0.5 | 真实相关评审优于等量无关评审上下文，但 Claude 显示效果较温和。 |
 | Prospective matched packages | co-pilot 或人类选分支胜 1 次 | autonomous / tie / invalid 3 次 | 4 个 package | 不支持短预算平均 benchmark 优越性。 |
 | Same-run online FML smokes | co-pilot benchmark 胜 0 次 | autonomous 胜 1 次，平 1 次，未知 1 次 | 3 个 paired smoke | 当前有效 benchmark 证据偏向 autonomous 或平局。 |
 | MLAgentBench vectorization | 8/8 seeds 保持正确，median 0.024581 s | starter 3.261186 s；direct rewrite 未通过正确性 | 显著运行时间收益 | 可验证微演化适合 correctness-gated 代码子问题。 |
@@ -72,7 +73,7 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 
 为降低同模型评分偏差，我们用更严格的跨模型复审重新评分同一批 6 对产物。在该复审中，review-guided 胜出 3/6 次，baseline 胜出 1 次，2 次平局，平均增量缩小为 +0.1667。保守结论是：当评审文本带来具体方法细节、实验特异性、局限意识或主张校准时，它是有用的；当反馈过于泛化，或使再生成产物丢失原始技术框架时，它并不自动有益。
 
-这个探针还有一个重要混淆：review-guided 条件比 title/abstract baseline 获得了更多信息。因此结果尚未完全区分“评审特有的科研品味”与“额外上下文本身”的作用。下一步必须加入等长上下文控制，例如给 baseline 提供等长非评审文本、通用批评文本或无关评审文本。
+这个探针还有一个重要混淆：review-guided 条件比 title/abstract baseline 获得了更多信息。因此我们进一步运行等上下文消融，用等长无关 OpenReview 片段生成 context-control 条件。跨两个 reviewer 模型和 6 篇论文，review-guided 获得 8 个胜出票，context-control 获得 1 个胜出票，3 次平局，跨模型平均增量为 +0.5。更严格的 Claude 复审给出 review-guided 胜 3 次、context-control 胜 0 次、平 3 次，平均增量 +0.1667。这支持更精确的结论：真实相关评审确实可能提供超过通用 reviewer pressure 的价值，但主要发生在评审包含具体方法细节或明确主张校准警告时。
 
 ### 4.3 短预算人类门控是否优于全自动基线？
 
@@ -94,7 +95,7 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 ## 6. 局限性
 
-当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文或成对再生成产物的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。OpenReview 再生成探针仍存在信息量不等混淆，必须在更强主张之前被控制。高尾假设，即人类品味可能增加罕见突破概率、即使平均分下降，在概念上重要，但尚未被统计操作化。
+当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文或成对再生成产物的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。等上下文 OpenReview 消融降低了额外上下文混淆，但尚未完全消除，因为评分仍来自模型路由评审，产物也只是再生成 mini-artifact，而不是盲审专家评分或真实实验重跑。高尾假设，即人类品味可能增加罕见突破概率、即使平均分下降，在概念上重要，但尚未被统计操作化。
 
 这些局限也是未来研究方向。更强的研究应把可复用 co-pilot scientist skill 部署给大量科研人员，在知情同意和隐私保护下收集门控元数据，跨任务运行 matched autonomous 与 human-gated 轨迹，并把成对输出交给盲审专家评估。目前，这种实时多研究者数据更可能由主流 agent 公司或大模型公司完成，而不是小型独立项目。IGRE 因此使用 OpenReview 作为可扩展离线代理，并明确标记这一缺口。
 

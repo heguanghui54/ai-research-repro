@@ -65,7 +65,12 @@
     "openreview_regeneration_cross_model_review_ties": 2,
     "focused_submission_rewrite_plans": 1,
     "focused_conference_manuscripts": 2,
-    "focused_paper_quality_reviews": 2
+    "focused_paper_quality_reviews": 2,
+    "openreview_equal_context_ablation_probes": 1,
+    "openreview_equal_context_ablation_pairs": 6,
+    "openreview_equal_context_ablation_review_guided_votes": 8,
+    "openreview_equal_context_ablation_context_control_votes": 1,
+    "openreview_equal_context_ablation_ties": 3
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -121,7 +126,7 @@
     "independent_human_subject_timing": false,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Run equal-context OpenReview regeneration ablation, obtain blind human expert ratings on regenerated pairs, and expand matched autonomous vs human-gated runs across tasks/seeds.",
+  "next_evidence_milestone": "Obtain blind human expert ratings on regenerated pairs, report inter-rater agreement, and expand matched autonomous vs human-gated runs across tasks/seeds.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -487,10 +492,23 @@
     },
     "blocking_diagnosis": "Focused rewrite improves narrative and method distinctness, but independent human expert review, equal-context OpenReview ablation, and broader matched runs are still missing.",
     "next_required_evidence": [
-      "equal_context_openreview_regeneration_ablation",
       "blind_human_expert_pair_ratings",
       "multi_task_multi_seed_matched_runs",
-      "unified_result_table_with_effect_sizes"
+      "unified_result_table_with_effect_sizes",
+      "independent_human_attention_cost_records"
     ]
+  },
+  "openreview_equal_context_ablation": {
+    "status": "completed_model_routed_equal_context_ablation",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json",
+    "source_run_id": "openreview_guided_regeneration_probe_20260602_073500",
+    "pair_count": 6,
+    "review_guided_wins": 8,
+    "context_control_wins": 1,
+    "ties": 3,
+    "mean_delta_across_models": 0.5,
+    "claude_result": "3 review-guided wins, 0 context-control wins, 3 ties, mean delta +0.1667",
+    "interpretation": "Real paper-specific reviews show modest value beyond matched-length unrelated review context, especially for concrete method details and claim calibration.",
+    "limitation": "Model-routed scoring only; no independent human expert review and no experiment rerun."
   }
 }
