@@ -49,9 +49,9 @@ def _update_manifest(summary: dict[str, Any], json_out: Path, markdown_out: Path
         "complete_taste_gates": summary["complete_taste_gates"],
         "total_active_review_minutes": summary["total_active_review_minutes"],
         "interpretation": (
-            "six passing prospective packages; controlled Max-Cut and open-data "
-            "evaluator-stress provide narrow positives, while FML pilots remain "
-            "negative or invalid; superiority_not_supported"
+            "six passing prospective packages; controlled Max-Cut is positive and "
+            "open-data evaluator-stress is mixed but narrowly positive in aggregate, "
+            "while FML pilots remain negative or invalid; superiority_not_supported"
         ),
     }
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -157,6 +157,8 @@ def _open_data_metrics(trajectory: dict[str, Any]) -> dict[str, Any]:
         "co_pilot_minus_autonomous": delta,
         "winner": "co_pilot" if delta is not None and delta > 0 else "autonomous_or_tie",
         "dataset_count": metrics.get("dataset_count"),
+        "split_count": metrics.get("split_count"),
+        "total_dataset_split_evaluations": metrics.get("total_dataset_split_evaluations"),
         "co_pilot_dataset_wins": metrics.get("co_pilot_dataset_wins"),
         "autonomous_dataset_wins": metrics.get("autonomous_dataset_wins"),
         "dataset_ties": metrics.get("dataset_ties"),
@@ -195,8 +197,9 @@ def summarize_manifest(path: Path) -> dict[str, Any]:
         metrics = _open_data_metrics(trajectory)
         claim_implication = (
             "Positive but narrow open-data evaluator-stress result: the gate changes "
-            "selection only on the imbalanced stress task and improves mean balanced "
-            "accuracy slightly. This supports selective gate triggering, not broad superiority."
+            "selection on evaluator-risk cases across open-data splits and improves mean "
+            "balanced accuracy when the aggregate is positive. This supports selective "
+            "gate triggering, not broad superiority."
         )
     elif "fml" in package_id:
         metrics = _fml_metrics(trajectory, baseline)
@@ -276,9 +279,9 @@ def _markdown(summary: dict[str, Any]) -> str:
             "The FML-bench Causality packages are stronger as benchmark-shaped packages,",
             "but they are negative for co-pilot performance at the current two-step budget.",
             "The open-data multi-task pilot adds a middle rung: across five sklearn",
-            "tasks, the evaluator-stress gate changes selection only on the synthetic",
-            "imbalanced stress task, giving a small positive mean balanced-accuracy",
-            "delta while preserving ties on the four clean built-in tasks.",
+            "tasks and multiple split seeds, the evaluator-stress gate tests whether",
+            "balanced-metric review changes branch selection under evaluator-risk",
+            "conditions while often remaining inert on clean tasks.",
             "Together, these packages support the IGRE logging and matched-budget",
             "protocol, while preserving the central limitation: human taste and insight",
             "are high-variance search interventions whose value must be tested across",

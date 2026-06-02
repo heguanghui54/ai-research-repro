@@ -30,6 +30,7 @@ EXP_DIR = DOC_DIR / "experiments"
 
 REMOTE_PY = r"""
 import json
+import os
 import warnings
 from statistics import mean
 
@@ -45,6 +46,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
 warnings.filterwarnings("ignore")
+SPLIT_SEEDS = json.loads(os.environ.get("COPILOT_V3_SPLIT_SEEDS", "[11]"))
 
 
 def dataset_specs():
@@ -96,12 +98,12 @@ def candidates():
     }
 
 
-def split_data(x, y):
+def split_data(x, y, split_seed):
     x_train, x_tmp, y_train, y_tmp = train_test_split(
-        x, y, test_size=0.4, random_state=11, stratify=y
+        x, y, test_size=0.4, random_state=split_seed, stratify=y
     )
     x_val, x_test, y_val, y_test = train_test_split(
-        x_tmp, y_tmp, test_size=0.5, random_state=13, stratify=y_tmp
+        x_tmp, y_tmp, test_size=0.5, random_state=split_seed + 1000, stratify=y_tmp
     )
     return x_train, x_val, x_test, y_train, y_val, y_test
 
@@ -145,20 +147,23 @@ def select_copilot(rows):
 
 
 dataset_results = []
-for name, x, y in dataset_specs():
-    x_train, x_val, x_test, y_train, y_val, y_test = split_data(x, y)
-    rows = []
-    for candidate_name, model in candidates().items():
-        metrics = score_model(model, x_train, x_val, x_test, y_train, y_val, y_test)
-        rows.append({"candidate": candidate_name, "metrics": metrics})
-    autonomous = select_autonomous(rows)
-    copilot = select_copilot(rows)
-    delta = (
-        copilot["metrics"]["test_balanced_accuracy"]
-        - autonomous["metrics"]["test_balanced_accuracy"]
-    )
-    dataset_results.append(
-        {
+per_split_summary = []
+for split_seed in SPLIT_SEEDS:
+    split_rows = []
+    for name, x, y in dataset_specs():
+        x_train, x_val, x_test, y_train, y_val, y_test = split_data(x, y, int(split_seed))
+        rows = []
+        for candidate_name, model in candidates().items():
+            metrics = score_model(model, x_train, x_val, x_test, y_train, y_val, y_test)
+            rows.append({"candidate": candidate_name, "metrics": metrics})
+        autonomous = select_autonomous(rows)
+        copilot = select_copilot(rows)
+        delta = (
+            copilot["metrics"]["test_balanced_accuracy"]
+            - autonomous["metrics"]["test_balanced_accuracy"]
+        )
+        result = {
+            "split_seed": int(split_seed),
             "dataset": name,
             "n_samples": int(len(y)),
             "n_classes": int(len(set(y.tolist() if hasattr(y, "tolist") else y))),
@@ -168,6 +173,45 @@ for name, x, y in dataset_specs():
             "selection_changed": autonomous["candidate"] != copilot["candidate"],
             "test_balanced_accuracy_delta": float(delta),
             "candidate_table": rows,
+        }
+        dataset_results.append(result)
+        split_rows.append(result)
+    split_deltas = [row["test_balanced_accuracy_delta"] for row in split_rows]
+    per_split_summary.append(
+        {
+            "split_seed": int(split_seed),
+            "dataset_count": len(split_rows),
+            "co_pilot_dataset_wins": sum(1 for value in split_deltas if value > 1e-12),
+            "autonomous_dataset_wins": sum(1 for value in split_deltas if value < -1e-12),
+            "dataset_ties": sum(1 for value in split_deltas if abs(value) <= 1e-12),
+            "selection_changed_count": sum(1 for row in split_rows if row["selection_changed"]),
+            "delta_mean_test_balanced_accuracy": float(mean(split_deltas)),
+        }
+    )
+
+dataset_aggregates = []
+for name, _x, _y in dataset_specs():
+    rows_for_dataset = [row for row in dataset_results if row["dataset"] == name]
+    dataset_deltas = [row["test_balanced_accuracy_delta"] for row in rows_for_dataset]
+    co_dataset_scores = [
+        row["co_pilot_selection"]["metrics"]["test_balanced_accuracy"]
+        for row in rows_for_dataset
+    ]
+    auto_dataset_scores = [
+        row["autonomous_selection"]["metrics"]["test_balanced_accuracy"]
+        for row in rows_for_dataset
+    ]
+    dataset_aggregates.append(
+        {
+            "dataset": name,
+            "split_count": len(rows_for_dataset),
+            "co_pilot_mean_test_balanced_accuracy": float(mean(co_dataset_scores)),
+            "autonomous_mean_test_balanced_accuracy": float(mean(auto_dataset_scores)),
+            "delta_mean_test_balanced_accuracy": float(mean(dataset_deltas)),
+            "co_pilot_wins": sum(1 for value in dataset_deltas if value > 1e-12),
+            "autonomous_wins": sum(1 for value in dataset_deltas if value < -1e-12),
+            "ties": sum(1 for value in dataset_deltas if abs(value) <= 1e-12),
+            "selection_changed_count": sum(1 for row in rows_for_dataset if row["selection_changed"]),
         }
     )
 
@@ -181,14 +225,19 @@ deltas = [row["test_balanced_accuracy_delta"] for row in dataset_results]
 summary = {
     "task": "open_data_multitask_sklearn_evaluator_stress",
     "benchmark_family": "open_data_sklearn_builtin",
-    "dataset_count": len(dataset_results),
-    "datasets": [row["dataset"] for row in dataset_results],
+    "dataset_count": len(dataset_specs()),
+    "split_count": len(SPLIT_SEEDS),
+    "total_dataset_split_evaluations": len(dataset_results),
+    "split_seeds": [int(seed) for seed in SPLIT_SEEDS],
+    "datasets": [row[0] for row in dataset_specs()],
     "candidate_count_per_dataset": len(candidates()),
     "metric": "test_balanced_accuracy",
     "metric_direction": "higher",
     "autonomous_selector": "validation_accuracy_only",
     "co_pilot_selector": "validation_balanced_accuracy_with_macro_f1_guardrail",
     "dataset_results": dataset_results,
+    "dataset_aggregates": dataset_aggregates,
+    "per_split_summary": per_split_summary,
     "autonomous_baseline": {
         "policy": "validation_accuracy_only_selector",
         "mean_normalized_score": float(mean(auto_scores)),
@@ -210,14 +259,14 @@ print(json.dumps(summary, indent=2))
 """
 
 
-def remote_eval_script() -> str:
-    quoted = shlex.quote(REMOTE_PY)
+def remote_eval_script(split_seeds: list[int]) -> str:
+    split_seed_json = shlex.quote(json.dumps(split_seeds))
     return f"""
 set -euo pipefail
 cat > /tmp/copilot_v3_open_data_multitask.py <<'PY'
 {REMOTE_PY}
 PY
-/home/heshi/miniconda3/bin/conda run -n fmlbench python /tmp/copilot_v3_open_data_multitask.py
+COPILOT_V3_SPLIT_SEEDS={split_seed_json} /home/heshi/miniconda3/bin/conda run -n fmlbench python /tmp/copilot_v3_open_data_multitask.py
 """
 
 
@@ -265,7 +314,11 @@ def make_gate(run_id: str, package_dir: Path, prompted_at: str, decision_at: str
             "summary": "Select branches by balanced accuracy with a macro-F1 guardrail.",
             "score": metrics["co_pilot_variant"]["mean_test_balanced_accuracy"],
             "evidence": [
-                f"{metrics['dataset_count']} open-data sklearn tasks.",
+                (
+                    f"{metrics['dataset_count']} open-data sklearn tasks across "
+                    f"{metrics['split_count']} split seeds "
+                    f"({metrics['total_dataset_split_evaluations']} paired selections)."
+                ),
                 f"selection_changed_count={metrics['selection_changed_count']}",
                 f"delta_mean_test_balanced_accuracy={metrics['delta_mean_test_balanced_accuracy']:.6f}",
             ],
@@ -288,6 +341,8 @@ def make_gate(run_id: str, package_dir: Path, prompted_at: str, decision_at: str
         "affected_artifacts": [rel(package_dir / "remote_metrics.json")],
         "downstream_budget": {
             "open_data_tasks": metrics["dataset_count"],
+            "split_count": metrics["split_count"],
+            "total_dataset_split_evaluations": metrics["total_dataset_split_evaluations"],
             "candidate_count_per_task": metrics["candidate_count_per_dataset"],
             "same_candidate_portfolio_as_autonomous": True,
             "same_data_splits_as_autonomous": True,
@@ -336,17 +391,18 @@ def make_gate(run_id: str, package_dir: Path, prompted_at: str, decision_at: str
 
 def manuscript(run_id: str, metrics: dict[str, Any]) -> str:
     rows = []
-    for item in metrics["dataset_results"]:
+    for item in metrics["dataset_aggregates"]:
         rows.append(
             "| "
             + " | ".join(
                 [
                     item["dataset"],
-                    item["autonomous_selection"]["candidate"],
-                    f"{item['autonomous_selection']['metrics']['test_balanced_accuracy']:.6f}",
-                    item["co_pilot_selection"]["candidate"],
-                    f"{item['co_pilot_selection']['metrics']['test_balanced_accuracy']:.6f}",
-                    f"{item['test_balanced_accuracy_delta']:.6f}",
+                    str(item["split_count"]),
+                    f"{item['autonomous_mean_test_balanced_accuracy']:.6f}",
+                    f"{item['co_pilot_mean_test_balanced_accuracy']:.6f}",
+                    f"{item['delta_mean_test_balanced_accuracy']:.6f}",
+                    f"{item['co_pilot_wins']}/{item['autonomous_wins']}/{item['ties']}",
+                    str(item["selection_changed_count"]),
                 ]
             )
             + " |"
@@ -363,17 +419,20 @@ same candidate model portfolio and data splits?
 
 ## Method
 
-We ran `{metrics['dataset_count']}` scikit-learn built-in datasets on the SSH
-Ubuntu host using the `fmlbench` conda environment. For every dataset, the two
-conditions shared the same train/validation/test split and the same candidate
-portfolio. The autonomous selector chose the branch with highest validation
-accuracy. The co-pilot condition used an evaluator-stress gate to select by
-validation balanced accuracy with a macro-F1 guardrail.
+We ran `{metrics['dataset_count']}` scikit-learn built-in datasets across
+`{metrics['split_count']}` stratified split seeds on the SSH Ubuntu host using
+the `fmlbench` conda environment, yielding
+`{metrics['total_dataset_split_evaluations']}` paired branch-selection
+comparisons. For every dataset and split, the two conditions shared the same
+train/validation/test split and the same candidate portfolio. The autonomous
+selector chose the branch with highest validation accuracy. The co-pilot
+condition used an evaluator-stress gate to select by validation balanced
+accuracy with a macro-F1 guardrail.
 
 ## Results
 
-| Dataset | Autonomous branch | Autonomous test balanced accuracy | Co-pilot branch | Co-pilot test balanced accuracy | Delta |
-| --- | --- | ---: | --- | ---: | ---: |
+| Dataset | Splits | Autonomous mean test balanced accuracy | Co-pilot mean test balanced accuracy | Delta | Co/Auto/Tie | Changed selections |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
 {chr(10).join(rows)}
 
 Aggregate mean test balanced accuracy:
@@ -382,10 +441,10 @@ Aggregate mean test balanced accuracy:
 - Co-pilot guardrailed selector: `{metrics['co_pilot_variant']['mean_test_balanced_accuracy']:.6f}`
 - Co-pilot minus autonomous: `{metrics['delta_mean_test_balanced_accuracy']:.6f}`
 
-Dataset outcomes: `{metrics['co_pilot_dataset_wins']}` co-pilot wins,
+Dataset-split outcomes: `{metrics['co_pilot_dataset_wins']}` co-pilot wins,
 `{metrics['autonomous_dataset_wins']}` autonomous wins, and
 `{metrics['dataset_ties']}` ties. Selection changed in
-`{metrics['selection_changed_count']}` datasets.
+`{metrics['selection_changed_count']}` dataset-split comparisons.
 
 ## Claim
 
@@ -401,7 +460,15 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="ubuntu-heshi")
     parser.add_argument("--run-id")
+    parser.add_argument(
+        "--split-seeds",
+        default="11,23,37,41,53",
+        help="Comma-separated stratified split seeds for the open-data pilot.",
+    )
     args = parser.parse_args()
+    split_seeds = [int(item.strip()) for item in args.split_seeds.split(",") if item.strip()]
+    if not split_seeds:
+        raise ValueError("--split-seeds must include at least one integer seed")
 
     now = datetime.now(timezone.utc).replace(microsecond=0)
     timestamp = now.isoformat().replace("+00:00", "Z")
@@ -412,7 +479,7 @@ def main() -> None:
     package_dir.mkdir(parents=True, exist_ok=True)
 
     out = require_ok(
-        run_cmd(["ssh", args.host, f"bash -lc {shlex.quote(remote_eval_script())}"], timeout=600),
+        run_cmd(["ssh", args.host, f"bash -lc {shlex.quote(remote_eval_script(split_seeds))}"], timeout=900),
         "remote open-data multi-task matched pilot",
     )
     metrics = json.loads(out[out.find("{") :])
@@ -438,10 +505,10 @@ def main() -> None:
 
 | Claim | Status | Evidence |
 | --- | --- | --- |
-| A prospective matched-budget package can be produced on multiple open-data tasks. | Supported | This package contains {metrics['dataset_count']} sklearn built-in tasks, matched data splits, a co-pilot trajectory, autonomous baseline summary, complete gate log, manuscript, and manifest. |
-| The evaluator-stress gate changes branch selection. | Supported | Selection changed in {metrics['selection_changed_count']} of {metrics['dataset_count']} datasets. |
+| A prospective matched-budget package can be produced on multiple open-data tasks. | Supported | This package contains {metrics['dataset_count']} sklearn built-in tasks across {metrics['split_count']} split seeds ({metrics['total_dataset_split_evaluations']} paired selections), matched data splits, a co-pilot trajectory, autonomous baseline summary, complete gate log, manuscript, and manifest. |
+| The evaluator-stress gate changes branch selection. | Supported | Selection changed in {metrics['selection_changed_count']} of {metrics['total_dataset_split_evaluations']} dataset-split comparisons. |
 | The guardrailed selector improves mean test balanced accuracy in this pilot. | {'Supported' if metrics['delta_mean_test_balanced_accuracy'] > 0 else 'Unsupported'} | Co-pilot mean {metrics['co_pilot_variant']['mean_test_balanced_accuracy']:.6f}; autonomous mean {metrics['autonomous_baseline']['mean_test_balanced_accuracy']:.6f}; delta {metrics['delta_mean_test_balanced_accuracy']:.6f}. |
-| Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2 generally. | Unsupported | This is a deterministic open-data branch-selection pilot, not a full AI Scientist-v2 paper-quality benchmark. |
+| Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2 generally. | Unsupported | This is an open-data branch-selection pilot, not a full AI Scientist-v2 paper-quality benchmark. |
 | Human attention efficiency is measured for this package. | Partially supported | The gate contains complete operator-recorded attention cost, but it is not an independent human-subject measurement. |
 """
     (package_dir / "claim_audit.md").write_text(claim_audit, encoding="utf-8")
@@ -460,11 +527,12 @@ def main() -> None:
             "same_model_family": True,
             "same_step_budget": True,
             "same_tool_access": True,
-            "notes": "Both variants used the same built-in datasets, deterministic splits, candidate portfolio, and sklearn execution environment; no LLM calls were used in this open-data pilot.",
+            "split_seeds": split_seeds,
+            "notes": "Both variants used the same built-in datasets, matched stratified split seeds, candidate portfolio, and sklearn execution environment; no LLM calls were used in this open-data pilot.",
         },
         "remote_metrics": rel(package_dir / "remote_metrics.json"),
         "limitations": [
-            "Open-data deterministic branch-selection pilot only.",
+            "Open-data branch-selection pilot only.",
             "No full AI Scientist-v2 tree-search or paper-writing loop.",
             "No independent human-subject timing.",
             "Does not evaluate final paper quality.",
@@ -480,6 +548,8 @@ def main() -> None:
                 "co_pilot_dataset_wins": metrics["co_pilot_dataset_wins"],
                 "autonomous_dataset_wins": metrics["autonomous_dataset_wins"],
                 "dataset_ties": metrics["dataset_ties"],
+                "split_count": metrics["split_count"],
+                "total_dataset_split_evaluations": metrics["total_dataset_split_evaluations"],
             },
             indent=2,
         )

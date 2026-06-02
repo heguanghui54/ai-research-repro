@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T18:24:41Z",
+  "audit_date": "2026-06-02T18:34:21Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -54,14 +54,16 @@
     },
     "open_data_multitask_evaluator_stress": {
       "dataset_count": 5,
+      "split_count": 5,
+      "total_dataset_split_evaluations": 25,
       "candidate_count_per_dataset": 8,
-      "co_pilot_mean_test_balanced_accuracy": 0.9340080883091787,
-      "autonomous_mean_test_balanced_accuracy": 0.9190640015589245,
-      "delta_mean_test_balanced_accuracy": 0.014944086750254137,
-      "co_pilot_dataset_wins": 1,
-      "autonomous_dataset_wins": 0,
-      "dataset_ties": 4,
-      "selection_changed_count": 1,
+      "co_pilot_mean_test_balanced_accuracy": 0.9264256134480804,
+      "autonomous_mean_test_balanced_accuracy": 0.9248566268790939,
+      "delta_mean_test_balanced_accuracy": 0.00156898656898655,
+      "co_pilot_dataset_wins": 2,
+      "autonomous_dataset_wins": 2,
+      "dataset_ties": 21,
+      "selection_changed_count": 4,
       "path": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/remote_metrics.json"
     },
     "official_setup_blockers": {

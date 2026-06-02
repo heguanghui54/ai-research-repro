@@ -1,13 +1,13 @@
 {
   "gate_id": "prospective_matched_open_data_multitask_20260603_evaluator_gate_001",
   "gate_type": "evaluator_stress_test",
-  "timestamp_utc": "2026-06-02T18:24:16Z",
+  "timestamp_utc": "2026-06-02T18:36:08Z",
   "research_task_id": "prospective_matched_open_data_multitask_20260603",
   "options": [
     {
       "option_id": "autonomous_accuracy_selector",
       "summary": "Select branches by validation accuracy only.",
-      "score": 0.9190640015589245,
+      "score": 0.9248566268790939,
       "evidence": [
         "Simple primary-metric selector.",
         "May be brittle under class imbalance or asymmetric error costs."
@@ -19,11 +19,11 @@
     {
       "option_id": "balanced_accuracy_guardrail_selector",
       "summary": "Select branches by balanced accuracy with a macro-F1 guardrail.",
-      "score": 0.9340080883091787,
+      "score": 0.9264256134480804,
       "evidence": [
-        "5 open-data sklearn tasks.",
-        "selection_changed_count=1",
-        "delta_mean_test_balanced_accuracy=0.014944"
+        "5 open-data sklearn tasks across 5 split seeds (25 paired selections).",
+        "selection_changed_count=4",
+        "delta_mean_test_balanced_accuracy=0.001569"
       ],
       "risks": [
         "Still a deterministic open-data pilot, not an end-to-end AI Scientist-v2 benchmark."
@@ -37,6 +37,8 @@
   ],
   "downstream_budget": {
     "open_data_tasks": 5,
+    "split_count": 5,
+    "total_dataset_split_evaluations": 25,
     "candidate_count_per_task": 8,
     "same_candidate_portfolio_as_autonomous": true,
     "same_data_splits_as_autonomous": true
@@ -44,8 +46,8 @@
   "attention_cost": {
     "human_actor": "codex_operator_for_author",
     "interaction_mode": "async_review",
-    "prompted_at_utc": "2026-06-02T18:20:16Z",
-    "decision_at_utc": "2026-06-02T18:24:16Z",
+    "prompted_at_utc": "2026-06-02T18:32:08Z",
+    "decision_at_utc": "2026-06-02T18:36:08Z",
     "active_review_minutes": 4.0,
     "wall_clock_latency_minutes": 4.0,
     "options_reviewed": 2,

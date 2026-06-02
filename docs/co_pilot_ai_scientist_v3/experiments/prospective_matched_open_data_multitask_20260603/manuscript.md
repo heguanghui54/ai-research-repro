@@ -10,33 +10,36 @@ same candidate model portfolio and data splits?
 
 ## Method
 
-We ran `5` scikit-learn built-in datasets on the SSH
-Ubuntu host using the `fmlbench` conda environment. For every dataset, the two
-conditions shared the same train/validation/test split and the same candidate
-portfolio. The autonomous selector chose the branch with highest validation
-accuracy. The co-pilot condition used an evaluator-stress gate to select by
-validation balanced accuracy with a macro-F1 guardrail.
+We ran `5` scikit-learn built-in datasets across
+`5` stratified split seeds on the SSH Ubuntu host using
+the `fmlbench` conda environment, yielding
+`25` paired branch-selection
+comparisons. For every dataset and split, the two conditions shared the same
+train/validation/test split and the same candidate portfolio. The autonomous
+selector chose the branch with highest validation accuracy. The co-pilot
+condition used an evaluator-stress gate to select by validation balanced
+accuracy with a macro-F1 guardrail.
 
 ## Results
 
-| Dataset | Autonomous branch | Autonomous test balanced accuracy | Co-pilot branch | Co-pilot test balanced accuracy | Delta |
-| --- | --- | ---: | --- | ---: | ---: |
-| breast_cancer | logreg_standardized | 0.958074 | logreg_standardized | 0.958074 | 0.000000 |
-| wine | random_forest | 1.000000 | random_forest | 1.000000 | 0.000000 |
-| digits | svc_rbf_standardized | 0.983400 | svc_rbf_standardized | 0.983400 | 0.000000 |
-| digits_zero_vs_rest | knn_standardized | 1.000000 | knn_standardized | 1.000000 | 0.000000 |
-| synthetic_imbalanced_stress | svc_rbf_standardized | 0.653846 | svc_rbf_balanced_standardized | 0.728567 | 0.074720 |
+| Dataset | Splits | Autonomous mean test balanced accuracy | Co-pilot mean test balanced accuracy | Delta | Co/Auto/Tie | Changed selections |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| breast_cancer | 5 | 0.971627 | 0.964087 | -0.007540 | 0/2/3 | 2 |
+| wine | 5 | 0.988571 | 0.988571 | 0.000000 | 0/0/5 | 0 |
+| digits | 5 | 0.978214 | 0.978214 | 0.000000 | 0/0/5 | 0 |
+| digits_zero_vs_rest | 5 | 0.994444 | 0.994444 | 0.000000 | 0/0/5 | 0 |
+| synthetic_imbalanced_stress | 5 | 0.691427 | 0.706811 | 0.015385 | 2/0/3 | 2 |
 
 Aggregate mean test balanced accuracy:
 
-- Autonomous accuracy-only selector: `0.919064`
-- Co-pilot guardrailed selector: `0.934008`
-- Co-pilot minus autonomous: `0.014944`
+- Autonomous accuracy-only selector: `0.924857`
+- Co-pilot guardrailed selector: `0.926426`
+- Co-pilot minus autonomous: `0.001569`
 
-Dataset outcomes: `1` co-pilot wins,
-`0` autonomous wins, and
-`4` ties. Selection changed in
-`1` datasets.
+Dataset-split outcomes: `2` co-pilot wins,
+`2` autonomous wins, and
+`21` ties. Selection changed in
+`4` dataset-split comparisons.
 
 ## Claim
 

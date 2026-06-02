@@ -201,22 +201,31 @@
         "same_model_family": true,
         "same_step_budget": true,
         "same_tool_access": true,
-        "notes": "Both variants used the same built-in datasets, deterministic splits, candidate portfolio, and sklearn execution environment; no LLM calls were used in this open-data pilot."
+        "split_seeds": [
+          11,
+          23,
+          37,
+          41,
+          53
+        ],
+        "notes": "Both variants used the same built-in datasets, matched stratified split seeds, candidate portfolio, and sklearn execution environment; no LLM calls were used in this open-data pilot."
       },
       "metrics": {
         "task": "open_data_multitask_sklearn_evaluator_stress",
         "benchmark_family": "open_data_sklearn_builtin",
         "metric": "test_balanced_accuracy",
         "metric_direction": "higher",
-        "co_pilot_score": 0.9340080883091787,
-        "autonomous_score": 0.9190640015589245,
-        "co_pilot_minus_autonomous": 0.01494408675025416,
+        "co_pilot_score": 0.9264256134480804,
+        "autonomous_score": 0.9248566268790939,
+        "co_pilot_minus_autonomous": 0.001568986568986519,
         "winner": "co_pilot",
         "dataset_count": 5,
-        "co_pilot_dataset_wins": 1,
-        "autonomous_dataset_wins": 0,
-        "dataset_ties": 4,
-        "selection_changed_count": 1
+        "split_count": 5,
+        "total_dataset_split_evaluations": 25,
+        "co_pilot_dataset_wins": 2,
+        "autonomous_dataset_wins": 2,
+        "dataset_ties": 21,
+        "selection_changed_count": 4
       },
       "gate_summary": {
         "gate_count": 1,
@@ -225,9 +234,9 @@
         "total_active_review_minutes": 4.0,
         "mean_taste_insight_score": 3.57
       },
-      "claim_implication": "Positive but narrow open-data evaluator-stress result: the gate changes selection only on the imbalanced stress task and improves mean balanced accuracy slightly. This supports selective gate triggering, not broad superiority.",
+      "claim_implication": "Positive but narrow open-data evaluator-stress result: the gate changes selection on evaluator-risk cases across open-data splits and improves mean balanced accuracy when the aggregate is positive. This supports selective gate triggering, not broad superiority.",
       "limitations": [
-        "Open-data deterministic branch-selection pilot only.",
+        "Open-data branch-selection pilot only.",
         "No full AI Scientist-v2 tree-search or paper-writing loop.",
         "No independent human-subject timing.",
         "Does not evaluate final paper quality."

@@ -18,9 +18,9 @@
     },
     {
       "claim_family": "Open-data evaluator-stress branch selection",
-      "benchmark_or_probe": "SSH Ubuntu sklearn built-in datasets plus deterministic imbalance stress task",
-      "current_evidence": "prospective_matched_open_data_multitask_20260603 runs 5 open-data tasks with 8 shared candidates per task. The autonomous selector chooses by validation accuracy; the IGRE gate chooses by balanced accuracy with a macro-F1 guardrail. Four clean tasks tie, while the imbalance stress task changes selection from svc_rbf_standardized to svc_rbf_balanced_standardized, improving test balanced accuracy by 0.074720 and aggregate mean by 0.014944.",
-      "supports": "Evaluator-stress gates can be selective: they need not change clean tasks, but can alter branch choice when raw accuracy and balanced utility diverge.",
+      "benchmark_or_probe": "SSH Ubuntu sklearn built-in datasets plus imbalance stress task",
+      "current_evidence": "prospective_matched_open_data_multitask_20260603 runs 5 open-data tasks across 5 stratified split seeds, with 8 shared candidates per dataset-split comparison. The autonomous selector chooses by validation accuracy; the IGRE gate chooses by balanced accuracy with a macro-F1 guardrail. Across 25 paired selections, the gate changes selection 4 times, producing 2 co-pilot wins, 2 autonomous wins, and 21 ties; aggregate mean balanced accuracy is 0.926426 for co-pilot versus 0.924857 for autonomous, delta +0.001569. The synthetic imbalance stress task remains positive on average (+0.015385), while breast cancer exposes a small negative gate-overreach case (-0.007540).",
+      "supports": "Evaluator-stress gates can be selective and auditable across open-data splits, but the multi-seed result is mixed and therefore supports gate-risk analysis more than performance superiority.",
       "does_not_prove": "Full AI Scientist-v2 paper-quality superiority, independent human evidence, or broad benchmark performance."
     },
     {

@@ -81,6 +81,18 @@ def main() -> None:
     house_price = _load_json(house_price_path)
     science = _load_json(science_path)
     open_data = _load_json(open_data_path)
+    open_data_total = open_data.get("total_dataset_split_evaluations")
+    open_data_expected_total = (
+        open_data.get("dataset_count", 0) * open_data.get("split_count", 0)
+        if isinstance(open_data.get("dataset_count"), int)
+        and isinstance(open_data.get("split_count"), int)
+        else None
+    )
+    open_data_outcome_total = (
+        open_data.get("co_pilot_dataset_wins", 0)
+        + open_data.get("autonomous_dataset_wins", 0)
+        + open_data.get("dataset_ties", 0)
+    )
 
     vector_agg = vector.get("aggregate", {})
     starter_runtime = vector.get("controlled_starter_runtime_seconds")
@@ -183,11 +195,12 @@ def main() -> None:
         and sklearn_direct <= sklearn_median + 1e-9
         and sklearn_direct < sklearn_initial,
         "open_data_multitask_evaluator_stress_scored": open_data.get("dataset_count") == 5
+        and open_data.get("split_count", 0) >= 5
+        and open_data_total == open_data_expected_total
+        and open_data_outcome_total == open_data_total
         and open_data.get("candidate_count_per_dataset") == 8
-        and open_data.get("selection_changed_count") == 1
-        and open_data.get("delta_mean_test_balanced_accuracy", 0) > 0
-        and open_data.get("co_pilot_dataset_wins") == 1
-        and open_data.get("autonomous_dataset_wins") == 0,
+        and isinstance(open_data.get("delta_mean_test_balanced_accuracy"), (int, float))
+        and open_data.get("selection_changed_count", 0) >= 1,
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -256,6 +269,8 @@ def main() -> None:
             },
             "open_data_multitask_evaluator_stress": {
                 "dataset_count": open_data.get("dataset_count"),
+                "split_count": open_data.get("split_count"),
+                "total_dataset_split_evaluations": open_data.get("total_dataset_split_evaluations"),
                 "candidate_count_per_dataset": open_data.get("candidate_count_per_dataset"),
                 "co_pilot_mean_test_balanced_accuracy": open_data.get("co_pilot_variant", {}).get(
                     "mean_test_balanced_accuracy"
@@ -313,12 +328,14 @@ def main() -> None:
         (
             "- Open-data evaluator-stress pilot: "
             f"`{open_data.get('dataset_count')}` sklearn tasks, "
+            f"`{open_data.get('split_count')}` split seeds, "
+            f"`{open_data.get('total_dataset_split_evaluations')}` paired selections, "
             f"`{open_data.get('candidate_count_per_dataset')}` candidates each, "
             f"co-pilot mean balanced accuracy "
             f"`{open_data.get('co_pilot_variant', {}).get('mean_test_balanced_accuracy')}` "
             f"versus autonomous `{open_data.get('autonomous_baseline', {}).get('mean_test_balanced_accuracy')}`, "
             f"delta `{open_data.get('delta_mean_test_balanced_accuracy')}`; "
-            f"selection changed in `{open_data.get('selection_changed_count')}` task."
+            f"selection changed in `{open_data.get('selection_changed_count')}` paired selections."
         ),
         "",
         "## Boundary And Blocked Evidence",

@@ -1,6 +1,6 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T18:24:41Z`
+- Audit date: `2026-06-02T18:34:21Z`
 - Status: `pass`
 - FML entries: `2`
 - Non-FML entries: `10`
@@ -9,7 +9,7 @@
 
 - MLAgentBench vectorization: `8/8` correct best programs; median runtime `0.024580717086791992` seconds versus starter `3.261186361312866` seconds; direct rewrite correctness `False`.
 - Program search subproblems: knapsack OpenEvolve `0.9994394752555711` versus direct `0.9952700988954383`; Max-Cut OpenEvolve-minus-direct `0.0085959186678094`.
-- Open-data evaluator-stress pilot: `5` sklearn tasks, `8` candidates each, co-pilot mean balanced accuracy `0.9340080883091787` versus autonomous `0.9190640015589245`, delta `0.014944086750254137`; selection changed in `1` task.
+- Open-data evaluator-stress pilot: `5` sklearn tasks, `5` split seeds, `25` paired selections, `8` candidates each, co-pilot mean balanced accuracy `0.9264256134480804` versus autonomous `0.9248566268790939`, delta `0.00156898656898655`; selection changed in `4` paired selections.
 
 ## Boundary And Blocked Evidence
 
