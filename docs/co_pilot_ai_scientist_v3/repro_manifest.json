@@ -776,7 +776,16 @@
     "scripts/run_delayed_value_replay_case.py",
     "scripts/audit_delayed_value_replay_case.py",
     "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_case_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_case_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_case_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500/judge_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500/claude-3-7-sonnet-latest_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500/claude-3-7-sonnet-latest_judgement.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500/README.md",
+    "scripts/run_delayed_value_replay_cross_model_judge.py",
+    "scripts/audit_delayed_value_replay_cross_model_judge.py",
+    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_cross_model_judge_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_cross_model_judge_audit.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1801,9 +1810,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "5ab29d860fb7ba7ec35d25fb341dd031378e950b",
+    "head": "6db26aba5539e0b30f2bea4fbed64d8856af8fad",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 763,
+    "manifest_artifacts": 772,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1888,5 +1897,27 @@
     "winner_short_term": "tie",
     "winner_frontier": "tie",
     "claim_boundary": "A pass means one live four-condition replay case was generated and scored, with the delayed-value label checked against the preregistered rule. It does not mean benchmark experiments or human expert ratings were run."
+  },
+  "delayed_value_replay_cross_model_judge": {
+    "run_id": "delayed_value_replay_cross_model_judge_20260603_001500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500/summary.json",
+    "audit": "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_cross_model_judge_audit.json",
+    "models_attempted": [
+      "claude-3-7-sonnet-latest",
+      "gemini-2.5-flash"
+    ],
+    "models_succeeded": [
+      "claude-3-7-sonnet-latest"
+    ],
+    "models_failed": [
+      "gemini-2.5-flash"
+    ],
+    "strict_label_counts": {
+      "mixed_or_inconclusive": 1
+    },
+    "frontier_winner_counts": {
+      "six_gate_hybrid_guided": 1
+    },
+    "claim_boundary": "A pass means at least one independent model judge scored the existing four-condition replay and the strict delayed-value label was archived. It is still model evaluation, not human expert review or benchmark execution."
   }
 }

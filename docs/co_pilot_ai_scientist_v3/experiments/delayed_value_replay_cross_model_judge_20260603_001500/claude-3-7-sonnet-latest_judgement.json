@@ -1,0 +1,59 @@
+{
+  "per_condition": {
+    "paper_only": {
+      "short_term_score": 2.0,
+      "frontier_alignment_score": 2.0,
+      "actionability_score": 2.0,
+      "specificity_score": 2.0,
+      "claim_calibration_score": 3.0,
+      "overall": 2.0,
+      "rationale": "The paper_only condition produces a generic hypothesis and experiment plan that lacks specificity. It mentions DSFF but does not explain the mechanism, does not specify datasets by name, does not quantify efficiency metrics, and does not engage with deployment constraints in any concrete way. The ablation plan is vague. Frontier alignment is weak—no mention of sparse convolutions, dynamic routing, or resource-aware benchmarks common in efficient 3D medical segmentation literature. Claim calibration is adequate but only because claims are so broad they are hard to falsify."
+    },
+    "raw_review_guided": {
+      "short_term_score": 2.0,
+      "frontier_alignment_score": 2.0,
+      "actionability_score": 2.0,
+      "specificity_score": 2.0,
+      "claim_calibration_score": 3.0,
+      "overall": 2.0,
+      "rationale": "The raw_review_guided condition is nearly identical in content to paper_only. The review_signal_used fields list only three generic keywords ('efficiency', 'dynamic sparse feature fusion', 'mechanism') without translating them into concrete experimental choices. The mini-paper adds no mechanistic detail about DSFF, no named datasets, no specific efficiency metrics (FLOPs, latency, memory), and no deployment scenario. Frontier alignment remains weak. The condition does not meaningfully differentiate itself from paper_only."
+    },
+    "six_gate_hybrid_guided": {
+      "short_term_score": 2.0,
+      "frontier_alignment_score": 3.0,
+      "actionability_score": 3.0,
+      "specificity_score": 2.0,
+      "claim_calibration_score": 3.0,
+      "overall": 2.0,
+      "rationale": "The six_gate_hybrid_guided condition adds structured gate_actions that at least name relevant concerns: deployment constraints, sparse representations, resource constraints, and prototype implementation. The frontier_steering gate explicitly references sparse representations and efficient segmentation trends, giving a marginal improvement in frontier alignment. However, the method, experiment_plan, and mini_paper remain nearly identical to the other conditions—no named datasets, no quantitative efficiency targets, no mechanistic description of DSFF internals. The gate structure is present but does not propagate into the actual experimental design. Actionability is slightly better due to the 'verifiable_micro_evolution' gate mentioning a prototype, but this is not elaborated."
+    },
+    "shuffled_review_control": {
+      "short_term_score": 2.0,
+      "frontier_alignment_score": 1.0,
+      "actionability_score": 1.0,
+      "specificity_score": 1.0,
+      "claim_calibration_score": 3.0,
+      "overall": 1.0,
+      "rationale": "The shuffled_review_control condition is the weakest. It drops DSFF-specific language almost entirely, replacing it with generic 'novel approach' framing. The control_signal_used keywords ('efficiency', 'accuracy', 'segmentation') are maximally generic. There is no mechanistic content, no frontier engagement, and no actionable experimental detail. It serves as a valid baseline demonstrating that without meaningful signal, outputs collapse to boilerplate. Frontier alignment is the lowest of all conditions."
+    }
+  },
+  "winner_short_term": "tie",
+  "winner_frontier": "six_gate_hybrid_guided",
+  "model_delayed_value_label": "mixed_or_inconclusive",
+  "delayed_value_rationale": "The preregistered positive delayed-value rule requires that a guided condition (raw_review_guided or six_gate_hybrid_guided) shows lower short_term_score than paper_only AND higher frontier_alignment_score than paper_only AND beats shuffled_review_control on frontier_alignment. The short_term scores are tied across paper_only, raw_review_guided, and six_gate_hybrid_guided (all score 2), so the first criterion (lower short_term for guided) is not met. Six_gate_hybrid_guided does marginally outperform paper_only on frontier_alignment (3 vs 2) and beats shuffled_review_control (3 vs 1), partially satisfying criteria 2 and 3. However, the review signal is not specific or actionable enough to satisfy criterion 4—the gate labels name concerns but do not translate into concrete experimental choices. No later-frontier evidence with bibliographic or semantic match guards is present. Overall the evidence is mixed and inconclusive: there is a weak frontier signal advantage for six_gate_hybrid_guided but no short_term penalty and insufficient mechanistic specificity.",
+  "failure_modes_observed": [
+    "All conditions produce nearly identical mini-papers with boilerplate language, indicating the generation model did not meaningfully differentiate based on guidance signals.",
+    "No named datasets are specified in any condition (e.g., Medical Segmentation Decathlon, BraTS, BTCV), reducing experimental specificity.",
+    "No quantitative efficiency metrics (FLOPs, inference latency, GPU memory) are specified in any condition.",
+    "The DSFF mechanism is never mechanistically described—no explanation of how sparsity is induced, gated, or fused.",
+    "Gate actions in six_gate_hybrid_guided do not propagate into the experiment_plan or mini_paper, suggesting a structural disconnect in the generation pipeline.",
+    "Raw_review_guided fails to extract actionable signals from the review, reducing to keyword listing without experimental translation.",
+    "Claim calibration is uniformly weak-positive across all conditions—claims are broad enough to avoid falsifiability rather than being genuinely calibrated."
+  ],
+  "claim_boundary": "No completed benchmark result is claimed in any artifact. All conditions remain at the hypothesis and planning stage.",
+  "strict_delayed_value_label": "mixed_or_inconclusive",
+  "strict_best_review_signal": "none",
+  "strict_label_note": "strict preregistered delayed-value rule not satisfied under this judge",
+  "_latency_seconds": 27.525,
+  "_attempts": 1
+}

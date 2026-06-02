@@ -187,6 +187,15 @@ structured feedback, and claim calibration.
 - `audits/delayed_value_replay_case_audit.md`: audit verifying the live replay
   files, two model calls, four condition artifacts, and strict delayed-value
   label correction.
+- `experiments/delayed_value_replay_cross_model_judge_20260603_001500/`:
+  cross-model review of the same four replay artifacts. Monica-routed
+  `claude-3-7-sonnet-latest` succeeds and independently labels the case
+  `mixed_or_inconclusive`, while selecting `six_gate_hybrid_guided` as the
+  frontier winner; `gemini-2.5-flash` returns malformed JSON and is archived as
+  model-availability evidence.
+- `audits/delayed_value_replay_cross_model_judge_audit.md`: audit verifying
+  the cross-model judge, strict delayed-value label, model failure log, and
+  model-evaluation boundary.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet
@@ -281,6 +290,8 @@ python3 scripts/build_delayed_value_replay_specs.py
 python3 scripts/audit_delayed_value_replay_specs.py
 python3 scripts/run_delayed_value_replay_case.py --case-id paper_105_review_1
 python3 scripts/audit_delayed_value_replay_case.py
+python3 scripts/run_delayed_value_replay_cross_model_judge.py
+python3 scripts/audit_delayed_value_replay_cross_model_judge.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/summarize_human_expert_blind_reviews.py --update-manifest

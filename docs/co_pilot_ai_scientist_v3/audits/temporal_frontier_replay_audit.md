@@ -1,6 +1,6 @@
 # Temporal Frontier Replay Audit
 
-Audit date: `2026-06-02T15:27:16Z`
+Audit date: `2026-06-02T15:32:26Z`
 
 Status: `pass_with_negative_delayed_value_evidence`
 
@@ -59,9 +59,17 @@ Status: `pass_with_negative_delayed_value_evidence`
 - Winner short-term: `tie`
 - Winner frontier: `tie`
 
+## Cross-Model Replay Judge
+
+- Models attempted: `['claude-3-7-sonnet-latest', 'gemini-2.5-flash']`
+- Models succeeded: `['claude-3-7-sonnet-latest']`
+- Models failed: `['gemini-2.5-flash']`
+- Strict label counts: `{'mixed_or_inconclusive': 1}`
+- Frontier winner counts: `{'six_gate_hybrid_guided': 1}`
+
 ## Claim Boundary
 
-TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment, and the deep-case triage queue now selects three concrete cases for future expensive replay. These the first live four-condition replay is mixed rather than positive under the strict preregistered rule. These artifacts still do not prove delayed-value human-review efficacy without benchmark reruns or independent expert judgement.
+TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment, and the deep-case triage queue now selects three concrete cases for future expensive replay. These the first live four-condition replay is mixed rather than positive under the strict preregistered rule. A cross-model judge confirms the mixed strict label while selecting the six-gate artifact as the frontier winner. These artifacts still do not prove delayed-value human-review efficacy without benchmark reruns or independent expert judgement.
 
 ## Warnings
 

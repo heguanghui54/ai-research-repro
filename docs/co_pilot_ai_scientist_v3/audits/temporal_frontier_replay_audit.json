@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T15:27:16Z",
+  "audit_date": "2026-06-02T15:32:26Z",
   "status": "pass_with_negative_delayed_value_evidence",
   "spec": "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.json",
   "protocol": "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.json",
@@ -11,7 +11,8 @@
     "delayed_value_candidate_mining": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/summary.json",
     "delayed_value_candidate_frontier_validation": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_candidate_frontier_validation_20260603_011500/summary.json",
     "delayed_value_deep_case_triage": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/summary.json",
-    "executed_delayed_value_replay_case": "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_case_audit.json"
+    "executed_delayed_value_replay_case": "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_case_audit.json",
+    "cross_model_delayed_value_replay_judge": "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_cross_model_judge_audit.json"
   },
   "required_conditions_present": true,
   "delayed_value_definition_complete": true,
@@ -190,7 +191,26 @@
     "winner_frontier": "tie",
     "claim_boundary": "A pass means one live four-condition replay case was generated and scored, with the delayed-value label checked against the preregistered rule. It does not mean benchmark experiments or human expert ratings were run."
   },
-  "claim_boundary": "TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment, and the deep-case triage queue now selects three concrete cases for future expensive replay. These the first live four-condition replay is mixed rather than positive under the strict preregistered rule. These artifacts still do not prove delayed-value human-review efficacy without benchmark reruns or independent expert judgement.",
+  "cross_model_delayed_value_replay_judge": {
+    "models_attempted": [
+      "claude-3-7-sonnet-latest",
+      "gemini-2.5-flash"
+    ],
+    "models_succeeded": [
+      "claude-3-7-sonnet-latest"
+    ],
+    "models_failed": [
+      "gemini-2.5-flash"
+    ],
+    "strict_label_counts": {
+      "mixed_or_inconclusive": 1
+    },
+    "frontier_winner_counts": {
+      "six_gate_hybrid_guided": 1
+    },
+    "claim_boundary": "A pass means at least one independent model judge scored the existing four-condition replay and the strict delayed-value label was archived. It is still model evaluation, not human expert review or benchmark execution."
+  },
+  "claim_boundary": "TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment, and the deep-case triage queue now selects three concrete cases for future expensive replay. These the first live four-condition replay is mixed rather than positive under the strict preregistered rule. A cross-model judge confirms the mixed strict label while selecting the six-gate artifact as the frontier winner. These artifacts still do not prove delayed-value human-review efficacy without benchmark reruns or independent expert judgement.",
   "errors": [],
   "warnings": [
     "No delayed-value review signal is found in the current archived TFR probes."

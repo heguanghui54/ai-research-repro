@@ -1,0 +1,47 @@
+{
+  "audit_date": "2026-06-02T15:32:26Z",
+  "status": "pass",
+  "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500",
+  "models_attempted": [
+    "claude-3-7-sonnet-latest",
+    "gemini-2.5-flash"
+  ],
+  "models_succeeded": [
+    "claude-3-7-sonnet-latest"
+  ],
+  "models_failed": [
+    "gemini-2.5-flash"
+  ],
+  "aggregate": {
+    "judge_count": 1,
+    "strict_label_counts": {
+      "mixed_or_inconclusive": 1
+    },
+    "model_label_counts": {
+      "mixed_or_inconclusive": 1
+    },
+    "frontier_winner_counts": {
+      "six_gate_hybrid_guided": 1
+    },
+    "short_term_winner_counts": {
+      "tie": 1
+    },
+    "all_strict_positive": false,
+    "any_model_strict_disagreement": false
+  },
+  "judgement_checks": [
+    {
+      "model": "claude-3-7-sonnet-latest",
+      "strict_label": "mixed_or_inconclusive",
+      "model_label": "mixed_or_inconclusive",
+      "winner_frontier": "six_gate_hybrid_guided",
+      "winner_short_term": "tie",
+      "missing": []
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "models with archived errors: ['gemini-2.5-flash']"
+  ],
+  "claim_boundary": "A pass means at least one independent model judge scored the existing four-condition replay and the strict delayed-value label was archived. It is still model evaluation, not human expert review or benchmark execution."
+}

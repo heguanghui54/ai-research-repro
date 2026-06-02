@@ -82,6 +82,7 @@ def main() -> None:
         / "summary.json"
     )
     executed_replay_audit_path = AUDIT_DIR / "delayed_value_replay_case_audit.json"
+    cross_model_audit_path = AUDIT_DIR / "delayed_value_replay_cross_model_judge_audit.json"
 
     errors: list[str] = []
     warnings: list[str] = []
@@ -97,6 +98,7 @@ def main() -> None:
         validation_path,
         triage_path,
         executed_replay_audit_path,
+        cross_model_audit_path,
     ]
     for path in required_paths:
         if not path.exists():
@@ -120,6 +122,7 @@ def main() -> None:
         candidate_validation = _load_json(validation_path)
         deep_case_triage = _load_json(triage_path)
         executed_replay_audit = _load_json(executed_replay_audit_path)
+        cross_model_audit = _load_json(cross_model_audit_path)
 
         for condition in ["paper_only", "review_guided", "shuffled_review_control"]:
             if condition not in spec.get("required_conditions", []):
@@ -178,6 +181,7 @@ def main() -> None:
                 "delayed_value_candidate_frontier_validation": _rel(validation_path),
                 "delayed_value_deep_case_triage": _rel(triage_path),
                 "executed_delayed_value_replay_case": _rel(executed_replay_audit_path),
+                "cross_model_delayed_value_replay_judge": _rel(cross_model_audit_path),
             },
             "required_conditions_present": not errors,
             "delayed_value_definition_complete": not any(
@@ -274,6 +278,14 @@ def main() -> None:
                 "winner_frontier": executed_replay_audit.get("winner_frontier"),
                 "claim_boundary": executed_replay_audit.get("claim_boundary"),
             },
+            "cross_model_delayed_value_replay_judge": {
+                "models_attempted": cross_model_audit.get("models_attempted"),
+                "models_succeeded": cross_model_audit.get("models_succeeded"),
+                "models_failed": cross_model_audit.get("models_failed"),
+                "strict_label_counts": cross_model_audit.get("aggregate", {}).get("strict_label_counts"),
+                "frontier_winner_counts": cross_model_audit.get("aggregate", {}).get("frontier_winner_counts"),
+                "claim_boundary": cross_model_audit.get("claim_boundary"),
+            },
             "claim_boundary": (
                 "TFR is operationalized and auditable, but the archived probes are negative for "
                 "delayed-value human-review evidence. Candidate mining can prioritize which "
@@ -281,8 +293,10 @@ def main() -> None:
                 "shows weak positive candidate-vs-control frontier alignment, and the deep-case "
                 "triage queue now selects three concrete cases for future expensive replay. These "
                 "the first live four-condition replay is mixed rather than positive under the "
-                "strict preregistered rule. These artifacts still do not prove delayed-value "
-                "human-review efficacy without benchmark reruns or independent expert judgement."
+                "strict preregistered rule. A cross-model judge confirms the mixed strict label "
+                "while selecting the six-gate artifact as the frontier winner. These artifacts "
+                "still do not prove delayed-value human-review efficacy without benchmark reruns "
+                "or independent expert judgement."
             ),
             "errors": errors,
             "warnings": warnings,
@@ -314,6 +328,7 @@ def main() -> None:
         validation = audit["delayed_value_candidate_frontier_validation"]
         triage = audit["delayed_value_deep_case_triage"]
         executed = audit["executed_delayed_value_replay_case"]
+        cross_model = audit["cross_model_delayed_value_replay_judge"]
         lines.extend(
             [
                 "",
@@ -369,6 +384,14 @@ def main() -> None:
                 f"- Strict delayed-value label: `{executed['strict_delayed_value_label']}`",
                 f"- Winner short-term: `{executed['winner_short_term']}`",
                 f"- Winner frontier: `{executed['winner_frontier']}`",
+                "",
+                "## Cross-Model Replay Judge",
+                "",
+                f"- Models attempted: `{cross_model['models_attempted']}`",
+                f"- Models succeeded: `{cross_model['models_succeeded']}`",
+                f"- Models failed: `{cross_model['models_failed']}`",
+                f"- Strict label counts: `{cross_model['strict_label_counts']}`",
+                f"- Frontier winner counts: `{cross_model['frontier_winner_counts']}`",
                 "",
                 "## Claim Boundary",
                 "",
