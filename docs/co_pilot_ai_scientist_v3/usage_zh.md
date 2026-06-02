@@ -71,6 +71,16 @@ python3 scripts/audit_human_gate_attention_cost.py
 `artifacts_reviewed_count` 和 `decision_count`。不要凭记忆估计旧日志；缺失就
 明确记为缺失。
 
+如果要从当前仓库 artifact 构建脱敏的 Human Co-Pilot Trace Dataset，运行：
+
+```bash
+python3 scripts/build_human_copilot_trace_dataset.py
+```
+
+它会写出 `human_copilot_trace_dataset.md/json`，索引 gate records、commits、
+prospective packages 和 artifact links。它刻意不发布原始 Codex chat logs 或密钥，
+因此应被视为单作者纵向过程数据，而不是总体人群层面的 human-subject 数据。
+
 如果要生成同时带完整 attention cost 和 scientific taste/insight 的 prospective gate log，可以使用：
 
 ```bash

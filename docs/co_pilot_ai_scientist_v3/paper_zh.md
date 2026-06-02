@@ -91,7 +91,7 @@ Co-Pilot AI Scientist v3 实现的是洞察门控科研演化。IGRE 包含四�
 
 因为 IGRE 的核心贡献是科研品味，而不是普通审批，本文在评估包中加入 taste/insight rubric。该 rubric 从 1 到 5 记录 problem depth、novelty potential、mechanistic value、failure informativeness、benchmark taste、claim significance 和 risk asymmetry，并要求写下简短理由。它刻意不被当作 reward model，而是记录导致人类保留、改写或剪枝某个分支的非指标先验。后续评估应同时报告平均任务表现和高尾部信号：例如一个 autonomous policy 本来会剪掉、但人类保留的分支，是否最终带来更强主张、更好 evaluator 或更有信息量的负结果。
 
-我们也对 18 个 gate records 加入 taste/insight coverage audit。结果显示：当前有 1 个完整 `taste_insight` 记录，即作者把论文从 FML-centric benchmark 故事改为 claim-matched benchmark portfolio 与高尾部评估框架的 scientific-taste prior；另外 17 个较早记录产生时 rubric 尚不存在，因此缺少 taste/insight 字段。这不是性能结果，但它把本文区别于一般 co-pilot 的核心主张落到了可审计日志中。后续 prospective matched-budget run 必须同时填写 `taste_insight` 和 `attention_cost`，才能检验 IGRE 关于高尾部科研结果的核心假设。
+我们也对 gate records 加入 taste/insight coverage audit。因为本文的核心主张涉及人类科研品味，而不是普通 human approval，所以仅靠公开 human-AI interaction 数据并不够。我们检查了若干相邻公开数据集：CoAuthor 记录人类与 GPT-3 协作写作，CUPID 记录多轮偏好交互，`neulab/agent-data-collection` 汇总多类 agent trajectories，WebChain 记录 human-annotated web trajectories；但这些数据都没有直接覆盖“人类科学家在 AI Scientist-v2 风格假设—实验—论文循环中介入，并连接到 benchmark、代码 artifact、claim audit 和 manuscript”的场景。因此本文把作者自己的 Codex 使用记录构造成一个脱敏的 single-author longitudinal co-pilot trace corpus，只发布派生元数据层：gate records、artifact paths、commit IDs、benchmark metrics、manuscript revisions 和 claim-audit outcomes，而不公开原始聊天记录或密钥。当前派生快照包含 29 条 gate records、12 条带 attention-cost 字段的记录、7 条带 taste/insight 字段的记录、3 个 prospective matched packages 和 46 个相关 commit。它可以支撑真实使用场景和过程审计主张，但不能单独支撑总体人群层面的有效性结论。
 
 根据最新 paper-quality review 的意见，我们把人类注意力成本从口头指标变成了可审计 artifact。human-gate schema 现在包含可选的 `attention_cost` 对象，用于记录 active review minutes、wall-clock latency、reviewed options、reviewed artifacts 和 decision count。我们还对现有 18 个 gate records 做了 coverage audit：其中包括 8 个 standalone human-gate logs，以及 2 个 trajectory artifacts 中的 10 个 embedded gates。结果是：当前 18 个 gate records 都没有完整 attention-cost 记录；其中 5 个重新生成的 executable-trace gates 已经显式标注 timing 缺失，较早的记录则是在该字段加入之前生成的。这是一个重要的负向 measurement-readiness 结果：现有日志可以证明决策来源，但还不能支持“人类注意力效率更高”的主张。后续 prospective matched run 必须填写该字段，才能比较 co-pilot 和 autonomous variants 的人类成本。
 
@@ -169,9 +169,10 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 16. prospective matched-budget package validator，用来定义在声称论文质量提升、人类注意力效率提升或优于 autonomous AI Scientist-v2 之前，最低限度需要具备的非 synthetic 证据形状。
 17. 一个 controlled prospective Max-Cut micro-pilot package，已经通过该 validator，并包含完整 attention/taste logging、matched baseline metrics、claim audit 和同次运行生成的 manuscript artifact。
 18. 一个 prospective FML-bench Causality package，包含完整 attention/taste logging 和 matched autonomous baseline；在这个两步小预算设置中，co-pilot test MAE 为 0.646224，autonomous baseline 为 0.624703，因此是负向 co-pilot performance 结果。
-19. 一个 prospective package 指标汇总表，把通过 audit 的 package 按任务、指标方向、co-pilot 分数、autonomous 分数和 claim implication 汇总；当前结果是 1 个 controlled micro-task 正向结果和 1 个 FML-bench 负向结果。
+19. 一个 prospective package 指标汇总表，把通过 audit 的 package 按任务、指标方向、co-pilot 分数、autonomous 分数和 claim implication 汇总；当前结果是 1 个 controlled micro-task 正向结果和 2 个 FML-bench 负向结果。
 20. 一个 matched mini-manuscript quality probe：为同一个 FML package 生成 autonomous mini-manuscript，并让 Monica 路由的 `gpt-4o-mini` 和 `claude-3-7-sonnet-latest` 对匿名 A/B manuscript 评分；两个模型都偏好 co-pilot package mini-manuscript，overall 为 4 对 3。
 21. 一个 matched full-manuscript generation probe：把同一个已归档 FML evidence package 渲染成两篇完整论文形态的 manuscript，并用确定性内部 rubric 评分；co-pilot manuscript 因结构完整、证据绑定、主张校准和方法区分度得到 4.18 overall，autonomous manuscript 得到 4.00 overall，但 autonomous 仍然在 FML 标量测试指标上更强。
+22. 一个 Human Co-Pilot Trace Dataset protocol，把本文实际 Codex 使用记录转化为脱敏派生数据集，而不是依赖不匹配的通用 human-AI interaction 数据集。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
 
@@ -181,9 +182,9 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 
 当前 human-gate logs 也缺少可度量的人类注意力成本。我们可以统计决策 artifact，但还不能计算 active review minutes 或 wall-clock latency，因此不能声称 gate 提高了单位人类努力产出的科研质量。下一轮 matched-budget 实验必须前瞻性记录 attention cost。
 
-新的 prospective matched-budget package audit 现在已经在一个 controlled micro-pilot 和一个 FML-bench Causality pilot 上通过。这个进展说明最小证据形状可以被真实远端计算生成和审计，而且已经延伸到 AI Scientist-v2 风格 benchmark；但 FML pilot 在当前小预算设置中是负向结果，且两个 package 都还没有评价论文质量。因此当前论文仍应被限制在 pilot-system evidence，直到更多任务、更多 seed、更大预算和独立论文质量评审完成。
+新的 prospective matched-budget package audit 现在已经在一个 controlled micro-pilot 和两个 FML-bench Causality pilot 上通过。这个进展说明最小证据形状可以被真实远端计算生成和审计，而且已经延伸到 AI Scientist-v2 风格 benchmark；但两个 FML pilot 在当前小预算设置中都是否定 co-pilot 平均性能的结果，且这些 package 仍没有独立评价完整论文质量。因此当前论文仍应被限制在 pilot-system evidence，直到更多任务、更多 seed、更大预算和独立论文质量评审完成。
 
-我们还新增了 package 指标汇总，而不只报告 artifact audit 是否通过。当前两个 passing package 中，controlled Max-Cut micro-task 的 human-selected branch 在 mean normalized score 上胜出（0.984419 对 0.596214），但这只是微任务；FML-bench Causality package 则由 autonomous baseline 在 test MAE 上胜出（0.624703 对 0.646224）。两条 human gate 都已经记录完整 attention-cost 和 taste/insight。这个混合结果正是 IGRE 需要坚持的证据纪律：人类科研品味是高方差搜索干预，必须跨任务、seed、预算和论文质量结果检验，而不能从单个正例预设有效。
+我们还新增了 package 指标汇总，而不只报告 artifact audit 是否通过。当前三个 passing package 中，controlled Max-Cut micro-task 的 human-selected branch 在 mean normalized score 上胜出（0.984419 对 0.596214），但这只是微任务；两个 FML-bench Causality package 都由 autonomous baseline 在 test MAE 上胜出，分别为 0.624703 对 0.646224，以及 0.296399 对 0.646224。三个 human gate 都已经记录完整 attention-cost 和 taste/insight。这个结果正是 IGRE 需要坚持的证据纪律：人类科研品味是高方差搜索干预，不能预设它提高短预算平均分；它更可能需要通过高尾部科研质量、问题选择和主张校准来体现。
 
 我们还补了第一个 matched mini-manuscript quality probe。该 probe 从同一个 FML package 的 autonomous baseline 生成一篇 autonomous mini-manuscript，把 co-pilot package manuscript 匿名为 A，把 autonomous manuscript 匿名为 B，并让 Monica 路由的 `gpt-4o-mini` 和 `claude-3-7-sonnet-latest` 按 claim calibration、evidence use、methodological completeness、limitation honesty、clarity 和 overall quality 评分。两个模型都偏好 A，overall 为 4 对 3；理由是 co-pilot mini-manuscript 虽然 benchmark 分数更差，但对主张边界和局限性写得更清楚。这个结果只能说明 manuscript-quality measurement pipeline 可运行，不能证明完整 co-pilot 系统已经能写出更好论文。
 

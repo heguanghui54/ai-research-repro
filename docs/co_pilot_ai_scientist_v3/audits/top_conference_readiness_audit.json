@@ -29,7 +29,11 @@
     "standalone_human_gate_logs": 8,
     "embedded_trajectory_gates": 10,
     "complete_taste_insight_records": 1,
-    "complete_attention_cost_records": 0
+    "complete_attention_cost_records": 0,
+    "derived_trace_gate_records": 29,
+    "derived_trace_attention_cost_records": 12,
+    "derived_trace_taste_insight_records": 7,
+    "prospective_matched_packages": 3
   },
   "clean_clone_reproducibility": {
     "status": "pass",
@@ -53,11 +57,11 @@
     "real_gate_complete_attention_cost_records": 0,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Scale beyond the current mixed prospective summary: fresh end-to-end matched trajectories, more FML and non-FML tasks, seeds, budgets, paper-quality scoring, and independent human timing.",
+  "next_evidence_milestone": "Scale beyond the single-author Codex trace and current negative short-budget FML evidence: fresh end-to-end matched trajectories, more FML and non-FML tasks, seeds, budgets, paper-quality scoring, independent human timing, and ideally multiple human researchers.",
   "prospective_matched_budget_package_audit": {
-    "status": "pass_with_mixed_metric_outcomes",
-    "manifest_files_checked": 2,
-    "passing_packages": 2,
+    "status": "pass_with_mostly_negative_fml_metric_outcomes",
+    "manifest_files_checked": 3,
+    "passing_packages": 3,
     "strongest_package_id": "prospective_matched_fml_causality_20260602_000001",
     "fml_co_pilot_test_mae": 0.646223724015837,
     "fml_autonomous_test_mae": 0.6247032882621405,
@@ -70,8 +74,17 @@
       "higher_is_better": true,
       "interpretation": "positive_controlled_micro_task_not_paper_quality_evidence"
     },
-    "complete_attention_cost_gates": 2,
-    "complete_taste_insight_gates": 2
+    "complete_attention_cost_gates": 3,
+    "complete_taste_insight_gates": 3,
+    "fml_package_count": 2,
+    "fml_negative_package_count": 2,
+    "second_fml_pilot_result": {
+      "co_pilot_test_mae": 0.6462237240158367,
+      "autonomous_test_mae": 0.29639917877540584,
+      "autonomous_minus_co_pilot_test_mae": -0.3498245452404309,
+      "lower_is_better": true,
+      "interpretation": "negative_for_co_pilot_performance_in_this_small_run"
+    }
   },
   "attention_taste_logging_tooling": {
     "status": "pass_for_synthetic_smoke",
@@ -136,6 +149,20 @@
     "autonomous_or_tie_wins": 1,
     "mean_delta_autonomous_minus_human": -0.015617601798077935,
     "online_smoke_winner": "autonomous_or_tie",
-    "claim_implication": "branch_gate_feasibility_supported_superiority_not_supported"
+    "claim_implication": "branch_gate_feasibility_supported_superiority_not_supported",
+    "prospective_two_step_package_count": 2,
+    "prospective_two_step_human_gated_wins": 0,
+    "prospective_two_step_autonomous_or_tie_wins": 2,
+    "prospective_two_step_mean_delta_autonomous_minus_human": -0.18567249049706372
+  },
+  "human_copilot_trace_dataset": {
+    "status": "single_author_longitudinal_derived_metadata_protocol",
+    "markdown": "docs/co_pilot_ai_scientist_v3/human_copilot_trace_dataset.md",
+    "json": "docs/co_pilot_ai_scientist_v3/human_copilot_trace_dataset.json",
+    "gate_records": 29,
+    "attention_cost_records": 12,
+    "taste_insight_records": 7,
+    "prospective_packages": 3,
+    "claim_scope": "supports process/ecological case-study claims, not population-level human benefit"
   }
 }

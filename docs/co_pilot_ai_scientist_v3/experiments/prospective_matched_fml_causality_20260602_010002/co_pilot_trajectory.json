@@ -1,0 +1,90 @@
+{
+  "trajectory_id": "prospective_matched_fml_causality_20260602_010002",
+  "generated_at_utc": "2026-06-02T00:08:29Z",
+  "remote_host": "ubuntu-heshi",
+  "remote_root": "/home/heshi/work/prospective_matched_fml_causality_20260602_010002",
+  "status": "prospective_fml_pilot",
+  "claim_scope": "Small FML-bench matched package; not top-conference superiority evidence.",
+  "gates": [
+    {
+      "gate_id": "prospective_matched_fml_causality_20260602_010002_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "timestamp_utc": "2026-06-02T00:11:29Z",
+      "research_task_id": "prospective_matched_fml_causality_20260602_010002",
+      "options": [
+        {
+          "option_id": "step_0001",
+          "summary": "Continue branch draft_6c37e7513c63 after draft",
+          "score": 0.627836868090553,
+          "evidence": [
+            "validation_mae=0.627837",
+            "lower_is_better"
+          ],
+          "risks": [
+            "Small FML prospective package; one task and one seed."
+          ]
+        },
+        {
+          "option_id": "step_0002",
+          "summary": "Continue branch draft_a6cdd38b2031 after draft",
+          "score": 0.6590451421610847,
+          "evidence": [
+            "validation_mae=0.659045",
+            "lower_is_better"
+          ],
+          "risks": [
+            "Small FML prospective package; one task and one seed."
+          ]
+        }
+      ],
+      "human_decision": "step_0001",
+      "rationale": "Select the lower-validation-MAE Causality_causalml branch for this prospective FML matched package while recording that one small task cannot establish general co-pilot superiority.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/co_pilot_branch_summary.json"
+      ],
+      "downstream_budget": {
+        "selected_validation_mae": 0.627836868090553,
+        "same_task_as_autonomous": true,
+        "fml_max_steps": 2
+      },
+      "attention_cost": {
+        "human_actor": "codex_operator_for_author",
+        "interaction_mode": "async_review",
+        "prompted_at_utc": "2026-06-02T00:08:29Z",
+        "decision_at_utc": "2026-06-02T00:11:29Z",
+        "active_review_minutes": 3.0,
+        "wall_clock_latency_minutes": 3.0,
+        "options_reviewed": 2,
+        "artifacts_reviewed_count": 1,
+        "decision_count": 1,
+        "notes": "Prospective operator-recorded FML package gate; not an independent human-subject measurement."
+      },
+      "taste_insight": {
+        "rubric_version": "2026-06-02",
+        "scores": {
+          "problem_depth": 4,
+          "novelty_potential": 3,
+          "mechanistic_value": 4,
+          "failure_informativeness": 4,
+          "benchmark_taste": 4,
+          "claim_significance": 3,
+          "risk_asymmetry": 3
+        },
+        "taste_insight_score": 3.57,
+        "qualitative_rationale": "The branch choice is scientifically modest but claim-relevant: Causality_causalml directly tests whether frontier steering can be inserted into an AI Scientist-v2 benchmark trajectory.",
+        "non_metric_factors": [
+          "ai-scientist-v2-trajectory-relevance",
+          "negative-results-still-informative"
+        ]
+      },
+      "follow_up_checks": [
+        "Compare against the matched autonomous FML run.",
+        "Do not generalize from one Causality_causalml run."
+      ]
+    }
+  ],
+  "co_pilot_branch_summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/co_pilot_branch_summary.json",
+  "autonomous_baseline_summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/autonomous_baseline_summary.json",
+  "co_pilot_test_metric": 0.6462237240158367,
+  "autonomous_test_metric": 0.29639917877540584
+}

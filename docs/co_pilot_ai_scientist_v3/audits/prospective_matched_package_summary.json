@@ -1,12 +1,12 @@
 {
   "status": "summary_only",
-  "package_count": 2,
+  "package_count": 3,
   "co_pilot_wins": 1,
-  "autonomous_or_tie_wins": 1,
-  "gate_count": 2,
-  "complete_attention_gates": 2,
-  "complete_taste_gates": 2,
-  "total_active_review_minutes": 5.0,
+  "autonomous_or_tie_wins": 2,
+  "gate_count": 3,
+  "complete_attention_gates": 3,
+  "complete_taste_gates": 3,
+  "total_active_review_minutes": 8.0,
   "packages": [
     {
       "package_id": "prospective_matched_fml_causality_20260602_000001",
@@ -27,6 +27,42 @@
         "co_pilot_score": 0.646223724015837,
         "autonomous_score": 0.6247032882621405,
         "co_pilot_minus_autonomous": 0.021520435753696554,
+        "winner": "autonomous_or_tie"
+      },
+      "gate_summary": {
+        "gate_count": 1,
+        "complete_attention_gates": 1,
+        "complete_taste_gates": 1,
+        "total_active_review_minutes": 3.0,
+        "mean_taste_insight_score": 3.57
+      },
+      "claim_implication": "Negative co-pilot performance result for this small FML budget; supports prospective package feasibility, not superiority.",
+      "limitations": [
+        "Single FML task and single budget.",
+        "No independent human-subject timing.",
+        "Does not evaluate final paper quality.",
+        "Does not include OpenEvolve subproblem escalation."
+      ]
+    },
+    {
+      "package_id": "prospective_matched_fml_causality_20260602_010002",
+      "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/prospective_manifest.json",
+      "status": "prospective_pilot",
+      "matched_budget": {
+        "same_task": true,
+        "same_model_family": true,
+        "same_step_budget": true,
+        "same_tool_access": true,
+        "notes": "Both runs used Causality_causalml, deepseek-chat, DeepSeek, and max_steps=2."
+      },
+      "metrics": {
+        "task": "Causality_causalml",
+        "benchmark_family": "FML-bench",
+        "metric": "mae_mean",
+        "metric_direction": "lower",
+        "co_pilot_score": 0.6462237240158367,
+        "autonomous_score": 0.29639917877540584,
+        "co_pilot_minus_autonomous": 0.3498245452404309,
         "winner": "autonomous_or_tie"
       },
       "gate_summary": {

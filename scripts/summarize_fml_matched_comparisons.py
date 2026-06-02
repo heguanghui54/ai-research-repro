@@ -41,6 +41,10 @@ FORMAL_PAIRS = [
 SMOKE_COMPARISONS = [
     "docs/co_pilot_ai_scientist_v3/experiments/online_smoke_matched_autonomous_comparison.json"
 ]
+PROSPECTIVE_FML_MANIFEST_GLOB = (
+    "docs/co_pilot_ai_scientist_v3/experiments/"
+    "prospective_matched_fml_*/prospective_manifest.json"
+)
 
 
 def _load_json(path: str | Path) -> dict[str, Any]:
@@ -124,12 +128,41 @@ def summarize_smoke() -> list[dict[str, Any]]:
     return rows
 
 
+def summarize_prospective_packages() -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    for manifest_path in sorted(ROOT.glob(PROSPECTIVE_FML_MANIFEST_GLOB)):
+        manifest = _load_json(manifest_path)
+        trajectory = _load_json(manifest["co_pilot_trajectory"])
+        baseline = _load_json(manifest["autonomous_baseline"])
+        co_pilot_test = float(trajectory["co_pilot_test_metric"])
+        autonomous_test = float(trajectory["autonomous_test_metric"])
+        delta = autonomous_test - co_pilot_test
+        gate_logs = manifest.get("human_gate_logs", [])
+        rows.append(
+            {
+                "package_id": manifest.get("package_id", manifest_path.parent.name),
+                "task": baseline.get("benchmark", "Causality_causalml"),
+                "co_pilot_test_mae": co_pilot_test,
+                "autonomous_test_mae": autonomous_test,
+                "delta_autonomous_minus_human": delta,
+                "winner": "human_gated" if delta > 0 else "autonomous_or_tie",
+                "co_pilot_val_mae": _val_metric(_load_json(manifest["co_pilot_branch_summary"])),
+                "autonomous_val_mae": _val_metric(baseline),
+                "gate_log_count": len(gate_logs) if isinstance(gate_logs, list) else 0,
+                "source": str(manifest_path.relative_to(ROOT)),
+            }
+        )
+    return rows
+
+
 def build_summary() -> dict[str, Any]:
     formal = summarize_formal_pairs()
     smoke = summarize_smoke()
+    prospective = summarize_prospective_packages()
     human_scores = [row["human_test_mae"] for row in formal]
     autonomous_scores = [row["autonomous_test_mae"] for row in formal]
     deltas = [row["delta_autonomous_minus_human"] for row in formal]
+    prospective_deltas = [row["delta_autonomous_minus_human"] for row in prospective]
     return {
         "status": "mixed_underpowered_fml_matched_evidence",
         "metric": "IHDP test MAE",
@@ -146,11 +179,23 @@ def build_summary() -> dict[str, Any]:
             "statistical_claim": "not_supported_n_too_small",
         },
         "smoke_comparisons": smoke,
+        "prospective_two_step_packages": prospective,
+        "prospective_two_step_aggregate": {
+            "package_count": len(prospective),
+            "human_gated_wins": sum(1 for row in prospective if row["winner"] == "human_gated"),
+            "autonomous_or_tie_wins": sum(1 for row in prospective if row["winner"] != "human_gated"),
+            "mean_delta_autonomous_minus_human": mean(prospective_deltas) if prospective_deltas else None,
+            "delta_sem": _sem(prospective_deltas),
+            "statistical_claim": "not_supported_n_too_small"
+            if len(prospective_deltas) < 5
+            else "descriptive_only_requires_pre_registered_analysis",
+        },
         "claim_implication": (
             "The formal FML Causality pairs are mixed and slightly favor "
-            "autonomous on the two-pair mean. The online smoke comparison is "
-            "also negative for co-pilot performance. These artifacts support "
-            "branch-gate feasibility and evidence discipline, not superiority."
+            "autonomous on the two-pair mean. The prospective two-step FML "
+            "packages and the online smoke comparison are also negative for "
+            "co-pilot performance. These artifacts support branch-gate "
+            "feasibility and evidence discipline, not superiority."
         ),
     }
 
@@ -222,6 +267,43 @@ def _markdown(summary: dict[str, Any]) -> str:
             )
             + " |"
         )
+    lines.extend(
+        [
+            "",
+            "## Prospective Two-Step FML Packages",
+            "",
+            "| Package | Co-pilot test MAE | Autonomous test MAE | Autonomous - human | Winner |",
+            "| --- | ---: | ---: | ---: | --- |",
+        ]
+    )
+    for row in summary["prospective_two_step_packages"]:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    f"`{row['package_id']}`",
+                    _fmt(row["co_pilot_test_mae"]),
+                    _fmt(row["autonomous_test_mae"]),
+                    _fmt(row["delta_autonomous_minus_human"]),
+                    row["winner"],
+                ]
+            )
+            + " |"
+        )
+    prospective_agg = summary["prospective_two_step_aggregate"]
+    lines.extend(
+        [
+            "",
+            "## Prospective Two-Step Aggregate",
+            "",
+            f"- Package count: {prospective_agg['package_count']}",
+            f"- Human-gated wins: {prospective_agg['human_gated_wins']}",
+            f"- Autonomous/tie wins: {prospective_agg['autonomous_or_tie_wins']}",
+            f"- Mean autonomous-minus-human delta: `{_fmt(prospective_agg['mean_delta_autonomous_minus_human'])}`",
+            f"- Delta SEM: `{_fmt(prospective_agg['delta_sem'])}`",
+            f"- Statistical claim: `{prospective_agg['statistical_claim']}`",
+        ]
+    )
     lines.extend(
         [
             "",

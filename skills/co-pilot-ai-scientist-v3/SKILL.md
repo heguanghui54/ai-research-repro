@@ -120,6 +120,10 @@ and claim responsibility can reshape the trajectory.
      `scripts/generate_full_manuscript_probe.py --update-manifest`. Treat this
      as archived-evidence manuscript generation, not as a fresh end-to-end
      research trajectory or independent paper-quality proof.
+   - To turn real Codex project usage into a privacy-preserving process
+     dataset, run `scripts/build_human_copilot_trace_dataset.py`. Treat the
+     resulting `human_copilot_trace_dataset.md/json` as a single-author
+     longitudinal trace corpus, not as population-level human-subject evidence.
    - To check the package shape on a controlled remote computation, run
      `scripts/run_prospective_matched_budget_micro_pilot.py`; treat it only as
      evidence-shape validation, not as AI Scientist-v2 superiority evidence.
@@ -250,6 +254,7 @@ Reusable templates are stored next to this skill:
   available;
 - matched mini- and full-manuscript generation probes when manuscript evidence
   is being audited;
+- derived Human Co-Pilot Trace Dataset when human usage evidence is discussed;
 - experiment logs and metrics;
 - program-search traces;
 - English and Chinese manuscript drafts;

@@ -76,6 +76,27 @@ stronger on the scalar FML test metric. This narrows the manuscript-generation
 gap but does not satisfy the reviewer request for a fresh end-to-end
 paper-generating trajectory or independent expert paper-quality scoring.
 
+## Human Co-Pilot Trace Dataset
+
+The paper now includes `human_copilot_trace_dataset.md/json`, a derived metadata
+protocol for using the author's real Codex sessions as a single-author
+longitudinal co-pilot trace corpus. Public human-AI interaction datasets are
+useful adjacent evidence, but they do not directly provide human scientist
+interventions inside AI Scientist-v2-style hypothesis-experiment-paper loops.
+The derived trace currently indexes 29 gate records, 12 records with
+attention-cost fields, 7 records with taste/insight fields, 3 prospective
+matched packages, and 46 relevant commits. This improves ecological validity
+and process evidence; it does not establish population-level human benefit.
+
+## Second Prospective FML Package
+
+A second prospective two-step FML package was run after the previous review. It
+again uses `Causality_causalml`, DeepSeek, complete attention/taste logging, and
+a matched autonomous baseline. The result is more negative for short-budget
+co-pilot performance: co-pilot test MAE is `0.646224`, while the autonomous
+baseline reaches `0.296399`. The FML summary now reports two prospective
+two-step packages, both won by autonomous baselines.
+
 ## Paper Treatment
 
 The manuscript should present Co-Pilot AI Scientist v3 as an architecture,

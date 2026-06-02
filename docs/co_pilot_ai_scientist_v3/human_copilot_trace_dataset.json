@@ -1,0 +1,604 @@
+{
+  "status": "derived_metadata_protocol",
+  "public_dataset_survey": [
+    {
+      "name": "CoAuthor",
+      "url": "https://p-lambda.github.io/coauthor/",
+      "fit": "human-AI collaborative writing interactions",
+      "gap": "not scientific co-pilot research trajectories with benchmark execution"
+    },
+    {
+      "name": "CUPID",
+      "url": "https://cupid.kixlab.org/",
+      "fit": "human-curated multi-turn preference interaction histories",
+      "gap": "preference inference benchmark, not human scientific taste gates"
+    },
+    {
+      "name": "neulab/agent-data-collection",
+      "url": "https://huggingface.co/datasets/neulab/agent-data-collection",
+      "fit": "agent trajectories across web, code, household, knowledge, and software tasks",
+      "gap": "broad agent corpus, not AI Scientist-v2-style co-pilot research logs"
+    },
+    {
+      "name": "WebChain",
+      "url": "https://huggingface.co/datasets/webagentlab/WebChain",
+      "fit": "human-annotated web interaction trajectories",
+      "gap": "web/GUI task trajectories, not scientific hypothesis-experiment-paper loops"
+    }
+  ],
+  "primary_dataset_positioning": "single_author_longitudinal_codex_copilot_trace_corpus",
+  "current_snapshot": {
+    "gate_record_count": 29,
+    "attention_cost_records": 12,
+    "taste_insight_records": 7,
+    "prospective_package_count": 3,
+    "commit_count": 46
+  },
+  "gate_records": [
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/branch_gate_causality_after_two_drafts.json",
+      "gate_id": "branch_gate_causality_after_two_drafts",
+      "gate_type": "branch_selection",
+      "research_task_id": "fmlbench_causality_causalml_replay",
+      "option_count": 2,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "continue_from_step_1_and_stop_exploring_step_2"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/branch_gate_causality_online_two_drafts.json",
+      "gate_id": "branch_gate_causality_online_two_drafts",
+      "gate_type": "branch_selection",
+      "research_task_id": "fml_causality_causalml_online_two_draft_probe",
+      "option_count": 2,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "Select step_2_draft_8044da16b861 for downstream budget; prune step_1_draft_d71a0cdf1c7d."
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/branch_gate_fairness_after_two_attempts.json",
+      "gate_id": "branch_gate_fairness_after_two_attempts",
+      "gate_type": "branch_selection",
+      "research_task_id": "fmlbench_fairness_fairlearn_replay",
+      "option_count": 2,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "pause_branch_and_request_evaluator_or_algorithm_reset"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/claim_gate_001.json",
+      "gate_id": "claim_gate_001",
+      "gate_type": "claim_audit",
+      "research_task_id": "copilot_v3_manuscript_claim_audit",
+      "option_count": 2,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "Use pilot_architecture_claim; demote strong_superiority_claim to future work."
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/evaluator_gate_fairness_metric_guardrail.json",
+      "gate_id": "evaluator_gate_fairness_metric_guardrail",
+      "gate_type": "evaluator_approval",
+      "research_task_id": "fml_fairness_fairlearn_evaluator_gate",
+      "option_count": 2,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "Reject primary-metric-only acceptance; require executable code plus a balanced-accuracy utility floor before any Fairness_fairlearn branch can continue."
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/idea_gate_001.json",
+      "gate_id": "idea_gate_001",
+      "gate_type": "idea_selection",
+      "research_task_id": "copilot_v3_research_direction_selection",
+      "option_count": 4,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "Select hitl-gated-tree-search as the narrow core paper, while retaining co-scientist and OpenEvolve modules as supporting layers."
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/program_search_gate_001.json",
+      "gate_id": "program_search_gate_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": "openevolve_smoke_function_minimization",
+      "option_count": 2,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "openevolve_smoke"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/scientific_taste_prior_benchmark_portfolio_001.json",
+      "gate_id": "scientific_taste_prior_benchmark_portfolio_001",
+      "gate_type": "scientific_taste_prior",
+      "research_task_id": "copilot_v3_benchmark_portfolio_and_high_tail_framing",
+      "option_count": 3,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "Select claim_matched_benchmark_portfolio and make scientific taste/insight, not generic approval, the core IGRE distinction."
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/human_gate_logs/frontier_gate_001.json",
+      "gate_id": "prospective_matched_fml_causality_20260602_000001_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "research_task_id": "prospective_matched_fml_causality_20260602_000001",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "step_0001"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/human_gate_logs/frontier_gate_001.json",
+      "gate_id": "prospective_matched_fml_causality_20260602_010002_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "research_task_id": "prospective_matched_fml_causality_20260602_010002",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "step_0001"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/human_gate_logs/frontier_gate_001.json",
+      "gate_id": "prospective_matched_micro_pilot_20260602_000001_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "research_task_id": "prospective_matched_micro_pilot_20260602_000001",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "local_search_policy"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json#gates[0]",
+      "gate_id": "idea_gate_executable_trace_001",
+      "gate_type": "idea_selection",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "option_count": 4,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "hitl-gated-tree-search"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json#gates[1]",
+      "gate_id": "evaluator_gate_executable_trace_001",
+      "gate_type": "evaluator_approval",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "correctness_and_utility_guardrails"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json#gates[2]",
+      "gate_id": "branch_gate_executable_trace_001",
+      "gate_type": "branch_selection",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "step_0002"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json#gates[3]",
+      "gate_id": "program_search_gate_executable_trace_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "selective_openevolve"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_executable_trace/trajectory.json#gates[4]",
+      "gate_id": "claim_gate_executable_trace_001",
+      "gate_type": "claim_audit",
+      "research_task_id": "copilot_v3_executable_full_gate_trace",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "claim_feasibility_and_boundary_conditions"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.json#gates[0]",
+      "gate_id": "idea_gate_001",
+      "gate_type": "idea_selection",
+      "research_task_id": null,
+      "option_count": null,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": null
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.json#gates[1]",
+      "gate_id": "evaluator_gate_fairness_metric_guardrail",
+      "gate_type": "evaluator_approval",
+      "research_task_id": null,
+      "option_count": null,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": null
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.json#gates[2]",
+      "gate_id": "branch_gate_causality_online_two_drafts",
+      "gate_type": "branch_selection",
+      "research_task_id": null,
+      "option_count": null,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": null
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.json#gates[3]",
+      "gate_id": "program_search_gate_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": null,
+      "option_count": null,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": null
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/full_gate_retrospective_trajectory.json#gates[4]",
+      "gate_id": "claim_gate_001",
+      "gate_type": "claim_audit",
+      "research_task_id": null,
+      "option_count": null,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": null
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json#gates[0]",
+      "gate_id": "idea_gate_online_smoke_001",
+      "gate_type": "idea_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 4,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "hitl-gated-tree-search"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json#gates[1]",
+      "gate_id": "evaluator_gate_online_smoke_001",
+      "gate_type": "evaluator_approval",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "causality_mae_plus_guardrails"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json#gates[2]",
+      "gate_id": "branch_gate_online_smoke_001",
+      "gate_type": "branch_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 2,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "step_0002"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json#gates[3]",
+      "gate_id": "program_search_gate_online_smoke_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "run_tiny_openevolve_knapsack"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260601_145720/trajectory.json#gates[4]",
+      "gate_id": "claim_gate_online_smoke_001",
+      "gate_type": "claim_audit",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 2,
+      "has_attention_cost": false,
+      "has_taste_insight": false,
+      "human_decision": "claim_online_orchestration_feasible"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/co_pilot_trajectory.json#gates[0]",
+      "gate_id": "prospective_matched_fml_causality_20260602_000001_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "research_task_id": "prospective_matched_fml_causality_20260602_000001",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "step_0001"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/co_pilot_trajectory.json#gates[0]",
+      "gate_id": "prospective_matched_fml_causality_20260602_010002_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "research_task_id": "prospective_matched_fml_causality_20260602_010002",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "step_0001"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/co_pilot_trajectory.json#gates[0]",
+      "gate_id": "prospective_matched_micro_pilot_20260602_000001_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "research_task_id": "prospective_matched_micro_pilot_20260602_000001",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "local_search_policy"
+    }
+  ],
+  "prospective_packages": [
+    {
+      "package_id": "prospective_matched_fml_causality_20260602_000001",
+      "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/prospective_manifest.json",
+      "status": "prospective_pilot",
+      "co_pilot_metric": 0.646223724015837,
+      "autonomous_metric": 0.6247032882621405,
+      "benchmark": "Causality_causalml",
+      "human_gate_count": 1
+    },
+    {
+      "package_id": "prospective_matched_fml_causality_20260602_010002",
+      "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/prospective_manifest.json",
+      "status": "prospective_pilot",
+      "co_pilot_metric": 0.6462237240158367,
+      "autonomous_metric": 0.29639917877540584,
+      "benchmark": "Causality_causalml",
+      "human_gate_count": 1
+    },
+    {
+      "package_id": "prospective_matched_micro_pilot_20260602_000001",
+      "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/prospective_manifest.json",
+      "status": "prospective_pilot",
+      "co_pilot_metric": 0.9844190321169742,
+      "autonomous_metric": 0.5962135415932638,
+      "benchmark": null,
+      "human_gate_count": 1
+    }
+  ],
+  "commit_index": [
+    {
+      "commit": "cc1b8894aad940976609da1df33dc9e5a7dac862",
+      "date": "2026-06-02",
+      "subject": "Add full manuscript generation probe"
+    },
+    {
+      "commit": "6d67bfbb34a66594d8244616e8c2e7e928b311ca",
+      "date": "2026-06-02",
+      "subject": "Add scripted FML matched comparison summary"
+    },
+    {
+      "commit": "054395fb9b1baf72dc625fc4cdb381f9513e3d88",
+      "date": "2026-06-02",
+      "subject": "Add matched mini manuscript quality probe"
+    },
+    {
+      "commit": "57a1a1d9b48d25774477bc91b91e477f368b0770",
+      "date": "2026-06-02",
+      "subject": "Refresh paper quality review with prospective evidence"
+    },
+    {
+      "commit": "5a029f2c5d5c393187e695a738f7c1ec1d96a54e",
+      "date": "2026-06-02",
+      "subject": "Add prospective package metric summary"
+    },
+    {
+      "commit": "60357c67e98e918a69fd950f068e5103d41f436c",
+      "date": "2026-06-02",
+      "subject": "Add prospective FML matched package"
+    },
+    {
+      "commit": "48b7451603d4cce28527ba5e8062c55ce5f4f4b4",
+      "date": "2026-06-02",
+      "subject": "Add prospective matched micro pilot package"
+    },
+    {
+      "commit": "020d0bdeffa1b91eb520bc8d762ba324e84e9d37",
+      "date": "2026-06-02",
+      "subject": "Support joint attention and taste gate logs"
+    },
+    {
+      "commit": "d5916d29511fe041a6f874569640d0b00318ec19",
+      "date": "2026-06-02",
+      "subject": "Add prospective matched-budget package audit"
+    },
+    {
+      "commit": "dbfa6165e09826a42fa572b4861bb656d47061d4",
+      "date": "2026-06-02",
+      "subject": "Add attention cost logging tooling"
+    },
+    {
+      "commit": "d93c6002a28d95293d655dcf0b89a2f3cb1c2489",
+      "date": "2026-06-02",
+      "subject": "Refresh clean clone audit after skill smoke"
+    },
+    {
+      "commit": "6dfbdc8ee3fef693bdb6ee01910a901fe8e35de1",
+      "date": "2026-06-02",
+      "subject": "Add reusable skill smoke audit"
+    },
+    {
+      "commit": "4020309ae954f068577f4c1d60fef013644e7e38",
+      "date": "2026-06-02",
+      "subject": "Add clean clone reproducibility audit"
+    },
+    {
+      "commit": "a82a19bb0cd90b319af2c9380d96de834e89ae00",
+      "date": "2026-06-02",
+      "subject": "Add top conference readiness audit"
+    },
+    {
+      "commit": "3e70f60e0e8b9131381b311a03b96be62b895848",
+      "date": "2026-06-02",
+      "subject": "Log benchmark portfolio taste gate"
+    },
+    {
+      "commit": "e7726990bc83316a6f22a3e101ee4e70e9f3baad",
+      "date": "2026-06-02",
+      "subject": "Add taste insight coverage audit"
+    },
+    {
+      "commit": "beffd86221c44eeaaea12d48327193711b65012a",
+      "date": "2026-06-02",
+      "subject": "Add scientific taste insight rubric"
+    },
+    {
+      "commit": "7b5a6a1b99cd6c605e54e47868edd35dc651ae56",
+      "date": "2026-06-02",
+      "subject": "Reframe paper around insight-gated research evolution"
+    },
+    {
+      "commit": "86cde15fec2f0168a4bd1285eb33d7162b9736d5",
+      "date": "2026-06-01",
+      "subject": "Expand attention cost audit to trajectories"
+    },
+    {
+      "commit": "b51b3346153b72f3d47514a248e115bb9ed4aded",
+      "date": "2026-06-01",
+      "subject": "Add human gate attention cost audit"
+    },
+    {
+      "commit": "3a56f1d1b8a3cce033d0d590944b0df49aa1c049",
+      "date": "2026-06-01",
+      "subject": "Refresh paper quality review with latest evidence"
+    },
+    {
+      "commit": "229337ad865af6e565e038aec970d2740f27f80d",
+      "date": "2026-06-01",
+      "subject": "Add Max-Cut program search benchmark"
+    },
+    {
+      "commit": "50dc60ba23f019a7e7648ca23734bffc85eca69c",
+      "date": "2026-06-01",
+      "subject": "Add matched autonomous baseline for online smoke"
+    },
+    {
+      "commit": "d123f780ef89039d958ce8e27c96b263e148ad04",
+      "date": "2026-06-01",
+      "subject": "Add online full-gate smoke trajectory"
+    },
+    {
+      "commit": "79b7f0bb1b654489feca33427805094e5b323749",
+      "date": "2026-06-01",
+      "subject": "Add executable full-gate trace runner"
+    },
+    {
+      "commit": "6607486ece5130bb1e2a648b7be94abb2b95190d",
+      "date": "2026-06-01",
+      "subject": "Add benchmark claim matrix"
+    },
+    {
+      "commit": "9dfdb383027f9a46baf8d5de6ea52bbacad21197",
+      "date": "2026-06-01",
+      "subject": "Add retrospective full-gate trajectory"
+    },
+    {
+      "commit": "cd12a825dc152f83f95ea8f79765584372420d8c",
+      "date": "2026-06-01",
+      "subject": "Archive non-FML benchmark setup probes"
+    },
+    {
+      "commit": "6fcfd30043438d9e04d69d10b379a720901c1b2f",
+      "date": "2026-06-01",
+      "subject": "Add Fairness metric-gaming evaluator gate probe"
+    },
+    {
+      "commit": "ad6be3e2fb94a65b35082e199e5bf27da513c93c",
+      "date": "2026-06-01",
+      "subject": "Archive FML fairness evaluator-gate failure probe"
+    },
+    {
+      "commit": "859c78dc5e109381523409e326691947096fdc58",
+      "date": "2026-06-01",
+      "subject": "Add controlled tabular modeling probe"
+    },
+    {
+      "commit": "0bbd21a5f9c1f61b31a5fe66c9eafa00255385d1",
+      "date": "2026-06-01",
+      "subject": "Add MLAgentBench multiseed robustness probe"
+    },
+    {
+      "commit": "e94273c8efec32b4eb942bb8b48a80119d1bc42c",
+      "date": "2026-06-01",
+      "subject": "Add second FML matched-budget replicate"
+    },
+    {
+      "commit": "1437b90c105b23358a14e72040be53b1d777235b",
+      "date": "2026-06-01",
+      "subject": "Add FML matched-budget baseline"
+    },
+    {
+      "commit": "25fff61302c1a6f746c4d5751d358e336546d4b4",
+      "date": "2026-06-01",
+      "subject": "Add paper quality review loop"
+    },
+    {
+      "commit": "56ccf591d01c6c20c383e3cb7effd387796fbf73",
+      "date": "2026-06-01",
+      "subject": "Add MLAgentBench multi-seed robustness evidence"
+    },
+    {
+      "commit": "7472523dc1775fc0721b8cc1709e80eb5c970818",
+      "date": "2026-06-01",
+      "subject": "Refresh co-pilot AI scientist PDFs"
+    },
+    {
+      "commit": "d436192c05be745b2a192ae382e86fe42559ef98",
+      "date": "2026-06-01",
+      "subject": "Add co-pilot AI scientist v3 research package"
+    },
+    {
+      "commit": "68d5dbb26333cf9aca142795be9101832de085c7",
+      "date": "2026-06-01",
+      "subject": "Expand qigong web coding fields and ingest pipeline"
+    },
+    {
+      "commit": "30756404de296b4bce87b733e6fab7f3ecba51a7",
+      "date": "2026-06-01",
+      "subject": "Require private admin code for qigong coding export"
+    },
+    {
+      "commit": "89d8a57617ef25c86f10eb1596bd3cf67642b63f",
+      "date": "2026-06-01",
+      "subject": "Secure qigong coding web data access"
+    },
+    {
+      "commit": "ffdf5ab24306eb1671551e2d05d31dcb97f7f5e6",
+      "date": "2026-06-01",
+      "subject": "Build qigong coding collection web app"
+    },
+    {
+      "commit": "cece9c5d221c5e9dec12373fac816c9f1d077bb0",
+      "date": "2026-05-30",
+      "subject": "Document Fairlearn task reproduction"
+    },
+    {
+      "commit": "667f564423642d55cf425f3b510c5820951485f0",
+      "date": "2026-05-30",
+      "subject": "Add FML-bench DeepSeek smoke-test tooling"
+    },
+    {
+      "commit": "f2e835e31da1f9f3d0dcc8515cbd896db249386c",
+      "date": "2026-05-29",
+      "subject": "Add Monica fallback for FML-bench smoke tests"
+    },
+    {
+      "commit": "5650eb70f0b9113aa8b46fc48ff34e086b1a9c03",
+      "date": "2026-05-29",
+      "subject": "Add official benchmark smoke test helper"
+    }
+  ],
+  "claim_scope": {
+    "supports": [
+      "single-author ecological case study",
+      "gate-level process audit",
+      "artifact-linked human intervention analysis",
+      "negative-result reporting for human gates"
+    ],
+    "does_not_support_alone": [
+      "population-level human benefit",
+      "average benchmark superiority",
+      "top-conference empirical sufficiency",
+      "human attention efficiency without prospective timing"
+    ]
+  }
+}

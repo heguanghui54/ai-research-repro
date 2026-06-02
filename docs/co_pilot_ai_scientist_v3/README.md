@@ -144,14 +144,13 @@ potential, mechanistic value, failure informativeness, benchmark taste, claim
 significance, and risk asymmetry. This keeps IGRE distinct from generic
 co-pilot approval workflows. The rubric does not prove performance improvement
 by itself; it lets future matched runs test whether human taste changes the
-upper tail of research trajectories. A new coverage audit now covers 18 gate
-records: 8 standalone human-gate logs and 10 embedded trajectory gates across 2
-trajectory artifacts. It finds 1 complete `taste_insight` record, the
-scientific-taste prior that captures the author's benchmark-portfolio and
-high-tail framing decision, and 17 older gates without taste/insight fields.
-This is an initial logging artifact, not performance evidence: future
-prospective gates must record the field before the paper can argue that
-taste-gated search changed research outcomes.
+upper tail of research trajectories. The derived Human Co-Pilot Trace Dataset
+protocol now indexes 29 gate records from the real Codex project workflow, with
+12 records containing attention-cost fields and 7 containing taste/insight
+fields. The earlier coverage audit remains useful as a historical baseline, but
+the derived trace snapshot is now the preferred process dataset for the paper.
+It is still a single-author longitudinal case study, not population-level human
+subjects evidence.
 
 The latest benchmark-expansion probes are deliberately recorded as setup
 evidence rather than inflated results. A second official MLAgentBench
@@ -226,14 +225,27 @@ the autonomous matched baseline reaches `0.624703` (lower is better). This is
 useful evidence because it upgrades the package shape to AI Scientist-v2-style
 FML-bench while still keeping the paper's superiority claim unproven.
 
+A second prospective FML package is archived under
+`experiments/prospective_matched_fml_causality_20260602_010002/`. It uses the
+same task/model/tool budget shape and is also negative for co-pilot performance:
+co-pilot test MAE is `0.646224`, while the matched autonomous baseline reaches
+`0.296399`.
+
 The metric-level package summary is archived as
-`audits/prospective_matched_package_summary.md`. It currently summarizes 2
-passing packages: 1 controlled micro-task win for a human-selected branch and 1
-FML-bench loss for the co-pilot branch. Both packages have complete
-`attention_cost` and `taste_insight` gate records. This mixed result is the
-intended evidence discipline for IGRE: human taste/insight is treated as a
-high-variance search intervention to be measured, not as an assumed positive
-effect.
+`audits/prospective_matched_package_summary.md`. It currently summarizes 3
+passing packages: 1 controlled micro-task win for a human-selected branch and 2
+FML-bench losses for the co-pilot branch. All three packages have complete
+`attention_cost` and `taste_insight` gate records. This result is the intended
+evidence discipline for IGRE: human taste/insight is treated as a high-variance
+search intervention to be measured, not as an assumed positive effect.
+
+The repository also includes `human_copilot_trace_dataset.md/json`, which
+answers the data question directly. Public human-AI datasets such as CoAuthor,
+CUPID, broad agent trajectory collections, and WebChain are useful related
+resources, but they do not directly provide human scientist co-pilot
+interventions inside an AI Scientist-v2-style hypothesis-experiment-paper loop.
+The paper therefore uses a privacy-preserving derived metadata layer from the
+author's own Codex sessions as its primary process trace dataset.
 
 The package now includes a first matched mini-manuscript quality probe under
 `experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/`.

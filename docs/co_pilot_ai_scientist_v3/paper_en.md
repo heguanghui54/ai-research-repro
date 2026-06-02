@@ -254,6 +254,24 @@ does, however, make the paper's distinctive human-taste claim operational:
 prospective matched-budget runs must fill both `taste_insight` and
 `attention_cost` before IGRE can test its high-tail hypothesis.
 
+Because the central claim concerns human scientific taste in a co-pilot
+research loop, the paper also needs human co-pilot usage data. We therefore add
+a derived Human Co-Pilot Trace Dataset protocol. A survey of public interaction
+datasets finds useful adjacent resources, including CoAuthor for collaborative
+writing, CUPID for contextual preference interactions,
+`neulab/agent-data-collection` for broad agent trajectories, and WebChain for
+human-annotated web trajectories. None of these directly contains human
+scientist interventions inside an AI Scientist-v2-style loop with linked
+hypotheses, benchmark runs, code artifacts, claim audits, and manuscripts. The
+primary dataset for this paper is therefore a single-author longitudinal Codex
+co-pilot trace corpus derived from this project: gate records, artifact paths,
+commit IDs, benchmark metrics, manuscript revisions, and claim-audit outcomes,
+without releasing raw chat logs or credentials. The current derived snapshot
+indexes 29 gate records, 12 records with attention-cost fields, 7 records with
+taste/insight fields, 3 prospective matched packages, and 46 relevant commits.
+This supports ecological and process claims, but not population-level claims
+about all scientists.
+
 Following the latest paper-quality review, we made attention cost an explicit
 auditable artifact rather than an informal metric. The human-gate schema now
 contains an optional `attention_cost` object with active review minutes,
@@ -290,15 +308,15 @@ prospective evidence package on an AI Scientist-v2-style task while reinforcing
 that superiority remains unproven.
 
 We additionally report a metric-level prospective package summary rather than
-only a pass/fail artifact audit. It currently contains two passing packages:
+only a pass/fail artifact audit. It currently contains three passing packages:
 one controlled Max-Cut micro-task in which the human-selected branch wins on
-mean normalized score (`0.984419` versus `0.596214`), and one FML-bench
-Causality package in which the autonomous run wins on test MAE (`0.624703`
-versus `0.646224`). Both human gates have complete attention-cost and
-taste/insight records. This mixed summary is central to the IGRE framing:
-human scientific taste is a logged, high-variance intervention whose value must
-be tested across a distribution of research trajectories, not assumed from a
-single favorable case.
+mean normalized score (`0.984419` versus `0.596214`), and two FML-bench
+Causality packages in which the autonomous run wins on test MAE (`0.624703`
+versus `0.646224`, and `0.296399` versus `0.646224`). All three human gates have
+complete attention-cost and taste/insight records. This summary is central to
+the IGRE framing: human scientific taste is a logged, high-variance intervention
+whose value must be tested across a distribution of research trajectories, not
+assumed from a single favorable case.
 
 Finally, we add a first matched mini-manuscript quality probe for the FML-bench
 prospective package. The probe generates an autonomous mini-manuscript from the
@@ -443,6 +461,15 @@ claim `not_supported_n_too_small`. The separate online-smoke comparison is also
 negative for co-pilot performance (`0.862015` versus `0.428516` test MAE). This
 scripted summary is the current authoritative FML performance evidence.
 
+After this audit, we ran a second prospective two-step FML package with the
+same task, model, tool access, and budget shape as the first prospective
+package. The co-pilot branch again reached test MAE `0.646224`, while the
+matched autonomous baseline reached `0.296399`. Across the two prospective
+two-step FML packages, the autonomous baseline wins both comparisons; mean
+autonomous-minus-human delta is `-0.185672` with SEM `0.164152`. This result
+strengthens the negative average-performance evidence while leaving the
+high-tail taste/insight hypothesis open for future larger-budget studies.
+
 ### 4.4 Non-FML Benchmark and Program-Search Probe
 
 Following the benchmark-selection principle above, we also used MLAgentBench as
@@ -586,13 +613,13 @@ The current contributions are:
 17. A controlled prospective Max-Cut micro-pilot package that passes this
    validator, with complete attention/taste logging, matched baseline metrics,
    claim audit, and same-run manuscript artifact.
-18. A prospective FML-bench Causality package with complete attention/taste
-   logging and matched autonomous baseline, yielding a negative co-pilot
-   performance result in the small two-step setting.
+18. Two prospective FML-bench Causality packages with complete attention/taste
+   logging and matched autonomous baselines, both yielding negative co-pilot
+   performance results in the small two-step setting.
 19. A prospective package metric summary that separates passing audit packages
    by task, metric direction, co-pilot score, autonomous score, and claim
    implication; the current result is one positive controlled micro-task and
-   one negative FML-bench package.
+   two negative FML-bench packages.
 20. A matched mini-manuscript quality probe for the FML package, where
    Monica-routed `gpt-4o-mini` and `claude-3-7-sonnet-latest` both prefer the
    co-pilot package mini-manuscript over a generated autonomous
@@ -603,6 +630,9 @@ The current contributions are:
    overall for structure, grounding, calibration, and method distinctness,
    while the autonomous manuscript scores 4.00 and remains stronger on the
    scalar FML metric.
+22. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
+   real Codex sessions as a single-author longitudinal process corpus after
+   privacy-preserving metadata extraction.
 
 The current evidence does not yet prove that human gates improve paper quality
 or that the full co-pilot system outperforms autonomous AI Scientist-v2. Those
@@ -641,11 +671,16 @@ ratio of research quality to human effort. The next matched-budget experiments
 must record attention cost prospectively.
 
 The new prospective matched-budget package audit now passes on one controlled
-micro-pilot and one FML-bench Causality pilot. This is progress in evidence
-shape, not in final empirical strength. The FML pilot is negative for co-pilot
-performance at this budget, and neither package evaluates paper quality. The
-paper therefore remains at pilot-system evidence until larger prospective
-experiments exist.
+micro-pilot and two FML-bench Causality pilots. This is progress in evidence
+shape, not in final empirical strength. Both FML pilots are negative for
+co-pilot average performance at this budget, and the packages do not provide
+independent expert evaluation of full paper quality. The paper therefore remains
+at pilot-system evidence until larger prospective experiments exist.
+
+The derived Human Co-Pilot Trace Dataset improves ecological validity because it
+comes from the author's real Codex workflow, but it is still a single-author
+longitudinal process corpus. It can support process and case-study claims; it
+cannot by itself support population-level claims about scientists in general.
 
 The full-manuscript probe reduces one specific gap but does not close the
 top-conference evidence gap. It shows that the archived FML package contains

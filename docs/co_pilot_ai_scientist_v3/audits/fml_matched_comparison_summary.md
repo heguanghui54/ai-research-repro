@@ -33,6 +33,22 @@ stable performance conclusion.
 | --- | ---: | ---: | ---: | --- |
 | `online_smoke_matched_autonomous_3step_001` | 0.862015 | 0.428516 | -0.433500 | autonomous_or_tie |
 
+## Prospective Two-Step FML Packages
+
+| Package | Co-pilot test MAE | Autonomous test MAE | Autonomous - human | Winner |
+| --- | ---: | ---: | ---: | --- |
+| `prospective_matched_fml_causality_20260602_000001` | 0.646224 | 0.624703 | -0.021520 | autonomous_or_tie |
+| `prospective_matched_fml_causality_20260602_010002` | 0.646224 | 0.296399 | -0.349825 | autonomous_or_tie |
+
+## Prospective Two-Step Aggregate
+
+- Package count: 2
+- Human-gated wins: 0
+- Autonomous/tie wins: 2
+- Mean autonomous-minus-human delta: `-0.185672`
+- Delta SEM: `0.164152`
+- Statistical claim: `not_supported_n_too_small`
+
 ## Claim Implication
 
-The formal FML Causality pairs are mixed and slightly favor autonomous on the two-pair mean. The online smoke comparison is also negative for co-pilot performance. These artifacts support branch-gate feasibility and evidence discipline, not superiority.
+The formal FML Causality pairs are mixed and slightly favor autonomous on the two-pair mean. The prospective two-step FML packages and the online smoke comparison are also negative for co-pilot performance. These artifacts support branch-gate feasibility and evidence discipline, not superiority.
