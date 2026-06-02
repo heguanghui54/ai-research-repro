@@ -127,6 +127,7 @@ def main() -> None:
         "frontier_alignment_taxonomy_summary": frontier_taxonomy_path,
         "frontier_vector_graph_summary": frontier_vector_path,
         "frontier_metric_disagreement_summary": frontier_disagreement_path,
+        "main_paper_figure": DOC_DIR / "figures" / "igre_frontier_main_figure.png",
         "english_usage": DOC_DIR / "usage_en.md",
         "chinese_usage": DOC_DIR / "usage_zh.md",
         "english_runbook": DOC_DIR / "RUNBOOK_EN.md",
@@ -179,6 +180,7 @@ def main() -> None:
                 "frontier_alignment_taxonomy_20260602_233000",
                 "frontier_vector_graph_20260602_234500",
                 "frontier_metric_disagreement_20260603_003000",
+                "figures/igre_frontier_main_figure.png",
                 "External Verification Entry Point",
                 "audit_top_conference_evidence_roadmap.py",
                 "audit_human_expert_blind_review_packet.py",
@@ -188,6 +190,7 @@ def main() -> None:
                 "build_frontier_alignment_taxonomy.py",
                 "build_frontier_vector_graph.py",
                 "build_frontier_metric_disagreement.py",
+                "build_copilot_v3_main_figure.py",
                 "pass_artifact_delivery_with_empirical_gaps",
                 "top-conference empirical target is not yet satisfied",
             ],
@@ -267,6 +270,7 @@ def main() -> None:
         and frontier_vector.get("mean_six_minus_raw_projection_gain") == 0.1668,
         "frontier_metric_disagreement_pass": frontier_disagreement.get("status") == "pass"
         and frontier_disagreement.get("disagreement_rate") == 0.6667,
+        "main_paper_figure_exists": _file_status(docs["main_paper_figure"], min_bytes=10_000)["ok"],
         "lhtg_operationalized": lhtg.get("status") == "pass_with_no_positive_dvrs"
         and lhtg.get("reusable_workflow_terms_present") is True,
         "top_conference_boundary_kept": readiness.get("top_conference_empirical_support", {}).get("status")
@@ -383,6 +387,7 @@ def main() -> None:
         ROOT / "scripts" / "build_frontier_alignment_taxonomy.py",
         ROOT / "scripts" / "build_frontier_vector_graph.py",
         ROOT / "scripts" / "build_frontier_metric_disagreement.py",
+        ROOT / "scripts" / "build_copilot_v3_main_figure.py",
         ROOT / "scripts" / "audit_goal_completion_matrix.py",
         ROOT / "scripts" / "audit_deep_regeneration_cases.py",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.json",
@@ -408,6 +413,7 @@ def main() -> None:
         DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "openreview_sample_17_vector_graph.svg",
         DOC_DIR / "experiments" / "frontier_metric_disagreement_20260603_003000" / "README.md",
         DOC_DIR / "experiments" / "frontier_metric_disagreement_20260603_003000" / "summary.json",
+        DOC_DIR / "figures" / "igre_frontier_main_figure.png",
         AUDIT_DIR / "goal_completion_matrix.json",
         AUDIT_DIR / "goal_completion_matrix.md",
         DOC_DIR / "experiments" / "human_expert_blind_review_packet_20260602_143000" / "school_expert_ready_summary.json",

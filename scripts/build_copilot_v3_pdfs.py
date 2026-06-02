@@ -11,6 +11,7 @@ import argparse
 import re
 from pathlib import Path
 
+from PIL import Image
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
@@ -101,6 +102,12 @@ def _parse_markdown(path: Path) -> list[tuple[str, str]]:
             continue
         if not line.strip():
             flush()
+            continue
+        image_match = re.match(r"^!\[(.*?)\]\((.*?)\)$", line.strip())
+        if image_match:
+            flush()
+            alt, image_path = image_match.groups()
+            blocks.append(("image", f"{alt}|{image_path}"))
             continue
         if line.startswith("# "):
             flush()
@@ -194,6 +201,28 @@ def build_pdf(markdown_path: Path, output_path: Path, language: str) -> None:
             pdf.setFont("Courier", size)
             pdf.drawString(left, y, text[:110])
             y -= leading
+        elif kind == "image":
+            alt, raw_path = text.split("|", 1)
+            image_path = (markdown_path.parent / raw_path).resolve()
+            if not image_path.exists():
+                continue
+            with Image.open(image_path) as image:
+                width_px, height_px = image.size
+            draw_width = max_width
+            draw_height = draw_width * height_px / width_px
+            max_image_height = page_height * 0.52
+            if draw_height > max_image_height:
+                draw_height = max_image_height
+                draw_width = draw_height * width_px / height_px
+            caption_lines = _wrap(_strip_markdown(alt), body_font, 8.5, max_width, cjk)
+            ensure(draw_height + 8 + (12 * len(caption_lines)))
+            pdf.drawImage(str(image_path), left + (max_width - draw_width) / 2, y - draw_height, width=draw_width, height=draw_height)
+            y -= draw_height + 6
+            pdf.setFont(body_font, 8.5)
+            for line in caption_lines:
+                pdf.drawString(left, y, line)
+                y -= 12
+            y -= 6
         else:
             size = 10.5 if not cjk else 10
             leading = size + 4

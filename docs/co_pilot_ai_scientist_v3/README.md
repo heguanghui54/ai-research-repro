@@ -70,6 +70,9 @@ structured feedback, and claim calibration.
   frontier cosine metrics. It finds disagreement in `2/3` deep cases, showing
   why IGRE must evaluate human insight with multiple metrics rather than a
   single short-term score.
+- `figures/igre_frontier_main_figure.png`: main paper figure combining the
+  IGRE workflow, six human insight gates, and the frontier-aware vector
+  evaluation summary. The focused PDF builder embeds this figure directly.
 - `build/deep_regeneration_cases/`: viewable PDFs for each selected case,
   including raw human-review-guided and six-gate hybrid-review-guided
   mini-paper artifacts.
