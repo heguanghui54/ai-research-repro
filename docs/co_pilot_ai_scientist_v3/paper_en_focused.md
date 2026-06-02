@@ -54,6 +54,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | OpenReview regeneration, same scorer | 5 review-guided wins | 1 baseline win | mean overall +0.8333 | Positive but vulnerable to same-model and extra-context bias. |
 | OpenReview regeneration, Claude cross-review | 3 review-guided wins | 1 baseline win, 2 ties | mean overall +0.1667 | Modest positive signal; not automatic improvement. |
 | OpenReview equal-context ablation | 8 review-guided votes | 1 context-control vote, 3 ties | mean delta across models +0.5 | Paper-specific reviews beat matched unrelated review context, but Claude shows the effect is modest. |
+| Preregistered blind expert-review packet | 6 anonymized A/B pairs prepared | 0 completed human rows | planned 3-5 raters | Evaluation readiness only; no human evidence is claimed yet. |
 | Prospective matched packages | 1 co-pilot or human-selected win | 3 autonomous/tie/invalid outcomes | 4 packages | Short-budget average benchmark superiority is not supported. |
 | Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
@@ -91,13 +92,24 @@ IGRE reframes human participation as a high-variance search operator. This is a 
 
 The OpenReview experiments suggest a practical way forward. Real review comments can be mined to discover what types of human insight are useful. Comments about weak evaluation should trigger evaluator stress tests. Comments about novelty should reshape the taste prior. Comments about missing limitations should trigger claim calibration. Comments about unclear presentation should become structured feedback. Vague praise or generic criticism should have low routing weight.
 
+The retrospective nature of peer review can also be used as a measurement
+advantage. For historical papers, later field evolution provides a post-hoc
+frontier target. IGRE can therefore run a retrospective frontier-alignment
+experiment: take a paper and its reviews at time `t`, regenerate follow-up
+research artifacts with paper-only, review-guided, and shuffled-review-control
+conditions, and judge which artifacts better align with the field's later
+mainstream or SOTA trajectory. A good review is then not merely a review that
+scores a paper harshly or positively. It is a review whose actionable comments
+would have moved the automated research workflow toward a future-relevant
+problem framing, method, evaluation norm, failure mode, or claim boundary.
+
 This makes the paper's application value concrete. The goal is not merely to prove that humans improve paper quality. The goal is to design the best modes of human participation, compare them empirically, and build a workflow in which human taste is used where it has the highest chance of changing the research trajectory.
 
 ## 6. Limitations
 
 The current evidence is a pilot package. It does not include independent human expert review of the final IGRE paper or of the paired regenerated artifacts. The live co-pilot trace is a single-author derived metadata corpus, not a population-level dataset of many scientists using the system. OpenReview is offline asynchronous review data, not real-time human intervention inside an AI Scientist-v2 run. The matched-budget FML evidence is underpowered and currently negative or mixed for benchmark performance. The equal-context OpenReview ablation reduces, but does not eliminate, concerns about context confounds because it still relies on model-routed scoring and regenerated mini-artifacts rather than blind expert review. The high-tail hypothesis, that human taste may increase rare breakthrough probability even if average score falls, is conceptually important but not yet statistically operationalized.
 
-These limitations are also future research directions. To make the next step concrete, the repository includes a prepared blind-review packet for the six OpenReview regeneration pairs: reviewers see anonymized A/B artifacts, a fixed rubric, and a score-sheet template, while the condition key is hidden. This packet is not evidence yet because no independent human ratings have been collected. A stronger study would deploy a reusable co-pilot scientist skill to many researchers, collect privacy-preserving gate metadata with consent, run matched autonomous and human-gated trajectories across tasks, and submit paired outputs to blind expert review. At present, such live multi-researcher data is more feasible for major agent or model companies than for a small independent project. IGRE therefore uses OpenReview as a scalable offline proxy and clearly marks the gap.
+These limitations are also future research directions. To make the next step concrete, the repository includes a prepared and preregistered blind-review packet for the six OpenReview regeneration pairs: reviewers see anonymized A/B artifacts, a fixed rubric, and a score-sheet template, while the condition key and analysis plan are held by the coordinator until ratings are complete. The plan defines useful human taste and insight as review signals that can change research-control decisions, not as generic approval. This packet is not evidence yet because no independent human ratings have been collected. A stronger study would deploy a reusable co-pilot scientist skill to many researchers, collect privacy-preserving gate metadata with consent, run matched autonomous and human-gated trajectories across tasks, and submit paired outputs to blind expert review. At present, such live multi-researcher data is more feasible for major agent or model companies than for a small independent project. IGRE therefore uses OpenReview as a scalable offline proxy and clearly marks the gap.
 
 ## 7. Conclusion
 

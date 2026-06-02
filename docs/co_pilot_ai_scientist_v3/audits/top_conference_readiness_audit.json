@@ -75,7 +75,10 @@
     "human_expert_blind_review_pairs_prepared": 6,
     "human_expert_completed_rating_rows": 0,
     "human_expert_collection_smokes": 1,
-    "human_expert_validation_smokes": 1
+    "human_expert_validation_smokes": 1,
+    "human_expert_preregistration_plans": 1,
+    "retrospective_frontier_alignment_protocols": 1,
+    "retrospective_frontier_alignment_completed_runs": 0
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -517,7 +520,7 @@
     "limitation": "Model-routed scoring only; no independent human expert review and no experiment rerun."
   },
   "human_expert_blind_review_packet": {
-    "status": "packet_recruitment_materials_and_validation_tooling_prepared_no_human_ratings_yet",
+    "status": "preregistered_packet_and_validation_tooling_prepared_no_human_ratings_yet",
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/README.md",
     "condition": "equal_context",
     "pair_count": 6,
@@ -538,7 +541,9 @@
     "hidden_files": [
       "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/condition_key.json",
       "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.json",
-      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.md"
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.json"
     ],
     "summarizer": "scripts/summarize_human_expert_blind_reviews.py",
     "summarizer_outputs": [
@@ -546,7 +551,9 @@
       "condition_win_rates",
       "condition_means",
       "review_guided_minus_other_mean_delta_bootstrap_ci",
-      "fleiss_kappa_when_enough_votes"
+      "fleiss_kappa_when_enough_votes",
+      "two_sided_exact_binomial_win_test_excluding_ties",
+      "useful_signal_theme_reporting_from_rationales"
     ],
     "summarizer_smoke": {
       "status": "pass_with_empty_template_no_human_ratings",
@@ -559,7 +566,43 @@
       "validate_only_supported": true,
       "command": "python3 scripts/summarize_human_expert_blind_reviews.py --packet-dir docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000 --score-csv path/to/reviewer.csv --validate-only",
       "empty_template_status": "invalid_row_count_6_not_enough_valid_votes",
-      "claim_boundary": "Validation tooling only; no human ratings are collected."
-    }
+      "claim_boundary": "Validation tooling only; no human ratings are collected.",
+      "exact_win_test_supported": true
+    },
+    "preregistration": {
+      "markdown": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.md",
+      "json": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.json",
+      "status": "prepared_before_human_rating_collection",
+      "visibility": "collection_coordinator_only_until_ratings_complete",
+      "primary_endpoints": [
+        "condition_winner_preference",
+        "review_guided_minus_comparator_mean_rubric_delta"
+      ],
+      "planned_minimum_raters": 3,
+      "planned_minimum_valid_rows": 18,
+      "useful_taste_insight_signal_types": [
+        "scientific_taste_prior",
+        "method_specific_insight",
+        "evaluator_stress_test",
+        "structured_feedback_signal",
+        "claim_calibration"
+      ],
+      "claim_boundary": "Preregistration only; no independent human ratings have been collected."
+    },
+    "claim_boundary": "Prepared preregistered blind review materials and collection tooling only; no independent human expert results are claimed."
+  },
+  "retrospective_frontier_alignment_protocol": {
+    "status": "proposed_protocol_not_yet_executed",
+    "markdown": "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.md",
+    "json": "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.json",
+    "conditions": [
+      "paper_only",
+      "review_guided",
+      "shuffled_review_control",
+      "future_oracle_upper_bound_optional"
+    ],
+    "primary_metric": "future_frontier_alignment",
+    "purpose": "Use later field evolution to identify which historical review comments carried actionable scientific taste or insight.",
+    "claim_boundary": "Protocol only; no retrospective frontier-alignment runs have been executed yet."
   }
 }

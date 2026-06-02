@@ -26,6 +26,9 @@ claim calibration.
 - `benchmark_selection.md`: tiered benchmark strategy beyond FML-bench.
 - `benchmark_claim_matrix.md`: claim-to-benchmark matrix recording what each
   benchmark can and cannot prove.
+- `retrospective_frontier_alignment_protocol.md`: proposed protocol for using
+  historical reviews and later field evolution to identify which review comments
+  genuinely carried future-relevant scientific taste or insight.
 - `taste_insight_rubric.md`: IGRE rubric for logging scientific taste and
   high-tail research upside without pretending it is a complete reward model.
 - `candidates.json`: candidate research directions and a scoring rubric.
@@ -63,8 +66,9 @@ claim calibration.
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet
   template, recruitment email, consent/privacy note, collection protocol,
-  hidden condition key, CSV validation mode, and a summarizer smoke test. No
-  human expert ratings have been collected yet.
+  preregistered analysis plan, hidden condition key, CSV validation mode, exact
+  win-test reporting, and a summarizer smoke test. No human expert ratings have
+  been collected yet.
 - `audits/clean_clone_reproducibility_audit.md`: fresh GitHub-clone check that
   rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
 - `audits/skill_reuse_smoke_audit.md`: local smoke test that instantiates the

@@ -18,6 +18,10 @@
 
 - Not enough scored rows.
 
+## Review-Guided Exact Win Test
+
+- Status: `not_enough_non_tie_votes`
+
 ## Inter-Rater Agreement
 
 - Status: `not_enough_valid_votes`

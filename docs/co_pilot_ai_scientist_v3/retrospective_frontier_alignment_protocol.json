@@ -1,0 +1,45 @@
+{
+  "protocol_id": "retrospective_frontier_alignment",
+  "status": "proposed_protocol_not_yet_executed",
+  "motivation": "Use the retrospective nature of peer-review datasets to evaluate whether historical reviews pointed toward later mainstream or SOTA research trajectories.",
+  "core_hypothesis": "Useful human scientific taste is the subset of review feedback that would have changed the research trajectory toward a later high-value frontier.",
+  "experimental_unit": {
+    "paper_t": "paper content available at original submission time",
+    "reviews_t": "peer reviews available at original review time",
+    "frontier_t_plus_delta": "later field trajectory or SOTA descriptors, typically 2 to 5 years after the paper"
+  },
+  "conditions": [
+    "paper_only",
+    "review_guided",
+    "shuffled_review_control",
+    "future_oracle_upper_bound_optional"
+  ],
+  "outputs": [
+    "revised_research_proposal",
+    "experiment_plan",
+    "mini_paper",
+    "next_paper_abstract",
+    "concrete_algorithmic_direction"
+  ],
+  "primary_metric": "future_frontier_alignment",
+  "secondary_metrics": [
+    "actionability",
+    "non_obviousness",
+    "scientific_risk_calibration",
+    "specificity"
+  ],
+  "good_review_signal_criteria": [
+    "actionable_at_time_t",
+    "points_toward_later_frontier_component",
+    "improves_generated_artifact_more_than_matched_unrelated_review_context"
+  ],
+  "planned_statistics": [
+    "review_guided_vs_paper_only_win_counts",
+    "review_guided_vs_shuffled_review_control_win_counts",
+    "mean_future_frontier_alignment_delta",
+    "exact_binomial_test_over_non_tie_wins",
+    "qualitative_taxonomy_of_future_alignment_comments",
+    "failure_case_analysis"
+  ],
+  "claim_boundary": "Protocol only. Positive results would show reusable directional signal in historical reviews, not that reviewers literally predicted the future or that all human feedback improves automated science."
+}

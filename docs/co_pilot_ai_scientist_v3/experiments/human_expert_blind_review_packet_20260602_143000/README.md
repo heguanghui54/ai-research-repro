@@ -17,9 +17,17 @@
 - `docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_04.md`
 - `docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_05.md`
 - `docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_06.md`
+- `docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.md`
+- `docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.json`
 
 ## Status
 
 This packet prepares blind human expert evaluation. It does not contain
 completed human ratings yet. The condition key is stored separately in
 `condition_key.json` and should not be shown to reviewers.
+
+The preregistration files define the planned endpoints, exact-binomial and
+bootstrap reporting, stopping rule, and the distinction between useful
+scientific taste/insight signals and low-utility reviewer comments. They are
+coordinator-facing until ratings are complete because they name hidden
+conditions.

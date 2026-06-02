@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+from math import comb
 from collections import defaultdict
 from pathlib import Path
 from statistics import mean
@@ -25,7 +26,10 @@ RUBRIC_FIELDS = [
 
 
 def _rel(path: Path) -> str:
-    return str(path.relative_to(ROOT))
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
 
 
 def _load_json(path: Path) -> Any:
@@ -66,6 +70,35 @@ def _bootstrap_ci(values: list[float], *, samples: int = 2000) -> dict[str, floa
     low = means[int(0.025 * (len(means) - 1))]
     high = means[int(0.975 * (len(means) - 1))]
     return {"mean": round(mean(values), 4), "low": round(low, 4), "high": round(high, 4)}
+
+
+def _exact_binomial_two_sided(successes: int, trials: int) -> dict[str, Any]:
+    """Two-sided exact binomial test against p=0.5, ignoring ties."""
+
+    if trials <= 0:
+        return {
+            "status": "not_enough_non_tie_votes",
+            "successes": successes,
+            "trials": trials,
+            "p_value": None,
+        }
+    observed = comb(trials, successes) * (0.5 ** trials)
+    p_value = 0.0
+    for k in range(trials + 1):
+        prob = comb(trials, k) * (0.5 ** trials)
+        if prob <= observed + 1e-12:
+            p_value += prob
+    return {
+        "status": "computed",
+        "successes": successes,
+        "trials": trials,
+        "null_success_probability": 0.5,
+        "p_value": round(min(1.0, p_value), 6),
+        "interpretation": (
+            "Two-sided exact binomial test for review_guided wins versus "
+            "non-review-guided wins, excluding ties."
+        ),
+    }
 
 
 def _fleiss_kappa(votes_by_pair: dict[str, list[str]]) -> dict[str, Any]:
@@ -144,23 +177,34 @@ def _summarize(packet_dir: Path, score_csv: Path) -> dict[str, Any]:
             invalid_rows.append({"pair_id": pair_id, "reason": "unknown_pair_id"})
             continue
         winner = row.get("winner", "").strip()
-        if winner in {"A", "B"}:
-            condition_wins[mapping[winner]] += 1
-            votes_by_pair[pair_id].append(winner)
-        elif winner == "tie":
-            condition_wins["tie"] += 1
-            votes_by_pair[pair_id].append("tie")
-        else:
-            invalid_rows.append({"pair_id": pair_id, "reason": "missing_or_invalid_winner"})
-
-        pair_score: dict[str, Any] = {"pair_id": pair_id, "mapping": mapping, "winner": winner}
-        side_means = {}
+        invalid_reasons = []
+        side_field_scores: dict[str, list[float]] = {}
         for side in ["A", "B"]:
             side_scores = []
             for field in RUBRIC_FIELDS:
                 value = _score(row.get(f"{side}_{field}", ""))
-                if value is not None:
+                if value is None:
+                    invalid_reasons.append(f"missing_or_invalid_{side}_{field}")
+                else:
                     side_scores.append(value)
+            side_field_scores[side] = side_scores
+        if winner not in {"A", "B", "tie"}:
+            invalid_reasons.append("missing_or_invalid_winner")
+        if invalid_reasons:
+            invalid_rows.append({"pair_id": pair_id, "reason": ";".join(invalid_reasons)})
+            continue
+
+        if winner in {"A", "B"}:
+            condition_wins[mapping[winner]] += 1
+            votes_by_pair[pair_id].append(winner)
+        else:
+            condition_wins["tie"] += 1
+            votes_by_pair[pair_id].append("tie")
+
+        pair_score: dict[str, Any] = {"pair_id": pair_id, "mapping": mapping, "winner": winner}
+        side_means = {}
+        for side in ["A", "B"]:
+            side_scores = side_field_scores[side]
             if side_scores:
                 avg = mean(side_scores)
                 condition_scores[mapping[side]].append(avg)
@@ -186,6 +230,12 @@ def _summarize(packet_dir: Path, score_csv: Path) -> dict[str, Any]:
         for condition, count in condition_wins.items()
         if total_valid_wins
     }
+    review_guided_wins = condition_wins.get("review_guided", 0)
+    comparator_wins = sum(
+        count
+        for condition, count in condition_wins.items()
+        if condition not in {"review_guided", "tie"}
+    )
     return {
         "packet": _rel(packet_dir),
         "score_csv": _rel(score_csv),
@@ -195,6 +245,10 @@ def _summarize(packet_dir: Path, score_csv: Path) -> dict[str, Any]:
         "condition_win_rates": condition_win_rates,
         "condition_means": condition_means,
         "review_guided_minus_other_mean_delta": _bootstrap_ci(condition_deltas),
+        "review_guided_exact_win_test": _exact_binomial_two_sided(
+            review_guided_wins,
+            review_guided_wins + comparator_wins,
+        ),
         "inter_rater_agreement": _fleiss_kappa(votes_by_pair),
         "pair_results": pair_results,
         "claim_boundary": (
@@ -233,6 +287,16 @@ def _markdown(summary: dict[str, Any]) -> str:
         )
     else:
         lines.append("- Not enough scored rows.")
+    lines.extend(["", "## Review-Guided Exact Win Test", ""])
+    exact = summary.get("review_guided_exact_win_test", {})
+    if exact.get("p_value") is None:
+        lines.append(f"- Status: `{exact.get('status')}`")
+    else:
+        lines.append(
+            f"- Review-guided wins: `{exact['successes']}` / "
+            f"`{exact['trials']}` non-tie votes; two-sided exact binomial "
+            f"p-value: `{exact['p_value']}`."
+        )
     lines.extend(["", "## Inter-Rater Agreement", ""])
     agreement = summary.get("inter_rater_agreement", {})
     if agreement.get("kappa") is None:

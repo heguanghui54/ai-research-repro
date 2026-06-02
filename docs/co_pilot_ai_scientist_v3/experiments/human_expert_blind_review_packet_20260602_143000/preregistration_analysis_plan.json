@@ -1,0 +1,67 @@
+{
+  "packet_id": "human_expert_blind_review_packet_20260602_143000",
+  "status": "prepared_before_human_rating_collection",
+  "visibility": "collection_coordinator_only_until_ratings_complete",
+  "objective": "Test whether paper-specific expert review guidance produces stronger mini-paper artifacts than matched-length unrelated review context.",
+  "conditions": [
+    "review_guided",
+    "context_control"
+  ],
+  "design": {
+    "pair_count": 6,
+    "planned_raters": {
+      "minimum": 3,
+      "target_maximum": 5,
+      "qualification": "ML/AI paper-reading experience"
+    },
+    "planned_minimum_valid_rows": 18,
+    "unit": "within-rater paired A/B judgment"
+  },
+  "primary_endpoints": [
+    "condition_winner_preference",
+    "review_guided_minus_comparator_mean_rubric_delta"
+  ],
+  "secondary_endpoints": [
+    "per_field_rubric_deltas",
+    "inter_rater_agreement_over_A_B_tie",
+    "qualitative_rationale_themes"
+  ],
+  "validity_rules": {
+    "valid_winner_values": [
+      "A",
+      "B",
+      "tie"
+    ],
+    "score_range": [
+      1,
+      5
+    ],
+    "ties": "kept_for_win_rates_and_agreement_excluded_from_exact_binomial_win_test",
+    "invalid_rows": "excluded_before_deblinded_statistical_interpretation"
+  },
+  "statistical_tests": [
+    "bootstrap_confidence_interval_for_review_guided_minus_comparator_mean_delta",
+    "two_sided_exact_binomial_test_for_review_guided_wins_excluding_ties",
+    "fleiss_kappa_for_A_B_tie_when_enough_balanced_votes_exist"
+  ],
+  "positive_evidence_threshold": {
+    "minimum_independent_raters": 3,
+    "minimum_valid_rows": 18,
+    "quantitative_requirement": "positive review-guided mean delta with bootstrap confidence interval excluding 0 or clear directional exact-binomial win signal",
+    "qualitative_requirement": "rationales mostly attribute preferences to research substance rather than surface fluency"
+  },
+  "useful_taste_insight_signal_types": [
+    "scientific_taste_prior",
+    "method_specific_insight",
+    "evaluator_stress_test",
+    "structured_feedback_signal",
+    "claim_calibration"
+  ],
+  "low_utility_signal_examples": [
+    "interesting_without_actionable_direction",
+    "unclear_without_specific_fix",
+    "needs_more_experiments_without_identifying_which_experiment",
+    "surface_writing_preference_only"
+  ],
+  "claim_boundary": "A positive result would support review-specific expert signal utility for regenerated paper artifacts, not full Co-Pilot AI Scientist v3 superiority or benchmark improvement."
+}

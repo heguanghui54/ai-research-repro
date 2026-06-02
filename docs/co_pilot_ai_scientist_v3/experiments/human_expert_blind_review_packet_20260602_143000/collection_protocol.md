@@ -29,6 +29,13 @@ Do not send:
 - `condition_key.json`
 - `pairs.json`
 - any model-review summaries.
+- `preregistration_analysis_plan.md` or
+  `preregistration_analysis_plan.json` before ratings are complete, because
+  these files name the hidden conditions.
+
+The coordinator should read the preregistration plan before recruitment and
+should not inspect deblinded aggregate outcomes until the planned rating batch
+has been collected or all invited raters have declined.
 
 ## Collection Steps
 
@@ -64,6 +71,8 @@ Report:
 - condition win counts,
 - condition mean scores,
 - review-guided minus comparator mean delta with bootstrap CI,
+- two-sided exact binomial test for review-guided wins versus comparator wins,
+  excluding ties,
 - Fleiss' kappa over A/B/tie winner choices when at least two raters completed
   the same pairs,
 - short qualitative themes from rationales.
