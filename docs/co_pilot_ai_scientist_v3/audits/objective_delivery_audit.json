@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T13:18:20Z",
+  "audit_date": "2026-06-02T13:21:39Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "44ab785cbf892cb29517766d77f5deb8322000a1",
+  "head": "5811a808e042ed6b15ee8cacc43d9a411036edc9",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -16,6 +16,7 @@
     "top_conference_roadmap_audit_pass": true,
     "human_expert_blind_review_packet_audit_pass": true,
     "benchmark_coverage_audit_pass": true,
+    "prospective_gate_instrumentation_audit_pass": true,
     "deep_regeneration_cases_audit_pass": true,
     "frontier_alignment_taxonomy_pass": true,
     "frontier_vector_graph_pass": true,
@@ -54,7 +55,7 @@
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 9744,
+      "bytes": 9878,
       "ok": true
     },
     "english_submission_card": {
@@ -91,6 +92,12 @@
       "path": "docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md",
       "exists": true,
       "bytes": 3182,
+      "ok": true
+    },
+    "prospective_gate_instrumentation_audit": {
+      "path": "docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.json",
+      "exists": true,
+      "bytes": 3542,
       "ok": true
     },
     "deep_case_pdf_summary": {
@@ -168,7 +175,7 @@
     "task_template": {
       "path": "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
       "exists": true,
-      "bytes": 2140,
+      "bytes": 2899,
       "ok": true
     },
     "gate_template": {
@@ -217,6 +224,7 @@
       "audit_top_conference_evidence_roadmap.py": true,
       "audit_human_expert_blind_review_packet.py": true,
       "audit_benchmark_coverage.py": true,
+      "audit_prospective_gate_instrumentation.py": true,
       "audit_deep_regeneration_cases.py": true,
       "build_deep_case_pdfs.py": true,
       "build_frontier_alignment_taxonomy.py": true,
@@ -267,9 +275,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 687,
+  "manifest_artifacts": 690,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "687/687",
+  "manifest_coverage_ratio": "690/690",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",

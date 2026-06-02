@@ -77,8 +77,14 @@ python3 scripts/create_human_gate_log.py \
 Run:
 
 ```bash
+python3 scripts/audit_prospective_gate_instrumentation.py
 python3 scripts/audit_prospective_matched_budget_package.py
 ```
+
+The instrumentation audit checks the prospective logging toolchain itself:
+skill instructions, task template, JSON schema, gate-log creation script, and
+the known historical coverage gaps. It should pass before a new prospective
+matched package is launched.
 
 The audit passes only if at least one non-synthetic prospective matched-budget
 package satisfies the required artifact, attention-cost, taste/insight, and

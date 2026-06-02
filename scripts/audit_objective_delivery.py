@@ -86,6 +86,7 @@ def main() -> None:
     human_review_packet_audit_path = AUDIT_DIR / "human_expert_blind_review_packet_audit.json"
     benchmark_coverage_audit_path = AUDIT_DIR / "benchmark_coverage_audit.json"
     deep_regeneration_cases_audit_path = AUDIT_DIR / "deep_regeneration_cases_audit.json"
+    prospective_gate_instrumentation_audit_path = AUDIT_DIR / "prospective_gate_instrumentation_audit.json"
     frontier_taxonomy_path = DOC_DIR / "experiments" / "frontier_alignment_taxonomy_20260602_233000" / "summary.json"
     frontier_vector_path = DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "summary.json"
     frontier_disagreement_path = DOC_DIR / "experiments" / "frontier_metric_disagreement_20260603_003000" / "summary.json"
@@ -102,6 +103,7 @@ def main() -> None:
     human_review_packet_audit = _load_json(human_review_packet_audit_path)
     benchmark_coverage_audit = _load_json(benchmark_coverage_audit_path)
     deep_regeneration_cases_audit = _load_json(deep_regeneration_cases_audit_path)
+    prospective_gate_instrumentation_audit = _load_json(prospective_gate_instrumentation_audit_path)
     frontier_taxonomy = _load_json(frontier_taxonomy_path)
     frontier_vector = _load_json(frontier_vector_path)
     frontier_disagreement = _load_json(frontier_disagreement_path)
@@ -124,6 +126,7 @@ def main() -> None:
         "top_conference_evidence_roadmap_json": DOC_DIR / "top_conference_evidence_roadmap.json",
         "deep_regeneration_casebook": DOC_DIR / "deep_regeneration_casebook.md",
         "human_expert_blind_review_protocol": DOC_DIR / "human_expert_blind_review_protocol.md",
+        "prospective_gate_instrumentation_audit": prospective_gate_instrumentation_audit_path,
         "deep_case_pdf_summary": DOC_DIR / "build" / "deep_regeneration_cases" / "summary.json",
         "deep_case_internal_review_summary": DOC_DIR / "experiments" / "deep_case_internal_review_20260602_224500" / "summary.json",
         "frontier_alignment_taxonomy_summary": frontier_taxonomy_path,
@@ -188,6 +191,7 @@ def main() -> None:
                 "audit_top_conference_evidence_roadmap.py",
                 "audit_human_expert_blind_review_packet.py",
                 "audit_benchmark_coverage.py",
+                "audit_prospective_gate_instrumentation.py",
                 "audit_deep_regeneration_cases.py",
                 "build_deep_case_pdfs.py",
                 "build_frontier_alignment_taxonomy.py",
@@ -266,6 +270,8 @@ def main() -> None:
         "human_expert_blind_review_packet_audit_pass": human_review_packet_audit.get("status")
         == "pass_prepared_no_human_ratings",
         "benchmark_coverage_audit_pass": benchmark_coverage_audit.get("status") == "pass",
+        "prospective_gate_instrumentation_audit_pass": prospective_gate_instrumentation_audit.get("status")
+        == "pass_with_known_historical_gaps",
         "deep_regeneration_cases_audit_pass": deep_regeneration_cases_audit.get("status") == "pass",
         "frontier_alignment_taxonomy_pass": frontier_taxonomy.get("status") == "pass"
         and frontier_taxonomy.get("mean_delta_six_gate_minus_raw") == 3.467,
@@ -399,6 +405,7 @@ def main() -> None:
         ROOT / "scripts" / "audit_top_conference_evidence_roadmap.py",
         ROOT / "scripts" / "audit_human_expert_blind_review_packet.py",
         ROOT / "scripts" / "audit_benchmark_coverage.py",
+        ROOT / "scripts" / "audit_prospective_gate_instrumentation.py",
         ROOT / "scripts" / "build_deep_regeneration_cases.py",
         ROOT / "scripts" / "build_six_gate_hybrid_review_cases.py",
         ROOT / "scripts" / "build_deep_case_pdfs.py",
@@ -419,6 +426,8 @@ def main() -> None:
         AUDIT_DIR / "human_expert_blind_review_packet_audit.md",
         AUDIT_DIR / "benchmark_coverage_audit.json",
         AUDIT_DIR / "benchmark_coverage_audit.md",
+        AUDIT_DIR / "prospective_gate_instrumentation_audit.json",
+        AUDIT_DIR / "prospective_gate_instrumentation_audit.md",
         AUDIT_DIR / "deep_regeneration_cases_audit.json",
         AUDIT_DIR / "deep_regeneration_cases_audit.md",
         DOC_DIR / "experiments" / "deep_regeneration_cases_20260602_203000" / "README.md",

@@ -37,6 +37,35 @@ One paragraph describing the research problem.
 - `verifiable_micro_evolution`:
 - `claim_calibration`:
 
+## Prospective Gate Instrumentation
+
+For any matched-budget or paper-quality claim, every human gate must be created
+with `scripts/create_human_gate_log.py` using both:
+
+```bash
+--require-complete-attention --require-complete-taste
+```
+
+Required `attention_cost` fields:
+
+- `active_review_minutes`
+- `wall_clock_latency_minutes`
+- `options_reviewed`
+- `artifacts_reviewed_count`
+- `decision_count`
+
+Required `taste_insight` fields:
+
+- `rubric_version`
+- all rubric `scores`
+- `taste_insight_score`
+- `qualitative_rationale`
+- `non_metric_factors`
+
+If any prospective gate is missing these fields, the run may still be archived
+as a smoke or engineering artifact, but it cannot support attention-efficiency,
+human-taste, or top-conference superiority claims.
+
 ## Taste/Insight Rubric
 
 - Use `docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md`.

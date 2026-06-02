@@ -59,6 +59,7 @@ python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/audit_human_expert_blind_review_packet.py
 python3 scripts/audit_benchmark_coverage.py
+python3 scripts/audit_prospective_gate_instrumentation.py
 python3 scripts/build_deep_regeneration_cases.py
 python3 scripts/build_six_gate_hybrid_review_cases.py
 python3 scripts/build_deep_case_pdfs.py
@@ -84,6 +85,7 @@ Current objective-delivery status:
 - roadmap audit: `pass`
 - human expert blind-review packet audit: `pass_prepared_no_human_ratings`
 - benchmark coverage audit: `pass`
+- prospective gate instrumentation audit: `pass_with_known_historical_gaps`
 - package consistency: `pass`
 
 Important boundary: this package delivers the requested bilingual papers,

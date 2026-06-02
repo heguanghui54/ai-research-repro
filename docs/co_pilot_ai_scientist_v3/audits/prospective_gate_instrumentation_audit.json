@@ -1,0 +1,103 @@
+{
+  "audit_date": "2026-06-02T13:21:36Z",
+  "status": "pass_with_known_historical_gaps",
+  "checks": {
+    "skills/co-pilot-ai-scientist-v3/SKILL.md": {
+      "--require-complete-attention": true,
+      "--require-complete-taste": true,
+      "matched-budget": true,
+      "attention_cost": true,
+      "taste_insight": true
+    },
+    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md": {
+      "Prospective Gate Instrumentation": true,
+      "--require-complete-attention": true,
+      "--require-complete-taste": true,
+      "active_review_minutes": true,
+      "wall_clock_latency_minutes": true,
+      "options_reviewed": true,
+      "artifacts_reviewed_count": true,
+      "decision_count": true,
+      "rubric_version": true,
+      "scores": true,
+      "taste_insight_score": true,
+      "qualitative_rationale": true,
+      "non_metric_factors": true
+    },
+    "scripts/create_human_gate_log.py": {
+      "REQUIRED_ATTENTION_FIELDS": true,
+      "REQUIRED_TASTE_FIELDS": true,
+      "require_complete_attention": true,
+      "require_complete_taste": true,
+      "active_review_minutes": true,
+      "wall_clock_latency_minutes": true,
+      "options_reviewed": true,
+      "artifacts_reviewed_count": true,
+      "decision_count": true,
+      "rubric_version": true,
+      "scores": true,
+      "taste_insight_score": true,
+      "qualitative_rationale": true,
+      "non_metric_factors": true
+    },
+    "docs/co_pilot_ai_scientist_v3/prospective_matched_budget_protocol.md": {
+      "audit_prospective_gate_instrumentation.py": true,
+      "--require-complete-attention": true,
+      "--require-complete-taste": true,
+      "active_review_minutes": true,
+      "wall_clock_latency_minutes": true,
+      "options_reviewed": true,
+      "artifacts_reviewed_count": true,
+      "decision_count": true,
+      "rubric_version": true,
+      "scores": true,
+      "taste_insight_score": true,
+      "qualitative_rationale": true,
+      "non_metric_factors": true
+    }
+  },
+  "structural_checks": {
+    "schema_has_attention_fields": {
+      "active_review_minutes": true,
+      "wall_clock_latency_minutes": true,
+      "options_reviewed": true,
+      "artifacts_reviewed_count": true,
+      "decision_count": true
+    },
+    "schema_has_taste_fields": {
+      "rubric_version": true,
+      "scores": true,
+      "taste_insight_score": true,
+      "qualitative_rationale": true,
+      "non_metric_factors": true
+    },
+    "template_has_attention_fields": {
+      "active_review_minutes": true,
+      "wall_clock_latency_minutes": true,
+      "options_reviewed": true,
+      "artifacts_reviewed_count": true,
+      "decision_count": true
+    },
+    "template_has_taste_fields": {
+      "rubric_version": true,
+      "scores": true,
+      "taste_insight_score": true,
+      "qualitative_rationale": true,
+      "non_metric_factors": true
+    },
+    "historical_attention_gap_is_explicit": true,
+    "historical_taste_gap_is_explicit": true
+  },
+  "historical_attention_coverage": {
+    "gate_records_audited": 39,
+    "complete_attention_cost_logs": 1,
+    "incomplete_attention_cost_logs": 38
+  },
+  "historical_taste_coverage": {
+    "gate_records_audited": 39,
+    "complete_taste_insight_records": 2,
+    "incomplete_taste_insight_records": 37
+  },
+  "errors": [],
+  "claim_boundary": "A pass means future prospective matched-budget runs have a documented preflight path for complete attention-cost and taste/insight capture. It does not repair missing historical fields and does not provide performance evidence."
+}
