@@ -1,0 +1,95 @@
+{
+  "status": "setup_accessible_but_unscored",
+  "created_at": "2026-06-03T06:40:00Z",
+  "purpose": "Assess whether another official MLAgentBench task can be added beyond the scored CIFAR10/debug and OGBN-arxiv official-evaluator paths.",
+  "remote_root": "/home/heshi/work/copilotv3-mlagentbench-third-task-probes-20260603",
+  "source_benchmark_root": "/home/heshi/work/bench-probes/MLAgentBench/MLAgentBench/benchmarks",
+  "candidate_inventory": {
+    "already_scored_or_used": [
+      {
+        "task": "cifar10",
+        "reason": "Already scored as official CIFAR10/debug evidence with three co-pilot-selected seeds."
+      },
+      {
+        "task": "ogbn-arxiv",
+        "reason": "Already scored as an official-evaluator compatibility path with three co-pilot-selected seeds."
+      },
+      {
+        "task": "vectorization",
+        "reason": "Already used as a correctness-gated MLAgentBench controlled program-search probe."
+      }
+    ],
+    "candidate_probed": [
+      {
+        "task": "babylm",
+        "task_type": "language-model training from scratch on BabyLM data",
+        "prepare_exit_code": 0,
+        "prepare_result": "Downloaded the 241 MB BabyLM archive from GitHub and unpacked a 157 MB task copy with 10M train, dev, and test splits.",
+        "compatibility_repairs": [
+          "Installed missing evaluate package.",
+          "Installed accelerate>=1.1.0 for Trainer support.",
+          "Downgraded datasets to 2.19.2 because newer datasets releases reject local dataset scripts.",
+          "Used a clearly marked train_compat.py probe copy that removes deprecated transformers telemetry and TPU helper imports.",
+          "Changed the default config_name in the probe copy to allow a small from-scratch GPT-2 config override."
+        ],
+        "tiny_train_exit_code": 1,
+        "tiny_train_command_class": "small from-scratch GPT-2 compatibility run with 96 max train samples, 32 max eval samples, block_size 64, and a two-layer config",
+        "blocking_error": "HuggingFace network is unreachable for gpt2 tokenizer/config assets, causing AutoTokenizer.from_pretrained('gpt2') to fail.",
+        "evidence_class": "official_task_setup_accessible_but_unscored_due_to_huggingface_model_asset_blocker",
+        "logs": [
+          "logs/babylm_prepare.exit",
+          "logs/babylm_prepare.stdout.log",
+          "logs/babylm_prepare.stderr.log",
+          "logs/babylm_train_tiny.exit",
+          "logs/babylm_train_tiny.stdout.log",
+          "logs/babylm_train_tiny.stderr.log"
+        ]
+      }
+    ],
+    "not_selected_due_to_access_or_cost": [
+      {
+        "tasks": [
+          "amp-parkinsons-disease-progression-prediction",
+          "fathomnet",
+          "feedback",
+          "house-price",
+          "identify-contrails",
+          "spaceship-titanic"
+        ],
+        "blocker_type": "kaggle_account_cli_or_competition_consent",
+        "reason": "Their prepare scripts prompt for Kaggle competition consent and call kaggle competitions download."
+      },
+      {
+        "tasks": [
+          "bibtex-generation",
+          "literature-review-tool"
+        ],
+        "blocker_type": "llm_api_or_external_scholarly_service_task",
+        "reason": "The task definitions require Anthropic/Claude API keys and ArXiv or Google Scholar service calls rather than a local supervised benchmark score."
+      },
+      {
+        "tasks": [
+          "llama-inference"
+        ],
+        "blocker_type": "gpu_and_model_access_cost",
+        "reason": "The task is specified for a single A100 GPU and decapoda-research/llama-7b-hf assets, which are not available in the current CPU-oriented probe environment."
+      },
+      {
+        "tasks": [
+          "imdb"
+        ],
+        "blocker_type": "huggingface_dataset_network",
+        "reason": "Earlier setup probe repaired the datasets dependency but failed because the Ubuntu host could not reach HuggingFace."
+      },
+      {
+        "tasks": [
+          "CLRS"
+        ],
+        "blocker_type": "cpu_runtime_or_checkpoint_cost",
+        "reason": "Earlier official and reduced probes reached train.py but timed out without producing checkpoints or scores."
+      }
+    ]
+  },
+  "claim_boundary": "This probe does not add a third scored official MLAgentBench task. It adds a concrete inventory showing that BabyLM data preparation is accessible but scoring is blocked by HuggingFace model asset access, while several other official tasks are blocked by Kaggle consent, external LLM/service dependencies, GPU requirements, HuggingFace network, or CPU runtime.",
+  "recommended_next_step": "Either cache the GPT-2 tokenizer/config assets locally and rerun the BabyLM compatibility path, or prioritize matched end-to-end co-pilot/autonomous trajectories instead of counting this as broad official benchmark coverage."
+}

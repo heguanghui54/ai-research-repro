@@ -95,6 +95,8 @@
     "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_multiseed_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_official_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_official_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_third_task_feasibility_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_third_task_feasibility_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/package_consistency_audit.json",
@@ -517,6 +519,7 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/prepare_torch_compat.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/train_baseline.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/eval.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/final_train.py",
@@ -988,7 +991,14 @@
     "skills/co-pilot-ai-scientist-v3/SKILL.md",
     "skills/co-pilot-ai-scientist-v3/templates/claim_audit_template.md",
     "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json",
-    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md"
+    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.exit",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stdout.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stderr.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.exit",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stdout.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stderr.log"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1001,7 +1011,8 @@
     "Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.",
     "Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.",
     "Extend beyond the current three-seed CIFAR10/debug and three-seed OGBN-arxiv official-evaluator paths by adding another accessible official non-FML task or scaling matched end-to-end co-pilot/autonomous trajectories; keep the open-data package labeled as official-like boundary evidence.",
-    "Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package."
+    "Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package.",
+    "Cache GPT-2 tokenizer/config assets or otherwise repair BabyLM before counting it as a third scored official MLAgentBench task; until then, treat the third-task probe as setup/blocker evidence only."
   ],
   "model_routing_policy": {
     "routine_coding_and_smoke_tests": "DeepSeek or low-cost Monica-routed model",
@@ -2049,9 +2060,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "aa9ebf9b3748ba8900526e2eb6c95d99c0c9cb03",
+    "head": "4f9bf6118e2f7c2ad0678842ddc48a6be9721efe",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 975,
+    "manifest_artifacts": 985,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2670,5 +2681,12 @@
     "sample_std": 0.0018960528538453166,
     "mean_delta_vs_baseline": 0.5140560596396655,
     "claim_boundary": "Three co-pilot-selected seeds under the official OGBN-arxiv evaluator support robustness of the compatibility path. The baseline remains a compatibility translation rather than the unmodified NeighborLoader starter, so this is not broad MLAgentBench superiority evidence."
+  },
+  "mlagentbench_third_task_feasibility_audit": {
+    "json": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_third_task_feasibility_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_third_task_feasibility_audit.md",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/summary.json",
+    "status": "pass",
+    "evidence_class": "mlagentbench_third_task_feasibility_inventory"
   }
 }

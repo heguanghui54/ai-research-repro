@@ -68,6 +68,8 @@ def main() -> None:
     cifar_multiseed_path = AUDIT_DIR / "mlagentbench_cifar10_multiseed_audit.json"
     ogbn_official_path = AUDIT_DIR / "mlagentbench_ogbn_arxiv_official_audit.json"
     ogbn_multiseed_path = AUDIT_DIR / "mlagentbench_ogbn_arxiv_multiseed_audit.json"
+    third_task_path = EXP_DIR / "mlagentbench_third_task_feasibility_20260603" / "summary.json"
+    third_task_audit_path = AUDIT_DIR / "mlagentbench_third_task_feasibility_audit.json"
     imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
     clrs_path = EXP_DIR / "mlagentbench_clrs_baseline_smoke_20260602" / "summary.json"
     clrs_reduced_path = EXP_DIR / "mlagentbench_clrs_reduced_smoke_20260602" / "summary.json"
@@ -117,6 +119,8 @@ def main() -> None:
     cifar_multiseed = _load_json(cifar_multiseed_path)
     ogbn_official = _load_json(ogbn_official_path)
     ogbn_multiseed = _load_json(ogbn_multiseed_path)
+    third_task = _load_json(third_task_path)
+    third_task_audit = _load_json(third_task_audit_path)
     imdb = _load_json(imdb_path)
     clrs = _load_json(clrs_path)
     clrs_reduced = _load_json(clrs_reduced_path)
@@ -212,6 +216,16 @@ def main() -> None:
             "baseline_failure_type": ogbn.get("baseline_train", {}).get("failure_type"),
             "required_backend": ogbn.get("baseline_train", {}).get("required_backend"),
             "path": _rel(ogbn_path),
+        },
+        "mlagentbench_babylm": {
+            "status": third_task.get("status"),
+            "audit_status": third_task_audit.get("status"),
+            "evidence_class": third_task_audit.get("evidence_class"),
+            "prepare_exit": third_task_audit.get("babylm", {}).get("prepare_exit"),
+            "tiny_train_exit": third_task_audit.get("babylm", {}).get("tiny_train_exit"),
+            "blocking_error": third_task_audit.get("babylm", {}).get("blocking_error"),
+            "path": _rel(third_task_path),
+            "audit_path": _rel(third_task_audit_path),
         },
         "scienceagentbench": {
             "status": science.get("status"),
@@ -323,6 +337,13 @@ def main() -> None:
         and ogbn_multiseed.get("seed_count", 0) >= 3
         and min(ogbn_multiseed.get("seed_scores", [0])) > ogbn_multiseed.get("baseline_score", 1)
         and "compatibility" in ogbn_multiseed.get("claim_boundary", "").lower(),
+        "mlagentbench_third_task_feasibility_audited_unscored": third_task_audit.get("status")
+        == "pass"
+        and third_task_audit.get("evidence_class") == "mlagentbench_third_task_feasibility_inventory"
+        and third_task.get("status") == "setup_accessible_but_unscored"
+        and third_task_audit.get("babylm", {}).get("prepare_exit") == "0"
+        and third_task_audit.get("babylm", {}).get("tiny_train_exit") == "1"
+        and "HuggingFace" in third_task_audit.get("babylm", {}).get("blocking_error", ""),
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -331,6 +352,7 @@ def main() -> None:
         and clrs_reduced.get("official_score_reported") is False
         and house_price.get("official_score_reported") is False
         and ogbn.get("official_score_reported") is False
+        and third_task.get("status") == "setup_accessible_but_unscored"
         and science.get("score_reported") is False,
         "mlagentbench_clrs_dependency_repaired_but_unscored": clrs.get("dependency_status") == "repaired"
         and clrs.get("runner_reached_task_prompt") is True
@@ -431,6 +453,16 @@ def main() -> None:
                 "claim_boundary": ogbn_multiseed.get("claim_boundary"),
                 "path": _rel(ogbn_multiseed_path),
             },
+            "mlagentbench_third_task_feasibility": {
+                "status": third_task.get("status"),
+                "audit_status": third_task_audit.get("status"),
+                "evidence_class": third_task_audit.get("evidence_class"),
+                "babylm": third_task_audit.get("babylm"),
+                "blocked_task_categories": third_task_audit.get("blocked_task_categories"),
+                "claim_boundary": third_task_audit.get("claim_boundary"),
+                "path": _rel(third_task_path),
+                "audit_path": _rel(third_task_audit_path),
+            },
             "algorithmic_program_search": {
                 "knapsack_openevolve_score": knapsack_open_score,
                 "knapsack_direct_score": knapsack_direct_score,
@@ -506,7 +538,7 @@ def main() -> None:
             "program-search probes, an open-data multi-task evaluator-stress pilot, "
             "a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored "
             "multi-seed OGBN-arxiv official-evaluator compatibility run, a direct-editing "
-            "boundary condition, and logged "
+            "boundary condition, a BabyLM third-task feasibility blocker, and logged "
             "remaining official benchmark blockers. "
             "This supports selective workflow design, not whole-paper "
             "superiority over autonomous AI Scientist-v2."
@@ -616,6 +648,12 @@ def main() -> None:
             f"compatibility `{ogbn.get('prepare_torch_compat', {}).get('status')}`, baseline "
             f"failure `{ogbn.get('baseline_train', {}).get('failure_type')}` before the "
             "compatibility baseline path was scored."
+        ),
+        (
+            "- MLAgentBench BabyLM third-task feasibility: prepare exit "
+            f"`{third_task_audit.get('babylm', {}).get('prepare_exit')}`, tiny train exit "
+            f"`{third_task_audit.get('babylm', {}).get('tiny_train_exit')}`, blocker "
+            f"`{third_task_audit.get('babylm', {}).get('blocking_error')}`."
         ),
         "",
         "## Boundary And Blocked Evidence",

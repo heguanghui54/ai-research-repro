@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T22:27:21Z`
+- Audit date: `2026-06-02T22:45:37Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `aa9ebf9b3748ba8900526e2eb6c95d99c0c9cb03`
+- HEAD: `4f9bf6118e2f7c2ad0678842ddc48a6be9721efe`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `975`
+- Manifest artifacts: `985`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `975/975`
+- Manifest coverage: `985/985`
 
 ## Explicit Requirements
 
@@ -48,8 +48,8 @@
 - `focused_english_pdf`: `pass` (212782 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `root_readme`: `pass` (10931 bytes) - `README.md`
 - `english_submission_card`: `pass` (5476 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
-- `top_conference_evidence_roadmap`: `pass` (15484 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
-- `top_conference_evidence_roadmap_json`: `pass` (11658 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
+- `top_conference_evidence_roadmap`: `pass` (15929 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
+- `top_conference_evidence_roadmap_json`: `pass` (11865 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - `deep_regeneration_casebook`: `pass` (13397 bytes) - `docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md`
 - `human_expert_blind_review_protocol`: `pass` (3755 bytes) - `docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md`
 - `prospective_gate_instrumentation_audit`: `pass` (3542 bytes) - `docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.json`
@@ -81,6 +81,7 @@
 - Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.
 - Extend beyond the current three-seed CIFAR10/debug and three-seed OGBN-arxiv official-evaluator paths by adding another accessible official non-FML task or scaling matched end-to-end co-pilot/autonomous trajectories; keep the open-data package labeled as official-like boundary evidence.
 - Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package.
+- Cache GPT-2 tokenizer/config assets or otherwise repair BabyLM before counting it as a third scored official MLAgentBench task; until then, treat the third-task probe as setup/blocker evidence only.
 
 ## Errors
 

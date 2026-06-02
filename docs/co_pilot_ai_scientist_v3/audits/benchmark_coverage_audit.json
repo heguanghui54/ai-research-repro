@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T22:27:02Z",
+  "audit_date": "2026-06-02T22:45:36Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -37,6 +37,7 @@
     "mlagentbench_cifar10_multiseed_scored": true,
     "mlagentbench_ogbn_arxiv_official_eval_scored": true,
     "mlagentbench_ogbn_arxiv_multiseed_scored": true,
+    "mlagentbench_third_task_feasibility_audited_unscored": true,
     "blocked_official_tasks_logged": true,
     "remaining_blocked_tasks_do_not_report_scores": true,
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,
@@ -108,6 +109,35 @@
       "mean_delta_vs_baseline": 0.5140560596396655,
       "claim_boundary": "Three co-pilot-selected seeds under the official OGBN-arxiv evaluator support robustness of the compatibility path. The baseline remains a compatibility translation rather than the unmodified NeighborLoader starter, so this is not broad MLAgentBench superiority evidence.",
       "path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_multiseed_audit.json"
+    },
+    "mlagentbench_third_task_feasibility": {
+      "status": "setup_accessible_but_unscored",
+      "audit_status": "pass",
+      "evidence_class": "mlagentbench_third_task_feasibility_inventory",
+      "babylm": {
+        "prepare_exit": "0",
+        "tiny_train_exit": "1",
+        "evidence_class": "official_task_setup_accessible_but_unscored_due_to_huggingface_model_asset_blocker",
+        "blocking_error": "HuggingFace network is unreachable for gpt2 tokenizer/config assets, causing AutoTokenizer.from_pretrained('gpt2') to fail.",
+        "logs": [
+          "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.exit",
+          "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stdout.log",
+          "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stderr.log",
+          "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.exit",
+          "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stdout.log",
+          "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stderr.log"
+        ]
+      },
+      "blocked_task_categories": [
+        "cpu_runtime_or_checkpoint_cost",
+        "gpu_and_model_access_cost",
+        "huggingface_dataset_network",
+        "kaggle_account_cli_or_competition_consent",
+        "llm_api_or_external_scholarly_service_task"
+      ],
+      "claim_boundary": "This probe does not add a third scored official MLAgentBench task. It adds a concrete inventory showing that BabyLM data preparation is accessible but scoring is blocked by HuggingFace model asset access, while several other official tasks are blocked by Kaggle consent, external LLM/service dependencies, GPU requirements, HuggingFace network, or CPU runtime.",
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/summary.json",
+      "audit_path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_third_task_feasibility_audit.json"
     },
     "algorithmic_program_search": {
       "knapsack_openevolve_score": 0.9994394752555711,
@@ -291,6 +321,16 @@
         "required_backend": "pyg-lib or torch-sparse",
         "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/summary.json"
       },
+      "mlagentbench_babylm": {
+        "status": "setup_accessible_but_unscored",
+        "audit_status": "pass",
+        "evidence_class": "mlagentbench_third_task_feasibility_inventory",
+        "prepare_exit": "0",
+        "tiny_train_exit": "1",
+        "blocking_error": "HuggingFace network is unreachable for gpt2 tokenizer/config assets, causing AutoTokenizer.from_pretrained('gpt2') to fail.",
+        "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/summary.json",
+        "audit_path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_third_task_feasibility_audit.json"
+      },
       "scienceagentbench": {
         "status": "metadata_and_verified_artifacts_not_yet_accessible",
         "score_reported": false,
@@ -317,5 +357,5 @@
     "MLAgentBench vectorization speedups are positive but seed-sensitive.",
     "Max-Cut OpenEvolve advantage is small and single-seed."
   ],
-  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored multi-seed OGBN-arxiv official-evaluator compatibility run, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
+  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored multi-seed OGBN-arxiv official-evaluator compatibility run, a direct-editing boundary condition, a BabyLM third-task feasibility blocker, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
 }

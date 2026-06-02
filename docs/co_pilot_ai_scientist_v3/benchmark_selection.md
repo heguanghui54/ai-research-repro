@@ -31,7 +31,7 @@ setup probe becomes a scored run.
 | --- | --- | --- | --- | --- |
 | A | FML-bench | AI Scientist-v2-style ML benchmark search over target code | Branch gate, selected-branch continuation, evaluator failures | Runnable and already used |
 | A | OpenEvolve-controlled tasks | Machine-gradeable program search | AlphaEvolve-style escalation gate and direct-edit ablation | Runnable; function minimization, knapsack, and Max-Cut archived |
-| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug is now a scored official run after pre-caching the official CIFAR10 archive, with starter baseline `0.5103` and a three-seed co-pilot-selected mean of `0.7743` (min `0.7709`, std `0.003676`); OGBN-arxiv now has a three-seed scored official-evaluator compatibility run with baseline `0.02745` and co-pilot-selected mean `0.5415` (min `0.53999`, std `0.001896`); IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but both the official CPU-only baseline and a reduced feasibility run timed out without a checkpoint; house-price reached the official prepare script but is blocked by Kaggle CLI and likely competition-consent requirements |
+| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug is now a scored official run after pre-caching the official CIFAR10 archive, with starter baseline `0.5103` and a three-seed co-pilot-selected mean of `0.7743` (min `0.7709`, std `0.003676`); OGBN-arxiv now has a three-seed scored official-evaluator compatibility run with baseline `0.02745` and co-pilot-selected mean `0.5415` (min `0.53999`, std `0.001896`); BabyLM prepare completed from GitHub but the tiny scoring path is blocked by HuggingFace `gpt2` tokenizer/config access; IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but both the official CPU-only baseline and a reduced feasibility run timed out without a checkpoint; house-price and several other official tasks reached prepare-script inspection but are blocked by Kaggle CLI/account/competition-consent requirements |
 | B | sklearn diabetes tabular probe | Lightweight supervised-learning model search | Non-FML, non-runtime-only boundary test for direct edit vs program search | Three OpenEvolve seeds and one direct rewrite archived |
 | B | ScienceAgentBench | Data-driven scientific discovery code tasks from publications | Non-FML scientific workflow validation, especially evaluator/claim gates | Code present; HuggingFace metadata and verified artifacts currently unreachable from Ubuntu host |
 | C | MLE-bench Lite | Kaggle-style ML engineering | High-signal, higher-cost end-to-end ML engineering evidence | Stretch benchmark |
@@ -104,9 +104,15 @@ of Co-Pilot AI Scientist v3.
    A house-price setup probe reached the official MLAgentBench prepare script,
    but the task requires the Kaggle CLI and likely Kaggle account/rule consent;
    it is therefore logged as a credential-bound official benchmark blocker, not
-   as a score. The current official CIFAR result is still one task, even though
-   it now has three co-pilot-selected seeds; another official task or a larger
-   task portfolio is needed before claiming broad MLAgentBench coverage.
+   as a score. A 2026-06-03 third-task feasibility sweep then probed the
+   remaining MLAgentBench tasks: BabyLM data preparation succeeded from GitHub
+   and unpacked a 157 MB task copy, but a tiny compatibility training path
+   remained unscored because the Ubuntu host could not reach HuggingFace for
+   GPT-2 tokenizer/config assets. The sweep also categorized Kaggle-consent
+   tasks, LLM/API scholarly-service tasks, the A100 Llama inference task, the
+   already blocked IMDB/CLRS paths, and already scored CIFAR10/OGBN/vectorization
+   paths. The current official evidence is therefore still two narrow scored
+   official-evaluator paths, not broad MLAgentBench coverage.
 5. **ScienceAgentBench single task**: first download the verified benchmark
    artifacts on the Ubuntu host. A metadata setup probe confirmed that the
    repository is present but HuggingFace metadata access fails from the Ubuntu

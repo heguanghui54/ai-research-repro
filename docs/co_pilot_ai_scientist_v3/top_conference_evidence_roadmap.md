@@ -45,10 +45,13 @@ The current priority order is:
    minimum `0.53999`, sample std `0.001896`, and mean delta `+0.5141`,
    with the boundary that the baseline is a compatibility
    translation rather than the unmodified NeighborLoader starter. Best near-term
-   path: add another task or expand matched end-to-end trajectories. Blocking condition:
+   path: add another task or expand matched end-to-end trajectories. A 2026-06-03
+   BabyLM feasibility probe shows that BabyLM data preparation is accessible
+   from GitHub, but the tiny compatibility scoring path is blocked until GPT-2
+   tokenizer/config assets are cached or HuggingFace access is restored. Blocking condition:
    data access, CPU/GPU runtime, or external account consent prevents
    additional official scores. If blocked, report the current official CIFAR
-   result as one-task evidence only.
+   and OGBN results as two narrow official-evaluator paths only.
 
 2. **Blind expert review packet collection.**
    Proof target: test whether qualified human reviewers prefer IGRE-gated or
@@ -197,9 +200,10 @@ The current priority order is:
 - Claim tested: the workflow is not overfit to FML-Bench-style evidence and can
   be evaluated on official non-FML MLAgentBench tasks.
 - Required data: the current three-seed scored official CIFAR10/debug run plus
-  the three-seed scored OGBN-arxiv official-evaluator compatibility run, then
-  another accessible official task or more matched end-to-end trajectories when
-  budget permits.
+  the three-seed scored OGBN-arxiv official-evaluator compatibility run, plus
+  the BabyLM third-task feasibility audit showing setup success but no score;
+  then another accessible official task or more matched end-to-end trajectories
+  when budget permits.
 - Minimum design: at least one scored official non-FML MLAgentBench task with
   a documented baseline, co-pilot-selected branch, official evaluator output,
   multi-seed robustness when feasible, and a plan to scale beyond one task.
@@ -208,7 +212,9 @@ The current priority order is:
 - Upgrade condition: the official non-FML benchmark shows workflow benefit or
   evaluator-safety benefit and is not treated as broad coverage without scale.
 - If it fails: keep official non-FML claims limited to the three-seed scored
-  CIFAR10/debug task and keep broader benchmark claims future-facing.
+  CIFAR10/debug task and the three-seed OGBN-arxiv compatibility path; keep
+  BabyLM as setup/blocker evidence and keep broader benchmark claims
+  future-facing.
 
 ## Milestone 7: Public Skill Engineering And Community Adoption
 

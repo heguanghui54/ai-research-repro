@@ -69,9 +69,9 @@
       "id": "official_non_fml_benchmark_scaling",
       "action": "Official non-FML benchmark scaling",
       "proof_target": "Move from two narrow scored official-evaluator MLAgentBench paths to broader non-FML evidence across either another official task or more end-to-end matched trajectories.",
-      "current_progress": "MLAgentBench vectorization is scored, the open-data sklearn matched package provides official-like held-out trigger-policy evidence, MLAgentBench CIFAR10/debug has a three-seed official run with mean 0.7743 versus starter 0.5103, and OGBN-arxiv has a three-seed official-evaluator compatibility path with mean 0.5415 versus compatibility starter 0.02745.",
-      "best_near_term_path": "Add another accessible official MLAgentBench task if data and credentials permit, or scale matched end-to-end co-pilot/autonomous trajectories across tasks.",
-      "blocking_condition": "Data access, CPU/GPU runtime, or external account consent prevents additional official scores.",
+      "current_progress": "MLAgentBench vectorization is scored, the open-data sklearn matched package provides official-like held-out trigger-policy evidence, MLAgentBench CIFAR10/debug has a three-seed official run with mean 0.7743 versus starter 0.5103, OGBN-arxiv has a three-seed official-evaluator compatibility path with mean 0.5415 versus compatibility starter 0.02745, and BabyLM data preparation succeeds but remains unscored because HuggingFace GPT-2 tokenizer/config assets are unreachable.",
+      "best_near_term_path": "Cache GPT-2 assets and rerun the BabyLM compatibility path, add another accessible official MLAgentBench task if data and credentials permit, or scale matched end-to-end co-pilot/autonomous trajectories across tasks.",
+      "blocking_condition": "HuggingFace asset access, data access, CPU/GPU runtime, or external account consent prevents additional official scores.",
       "fallback_if_blocked": "Report the current official CIFAR10/debug and OGBN-arxiv evidence as two narrow scored paths only; do not claim broad official benchmark coverage."
     },
     {

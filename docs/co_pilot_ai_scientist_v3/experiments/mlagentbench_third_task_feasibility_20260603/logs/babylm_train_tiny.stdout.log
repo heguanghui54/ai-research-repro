@@ -1,0 +1,4 @@
+06/03/2026 06:38:23 - WARNING - huggingface_hub.utils._http - '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/gpt2/resolve/main/config.json
+06/03/2026 06:38:23 - WARNING - huggingface_hub.utils._http - Retrying in 1s [Retry 1/5].
+06/03/2026 06:39:34 - WARNING - huggingface_hub.utils._http - '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/gpt2/resolve/main/config.json
+06/03/2026 06:39:34 - WARNING - huggingface_hub.utils._http - Retrying in 1s [Retry 1/5].
