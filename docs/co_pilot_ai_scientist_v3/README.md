@@ -191,14 +191,12 @@ python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py
 ```
 
-The current local external-check path reports `632/632` manifest artifacts,
-LHTG/DVRS status `pass_with_no_positive_dvrs`, TFR status
+The latest completed clean-clone audit checks commit `fb3e666b6` from the
+pushed branch and reports `632/632` manifest artifacts present, LHTG/DVRS
+status `pass_with_no_positive_dvrs`, TFR status
 `pass_with_negative_delayed_value_evidence`, roadmap audit `pass`, human expert
 blind-review packet audit `pass_prepared_no_human_ratings`, package consistency
 `pass`, and objective delivery `pass_artifact_delivery_with_empirical_gaps`.
-The latest completed clean-clone audit checks an ancestor commit
-(`7badd8f35`) and should be read as independent reproducibility evidence for
-that pushed artifact set until the next clean-clone refresh.
 
 The last status phrase is intentional. It means the requested artifact pipeline
 is delivered and auditable, but the original top-conference empirical target is
