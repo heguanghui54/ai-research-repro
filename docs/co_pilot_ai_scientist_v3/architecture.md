@@ -46,6 +46,20 @@ Evidence-aligned paper package
 | `verifiable_micro_evolution` | machine-gradeable subproblem and direct-edit baseline | decide whether population search is worth the cost | OpenEvolve run plan and result log |
 | `claim_calibration` | draft paper, metrics, citations, experiment logs | weaken, remove, or reframe unsupported claims | claim-evidence audit |
 
+## Long-Horizon Taste Gate
+
+IGRE also uses a cross-gate meta-policy, the **Long-Horizon Taste Gate
+(LHTG)**, to decide when human taste should override short-term metric
+pressure. LHTG is not a sixth approval gate. It is a replay-and-routing rule
+that looks for **Delayed-Value Review Signals (DVRS)**: comments or human
+interventions that create short-term friction, such as lower immediate scores,
+missing evidence, or rejection, while pointing toward a mechanism, evaluation
+norm, problem framing, or failure mode that later becomes field-relevant. When
+LHTG fires, the system does not blindly follow the comment. It queues the case
+for Temporal Frontier Replay, routes the actionable part into one of the five
+IGRE gates, and records whether the intervention harmed local quality, improved
+future-frontier alignment, or did both.
+
 ## Tail-Seeking Objective
 
 IGRE does not assume that human participation improves every metric or every

@@ -42,6 +42,9 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 
 这些门控形成如下算法循环：系统提出研究前沿，评估早期产物，把人类或评审派生信号映射为门控动作，更新前沿或 evaluator，必要时执行微演化，最后生成经过主张审计的论文。每个门控记录门控类型、被审查产物、候选选项、决策、理由、预期收益、潜在伤害、注意力成本和下游证据。这一结构使 IGRE 区别于非正式 co-pilot 互动。
 
+IGRE 还定义一个跨门控元策略：长期科研品味门控（Long-Horizon Taste
+Gate, LHTG）。LHTG 用来操作化本文最核心的直觉：一条人类评议可能让下一版产物在短期质量评分上更差，却把科研轨迹推向后来主流或 SOTA 方向。LHTG 寻找 delayed-value review signals（DVRS），也就是同时包含短期摩擦和长期方向性的评审或人类门控信号。DVRS 不会被默认视为正确；系统会把其可行动部分路由到合适的 IGRE gate，放入 TFR replay queue，并同时审计即时产物质量与未来前沿对齐。这让本文方法区别于普通 co-pilot 辅助：科研品味不是审批、偏好标注或额外上下文，而是一种选择性、带风险、可检验的搜索覆盖信号。
+
 IGRE 还包含一个离线学习与评估模式：时间前沿回放（Temporal Frontier Replay, TFR）。TFR 的作用，是把回顾性的同行评审数据转化为科研品味测试，而不只是又一个论文质量 rubric。给定时间 `t` 的历史论文、它收到的评审意见，以及时间 `t + delta` 的后续学科证据，TFR 构造三个回放条件：paper-only、review-guided 和 shuffled-review-control。然后它检验 review-guided 回放究竟只是改善了局部产物质量，还是也把生成的研究计划推向了后来的主流或 SOTA 方向。delayed-value signal 指的是时间不对称情形：评审引导可能让短期产物在即时评分上更差，但却更接近后来的学科演化方向。这正是 IGRE 试图保留的人类科研品味。
 
 TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方法调整。普通 benchmark 比较的是一个分支现在是否获胜；TFR 比较的是一条人类评论是否改变了 agent 未来应该搜索什么。当前证据包通过确定性 smoke、引用驱动前沿 probe、评审-前沿信号挖掘和语义前沿 judge 实现 TFR。这些 probe 规模仍小，而且目前对 delayed-value 证据是负向的；但它们使高尾部假设变得可证伪：有用的人类洞察必须被路由、回放，并根据未来前沿接受检验，而不能因为它来自人类评审就被默认视为有价值。
@@ -102,7 +105,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 
 随后我们运行因果风格的单门控产物消融。对于每篇选中论文，我们分别只给 title/abstract 加上一类 gate-specific 评审片段，生成新的 mini-paper artifact，并与 title/abstract baseline 和 full review-guided artifact 在 GPT 与 Claude 评分器下比较。最佳单门控条件是 evaluator stress testing，mean overall 为 3.6667；full review-guided 为 3.5；baseline 为 2.9166。winner votes 分别为 baseline 3、full review-guided 2、evaluator stress testing 6、structured feedback 1。这个结果重要之处在于它并不是简单支持“人类越多越好”。它说明 targeted evaluator-stress review 在小规模 proxy 中可能比输入全部评审更有用，而对信息充分的摘要，baseline 仍可能有竞争力。因此 IGRE 需要的是门控选择，而不是最大化人类上下文。
 
-这支持用户提出的核心直觉：人类真实论文评审意见就是科研品味和科研洞察的具体痕迹。但有用的并不是所有评审文本，而是其中能够改变 evaluator 设计、搜索方向、论文结构或主张边界的部分。
+这支持本文的核心前提：人类真实论文评审意见就是科研品味和科研洞察的具体痕迹。但有用的并不是所有评审文本，而是其中能够改变 evaluator 设计、搜索方向、论文结构或主张边界的部分。
 
 ### 4.2 评审引导的再生成是否改善科研产物？
 
@@ -133,6 +136,8 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 该协议的第一次确定性 smoke 给出了一个有意保守的信号。在同一批 6 个 OpenReview 案例上，使用人工指定、尚未经过引用验证的未来前沿 descriptor 和关键词/行动性评分，review-guided 产物只赢 1/6，shuffled-review-control 赢 5/6，review-guided 相对 shuffled control 的平均分差为 -0.0855。这并不否定协议本身，因为 descriptor 和评分器还只是管线 smoke；但它说明，面向未来前沿的对齐比局部论文质量提升更严格，“好评审”必须由未来相关方向性来定义，而不能只由泛化 reviewer pressure 定义。
 
 最重要的是时间不对称情形：评审引导重新跑出来的论文，短期看可能比原论文更差，当前 benchmark 或局部论文质量也可能不占优，但它更接近后来学科演化出的主流或 SOTA 方向。这类评审就是 delayed-value review signal。它的价值不在于立刻提升下一篇产物，而在于把搜索轨迹改向未来重要方向。如果能从历史评审语料中找到一批这样的信号并总结范式，IGRE 就可以学习什么时候应当让人类科研品味覆盖短期自动化压力。
+
+这正是 LHTG 的实践作用。它不是又一个“人类说了算”的审批节点，而是人类参与模式选择规则：保留那些虽然伴随低分、拒稿、缺失评估或即时证据薄弱，却明确指出未来重要机制、评估规范、问题重构或失败模式的评论；降低那些只提升局部 reviewer 满意度、却不能改善未来前沿对齐的评论权重；并把两者都不能改善的评论标记为有害信号。当前实验尚未证明 LHTG 已找到正向 DVRS 案例，但它把这种区别变成可测量、可从历史评议数据中学习的对象。
 
 当前 smoke 还没有找到这种 delayed-value 模式，反而在 3 个案例中发现了相反诊断：评审引导提高了短期模型评分，但降低了启发式未来前沿对齐分数。这个负结果依然有价值，因为它把“局部 reviewer 满意度”和“长期科研方向性”区分开来，而这正是 co-pilot scientist 必须学会的区分。
 

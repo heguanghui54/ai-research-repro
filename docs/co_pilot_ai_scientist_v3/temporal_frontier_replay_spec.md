@@ -12,6 +12,14 @@ human scientific taste can be valuable even when it does not improve the
 immediate artifact. The important signal is whether a human comment changes the
 search direction toward a later high-value frontier.
 
+TFR is executed under IGRE's Long-Horizon Taste Gate (LHTG). LHTG is a
+cross-gate routing policy, not a sixth approval gate. It looks for
+Delayed-Value Review Signals (DVRS): review or human-gate interventions that
+combine short-term friction with long-horizon directionality. LHTG routes the
+actionable part of a candidate signal into one of the five IGRE gates and then
+uses TFR to test whether that routing would have improved later-frontier
+alignment.
+
 ## Inputs
 
 Each replay unit is a historical tuple:
@@ -67,6 +75,26 @@ This definition is intentionally strict. If review guidance improves both
 short-term quality and future alignment, the case is positive but not delayed
 value. If review guidance improves short-term quality while reducing future
 alignment, the case is a `short_term_positive_long_term_negative` failure mode.
+
+## LHTG Routing Rule
+
+For each candidate review or human intervention, LHTG records:
+
+- `short_term_friction`: low rating, rejection, missing evidence, unclear
+  claims, failed metric, or worse immediate artifact score;
+- `long_horizon_directionality`: mechanism, theory, generalization, scaling,
+  benchmark norm, method family, problem reframing, or failure mode that could
+  plausibly matter after `t + delta`;
+- `gate_route`: one of scientific taste prior, evaluator stress test,
+  frontier steering, verifiable micro-evolution, or claim calibration;
+- `validation_status`: untested candidate, short-term positive only,
+  delayed-value positive, short-term-positive/long-term-negative, or harmful.
+
+LHTG should prioritize expensive TFR replay for candidates with both
+short-term friction and long-horizon directionality. It should downweight
+comments that are merely positive, merely negative, or generic. A positive
+human review is therefore not automatically a useful taste signal, and a
+negative review is not automatically harmful.
 
 ## Aggregates
 

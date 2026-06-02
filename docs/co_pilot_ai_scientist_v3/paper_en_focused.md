@@ -42,6 +42,19 @@ The fifth gate is claim calibration. It edits the manuscript-level interpretatio
 
 The gates form the following algorithmic loop. The system proposes a research frontier, evaluates early artifacts, maps human or review-derived signals into gate actions, updates the frontier or evaluator, optionally performs micro-evolution, and finally writes a claim-audited manuscript. Every gate has a structured record containing the gate type, artifact reviewed, options considered, decision, rationale, expected upside, possible harm, attention cost, and downstream evidence. This structure is what distinguishes IGRE from informal co-pilot interaction.
 
+IGRE also defines a cross-gate meta-policy, the Long-Horizon Taste Gate (LHTG).
+LHTG is the part of the method that operationalizes the paper's central
+intuition: a human review may make the next artifact worse under short-term
+quality scores, yet still move the research trajectory toward a future
+mainstream or SOTA direction. LHTG searches for delayed-value review signals
+(DVRS), meaning review or human-gate interventions that combine short-term
+friction with long-horizon directionality. A DVRS is not treated as automatically
+correct. It is routed into the appropriate IGRE gate, queued for TFR replay, and
+audited against both immediate artifact quality and later frontier alignment.
+This makes the paper's method distinct from generic co-pilot assistance:
+scientific taste is modeled as a selective, risky, testable search override
+rather than as approval, preference labeling, or extra context.
+
 IGRE also includes an offline learning and evaluation mode, Temporal Frontier Replay (TFR). TFR is the mechanism that turns retrospective peer-review data into a test of scientific taste rather than merely another paper-quality rubric. Given a historical paper at time `t`, its reviews, and later field evidence at `t + delta`, TFR constructs three replay conditions: paper-only, review-guided, and shuffled-review-control. It then asks whether the review-guided replay improves only local artifact quality, or whether it also moves the generated research plan toward later mainstream or SOTA directions. A delayed-value signal is the temporally asymmetric case: review guidance may make the immediate artifact worse under short-term scores, but better aligned with later field evolution. This is the specific kind of human taste that IGRE is designed to preserve.
 
 TFR is not an extra borrowed benchmark. It is an adaptation required by the co-pilot question. Standard benchmark comparison measures whether a branch wins now. TFR measures whether a human comment changes what the agent should search for later. In the current package, TFR is implemented through a deterministic smoke, a citation-backed frontier probe, direct review-frontier signal mining, and a semantic frontier judge. These probes are still small and currently negative for delayed-value evidence, but they make the high-tail hypothesis falsifiable: useful human insight must be routed, replayed, and tested against a future frontier, not assumed valuable because it came from a human reviewer.
@@ -110,7 +123,7 @@ Finally, we run a downstream gate-outcome attribution probe using the six equal-
 
 We then run a causal-style single-gate artifact ablation. For each selected paper, we generate new mini-paper artifacts from title/abstract plus only one gate-specific subset of reviews, and compare them with title/abstract baseline and full review-guided artifacts under GPT and Claude reviewers. The best single-gate condition is evaluator stress testing, with mean overall score 3.6667. Full review-guided obtains 3.5, and baseline obtains 2.9166. Winner votes are split across baseline (3), full review-guided (2), evaluator stress testing (6), and structured feedback (1). This result is important because it is not simply pro-human. It suggests that targeted evaluator-stress review can be more useful than feeding all review text, while baseline remains competitive for some information-rich abstracts. IGRE therefore needs gate selection, not maximal human context.
 
-This supports the user's central intuition: human review is a concrete trace of scientific taste and insight. But the useful signal is not all review text. It is the subset that can alter evaluator design, search direction, manuscript structure, or claim boundaries.
+This supports the paper's central premise: human review is a concrete trace of scientific taste and insight. But the useful signal is not all review text. It is the subset that can alter evaluator design, search direction, manuscript structure, or claim boundaries.
 
 ### 4.2 Does review-guided regeneration improve research artifacts?
 
@@ -165,6 +178,15 @@ because it improves the next artifact, but because it changes the search
 trajectory toward a future-relevant direction. If a corpus of these comments can
 be identified, IGRE can learn where human taste should override short-term
 automation pressure.
+
+This is the practical role of LHTG. It is a selection rule for human
+participation modes: retain comments that name future-relevant mechanisms,
+evaluation norms, problem reframings, or failure modes even when they are
+associated with low ratings or weak immediate evidence; downweight comments that
+only increase local reviewer satisfaction without improving future-frontier
+alignment; and mark harmful comments when they improve neither. The current
+experiments do not yet prove that LHTG finds positive DVRS cases, but they make
+the distinction measurable and therefore learnable from historical review data.
 
 The current smoke does not yet find this delayed-value pattern. It finds the
 opposite diagnostic in three cases: review guidance improves the short-term
