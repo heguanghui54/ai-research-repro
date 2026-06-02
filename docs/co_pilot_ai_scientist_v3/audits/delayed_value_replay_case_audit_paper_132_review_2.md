@@ -1,14 +1,14 @@
 # Delayed-Value Replay Case Audit
 
-- Audit date: `2026-06-02T15:47:01Z`
+- Audit date: `2026-06-02T15:56:03Z`
 - Status: `pass`
-- Run dir: `docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500`
-- Case ID: `paper_105_review_1`
+- Run dir: `docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500`
+- Case ID: `paper_132_review_2`
 - Live model calls: `2`
 - Model delayed-value label: `positive`
 - Strict delayed-value label: `mixed_or_inconclusive`
 - Winner short-term: `tie`
-- Winner frontier: `tie`
+- Winner frontier: `six_gate_hybrid_guided`
 
 ## Strict Rule Checks
 

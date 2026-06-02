@@ -1,0 +1,138 @@
+{
+  "run_id": "live_tfr_replay_aggregate_20260603_003500",
+  "timestamp_utc": "2026-06-02T15:50:05Z",
+  "status": "live_tfr_replay_aggregate",
+  "executed_case_count": 2,
+  "same_model_raw_positive_count": 2,
+  "strict_positive_count": 0,
+  "cross_model_successful_judge_count": 2,
+  "cross_model_strict_positive_count": 0,
+  "case_rows": [
+    {
+      "case_id": "paper_105_review_1",
+      "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+      "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500",
+      "status": "executed_delayed_value_replay_case",
+      "judge_model": "gpt-4o-mini",
+      "model_label": "positive",
+      "strict_label": "mixed_or_inconclusive",
+      "winner_short_term": "tie",
+      "winner_frontier": "tie",
+      "best_review_signal": "none",
+      "failure_modes": [
+        "overfitting",
+        "insufficient consideration of deployment constraints"
+      ],
+      "strict_note": "strict preregistered delayed-value rule not satisfied; guided conditions did not have lower short-term score than paper_only while beating paper_only and shuffled_control on frontier alignment"
+    },
+    {
+      "case_id": "paper_132_review_2",
+      "title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+      "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500",
+      "status": "executed_delayed_value_replay_case",
+      "judge_model": "gpt-4o-mini",
+      "model_label": "positive",
+      "strict_label": "mixed_or_inconclusive",
+      "winner_short_term": "tie",
+      "winner_frontier": "six_gate_hybrid_guided",
+      "best_review_signal": "none",
+      "failure_modes": [
+        "Generic praise without actionable insights",
+        "Overclaiming generalization capabilities without empirical support"
+      ],
+      "strict_note": "strict preregistered delayed-value rule not satisfied; guided conditions did not have lower short-term score than paper_only while beating paper_only and shuffled_control on frontier alignment"
+    }
+  ],
+  "cross_model_rows": [
+    {
+      "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500",
+      "source_case_run": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500",
+      "models_attempted": [
+        "claude-3-7-sonnet-latest",
+        "gemini-2.5-flash"
+      ],
+      "models_succeeded": [
+        "claude-3-7-sonnet-latest"
+      ],
+      "errors": {
+        "gemini-2.5-flash": "JSONDecodeError(\"Expecting ',' delimiter: line 11 column 6 (char 623)\")"
+      },
+      "aggregate": {
+        "judge_count": 1,
+        "strict_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "model_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "frontier_winner_counts": {
+          "six_gate_hybrid_guided": 1
+        },
+        "short_term_winner_counts": {
+          "tie": 1
+        },
+        "all_strict_positive": false,
+        "any_model_strict_disagreement": false
+      },
+      "judgement_digest": {
+        "claude-3-7-sonnet-latest": {
+          "model_label": "mixed_or_inconclusive",
+          "strict_label": "mixed_or_inconclusive",
+          "winner_short_term": "tie",
+          "winner_frontier": "six_gate_hybrid_guided",
+          "failure_modes_observed": [
+            "All conditions produce nearly identical mini-papers with boilerplate language, indicating the generation model did not meaningfully differentiate based on guidance signals.",
+            "No named datasets are specified in any condition (e.g., Medical Segmentation Decathlon, BraTS, BTCV), reducing experimental specificity.",
+            "No quantitative efficiency metrics (FLOPs, inference latency, GPU memory) are specified in any condition.",
+            "The DSFF mechanism is never mechanistically described—no explanation of how sparsity is induced, gated, or fused."
+          ]
+        }
+      }
+    },
+    {
+      "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_132_review_2_20260603_003000",
+      "source_case_run": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500",
+      "models_attempted": [
+        "claude-3-7-sonnet-latest"
+      ],
+      "models_succeeded": [
+        "claude-3-7-sonnet-latest"
+      ],
+      "errors": {},
+      "aggregate": {
+        "judge_count": 1,
+        "strict_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "model_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "frontier_winner_counts": {
+          "six_gate_hybrid_guided": 1
+        },
+        "short_term_winner_counts": {
+          "tie": 1
+        },
+        "all_strict_positive": false,
+        "any_model_strict_disagreement": false
+      },
+      "judgement_digest": {
+        "claude-3-7-sonnet-latest": {
+          "model_label": "mixed_or_inconclusive",
+          "strict_label": "mixed_or_inconclusive",
+          "winner_short_term": "tie",
+          "winner_frontier": "six_gate_hybrid_guided",
+          "failure_modes_observed": [
+            "All conditions produce vague experiment plans without specifying network widths, datasets, or quantitative metrics",
+            "Review signals in raw_review_guided are restatements of the paper's own abstract rather than specific actionable gaps",
+            "No condition engages with specific later-frontier NTK themes (e.g., feature learning, kernel approximation error bounds, mean-field limits)",
+            "Ablation tests (noisy labels, adversarial examples) are disconnected from the NTK theoretical framework"
+          ]
+        }
+      }
+    }
+  ],
+  "interpretation": "Across two live four-condition TFR cases, the same-model GPT judge labels both cases positive before deterministic rule repair, but the strict preregistered delayed-value rule finds zero positive cases. Claude cross-model review also finds zero strict positive cases while often selecting the six-gate artifact as the frontier winner. This supports TFR as a model-optimism guard and failure-mode diagnostic, not as evidence that delayed-value review signals have already been found.",
+  "claim_boundary": "This aggregate summarizes model-generated mini-paper replay artifacts and model judges. It does not include benchmark reruns, human expert ratings, or proof that human reviews improve long-horizon scientific outcomes.",
+  "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/live_tfr_replay_aggregate_20260603_003500/summary.json"
+}

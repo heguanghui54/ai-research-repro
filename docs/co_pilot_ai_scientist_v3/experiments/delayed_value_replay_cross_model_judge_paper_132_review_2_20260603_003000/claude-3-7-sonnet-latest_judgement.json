@@ -1,0 +1,60 @@
+{
+  "per_condition": {
+    "paper_only": {
+      "short_term_score": 2.0,
+      "frontier_alignment_score": 2.0,
+      "actionability_score": 2.0,
+      "specificity_score": 2.0,
+      "claim_calibration_score": 3.0,
+      "overall": 2.0,
+      "rationale": "The paper_only condition produces a generic hypothesis about finite-width effects without deriving specific theoretical bounds or identifying concrete experimental parameters. The experiment plan is vague (no specific network widths, datasets, or metrics). The ablation on non-smooth activations is a reasonable stress test but lacks specificity. Frontier alignment is weak—mentions finite-width NTK but does not engage with specific later-frontier themes like feature learning, lazy vs. rich regimes, or kernel approximation error. Claim calibration is adequate but conservative to the point of being uninformative."
+    },
+    "raw_review_guided": {
+      "short_term_score": 2.0,
+      "frontier_alignment_score": 2.0,
+      "actionability_score": 2.0,
+      "specificity_score": 2.0,
+      "claim_calibration_score": 3.0,
+      "overall": 2.0,
+      "rationale": "The raw_review_guided condition uses review signals that are essentially restatements of the paper's own abstract (minimax-optimal rates, NTK, generalization). The hypothesis is marginally more focused on finite-width effects but still lacks mechanistic depth. The noisy-label ablation is a reasonable practical test but disconnected from the NTK theory. No new theoretical insight is offered beyond the original paper. The review signal used is not specific or actionable—it mirrors the paper's own framing rather than pointing to a gap or later-frontier direction."
+    },
+    "six_gate_hybrid_guided": {
+      "short_term_score": 2.0,
+      "frontier_alignment_score": 3.0,
+      "actionability_score": 3.0,
+      "specificity_score": 2.0,
+      "claim_calibration_score": 3.0,
+      "overall": 2.0,
+      "rationale": "The six_gate_hybrid_guided condition shows marginally better structure through the gate framework, explicitly calling for benchmarks against standard SGD and adversarial stress tests. The frontier_steering gate mentions alignment with recent generalization advances in finite-width scenarios, which is the most frontier-relevant signal in any artifact. However, the actual experiment plan remains vague—no specific architectures, width ranges, or metrics are defined. The adversarial example ablation is somewhat disconnected from NTK theory. The gate actions read as procedural scaffolding rather than substantive scientific insight. Slightly better than paper_only on frontier alignment and actionability but not by a meaningful margin."
+    },
+    "shuffled_review_control": {
+      "short_term_score": 2.0,
+      "frontier_alignment_score": 1.0,
+      "actionability_score": 2.0,
+      "specificity_score": 1.0,
+      "claim_calibration_score": 3.0,
+      "overall": 2.0,
+      "rationale": "The shuffled_review_control condition is the weakest on frontier alignment—it drifts away from NTK-specific content toward generic statements about network architecture and training dynamics. The control signals used ('role of SGD in optimization', 'network design on learning rates') are generic and not grounded in the NTK literature. The experiment plan is the least specific of all conditions. No mechanistic depth is present. This condition correctly serves as a baseline showing that generic review signals add no value over paper_only."
+    }
+  },
+  "winner_short_term": "tie",
+  "winner_frontier": "six_gate_hybrid_guided",
+  "model_delayed_value_label": "mixed_or_inconclusive",
+  "delayed_value_rationale": "The preregistered positive delayed-value rule requires that a guided condition (raw_review_guided or six_gate_hybrid_guided) has lower short_term_score than paper_only AND higher frontier_alignment_score. In practice, all conditions score similarly on short-term metrics (all at 2), so the required short_term disadvantage for guided conditions is not clearly demonstrated. The six_gate_hybrid_guided condition does show marginally higher frontier_alignment (3 vs 2) compared to paper_only, and it beats shuffled_review_control on frontier alignment. However, the review signals used in raw_review_guided are not specific or actionable—they merely restate the paper's abstract. The six_gate_hybrid_guided condition partially satisfies the frontier alignment and actionability criteria but fails to provide bibliographically verifiable later-frontier evidence or mechanistically deep predictions. The overall pattern is mixed: slight frontier advantage for the hybrid condition but no meaningful short-term penalty, and the review signals lack the specificity required by the rule.",
+  "failure_modes_observed": [
+    "All conditions produce vague experiment plans without specifying network widths, datasets, or quantitative metrics",
+    "Review signals in raw_review_guided are restatements of the paper's own abstract rather than specific actionable gaps",
+    "No condition engages with specific later-frontier NTK themes (e.g., feature learning, kernel approximation error bounds, mean-field limits)",
+    "Ablation tests (noisy labels, adversarial examples) are disconnected from the NTK theoretical framework",
+    "No bibliographic or semantic match guards are applied to later-frontier evidence—no citations are provided",
+    "Six-gate framework produces procedural scaffolding rather than substantive scientific content",
+    "Shuffled control drifts to generic ML content, confirming noise in the control signal but also revealing that guided conditions do not sufficiently outperform it",
+    "Claim calibration is uniformly conservative across all conditions, reducing discriminative power"
+  ],
+  "claim_boundary": "No completed benchmark result is claimed in any artifact. All experiment plans are prospective. Scores reflect the quality of the proposed research design and theoretical framing, not empirical outcomes.",
+  "strict_delayed_value_label": "mixed_or_inconclusive",
+  "strict_best_review_signal": "none",
+  "strict_label_note": "strict preregistered delayed-value rule not satisfied under this judge",
+  "_latency_seconds": 27.16,
+  "_attempts": 1
+}

@@ -1,0 +1,181 @@
+You are executing a preregistered Temporal Frontier Replay case for Co-Pilot AI Scientist v3.
+
+Case ID: paper_132_review_2
+Title: Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime
+Domain: deep_learning_theory
+Replay question: Can human review emphasizing generalization and theory steer an automated researcher from a narrow NTK-rate result toward a more frontier-aligned study of averaged SGD, finite-width effects, and generalization mechanisms?
+
+You must generate one mini-paper research artifact for each condition below.
+Treat condition separation as strict experimental control. Do not leak the raw
+review into paper_only or shuffled_review_control beyond what those prompts allow.
+
+Preregistered replay spec:
+{
+  "run_id": "delayed_value_replay_specs_20260602_234500",
+  "review_id": "paper_132_review_2",
+  "title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+  "domain": "deep_learning_theory",
+  "candidate_label": "long_horizon_positive_candidate",
+  "triage_score": 9.1377,
+  "source_triage": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/selected_cases.json",
+  "replay_question": "Can human review emphasizing generalization and theory steer an automated researcher from a narrow NTK-rate result toward a more frontier-aligned study of averaged SGD, finite-width effects, and generalization mechanisms?",
+  "required_conditions": [
+    "paper_only",
+    "raw_review_guided",
+    "six_gate_hybrid_guided",
+    "shuffled_review_control"
+  ],
+  "minimal_experiment": [
+    "Generate a follow-up theorem-or-experiment plan for averaged SGD under NTK-like assumptions.",
+    "Require at least one stress test outside the exact assumptions of the original proof.",
+    "Compare the generated plan against later frontier descriptors around generalization, finite-width behavior, and optimization dynamics."
+  ],
+  "short_term_metrics": [
+    "technical correctness of proposed theorem/experiment",
+    "clarity of assumptions",
+    "baseline and prior-work calibration"
+  ],
+  "frontier_metrics": [
+    "alignment with later generalization and finite-width NTK themes",
+    "mechanistic depth beyond restating the original rate result",
+    "specificity of testable predictions"
+  ],
+  "failure_modes": [
+    "generic theory praise without a new stress test",
+    "overclaiming beyond the original assumptions",
+    "frontier alignment driven only by title terms such as neural or generalization"
+  ],
+  "primary_gates": [
+    "evaluator_stress_test",
+    "scientific_taste_prior"
+  ],
+  "long_horizon_groups": [
+    "mechanism_depth",
+    "generalization_scaling",
+    "novelty_repositioning"
+  ],
+  "friction_groups": [],
+  "review_signal": {
+    "score": 0.44,
+    "frontier_alignment": 0.45,
+    "actionability": 0.4,
+    "matched_frontier_terms": [
+      "network",
+      "neural",
+      "generalization",
+      "function",
+      "result",
+      "which",
+      "descent",
+      "kernel",
+      "gradient"
+    ],
+    "matched_actionability_terms": [
+      "generalization",
+      "theory"
+    ]
+  },
+  "title_signal": {
+    "score": 0.16,
+    "frontier_alignment": 0.2,
+    "actionability": 0.0,
+    "matched_frontier_terms": [
+      "neural",
+      "descent",
+      "kernel",
+      "gradient"
+    ],
+    "matched_actionability_terms": []
+  },
+  "selection_reasons": [
+    "screened as long_horizon_positive_candidate",
+    "review adds frontier signal over title/context by 0.28",
+    "matches future-frontier terms: network, neural, generalization, function, result, which",
+    "contains actionability terms: generalization, theory",
+    "long-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning",
+    "OpenAlex title match is exact or near-exact"
+  ],
+  "required_artifacts_after_execution": [
+    "paper_only_plan.md",
+    "raw_review_guided_plan.md",
+    "six_gate_hybrid_guided_plan.md",
+    "shuffled_review_control_plan.md",
+    "condition_scores.json",
+    "frontier_alignment_judgement.json",
+    "case_analysis.md"
+  ],
+  "positive_delayed_value_rule": [
+    "raw_review_guided or six_gate_hybrid_guided has lower short_term_score than paper_only",
+    "the same guided condition has higher frontier_alignment_score than paper_only",
+    "the same guided condition beats shuffled_review_control on frontier_alignment_score",
+    "the responsible review signal is specific and actionable",
+    "later-frontier evidence passes bibliographic and semantic match guards"
+  ],
+  "claim_boundary": "This is a preregistered replay specification. It is not an executed replay and must not be counted as evidence that human review improves research output."
+}
+
+Condition prompts:
+{
+  "paper_only": "You are running a Temporal Frontier Replay experiment for Co-Pilot AI Scientist v3.\n\nOriginal paper title: Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime\nDomain: deep_learning_theory\nReplay question: Can human review emphasizing generalization and theory steer an automated researcher from a narrow NTK-rate result toward a more frontier-aligned study of averaged SGD, finite-width effects, and generalization mechanisms?\n\nOriginal review excerpt available to this spec:\nSummary: The paper focuses on the understanding of neural tangent kernel (NTK), which has been a central topic in deep learning theory recently and plays an important role in characterizing the generalization ability of artificial neural networks. In Particular, the authors derive minimax-optimal learning rates of the averaged stochastic gradient descent method for over-parametrized two-layer neural networks with smooth activation functions. The results are novel and offer insights into the connecti\n\nRequired output:\n- a concise research hypothesis;\n- a minimal experiment or theorem plan;\n- expected baselines;\n- evaluation metrics;\n- one ablation or stress test;\n- failure modes;\n- claim boundaries.\n\nDo not invent completed results. Write a plan that could be executed under a small research budget.\n\nCondition: paper_only. Use only the paper title and neutral paper context. Do not use the human review as guidance, except that it is shown above for logging and must be ignored.\n\nScoring metrics to satisfy:\n- technical correctness of proposed theorem/experiment\n- clarity of assumptions\n- baseline and prior-work calibration\n- alignment with later generalization and finite-width NTK themes\n- mechanistic depth beyond restating the original rate result\n- specificity of testable predictions\n\nKnown failure modes:\n- generic theory praise without a new stress test\n- overclaiming beyond the original assumptions\n- frontier alignment driven only by title terms such as neural or generalization\n",
+  "raw_review_guided": "You are running a Temporal Frontier Replay experiment for Co-Pilot AI Scientist v3.\n\nOriginal paper title: Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime\nDomain: deep_learning_theory\nReplay question: Can human review emphasizing generalization and theory steer an automated researcher from a narrow NTK-rate result toward a more frontier-aligned study of averaged SGD, finite-width effects, and generalization mechanisms?\n\nOriginal review excerpt available to this spec:\nSummary: The paper focuses on the understanding of neural tangent kernel (NTK), which has been a central topic in deep learning theory recently and plays an important role in characterizing the generalization ability of artificial neural networks. In Particular, the authors derive minimax-optimal learning rates of the averaged stochastic gradient descent method for over-parametrized two-layer neural networks with smooth activation functions. The results are novel and offer insights into the connecti\n\nRequired output:\n- a concise research hypothesis;\n- a minimal experiment or theorem plan;\n- expected baselines;\n- evaluation metrics;\n- one ablation or stress test;\n- failure modes;\n- claim boundaries.\n\nDo not invent completed results. Write a plan that could be executed under a small research budget.\n\nCondition: raw_review_guided. Use the human review excerpt directly as guidance. Do not restructure it into gates.\n\nScoring metrics to satisfy:\n- technical correctness of proposed theorem/experiment\n- clarity of assumptions\n- baseline and prior-work calibration\n- alignment with later generalization and finite-width NTK themes\n- mechanistic depth beyond restating the original rate result\n- specificity of testable predictions\n\nKnown failure modes:\n- generic theory praise without a new stress test\n- overclaiming beyond the original assumptions\n- frontier alignment driven only by title terms such as neural or generalization\n",
+  "six_gate_hybrid_guided": "You are running a Temporal Frontier Replay experiment for Co-Pilot AI Scientist v3.\n\nOriginal paper title: Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime\nDomain: deep_learning_theory\nReplay question: Can human review emphasizing generalization and theory steer an automated researcher from a narrow NTK-rate result toward a more frontier-aligned study of averaged SGD, finite-width effects, and generalization mechanisms?\n\nOriginal review excerpt available to this spec:\nSummary: The paper focuses on the understanding of neural tangent kernel (NTK), which has been a central topic in deep learning theory recently and plays an important role in characterizing the generalization ability of artificial neural networks. In Particular, the authors derive minimax-optimal learning rates of the averaged stochastic gradient descent method for over-parametrized two-layer neural networks with smooth activation functions. The results are novel and offer insights into the connecti\n\nRequired output:\n- a concise research hypothesis;\n- a minimal experiment or theorem plan;\n- expected baselines;\n- evaluation metrics;\n- one ablation or stress test;\n- failure modes;\n- claim boundaries.\n\nDo not invent completed results. Write a plan that could be executed under a small research budget.\n\nCondition: six_gate_hybrid_guided. Convert the review into IGRE gate actions before proposing the follow-up.\n\nPrimary gates from triage: evaluator_stress_test, scientific_taste_prior\nLong-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning\nProductive friction: \n\nRequired gate routing:\n- scientific_taste_prior: identify the non-obvious taste/insight in the review;\n- evaluator_stress_test: specify what metric or benchmark could expose a weak claim;\n- frontier_steering: state how the follow-up could align with later field movement;\n- verifiable_micro_evolution: name one bounded code, proof, or evaluator subproblem to improve automatically;\n- structured_feedback: rewrite vague review advice into concrete actions;\n- claim_calibration: state what the generated follow-up must not claim.\n\n\nScoring metrics to satisfy:\n- technical correctness of proposed theorem/experiment\n- clarity of assumptions\n- baseline and prior-work calibration\n- alignment with later generalization and finite-width NTK themes\n- mechanistic depth beyond restating the original rate result\n- specificity of testable predictions\n\nKnown failure modes:\n- generic theory praise without a new stress test\n- overclaiming beyond the original assumptions\n- frontier alignment driven only by title terms such as neural or generalization\n",
+  "shuffled_review_control": "You are running a Temporal Frontier Replay experiment for Co-Pilot AI Scientist v3.\n\nOriginal paper title: Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime\nDomain: deep_learning_theory\nReplay question: Can human review emphasizing generalization and theory steer an automated researcher from a narrow NTK-rate result toward a more frontier-aligned study of averaged SGD, finite-width effects, and generalization mechanisms?\n\nOriginal review excerpt available to this spec:\nSummary: The paper focuses on the understanding of neural tangent kernel (NTK), which has been a central topic in deep learning theory recently and plays an important role in characterizing the generalization ability of artificial neural networks. In Particular, the authors derive minimax-optimal learning rates of the averaged stochastic gradient descent method for over-parametrized two-layer neural networks with smooth activation functions. The results are novel and offer insights into the connecti\n\nRequired output:\n- a concise research hypothesis;\n- a minimal experiment or theorem plan;\n- expected baselines;\n- evaluation metrics;\n- one ablation or stress test;\n- failure modes;\n- claim boundaries.\n\nDo not invent completed results. Write a plan that could be executed under a small research budget.\n\nCondition: shuffled_review_control. Use a same-length but unrelated peer-review style control. The control should preserve generic reviewer pressure while removing paper-specific taste.\n\nScoring metrics to satisfy:\n- technical correctness of proposed theorem/experiment\n- clarity of assumptions\n- baseline and prior-work calibration\n- alignment with later generalization and finite-width NTK themes\n- mechanistic depth beyond restating the original rate result\n- specificity of testable predictions\n\nKnown failure modes:\n- generic theory praise without a new stress test\n- overclaiming beyond the original assumptions\n- frontier alignment driven only by title terms such as neural or generalization\n"
+}
+
+Return strict JSON only:
+{
+  "case_id": "paper_132_review_2",
+  "artifacts": {
+    "paper_only": {
+      "hypothesis": "...",
+      "method": "...",
+      "experiment_plan": "...",
+      "ablation_or_stress_test": "...",
+      "expected_evidence": "...",
+      "failure_modes": "...",
+      "claim_boundary": "...",
+      "mini_paper": "300-450 words"
+    },
+    "raw_review_guided": {
+      "hypothesis": "...",
+      "review_signal_used": ["..."],
+      "method": "...",
+      "experiment_plan": "...",
+      "ablation_or_stress_test": "...",
+      "expected_evidence": "...",
+      "failure_modes": "...",
+      "claim_boundary": "...",
+      "mini_paper": "300-450 words"
+    },
+    "six_gate_hybrid_guided": {
+      "hypothesis": "...",
+      "gate_actions": {
+        "scientific_taste_prior": "...",
+        "evaluator_stress_test": "...",
+        "frontier_steering": "...",
+        "verifiable_micro_evolution": "...",
+        "structured_feedback": "...",
+        "claim_calibration": "..."
+      },
+      "method": "...",
+      "experiment_plan": "...",
+      "ablation_or_stress_test": "...",
+      "expected_evidence": "...",
+      "failure_modes": "...",
+      "claim_boundary": "...",
+      "mini_paper": "300-450 words"
+    },
+    "shuffled_review_control": {
+      "hypothesis": "...",
+      "control_signal_used": ["..."],
+      "method": "...",
+      "experiment_plan": "...",
+      "ablation_or_stress_test": "...",
+      "expected_evidence": "...",
+      "failure_modes": "...",
+      "claim_boundary": "...",
+      "mini_paper": "300-450 words"
+    }
+  },
+  "generation_claim_boundary": "No completed benchmark result is claimed."
+}

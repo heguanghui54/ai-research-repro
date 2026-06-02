@@ -1,11 +1,11 @@
 # Delayed-Value Replay Cross-Model Judge Audit
 
-- Audit date: `2026-06-02T15:49:08Z`
+- Audit date: `2026-06-02T15:56:03Z`
 - Status: `pass`
-- Run dir: `docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500`
-- Models attempted: `claude-3-7-sonnet-latest, gemini-2.5-flash`
+- Run dir: `docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_132_review_2_20260603_003000`
+- Models attempted: `claude-3-7-sonnet-latest`
 - Models succeeded: `claude-3-7-sonnet-latest`
-- Models failed: `gemini-2.5-flash`
+- Models failed: ``
 - Strict label counts: `{'mixed_or_inconclusive': 1}`
 - Frontier winner counts: `{'six_gate_hybrid_guided': 1}`
 
@@ -19,7 +19,7 @@
 
 ## Warnings
 
-- models with archived errors: ['gemini-2.5-flash']
+- None
 
 ## Claim Boundary
 

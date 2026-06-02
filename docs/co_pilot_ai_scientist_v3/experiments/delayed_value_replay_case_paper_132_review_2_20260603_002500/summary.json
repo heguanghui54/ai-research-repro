@@ -1,0 +1,146 @@
+{
+  "run_id": "delayed_value_replay_case_paper_132_review_2_20260603_002500",
+  "timestamp_utc": "2026-06-02T15:45:57Z",
+  "status": "executed_delayed_value_replay_case",
+  "case_id": "paper_132_review_2",
+  "title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+  "source_spec": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_132_review_2/replay_spec.json",
+  "generation_model": "gpt-4o-mini",
+  "judge_model": "gpt-4o-mini",
+  "live_model_calls": 2,
+  "generation_latency_seconds": 29.613,
+  "scoring_latency_seconds": 9.045,
+  "generated": {
+    "case_id": "paper_132_review_2",
+    "artifacts": {
+      "paper_only": {
+        "hypothesis": "Averaged Stochastic Gradient Descent (SGD) can achieve optimal convergence rates under the Neural Tangent Kernel (NTK) regime, but its generalization performance may vary with finite-width effects.",
+        "method": "The study will analyze the convergence rates of averaged SGD in the NTK regime, focusing on the impact of network width on generalization.",
+        "experiment_plan": "1. Derive theoretical bounds for averaged SGD under NTK assumptions. 2. Conduct numerical experiments comparing averaged SGD performance across varying network widths.",
+        "ablation_or_stress_test": "Test the performance of averaged SGD on networks with non-smooth activation functions to assess robustness beyond the original assumptions.",
+        "expected_evidence": "Comparison of theoretical predictions with empirical results, demonstrating the influence of network width on generalization.",
+        "failure_modes": "Overclaiming generalization capabilities without empirical support; failing to address the limitations of the NTK assumptions.",
+        "claim_boundary": "The study does not claim definitive results on generalization beyond the derived theoretical bounds.",
+        "mini_paper": "This study investigates the convergence rates of Averaged Stochastic Gradient Descent (SGD) within the Neural Tangent Kernel (NTK) framework, emphasizing the interplay between network width and generalization performance. The hypothesis posits that while averaged SGD can achieve optimal rates under NTK assumptions, its generalization ability may be sensitive to the width of the neural network. To explore this, we will derive theoretical bounds for averaged SGD and conduct numerical experiments that vary the width of the networks. A key component of our approach will be an ablation test, where we will evaluate the performance of averaged SGD using non-smooth activation functions, thereby stress-testing the robustness of our findings against the original assumptions. We expect our results to reveal a nuanced relationship between network width and generalization, contributing to the understanding of averaged SGD in practical settings. However, we will be cautious not to overclaim the generalization capabilities of our findings, ensuring that our conclusions remain grounded in the theoretical framework established."
+      },
+      "raw_review_guided": {
+        "hypothesis": "The generalization ability of averaged SGD under NTK assumptions can be enhanced by exploring finite-width effects.",
+        "review_signal_used": [
+          "The paper focuses on understanding neural tangent kernel (NTK)",
+          "characterizing the generalization ability of artificial neural networks",
+          "derive minimax-optimal learning rates"
+        ],
+        "method": "Investigate the relationship between averaged SGD rates and generalization performance in finite-width networks.",
+        "experiment_plan": "1. Analyze the learning rates derived in the original paper. 2. Conduct experiments to compare generalization performance of averaged SGD across different network widths.",
+        "ablation_or_stress_test": "Evaluate averaged SGD on a dataset with noisy labels to assess its robustness in practical scenarios.",
+        "expected_evidence": "Empirical results showing the effect of network width on generalization performance, aligned with theoretical predictions.",
+        "failure_modes": "Generic praise for theory without new insights; failing to provide empirical evidence for claims.",
+        "claim_boundary": "The study does not claim to provide a comprehensive understanding of generalization mechanisms beyond the explored scenarios.",
+        "mini_paper": "This research aims to deepen the understanding of Averaged Stochastic Gradient Descent (SGD) within the Neural Tangent Kernel (NTK) framework by investigating its generalization capabilities in finite-width networks. The hypothesis suggests that the generalization ability of averaged SGD can be significantly influenced by the width of the neural network. Building on the original paper's findings, we will analyze the minimax-optimal learning rates and conduct experiments to compare the generalization performance of averaged SGD across various network widths. An ablation test will be performed using a dataset with noisy labels to evaluate the robustness of averaged SGD in real-world scenarios. We anticipate that our findings will reveal critical insights into the interplay between network width and generalization, providing empirical support for the theoretical predictions made in the original study. However, we will ensure that our claims remain within the bounds of our experimental design, avoiding overgeneralization of the results."
+      },
+      "six_gate_hybrid_guided": {
+        "hypothesis": "Averaged SGD's performance can be optimized by investigating its behavior under finite-width conditions, revealing deeper insights into generalization mechanisms.",
+        "gate_actions": {
+          "scientific_taste_prior": "The review highlights the importance of generalization in the context of averaged SGD and NTK, suggesting a need for deeper exploration of finite-width effects.",
+          "evaluator_stress_test": "Implement a benchmark comparing averaged SGD against standard SGD across varying network widths to expose potential weaknesses in the original claims.",
+          "frontier_steering": "Align the follow-up study with recent advancements in understanding generalization in neural networks, particularly in finite-width scenarios.",
+          "verifiable_micro_evolution": "Develop a specific experiment to quantify the impact of network width on generalization performance, providing a clear metric for evaluation.",
+          "structured_feedback": "Transform vague suggestions from the review into actionable steps, such as specifying the types of networks and datasets to use.",
+          "claim_calibration": "The follow-up must not claim universal applicability of results beyond the tested network architectures and conditions."
+        },
+        "method": "Conduct a comprehensive analysis of averaged SGD's performance across different network widths, focusing on generalization.",
+        "experiment_plan": "1. Establish benchmarks comparing averaged SGD and standard SGD. 2. Analyze the impact of varying network widths on generalization performance.",
+        "ablation_or_stress_test": "Test averaged SGD on adversarial examples to assess its robustness and generalization under challenging conditions.",
+        "expected_evidence": "Results demonstrating how network width affects generalization, providing insights into the mechanisms at play.",
+        "failure_modes": "Generic praise without actionable insights; failing to adequately stress-test the original claims.",
+        "claim_boundary": "The study does not claim to provide exhaustive insights into generalization mechanisms beyond the explored scenarios.",
+        "mini_paper": "This research aims to explore the performance of Averaged Stochastic Gradient Descent (SGD) under varying network widths, particularly focusing on its generalization capabilities within the Neural Tangent Kernel (NTK) framework. The hypothesis posits that by investigating the behavior of averaged SGD in finite-width conditions, we can uncover deeper insights into generalization mechanisms. To achieve this, we will establish benchmarks comparing averaged SGD with standard SGD across different network architectures. Additionally, we will analyze how varying network widths influence generalization performance. An ablation test will involve evaluating averaged SGD on adversarial examples to assess its robustness under challenging conditions. We expect our findings to reveal critical insights into the relationship between network width and generalization, aligning with recent advancements in the field. However, we will ensure that our claims remain calibrated, avoiding overgeneralization beyond the tested scenarios."
+      },
+      "shuffled_review_control": {
+        "hypothesis": "The generalization performance of averaged SGD can be influenced by network architecture and training dynamics.",
+        "control_signal_used": [
+          "The paper discusses the role of SGD in optimization",
+          "explores the implications of network design on learning rates",
+          "highlights the importance of empirical validation"
+        ],
+        "method": "Analyze the performance of averaged SGD across different network architectures and training conditions.",
+        "experiment_plan": "1. Compare averaged SGD performance on various architectures. 2. Evaluate the impact of training dynamics on generalization.",
+        "ablation_or_stress_test": "Conduct experiments with varying training data distributions to assess the robustness of averaged SGD.",
+        "expected_evidence": "Empirical results showing the relationship between network architecture, training dynamics, and generalization performance.",
+        "failure_modes": "Generic praise for theoretical insights without empirical support; failing to address the limitations of the study.",
+        "claim_boundary": "The study does not claim to provide a comprehensive understanding of all factors influencing generalization.",
+        "mini_paper": "This research investigates the performance of Averaged Stochastic Gradient Descent (SGD) across various network architectures and training dynamics, aiming to understand its generalization capabilities. The hypothesis suggests that the generalization performance of averaged SGD can be significantly influenced by the choice of network architecture and the dynamics of the training process. To explore this, we will conduct comparative analyses of averaged SGD performance on different architectures, evaluating how variations in training dynamics affect generalization. An ablation test will involve experimenting with diverse training data distributions to assess the robustness of averaged SGD. We anticipate that our findings will provide valuable insights into the interplay between network design, training dynamics, and generalization performance. However, we will ensure that our claims remain within the bounds of our experimental design, avoiding overgeneralization of the results."
+      }
+    },
+    "generation_claim_boundary": "No completed benchmark result is claimed."
+  },
+  "scoring": {
+    "case_id": "paper_132_review_2",
+    "per_condition": {
+      "paper_only": {
+        "short_term_score": 3.0,
+        "frontier_alignment_score": 3.0,
+        "actionability_score": 3.0,
+        "specificity_score": 3.0,
+        "claim_calibration_score": 4.0,
+        "overall": 3.0,
+        "rationale": "The paper presents a solid hypothesis and method but lacks depth in exploring generalization mechanisms and empirical validation."
+      },
+      "raw_review_guided": {
+        "short_term_score": 4.0,
+        "frontier_alignment_score": 4.0,
+        "actionability_score": 4.0,
+        "specificity_score": 4.0,
+        "claim_calibration_score": 4.0,
+        "overall": 4.0,
+        "rationale": "This artifact effectively builds on the original paper, providing actionable insights and a clear experimental plan, aligning well with frontier themes."
+      },
+      "six_gate_hybrid_guided": {
+        "short_term_score": 4.0,
+        "frontier_alignment_score": 5.0,
+        "actionability_score": 5.0,
+        "specificity_score": 5.0,
+        "claim_calibration_score": 4.0,
+        "overall": 5.0,
+        "rationale": "The six-gate hybrid approach demonstrates strong alignment with frontier themes and provides specific, actionable steps for future research."
+      },
+      "shuffled_review_control": {
+        "short_term_score": 2.0,
+        "frontier_alignment_score": 2.0,
+        "actionability_score": 2.0,
+        "specificity_score": 2.0,
+        "claim_calibration_score": 3.0,
+        "overall": 2.0,
+        "rationale": "This artifact lacks depth and specificity, providing generic insights without strong alignment to frontier themes or actionable steps."
+      }
+    },
+    "winner_short_term": "tie",
+    "winner_frontier": "six_gate_hybrid_guided",
+    "delayed_value_label": "mixed_or_inconclusive",
+    "delayed_value_rationale": "The artifacts demonstrate a positive alignment with the delayed-value rule, particularly in the context of actionable insights and frontier alignment.",
+    "best_review_signal": "none",
+    "failure_modes_observed": [
+      "Generic praise without actionable insights",
+      "Overclaiming generalization capabilities without empirical support"
+    ],
+    "claim_boundary": "No completed benchmark result is claimed.",
+    "model_delayed_value_label": "positive",
+    "deterministic_label_note": "strict preregistered delayed-value rule not satisfied; guided conditions did not have lower short-term score than paper_only while beating paper_only and shuffled_control on frontier alignment"
+  },
+  "claim_boundary": "This is one live model-generated four-condition mini-paper replay. It scores research-plan artifacts only; it does not rerun the original paper benchmarks, collect human expert ratings, or prove delayed-value review efficacy.",
+  "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/summary.json",
+  "artifacts_written": [
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/generation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/generated_artifacts.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/scoring_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/scoring_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/condition_scores.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/paper_only_artifact.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/raw_review_guided_artifact.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/six_gate_hybrid_guided_artifact.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500/shuffled_review_control_artifact.md"
+  ]
+}

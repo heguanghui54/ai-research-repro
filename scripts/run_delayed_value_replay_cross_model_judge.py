@@ -302,6 +302,8 @@ def main() -> None:
         raise SystemExit("MONICA_API_KEY is required. Source ~/.codex/env before running.")
 
     case_run = Path(args.case_run)
+    if not case_run.is_absolute():
+        case_run = ROOT / case_run
     case_summary = _load_json(case_run / "summary.json")
     spec = _load_json(ROOT / case_summary["source_spec"])
     run_id = args.run_id or f"delayed_value_replay_cross_model_judge_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}"

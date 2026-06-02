@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,7 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DOC_DIR = ROOT / "docs" / "co_pilot_ai_scientist_v3"
 AUDIT_DIR = DOC_DIR / "audits"
-RUN_DIR = DOC_DIR / "experiments" / "delayed_value_replay_case_paper_105_review_1_20260602_235500"
+DEFAULT_RUN_DIR = DOC_DIR / "experiments" / "delayed_value_replay_case_paper_105_review_1_20260602_235500"
 CONDITIONS = [
     "paper_only",
     "raw_review_guided",
@@ -63,23 +64,30 @@ def _strict_label(scores: dict[str, Any]) -> tuple[str, list[str]]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--run-dir", default=str(DEFAULT_RUN_DIR))
+    args = parser.parse_args()
+    run_dir = Path(args.run_dir)
+    if not run_dir.is_absolute():
+        run_dir = ROOT / run_dir
+
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
     errors: list[str] = []
     warnings: list[str] = []
-    summary_path = RUN_DIR / "summary.json"
-    scores_path = RUN_DIR / "condition_scores.json"
-    readme_path = RUN_DIR / "README.md"
+    summary_path = run_dir / "summary.json"
+    scores_path = run_dir / "condition_scores.json"
+    readme_path = run_dir / "README.md"
     for path in [summary_path, scores_path, readme_path]:
         if not _file_ok(path):
             errors.append(f"missing required replay artifact: {_rel(path)}")
     for condition in CONDITIONS:
         for suffix in ["_artifact.md"]:
-            path = RUN_DIR / f"{condition}{suffix}"
+            path = run_dir / f"{condition}{suffix}"
             if not _file_ok(path, min_bytes=100):
                 errors.append(f"missing condition artifact: {_rel(path)}")
     for name in ["generation_prompt.txt", "generation_raw_response.txt", "scoring_prompt.txt", "scoring_raw_response.txt"]:
-        if not _file_ok(RUN_DIR / name, min_bytes=100):
-            errors.append(f"missing prompt/response artifact: {_rel(RUN_DIR / name)}")
+        if not _file_ok(run_dir / name, min_bytes=100):
+            errors.append(f"missing prompt/response artifact: {_rel(run_dir / name)}")
 
     summary = _load_json(summary_path) if summary_path.exists() else {}
     scores = _load_json(scores_path) if scores_path.exists() else {}
@@ -95,13 +103,14 @@ def main() -> None:
         errors.append(f"reported delayed-value label {reported_label} does not match strict label {strict_label}")
     if model_label == "positive" and strict_label != "positive":
         warnings.append("raw model judge labeled the case positive, but strict preregistered rule does not")
-    if "does not rerun medical image segmentation benchmarks" not in summary.get("claim_boundary", ""):
+    if "does not rerun" not in summary.get("claim_boundary", "") or "benchmarks" not in summary.get("claim_boundary", ""):
         errors.append("summary missing benchmark non-execution boundary")
 
+    safe_case = str(summary.get("case_id") or run_dir.name).replace("/", "_")
     audit = {
         "audit_date": _utc_now(),
         "status": "pass" if not errors else "fail",
-        "run_dir": _rel(RUN_DIR),
+        "run_dir": _rel(run_dir),
         "case_id": summary.get("case_id"),
         "live_model_calls": summary.get("live_model_calls"),
         "generation_model": summary.get("generation_model"),
@@ -120,8 +129,9 @@ def main() -> None:
             "does not mean benchmark experiments or human expert ratings were run."
         ),
     }
-    json_path = AUDIT_DIR / "delayed_value_replay_case_audit.json"
-    md_path = AUDIT_DIR / "delayed_value_replay_case_audit.md"
+    suffix = "" if run_dir == DEFAULT_RUN_DIR else f"_{safe_case}"
+    json_path = AUDIT_DIR / f"delayed_value_replay_case_audit{suffix}.json"
+    md_path = AUDIT_DIR / f"delayed_value_replay_case_audit{suffix}.md"
     json_path.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     lines = [
         "# Delayed-Value Replay Case Audit",

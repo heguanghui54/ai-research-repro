@@ -1,17 +1,14 @@
 {
-  "audit_date": "2026-06-02T15:49:08Z",
+  "audit_date": "2026-06-02T15:56:03Z",
   "status": "pass",
-  "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500",
+  "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_132_review_2_20260603_003000",
   "models_attempted": [
-    "claude-3-7-sonnet-latest",
-    "gemini-2.5-flash"
+    "claude-3-7-sonnet-latest"
   ],
   "models_succeeded": [
     "claude-3-7-sonnet-latest"
   ],
-  "models_failed": [
-    "gemini-2.5-flash"
-  ],
+  "models_failed": [],
   "aggregate": {
     "judge_count": 1,
     "strict_label_counts": {
@@ -40,8 +37,6 @@
     }
   ],
   "errors": [],
-  "warnings": [
-    "models with archived errors: ['gemini-2.5-flash']"
-  ],
+  "warnings": [],
   "claim_boundary": "A pass means at least one independent model judge scored the existing four-condition replay and the strict delayed-value label was archived. It is still model evaluation, not human expert review or benchmark execution."
 }

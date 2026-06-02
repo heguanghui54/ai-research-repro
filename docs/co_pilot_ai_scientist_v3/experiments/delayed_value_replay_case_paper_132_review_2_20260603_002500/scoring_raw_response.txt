@@ -1,0 +1,51 @@
+{
+  "case_id": "paper_132_review_2",
+  "per_condition": {
+    "paper_only": {
+      "short_term_score": 3,
+      "frontier_alignment_score": 3,
+      "actionability_score": 3,
+      "specificity_score": 3,
+      "claim_calibration_score": 4,
+      "overall": 3,
+      "rationale": "The paper presents a solid hypothesis and method but lacks depth in exploring generalization mechanisms and empirical validation."
+    },
+    "raw_review_guided": {
+      "short_term_score": 4,
+      "frontier_alignment_score": 4,
+      "actionability_score": 4,
+      "specificity_score": 4,
+      "claim_calibration_score": 4,
+      "overall": 4,
+      "rationale": "This artifact effectively builds on the original paper, providing actionable insights and a clear experimental plan, aligning well with frontier themes."
+    },
+    "six_gate_hybrid_guided": {
+      "short_term_score": 4,
+      "frontier_alignment_score": 5,
+      "actionability_score": 5,
+      "specificity_score": 5,
+      "claim_calibration_score": 4,
+      "overall": 5,
+      "rationale": "The six-gate hybrid approach demonstrates strong alignment with frontier themes and provides specific, actionable steps for future research."
+    },
+    "shuffled_review_control": {
+      "short_term_score": 2,
+      "frontier_alignment_score": 2,
+      "actionability_score": 2,
+      "specificity_score": 2,
+      "claim_calibration_score": 3,
+      "overall": 2,
+      "rationale": "This artifact lacks depth and specificity, providing generic insights without strong alignment to frontier themes or actionable steps."
+    }
+  },
+  "winner_short_term": "six_gate_hybrid_guided",
+  "winner_frontier": "six_gate_hybrid_guided",
+  "delayed_value_label": "positive",
+  "delayed_value_rationale": "The artifacts demonstrate a positive alignment with the delayed-value rule, particularly in the context of actionable insights and frontier alignment.",
+  "best_review_signal": "six_gate_hybrid_guided",
+  "failure_modes_observed": [
+    "Generic praise without actionable insights",
+    "Overclaiming generalization capabilities without empirical support"
+  ],
+  "claim_boundary": "No completed benchmark result is claimed."
+}

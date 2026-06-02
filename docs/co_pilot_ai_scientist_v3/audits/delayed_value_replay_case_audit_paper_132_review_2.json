@@ -1,8 +1,8 @@
 {
-  "audit_date": "2026-06-02T15:47:01Z",
+  "audit_date": "2026-06-02T15:56:03Z",
   "status": "pass",
-  "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500",
-  "case_id": "paper_105_review_1",
+  "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500",
+  "case_id": "paper_132_review_2",
   "live_model_calls": 2,
   "generation_model": "gpt-4o-mini",
   "judge_model": "gpt-4o-mini",
@@ -10,7 +10,7 @@
   "strict_delayed_value_label": "mixed_or_inconclusive",
   "reported_delayed_value_label": "mixed_or_inconclusive",
   "winner_short_term": "tie",
-  "winner_frontier": "tie",
+  "winner_frontier": "six_gate_hybrid_guided",
   "strict_rule_reasons": [
     "raw_review_guided: short_ok=False, frontier_ok=True, control_ok=True, action_ok=True, specific_ok=True",
     "six_gate_hybrid_guided: short_ok=False, frontier_ok=True, control_ok=True, action_ok=True, specific_ok=True"

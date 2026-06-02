@@ -341,6 +341,7 @@ def _update_manifest(paths: list[str], summary: dict[str, Any]) -> None:
         "run_id": summary["run_id"],
         "case_id": summary["case_id"],
         "summary": summary["summary_path"],
+        "status": summary["status"],
         "generation_model": summary["generation_model"],
         "judge_model": summary["judge_model"],
         "delayed_value_label": summary["scoring"].get("delayed_value_label"),
@@ -369,8 +370,10 @@ def main() -> None:
     run_id = args.run_id or f"delayed_value_replay_case_{args.case_id}_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}"
     out_dir = DOC_DIR / "experiments" / run_id
     out_dir.mkdir(parents=True, exist_ok=True)
+    paths: list[str] = []
 
     generation_prompt = _generation_prompt(args.case_id, spec, prompts)
+    paths.append(_write(out_dir / "generation_prompt.txt", generation_prompt))
     generation_response = _call_monica(
         model=args.generation_model,
         messages=[
@@ -381,9 +384,47 @@ def main() -> None:
         temperature=0.25,
     )
     generation_text = _message_text(generation_response)
-    generated = _extract_json_object(generation_text)
+    paths.append(_write(out_dir / "generation_raw_response.txt", generation_text))
+    try:
+        generated = _extract_json_object(generation_text)
+    except Exception as exc:  # noqa: BLE001 - archived as live-model failure evidence.
+        summary = {
+            "run_id": run_id,
+            "timestamp_utc": _utc_now(),
+            "status": "failed_generation_json_parse",
+            "case_id": args.case_id,
+            "title": spec["title"],
+            "source_spec": _rel(case_dir / "replay_spec.json"),
+            "generation_model": args.generation_model,
+            "judge_model": args.judge_model,
+            "live_model_calls": 1,
+            "generation_latency_seconds": generation_response.get("_latency_seconds"),
+            "generated": {},
+            "scoring": {},
+            "parse_error": repr(exc),
+            "claim_boundary": (
+                "This failed live replay is archived as model-output robustness evidence. "
+                "No replay score, benchmark result, or delayed-value claim is made."
+            ),
+        }
+        summary_path = out_dir / "summary.json"
+        summary["summary_path"] = _rel(summary_path)
+        paths.extend(
+            [
+                _write(summary_path, json.dumps(summary, ensure_ascii=False, indent=2)),
+                _write(out_dir / "README.md", _markdown(summary)),
+            ]
+        )
+        summary["artifacts_written"] = paths
+        _write(summary_path, json.dumps(summary, ensure_ascii=False, indent=2))
+        if not args.no_manifest:
+            _update_manifest(paths + ["scripts/run_delayed_value_replay_case.py"], summary)
+        print(json.dumps(summary, ensure_ascii=False, indent=2))
+        raise SystemExit(2)
+    paths.append(_write(out_dir / "generated_artifacts.json", json.dumps(generated, ensure_ascii=False, indent=2)))
 
     scoring_prompt = _scoring_prompt(args.case_id, spec, generated)
+    paths.append(_write(out_dir / "scoring_prompt.txt", scoring_prompt))
     scoring_response = _call_monica(
         model=args.judge_model,
         messages=[
@@ -394,7 +435,47 @@ def main() -> None:
         temperature=0.05,
     )
     scoring_text = _message_text(scoring_response)
-    scoring = _normalize_scores(_extract_json_object(scoring_text))
+    paths.append(_write(out_dir / "scoring_raw_response.txt", scoring_text))
+    try:
+        scoring = _normalize_scores(_extract_json_object(scoring_text))
+    except Exception as exc:  # noqa: BLE001 - archived as live-model failure evidence.
+        summary = {
+            "run_id": run_id,
+            "timestamp_utc": _utc_now(),
+            "status": "failed_scoring_json_parse",
+            "case_id": args.case_id,
+            "title": spec["title"],
+            "source_spec": _rel(case_dir / "replay_spec.json"),
+            "generation_model": args.generation_model,
+            "judge_model": args.judge_model,
+            "live_model_calls": 2,
+            "generation_latency_seconds": generation_response.get("_latency_seconds"),
+            "scoring_latency_seconds": scoring_response.get("_latency_seconds"),
+            "generated": generated,
+            "scoring": {},
+            "parse_error": repr(exc),
+            "claim_boundary": (
+                "This failed live replay is archived as judge-output robustness evidence. "
+                "Generated artifacts exist, but no replay score, benchmark result, or "
+                "delayed-value claim is made."
+            ),
+        }
+        for condition, artifact in (generated.get("artifacts") or {}).items():
+            paths.append(_write(out_dir / f"{condition}_artifact.md", artifact.get("mini_paper", "")))
+        summary_path = out_dir / "summary.json"
+        summary["summary_path"] = _rel(summary_path)
+        paths.extend(
+            [
+                _write(summary_path, json.dumps(summary, ensure_ascii=False, indent=2)),
+                _write(out_dir / "README.md", _markdown(summary)),
+            ]
+        )
+        summary["artifacts_written"] = paths
+        _write(summary_path, json.dumps(summary, ensure_ascii=False, indent=2))
+        if not args.no_manifest:
+            _update_manifest(paths + ["scripts/run_delayed_value_replay_case.py"], summary)
+        print(json.dumps(summary, ensure_ascii=False, indent=2))
+        raise SystemExit(2)
 
     summary: dict[str, Any] = {
         "run_id": run_id,
@@ -412,19 +493,12 @@ def main() -> None:
         "scoring": scoring,
         "claim_boundary": (
             "This is one live model-generated four-condition mini-paper replay. It scores "
-            "research-plan artifacts only; it does not rerun medical image segmentation "
-            "benchmarks, collect human expert ratings, or prove delayed-value review efficacy."
+            "research-plan artifacts only; it does not rerun the original paper benchmarks, "
+            "collect human expert ratings, or prove delayed-value review efficacy."
         ),
     }
 
-    paths = [
-        _write(out_dir / "generation_prompt.txt", generation_prompt),
-        _write(out_dir / "generation_raw_response.txt", generation_text),
-        _write(out_dir / "generated_artifacts.json", json.dumps(generated, ensure_ascii=False, indent=2)),
-        _write(out_dir / "scoring_prompt.txt", scoring_prompt),
-        _write(out_dir / "scoring_raw_response.txt", scoring_text),
-        _write(out_dir / "condition_scores.json", json.dumps(scoring, ensure_ascii=False, indent=2)),
-    ]
+    paths.append(_write(out_dir / "condition_scores.json", json.dumps(scoring, ensure_ascii=False, indent=2)))
     summary_path = out_dir / "summary.json"
     summary["summary_path"] = _rel(summary_path)
     paths.extend(

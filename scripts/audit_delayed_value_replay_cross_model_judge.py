@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -12,7 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DOC_DIR = ROOT / "docs" / "co_pilot_ai_scientist_v3"
 AUDIT_DIR = DOC_DIR / "audits"
-RUN_DIR = DOC_DIR / "experiments" / "delayed_value_replay_cross_model_judge_20260603_001500"
+DEFAULT_RUN_DIR = DOC_DIR / "experiments" / "delayed_value_replay_cross_model_judge_20260603_001500"
 
 
 def _utc_now() -> str:
@@ -32,17 +33,24 @@ def _file_ok(path: Path, min_bytes: int = 20) -> bool:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--run-dir", default=str(DEFAULT_RUN_DIR))
+    args = parser.parse_args()
+    run_dir = Path(args.run_dir)
+    if not run_dir.is_absolute():
+        run_dir = ROOT / run_dir
+
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
     errors: list[str] = []
     warnings: list[str] = []
-    summary_path = RUN_DIR / "summary.json"
+    summary_path = run_dir / "summary.json"
     if not _file_ok(summary_path):
         errors.append(f"missing summary: {_rel(summary_path)}")
         summary: dict[str, Any] = {}
     else:
         summary = _load_json(summary_path)
 
-    for path in [RUN_DIR / "README.md", RUN_DIR / "judge_prompt.txt"]:
+    for path in [run_dir / "README.md", run_dir / "judge_prompt.txt"]:
         if not _file_ok(path, min_bytes=100):
             errors.append(f"missing cross-model artifact: {_rel(path)}")
 
@@ -60,8 +68,8 @@ def main() -> None:
 
     judgement_checks = []
     for model, judgement in judgements.items():
-        raw_path = RUN_DIR / f"{model}_raw_response.txt"
-        json_path = RUN_DIR / f"{model}_judgement.json"
+        raw_path = run_dir / f"{model}_raw_response.txt"
+        json_path = run_dir / f"{model}_judgement.json"
         missing = []
         for path in [raw_path, json_path]:
             if not _file_ok(path, min_bytes=100):
@@ -87,7 +95,7 @@ def main() -> None:
     audit = {
         "audit_date": _utc_now(),
         "status": "pass" if not errors else "fail",
-        "run_dir": _rel(RUN_DIR),
+        "run_dir": _rel(run_dir),
         "models_attempted": summary.get("models_attempted", []),
         "models_succeeded": summary.get("models_succeeded", []),
         "models_failed": sorted(errors_by_model),
@@ -101,8 +109,10 @@ def main() -> None:
             "It is still model evaluation, not human expert review or benchmark execution."
         ),
     }
-    json_path = AUDIT_DIR / "delayed_value_replay_cross_model_judge_audit.json"
-    md_path = AUDIT_DIR / "delayed_value_replay_cross_model_judge_audit.md"
+    safe_run = run_dir.name.replace("/", "_")
+    suffix = "" if run_dir == DEFAULT_RUN_DIR else f"_{safe_run}"
+    json_path = AUDIT_DIR / f"delayed_value_replay_cross_model_judge_audit{suffix}.json"
+    md_path = AUDIT_DIR / f"delayed_value_replay_cross_model_judge_audit{suffix}.md"
     json_path.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     lines = [
         "# Delayed-Value Replay Cross-Model Judge Audit",

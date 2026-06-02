@@ -1,6 +1,6 @@
 # Temporal Frontier Replay Audit
 
-Audit date: `2026-06-02T15:38:03Z`
+Audit date: `2026-06-02T15:56:19Z`
 
 Status: `pass_with_negative_delayed_value_evidence`
 
