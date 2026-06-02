@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T11:40:14Z`
+- Audit date: `2026-06-02T11:44:20Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `7badd8f35a9208ae55a6fa6ea9393869fef897b2`
+- HEAD: `3151dc32d269cc8e681392c64e3e995ea6c96042`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `629`
+- Manifest artifacts: `632`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `629/629`
+- Manifest coverage: `632/632`
 
 ## Explicit Requirements
 
@@ -20,6 +20,7 @@
 - `package_consistency_pass`: `pass`
 - `prospective_package_audit_pass`: `pass`
 - `top_conference_roadmap_audit_pass`: `pass`
+- `human_expert_blind_review_packet_audit_pass`: `pass`
 - `lhtg_operationalized`: `pass`
 - `top_conference_boundary_kept`: `pass`
 - `unsupported_superiority_claims_kept_unsupported`: `pass`
@@ -30,15 +31,15 @@
 - `chinese_pdf`: `pass` (114561 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
 - `focused_english_pdf`: `pass` (32998 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `focused_chinese_pdf`: `pass` (61838 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
-- `root_readme`: `pass` (7314 bytes) - `README.md`
+- `root_readme`: `pass` (7447 bytes) - `README.md`
 - `english_submission_card`: `pass` (4088 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `chinese_submission_card`: `pass` (4033 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_zh.md`
 - `top_conference_evidence_roadmap`: `pass` (6603 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
 - `top_conference_evidence_roadmap_json`: `pass` (3762 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
-- `english_usage`: `pass` (19129 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
-- `chinese_usage`: `pass` (19594 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
-- `english_runbook`: `pass` (13563 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
-- `chinese_runbook`: `pass` (12340 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
+- `english_usage`: `pass` (19460 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
+- `chinese_usage`: `pass` (19890 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
+- `english_runbook`: `pass` (13724 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
+- `chinese_runbook`: `pass` (12498 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
 - `reusable_skill`: `pass` (21753 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
 - `task_template`: `pass` (2140 bytes) - `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`
 - `gate_template`: `pass` (1789 bytes) - `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`

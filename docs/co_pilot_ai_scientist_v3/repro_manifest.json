@@ -644,7 +644,10 @@
     "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
     "scripts/audit_top_conference_evidence_roadmap.py",
     "docs/co_pilot_ai_scientist_v3/audits/top_conference_evidence_roadmap_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/top_conference_evidence_roadmap_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/top_conference_evidence_roadmap_audit.md",
+    "scripts/audit_human_expert_blind_review_packet.py",
+    "docs/co_pilot_ai_scientist_v3/audits/human_expert_blind_review_packet_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/human_expert_blind_review_packet_audit.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1666,9 +1669,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "7badd8f35a9208ae55a6fa6ea9393869fef897b2",
+    "head": "3151dc32d269cc8e681392c64e3e995ea6c96042",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 629,
+    "manifest_artifacts": 632,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   }

@@ -143,6 +143,7 @@ python3 scripts/run_delayed_value_candidate_frontier_validation.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
+python3 scripts/audit_human_expert_blind_review_packet.py
 ```
 
 当前预期边界：
@@ -151,6 +152,7 @@ python3 scripts/audit_top_conference_evidence_roadmap.py
 - positive delayed-value cases：`0`；
 - LHTG/DVRS 状态：已经操作化，但还没有正向 delayed-value 证明。
 - roadmap audit：下一步证据里程碑可执行，但不表示顶会实证已经完成。
+- human-expert packet audit：盲审收集准备就绪，但不表示已经有人类评分证据。
 
 这应作为 routing 和可证伪性审计，而不是“人类评议已经提升长时域科研发现”的证据。
 

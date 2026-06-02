@@ -1,0 +1,157 @@
+{
+  "audit_date": "2026-06-02T11:44:17Z",
+  "status": "pass_prepared_no_human_ratings",
+  "packet_dir": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000",
+  "pair_count": 6,
+  "required_files_checked": 19,
+  "file_status": {
+    "README.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/README.md",
+      "exists": true,
+      "bytes": 2042,
+      "ok": true
+    },
+    "reviewer_index.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/reviewer_index.md",
+      "exists": true,
+      "bytes": 1020,
+      "ok": true
+    },
+    "instructions.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/instructions.md",
+      "exists": true,
+      "bytes": 1355,
+      "ok": true
+    },
+    "consent_privacy_note.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/consent_privacy_note.md",
+      "exists": true,
+      "bytes": 1241,
+      "ok": true
+    },
+    "recruitment_email.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/recruitment_email.md",
+      "exists": true,
+      "bytes": 1337,
+      "ok": true
+    },
+    "collection_protocol.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/collection_protocol.md",
+      "exists": true,
+      "bytes": 2660,
+      "ok": true
+    },
+    "score_sheet_template.csv": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/score_sheet_template.csv",
+      "exists": true,
+      "bytes": 418,
+      "ok": true
+    },
+    "pairs.json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs.json",
+      "exists": true,
+      "bytes": 28348,
+      "ok": true
+    },
+    "condition_key.json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/condition_key.json",
+      "exists": true,
+      "bytes": 1469,
+      "ok": true
+    },
+    "preregistration_analysis_plan.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.md",
+      "exists": true,
+      "bytes": 4980,
+      "ok": true
+    },
+    "preregistration_analysis_plan.json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.json",
+      "exists": true,
+      "bytes": 2503,
+      "ok": true
+    },
+    "template_summary_smoke/summary.json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.json",
+      "exists": true,
+      "bytes": 4128,
+      "ok": true
+    },
+    "template_summary_smoke/summary.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.md",
+      "exists": true,
+      "bytes": 699,
+      "ok": true
+    },
+    "pairs/pair_01.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_01.md",
+      "exists": true,
+      "bytes": 4947,
+      "ok": true
+    },
+    "pairs/pair_02.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_02.md",
+      "exists": true,
+      "bytes": 4568,
+      "ok": true
+    },
+    "pairs/pair_03.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_03.md",
+      "exists": true,
+      "bytes": 4821,
+      "ok": true
+    },
+    "pairs/pair_04.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_04.md",
+      "exists": true,
+      "bytes": 4592,
+      "ok": true
+    },
+    "pairs/pair_05.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_05.md",
+      "exists": true,
+      "bytes": 4455,
+      "ok": true
+    },
+    "pairs/pair_06.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_06.md",
+      "exists": true,
+      "bytes": 4519,
+      "ok": true
+    }
+  },
+  "score_template_columns_present": {
+    "reviewer_id": true,
+    "pair_id": true,
+    "winner": true,
+    "A_problem_framing": true,
+    "A_method_specificity": true,
+    "A_experiment_design": true,
+    "A_limitation_honesty": true,
+    "A_claim_calibration": true,
+    "A_overall_quality": true,
+    "B_problem_framing": true,
+    "B_method_specificity": true,
+    "B_experiment_design": true,
+    "B_limitation_honesty": true,
+    "B_claim_calibration": true,
+    "B_overall_quality": true,
+    "rationale": true
+  },
+  "reviewer_visible_file_count": 12,
+  "hidden_file_count": 5,
+  "condition_key_hidden": true,
+  "preregistration": {
+    "planned_minimum_raters": 3,
+    "planned_minimum_valid_rows": 18,
+    "statistical_tests": [
+      "bootstrap_confidence_interval_for_review_guided_minus_comparator_mean_delta",
+      "two_sided_exact_binomial_test_for_review_guided_wins_excluding_ties",
+      "fleiss_kappa_for_A_B_tie_when_enough_balanced_votes_exist"
+    ]
+  },
+  "template_summary_smoke_status": "not_enough_valid_votes",
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "This audit verifies that the blind review packet is ready to collect independent human ratings. It is not human-rating evidence."
+}

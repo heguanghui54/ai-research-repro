@@ -62,6 +62,9 @@ claim calibration.
 - `audits/top_conference_evidence_roadmap_audit.md`: audit that verifies the
   roadmap turns each strong-venue blocker into a concrete experiment,
   upgrade condition, and fallback.
+- `audits/human_expert_blind_review_packet_audit.md`: audit that verifies the
+  blind human-expert rating packet is ready for independent collection while
+  preserving the no-ratings-yet evidence boundary.
 - `focused_submission_rewrite_plan.md`: conference-style rewrite plan that
   separates the current lab-record manuscript from the focused main paper
   needed for a strong venue.
@@ -182,17 +185,20 @@ python3 -m pip install -r requirements.txt
 python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
+python3 scripts/audit_human_expert_blind_review_packet.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py
 ```
 
-The latest completed clean-clone audit checks commit `7badd8f35` from the
-pushed branch and reports `629/629` manifest artifacts present, LHTG/DVRS
-status `pass_with_no_positive_dvrs`, TFR status
-`pass_with_negative_delayed_value_evidence`, roadmap audit `pass`, package
-consistency `pass`, and objective delivery
-`pass_artifact_delivery_with_empirical_gaps`.
+The current local external-check path reports `632/632` manifest artifacts,
+LHTG/DVRS status `pass_with_no_positive_dvrs`, TFR status
+`pass_with_negative_delayed_value_evidence`, roadmap audit `pass`, human expert
+blind-review packet audit `pass_prepared_no_human_ratings`, package consistency
+`pass`, and objective delivery `pass_artifact_delivery_with_empirical_gaps`.
+The latest completed clean-clone audit checks an ancestor commit
+(`7badd8f35`) and should be read as independent reproducibility evidence for
+that pushed artifact set until the next clean-clone refresh.
 
 The last status phrase is intentional. It means the requested artifact pipeline
 is delivered and auditable, but the original top-conference empirical target is

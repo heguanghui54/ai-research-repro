@@ -163,6 +163,7 @@ python3 scripts/run_delayed_value_review_candidate_mining.py
 python3 scripts/run_delayed_value_candidate_frontier_validation.py
 python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
+python3 scripts/audit_human_expert_blind_review_packet.py
 ```
 
 Interpret this audit conservatively. The current archived package finds `120`
@@ -181,6 +182,11 @@ The roadmap audit checks that the current top-conference blockers are converted
 into concrete next experiments. Passing it means the roadmap is actionable; it
 does not mean the independent human-review or matched-benchmark milestones have
 already been completed.
+
+The human-expert packet audit checks that the blind A/B materials, hidden
+condition key, score template, preregistration, and summarizer smoke are ready
+for independent collection. Passing it is readiness evidence only; it is not a
+substitute for completed human ratings.
 
 To mine which review comments are actionable as scientific taste/insight for
 IGRE gates, run:

@@ -148,6 +148,7 @@ python3 scripts/run_delayed_value_candidate_frontier_validation.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
+python3 scripts/audit_human_expert_blind_review_packet.py
 ```
 
 Expected current boundary:
@@ -157,6 +158,8 @@ Expected current boundary:
 - LHTG/DVRS status: operationalized, with no positive delayed-value proof.
 - roadmap audit: actionable next-evidence milestones, not completed
   top-conference evidence.
+- human-expert packet audit: blind-review collection readiness, not completed
+  human-rating evidence.
 
 Use this as a routing and falsifiability audit. It is not evidence that human
 reviews already improve long-horizon discovery.

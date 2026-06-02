@@ -154,6 +154,7 @@ python3 scripts/run_delayed_value_review_candidate_mining.py
 python3 scripts/run_delayed_value_candidate_frontier_validation.py
 python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
+python3 scripts/audit_human_expert_blind_review_packet.py
 ```
 
 这个 audit 必须保守解释。当前归档包找到 `120` 条 delayed-value replay
@@ -167,6 +168,10 @@ TFR 必须保守解释。正向 delayed-value case 要求 review guidance 降低
 
 roadmap audit 检查当前顶会 blocker 是否已经被转换为具体的下一步实验。它通过
 只表示路线图可执行，不表示独立人类评审或 matched benchmark 里程碑已经完成。
+
+human-expert packet audit 检查盲审 A/B 材料、隐藏 condition key、评分模板、
+预注册方案和 summarizer smoke 是否已经准备好。它通过只表示收集准备就绪，
+不等于已经收集到独立人类评分。
 
 如果要挖掘哪些评审意见最适合作为 IGRE gate 的科研品味/insight 控制信号，运行：
 

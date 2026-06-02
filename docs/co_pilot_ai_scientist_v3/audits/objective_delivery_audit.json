@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T11:40:14Z",
+  "audit_date": "2026-06-02T11:44:20Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "7badd8f35a9208ae55a6fa6ea9393869fef897b2",
+  "head": "3151dc32d269cc8e681392c64e3e995ea6c96042",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -14,6 +14,7 @@
     "package_consistency_pass": true,
     "prospective_package_audit_pass": true,
     "top_conference_roadmap_audit_pass": true,
+    "human_expert_blind_review_packet_audit_pass": true,
     "lhtg_operationalized": true,
     "top_conference_boundary_kept": true,
     "unsupported_superiority_claims_kept_unsupported": true
@@ -46,7 +47,7 @@
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 7314,
+      "bytes": 7447,
       "ok": true
     },
     "english_submission_card": {
@@ -76,25 +77,25 @@
     "english_usage": {
       "path": "docs/co_pilot_ai_scientist_v3/usage_en.md",
       "exists": true,
-      "bytes": 19129,
+      "bytes": 19460,
       "ok": true
     },
     "chinese_usage": {
       "path": "docs/co_pilot_ai_scientist_v3/usage_zh.md",
       "exists": true,
-      "bytes": 19594,
+      "bytes": 19890,
       "ok": true
     },
     "english_runbook": {
       "path": "docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md",
       "exists": true,
-      "bytes": 13563,
+      "bytes": 13724,
       "ok": true
     },
     "chinese_runbook": {
       "path": "docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md",
       "exists": true,
-      "bytes": 12340,
+      "bytes": 12498,
       "ok": true
     },
     "reusable_skill": {
@@ -142,6 +143,7 @@
       "top_conference_evidence_roadmap.md": true,
       "External Verification Entry Point": true,
       "audit_top_conference_evidence_roadmap.py": true,
+      "audit_human_expert_blind_review_packet.py": true,
       "pass_artifact_delivery_with_empirical_gaps": true,
       "top-conference empirical target is not yet satisfied": true
     },
@@ -181,9 +183,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 629,
+  "manifest_artifacts": 632,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "629/629",
+  "manifest_coverage_ratio": "632/632",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",
