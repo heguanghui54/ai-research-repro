@@ -6,21 +6,22 @@ Repository source:
 
 - URL: `https://github.com/heguanghui54/ai-research-repro.git`
 - Branch: `codex/co-pilot-ai-scientist-v3`
-- Commit: `c4bb72410a08aedcdf8b7e38f9c53482271e93bf`
-- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone-c4bb7241`
+- Commit: `dc8f35be7f526eebe493548cf73dd98284a8bdfb`
+- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone-dc8f35be`
 - Clone mode: shallow depth-1 single-branch clone
 
 ## Commands Run
 
 ```bash
-rm -rf /tmp/copilot-v3-clean-clone-c4bb7241
+rm -rf /tmp/copilot-v3-clean-clone-dc8f35be
 git clone --depth 1 --single-branch --branch codex/co-pilot-ai-scientist-v3 \
   https://github.com/heguanghui54/ai-research-repro.git \
-  /tmp/copilot-v3-clean-clone-c4bb7241
-cd /tmp/copilot-v3-clean-clone-c4bb7241
+  /tmp/copilot-v3-clean-clone-dc8f35be
+cd /tmp/copilot-v3-clean-clone-dc8f35be
 git rev-parse HEAD
 git status --short
 python3 -m pip install -q -r requirements.txt
+python3 scripts/run_heldout_review_gate_validation.py
 python3 scripts/run_high_tail_power_analysis.py --simulations 5000
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_taste_insight_coverage.py
@@ -42,7 +43,7 @@ PY
 | Check | Result |
 | --- | --- |
 | GitHub branch shallow-cloned from scratch | Pass |
-| Checked-out commit | `c4bb72410a08aedcdf8b7e38f9c53482271e93bf` |
+| Checked-out commit | `dc8f35be7f526eebe493548cf73dd98284a8bdfb` |
 | Python dependencies installed from `requirements.txt` | Pass |
 | Taste/insight coverage audit reran | Pass |
 | Attention-cost audit reran | Pass |
@@ -56,11 +57,12 @@ PY
 | Review-frontier signal probe artifact present | Pass |
 | Semantic frontier judge probe artifact present | Pass |
 | High-tail power-analysis artifact present and rerunnable | Pass |
+| Held-out review-gate validation artifact present and rerunnable | Pass |
 | Claim-evidence audit JSON present and internally linked | Pass |
 | Temporal Frontier Replay method text and operational audit present | Pass |
 | Metric-gaming evaluator-stress smoke present | Pass |
 | Live skill invocation smoke present | Pass |
-| Manifest artifacts found | Pass: 599/599 |
+| Manifest artifacts found | Pass: 603/603 |
 | Missing manifest artifacts | 0 |
 | Taste/insight gate records audited | 39 |
 | Complete taste/insight records | 2 |
@@ -88,6 +90,9 @@ PY
 | Semantic judge delayed-value candidates | 0 |
 | High-tail 5% to 10% lift, 80% power n per arm | 500 |
 | High-tail 5% to 15% lift, 80% power n per arm | 150 |
+| Held-out review-gate validation held-out reviews | 94 |
+| Held-out review-gate validation full utility capture | 1.000 |
+| Held-out review-gate validation best single-gate utility capture | 0.3741 |
 | Temporal Frontier Replay audit status | `pass_with_negative_delayed_value_evidence` |
 | Metric-gaming primary-only winner | `metric_gaming_all_negative` |
 | Metric-gaming evaluator-stress winner | `guardrailed_utility_model` |
@@ -97,24 +102,25 @@ PY
 | Live skill logged gate type | `scientific_taste_prior` |
 | English PDF bytes | 51757 |
 | Chinese PDF bytes | 114561 |
-| Focused English PDF bytes | 29225 |
-| Focused Chinese PDF bytes | 53878 |
+| Focused English PDF bytes | 29669 |
+| Focused Chinese PDF bytes | 55738 |
 | Generated files byte-identical after rebuild | No: derived trace-dataset audit files and PDFs were refreshed by rebuild scripts |
 
 ## Interpretation
 
 This clean-clone audit verifies that the pushed GitHub branch at commit
-`c4bb72410a08aedcdf8b7e38f9c53482271e93bf` contains a self-contained reproducibility package for the current
+`dc8f35be7f526eebe493548cf73dd98284a8bdfb` contains a self-contained reproducibility package for the current
 pilot artifacts. A fresh shallow clone can rebuild the bilingual PDFs and the
 focused bilingual PDFs, rerun the gate-coverage audits, rebuild and audit the
 derived Human Co-Pilot Trace Dataset, validate the reusable Codex skill, and
-find all 599 artifacts listed in the reproducibility manifest. It also verifies
+find all 603 artifacts listed in the reproducibility manifest. It also verifies
 that the focused bilingual manuscripts and reusable skill contain the Temporal
 Frontier Replay method text and operational audit, and that the structured-feedback probe,
 single-gate artifact ablation, expanded six-paper citation-backed frontier
 probe, review-frontier signal probe, and semantic frontier judge probe are
 present and internally consistent. The refreshed audit also verifies the
-high-tail power-analysis artifact, the claim-evidence audit JSON, the live
+high-tail power-analysis artifact, the held-out review-gate validation
+artifact, the claim-evidence audit JSON, the live
 skill invocation smoke and the controlled
 metric-gaming evaluator-stress smoke in which a primary-only fairness metric
 selects `metric_gaming_all_negative`, while the evaluator-stress guardrail
@@ -138,7 +144,7 @@ Because this run uses `--depth 1`, the trace dataset's commit index contains
 only the checked-out commit. That is expected for this audit mode and does not
 affect artifact presence or PDF rebuild reproducibility. The earlier full-history
 audit checked a larger commit index; this updated audit prioritizes current
-pushed-artifact reproducibility at `c4bb7241`.
+pushed-artifact reproducibility at `dc8f35be`.
 
 This audit does not rerun the remote Ubuntu experiments or prove the central
 performance claims. It strengthens the artifact-delivery and reproducibility
