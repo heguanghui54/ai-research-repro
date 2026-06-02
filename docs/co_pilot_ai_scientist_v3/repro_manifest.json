@@ -854,7 +854,12 @@
     "release/co-pilot-ai-scientist-v3-skill/scripts/validate_release.py",
     "scripts/audit_igre_skill_release_package.py",
     "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.md",
+    "release/co-pilot-ai-scientist-v3-skill/POSITIONING.md",
+    "release/co-pilot-ai-scientist-v3-skill/CONTRIBUTING.md",
+    "release/co-pilot-ai-scientist-v3-skill/LICENSE",
+    "release/co-pilot-ai-scientist-v3-skill/RELEASE_NOTES.md",
+    "release/co-pilot-ai-scientist-v3-skill/scripts/install_local.sh"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1879,9 +1884,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "8ba109522cb3e41592f6e27fb231795d22d6b6ee",
+    "head": "6e4eda9ba40e381ec7b4b68c17887f48fb14a805",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 841,
+    "manifest_artifacts": 846,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2005,6 +2010,11 @@
     "release_dir": "release/co-pilot-ai-scientist-v3-skill",
     "readme": "release/co-pilot-ai-scientist-v3-skill/README.md",
     "audit": "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.md",
-    "claim_boundary": "Engineering release readiness is not scientific superiority evidence."
+    "claim_boundary": "Engineering release readiness is not scientific superiority evidence.",
+    "publication_readiness": "pass",
+    "positioning": "release/co-pilot-ai-scientist-v3-skill/POSITIONING.md",
+    "contributing": "release/co-pilot-ai-scientist-v3-skill/CONTRIBUTING.md",
+    "release_notes": "release/co-pilot-ai-scientist-v3-skill/RELEASE_NOTES.md",
+    "installer": "release/co-pilot-ai-scientist-v3-skill/scripts/install_local.sh"
   }
 }

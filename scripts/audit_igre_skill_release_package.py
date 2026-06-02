@@ -70,6 +70,9 @@ def main() -> None:
         errors.append("standalone release validator missing")
 
     readme = _read(RELEASE_DIR / "README.md") if (RELEASE_DIR / "README.md").exists() else ""
+    release_positioning = _read(RELEASE_DIR / "POSITIONING.md") if (RELEASE_DIR / "POSITIONING.md").exists() else ""
+    release_contributing = _read(RELEASE_DIR / "CONTRIBUTING.md") if (RELEASE_DIR / "CONTRIBUTING.md").exists() else ""
+    release_notes = _read(RELEASE_DIR / "RELEASE_NOTES.md") if (RELEASE_DIR / "RELEASE_NOTES.md").exists() else ""
     strategy = _read(DOC_DIR / "skill_engineering_release_strategy.md")
     root_readme = _read(ROOT / "README.md")
     project_readme = _read(DOC_DIR / "README.md")
@@ -82,8 +85,22 @@ def main() -> None:
         "blind expert review",
         "academic-research-skills",
         "PaperOrchestra",
+        "Engineering adoption is not scientific superiority",
+        "Do not add fabricated benchmark numbers",
+        "model-only reviews",
     ]
-    positioning_blob = "\n".join([readme, strategy, root_readme, project_readme, roadmap])
+    positioning_blob = "\n".join(
+        [
+            readme,
+            release_positioning,
+            release_contributing,
+            release_notes,
+            strategy,
+            root_readme,
+            project_readme,
+            roadmap,
+        ]
+    )
     for term in required_positioning:
         if term not in positioning_blob:
             errors.append(f"release positioning missing term: {term}")
@@ -93,6 +110,24 @@ def main() -> None:
     if "does not replace blind expert review or matched benchmark evidence" not in roadmap:
         errors.append("roadmap missing engineering-adoption boundary")
 
+    install_script = RELEASE_DIR / "scripts" / "install_local.sh"
+    if not install_script.exists():
+        errors.append("local install script missing")
+    else:
+        install_text = _read(install_script)
+        if "CODEX_SKILLS_DIR" not in install_text or ".codex/skills" not in install_text:
+            errors.append("install script does not target Codex skills directory")
+
+    publication_files = [
+        "POSITIONING.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "RELEASE_NOTES.md",
+    ]
+    for rel in publication_files:
+        if not (RELEASE_DIR / rel).exists():
+            errors.append(f"publication file missing: {rel}")
+
     audit = {
         "audit_date": _utc_now(),
         "status": "pass" if not errors else "fail",
@@ -101,6 +136,8 @@ def main() -> None:
         "checked_files": checked_files,
         "validator_result": validator_result,
         "engineering_track_status": "standalone_release_scaffold_prepared",
+        "publication_files_checked": publication_files,
+        "install_script": _rel(install_script),
         "errors": errors,
         "warnings": warnings,
         "claim_boundary": (

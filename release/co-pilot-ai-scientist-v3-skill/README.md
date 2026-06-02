@@ -40,6 +40,12 @@ mkdir -p ~/.codex/skills
 cp -R release/co-pilot-ai-scientist-v3-skill ~/.codex/skills/co-pilot-ai-scientist-v3
 ```
 
+Or run the local installer from this release folder:
+
+```bash
+bash scripts/install_local.sh
+```
+
 Then start a new Codex session and invoke:
 
 ```text
@@ -88,3 +94,10 @@ Community adoption, GitHub stars, forks, and external reuse would be engineering
 impact evidence. They do not prove scientific superiority. Use this skill to
 create auditable traces, then evaluate those traces with matched autonomous
 baselines and expert review.
+
+## More
+
+- Positioning: `POSITIONING.md`
+- Quickstart: `QUICKSTART.md`
+- Contributing: `CONTRIBUTING.md`
+- Release notes: `RELEASE_NOTES.md`
