@@ -18,6 +18,13 @@ def _read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
 
 
+def _read_excerpt(path: Path, limit: int = 4500) -> str:
+    text = _read(path)
+    if len(text) <= limit:
+        return text
+    return text[:limit].rstrip() + f"\n\n[... truncated to {limit} characters for reviewer context ...]"
+
+
 def _call_model(model: str, prompt: str, max_tokens: int) -> dict:
     base_url = os.environ.get("MONICA_BASE_URL", "https://openapi.monica.im/v1").rstrip("/")
     api_key = os.environ["MONICA_API_KEY"]
@@ -45,7 +52,13 @@ def _call_model(model: str, prompt: str, max_tokens: int) -> dict:
         },
         timeout=180,
     )
-    payload = response.json()
+    try:
+        payload = response.json()
+    except ValueError:
+        payload = {
+            "error": "non_json_response",
+            "text_excerpt": response.text[:2000],
+        }
     return {
         "model": model,
         "status_code": response.status_code,
@@ -53,43 +66,67 @@ def _call_model(model: str, prompt: str, max_tokens: int) -> dict:
     }
 
 
-def _prompt(paper_path: Path) -> str:
-    paper = _read(paper_path)
-    audit = _read(ROOT / "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md")
-    benchmark = _read(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_selection.md")
-    benchmark_matrix = _read(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md")
-    prospective_summary = _read(
+def _prompt(paper_path: Path, *, compact: bool = False) -> str:
+    default_limit = 700 if compact else 4500
+    paper = _read_excerpt(paper_path, 12000) if compact else _read(paper_path)
+    audit = _read_excerpt(ROOT / "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md", default_limit)
+    benchmark = _read_excerpt(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_selection.md", default_limit)
+    benchmark_matrix = _read_excerpt(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md", 1600 if compact else 4500)
+    prospective_summary = _read_excerpt(
         ROOT
-        / "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md"
+        / "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md",
+        default_limit,
     )
-    readiness = _read(ROOT / "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md")
-    comparison = _read(
+    readiness = _read_excerpt(ROOT / "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md", 2200 if compact else 7000)
+    comparison = _read_excerpt(
         ROOT
-        / "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_comparison.md"
+        / "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_comparison.md",
+        default_limit,
     )
-    maxcut = _read(
+    maxcut = _read_excerpt(
         ROOT
-        / "docs/co_pilot_ai_scientist_v3/experiments/maxcut_program_search_comparison.md"
+        / "docs/co_pilot_ai_scientist_v3/experiments/maxcut_program_search_comparison.md",
+        default_limit,
     )
-    openreview_regen = _read(
+    openreview_regen = _read_excerpt(
         ROOT
-        / "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/README.md"
+        / "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/README.md",
+        default_limit,
     )
-    openreview_cross_model = _read(
+    openreview_cross_model = _read_excerpt(
         ROOT
-        / "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/README.md"
+        / "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/README.md",
+        default_limit,
     )
-    review_utility = _read(
+    review_utility = _read_excerpt(
         ROOT
-        / "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/README.md"
+        / "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/README.md",
+        default_limit,
     )
-    metric_gaming_smoke = _read(
+    gate_structure = _read_excerpt(
         ROOT
-        / "docs/co_pilot_ai_scientist_v3/experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/README.md"
+        / "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/README.md",
+        default_limit,
     )
-    fml_fairness_replay = _read(
+    gate_outcome = _read_excerpt(
         ROOT
-        / "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/README.md"
+        / "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/README.md",
+        default_limit,
+    )
+    single_gate_artifact = _read_excerpt(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/single_gate_artifact_ablation_20260602_203000/README.md",
+        1200 if compact else 4500,
+    )
+    metric_gaming_smoke = _read_excerpt(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/README.md",
+        default_limit,
+    )
+    fml_fairness_replay = _read_excerpt(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/README.md",
+        default_limit,
     )
     return f"""Review the following draft as if it were a submission targetting a strong ML/NLP systems venue.
 
@@ -156,6 +193,21 @@ Review utility map:
 {review_utility}
 ```
 
+Gate-structure ablation:
+```markdown
+{gate_structure}
+```
+
+Gate-outcome attribution:
+```markdown
+{gate_outcome}
+```
+
+Single-gate artifact ablation:
+```markdown
+{single_gate_artifact}
+```
+
 Controlled metric-gaming evaluator-stress smoke:
 ```markdown
 {metric_gaming_smoke}
@@ -185,12 +237,17 @@ def main() -> None:
         default="docs/co_pilot_ai_scientist_v3/audits/paper_quality_reviews",
     )
     parser.add_argument("--max-tokens", type=int, default=1800)
+    parser.add_argument(
+        "--compact-context",
+        action="store_true",
+        help="Use shorter manuscript and artifact excerpts for long-context-sensitive reviewer routes.",
+    )
     args = parser.parse_args()
 
     out_dir = ROOT / args.output_dir
     out_dir.mkdir(parents=True, exist_ok=True)
     paper_path = ROOT / args.paper_path
-    prompt = _prompt(paper_path)
+    prompt = _prompt(paper_path, compact=args.compact_context)
 
     summaries = []
     for model in args.models:

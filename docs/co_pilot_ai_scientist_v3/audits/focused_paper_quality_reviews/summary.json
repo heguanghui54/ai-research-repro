@@ -9,9 +9,21 @@
     },
     {
       "model": "claude-3-7-sonnet-latest",
-      "status_code": 200,
+      "status_code": 504,
       "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
       "markdown": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+    },
+    {
+      "model": "gemini-2.0-flash",
+      "status_code": 412,
+      "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+      "markdown": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md"
+    },
+    {
+      "model": "gemini-2.5-flash",
+      "status_code": 200,
+      "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+      "markdown": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md"
     }
   ]
 }

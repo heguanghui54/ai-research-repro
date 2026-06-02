@@ -123,7 +123,9 @@
     "single_gate_artifact_ablation_full_review_guided_mean_overall": 3.5,
     "single_gate_artifact_ablation_baseline_mean_overall": 2.9166,
     "single_gate_artifact_ablation_best_single_minus_baseline": 0.7501,
-    "single_gate_artifact_ablation_full_minus_best_single": -0.1667
+    "single_gate_artifact_ablation_full_minus_best_single": -0.1667,
+    "focused_paper_quality_successful_reviews": 2,
+    "focused_paper_quality_failed_routes": 2
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -195,7 +197,7 @@
     "independent_human_subject_timing": false,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Run the live reusable skill through a real benchmark task and evaluate independent human expert ratings before upgrading from controlled smoke evidence.",
+  "next_evidence_milestone": "Collect blind human expert ratings, rerun gate decisions on real benchmarks, and scale matched autonomous versus human-gated trajectories before upgrading from a pilot package.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -544,9 +546,12 @@
       "controlled metric-gaming evaluator-stress smoke",
       "archived FML-Bench Fairness_fairlearn evaluator-stress replay",
       "OpenReview equal-context ablation",
+      "gate-structure ablation probe",
+      "gate-outcome attribution probe",
+      "single-gate artifact ablation",
       "top-conference readiness audit"
     ],
-    "reviews": {
+    "successful_reviews": {
       "gpt-4o-mini": {
         "recommendation": "Weak accept",
         "scores": {
@@ -554,32 +559,39 @@
           "rigor": 3,
           "clarity": 4,
           "evidence": 3,
-          "reproducibility": 3,
-          "significance": 4
+          "reproducibility": 4,
+          "significance": 3
         },
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
       },
-      "claude-3-7-sonnet-latest": {
-        "recommendation": "Weak reject",
-        "scores": {
-          "novelty": 3,
-          "rigor": 2,
-          "clarity": 2,
-          "evidence": 1,
-          "reproducibility": 3,
-          "significance": 3
-        },
-        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+      "gemini-2.5-flash": {
+        "recommendation": "Borderline",
+        "scores": null,
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md"
       }
     },
-    "aggregate_conclusion": "Updated FML evaluator-stress evidence strengthens gate-design support but does not close top-conference empirical gaps.",
+    "failed_review_routes": {
+      "claude-3-7-sonnet-latest": {
+        "status_code": 504,
+        "error": "Gateway Time-out",
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+      },
+      "gemini-2.0-flash": {
+        "status_code": 412,
+        "error": "unsupported model route",
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md"
+      }
+    },
+    "aggregate_conclusion": "New gate-structure, gate-outcome, and single-gate artifact ablations strengthen IGRE's method distinctness and show that targeted gate routing can be more useful than full review context in a small OpenReview proxy. They do not close the top-conference evidence gap because independent human ratings, real benchmark gate reruns, and broader matched trajectories are still missing.",
     "next_required_evidence": [
       "blind human expert ratings with inter-rater agreement",
       "larger matched autonomous versus human-gated trajectories across tasks/seeds",
-      "formal gate-structure ablations",
-      "narrower primary contribution narrative"
+      "real benchmark reruns where gate choices alter downstream experimental outcomes",
+      "narrower primary contribution narrative around participation-mode design",
+      "OpenReview taste/insight classifier validation against expert labels",
+      "scaled retrospective frontier-alignment study for delayed-value review signals"
     ],
-    "status": "refreshed_with_fml_evaluator_stress_replay"
+    "status": "refreshed_with_gate_ablations_and_gemini_review"
   },
   "openreview_equal_context_ablation": {
     "status": "completed_model_routed_equal_context_ablation",

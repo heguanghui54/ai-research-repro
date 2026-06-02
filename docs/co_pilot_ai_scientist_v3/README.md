@@ -56,9 +56,9 @@ claim calibration.
   separates the current lab-record manuscript from the focused main paper
   needed for a strong venue.
 - `audits/focused_paper_quality_review_summary.md`: Monica-routed focused
-  manuscript review showing the rewrite improves structure but still needs
-  independent human review, equal-context OpenReview ablations, and broader
-  matched experiments.
+  manuscript review showing the rewrite and gate ablations improve method
+  distinctness, while the paper still needs independent human review, real
+  benchmark gate reruns, and broader matched experiments.
 - `experiments/openreview_equal_context_ablation_20260602_142000/`: follow-up
   OpenReview regeneration ablation comparing real paper-specific review
   guidance against matched-length unrelated review context.

@@ -1,0 +1,11 @@
+{
+  "model": "gemini-2.0-flash",
+  "status_code": 412,
+  "response": {
+    "error": {
+      "code": "400",
+      "message": "parameter gemini-2.0-flash not supported",
+      "type": "failed_precondition"
+    }
+  }
+}
