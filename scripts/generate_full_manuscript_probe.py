@@ -47,7 +47,7 @@ def _rel(path: Path) -> str:
 
 def _metric(summary: dict[str, Any], key: str) -> float | None:
     if key == "test":
-        value = summary.get("test_result", {}).get("primary_metric")
+        value = (summary.get("test_result") or {}).get("primary_metric")
     else:
         value = summary.get("best_val_metric")
     if isinstance(value, (int, float)) and not isinstance(value, bool):
@@ -65,6 +65,21 @@ def _delta(autonomous: float | None, co_pilot: float | None) -> float | None:
     return autonomous - co_pilot
 
 
+def _metric_context(manifest: dict[str, Any], summary: dict[str, Any]) -> dict[str, str]:
+    matched = manifest.get("matched_budget", {})
+    task_config = matched.get("task_config") or "configs/tasks/causality_causalml.yaml"
+    metric_name = matched.get("metric_name") or "primary_metric"
+    direction = matched.get("metric_direction") or "lower_is_better"
+    benchmark = summary.get("benchmark") or Path(task_config).stem
+    return {
+        "task_config": str(task_config),
+        "benchmark": str(benchmark),
+        "metric_name": str(metric_name),
+        "direction": str(direction),
+        "direction_text": "lower is better" if direction != "higher_is_better" else "higher is better",
+    }
+
+
 def _gate_text(gate: dict[str, Any]) -> str:
     attention = gate.get("attention_cost", {})
     taste = gate.get("taste_insight", {})
@@ -74,6 +89,8 @@ def _gate_text(gate: dict[str, Any]) -> str:
         for option in options
         if isinstance(option.get("score"), (int, float))
     )
+    if not options_text:
+        options_text = "no numerically scored options"
     return (
         f"The frontier gate reviewed {len(options)} candidate branches "
         f"({options_text}) and selected `{gate.get('human_decision')}`. "
@@ -91,11 +108,22 @@ def _co_pilot_manuscript(
     trajectory: dict[str, Any],
     gate: dict[str, Any],
 ) -> str:
+    metric = _metric_context(manifest, co_pilot)
     co_val = _metric(co_pilot, "val")
     co_test = _metric(co_pilot, "test")
     auto_val = _metric(autonomous, "val")
     auto_test = _metric(autonomous, "test")
     test_delta = _delta(auto_test, co_test)
+    result_sentence = (
+        "The co-pilot frontier did not produce a valid scored continuation, so "
+        "the correct scientific action is to abort the branch rather than "
+        "over-interpret a broken candidate."
+        if co_val is None or co_test is None
+        else (
+            f"The co-pilot branch obtains validation {metric['metric_name']} {_fmt(co_val)} "
+            f"and test {metric['metric_name']} {_fmt(co_test)}."
+        )
+    )
     return f"""# Insight-Gated Research Evolution on a Matched FML-Bench Pilot
 
 ## Abstract
@@ -104,13 +132,13 @@ This generated manuscript probe renders the prospective package
 `{manifest['package_id']}` as a full paper-shaped IGRE/co-pilot manuscript.
 The system inserts a human frontier-steering gate into an AI Scientist-v2-style
 FML-bench run, records attention cost and scientific taste/insight, and compares
-the selected branch with a matched autonomous baseline. The result is mixed:
-the co-pilot branch obtains validation MAE {_fmt(co_val)} and test MAE
-{_fmt(co_test)}, while the autonomous baseline obtains validation MAE
-{_fmt(auto_val)} and test MAE {_fmt(auto_test)}. Lower MAE is better, so the
-test delta autonomous-minus-co-pilot is {_fmt(test_delta)}. The contribution is
-therefore evidence of a reproducible human-gated research trajectory format,
-not evidence that human gates improve average performance.
+the selected branch with a matched autonomous baseline on `{metric['task_config']}`.
+{result_sentence} The autonomous baseline obtains validation
+{metric['metric_name']} {_fmt(auto_val)} and test {metric['metric_name']}
+{_fmt(auto_test)}. Since {metric['direction_text']}, the test delta
+autonomous-minus-co-pilot is {_fmt(test_delta)}. The contribution is therefore
+evidence of a reproducible human-gated research trajectory format, not evidence
+that human gates improve average performance.
 
 ## 1. Introduction
 
@@ -155,25 +183,28 @@ For this FML package, the key gate is:
 
 ## 4. Experimental Setup
 
-Both variants use `{co_pilot.get('benchmark')}`, model
+Both variants use `{metric['benchmark']}`, model
 `{co_pilot.get('model')}`, provider `{co_pilot.get('provider')}`, and the same
 two-step budget. The co-pilot path first samples two frontier branches and
 continues the selected one. The autonomous baseline receives the same task,
 model family, tool access, and step budget but no human gate. The metric is
-MAE on the Causality benchmark; lower is better.
+`{metric['metric_name']}` on the FML benchmark; {metric['direction_text']}.
 
 ## 5. Results
 
-| Variant | Validation MAE | Test MAE |
+| Variant | Validation {metric['metric_name']} | Test {metric['metric_name']} |
 | --- | ---: | ---: |
 | IGRE/co-pilot selected branch | {_fmt(co_val)} | {_fmt(co_test)} |
 | Matched autonomous baseline | {_fmt(auto_val)} | {_fmt(auto_test)} |
 
-The autonomous baseline is better on this held-out test metric. This negative
-result is useful: it prevents the manuscript from claiming that a human gate is
-automatically beneficial under tight budgets. The positive result is narrower:
-the package demonstrates that a prospective, matched-budget, human-gated
-AI Scientist-v2-style evidence bundle can be produced and audited.
+If the co-pilot score is `n/a`, the autonomous baseline is the only valid
+tested path in this package. Otherwise, the table should be read according to
+the metric direction above. This negative or invalid-branch result is useful:
+it prevents the manuscript from claiming that a human gate is automatically
+beneficial under tight budgets. The positive result is narrower: the package
+demonstrates that a prospective, matched-budget, human-gated AI
+Scientist-v2-style evidence bundle can be produced, audited, and aborted when
+the frontier contains no valid continuation.
 
 ## 6. Claim Audit
 
@@ -188,10 +219,10 @@ not establish top-conference empirical support.
 ## 7. Limitations
 
 The run covers one FML task, one model family, one short budget, and one
-human-gate decision. The branch choice had tied validation scores, so the
-scientific-taste intervention mainly tests logging and trajectory shaping, not
-metric superiority. Independent expert review and multi-task, multi-seed
-matched comparisons remain necessary.
+human-gate decision. When the co-pilot frontier has no valid scored
+continuation, the scientific-taste intervention mainly tests failure
+recognition and claim discipline, not metric superiority. Independent expert
+review and multi-task, multi-seed matched comparisons remain necessary.
 
 ## 8. Conclusion
 
@@ -208,6 +239,7 @@ def _autonomous_manuscript(
     co_pilot: dict[str, Any],
     autonomous: dict[str, Any],
 ) -> str:
+    metric = _metric_context(manifest, autonomous)
     co_val = _metric(co_pilot, "val")
     co_test = _metric(co_pilot, "test")
     auto_val = _metric(autonomous, "val")
@@ -221,10 +253,11 @@ This generated manuscript probe renders the matched autonomous baseline from
 `{manifest['package_id']}` as a full paper-shaped manuscript. The baseline uses
 the same FML-bench task, model family, tool access, and two-step budget as the
 co-pilot package, but it omits human frontier steering. It obtains validation
-MAE {_fmt(auto_val)} and test MAE {_fmt(auto_test)}, outperforming the co-pilot
-package's test MAE {_fmt(co_test)} under this short-budget setting. The result
-supports the autonomous baseline as a necessary negative control, not as a
-general proof that autonomous research agents are superior.
+{metric['metric_name']} {_fmt(auto_val)} and test {metric['metric_name']}
+{_fmt(auto_test)}. The co-pilot package's test {metric['metric_name']} is
+{_fmt(co_test)} under this short-budget setting. The result supports the
+autonomous baseline as a necessary negative control, not as a general proof
+that autonomous research agents are superior.
 
 ## 1. Introduction
 
@@ -253,7 +286,7 @@ metric-only control.
 
 ## 4. Experimental Setup
 
-The task is `{autonomous.get('benchmark')}` with metric direction `lower`.
+The task is `{metric['benchmark']}` with metric direction `{metric['direction']}`.
 Target files include `{', '.join(autonomous.get('task_config', {}).get('target_files', []))}`.
 The baseline primary metric before the short run is
 {_fmt(autonomous.get('baseline_primary_metric'))}. The matched co-pilot package
@@ -261,19 +294,21 @@ uses the same task, model family, tool access, and step budget.
 
 ## 5. Results
 
-| Variant | Validation MAE | Test MAE |
+| Variant | Validation {metric['metric_name']} | Test {metric['metric_name']} |
 | --- | ---: | ---: |
 | Autonomous matched baseline | {_fmt(auto_val)} | {_fmt(auto_test)} |
 | IGRE/co-pilot comparator | {_fmt(co_val)} | {_fmt(co_test)} |
 
-Lower is better. The autonomous-minus-co-pilot test delta is
-{_fmt(test_delta)}, so the autonomous run wins on this test metric. This result
-is a warning against assuming that human intervention is always positive.
+For this metric, {metric['direction_text']}. The autonomous-minus-co-pilot test
+delta is {_fmt(test_delta)}. If the co-pilot score is `n/a`, the autonomous run
+is the only valid tested path. This result is a warning against assuming that
+human intervention is always positive.
 
 ## 6. Claim Audit
 
 Supported: the autonomous baseline is a matched negative control for the FML
-prospective package and beats the co-pilot variant on the recorded test MAE.
+prospective package and is the only valid tested path when the co-pilot
+frontier fails to produce a scored continuation.
 
 Unsupported: the baseline does not measure paper quality, novelty, scientific
 taste, long-horizon research value, or the chance of rare high-impact
@@ -303,7 +338,10 @@ def _score_manuscript(text: str, *, has_gate: bool, wins_metric: bool) -> dict[s
         text.lower().count(term)
         for term in ["unsupported", "limitation", "not evidence", "not prove", "not as proof"]
     )
-    metric_terms = sum(text.count(term) for term in ["MAE", "delta", "lower is better"])
+    metric_terms = sum(
+        text.count(term)
+        for term in ["MAE", "primary_metric", "metric", "delta", "lower is better", "higher is better"]
+    )
     score = {
         "section_completeness": round(section_hits / len(SECTIONS) * 5, 2),
         "evidence_grounding": min(5.0, round(2.0 + metric_terms * 0.35, 2)),
@@ -437,8 +475,17 @@ def main() -> None:
 
     co_test = _metric(co_pilot, "test")
     auto_test = _metric(autonomous, "test")
-    co_wins_metric = co_test is not None and auto_test is not None and co_test < auto_test
-    auto_wins_metric = co_test is not None and auto_test is not None and auto_test < co_test
+    metric_context = _metric_context(manifest, co_pilot)
+    if metric_context["direction"] == "higher_is_better":
+        co_wins_metric = co_test is not None and auto_test is not None and co_test > auto_test
+        auto_wins_metric = (co_test is None and auto_test is not None) or (
+            co_test is not None and auto_test is not None and auto_test > co_test
+        )
+    else:
+        co_wins_metric = co_test is not None and auto_test is not None and co_test < auto_test
+        auto_wins_metric = (co_test is None and auto_test is not None) or (
+            co_test is not None and auto_test is not None and auto_test < co_test
+        )
     summary: dict[str, Any] = {
         "package_id": manifest["package_id"],
         "status": "matched_full_manuscript_generation_probe",
@@ -450,9 +497,10 @@ def main() -> None:
             "autonomous": _score_manuscript(auto_text, has_gate=False, wins_metric=auto_wins_metric),
         },
         "metric_result": {
-            "co_pilot_test_mae": co_test,
-            "autonomous_test_mae": auto_test,
-            "lower_is_better": True,
+            "metric_name": metric_context["metric_name"],
+            "co_pilot_test_metric": co_test,
+            "autonomous_test_metric": auto_test,
+            "metric_direction": metric_context["direction"],
             "winner": "co_pilot" if co_wins_metric else "autonomous" if auto_wins_metric else "tie_or_unknown",
         },
         "interpretation": (

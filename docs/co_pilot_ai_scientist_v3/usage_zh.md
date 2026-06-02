@@ -182,10 +182,15 @@ python3 scripts/score_matched_manuscripts.py
 
 ```bash
 python3 scripts/generate_full_manuscript_probe.py --update-manifest
+python3 scripts/generate_full_manuscript_probe.py \
+  --package-dir docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821 \
+  --update-manifest
 ```
 
 它会写出两篇完整论文形态 manuscript，并生成
-`experiments/prospective_matched_fml_causality_20260602_000001/full_manuscript_probe/summary.md`。
+所选 package 下的 `full_manuscript_probe/summary.md`。最新 Fairness package
+probe 的内部 rubric 为 co-pilot `4.18`、autonomous `4.11`，但 autonomous
+是唯一拥有有效 FML 标量测试指标的路径。
 这只是基于已归档证据的 manuscript probe，不是 fresh end-to-end research
 trajectory，也不是独立专家评审。
 

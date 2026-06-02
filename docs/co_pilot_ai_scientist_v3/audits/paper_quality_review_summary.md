@@ -65,16 +65,17 @@ end-to-end manuscript generated under matched conditions.
 
 ## Full-Manuscript Generation Probe
 
-We also added a deterministic matched full-manuscript generation probe for the
-same FML package. It renders the archived co-pilot evidence and matched
-autonomous baseline into two complete paper-shaped manuscripts with the same
-major sections, then scores them with an internal rubric for section
-completeness, evidence grounding, claim calibration, method distinctness, and
-metric result strength. The co-pilot manuscript scores `4.18` overall and the
-autonomous manuscript scores `4.00`, but the autonomous manuscript remains
-stronger on the scalar FML test metric. This narrows the manuscript-generation
-gap but does not satisfy the reviewer request for a fresh end-to-end
-paper-generating trajectory or independent expert paper-quality scoring.
+We also added deterministic matched full-manuscript generation probes for the
+prospective FML packages. They render the archived co-pilot evidence and matched
+autonomous baselines into complete paper-shaped manuscripts with the same major
+sections, then score them with an internal rubric for section completeness,
+evidence grounding, claim calibration, method distinctness, and metric result
+strength. The latest Fairness_fairlearn probe scores the co-pilot manuscript
+`4.18` overall and the autonomous manuscript `4.11`, but the autonomous
+manuscript is the only variant with a valid scalar FML test result. This
+narrows the manuscript-generation gap but does not satisfy the reviewer request
+for a fresh end-to-end paper-generating trajectory or independent expert
+paper-quality scoring.
 
 ## Human Co-Pilot Trace Dataset
 

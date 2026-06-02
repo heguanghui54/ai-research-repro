@@ -1,0 +1,41 @@
+{
+  "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+  "status": "matched_full_manuscript_generation_probe",
+  "fresh_end_to_end_trajectory": false,
+  "co_pilot_full_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/co_pilot_full_manuscript.md",
+  "autonomous_full_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/autonomous_full_manuscript.md",
+  "scores": {
+    "co_pilot": {
+      "section_completeness": 5.0,
+      "evidence_grounding": 5.0,
+      "claim_calibration": 3.9,
+      "method_distinctness": 4.2,
+      "metric_result_strength": 2.8,
+      "overall": 4.18
+    },
+    "autonomous": {
+      "section_completeness": 5.0,
+      "evidence_grounding": 5.0,
+      "claim_calibration": 3.36,
+      "method_distinctness": 3.2,
+      "metric_result_strength": 4.0,
+      "overall": 4.11
+    }
+  },
+  "metric_result": {
+    "metric_name": "primary_metric",
+    "co_pilot_test_metric": null,
+    "autonomous_test_metric": 0.17215212582754802,
+    "metric_direction": "lower_is_better",
+    "winner": "autonomous"
+  },
+  "interpretation": "The co-pilot manuscript has stronger method distinctness and explicit taste/attention logging, while the autonomous manuscript has the stronger scalar FML result. This supports a manuscript-generation and claim-calibration capability, not a top-conference superiority claim.",
+  "limitations": [
+    "Generated from archived evidence rather than a fresh online end-to-end trajectory.",
+    "Deterministic rubric is an internal audit aid, not independent peer review.",
+    "Single FML task, one model family, one short budget, and one human gate.",
+    "Does not prove that human gates improve paper quality or benchmark performance."
+  ],
+  "json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/summary.json",
+  "markdown": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/summary.md"
+}

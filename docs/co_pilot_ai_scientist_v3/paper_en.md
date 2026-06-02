@@ -267,15 +267,15 @@ primary dataset for this paper is therefore a single-author longitudinal Codex
 co-pilot trace corpus derived from this project: gate records, artifact paths,
 commit IDs, benchmark metrics, manuscript revisions, and claim-audit outcomes,
 without releasing raw chat logs or credentials. The current derived snapshot
-indexes 29 gate records, 12 records with attention-cost fields, 7 records with
-taste/insight fields, 3 prospective matched packages, and 46 relevant commits.
+indexes 31 gate records, 14 records with attention-cost fields, 9 records with
+taste/insight fields, 4 prospective matched packages, and 48 relevant commits.
 This supports ecological and process claims, but not population-level claims
 about all scientists.
 
 We add a release-readiness audit for this dataset. The audit verifies required
 top-level fields, gate schema coverage, explicit claim boundaries, and scans for
 secret-like strings and raw-log markers. The current audit passes with 4
-public-dataset survey entries, 29 gate records, 3 prospective packages, 47
+public-dataset survey entries, 31 gate records, 4 prospective packages, 48
 commit-index entries, 0 secret-pattern hits, and 0 raw-log marker hits. This
 permits release as a derived metadata case-study artifact, not as raw chat logs
 or human-subject population data.
@@ -639,8 +639,9 @@ The current contributions are:
    performance results in the small two-step setting.
 19. A prospective package metric summary that separates passing audit packages
    by task, metric direction, co-pilot score, autonomous score, and claim
-   implication; the current result is one positive controlled micro-task and
-   two negative FML-bench packages.
+   implication; the current result is one positive controlled micro-task, two
+   negative Causality FML-bench packages, and one Fairness_fairlearn invalid
+   continuation package.
 20. A matched mini-manuscript quality probe for the FML package, where
    Monica-routed `gpt-4o-mini` and `claude-3-7-sonnet-latest` both prefer the
    co-pilot package mini-manuscript over a generated autonomous
@@ -649,8 +650,8 @@ The current contributions are:
    FML evidence into two complete paper-shaped manuscripts and scores them
    with a deterministic internal rubric; the co-pilot manuscript scores 4.18
    overall for structure, grounding, calibration, and method distinctness,
-   while the autonomous manuscript scores 4.00 and remains stronger on the
-   scalar FML metric.
+   while the autonomous manuscript scores 4.11 and is the only variant with a
+   valid scalar FML test metric in the Fairness package.
 22. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
    real Codex sessions as a single-author longitudinal process corpus after
    privacy-preserving metadata extraction.
@@ -692,11 +693,12 @@ ratio of research quality to human effort. The next matched-budget experiments
 must record attention cost prospectively.
 
 The new prospective matched-budget package audit now passes on one controlled
-micro-pilot and two FML-bench Causality pilots. This is progress in evidence
-shape, not in final empirical strength. Both FML pilots are negative for
-co-pilot average performance at this budget, and the packages do not provide
-independent expert evaluation of full paper quality. The paper therefore remains
-at pilot-system evidence until larger prospective experiments exist.
+micro-pilot, two FML-bench Causality pilots, and one FML-bench Fairness pilot.
+This is progress in evidence shape, not in final empirical strength. The FML
+packages are negative or invalid-continuation cases for co-pilot average
+performance at this budget, and the packages do not provide independent expert
+evaluation of full paper quality. The paper therefore remains at pilot-system
+evidence until larger prospective experiments exist.
 
 The derived Human Co-Pilot Trace Dataset improves ecological validity because it
 comes from the author's real Codex workflow, but it is still a single-author
@@ -707,13 +709,15 @@ strings and raw-log marker fields, but it is not a substitute for institutional
 human-subject review if the dataset is later expanded to multiple researchers.
 
 The full-manuscript probe reduces one specific gap but does not close the
-top-conference evidence gap. It shows that the archived FML package contains
-enough structured evidence to generate two complete, claim-calibrated
-manuscripts under a matched prompt-free template. It does not show that a fresh
-online system can run from hypothesis generation through final manuscript
-without intervention, and it does not replace independent expert paper-quality
-review. The autonomous manuscript still wins on the scalar FML test metric,
-which is exactly why the co-pilot claim must remain about method distinctness,
+top-conference evidence gap. It shows that archived FML packages contain enough
+structured evidence to generate two complete, claim-calibrated manuscripts
+under a matched prompt-free template. The latest Fairness probe scores the
+co-pilot manuscript 4.18 and the autonomous manuscript 4.11 on the internal
+rubric, but the autonomous manuscript is the only variant with a valid scalar
+FML test result. It does not show that a fresh online system can run from
+hypothesis generation through final manuscript without intervention, and it
+does not replace independent expert paper-quality review. This is exactly why
+the co-pilot claim must remain about method distinctness,
 scientific taste logging, and high-tail research search rather than average
 short-budget benchmark superiority.
 

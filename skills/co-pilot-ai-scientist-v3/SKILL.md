@@ -262,7 +262,9 @@ Reusable templates are stored next to this skill:
 - prospective matched-budget micro-pilot package when remote execution is
   available;
 - matched mini- and full-manuscript generation probes when manuscript evidence
-  is being audited;
+  is being audited. Use `--package-dir` to point the full-manuscript probe at
+  the newest prospective package, and keep its limitation as archived-evidence
+  manuscript generation unless the upstream run was genuinely fresh end-to-end;
 - derived Human Co-Pilot Trace Dataset when human usage evidence is discussed;
 - experiment logs and metrics;
 - program-search traces;

@@ -196,10 +196,16 @@ To regenerate the deterministic full-manuscript generation probe, run:
 
 ```bash
 python3 scripts/generate_full_manuscript_probe.py --update-manifest
+python3 scripts/generate_full_manuscript_probe.py \
+  --package-dir docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821 \
+  --update-manifest
 ```
 
 This writes two complete paper-shaped manuscripts and
-`experiments/prospective_matched_fml_causality_20260602_000001/full_manuscript_probe/summary.md`.
+`full_manuscript_probe/summary.md` under the selected package. The latest
+Fairness package probe scores co-pilot `4.18` and autonomous `4.11` on the
+internal rubric, while autonomous is the only path with a valid scalar FML test
+metric.
 It is an archived-evidence manuscript probe, not a fresh end-to-end research
 trajectory or independent expert review.
 

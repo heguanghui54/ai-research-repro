@@ -178,5 +178,17 @@
       "autonomous_score": 0.17215212582754802,
       "interpretation": "co-pilot frontier had no valid scored continuation; autonomous completed"
     }
+  },
+  "paper_quality_evidence": {
+    "matched_full_manuscript_generation_probe": {
+      "status": "archived_evidence_probe_not_fresh_end_to_end",
+      "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/summary.md",
+      "json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/summary.json",
+      "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+      "co_pilot_overall": 4.18,
+      "autonomous_overall": 4.11,
+      "metric_winner": "autonomous",
+      "limitation": "internal deterministic rubric; autonomous is only valid scalar metric path; not independent paper-quality proof"
+    }
   }
 }

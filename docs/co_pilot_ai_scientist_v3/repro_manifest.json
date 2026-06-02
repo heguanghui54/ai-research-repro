@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_audited_human_trace_dataset_and_fairness_negative_pilot",
+  "status": "pilot_package_with_full_manuscript_probe",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -350,7 +350,11 @@
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/autonomous_baseline_summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/human_gate_logs/frontier_gate_001.json",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/claim_audit.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/manuscript.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/manuscript.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/co_pilot_full_manuscript.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/autonomous_full_manuscript.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/summary.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -491,11 +495,11 @@
   "matched_full_manuscript_generation_probe": {
     "status": "archived_evidence_probe_not_fresh_end_to_end",
     "script": "scripts/generate_full_manuscript_probe.py",
-    "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/full_manuscript_probe/summary.md",
-    "json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/full_manuscript_probe/summary.json",
-    "package_id": "prospective_matched_fml_causality_20260602_010002",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/full_manuscript_probe/summary.json",
+    "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
     "co_pilot_overall": 4.18,
-    "autonomous_overall": 4.0,
+    "autonomous_overall": 4.11,
     "interpretation": "full_structure_and_claim_calibration_probe_only"
   },
   "human_copilot_trace_dataset": {
