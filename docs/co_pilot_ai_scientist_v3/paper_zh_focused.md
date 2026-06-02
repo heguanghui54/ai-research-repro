@@ -55,6 +55,7 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 | OpenReview 再生成，Claude 复审 | review-guided 胜 3 次 | baseline 胜 1 次，平 2 次 | mean overall +0.1667 | 有温和正向信号，但不是自动提升。 |
 | OpenReview 等上下文消融 | review-guided 票数 8 | context-control 票数 1，平 3 | 跨模型 mean delta +0.5 | 真实相关评审优于等量无关评审上下文，但 Claude 显示效果较温和。 |
 | 预注册盲评专家评审包 | 已准备 6 对匿名 A/B 产物 | 已完成人类评分 0 行 | 计划 3-5 名评审者 | 仅表示评估就绪，不声称已有人工证据。 |
+| Live skill invocation smoke | 生成 3 个候选方向和 5 个 IGRE gates | template-only skill smoke | 2 次真实模型调用，audit recommendation pass | 说明 Codex skill 可在新任务上复用；不是 benchmark 证据。 |
 | 回溯式前沿对齐 smoke | review-guided 胜 1 次 | shuffled-control 胜 5 次 | 相对 control 平均增量 -0.0855；delayed-value 0 例；短期正向/长期负向 3 例 | 未来前沿对齐比局部论文改进更难；当前仅为启发式 descriptor。 |
 | 引用驱动前沿 pilot | review-guided 胜 1 次 | 2 例不可评分 | 3 篇论文，13 条相关性过滤后的后续引用，相对 paper-only 均值 +0.0133 | 已加入相关性过滤和标题重合度误配保护；但只有 1 个可用引用图，因此仍是协议证据而非强结果。 |
 | Prospective matched packages | co-pilot 或人类选分支胜 1 次 | autonomous / tie / invalid 3 次 | 4 个 package | 不支持短预算平均 benchmark 优越性。 |

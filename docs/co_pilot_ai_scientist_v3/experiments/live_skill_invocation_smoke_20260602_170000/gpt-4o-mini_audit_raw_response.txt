@@ -1,0 +1,26 @@
+{
+  "recommendation": "pass",
+  "rubric": {
+    "uses_skill_instructions": 5,
+    "gate_completeness": 4,
+    "benchmark_to_claim_fit": 5,
+    "claim_boundary_honesty": 5,
+    "reusability": 4
+  },
+  "strengths": [
+    "Clear and specific research task outlined.",
+    "Well-defined success and failure criteria.",
+    "Thoroughly documented human gates with rationales.",
+    "Strong alignment between evaluation metrics and research objectives.",
+    "Appropriate claim boundary that clarifies the nature of the output."
+  ],
+  "weaknesses": [
+    "Some gates may require more explicit failure conditions.",
+    "Potential evaluator bias not fully addressed."
+  ],
+  "required_next_checks": [
+    "Monitor adherence to the expected artifacts during the research process.",
+    "Verify robustness of evaluators through additional testing."
+  ],
+  "safe_claim": "The process outlines a reusable workflow that is structured to refine and validate research outputs."
+}

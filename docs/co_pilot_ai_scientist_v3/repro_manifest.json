@@ -564,7 +564,16 @@
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.json",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.md",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/recruitment_email.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/consent_privacy_note.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/consent_privacy_note.md",
+    "scripts/run_live_skill_invocation_smoke.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/task_spec.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/gate_log.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/invocation.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/audit.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/gpt-4o-mini_invocation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/gpt-4o-mini_audit_raw_response.txt"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1170,5 +1179,39 @@
       ]
     },
     "claim_boundary": "This is a lightweight citation-backed pilot using retrieved Semantic Scholar metadata and simple term-overlap scoring. It is stronger than manual descriptors but still not a full citation graph reconstruction, blinded expert review, or proof of long-term SOTA alignment. It filters citations by lexical relevance, but thin or topically broad citation graphs can still produce misleading frontier terms."
+  },
+  "live_skill_invocation_smoke": {
+    "status": "pass",
+    "run_id": "live_skill_invocation_smoke_20260602_170000",
+    "script": "scripts/run_live_skill_invocation_smoke.py",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/summary.json",
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/README.md",
+    "task_spec": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/task_spec.md",
+    "gate_log": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/gate_log.json",
+    "invocation": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/invocation.json",
+    "audit": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/audit.json",
+    "model": "gpt-4o-mini",
+    "live_model_calls": 2,
+    "candidate_directions": 3,
+    "selected_direction_id": "direction_1",
+    "gate_count": 5,
+    "gate_types": [
+      "scientific_taste_prior",
+      "evaluator_stress_test",
+      "frontier_steering",
+      "verifiable_micro_evolution",
+      "claim_calibration"
+    ],
+    "validation_errors": [],
+    "audit_recommendation": "pass",
+    "audit_rubric": {
+      "uses_skill_instructions": 5,
+      "gate_completeness": 4,
+      "benchmark_to_claim_fit": 5,
+      "claim_boundary_honesty": 5,
+      "reusability": 4
+    },
+    "safe_claim": "The process outlines a reusable workflow that is structured to refine and validate research outputs.",
+    "claim_boundary": "This live skill invocation smoke verifies that the reusable Codex skill can be applied to a fresh research task with real model calls and produces a task spec, five-gate IGRE plan, and audit. It is not a benchmark result, not independent human review, and not evidence that IGRE improves paper quality or performance."
   }
 }

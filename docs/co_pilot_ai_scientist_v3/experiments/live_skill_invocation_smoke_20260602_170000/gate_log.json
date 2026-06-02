@@ -1,0 +1,91 @@
+{
+  "gate_id": "live_skill_invocation_scientific_taste_prior_001",
+  "gate_type": "scientific_taste_prior",
+  "timestamp_utc": "2026-06-02T07:40:07Z",
+  "research_task_id": "live_skill_invocation_001",
+  "options": [
+    {
+      "option_id": "direction_1",
+      "summary": "Evaluate Impact of Stress Gates on Metric-Gaming",
+      "score": null,
+      "evidence": [
+        "Conduct a controlled experiment comparing benchmarks with and without evaluator-stress gates.",
+        "FML-bench for initial metric evaluation."
+      ],
+      "risks": [
+        "Potential for evaluator bias affecting results."
+      ]
+    },
+    {
+      "option_id": "direction_2",
+      "summary": "Explore Alternative Evaluation Metrics",
+      "score": null,
+      "evidence": [
+        "Test new metrics against standard metrics in a benchmark setting.",
+        "MLAgentBench for diverse task evaluation."
+      ],
+      "risks": [
+        "New metrics may not be widely accepted or understood."
+      ]
+    },
+    {
+      "option_id": "direction_3",
+      "summary": "Integrate Human Feedback in Evaluation Process",
+      "score": null,
+      "evidence": [
+        "Run evaluations with structured human feedback versus automated evaluations.",
+        "ScienceAgentBench for comprehensive evaluation."
+      ],
+      "risks": [
+        "Human feedback may introduce variability that complicates results."
+      ]
+    }
+  ],
+  "human_decision": "direction_1",
+  "rationale": "Model-generated live skill invocation selected this direction as the most reusable test of IGRE gate orchestration; no human performance claim is inferred.",
+  "affected_artifacts": [
+    "skills/co-pilot-ai-scientist-v3/SKILL.md",
+    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
+    "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json"
+  ],
+  "downstream_budget": {
+    "model_calls": 2,
+    "selected_minimal_experiment": "Conduct a controlled experiment comparing benchmarks with and without evaluator-stress gates.",
+    "benchmark_or_evaluator": "FML-bench for initial metric evaluation."
+  },
+  "attention_cost": {
+    "human_actor": "codex_live_skill_smoke",
+    "interaction_mode": "posthoc_replay",
+    "prompted_at_utc": null,
+    "decision_at_utc": "2026-06-02T07:40:07Z",
+    "active_review_minutes": null,
+    "wall_clock_latency_minutes": null,
+    "options_reviewed": 3,
+    "artifacts_reviewed_count": 3,
+    "decision_count": 1,
+    "notes": "Live model-call skill smoke; no independent human timing was measured."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-02",
+    "scores": {
+      "problem_depth": 4,
+      "novelty_potential": 3,
+      "mechanistic_value": 4,
+      "failure_informativeness": 4,
+      "benchmark_taste": 4,
+      "claim_significance": 4,
+      "risk_asymmetry": 4
+    },
+    "taste_insight_score": 3.9,
+    "qualitative_rationale": "The selected live skill task tests whether IGRE gate semantics transfer to a fresh research problem, which matters for reusable co-pilot workflow design.",
+    "non_metric_factors": [
+      "workflow transferability",
+      "claim-boundary honesty",
+      "benchmark-to-claim fit"
+    ]
+  },
+  "follow_up_checks": [
+    "Run the selected task through an actual benchmark or evaluator before claiming performance.",
+    "Collect independent human review if the output is used for paper-quality claims."
+  ]
+}

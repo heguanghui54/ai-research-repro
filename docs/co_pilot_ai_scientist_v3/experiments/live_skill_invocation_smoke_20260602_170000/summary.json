@@ -1,0 +1,43 @@
+{
+  "run_id": "live_skill_invocation_smoke_20260602_170000",
+  "timestamp_utc": "2026-06-02T07:40:07Z",
+  "status": "pass",
+  "model": "gpt-4o-mini",
+  "live_model_calls": 2,
+  "topic": "Use Co-Pilot AI Scientist v3 to design a small research workflow for testing whether review-derived evaluator-stress gates reduce metric-gaming in an automated ML benchmark.",
+  "selected_direction_id": "direction_1",
+  "validation_errors": [],
+  "audit": {
+    "recommendation": "pass",
+    "rubric": {
+      "uses_skill_instructions": 5,
+      "gate_completeness": 4,
+      "benchmark_to_claim_fit": 5,
+      "claim_boundary_honesty": 5,
+      "reusability": 4
+    },
+    "strengths": [
+      "Clear and specific research task outlined.",
+      "Well-defined success and failure criteria.",
+      "Thoroughly documented human gates with rationales.",
+      "Strong alignment between evaluation metrics and research objectives.",
+      "Appropriate claim boundary that clarifies the nature of the output."
+    ],
+    "weaknesses": [
+      "Some gates may require more explicit failure conditions.",
+      "Potential evaluator bias not fully addressed."
+    ],
+    "required_next_checks": [
+      "Monitor adherence to the expected artifacts during the research process.",
+      "Verify robustness of evaluators through additional testing."
+    ],
+    "safe_claim": "The process outlines a reusable workflow that is structured to refine and validate research outputs."
+  },
+  "artifacts": {
+    "task_spec": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/task_spec.md",
+    "gate_log": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/gate_log.json",
+    "invocation": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/invocation.json",
+    "audit": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/audit.json"
+  },
+  "claim_boundary": "This live skill invocation smoke verifies that the reusable Codex skill can be applied to a fresh research task with real model calls and produces a task spec, five-gate IGRE plan, and audit. It is not a benchmark result, not independent human review, and not evidence that IGRE improves paper quality or performance."
+}

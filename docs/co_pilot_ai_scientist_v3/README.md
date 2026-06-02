@@ -92,6 +92,12 @@ claim calibration.
   rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
 - `audits/skill_reuse_smoke_audit.md`: local smoke test that instantiates the
   reusable Codex skill templates and validates a generated human gate log.
+- `experiments/live_skill_invocation_smoke_20260602_170000/`: live model-call
+  reuse test for the Codex skill. Monica-routed `gpt-4o-mini` applied the skill
+  to a fresh evaluator-stress research task, generated 3 candidate directions,
+  selected `direction_1`, produced a five-gate IGRE plan, and passed a second
+  model audit. This is reusable-workflow evidence, not benchmark or paper-quality
+  evidence.
 - `audits/attention_cost_logging_smoke_audit.md`: synthetic tooling smoke test
   for creating future human gate logs with complete attention-cost fields.
 - `audits/attention_taste_logging_smoke_audit.md`: synthetic tooling smoke test
