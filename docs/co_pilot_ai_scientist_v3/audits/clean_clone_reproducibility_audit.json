@@ -2,11 +2,12 @@
   "audit_date": "2026-06-02",
   "repository_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "branch": "codex/co-pilot-ai-scientist-v3",
-  "commit": "8d83909e20f0ab4a20389971b0b448cfe852ee74",
-  "clean_clone_path": "/tmp/copilot-v3-clean-clone-8d83909e",
+  "commit": "258b44dca3290d3cf7a865c4a275c2e62cbd1d29",
+  "clean_clone_path": "/tmp/copilot-v3-clean-clone-258b44dc",
   "clone_mode": "shallow_depth_1_single_branch",
   "commands_reran": [
     "python3 -m pip install -q -r requirements.txt",
+    "python3 scripts/audit_temporal_frontier_replay.py",
     "python3 scripts/audit_taste_insight_coverage.py",
     "python3 scripts/audit_human_gate_attention_cost.py",
     "python3 scripts/build_human_copilot_trace_dataset.py",
@@ -17,16 +18,16 @@
   ],
   "checks": {
     "status": "pass_for_current_pushed_artifact_rebuild",
-    "commit": "8d83909e20f0ab4a20389971b0b448cfe852ee74",
-    "clean_clone_path": "/tmp/copilot-v3-clean-clone-8d83909e",
+    "commit": "258b44dca3290d3cf7a865c4a275c2e62cbd1d29",
+    "clean_clone_path": "/tmp/copilot-v3-clean-clone-258b44dc",
     "clone_mode": "shallow_depth_1_single_branch",
-    "manifest_artifacts_checked": 594,
+    "manifest_artifacts_checked": 595,
     "missing_manifest_artifacts": 0,
     "pdfs_rebuilt": 4,
     "english_pdf_bytes": 51757,
     "chinese_pdf_bytes": 114561,
-    "focused_english_pdf_bytes": 26972,
-    "focused_chinese_pdf_bytes": 48975,
+    "focused_english_pdf_bytes": 28647,
+    "focused_chinese_pdf_bytes": 51799,
     "taste_gate_records_audited": 39,
     "complete_taste_insight_records": 2,
     "attention_gate_records_audited": 39,
@@ -71,7 +72,7 @@
     "audited_pushed_commit": true,
     "generated_files_byte_identical_after_rebuild": false,
     "generated_file_drift_note": "Rebuilding in the clean clone refreshed derived trace-dataset audit files and four PDFs; scripts completed successfully and all manifest artifacts exist, so this is a source-rebuild pass rather than a byte-for-byte generated-artifact immutability claim.",
-    "note": "Verifies the current pushed paper/skill/TFR package at 8d83909e with a shallow clean clone; shallow clone explains the one-entry commit index. Latest TFR probes remain negative for delayed-value evidence but are present, operationalized, and internally consistent.",
+    "note": "Verifies the current pushed paper/skill/TFR package at 258b44dc with a shallow clean clone; shallow clone explains the one-entry commit index. Latest TFR probes remain negative for delayed-value evidence but are present, operationalized, and internally consistent.",
     "github_branch_shallow_cloned": "pass",
     "requirements_installed": "pass",
     "taste_insight_audit_reran": "pass",
@@ -83,7 +84,10 @@
     "tfr_method_text_present": "pass",
     "tfr_skill_instructions_present": "pass",
     "temporal_frontier_replay_audit_present": true,
-    "temporal_frontier_replay_audit_status": "pass_with_negative_delayed_value_evidence"
+    "temporal_frontier_replay_audit_status": "pass_with_negative_delayed_value_evidence",
+    "claim_evidence_audit_present": true,
+    "claim_evidence_audit_json_present": true,
+    "claim_evidence_audit_missing_paths": 0
   },
-  "interpretation": "The pushed GitHub branch at 8d83909e is self-contained for rebuilding the bilingual and focused bilingual PDFs, rerunning gate-coverage audits, rebuilding and auditing the derived trace dataset, validating the reusable skill, finding all 594 manifest artifacts, confirming the Temporal Frontier Replay method text and operational audit, and verifying the structured-feedback, single-gate, expanded citation-frontier, review-frontier-signal, semantic-frontier-judge, live-skill, and metric-gaming evaluator-stress artifacts. The latest TFR audit supports protocol readiness and a negative delayed-value evidence boundary. This audit uses a shallow depth-1 clone and does not rerun remote Ubuntu experiments or prove top-conference performance claims."
+  "interpretation": "The pushed GitHub branch at 258b44dc is self-contained for rebuilding the bilingual and focused bilingual PDFs, rerunning gate-coverage audits, rebuilding and auditing the derived trace dataset, validating the reusable skill, finding all 595 manifest artifacts, confirming the Temporal Frontier Replay method text and operational audit, and verifying the structured-feedback, single-gate, expanded citation-frontier, review-frontier-signal, semantic-frontier-judge, live-skill, and metric-gaming evaluator-stress artifacts. The latest TFR audit supports protocol readiness and a negative delayed-value evidence boundary. This audit uses a shallow depth-1 clone and does not rerun remote Ubuntu experiments or prove top-conference performance claims."
 }
