@@ -49,6 +49,7 @@ def _add_manifest_artifacts(paths: list[Path], audit: dict[str, Any]) -> None:
         "json": _rel(AUDIT_DIR / "lhtg_dvrs_audit.json"),
         "markdown": _rel(AUDIT_DIR / "lhtg_dvrs_audit.md"),
         "method_terms_present": audit["method_terms_present"],
+        "reusable_workflow_terms_present": audit["reusable_workflow_terms_present"],
         "delayed_value_positive_cases": audit["delayed_value_positive_cases"],
         "candidate_queue_size": audit["candidate_queue"]["delayed_value_replay_candidates"],
         "candidate_frontier_delta": audit["candidate_frontier_validation"]["delayed_minus_control_mean_score"],
@@ -71,6 +72,13 @@ def main() -> None:
     paper_zh = DOC_DIR / "paper_zh_focused.md"
     tfr_spec_md = DOC_DIR / "temporal_frontier_replay_spec.md"
     tfr_spec_json = DOC_DIR / "temporal_frontier_replay_spec.json"
+    skill_md = ROOT / "skills" / "co-pilot-ai-scientist-v3" / "SKILL.md"
+    task_template = ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "task_spec_template.md"
+    gate_template = ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "human_gate_log_template.json"
+    usage_en = DOC_DIR / "usage_en.md"
+    usage_zh = DOC_DIR / "usage_zh.md"
+    runbook_en = DOC_DIR / "RUNBOOK_EN.md"
+    runbook_zh = DOC_DIR / "RUNBOOK_ZH.md"
     tfr_audit_path = AUDIT_DIR / "temporal_frontier_replay_audit.json"
     mining_path = DOC_DIR / "experiments" / "delayed_value_review_candidate_mining_20260603_001500" / "summary.json"
     validation_path = (
@@ -94,12 +102,51 @@ def main() -> None:
         _rel(paper_zh): _contains_all(paper_zh, ["长期科研品味门控", "LHTG", "DVRS"]),
         _rel(tfr_spec_md): _contains_all(tfr_spec_md, ["Long-Horizon Taste Gate", "LHTG Routing Rule", "DVRS"]),
     }
+    reusable_workflow_checks = {
+        _rel(skill_md): _contains_all(
+            skill_md,
+            [
+                "Long-Horizon Taste Gate",
+                "scripts/run_delayed_value_review_candidate_mining.py",
+                "scripts/audit_long_horizon_taste_gate.py",
+            ],
+        ),
+        _rel(task_template): _contains_all(
+            task_template,
+            ["long_horizon_taste_gate", "Delayed-Value Review Signal", "shuffled-review-control"],
+        ),
+        _rel(gate_template): _contains_all(
+            gate_template,
+            ["long_horizon_taste_gate", "is_lhtg_candidate", "delayed_value_label"],
+        ),
+        _rel(usage_en): _contains_all(
+            usage_en,
+            ["LHTG/DVRS", "scripts/audit_long_horizon_taste_gate.py", "0` positive delayed-value cases"],
+        ),
+        _rel(usage_zh): _contains_all(
+            usage_zh,
+            ["LHTG/DVRS", "scripts/audit_long_horizon_taste_gate.py", "正向 delayed-value cases"],
+        ),
+        _rel(runbook_en): _contains_all(
+            runbook_en,
+            ["Long-Horizon Taste Gate / DVRS Audit", "positive delayed-value cases: `0`"],
+        ),
+        _rel(runbook_zh): _contains_all(
+            runbook_zh,
+            ["长期科研品味门控 / DVRS 审计", "positive delayed-value cases：`0`"],
+        ),
+    }
 
     missing_terms = []
     for path, checks in method_checks.items():
         for term, present in checks.items():
             if not present:
                 missing_terms.append(f"{path}: {term}")
+    missing_workflow_terms = []
+    for path, checks in reusable_workflow_checks.items():
+        for term, present in checks.items():
+            if not present:
+                missing_workflow_terms.append(f"{path}: {term}")
 
     mining_agg = mining["aggregate"]
     validation_agg = validation["aggregate"]
@@ -116,6 +163,8 @@ def main() -> None:
     warnings: list[str] = []
     if missing_terms:
         errors.append(f"missing LHTG/DVRS method terms: {missing_terms}")
+    if missing_workflow_terms:
+        errors.append(f"missing LHTG/DVRS reusable workflow terms: {missing_workflow_terms}")
     if tfr_audit.get("status") != "pass_with_negative_delayed_value_evidence":
         errors.append("TFR audit status changed unexpectedly")
     if not tfr_spec.get("delayed_value_label_conditions"):
@@ -129,7 +178,9 @@ def main() -> None:
         "audit_date": _utc_now(),
         "status": "pass_with_no_positive_dvrs" if not errors else "fail",
         "method_terms_present": not missing_terms,
+        "reusable_workflow_terms_present": not missing_workflow_terms,
         "method_checks": method_checks,
+        "reusable_workflow_checks": reusable_workflow_checks,
         "tfr_status": tfr_audit.get("status"),
         "candidate_queue": {
             "reviews_screened": mining_agg.get("review_count"),
@@ -177,8 +228,19 @@ def main() -> None:
         f"- Audit date: `{audit['audit_date']}`",
         f"- Status: `{audit['status']}`",
         f"- Method terms present: `{audit['method_terms_present']}`",
+        f"- Reusable workflow terms present: `{audit['reusable_workflow_terms_present']}`",
         f"- TFR status: `{audit['tfr_status']}`",
         f"- Delayed-value positive cases: `{audit['delayed_value_positive_cases']}`",
+        "",
+        "## Reusable Workflow Checks",
+        "",
+    ]
+    for path, checks in audit["reusable_workflow_checks"].items():
+        missing = [term for term, present in checks.items() if not present]
+        lines.append(f"- `{path}`: `{'pass' if not missing else 'fail'}`")
+        if missing:
+            lines.append(f"  - missing: `{missing}`")
+    lines.extend([
         "",
         "## Candidate Queue",
         "",
@@ -211,14 +273,28 @@ def main() -> None:
         "",
         "## Errors",
         "",
-    ]
+    ])
     lines.extend([f"- {error}" for error in errors] or ["- None"])
     lines.extend(["", "## Warnings", ""])
     lines.extend([f"- {warning}" for warning in warnings] or ["- None"])
     lines.extend(["", "## Claim Boundary", "", audit["claim_boundary"], ""])
     md_path.write_text("\n".join(lines), encoding="utf-8")
 
-    _add_manifest_artifacts([json_path, md_path, Path(__file__)], audit)
+    _add_manifest_artifacts(
+        [
+            json_path,
+            md_path,
+            Path(__file__),
+            skill_md,
+            task_template,
+            gate_template,
+            usage_en,
+            usage_zh,
+            runbook_en,
+            runbook_zh,
+        ],
+        audit,
+    )
 
     print(json.dumps({"json": _rel(json_path), "markdown": _rel(md_path), "status": audit["status"]}, indent=2))
     if errors:

@@ -1,7 +1,8 @@
 {
-  "audit_date": "2026-06-02T11:03:53Z",
+  "audit_date": "2026-06-02T11:06:13Z",
   "status": "pass_with_no_positive_dvrs",
   "method_terms_present": true,
+  "reusable_workflow_terms_present": true,
   "method_checks": {
     "docs/co_pilot_ai_scientist_v3/architecture.md": {
       "Long-Horizon Taste Gate": true,
@@ -22,6 +23,41 @@
       "Long-Horizon Taste Gate": true,
       "LHTG Routing Rule": true,
       "DVRS": true
+    }
+  },
+  "reusable_workflow_checks": {
+    "skills/co-pilot-ai-scientist-v3/SKILL.md": {
+      "Long-Horizon Taste Gate": true,
+      "scripts/run_delayed_value_review_candidate_mining.py": true,
+      "scripts/audit_long_horizon_taste_gate.py": true
+    },
+    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md": {
+      "long_horizon_taste_gate": true,
+      "Delayed-Value Review Signal": true,
+      "shuffled-review-control": true
+    },
+    "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json": {
+      "long_horizon_taste_gate": true,
+      "is_lhtg_candidate": true,
+      "delayed_value_label": true
+    },
+    "docs/co_pilot_ai_scientist_v3/usage_en.md": {
+      "LHTG/DVRS": true,
+      "scripts/audit_long_horizon_taste_gate.py": true,
+      "0` positive delayed-value cases": true
+    },
+    "docs/co_pilot_ai_scientist_v3/usage_zh.md": {
+      "LHTG/DVRS": true,
+      "scripts/audit_long_horizon_taste_gate.py": true,
+      "正向 delayed-value cases": true
+    },
+    "docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md": {
+      "Long-Horizon Taste Gate / DVRS Audit": true,
+      "positive delayed-value cases: `0`": true
+    },
+    "docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md": {
+      "长期科研品味门控 / DVRS 审计": true,
+      "positive delayed-value cases：`0`": true
     }
   },
   "tfr_status": "pass_with_negative_delayed_value_evidence",

@@ -1631,6 +1631,7 @@
     "json": "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.md",
     "method_terms_present": true,
+    "reusable_workflow_terms_present": true,
     "delayed_value_positive_cases": 0,
     "candidate_queue_size": 120,
     "candidate_frontier_delta": 0.064,

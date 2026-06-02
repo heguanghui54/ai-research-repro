@@ -1,10 +1,21 @@
 # Long-Horizon Taste Gate / DVRS Audit
 
-- Audit date: `2026-06-02T11:03:53Z`
+- Audit date: `2026-06-02T11:06:13Z`
 - Status: `pass_with_no_positive_dvrs`
 - Method terms present: `True`
+- Reusable workflow terms present: `True`
 - TFR status: `pass_with_negative_delayed_value_evidence`
 - Delayed-value positive cases: `0`
+
+## Reusable Workflow Checks
+
+- `skills/co-pilot-ai-scientist-v3/SKILL.md`: `pass`
+- `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`: `pass`
+- `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`: `pass`
+- `docs/co_pilot_ai_scientist_v3/usage_en.md`: `pass`
+- `docs/co_pilot_ai_scientist_v3/usage_zh.md`: `pass`
+- `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`: `pass`
+- `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`: `pass`
 
 ## Candidate Queue
 
