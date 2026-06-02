@@ -130,7 +130,12 @@
     "review_frontier_signal_probe_runs": 1,
     "review_frontier_signal_probe_review_snippets": 16,
     "review_frontier_signal_probe_review_beats_paper_cases": 0,
-    "review_frontier_signal_probe_latent_delayed_value_candidates": 0
+    "review_frontier_signal_probe_latent_delayed_value_candidates": 0,
+    "semantic_frontier_judge_probe_runs": 1,
+    "semantic_frontier_judge_probe_successful_judgements": 5,
+    "semantic_frontier_judge_probe_paper_context_wins": 4,
+    "semantic_frontier_judge_probe_review_guided_artifact_wins": 1,
+    "semantic_frontier_judge_probe_delayed_value_candidates": 0
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -1175,5 +1180,38 @@
     "mean_paper_context_score": 0.2369,
     "mean_review_guided_artifact_score": 0.1906,
     "claim_boundary": "Review snippets contain routeable gates but do not outperform paper context under lexical citation-frontier scoring; stronger semantic and human-judged measures are required."
+  },
+  "semantic_frontier_judge_probe": {
+    "status": "completed_model_judged_semantic_probe_negative_for_delayed_value",
+    "script": "scripts/run_semantic_frontier_judge_probe.py",
+    "run_id": "semantic_frontier_judge_probe_20260602_223000",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/summary.json",
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/README.md",
+    "raw_model_calls": "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/raw_model_calls.json",
+    "judge_model": "gpt-4o-mini",
+    "successful_judgements": 5,
+    "winner_counts": {
+      "paper_context": 4,
+      "review_guided_artifact": 1
+    },
+    "latent_delayed_value_candidate_count": 0,
+    "mean_scores": {
+      "paper_context": {
+        "semantic_frontier_alignment": 4.2,
+        "actionable_research_control": 4,
+        "novelty_taste_signal": 3.8
+      },
+      "review_guided_artifact": {
+        "semantic_frontier_alignment": 3.4,
+        "actionable_research_control": 4,
+        "novelty_taste_signal": 3.4
+      },
+      "best_review_snippet": {
+        "semantic_frontier_alignment": 3,
+        "actionable_research_control": 3.2,
+        "novelty_taste_signal": 2.8
+      }
+    },
+    "claim_boundary": "Model-judged semantic matching addresses lexical limitations but still finds no delayed-value cases in the small sample; use as prioritization evidence, not proof."
   }
 }

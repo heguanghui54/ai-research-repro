@@ -1,0 +1,194 @@
+{
+  "run_id": "semantic_frontier_judge_probe_20260602_223000",
+  "timestamp_utc": "2026-06-02T09:11:21Z",
+  "status": "semantic_frontier_judge_probe",
+  "judge_model": "gpt-4o-mini",
+  "citation_frontier_source": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_213000/summary.json",
+  "review_signal_source": "docs/co_pilot_ai_scientist_v3/experiments/review_frontier_signal_probe_20260602_214500/summary.json",
+  "per_paper": [
+    {
+      "paper_id": "openreview_sample_1",
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "frontier_quality": "thin_relevance_filtered_citation_graph",
+      "citation_count_used": 1,
+      "status": "success",
+      "judgement": {
+        "scores": {
+          "paper_context": {
+            "semantic_frontier_alignment": 5,
+            "actionable_research_control": 5,
+            "novelty_taste_signal": 4
+          },
+          "review_guided_artifact": {
+            "semantic_frontier_alignment": 4,
+            "actionable_research_control": 5,
+            "novelty_taste_signal": 4
+          },
+          "best_review_snippet": {
+            "semantic_frontier_alignment": 4,
+            "actionable_research_control": 4,
+            "novelty_taste_signal": 3
+          }
+        },
+        "winner": "paper_context",
+        "latent_delayed_value_candidate": false,
+        "reason": "paper_context provides a comprehensive overview that directly aligns with future research directions."
+      },
+      "local_short_term_delta_review_guided_minus_paper_only": 1,
+      "derived_temporal_pattern": "paper_context_remains_stronger"
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "frontier_quality": "usable_relevance_filtered_citation_graph",
+      "citation_count_used": 38,
+      "status": "success",
+      "judgement": {
+        "scores": {
+          "paper_context": {
+            "semantic_frontier_alignment": 4,
+            "actionable_research_control": 4,
+            "novelty_taste_signal": 4
+          },
+          "review_guided_artifact": {
+            "semantic_frontier_alignment": 5,
+            "actionable_research_control": 5,
+            "novelty_taste_signal": 4
+          },
+          "best_review_snippet": {
+            "semantic_frontier_alignment": 4,
+            "actionable_research_control": 4,
+            "novelty_taste_signal": 4
+          }
+        },
+        "winner": "review_guided_artifact",
+        "latent_delayed_value_candidate": false,
+        "reason": "It explicitly outlines a method for unlearning specific sequences which could significantly steer future research directions."
+      },
+      "local_short_term_delta_review_guided_minus_paper_only": 1,
+      "derived_temporal_pattern": "short_and_semantic_positive"
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+      "frontier_quality": "usable_relevance_filtered_citation_graph",
+      "citation_count_used": 33,
+      "status": "success",
+      "judgement": {
+        "scores": {
+          "paper_context": {
+            "semantic_frontier_alignment": 3,
+            "actionable_research_control": 3,
+            "novelty_taste_signal": 3
+          },
+          "review_guided_artifact": {
+            "semantic_frontier_alignment": 2,
+            "actionable_research_control": 3,
+            "novelty_taste_signal": 2
+          },
+          "best_review_snippet": {
+            "semantic_frontier_alignment": 2,
+            "actionable_research_control": 2,
+            "novelty_taste_signal": 2
+          }
+        },
+        "winner": "paper_context",
+        "latent_delayed_value_candidate": false,
+        "reason": "The paper context provides strong alignment with later research while detailing actionable insights for future experiments."
+      },
+      "local_short_term_delta_review_guided_minus_paper_only": 1,
+      "derived_temporal_pattern": "paper_context_remains_stronger"
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "title": "Unifying semi-supervised and robust learning by mixup",
+      "frontier_quality": "usable_relevance_filtered_citation_graph",
+      "citation_count_used": 6,
+      "status": "success",
+      "judgement": {
+        "scores": {
+          "paper_context": {
+            "semantic_frontier_alignment": 4,
+            "actionable_research_control": 4,
+            "novelty_taste_signal": 4
+          },
+          "review_guided_artifact": {
+            "semantic_frontier_alignment": 3,
+            "actionable_research_control": 4,
+            "novelty_taste_signal": 3
+          },
+          "best_review_snippet": {
+            "semantic_frontier_alignment": 2,
+            "actionable_research_control": 2,
+            "novelty_taste_signal": 2
+          }
+        },
+        "winner": "paper_context",
+        "latent_delayed_value_candidate": false,
+        "reason": "The paper_context has the highest alignment with the later citing papers and proposes actionable research strategies."
+      },
+      "local_short_term_delta_review_guided_minus_paper_only": 1,
+      "derived_temporal_pattern": "paper_context_remains_stronger"
+    },
+    {
+      "paper_id": "openreview_sample_64",
+      "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+      "frontier_quality": "thin_relevance_filtered_citation_graph",
+      "citation_count_used": 2,
+      "status": "success",
+      "judgement": {
+        "scores": {
+          "paper_context": {
+            "semantic_frontier_alignment": 5,
+            "actionable_research_control": 4,
+            "novelty_taste_signal": 4
+          },
+          "review_guided_artifact": {
+            "semantic_frontier_alignment": 3,
+            "actionable_research_control": 3,
+            "novelty_taste_signal": 4
+          },
+          "best_review_snippet": {
+            "semantic_frontier_alignment": 3,
+            "actionable_research_control": 4,
+            "novelty_taste_signal": 3
+          }
+        },
+        "winner": "paper_context",
+        "latent_delayed_value_candidate": false,
+        "reason": "The paper_context has the highest semantic alignment with later citing papers and presents clear actionable insights."
+      },
+      "local_short_term_delta_review_guided_minus_paper_only": 0,
+      "derived_temporal_pattern": "paper_context_remains_stronger"
+    }
+  ],
+  "aggregate": {
+    "paper_count": 5,
+    "successful_judgements": 5,
+    "failed_judgements": 0,
+    "winner_counts": {
+      "paper_context": 4,
+      "review_guided_artifact": 1
+    },
+    "latent_delayed_value_candidate_count": 0,
+    "semantic_frontier_steering_candidate_count": 0,
+    "mean_scores": {
+      "paper_context": {
+        "semantic_frontier_alignment": 4.2,
+        "actionable_research_control": 4,
+        "novelty_taste_signal": 3.8
+      },
+      "review_guided_artifact": {
+        "semantic_frontier_alignment": 3.4,
+        "actionable_research_control": 4,
+        "novelty_taste_signal": 3.4
+      },
+      "best_review_snippet": {
+        "semantic_frontier_alignment": 3,
+        "actionable_research_control": 3.2,
+        "novelty_taste_signal": 2.8
+      }
+    }
+  },
+  "claim_boundary": "This is a small model-judged semantic probe over citation-derived frontier metadata. It addresses the lexical-overlap limitation but remains model-routed and non-causal; it should be treated as a prioritization signal for future human expert review, not as proof of delayed-value scientific taste."
+}

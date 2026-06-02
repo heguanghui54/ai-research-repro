@@ -1,0 +1,307 @@
+[
+  {
+    "paper_id": "openreview_sample_1",
+    "prompt": "We are evaluating historical peer-review signals for automated science.\n\nOriginal paper:\n{\n  \"paper_id\": \"openreview_sample_1\",\n  \"title\": \"Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback\",\n  \"frontier_terms\": [\"chatbot\", \"moral\", \"refusal\", \"llm\", \"value\", \"user\", \"discourse\", \"tenor\", \"rhetoric\", \"sorry\", \"dave\", \"afraid\", \"can\", \"regulation\", \"article\", \"explore\"]\n}\n\nLater citing-paper frontier metadata:\n[\n  {\n    \"title\": \"‘I’m sorry Dave, I’m afraid I can’t do that’: Moral regulation in refusals by LLM chatbots\",\n    \"year\": 2025,\n    \"abstract_excerpt\": \"This article explores how Large Language Model (LLM) chatbots regulate moral values when they refuse ‘unsafe’ requests from users. It applies corpus-based discourse analysis to examine how the chatbots employ tenor resources of positioning , tuning , and orienting in the rhetoric of their refusals. This method is informed by Systemic Functional Linguistics, in particular the discourse semantic system of appraisal , which models evaluative meaning. Despite their contrite openings, chatbot refusal ...\"\n  }\n]\n\nCandidate signals available at the historical time:\n{\n  \"paper_context\": \"Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback Large Language Models (LLMs) often generate erroneous outputs, known as hallucinations, due to their limitations in discerning questions beyond their knowledge scope. While addressing hallucination has been a focal point in research, previous efforts primarily concentrate on enhancing correctness without giving due consideration to the significance of rejection mechanisms. In this paper, we conduct a comprehensive examination of the role of rejection, introducing the alignment goal of model reliability along with corresponding metrics. This goal requires the model to provide accurate responses while adeptly rejecting questions exceeding its knowledge boundaries, thereby minimizing hallucinations. To improve the inherent reliability of LLMs, we present a novel alignment framework called Reinforcement Learning from Knowledge Feedback (RLKF). RLKF leverages knowledge feedback to dynamically This paper addresses the problem of model hallucination, when models generate incorrect resp ...\",\n  \"review_guided_artifact\": \"This paper presents a new RL-based fine-tuning method that trains LLMs to recognize when they cannot provide accurate answers, thereby improving their reliability. We utilize RLKF to create preference data that includes pairs of (correct, refuse-to-answer), (refuse-to-answer, incorrect), and (correct, incorrect) to train the model effectively. We will conduct experiments on various datasets, particularly focusing on arithmetic and other knowledge-intensive tasks, to measure the model's ability to reject inappropriate questions and its overall accuracy. The experiments are currently limited to specific benchmarks, and the performance on more complex or nuanced questions remains to be explored. The findings are primarily relevant to LLMs and may not generalize to other AI models or broader contexts. In this paper, we address the critical issue of hallucination in Large Language Models (LLMs) by introducing a novel RL-based fine-tuning method that trains models to prefer saying 'I don't know' when faced with questions outside their knowledge scope. Our approach leverages Reinforcement L ...\",\n  \"best_review_snippet\": \"{\\\"clarity\\\": null, \\\"confidence\\\": 0.75, \\\"correctness\\\": null, \\\"ethics\\\": null, \\\"impact\\\": null, \\\"novelty\\\": null, \\\"reproducibility\\\": null, \\\"review\\\": {\\\"limitations\\\": null, \\\"main_review\\\": null, \\\"paper_summary\\\": \\\"paper_summary: This paper proposes a new RLHF framework to address LLM hallucinations by defining a new reward model for model reliability. It trains LLMs to generate \\\\\\\"I don't know\\\\\\\" answers to questions outside the model's knowledge boundary. It conducts empirical experiments on two math question datasets to validate the effectiveness of the proposed method in enhancing LLM reliability. \\\\n\\\\nThe proposed method is simple and easy to follow and the evaluation is comprehensive, but the result\"\n}\n\nScore each candidate from 1 to 5:\n- semantic_frontier_alignment: would it steer an automated researcher toward the later citing-paper frontier?\n- actionable_research_control: does it imply a concrete experiment, evaluator, method change, or claim boundary?\n- novelty_taste_signal: does it express non-generic scientific taste about what is worth pursuing?\n\nThen choose winner among: paper_context, review_guided_artifact, best_review_snippet.\nAlso set latent_delayed_value_candidate=true only if the best_review_snippet is the winner and the reason says it could steer future research even if immediate artifact quality is not better.\n\nReturn JSON only with this schema:\n{\n  \"scores\": {\n    \"paper_context\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"review_guided_artifact\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"best_review_snippet\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1}\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"one concise sentence\"\n}\n",
+    "result": {
+      "model": "gpt-4o-mini",
+      "status_code": 200,
+      "response": {
+        "id": "chatcmpl-llm-router-openai",
+        "object": "chat.completion",
+        "created": 1780391463,
+        "model": "gpt-4o-mini",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"scores\": {\n    \"paper_context\": {\"semantic_frontier_alignment\": 5, \"actionable_research_control\": 5, \"novelty_taste_signal\": 4},\n    \"review_guided_artifact\": {\"semantic_frontier_alignment\": 4, \"actionable_research_control\": 5, \"novelty_taste_signal\": 4},\n    \"best_review_snippet\": {\"semantic_frontier_alignment\": 4, \"actionable_research_control\": 4, \"novelty_taste_signal\": 3}\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": true,\n  \"reason\": \"paper_context provides a comprehensive overview that directly aligns with future research directions.\"\n}"
+            },
+            "finish_reason": "stop",
+            "content_filter_results": {
+              "hate": {
+                "filtered": false
+              },
+              "self_harm": {
+                "filtered": false
+              },
+              "sexual": {
+                "filtered": false
+              },
+              "violence": {
+                "filtered": false
+              },
+              "jailbreak": {
+                "filtered": false,
+                "detected": false
+              },
+              "profanity": {
+                "filtered": false,
+                "detected": false
+              }
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1159,
+          "completion_tokens": 157,
+          "total_tokens": 1316,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        "system_fingerprint": ""
+      }
+    },
+    "content": "{\n  \"scores\": {\n    \"paper_context\": {\"semantic_frontier_alignment\": 5, \"actionable_research_control\": 5, \"novelty_taste_signal\": 4},\n    \"review_guided_artifact\": {\"semantic_frontier_alignment\": 4, \"actionable_research_control\": 5, \"novelty_taste_signal\": 4},\n    \"best_review_snippet\": {\"semantic_frontier_alignment\": 4, \"actionable_research_control\": 4, \"novelty_taste_signal\": 3}\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": true,\n  \"reason\": \"paper_context provides a comprehensive overview that directly aligns with future research directions.\"\n}"
+  },
+  {
+    "paper_id": "openreview_sample_17",
+    "prompt": "We are evaluating historical peer-review signals for automated science.\n\nOriginal paper:\n{\n  \"paper_id\": \"openreview_sample_17\",\n  \"title\": \"Knowledge Unlearning for Mitigating Privacy Risks in Language Models\",\n  \"frontier_terms\": [\"unlearning\", \"data\", \"privacy\", \"llms\", \"machine\", \"user\", \"concern\", \"parameter\", \"knowledge\", \"forget\", \"forgetting\", \"technique\", \"dataset\", \"request\", \"existing\", \"llm\"]\n}\n\nLater citing-paper frontier metadata:\n[\n  {\n    \"title\": \"Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)\",\n    \"year\": 2023,\n    \"abstract_excerpt\": \"Message from the Program ChairsIt's hard to believe that we're actually going to be seeing the program come together in Toronto.We're really looking forward to it and to seeing you all there!Most of the work of a program chair is behind the scenes: herding reviewers and chairs, wrangling data from various sources, and answering lots and lots of email.This is a volunteer position, so the only reward we get for this is our chance to make the process of submitting and reviewing papers to our confer ...\"\n  },\n  {\n    \"title\": \"On Protecting the Data Privacy of Large Language Models (LLMs): A Survey\",\n    \"year\": 2024,\n    \"abstract_excerpt\": \"Large language models (LLMs) are complex artificial intelligence systems capable of understanding, generating and translating human language. They learn language patterns by analyzing large amounts of text data, allowing them to perform writing, conversation, summarizing and other language tasks. When LLMs process and generate large amounts of data, there is a risk of leaking sensitive information, which may threaten data privacy. This paper concentrates on elucidating the data privacy concerns ...\"\n  },\n  {\n    \"title\": \"Rethinking machine unlearning for large language models\",\n    \"year\": 2025,\n    \"abstract_excerpt\": \"\"\n  },\n  {\n    \"title\": \"On protecting the data privacy of Large Language Models (LLMs) and LLM agents: A literature review\",\n    \"year\": 2025,\n    \"abstract_excerpt\": \"Large Language Models (LLMs) are complex artificial intelligence systems, which can understand, generate, and translate human languages. By analyzing large amounts of textual data, these models learn language patterns to perform tasks such as writing, conversation, and summarization. Agents built on LLMs (LLM agents) further extend these capabilities, allowing them to process user interactions and perform complex operations in diverse task environments. However, during the processing and generat ...\"\n  },\n  {\n    \"title\": \"Unlearn What You Want to Forget: Efficient Unlearning for LLMs\",\n    \"year\": 2023,\n    \"abstract_excerpt\": \"Large language models (LLMs) have achieved significant progress from pre-training on and memorizing a wide range of textual data, however, this process might suffer from privacy issues and violations of data protection regulations. As a result, the ability to easily remove data related to individual users from such models while not deteriorating their predictive quality after the removal becomes increasingly important. To address these issues, in this work, we propose an efficient unlearning fra ...\"\n  },\n  {\n    \"title\": \"The Frontier of Data Erasure: A Survey on Machine Unlearning for Large Language Models\",\n    \"year\": 2025,\n    \"abstract_excerpt\": \"This article reviews the latest in machine unlearning for large language models (LLMs), introducing methods for the targeted forgetting of information to address privacy, ethical, and legal challenges without necessitating full-model retraining. Machine unlearning is a cutting-edge solution, mitigating risk concerns of LLMs and artificial intelligence.\"\n  },\n  {\n    \"title\": \"Privacy in Fine-Tuning Large Language Models: Attacks, Defenses, and Future Directions\",\n    \"year\": 2025,\n    \"abstract_excerpt\": \"\"\n  },\n  {\n    \"title\": \"Understanding Users' Security and Privacy Concerns and Attitudes Towards Conversational AI Platforms\",\n    \"year\": 2025,\n    \"abstract_excerpt\": \"The widespread adoption of conversational AI platforms has introduced new security and privacy risks. While these risks and their mitigation strategies have been extensively researched from a technical perspective, users' perceptions of these platforms' security and privacy remain largely unexplored. In this paper, we conduct a large-scale analysis of over 2.5M user posts from the r/ChatGPT Reddit community to understand users' security and privacy concerns and attitudes toward conversational AI ...\"\n  }\n]\n\nCandidate signals available at the historical time:\n{\n  \"paper_context\": \"Knowledge Unlearning for Mitigating Privacy Risks in Language Models Pretrained Language Models (LMs) memorize a vast amount of knowledge during initial pretraining, including information that may violate the privacy of personal lives and identities. Previous work addressing privacy issues for language models has mostly focused on data preprocessing and differential privacy methods, both requiring re-training the underlying LM. We propose knowledge unlearning as an alternative method to reduce privacy risks for LMs post hoc. We show that simply applying the unlikelihood training objective to target token sequences is effective at forgetting them with little to no degradation of general language modeling performances; it sometimes even substantially improves the underlying LM with just a few iterations. We also find that sequential unlearning is better than trying to unlearn all the data at once and that unlearning is highly dependent on which kind of data The main contribution of this work lies in proposing the use of gradient ascent on equation 1 for unlearning to provide empirical ...\",\n  \"review_guided_artifact\": \"This work presents a simple yet effective approach for unlearning specific token sequences in large pretrained language models, providing empirical privacy guarantees. We employ gradient ascent on the unlikelihood training objective to unlearn specific sequences, aiming for minimal degradation in performance. We will conduct experiments to assess the impact of unlearning on model performance, particularly focusing on the trade-off between privacy and accuracy. The justification for baseline choices and metrics needs to be strengthened to enhance the robustness of the findings. The findings are primarily relevant to large language models and may not generalize to other machine learning contexts. In this work, we introduce a straightforward method for knowledge unlearning in large pretrained language models, aimed at mitigating privacy risks. Our approach employs gradient ascent on the unlikelihood training objective to effectively unlearn specific token sequences while striving for minimal degradation in performance. We plan to conduct experiments to evaluate the impact of unlearning ...\",\n  \"best_review_snippet\": \"{\\\"clarity\\\": null, \\\"confidence\\\": 0.75, \\\"correctness\\\": 0.6666666666666666, \\\"ethics\\\": null, \\\"impact\\\": null, \\\"novelty\\\": 0.75, \\\"reproducibility\\\": null, \\\"review\\\": {\\\"limitations\\\": null, \\\"main_review\\\": \\\"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\\\", \\\"paper_summary\\\": \\\"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for\"\n}\n\nScore each candidate from 1 to 5:\n- semantic_frontier_alignment: would it steer an automated researcher toward the later citing-paper frontier?\n- actionable_research_control: does it imply a concrete experiment, evaluator, method change, or claim boundary?\n- novelty_taste_signal: does it express non-generic scientific taste about what is worth pursuing?\n\nThen choose winner among: paper_context, review_guided_artifact, best_review_snippet.\nAlso set latent_delayed_value_candidate=true only if the best_review_snippet is the winner and the reason says it could steer future research even if immediate artifact quality is not better.\n\nReturn JSON only with this schema:\n{\n  \"scores\": {\n    \"paper_context\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"review_guided_artifact\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"best_review_snippet\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1}\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"one concise sentence\"\n}\n",
+    "result": {
+      "model": "gpt-4o-mini",
+      "status_code": 200,
+      "response": {
+        "id": "chatcmpl-llm-router-openai",
+        "object": "chat.completion",
+        "created": 1780391467,
+        "model": "gpt-4o-mini",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"scores\": {\n    \"paper_context\": {\n      \"semantic_frontier_alignment\": 4,\n      \"actionable_research_control\": 4,\n      \"novelty_taste_signal\": 4\n    },\n    \"review_guided_artifact\": {\n      \"semantic_frontier_alignment\": 5,\n      \"actionable_research_control\": 5,\n      \"novelty_taste_signal\": 4\n    },\n    \"best_review_snippet\": {\n      \"semantic_frontier_alignment\": 4,\n      \"actionable_research_control\": 4,\n      \"novelty_taste_signal\": 4\n    }\n  },\n  \"winner\": \"review_guided_artifact\",\n  \"latent_delayed_value_candidate\": true,\n  \"reason\": \"It explicitly outlines a method for unlearning specific sequences which could significantly steer future research directions.\"\n}"
+            },
+            "finish_reason": "stop",
+            "content_filter_results": {
+              "hate": {
+                "filtered": false
+              },
+              "self_harm": {
+                "filtered": false
+              },
+              "sexual": {
+                "filtered": false
+              },
+              "violence": {
+                "filtered": false
+              },
+              "jailbreak": {
+                "filtered": false,
+                "detected": false
+              },
+              "profanity": {
+                "filtered": false,
+                "detected": false
+              }
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 1844,
+          "completion_tokens": 182,
+          "total_tokens": 2026,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        "system_fingerprint": ""
+      }
+    },
+    "content": "{\n  \"scores\": {\n    \"paper_context\": {\n      \"semantic_frontier_alignment\": 4,\n      \"actionable_research_control\": 4,\n      \"novelty_taste_signal\": 4\n    },\n    \"review_guided_artifact\": {\n      \"semantic_frontier_alignment\": 5,\n      \"actionable_research_control\": 5,\n      \"novelty_taste_signal\": 4\n    },\n    \"best_review_snippet\": {\n      \"semantic_frontier_alignment\": 4,\n      \"actionable_research_control\": 4,\n      \"novelty_taste_signal\": 4\n    }\n  },\n  \"winner\": \"review_guided_artifact\",\n  \"latent_delayed_value_candidate\": true,\n  \"reason\": \"It explicitly outlines a method for unlearning specific sequences which could significantly steer future research directions.\"\n}"
+  },
+  {
+    "paper_id": "openreview_sample_34",
+    "prompt": "We are evaluating historical peer-review signals for automated science.\n\nOriginal paper:\n{\n  \"paper_id\": \"openreview_sample_34\",\n  \"title\": \"\\u200b\\u200bWhat learning algorithm is in-context learning? Investigations with linear models\",\n  \"frontier_terms\": [\"icl\", \"in-context\", \"llms\", \"can\", \"demonstration\", \"label\", \"ns3\", \"such\", \"transformer\", \"instruction\", \"ability\", \"article\", \"understanding\", \"network\", \"prompt\", \"llm\"]\n}\n\nLater citing-paper frontier metadata:\n[\n  {\n    \"title\": \"Advances and Challenges in Meta-Learning: A Technical Review\",\n    \"year\": 2024,\n    \"abstract_excerpt\": \"Meta-learning empowers learning systems with the ability to acquire knowledge from multiple tasks, enabling faster adaptation and generalization to new tasks. This review provides a comprehensive technical overview of meta-learning, emphasizing its importance in real-world applications where data may be scarce or expensive to obtain. The article covers the state-of-the-art meta-learning approaches and explores the relationship between meta-learning and multi-task learning, transfer learning, dom ...\"\n  },\n  {\n    \"title\": \"The Edge of Sentience\",\n    \"year\": 2024,\n    \"abstract_excerpt\": \"Abstract Can octopuses feel pain and pleasure? What about crabs, shrimps, insects, or spiders? How do we tell whether a person unresponsive after severe brain injury might be suffering? When does a fetus in the womb start to have conscious experiences? Could there even be rudimentary feelings in miniature models of the human brain, grown from human stem cells? And what about AI? These are questions about the edge of sentience, and they are subject to enormous, disorienting uncertainty. The stake ...\"\n  },\n  {\n    \"title\": \"Why Can GPT Learn In-Context? Language Models Secretly Perform Gradient Descent as Meta-Optimizers\",\n    \"year\": 2023,\n    \"abstract_excerpt\": \"Large pretrained language models have shown surprising in-context learning (ICL) ability. With a few demonstration input-label pairs, they can predict the label for an unseen input without parameter updates. Despite the great success in performance, its working mechanism still remains an open question. In this paper, we explain language models as meta-optimizers and understand in-context learning as implicit finetuning. Theoretically, we figure out that Transformer attention has a dual form of g ...\"\n  },\n  {\n    \"title\": \"Brain-inspired learning in artificial neural networks: A review\",\n    \"year\": 2024,\n    \"abstract_excerpt\": \"Artificial neural networks (ANNs) have emerged as an essential tool in machine learning, achieving remarkable success across diverse domains, including image and speech generation, game playing, and robotics. However, there exist fundamental differences between ANNs’ operating mechanisms and those of the biological brain, particularly concerning learning processes. This paper presents a comprehensive review of current brain-inspired learning representations in artificial neural networks. We inve ...\"\n  },\n  {\n    \"title\": \"Towards Understanding Chain-of-Thought Prompting: An Empirical Study of What Matters\",\n    \"year\": 2023,\n    \"abstract_excerpt\": \"Boshi Wang, Sewon Min, Xiang Deng, Jiaming Shen, You Wu, Luke Zettlemoyer, Huan Sun. Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers). 2023.\"\n  },\n  {\n    \"title\": \"OpenMedLM: prompt engineering can out-perform fine-tuning in medical question-answering with open-source large language models\",\n    \"year\": 2024,\n    \"abstract_excerpt\": \"LLMs can accomplish specialized medical knowledge tasks, however, equitable access is hindered by the extensive fine-tuning, specialized medical data requirement, and limited access to proprietary models. Open-source (OS) medical LLMs show performance improvements and provide the transparency and compliance required in healthcare. We present OpenMedLM, a prompting platform delivering state-of-the-art (SOTA) performance for OS LLMs on medical benchmarks. We evaluated OS foundation LLMs (7B-70B) o ...\"\n  },\n  {\n    \"title\": \"On Second Thought, Let’s Not Think Step by Step! Bias and Toxicity in Zero-Shot Reasoning\",\n    \"year\": 2023,\n    \"abstract_excerpt\": \"Generating a Chain of Thought (CoT) has been shown to consistently improve large language model (LLM) performance on a wide range of NLP tasks. However, prior work has mainly focused on logical reasoning tasks (e.g. arithmetic, commonsense QA); it remains unclear whether improvements hold for more diverse types of reasoning, especially in socially situated contexts. Concretely, we perform a controlled evaluation of zero-shot CoT across two socially sensitive domains: harmful questions and stereo ...\"\n  },\n  {\n    \"title\": \"Otter: A Multi-Modal Model With In-Context Instruction Tuning\",\n    \"year\": 2025,\n    \"abstract_excerpt\": \"Recent advances in Large Multimodal Models (LMMs) have unveiled great potential as visual assistants. However, most existing works focus on responding to individual instructions or using previous dialogues for contextual understanding. There is little discussion on employing both images and text as in-context examples to enhance the instruction following capability. To bridge this gap, we introduce the Otter model to leverage both textual and visual in-context examples for instruction tuning. Sp ...\"\n  }\n]\n\nCandidate signals available at the historical time:\n{\n  \"paper_context\": \"​​What learning algorithm is in-context learning? Investigations with linear models Neural sequence models, especially transformers, exhibit a remarkable capacity for in-context learning. They can construct new predictors from sequences of labeled examples $(x, f(x))$ presented in the input without further parameter updates. We investigate the hypothesis that transformer-based in-context learners implement standard learning algorithms implicitly, by encoding context-specific parametric models in their hidden representations, and updating these implicit models as new examples appear in the context. Using linear regression as a model problem, we offer three sources of evidence for this hypothesis. First, we prove by construction that transformers can implement learning algorithms for linear models based on gradient descent and closed-form computation of regression parameters. Second, we show that trained in-context learners closely match the predictors computed by gradien This work investigates why transformers can be trained to be in-context learners (ICL) of linear functions. Specifi ...\",\n  \"review_guided_artifact\": \"This work offers novel insights into how transformer-based models can implicitly implement learning algorithms during in-context learning. We will explore various perspectives on how transformers can learn standard learning algorithms and low-level algorithmic operations. We will conduct experiments to compare the outputs of transformers with well-known algorithms, focusing on their ability to implement learning tasks. The probe technique used in the experiments requires further description to enhance understanding, and minor issues in clarity need addressing. The findings are primarily relevant to transformer-based models and may not generalize to other types of neural networks. In this work, we provide novel insights into the capabilities of transformer-based models as implicit in-context learners. Our investigation explores various perspectives on how these models can implement standard learning algorithms and low-level algorithmic operations. We will conduct experiments comparing the outputs of transformers with well-known algorithms, focusing on their ability to perform learning ...\",\n  \"best_review_snippet\": \"{\\\"clarity\\\": null, \\\"confidence\\\": 0.75, \\\"correctness\\\": 0.0, \\\"ethics\\\": null, \\\"impact\\\": null, \\\"novelty\\\": 0.0, \\\"reproducibility\\\": null, \\\"review\\\": {\\\"limitations\\\": null, \\\"main_review\\\": \\\"main_review: The paper is well-structured, clear and reads easily. The level of technical details provided in the main text is good. The supplementary material provides an extensive and very lengthy details on the derivation of different operators. The paper has a placeholder link for the code, so I think that the results should be easily reproducible.\\\\n\\\", \\\"paper_summary\\\": \\\"paper_summary: The paper investigates the capability of transformer-based in-context learners (ICL) to implicitly implement learning algorithms\"\n}\n\nScore each candidate from 1 to 5:\n- semantic_frontier_alignment: would it steer an automated researcher toward the later citing-paper frontier?\n- actionable_research_control: does it imply a concrete experiment, evaluator, method change, or claim boundary?\n- novelty_taste_signal: does it express non-generic scientific taste about what is worth pursuing?\n\nThen choose winner among: paper_context, review_guided_artifact, best_review_snippet.\nAlso set latent_delayed_value_candidate=true only if the best_review_snippet is the winner and the reason says it could steer future research even if immediate artifact quality is not better.\n\nReturn JSON only with this schema:\n{\n  \"scores\": {\n    \"paper_context\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"review_guided_artifact\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"best_review_snippet\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1}\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"one concise sentence\"\n}\n",
+    "result": {
+      "model": "gpt-4o-mini",
+      "status_code": 200,
+      "response": {
+        "id": "chatcmpl-llm-router-openai",
+        "object": "chat.completion",
+        "created": 1780391471,
+        "model": "gpt-4o-mini",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"scores\": {\n    \"paper_context\": {\n      \"semantic_frontier_alignment\": 3,\n      \"actionable_research_control\": 3,\n      \"novelty_taste_signal\": 3\n    },\n    \"review_guided_artifact\": {\n      \"semantic_frontier_alignment\": 2,\n      \"actionable_research_control\": 3,\n      \"novelty_taste_signal\": 2\n    },\n    \"best_review_snippet\": {\n      \"semantic_frontier_alignment\": 2,\n      \"actionable_research_control\": 2,\n      \"novelty_taste_signal\": 2\n    }\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"The paper context provides strong alignment with later research while detailing actionable insights for future experiments.\"\n}"
+            },
+            "finish_reason": "stop",
+            "content_filter_results": {
+              "hate": {
+                "filtered": false
+              },
+              "self_harm": {
+                "filtered": false
+              },
+              "sexual": {
+                "filtered": false
+              },
+              "violence": {
+                "filtered": false
+              },
+              "jailbreak": {
+                "filtered": false,
+                "detected": false
+              },
+              "profanity": {
+                "filtered": false,
+                "detected": false
+              }
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 82,
+          "completion_tokens": 178,
+          "total_tokens": 2180,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 1920
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        "system_fingerprint": ""
+      }
+    },
+    "content": "{\n  \"scores\": {\n    \"paper_context\": {\n      \"semantic_frontier_alignment\": 3,\n      \"actionable_research_control\": 3,\n      \"novelty_taste_signal\": 3\n    },\n    \"review_guided_artifact\": {\n      \"semantic_frontier_alignment\": 2,\n      \"actionable_research_control\": 3,\n      \"novelty_taste_signal\": 2\n    },\n    \"best_review_snippet\": {\n      \"semantic_frontier_alignment\": 2,\n      \"actionable_research_control\": 2,\n      \"novelty_taste_signal\": 2\n    }\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"The paper context provides strong alignment with later research while detailing actionable insights for future experiments.\"\n}"
+  },
+  {
+    "paper_id": "openreview_sample_49",
+    "prompt": "We are evaluating historical peer-review signals for automated science.\n\nOriginal paper:\n{\n  \"paper_id\": \"openreview_sample_49\",\n  \"title\": \"Unifying semi-supervised and robust learning by mixup\",\n  \"frontier_terms\": [\"label\", \"noise\", \"data\", \"sup\", \"unlabeled\", \"network\", \"noisy\", \"target\", \"dataset\", \"only\", \"labeled\", \"detection\", \"supervised\", \"existing\", \"achieve\", \"type\"]\n}\n\nLater citing-paper frontier metadata:\n[\n  {\n    \"title\": \"Distilling Effective Supervision From Severe Label Noise\",\n    \"year\": 2020,\n    \"abstract_excerpt\": \"Collecting large-scale data with clean labels for supervised training of neural networks is practically challenging. Although noisy labels are usually cheap to acquire, existing methods suffer a lot from label noise. This paper targets at the challenge of robust training at high label noise regimes. The key insight to achieve this goal is to wisely leverage a small trusted set to estimate exemplar weights and pseudo labels for noisy data in order to reuse them for supervised training. We present ...\"\n  },\n  {\n    \"title\": \"Target Detection for HFSWR Based on an S<sup>3</sup>D Algorithm\",\n    \"year\": 2020,\n    \"abstract_excerpt\": \"Because of the influence of clutter and interference, intelligent detection is of great importance for high-frequency surface wave radar (HFSWR) in complex environment. In this paper, we propose a cascade HFSWR target detection strategy based on semi-supervised self-distillation (S <sup xmlns:mml=\\\"http://www.w3.org/1998/Math/MathML\\\" xmlns:xlink=\\\"http://www.w3.org/1999/xlink\\\">3</sup> D) learning algorithm. First, based on the results of constant false alarm rate (CFAR) detection, the S <sup xmlns ...\"\n  },\n  {\n    \"title\": \"Countering Noisy Labels By Learning From Auxiliary Clean Labels\",\n    \"year\": 2019,\n    \"abstract_excerpt\": \"We consider the learning from noisy labels (NL) problem which emerges in many real-world applications. In addition to the widely-studied synthetic noise in the NL literature, we also consider the pseudo labels in semi-supervised learning (Semi-SL) as a special case of NL. For both types of noise, we argue that the generalization performance of existing methods is highly coupled with the quality of noisy labels. Therefore, we counter the problem from a novel and unified perspective: learning from ...\"\n  },\n  {\n    \"title\": \"Dash: Semi-Supervised Learning with Dynamic Thresholding\",\n    \"year\": 2021,\n    \"abstract_excerpt\": \"While semi-supervised learning (SSL) has received tremendous attentions in many machine learning tasks due to its successful use of unlabeled data, existing SSL algorithms use either all unlabeled examples or the unlabeled examples with a fixed high-confidence prediction during the training progress. However, it is possible that too many correct/wrong pseudo labeled examples are eliminated/selected. In this work we develop a simple yet powerful framework, whose key idea is to select a subset of ...\"\n  },\n  {\n    \"title\": \"Importance Reweighting for Biquality Learning\",\n    \"year\": 2021,\n    \"abstract_excerpt\": \"The field of Weakly Supervised Learning (WSL) has recently seen a surge of popularity, with numerous papers addressing different types of “supervision deficiencies”, namely: poor quality, non adaptability, and insufficient quantity of labels. Regarding quality, label noise can be of different types, including completely-at-random, at-random or even not-at-random. All these kinds of label noise are addressed separately in the literature, leading to highly specialized approaches. This paper propos ...\"\n  },\n  {\n    \"title\": \"Bringing balance to hand shape classification: Mitigating data imbalance through generative models\",\n    \"year\": 2025,\n    \"abstract_excerpt\": \"\"\n  }\n]\n\nCandidate signals available at the historical time:\n{\n  \"paper_context\": \"Unifying semi-supervised and robust learning by mixup Supervised deep learning methods require cleanly labeled large-scale datasets, but collecting such data is difficult and sometimes impossible. There exist two popular frameworks to alleviate this problem: semi-supervised learning and robust learning to label noise. Although these frameworks relax the restriction of supervised learning, they are studied independently. Hence, the training scheme that is suitable when only small cleanly-labeled data are available remains unknown. In this study, we consider learning from bi-quality data as a generalization of these studies, in which a small portion of data is cleanly labeled, and the rest is corrupt. Under this framework, we compare recent algorithms for semi-supervised and robust learning. The results suggest that semi-supervised learning outperforms robust learning with noisy labels. We also propose a training strategy for mixing mixup tec\",\n  \"review_guided_artifact\": \"This work presents a unified training strategy that effectively combines semi-supervised and robust learning techniques, providing a framework for improved model performance. We propose a mixup-based strategy that blends cleanly labeled and noisy data to enhance learning outcomes. We will conduct experiments to compare the proposed method's performance with existing approaches on various datasets, focusing on the balance between clean and noisy data. The improvements observed in performance may be modest, and the potential for further exploration of the idea is significant. The findings are primarily relevant to semi-supervised and robust learning contexts and may not generalize to other learning settings. In this work, we present a unified training strategy that effectively combines semi-supervised and robust learning techniques using a mixup-based approach. This framework aims to improve model performance when faced with limited cleanly labeled data. We will conduct experiments to compare our method's performance against existing approaches across various datasets, focusing on the ...\",\n  \"best_review_snippet\": \"{\\\"clarity\\\": null, \\\"confidence\\\": 0.5, \\\"correctness\\\": null, \\\"ethics\\\": null, \\\"impact\\\": null, \\\"novelty\\\": null, \\\"reproducibility\\\": null, \\\"review\\\": {\\\"limitations\\\": null, \\\"main_review\\\": \\\"main_review: Major comments and summary: \\\\n\\\\n Overall, I strongly recommend this paper as a workshop paper, but I think it needs more work to become a great conference paper. The problem is well-motivated and seems very important to me. My biggest issue is that I feel like one could go much \\\\\\\"further\\\\\\\" with this idea - and it shows empirically - the only improvement from using the noisy labels is to go from 89% -> 90%, which I would say is only a small improvement. If this problem gets solved I think you should\"\n}\n\nScore each candidate from 1 to 5:\n- semantic_frontier_alignment: would it steer an automated researcher toward the later citing-paper frontier?\n- actionable_research_control: does it imply a concrete experiment, evaluator, method change, or claim boundary?\n- novelty_taste_signal: does it express non-generic scientific taste about what is worth pursuing?\n\nThen choose winner among: paper_context, review_guided_artifact, best_review_snippet.\nAlso set latent_delayed_value_candidate=true only if the best_review_snippet is the winner and the reason says it could steer future research even if immediate artifact quality is not better.\n\nReturn JSON only with this schema:\n{\n  \"scores\": {\n    \"paper_context\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"review_guided_artifact\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"best_review_snippet\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1}\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"one concise sentence\"\n}\n",
+    "result": {
+      "model": "gpt-4o-mini",
+      "status_code": 200,
+      "response": {
+        "id": "chatcmpl-llm-router-openai",
+        "object": "chat.completion",
+        "created": 1780391474,
+        "model": "gpt-4o-mini",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"scores\": {\n    \"paper_context\": {\n      \"semantic_frontier_alignment\": 4,\n      \"actionable_research_control\": 4,\n      \"novelty_taste_signal\": 4\n    },\n    \"review_guided_artifact\": {\n      \"semantic_frontier_alignment\": 3,\n      \"actionable_research_control\": 4,\n      \"novelty_taste_signal\": 3\n    },\n    \"best_review_snippet\": {\n      \"semantic_frontier_alignment\": 2,\n      \"actionable_research_control\": 2,\n      \"novelty_taste_signal\": 2\n    }\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"The paper_context has the highest alignment with the later citing papers and proposes actionable research strategies.\" \n}"
+            },
+            "finish_reason": "stop",
+            "content_filter_results": {
+              "hate": {
+                "filtered": false
+              },
+              "self_harm": {
+                "filtered": false
+              },
+              "sexual": {
+                "filtered": false
+              },
+              "violence": {
+                "filtered": false
+              },
+              "jailbreak": {
+                "filtered": false,
+                "detected": false
+              },
+              "profanity": {
+                "filtered": false,
+                "detected": false
+              }
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 42,
+          "completion_tokens": 180,
+          "total_tokens": 1886,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 1664
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        "system_fingerprint": ""
+      }
+    },
+    "content": "{\n  \"scores\": {\n    \"paper_context\": {\n      \"semantic_frontier_alignment\": 4,\n      \"actionable_research_control\": 4,\n      \"novelty_taste_signal\": 4\n    },\n    \"review_guided_artifact\": {\n      \"semantic_frontier_alignment\": 3,\n      \"actionable_research_control\": 4,\n      \"novelty_taste_signal\": 3\n    },\n    \"best_review_snippet\": {\n      \"semantic_frontier_alignment\": 2,\n      \"actionable_research_control\": 2,\n      \"novelty_taste_signal\": 2\n    }\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"The paper_context has the highest alignment with the later citing papers and proposes actionable research strategies.\" \n}"
+  },
+  {
+    "paper_id": "openreview_sample_64",
+    "prompt": "We are evaluating historical peer-review signals for automated science.\n\nOriginal paper:\n{\n  \"paper_id\": \"openreview_sample_64\",\n  \"title\": \"CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation\",\n  \"frontier_terms\": [\"traffic\", \"scenario\", \"factor\", \"trafficgen\", \"event-relevant\", \"anomaly\", \"video\", \"detection\", \"realistic\", \"driving\", \"vehicle\", \"event-irrelevant\", \"causal\", \"generate\", \"diverse\", \"safety\"]\n}\n\nLater citing-paper frontier metadata:\n[\n  {\n    \"title\": \"TrafficGen: Learning to Generate Diverse and Realistic Traffic Scenarios\",\n    \"year\": 2023,\n    \"abstract_excerpt\": \"Diverse and realistic traffic scenarios are crucial for evaluating the AI safety of autonomous driving systems in simulation. This work introduces a data-driven method called TrafficGen for traffic scenario generation. It learns from the fragmented human driving data collected in the real world and then generates realistic traffic scenarios. TrafficGen is an autoregressive neural generative model with an encoder-decoder architecture. In each autoregressive iteration, it first encodes the current ...\"\n  },\n  {\n    \"title\": \"Learning Event-Relevant Factors for Video Anomaly Detection\",\n    \"year\": 2023,\n    \"abstract_excerpt\": \"Most video anomaly detection methods discriminate events that deviate from normal patterns as anomalies. However, these methods are prone to interferences from event-irrelevant factors, such as background textures and object scale variations, incurring an increased false detection rate. In this paper, we propose to explicitly learn event-relevant factors to eliminate the interferences from event-irrelevant factors on anomaly predictions. To this end, we introduce a causal generative model to sep ...\"\n  }\n]\n\nCandidate signals available at the historical time:\n{\n  \"paper_context\": \"CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation Goal-directed generation, aiming for solving downstream tasks by generating diverse data, has a potentially wide range of applications in the real world. Previous works tend to formulate goal-directed generation as a purely data-driven problem, which directly approximates the distribution of samples satisfying the goal. However, the generation ability of preexisting work is heavily restricted by inefficient sampling, especially for sparse goals that rarely show up in off-the-shelf datasets. For instance, generating safety-critical traffic scenes with the goal of increasing the risk of collision is critical to evaluate autonomous vehicles, but the rareness of such scenes is the biggest resistance. In this paper, we integrate causality as a prior into the safety-critical scene generation process and propose a flow-based generative framework -- Causal Autoregressive Flow (CausalAF). Causal As highlighted by the reviewers, this is an interesting contribution with high relevance to the workshop. The work is well-mo ...\",\n  \"review_guided_artifact\": \"This work presents a novel approach for goal-directed scene generation by integrating causal graphs into the generative process. We employ causal graphs to guide the generation of safety-critical scenes, ensuring that the generated samples respect the underlying causal structure. We will conduct experiments to assess the effectiveness of our method in generating realistic safety-critical scenes, focusing on the accuracy of the generated samples. The technical correctness of the method requires further validation, and clarity in presentation is essential for broader understanding. The findings are primarily relevant to safety-critical scene generation and may not generalize to other generative contexts. In this work, we present a novel approach for goal-directed scene generation, integrating causal graphs into the generative process to produce safety-critical scenes. Our method employs causal graphs to guide the generation, ensuring that the generated samples respect the underlying causal structure. We plan to conduct experiments to evaluate the effectiveness of our method in generati ...\",\n  \"best_review_snippet\": \"{\\\"clarity\\\": null, \\\"confidence\\\": 0.0, \\\"correctness\\\": null, \\\"ethics\\\": null, \\\"impact\\\": null, \\\"novelty\\\": null, \\\"reproducibility\\\": null, \\\"review\\\": {\\\"limitations\\\": null, \\\"main_review\\\": \\\"main_review: If I understand correctly this paper proposes a model which allows goal directed samples (goal defined by a specific behavioural graph) while constraining the model to respect a given causal graph. The method uses flows, together with masks over order or visibiliy to model the edges of the graphs and obtain a distribution which is both easy to sample from as well as respecting the causal constraints and goal.\\\\nThe method is demonstrated to work well producing samples of driving scenes which are consist\"\n}\n\nScore each candidate from 1 to 5:\n- semantic_frontier_alignment: would it steer an automated researcher toward the later citing-paper frontier?\n- actionable_research_control: does it imply a concrete experiment, evaluator, method change, or claim boundary?\n- novelty_taste_signal: does it express non-generic scientific taste about what is worth pursuing?\n\nThen choose winner among: paper_context, review_guided_artifact, best_review_snippet.\nAlso set latent_delayed_value_candidate=true only if the best_review_snippet is the winner and the reason says it could steer future research even if immediate artifact quality is not better.\n\nReturn JSON only with this schema:\n{\n  \"scores\": {\n    \"paper_context\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"review_guided_artifact\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1},\n    \"best_review_snippet\": {\"semantic_frontier_alignment\": 1, \"actionable_research_control\": 1, \"novelty_taste_signal\": 1}\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"one concise sentence\"\n}\n",
+    "result": {
+      "model": "gpt-4o-mini",
+      "status_code": 200,
+      "response": {
+        "id": "chatcmpl-llm-router-openai",
+        "object": "chat.completion",
+        "created": 1780391478,
+        "model": "gpt-4o-mini",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\n  \"scores\": {\n    \"paper_context\": {\"semantic_frontier_alignment\": 5, \"actionable_research_control\": 4, \"novelty_taste_signal\": 4},\n    \"review_guided_artifact\": {\"semantic_frontier_alignment\": 3, \"actionable_research_control\": 3, \"novelty_taste_signal\": 4},\n    \"best_review_snippet\": {\"semantic_frontier_alignment\": 3, \"actionable_research_control\": 4, \"novelty_taste_signal\": 3}\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"The paper_context has the highest semantic alignment with later citing papers and presents clear actionable insights.\" \n}"
+            },
+            "finish_reason": "stop",
+            "content_filter_results": {
+              "hate": {
+                "filtered": false
+              },
+              "self_harm": {
+                "filtered": false
+              },
+              "sexual": {
+                "filtered": false
+              },
+              "violence": {
+                "filtered": false
+              },
+              "jailbreak": {
+                "filtered": false,
+                "detected": false
+              },
+              "profanity": {
+                "filtered": false,
+                "detected": false
+              }
+            }
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 98,
+          "completion_tokens": 162,
+          "total_tokens": 1412,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 1152
+          },
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 0
+          }
+        },
+        "system_fingerprint": ""
+      }
+    },
+    "content": "{\n  \"scores\": {\n    \"paper_context\": {\"semantic_frontier_alignment\": 5, \"actionable_research_control\": 4, \"novelty_taste_signal\": 4},\n    \"review_guided_artifact\": {\"semantic_frontier_alignment\": 3, \"actionable_research_control\": 3, \"novelty_taste_signal\": 4},\n    \"best_review_snippet\": {\"semantic_frontier_alignment\": 3, \"actionable_research_control\": 4, \"novelty_taste_signal\": 3}\n  },\n  \"winner\": \"paper_context\",\n  \"latent_delayed_value_candidate\": false,\n  \"reason\": \"The paper_context has the highest semantic alignment with later citing papers and presents clear actionable insights.\" \n}"
+  }
+]

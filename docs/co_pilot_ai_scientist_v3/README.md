@@ -84,6 +84,13 @@ claim calibration.
   cases and `0` latent delayed-value candidates, supporting the boundary that
   OpenReview is an offline proxy for participation-mode design, not a magic
   source of automatically useful human taste.
+- `experiments/semantic_frontier_judge_probe_20260602_223000/`: model-judged
+  semantic follow-up to the lexical frontier probes. A Monica-routed
+  `gpt-4o-mini` judge compares paper context, best review snippet, and
+  review-guided artifact against later citation metadata. It succeeds on 5/5
+  cases, gives paper context 4 wins and review-guided artifact 1 win, and finds
+  `0` delayed-value candidates. This supports the boundary that delayed-value
+  is measurable but not yet demonstrated in the small OpenReview sample.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet

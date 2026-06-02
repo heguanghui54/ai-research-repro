@@ -64,6 +64,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | Retrospective frontier-alignment smoke | review-guided wins 1 | shuffled-control wins 5 | mean delta vs. control -0.0855; 0 delayed-value cases; 3 short-term-positive/long-term-negative cases | Future-frontier alignment is harder than local paper improvement; heuristic descriptors only. |
 | Citation-backed frontier pilot | review-guided wins 1 | paper-only wins 3; shuffled-control wins 1; 1 case not scored | 6 papers, 80 relevance-filtered later citations, mean delta vs. paper-only -0.02 | Relevance filtering and match-drift guards are implemented; no delayed-value cases are found, and 3 cases are short-term-positive/long-term-negative. |
 | Review-frontier signal mining | best review snippets scored 0.1431 mean | paper context 0.2369; review-guided artifact 0.1906 | 0 review-beats-paper cases; 0 latent delayed-value candidates | Historical reviews contain routeable gates, but this lexical future-frontier test finds that the original paper context carries more citation-frontier terms than the review snippets. |
+| Semantic frontier judge | review-guided artifact wins 1 | paper context wins 4 | 5 model-judged cases; 0 delayed-value candidates | A model judge using citation metadata also favors original paper context; one review-guided artifact is short-and-semantic positive, not delayed-value. |
 | Prospective matched packages | 1 co-pilot or human-selected win | 3 autonomous/tie/invalid outcomes | 4 packages | Short-budget average benchmark superiority is not supported. |
 | Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
@@ -170,6 +171,19 @@ treating OpenReview as a magic source of human taste. The actionable conclusion
 is narrower: peer review is a scalable offline proxy for testing participation
 modes, but useful taste/insight signals must be filtered, routed, and validated
 against stronger semantic and human-judged future-frontier measures.
+
+To check whether this negative result is merely an artifact of lexical overlap,
+we run a small semantic judge probe using a Monica-routed `gpt-4o-mini` judge.
+The judge sees the original paper context, the best historical review snippet,
+the review-guided regenerated artifact, and metadata from later citing papers.
+Across the five cases with future-frontier terms, paper context wins 4 times
+and review-guided artifact wins once. Mean semantic-frontier scores are 4.2 for
+paper context, 3.4 for review-guided artifact, and 3.0 for the best review
+snippet. The single review-guided win is a knowledge-unlearning case where the
+artifact is both short-term and semantic positive. The semantic probe therefore
+still finds 0 delayed-value candidates. This narrows the claim further: the
+delayed-value design is conceptually important and now measurable, but the
+current small OpenReview sample does not yet provide positive evidence for it.
 
 This makes the paper's application value concrete. The goal is not merely to prove that humans improve paper quality. The goal is to design the best modes of human participation, compare them empirically, and build a workflow in which human taste is used where it has the highest chance of changing the research trajectory.
 
