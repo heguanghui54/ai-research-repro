@@ -1,6 +1,6 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T18:53:08Z`
+- Audit date: `2026-06-02T19:00:16Z`
 - Status: `pass`
 - FML entries: `2`
 - Non-FML entries: `11`
@@ -12,6 +12,7 @@
 - Open-data evaluator-stress pilot: `5` sklearn tasks, `5` split seeds, `25` paired selections, `8` candidates each, co-pilot mean balanced accuracy `0.9264256134480804` versus autonomous `0.9248566268790939`, delta `0.00156898656898655`; selection changed in `4` paired selections.
 - Evaluator-stress trigger policy: best policy `class_imbalance_trigger_0_94` with delta `0.003076923076923066` versus always-on delta `0.00156898656898655`.
 - Held-out trigger-policy validation: best policy `class_imbalance_trigger_0_94` with delta `0.003639444256184343` versus held-out always-on delta `0.0025821297988698876`.
+- Frozen trigger-policy transfer: discovery selected `class_imbalance_trigger_0_94`; held-out frozen delta `0.003639444256184343` versus held-out always-on delta `0.0025821297988698876`, with held-out losses `0` versus always-on losses `2`.
 
 ## Boundary And Blocked Evidence
 
@@ -42,6 +43,7 @@
 - `open_data_multitask_evaluator_stress_scored`: `pass`
 - `evaluator_stress_trigger_policy_scored`: `pass`
 - `evaluator_stress_trigger_policy_heldout_scored`: `pass`
+- `evaluator_stress_trigger_policy_transfer_validated`: `pass`
 - `blocked_official_tasks_logged`: `pass`
 - `blocked_tasks_do_not_report_scores`: `pass`
 - `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`

@@ -77,6 +77,11 @@ def main() -> None:
         / "prospective_matched_open_data_multitask_holdout_20260603"
         / "evaluator_stress_trigger_policy_summary.json"
     )
+    trigger_policy_transfer_path = (
+        EXP_DIR
+        / "evaluator_trigger_policy_transfer_20260603"
+        / "summary.json"
+    )
 
     matrix = _load_json(matrix_path)
     selection_text = _read(selection_path)
@@ -99,6 +104,7 @@ def main() -> None:
     trigger_policy = _load_json(trigger_policy_path)
     open_data_holdout = _load_json(open_data_holdout_path)
     trigger_policy_holdout = _load_json(trigger_policy_holdout_path)
+    trigger_policy_transfer = _load_json(trigger_policy_transfer_path)
     open_data_total = open_data.get("total_dataset_split_evaluations")
     open_data_expected_total = (
         open_data.get("dataset_count", 0) * open_data.get("split_count", 0)
@@ -246,6 +252,19 @@ def main() -> None:
         > trigger_policy_holdout.get("policies", {})
         .get("always_on_evaluator_stress", {})
         .get("delta_vs_autonomous_mean", 0),
+        "evaluator_stress_trigger_policy_transfer_validated": trigger_policy_transfer.get("status")
+        == "pass"
+        and trigger_policy_transfer.get("selected_policy") == "class_imbalance_trigger_0_94"
+        and trigger_policy_transfer.get("heldout_transfer_checks", {}).get(
+            "frozen_policy_delta_beats_always_on_delta"
+        )
+        is True
+        and trigger_policy_transfer.get("heldout_transfer_checks", {}).get(
+            "frozen_policy_has_no_losses"
+        )
+        is True
+        and trigger_policy_transfer.get("heldout_transfer_checks", {}).get("always_on_has_losses")
+        is True,
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -349,6 +368,15 @@ def main() -> None:
                 ),
                 "path": _rel(trigger_policy_holdout_path),
             },
+            "evaluator_stress_trigger_policy_transfer": {
+                "selected_policy": trigger_policy_transfer.get("selected_policy"),
+                "train_package": trigger_policy_transfer.get("train_package"),
+                "heldout_package": trigger_policy_transfer.get("heldout_package"),
+                "heldout_frozen_policy": trigger_policy_transfer.get("heldout_frozen_policy"),
+                "heldout_always_on": trigger_policy_transfer.get("heldout_always_on"),
+                "transfer_checks": trigger_policy_transfer.get("heldout_transfer_checks"),
+                "path": _rel(trigger_policy_transfer_path),
+            },
             "official_setup_blockers": official_blockers,
         },
         "errors": errors,
@@ -414,6 +442,17 @@ def main() -> None:
             f"`{trigger_policy_holdout.get('policies', {}).get(trigger_policy_holdout.get('best_policy', ''), {}).get('delta_vs_autonomous_mean')}` "
             "versus held-out always-on delta "
             f"`{trigger_policy_holdout.get('policies', {}).get('always_on_evaluator_stress', {}).get('delta_vs_autonomous_mean')}`."
+        ),
+        (
+            "- Frozen trigger-policy transfer: discovery selected "
+            f"`{trigger_policy_transfer.get('selected_policy')}`; held-out frozen delta "
+            f"`{trigger_policy_transfer.get('heldout_frozen_policy', {}).get('delta_vs_autonomous_mean')}` "
+            "versus held-out always-on delta "
+            f"`{trigger_policy_transfer.get('heldout_always_on', {}).get('delta_vs_autonomous_mean')}`, "
+            "with held-out losses "
+            f"`{trigger_policy_transfer.get('heldout_frozen_policy', {}).get('losses_vs_autonomous')}` "
+            "versus always-on losses "
+            f"`{trigger_policy_transfer.get('heldout_always_on', {}).get('losses_vs_autonomous')}`."
         ),
         "",
         "## Boundary And Blocked Evidence",

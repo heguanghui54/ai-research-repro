@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T18:53:08Z",
+  "audit_date": "2026-06-02T19:00:16Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -18,6 +18,7 @@
     "open_data_multitask_evaluator_stress_scored": true,
     "evaluator_stress_trigger_policy_scored": true,
     "evaluator_stress_trigger_policy_heldout_scored": true,
+    "evaluator_stress_trigger_policy_transfer_validated": true,
     "blocked_official_tasks_logged": true,
     "blocked_tasks_do_not_report_scores": true,
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,
@@ -108,6 +109,34 @@
         "triggered_count": 5
       },
       "path": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/evaluator_stress_trigger_policy_summary.json"
+    },
+    "evaluator_stress_trigger_policy_transfer": {
+      "selected_policy": "class_imbalance_trigger_0_94",
+      "train_package": "prospective_matched_open_data_multitask_20260603",
+      "heldout_package": "prospective_matched_open_data_multitask_holdout_20260603",
+      "heldout_frozen_policy": {
+        "mean_test_balanced_accuracy": 0.9243200965787449,
+        "delta_vs_autonomous_mean": 0.003639444256184343,
+        "wins_vs_autonomous": 2,
+        "losses_vs_autonomous": 0,
+        "ties_vs_autonomous": 23,
+        "triggered_count": 5
+      },
+      "heldout_always_on": {
+        "mean_test_balanced_accuracy": 0.9232627821214304,
+        "delta_vs_autonomous_mean": 0.0025821297988698876,
+        "wins_vs_autonomous": 2,
+        "losses_vs_autonomous": 2,
+        "ties_vs_autonomous": 21,
+        "triggered_count": 4
+      },
+      "transfer_checks": {
+        "frozen_policy_delta_beats_always_on_delta": true,
+        "frozen_policy_has_no_losses": true,
+        "always_on_has_losses": true,
+        "frozen_policy_triggered_no_more_than_always_on": false
+      },
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/evaluator_trigger_policy_transfer_20260603/summary.json"
     },
     "official_setup_blockers": {
       "mlagentbench_cifar10": {

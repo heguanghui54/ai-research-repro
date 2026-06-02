@@ -920,7 +920,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/claim_audit.md",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/manuscript.md",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/remote_metrics.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/human_gate_logs/evaluator_gate_001.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/human_gate_logs/evaluator_gate_001.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/evaluator_trigger_policy_transfer_20260603/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/evaluator_trigger_policy_transfer_20260603/README.md",
+    "scripts/validate_evaluator_stress_trigger_policy_transfer.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -2000,9 +2003,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "0bc6b479c63f6cb68e4d241969c7acfb2b57ff0a",
+    "head": "7bd03941e8c0201fe6f7a235b1a44377eacc04e2",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 907,
+    "manifest_artifacts": 910,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2296,5 +2299,17 @@
         "claim_boundary": "trigger-policy design evidence from open-data split validation; not broad benchmark superiority"
       }
     }
+  },
+  "evaluator_stress_trigger_policy_transfer": {
+    "status": "pass",
+    "script": "scripts/validate_evaluator_stress_trigger_policy_transfer.py",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/evaluator_trigger_policy_transfer_20260603/README.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/evaluator_trigger_policy_transfer_20260603/summary.json",
+    "train_package": "prospective_matched_open_data_multitask_20260603",
+    "heldout_package": "prospective_matched_open_data_multitask_holdout_20260603",
+    "selected_policy": "class_imbalance_trigger_0_94",
+    "heldout_delta_vs_autonomous_mean": 0.003639444256184343,
+    "heldout_losses_vs_autonomous": 0,
+    "claim_boundary": "This is a discovery-to-held-out split validation inside one open-data task family. It supports trigger-conditioned evaluator-stress design, not broad co-pilot superiority or a universally optimal threshold."
   }
 }

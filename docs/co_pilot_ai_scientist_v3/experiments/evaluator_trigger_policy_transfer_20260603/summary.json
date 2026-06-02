@@ -1,0 +1,56 @@
+{
+  "status": "pass",
+  "created_at": "2026-06-02T19:00:16Z",
+  "train_package": "prospective_matched_open_data_multitask_20260603",
+  "heldout_package": "prospective_matched_open_data_multitask_holdout_20260603",
+  "train_summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/evaluator_stress_trigger_policy_summary.json",
+  "heldout_summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/evaluator_stress_trigger_policy_summary.json",
+  "selection_rule": "Choose the discovery-split policy with maximum mean delta versus autonomous selection, breaking ties by fewer autonomous losses and then fewer trigger events.",
+  "selected_policy": "class_imbalance_trigger_0_94",
+  "train_selected_policy": {
+    "mean_test_balanced_accuracy": 0.927933549956017,
+    "delta_vs_autonomous_mean": 0.003076923076923066,
+    "wins_vs_autonomous": 2,
+    "losses_vs_autonomous": 0,
+    "ties_vs_autonomous": 23,
+    "triggered_count": 5
+  },
+  "heldout_frozen_policy": {
+    "mean_test_balanced_accuracy": 0.9243200965787449,
+    "delta_vs_autonomous_mean": 0.003639444256184343,
+    "wins_vs_autonomous": 2,
+    "losses_vs_autonomous": 0,
+    "ties_vs_autonomous": 23,
+    "triggered_count": 5
+  },
+  "heldout_autonomous": {
+    "mean_test_balanced_accuracy": 0.9206806523225606,
+    "delta_vs_autonomous_mean": 0.0,
+    "wins_vs_autonomous": 0,
+    "losses_vs_autonomous": 0,
+    "ties_vs_autonomous": 25,
+    "triggered_count": 0
+  },
+  "heldout_always_on": {
+    "mean_test_balanced_accuracy": 0.9232627821214304,
+    "delta_vs_autonomous_mean": 0.0025821297988698876,
+    "wins_vs_autonomous": 2,
+    "losses_vs_autonomous": 2,
+    "ties_vs_autonomous": 21,
+    "triggered_count": 4
+  },
+  "heldout_transfer_checks": {
+    "frozen_policy_delta_beats_always_on_delta": true,
+    "frozen_policy_has_no_losses": true,
+    "always_on_has_losses": true,
+    "frozen_policy_triggered_no_more_than_always_on": false
+  },
+  "overreach_reduction_on_heldout": {
+    "always_on_losses": 2,
+    "frozen_policy_losses": 0,
+    "loss_reduction": 2,
+    "always_on_delta_vs_autonomous_mean": 0.0025821297988698876,
+    "frozen_policy_delta_vs_autonomous_mean": 0.003639444256184343
+  },
+  "claim_boundary": "This is a discovery-to-held-out split validation inside one open-data task family. It supports trigger-conditioned evaluator-stress design, not broad co-pilot superiority or a universally optimal threshold."
+}

@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T18:54:37Z`
+- Audit date: `2026-06-02T19:01:14Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `0bc6b479c63f6cb68e4d241969c7acfb2b57ff0a`
+- HEAD: `7bd03941e8c0201fe6f7a235b1a44377eacc04e2`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `907`
+- Manifest artifacts: `910`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `907/907`
+- Manifest coverage: `910/910`
 
 ## Explicit Requirements
 
@@ -41,7 +41,7 @@
 ## Artifact Status
 
 - `english_pdf`: `pass` (53210 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
-- `focused_english_pdf`: `pass` (210777 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `focused_english_pdf`: `pass` (210896 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `root_readme`: `pass` (10931 bytes) - `README.md`
 - `english_submission_card`: `pass` (5476 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `top_conference_evidence_roadmap`: `pass` (11753 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
@@ -62,7 +62,7 @@
 - `chinese_usage`: `pass` (20588 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
 - `english_runbook`: `pass` (13815 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
 - `chinese_runbook`: `pass` (12555 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
-- `reusable_skill`: `pass` (24228 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
+- `reusable_skill`: `pass` (24773 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
 - `global_skill_install_audit`: `pass` (2722 bytes) - `docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.json`
 - `global_skill_reuse_smoke`: `pass` (1187 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/summary.json`
 - `global_skill_metric_evaluator`: `pass` (2733 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/global_skill_metric_gaming_evaluator_20260603/summary.json`
