@@ -129,8 +129,14 @@ does not replace the paper's empirical evidence requirements.
   blind human-expert rating packet is ready for independent collection while
   preserving the no-ratings-yet evidence boundary.
 - `audits/igre_skill_release_package_audit.md`: audit that verifies the
-  standalone public-skill release scaffold, install/quickstart files, examples,
-  validation script, and engineering/science claim boundary.
+  standalone public-skill release scaffold, isolated install smoke test,
+  install/quickstart files, examples, validation script, and
+  engineering/science claim boundary.
+- `experiments/igre_skill_install_smoke_20260603/`: isolated install smoke
+  test that installs the standalone IGRE skill into a temporary
+  `CODEX_SKILLS_DIR`, checks all manifest-required files, and runs the
+  installed copy's validator. This is engineering evidence only, not scientific
+  superiority evidence.
 - `release/co-pilot-ai-scientist-v3-skill/`: standalone release scaffold for a
   public GitHub skill. It packages `SKILL.md`, templates, examples, quickstart,
   manifest, and a local validator so the engineering track can progress

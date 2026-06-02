@@ -859,7 +859,10 @@
     "release/co-pilot-ai-scientist-v3-skill/CONTRIBUTING.md",
     "release/co-pilot-ai-scientist-v3-skill/LICENSE",
     "release/co-pilot-ai-scientist-v3-skill/RELEASE_NOTES.md",
-    "release/co-pilot-ai-scientist-v3-skill/scripts/install_local.sh"
+    "release/co-pilot-ai-scientist-v3-skill/scripts/install_local.sh",
+    "scripts/run_igre_skill_install_smoke.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/README.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1884,9 +1887,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "6e4eda9ba40e381ec7b4b68c17887f48fb14a805",
+    "head": "f92f6290bee413e7474d104c9631a18e659cd0c8",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 846,
+    "manifest_artifacts": 849,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2016,5 +2019,12 @@
     "contributing": "release/co-pilot-ai-scientist-v3-skill/CONTRIBUTING.md",
     "release_notes": "release/co-pilot-ai-scientist-v3-skill/RELEASE_NOTES.md",
     "installer": "release/co-pilot-ai-scientist-v3-skill/scripts/install_local.sh"
+  },
+  "igre_skill_install_smoke": {
+    "status": "pass",
+    "run_id": "igre_skill_install_smoke_20260603",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/summary.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/README.md",
+    "claim_boundary": "This smoke test verifies isolated local installability and release self-validation for the IGRE skill. It is engineering evidence, not scientific evidence that IGRE improves automated research outcomes."
   }
 }

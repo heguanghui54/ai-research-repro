@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T16:32:00Z",
+  "audit_date": "2026-06-02T16:36:26Z",
   "status": "pass",
   "release_dir": "release/co-pilot-ai-scientist-v3-skill",
   "required_files_checked": 14,
@@ -43,6 +43,8 @@
     "RELEASE_NOTES.md"
   ],
   "install_script": "release/co-pilot-ai-scientist-v3-skill/scripts/install_local.sh",
+  "install_smoke_status": "pass",
+  "install_smoke_summary": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/summary.json",
   "errors": [],
   "warnings": [],
   "claim_boundary": "This audit verifies engineering release readiness for a standalone skill scaffold. It is not scientific evidence that IGRE improves automated research outcomes."

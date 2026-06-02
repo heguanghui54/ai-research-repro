@@ -59,6 +59,7 @@ python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/summarize_human_expert_blind_reviews.py --update-manifest
 python3 scripts/audit_human_expert_blind_review_packet.py
+python3 scripts/run_igre_skill_install_smoke.py --update-manifest
 python3 scripts/audit_igre_skill_release_package.py
 python3 scripts/audit_benchmark_coverage.py
 python3 scripts/audit_prospective_gate_instrumentation.py

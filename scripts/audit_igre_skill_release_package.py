@@ -14,6 +14,9 @@ ROOT = Path(__file__).resolve().parents[1]
 DOC_DIR = ROOT / "docs" / "co_pilot_ai_scientist_v3"
 AUDIT_DIR = DOC_DIR / "audits"
 RELEASE_DIR = ROOT / "release" / "co-pilot-ai-scientist-v3-skill"
+INSTALL_SMOKE_SUMMARY = (
+    DOC_DIR / "experiments" / "igre_skill_install_smoke_20260603" / "summary.json"
+)
 
 
 def _utc_now() -> str:
@@ -118,6 +121,16 @@ def main() -> None:
         if "CODEX_SKILLS_DIR" not in install_text or ".codex/skills" not in install_text:
             errors.append("install script does not target Codex skills directory")
 
+    install_smoke_result = None
+    if INSTALL_SMOKE_SUMMARY.exists():
+        install_smoke_result = _load_json(INSTALL_SMOKE_SUMMARY)
+        if install_smoke_result.get("status") != "pass":
+            errors.append("isolated install smoke test did not pass")
+        if "not scientific evidence" not in install_smoke_result.get("claim_boundary", ""):
+            errors.append("install smoke test missing engineering/science claim boundary")
+    else:
+        errors.append("isolated install smoke test summary is missing")
+
     publication_files = [
         "POSITIONING.md",
         "CONTRIBUTING.md",
@@ -138,6 +151,8 @@ def main() -> None:
         "engineering_track_status": "standalone_release_scaffold_prepared",
         "publication_files_checked": publication_files,
         "install_script": _rel(install_script),
+        "install_smoke_status": (install_smoke_result or {}).get("status"),
+        "install_smoke_summary": _rel(INSTALL_SMOKE_SUMMARY),
         "errors": errors,
         "warnings": warnings,
         "claim_boundary": (
@@ -160,6 +175,7 @@ def main() -> None:
         f"- Required files checked: `{audit['required_files_checked']}`",
         f"- Engineering track status: `{audit['engineering_track_status']}`",
         f"- Standalone validator status: `{(validator_result or {}).get('status')}`",
+        f"- Install smoke status: `{audit['install_smoke_status']}`",
         "",
         "## Errors",
         "",
