@@ -31,7 +31,7 @@ setup probe becomes a scored run.
 | --- | --- | --- | --- | --- |
 | A | FML-bench | AI Scientist-v2-style ML benchmark search over target code | Branch gate, selected-branch continuation, evaluator failures | Runnable and already used |
 | A | OpenEvolve-controlled tasks | Machine-gradeable program search | AlphaEvolve-style escalation gate and direct-edit ablation | Runnable; function minimization, knapsack, and Max-Cut archived |
-| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug is now a scored official run after pre-caching the official CIFAR10 archive, with starter baseline `0.5103` and a three-seed co-pilot-selected mean of `0.7743` (min `0.7709`, std `0.003676`); OGBN-arxiv now downloads data and completes official prepare under a PyTorch compatibility setting but baseline scoring is blocked by a missing PyG neighbor-sampling backend; IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but both the official CPU-only baseline and a reduced feasibility run timed out without a checkpoint; house-price reached the official prepare script but is blocked by Kaggle CLI and likely competition-consent requirements |
+| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug is now a scored official run after pre-caching the official CIFAR10 archive, with starter baseline `0.5103` and a three-seed co-pilot-selected mean of `0.7743` (min `0.7709`, std `0.003676`); OGBN-arxiv now has a scored official-evaluator compatibility run with baseline `0.02745` and co-pilot-selected score `0.53999`; IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but both the official CPU-only baseline and a reduced feasibility run timed out without a checkpoint; house-price reached the official prepare script but is blocked by Kaggle CLI and likely competition-consent requirements |
 | B | sklearn diabetes tabular probe | Lightweight supervised-learning model search | Non-FML, non-runtime-only boundary test for direct edit vs program search | Three OpenEvolve seeds and one direct rewrite archived |
 | B | ScienceAgentBench | Data-driven scientific discovery code tasks from publications | Non-FML scientific workflow validation, especially evaluator/claim gates | Code present; HuggingFace metadata and verified artifacts currently unreachable from Ubuntu host |
 | C | MLE-bench Lite | Kaggle-style ML engineering | High-signal, higher-cost end-to-end ML engineering evidence | Stretch benchmark |
@@ -82,16 +82,15 @@ of Co-Pilot AI Scientist v3.
    `0.7782`, delta `+0.2679`, under the same official evaluator. The same
    branch was then rerun with two additional seeds, scoring `0.7709` and
    `0.7738`; the three-seed mean is `0.7743`, minimum `0.7709`, and sample std
-   `0.003676`. An OGBN-arxiv probe then identified a more promising second
-   official candidate: after installing `ogb` and `torch_geometric`, the
-   Stanford SNAP OGBN-arxiv archive downloaded successfully and official
-   prepare completed under `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1` for PyTorch
-   compatibility. The starter baseline still failed before producing
-   `submission.csv` because PyG neighbor sampling requires `pyg-lib` or
-   `torch-sparse`; no matching wheel was available for the current torch 2.12
-   CPU environment, and local source build was stopped as a long compile. It
-   is therefore logged as repaired setup evidence and the highest-priority
-   next official task, not as a score. An additional
+   `0.003676`. OGBN-arxiv then became the second scored official-evaluator
+   path: after installing `ogb` and `torch_geometric`, the Stanford SNAP archive
+   downloaded successfully and official prepare completed under
+   `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1`. Because the unmodified NeighborLoader
+   starter requires `pyg-lib` or `torch-sparse`, we use a full-batch
+   compatibility starter that scores `0.02745` under the official `eval.py`;
+   the co-pilot-selected normalized AdamW MLP scores `0.53999`, delta
+   `+0.51254`. This is scored official-evaluator evidence with an explicit
+   compatibility-baseline boundary, not broad MLAgentBench superiority. An additional
    official `imdb` probe repaired the missing `datasets` dependency but failed
    when the Ubuntu host could not reach HuggingFace, so it is still reported as
    setup evidence only. A CLRS probe repaired the earlier dependency gap by installing

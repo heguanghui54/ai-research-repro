@@ -1,0 +1,10 @@
+/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/ogb/nodeproppred/dataset_pyg.py:69: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+/home/heshi/work/copilotv3-mlagentbench-ogbn-arxiv-official-compat-20260603/baseline/env/train.py:43: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  print(f"epoch={epoch} loss={float(loss):.6f} train_acc={acc(train_idx, pred):.4f} val_acc={acc(valid_idx, pred):.4f}", flush=True)
+epoch=0 loss=3.668387 train_acc=0.1416 val_acc=0.2452
+epoch=1 loss=6.729498 train_acc=0.1211 val_acc=0.2359
+epoch=2 loss=6.316203 train_acc=0.0547 val_acc=0.0360
+epoch=3 loss=3.384340 train_acc=0.0772 val_acc=0.0316
+done seconds=1.68

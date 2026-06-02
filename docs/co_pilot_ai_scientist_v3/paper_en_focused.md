@@ -133,6 +133,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | End-to-end paired trajectory manuscript | co-pilot manuscript internal score 4.64; model reviewers prefer co-pilot 2/2 | autonomous manuscript internal score 3.48; autonomous benchmark metric wins 0.640451 vs. 0.862015 | one same-run smoke pair | Demonstrates continuous trajectory-to-manuscript comparison readiness and metric/quality disagreement, not co-pilot superiority. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
 | MLAgentBench CIFAR10/debug | co-pilot-selected branch mean official score 0.7743 over 3 seeds | starter baseline official score 0.5103 | one official MLAgentBench task; mean delta +0.2640; min score 0.7709 | Stronger non-FML official evidence, but still one task rather than broad benchmark coverage. |
+| MLAgentBench OGBN-arxiv | co-pilot-selected official-evaluator score 0.53999 | compatibility starter score 0.02745 | delta +0.51254 | Second official-evaluator path, but baseline is a compatibility translation rather than the unmodified NeighborLoader starter. |
 | Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | no search advantage | Direct editing can be enough on simple modeling tasks. |
 
 The non-FML benchmark expansion is deliberately reported with both scored runs
@@ -145,18 +146,20 @@ light augmentation, AdamW, cosine decay, label smoothing, and eight epochs
 scores 0.7782 in the first run under the same official evaluator. We then reran
 the same co-pilot-selected branch with two additional seeds, producing official
 scores 0.7709 and 0.7738. Across three seeds, the mean score is 0.7743, the
-minimum score is 0.7709, and the sample standard deviation is 0.003676. IMDB
-remains blocked by Hugging Face network access. OGBN-arxiv is a stronger next
-official candidate: the Stanford SNAP data download and official prepare
-complete under a documented PyTorch compatibility setting, but starter scoring
-still fails before `submission.csv` because PyG neighbor sampling lacks
-`pyg-lib` or `torch-sparse` in the current torch 2.12 CPU environment. CLRS
-reaches `train.py` but times out on CPU without a checkpoint, and house-price
-reaches the official prepare script but requires Kaggle tooling and likely
-competition consent. This
-improves the official non-FML evidence boundary, but it is still one official
-task; the paper should not imply broad official benchmark coverage until
-another official task is scored or the task portfolio is expanded.
+minimum score is 0.7709, and the sample standard deviation is 0.003676. We then
+advanced OGBN-arxiv from setup-only evidence to a scored official-evaluator
+path: the Stanford SNAP data download and official prepare complete under a
+documented PyTorch compatibility setting, and a full-batch MLP compatibility
+starter scores 0.02745 under the official `eval.py`. A co-pilot-selected
+normalized AdamW MLP branch scores 0.53999, for delta +0.51254. This is a
+second official-evaluator MLAgentBench path, but the baseline is a compatibility
+translation because the unmodified NeighborLoader starter requires `pyg-lib` or
+`torch-sparse` in the current torch 2.12 CPU environment. IMDB remains blocked
+by Hugging Face network access, CLRS reaches `train.py` but times out on CPU
+without a checkpoint, and house-price reaches the official prepare script but
+requires Kaggle tooling and likely competition consent. This improves the
+official non-FML evidence boundary, but the paper should not imply broad
+official benchmark coverage until more tasks or seeds are scored.
 
 The resulting claim-to-evidence map is deliberately conservative.
 

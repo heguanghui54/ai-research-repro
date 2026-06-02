@@ -422,8 +422,12 @@ official score of `0.5103`, while the co-pilot-selected branch receives
 the same co-pilot-selected branch for two additional seeds, obtaining official
 scores `0.7709` and `0.7738`; across three seeds, the mean score is `0.7743`,
 the minimum is `0.7709`, and the sample standard deviation is `0.003676`.
-This strengthens non-FML coverage, but it remains one official task; it is not
-broad benchmark evidence. The MLAgentBench IMDB probe
+We also add a scored OGBN-arxiv official-evaluator compatibility run: a
+full-batch compatibility starter scores `0.02745`, while a co-pilot-selected
+normalized AdamW MLP scores `0.53999`, delta `+0.51254`. This strengthens
+non-FML coverage, but the OGBN baseline is a compatibility translation rather
+than the unmodified NeighborLoader starter, and the evidence is still not broad
+benchmark coverage. The MLAgentBench IMDB probe
 repaired the missing `datasets` dependency but could not reach HuggingFace from
 the Ubuntu host, and ScienceAgentBench metadata/artifacts were not reachable.
 Higher-cost stretch benchmarks include
@@ -767,11 +771,12 @@ scored official non-FML task with a small three-seed robustness check, while
 ScienceAgentBench and IMDB remain setup artifacts rather than benchmark scores.
 We also probed MLAgentBench `ogbn-arxiv`: after installing `ogb` and
 `torch_geometric`, the Stanford SNAP data download and official prepare
-completed under `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1`, but starter baseline
-scoring failed before `submission.csv` because PyG neighbor sampling requires
-`pyg-lib` or `torch-sparse`. The next non-FML expansion should repair this
-backend dependency, add another accessible official task, or scale
-to a larger official task portfolio, not retreat to FML-bench alone.
+completed under `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1`. The unmodified
+NeighborLoader starter still needs `pyg-lib` or `torch-sparse`, so we use a
+full-batch compatibility starter for the scored path. Under the official
+`eval.py`, that compatibility starter scores `0.02745`, while a co-pilot-selected
+normalized AdamW MLP scores `0.53999`. The next non-FML expansion should add
+seeds or another accessible official task, not retreat to FML-bench alone.
 
 ### 4.5 Claim Audit
 

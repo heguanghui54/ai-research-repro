@@ -1,0 +1,27 @@
+{
+  "audit_date": "2026-06-02T22:08:21Z",
+  "status": "pass",
+  "evidence_class": "scored_official_mlagentbench_non_fml_task_with_compatibility_baseline",
+  "task": "ogbn-arxiv",
+  "metric": "OGBN-arxiv test accuracy from official MLAgentBench eval.py; higher is better",
+  "baseline_score": 0.02744686541983005,
+  "candidate_score": 0.5399872435857869,
+  "delta": 0.5125403781659569,
+  "baseline_name": "full_batch_compatibility_starter_translation",
+  "candidate_name": "full_batch_normalized_adamw_mlp",
+  "remote_run_root": "/home/heshi/work/copilotv3-mlagentbench-ogbn-arxiv-official-compat-20260603",
+  "checks": {
+    "all_required_files_present": true,
+    "official_prepared_data": true,
+    "official_eval_script": true,
+    "baseline_train_completed": true,
+    "baseline_eval_completed": true,
+    "candidate_train_completed": true,
+    "candidate_eval_completed": true,
+    "candidate_beats_baseline": true,
+    "compatibility_boundary_recorded": true,
+    "no_broad_superiority_claim": true
+  },
+  "errors": [],
+  "claim_boundary": "This scored official-evaluator OGBN-arxiv run supports non-FML benchmark expansion and dependency-aware official task repair. Because the starter baseline is a compatibility translation rather than the unmodified NeighborLoader starter, it should not be used as broad MLAgentBench superiority evidence."
+}

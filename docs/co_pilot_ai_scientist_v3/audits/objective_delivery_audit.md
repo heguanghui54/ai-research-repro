@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T21:52:43Z`
+- Audit date: `2026-06-02T22:08:46Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `c1be3bd03ecb600d0357f8a9dd8ff442cc058137`
+- HEAD: `d7922b3d6ecae3f5e7acfdc38e3e853d58350d95`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `955`
+- Manifest artifacts: `966`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `955/955`
+- Manifest coverage: `966/966`
 
 ## Explicit Requirements
 
@@ -43,11 +43,11 @@
 
 ## Artifact Status
 
-- `english_pdf`: `pass` (54031 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
-- `focused_english_pdf`: `pass` (212027 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `english_pdf`: `pass` (54212 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
+- `focused_english_pdf`: `pass` (212264 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `root_readme`: `pass` (10931 bytes) - `README.md`
 - `english_submission_card`: `pass` (5476 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
-- `top_conference_evidence_roadmap`: `pass` (15263 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
+- `top_conference_evidence_roadmap`: `pass` (15295 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
 - `top_conference_evidence_roadmap_json`: `pass` (11261 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - `deep_regeneration_casebook`: `pass` (13397 bytes) - `docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md`
 - `human_expert_blind_review_protocol`: `pass` (3755 bytes) - `docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md`

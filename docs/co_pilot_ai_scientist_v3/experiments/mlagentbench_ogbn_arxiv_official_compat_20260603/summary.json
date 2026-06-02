@@ -1,0 +1,39 @@
+{
+  "run_id": "mlagentbench_ogbn_arxiv_official_compat_20260603",
+  "date": "2026-06-03",
+  "remote_host": "ubuntu-heshi",
+  "remote_run_root": "/home/heshi/work/copilotv3-mlagentbench-ogbn-arxiv-official-compat-20260603",
+  "benchmark": "MLAgentBench",
+  "task": "ogbn-arxiv",
+  "metric": "OGBN-arxiv test accuracy from official MLAgentBench eval.py; higher is better",
+  "evidence_class": "scored_official_mlagentbench_non_fml_task_with_compatibility_baseline",
+  "official_prepared_data": true,
+  "official_eval_script": true,
+  "torch_compatibility_setting": "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1",
+  "baseline": {
+    "name": "full_batch_compatibility_starter_translation",
+    "train_script": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/baseline/train.py",
+    "train_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/baseline/train.stdout.log",
+    "eval_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/baseline/eval.stdout.log",
+    "train_exit_code": 0,
+    "eval_exit_code": 0,
+    "submission_csv_produced": true,
+    "score": 0.02744686541983005,
+    "boundary": "Compatibility translation of the starter MLP that avoids NeighborLoader because the current environment lacks pyg-lib or torch-sparse."
+  },
+  "co_pilot_selected": {
+    "name": "full_batch_normalized_adamw_mlp",
+    "train_script": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp/train.py",
+    "train_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp/train.stdout.log",
+    "eval_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp/eval.stdout.log",
+    "train_exit_code": 0,
+    "eval_exit_code": 0,
+    "submission_csv_produced": true,
+    "best_validation_accuracy": 0.5618,
+    "score": 0.5399872435857869,
+    "seconds": 149.01
+  },
+  "delta": 0.5125403781659569,
+  "status": "pass_scored_official_eval_with_compatibility_baseline",
+  "claim_boundary": "This scored official-evaluator OGBN-arxiv run supports non-FML benchmark expansion and dependency-aware official task repair. Because the starter baseline is a compatibility translation rather than the unmodified NeighborLoader starter, it should not be used as broad MLAgentBench superiority evidence."
+}

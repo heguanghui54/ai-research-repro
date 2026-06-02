@@ -1,8 +1,8 @@
 # Second Non-FML Priority Package Audit
 
-- Audit date: `2026-06-02T21:39:58Z`
+- Audit date: `2026-06-02T22:08:21Z`
 - Status: `pass`
-- Evidence class: `scored_official_mlagentbench_non_fml_plus_official_like_package`
+- Evidence class: `two_scored_official_mlagentbench_paths_plus_official_like_package`
 - Priority queue item: `Second scored non-FML benchmark package`
 - Official MLAgentBench CIFAR10 baseline score: `0.5103`
 - Official MLAgentBench CIFAR10 co-pilot selected score: `0.7782`
@@ -10,6 +10,9 @@
 - Official MLAgentBench CIFAR10 multi-seed mean score: `0.7743`
 - Official MLAgentBench CIFAR10 multi-seed min score: `0.7709`
 - Official MLAgentBench CIFAR10 multi-seed sample std: `0.003675595189897806`
+- Official MLAgentBench OGBN-arxiv compatibility baseline score: `0.02744686541983005`
+- Official MLAgentBench OGBN-arxiv co-pilot selected score: `0.5399872435857869`
+- Official MLAgentBench OGBN-arxiv delta: `0.5125403781659569`
 - Train package: `prospective_matched_open_data_multitask_20260603`
 - Held-out package: `prospective_matched_open_data_multitask_holdout_20260603`
 - Selected trigger policy: `class_imbalance_trigger_0_94`
@@ -40,4 +43,4 @@
 
 ## Claim Boundary
 
-This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable; it also adds a three-seed scored official MLAgentBench CIFAR10/debug result. The evidence is still one official task plus one official-like package, not broad AI Scientist-v2 paper-quality superiority.
+This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable; it also adds a three-seed scored official MLAgentBench CIFAR10/debug result and a scored OGBN-arxiv official-evaluator compatibility run. The OGBN baseline is a compatibility translation, so this is still not broad MLAgentBench superiority evidence, independent human evidence, or paper-quality proof.

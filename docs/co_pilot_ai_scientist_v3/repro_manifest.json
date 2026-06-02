@@ -91,6 +91,8 @@
     "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_multiseed_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_official_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_official_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/package_consistency_audit.json",
@@ -493,6 +495,14 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/run.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/baseline/eval.stdout.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/baseline/train.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/baseline/train.stdout.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp/eval.stdout.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp/train.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp/train.stdout.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/env_check.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/prepare_initial.log",
@@ -890,6 +900,7 @@
     "scripts/audit_long_horizon_taste_gate.py",
     "scripts/audit_mixed_negative_evidence.py",
     "scripts/audit_mlagentbench_cifar10_official.py",
+    "scripts/audit_mlagentbench_ogbn_arxiv_official.py",
     "scripts/audit_objective_delivery.py",
     "scripts/audit_package_consistency.py",
     "scripts/audit_prospective_attention_taste_cost.py",
@@ -2029,9 +2040,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "c1be3bd03ecb600d0357f8a9dd8ff442cc058137",
+    "head": "d7922b3d6ecae3f5e7acfdc38e3e853d58350d95",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 955,
+    "manifest_artifacts": 966,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2376,10 +2387,10 @@
     "claim_boundary": "Engineering release-sync evidence only; not scientific superiority evidence."
   },
   "second_non_fml_priority_package_audit": {
-    "audit_date": "2026-06-02T21:39:58Z",
+    "audit_date": "2026-06-02T22:08:21Z",
     "status": "pass",
-    "head": "e16a6451eff560db1db6eeb054ce48c3b1c219a6",
-    "evidence_class": "scored_official_mlagentbench_non_fml_plus_official_like_package",
+    "head": "d7922b3d6ecae3f5e7acfdc38e3e853d58350d95",
+    "evidence_class": "two_scored_official_mlagentbench_paths_plus_official_like_package",
     "priority_queue_item": "Second scored non-FML benchmark package",
     "official_mlagentbench_cifar10": {
       "audit_path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.json",
@@ -2394,6 +2405,17 @@
       "min_score": 0.7709,
       "sample_std": 0.003675595189897806,
       "mean_delta_vs_baseline": 0.264
+    },
+    "official_mlagentbench_ogbn_arxiv": {
+      "audit_path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_official_audit.json",
+      "task": "ogbn-arxiv",
+      "metric": "OGBN-arxiv test accuracy from official MLAgentBench eval.py; higher is better",
+      "baseline_score": 0.02744686541983005,
+      "candidate_score": 0.5399872435857869,
+      "delta": 0.5125403781659569,
+      "baseline_name": "full_batch_compatibility_starter_translation",
+      "candidate_name": "full_batch_normalized_adamw_mlp",
+      "claim_boundary": "This scored official-evaluator OGBN-arxiv run supports non-FML benchmark expansion and dependency-aware official task repair. Because the starter baseline is a compatibility translation rather than the unmodified NeighborLoader starter, it should not be used as broad MLAgentBench superiority evidence."
     },
     "official_like_package": {
       "train_package": "prospective_matched_open_data_multitask_20260603",
@@ -2471,6 +2493,12 @@
         "official_cifar_multiseed_all_beat_baseline": true,
         "official_cifar_multiseed_seed_count": true
       },
+      "official_ogbn_checks": {
+        "official_ogbn_audit_pass": true,
+        "official_ogbn_scored_compatibility": true,
+        "official_ogbn_candidate_beats_baseline": true,
+        "official_ogbn_boundary_recorded": true
+      },
       "official_blockers_kept_unscored": true
     },
     "official_blockers": {
@@ -2512,7 +2540,7 @@
       }
     },
     "errors": [],
-    "claim_boundary": "This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable; it also adds a three-seed scored official MLAgentBench CIFAR10/debug result. The evidence is still one official task plus one official-like package, not broad AI Scientist-v2 paper-quality superiority."
+    "claim_boundary": "This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable; it also adds a three-seed scored official MLAgentBench CIFAR10/debug result and a scored OGBN-arxiv official-evaluator compatibility run. The OGBN baseline is a compatibility translation, so this is still not broad MLAgentBench superiority evidence, independent human evidence, or paper-quality proof."
   },
   "mlagentbench_cifar10_official_audit": {
     "audit_date": "2026-06-02T21:39:58Z",
@@ -2600,5 +2628,16 @@
     "prepare_torch_compat_status": "pass",
     "baseline_failure_type": "missing_pyg_neighbor_sampler_backend",
     "claim_boundary": "Second official MLAgentBench candidate setup evidence only; no official score is reported until the PyG neighbor-sampling backend is repaired and starter baseline produces submission.csv."
+  },
+  "mlagentbench_ogbn_arxiv_official_audit": {
+    "status": "pass",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_official_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_official_audit.md",
+    "experiment_dir": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603",
+    "evidence_class": "scored_official_mlagentbench_non_fml_task_with_compatibility_baseline",
+    "baseline_score": 0.02744686541983005,
+    "candidate_score": 0.5399872435857869,
+    "delta": 0.5125403781659569,
+    "claim_boundary": "This scored official-evaluator OGBN-arxiv run supports non-FML benchmark expansion and dependency-aware official task repair. Because the starter baseline is a compatibility translation rather than the unmodified NeighborLoader starter, it should not be used as broad MLAgentBench superiority evidence."
   }
 }

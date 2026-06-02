@@ -290,6 +290,7 @@ def main() -> None:
         == "pass"
         and second_non_fml_priority_audit.get("evidence_class")
         in {
+            "two_scored_official_mlagentbench_paths_plus_official_like_package",
             "scored_official_mlagentbench_non_fml_plus_official_like_package",
             "scored_official_like_non_fml_matched_package_not_official_benchmark",
         },

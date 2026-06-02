@@ -66,6 +66,7 @@ def main() -> None:
     cifar_refresh_path = EXP_DIR / "mlagentbench_cifar10_debug_refresh_probe_20260602" / "summary.json"
     cifar_official_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
     cifar_multiseed_path = AUDIT_DIR / "mlagentbench_cifar10_multiseed_audit.json"
+    ogbn_official_path = AUDIT_DIR / "mlagentbench_ogbn_arxiv_official_audit.json"
     imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
     clrs_path = EXP_DIR / "mlagentbench_clrs_baseline_smoke_20260602" / "summary.json"
     clrs_reduced_path = EXP_DIR / "mlagentbench_clrs_reduced_smoke_20260602" / "summary.json"
@@ -113,6 +114,7 @@ def main() -> None:
     cifar_refresh = _load_json(cifar_refresh_path)
     cifar_official = _load_json(cifar_official_path)
     cifar_multiseed = _load_json(cifar_multiseed_path)
+    ogbn_official = _load_json(ogbn_official_path)
     imdb = _load_json(imdb_path)
     clrs = _load_json(clrs_path)
     clrs_reduced = _load_json(clrs_reduced_path)
@@ -290,6 +292,7 @@ def main() -> None:
         and second_non_fml_priority.get("evidence_class")
         in {
             "scored_official_mlagentbench_non_fml_plus_official_like_package",
+            "two_scored_official_mlagentbench_paths_plus_official_like_package",
             "scored_official_like_non_fml_matched_package_not_official_benchmark",
         }
         and second_non_fml_priority.get("official_blockers")
@@ -306,6 +309,11 @@ def main() -> None:
         and cifar_multiseed.get("seed_count", 0) >= 3
         and cifar_multiseed.get("all_seeds_beat_baseline") is True
         and cifar_multiseed.get("min_score", 0) > cifar_multiseed.get("baseline_score", 1),
+        "mlagentbench_ogbn_arxiv_official_eval_scored": ogbn_official.get("status") == "pass"
+        and ogbn_official.get("evidence_class")
+        == "scored_official_mlagentbench_non_fml_task_with_compatibility_baseline"
+        and ogbn_official.get("candidate_score", 0) > ogbn_official.get("baseline_score", 1)
+        and "compatibility" in ogbn_official.get("claim_boundary", "").lower(),
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -389,6 +397,17 @@ def main() -> None:
                 "all_seeds_beat_baseline": cifar_multiseed.get("all_seeds_beat_baseline"),
                 "path": _rel(cifar_multiseed_path),
             },
+            "mlagentbench_ogbn_arxiv_official": {
+                "task": ogbn_official.get("task"),
+                "metric": ogbn_official.get("metric"),
+                "baseline_score": ogbn_official.get("baseline_score"),
+                "candidate_score": ogbn_official.get("candidate_score"),
+                "delta": ogbn_official.get("delta"),
+                "baseline_name": ogbn_official.get("baseline_name"),
+                "candidate_name": ogbn_official.get("candidate_name"),
+                "claim_boundary": ogbn_official.get("claim_boundary"),
+                "path": _rel(ogbn_official_path),
+            },
             "algorithmic_program_search": {
                 "knapsack_openevolve_score": knapsack_open_score,
                 "knapsack_direct_score": knapsack_direct_score,
@@ -462,8 +481,9 @@ def main() -> None:
         "claim_boundary": (
             "Benchmark coverage now includes FML feasibility evidence, non-FML scored "
             "program-search probes, an open-data multi-task evaluator-stress pilot, "
-            "a scored official multi-seed MLAgentBench CIFAR10/debug task, a direct-editing "
-            "boundary condition, an OGBN-arxiv repaired setup probe, and logged "
+            "a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored "
+            "OGBN-arxiv official-evaluator compatibility run, a direct-editing "
+            "boundary condition, and logged "
             "remaining official benchmark blockers. "
             "This supports selective workflow design, not whole-paper "
             "superiority over autonomous AI Scientist-v2."
@@ -505,6 +525,12 @@ def main() -> None:
             f"`{cifar_multiseed.get('min_score'):.4f}`, sample std "
             f"`{cifar_multiseed.get('sample_std'):.6f}`, mean delta vs baseline "
             f"`{cifar_multiseed.get('mean_delta_vs_baseline'):.4f}`."
+        ),
+        (
+            "- MLAgentBench OGBN-arxiv official-evaluator compatibility run: baseline "
+            f"`{ogbn_official.get('baseline_score')}` versus co-pilot selected "
+            f"`{ogbn_official.get('candidate_score')}`, delta `{ogbn_official.get('delta')}`; "
+            "baseline is a compatibility translation, not the unmodified NeighborLoader starter."
         ),
         (
             "- Program search subproblems: knapsack OpenEvolve "
@@ -557,7 +583,8 @@ def main() -> None:
             "- MLAgentBench OGBN-arxiv setup repair: data download completed "
             f"`{ogbn.get('data_access', {}).get('download_completed')}`, prepare with PyTorch "
             f"compatibility `{ogbn.get('prepare_torch_compat', {}).get('status')}`, baseline "
-            f"failure `{ogbn.get('baseline_train', {}).get('failure_type')}`; no official score."
+            f"failure `{ogbn.get('baseline_train', {}).get('failure_type')}` before the "
+            "compatibility baseline path was scored."
         ),
         "",
         "## Boundary And Blocked Evidence",

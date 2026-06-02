@@ -5,9 +5,10 @@ This audit separates three evidence classes that are easy to blur:
 
 1. MLAgentBench vectorization is the first scored non-FML result.
 2. MLAgentBench CIFAR10/debug is now a scored official non-FML task.
-3. The open-data sklearn package is a scored, official-like matched package
+3. MLAgentBench OGBN-arxiv now has a scored official-evaluator compatibility run.
+4. The open-data sklearn package is a scored, official-like matched package
    with held-out trigger-policy transfer.
-4. Larger remaining official MLAgentBench/ScienceAgentBench tasks remain blocked and
+5. Larger remaining official MLAgentBench/ScienceAgentBench tasks remain blocked and
    must not be reported as scored.
 """
 
@@ -133,6 +134,7 @@ def main() -> None:
     transfer_path = EXP_DIR / TRANSFER_PACKAGE / "summary.json"
     cifar_official_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
     cifar_multiseed_path = AUDIT_DIR / "mlagentbench_cifar10_multiseed_audit.json"
+    ogbn_official_path = AUDIT_DIR / "mlagentbench_ogbn_arxiv_official_audit.json"
 
     train_metrics = _load_json(train_metrics_path)
     heldout_metrics = _load_json(heldout_metrics_path)
@@ -141,6 +143,7 @@ def main() -> None:
     transfer = _load_json(transfer_path)
     cifar_official = _load_json(cifar_official_path)
     cifar_multiseed = _load_json(cifar_multiseed_path)
+    ogbn_official = _load_json(ogbn_official_path)
 
     train_metric_checks = _metric_checks(train_metrics)
     heldout_metric_checks = _metric_checks(heldout_metrics)
@@ -175,6 +178,16 @@ def main() -> None:
         is True,
         "official_cifar_multiseed_seed_count": cifar_multiseed.get("seed_count", 0) >= 3,
     }
+    official_ogbn_checks = {
+        "official_ogbn_audit_pass": ogbn_official.get("status") == "pass",
+        "official_ogbn_scored_compatibility": ogbn_official.get("evidence_class")
+        == "scored_official_mlagentbench_non_fml_task_with_compatibility_baseline",
+        "official_ogbn_candidate_beats_baseline": ogbn_official.get("candidate_score", 0)
+        > ogbn_official.get("baseline_score", 1),
+        "official_ogbn_boundary_recorded": "compatibility" in ogbn_official.get(
+            "claim_boundary", ""
+        ).lower(),
+    }
 
     official_blockers_kept_unscored = all(item["kept_unscored"] for item in official_blockers.values())
     checks = {
@@ -184,6 +197,7 @@ def main() -> None:
         "heldout_trigger_checks": heldout_trigger_checks,
         "transfer_checks": transfer_checks,
         "official_cifar_checks": official_cifar_checks,
+        "official_ogbn_checks": official_ogbn_checks,
         "official_blockers_kept_unscored": official_blockers_kept_unscored,
     }
     errors: list[str] = []
@@ -203,7 +217,7 @@ def main() -> None:
         "audit_date": _utc_now(),
         "status": "pass" if not errors else "fail",
         "head": _git_head(),
-        "evidence_class": "scored_official_mlagentbench_non_fml_plus_official_like_package",
+        "evidence_class": "two_scored_official_mlagentbench_paths_plus_official_like_package",
         "priority_queue_item": "Second scored non-FML benchmark package",
         "official_mlagentbench_cifar10": {
             "audit_path": _rel(cifar_official_path),
@@ -218,6 +232,17 @@ def main() -> None:
             "min_score": cifar_multiseed.get("min_score"),
             "sample_std": cifar_multiseed.get("sample_std"),
             "mean_delta_vs_baseline": cifar_multiseed.get("mean_delta_vs_baseline"),
+        },
+        "official_mlagentbench_ogbn_arxiv": {
+            "audit_path": _rel(ogbn_official_path),
+            "task": ogbn_official.get("task"),
+            "metric": ogbn_official.get("metric"),
+            "baseline_score": ogbn_official.get("baseline_score"),
+            "candidate_score": ogbn_official.get("candidate_score"),
+            "delta": ogbn_official.get("delta"),
+            "baseline_name": ogbn_official.get("baseline_name"),
+            "candidate_name": ogbn_official.get("candidate_name"),
+            "claim_boundary": ogbn_official.get("claim_boundary"),
         },
         "official_like_package": {
             "train_package": TRAIN_PACKAGE,
@@ -257,9 +282,11 @@ def main() -> None:
         "claim_boundary": (
             "This closes a low-cost official-like non-FML matched-package gap: "
             "the package is scored, open-data, matched, held-out, and auditable; "
-            "it also adds a three-seed scored official MLAgentBench CIFAR10/debug result. "
-            "The evidence is still one official task plus one official-like package, "
-            "not broad AI Scientist-v2 paper-quality superiority."
+            "it also adds a three-seed scored official MLAgentBench CIFAR10/debug result "
+            "and a scored OGBN-arxiv official-evaluator compatibility run. The OGBN "
+            "baseline is a compatibility translation, so this is still not broad "
+            "MLAgentBench superiority evidence, independent human evidence, or "
+            "paper-quality proof."
         ),
     }
 
@@ -280,6 +307,9 @@ def main() -> None:
         f"- Official MLAgentBench CIFAR10 multi-seed mean score: `{audit['official_mlagentbench_cifar10']['mean_score']}`",
         f"- Official MLAgentBench CIFAR10 multi-seed min score: `{audit['official_mlagentbench_cifar10']['min_score']}`",
         f"- Official MLAgentBench CIFAR10 multi-seed sample std: `{audit['official_mlagentbench_cifar10']['sample_std']}`",
+        f"- Official MLAgentBench OGBN-arxiv compatibility baseline score: `{audit['official_mlagentbench_ogbn_arxiv']['baseline_score']}`",
+        f"- Official MLAgentBench OGBN-arxiv co-pilot selected score: `{audit['official_mlagentbench_ogbn_arxiv']['candidate_score']}`",
+        f"- Official MLAgentBench OGBN-arxiv delta: `{audit['official_mlagentbench_ogbn_arxiv']['delta']}`",
         f"- Train package: `{audit['train_package']}`",
         f"- Held-out package: `{audit['heldout_package']}`",
         f"- Selected trigger policy: `{audit['selected_trigger_policy']}`",
