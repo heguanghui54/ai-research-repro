@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T16:04:22Z",
+  "audit_date": "2026-06-02T16:13:29Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "b97ec09166aff64bb0e359afa10fcabf313bd65f",
+  "head": "9394c5eb436d71cd60d62b08e37e221ff64868e2",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -38,7 +38,7 @@
     "focused_english_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
       "exists": true,
-      "bytes": 198566,
+      "bytes": 200395,
       "ok": true
     },
     "root_readme": {

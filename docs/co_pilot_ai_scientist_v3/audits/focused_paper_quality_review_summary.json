@@ -1,11 +1,12 @@
 {
-  "review_date": "2026-06-02",
+  "review_date": "2026-06-03",
   "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
   "evidence_context": [
-    "focused reference coverage audit including Schmidhuber/OOPS/Gödel Machine/POWERPLAY and modern self-evolution work",
+    "three-case live TFR aggregate and deterministic TFR audit",
+    "focused reference coverage audit including Schmidhuber, OOPS, Godel Machine, POWERPLAY, Darwin Godel Machine, and Huxley-Godel Machine",
+    "research-skill and manuscript-copilot related-work line covering PaperOrchestra, academic-research-skills, and Claude-Code-Skills-for-Academics",
     "goal-completion matrix with benchmark-selection status and top-conference gap",
     "controlled metric-gaming evaluator-stress smoke",
-    "archived FML-Bench Fairness_fairlearn evaluator-stress replay",
     "OpenReview equal-context ablation",
     "gate-structure ablation probe",
     "gate-outcome attribution probe",
@@ -20,14 +21,21 @@
         "rigor": 3,
         "clarity": 4,
         "evidence": 3,
-        "reproducibility": 3,
-        "significance": 4
+        "reproducibility": 4,
+        "significance": 3
       },
       "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
     },
     "gemini-2.5-flash": {
-      "recommendation": "Borderline (truncated before full rubric)",
-      "scores": null,
+      "recommendation": "Weak accept",
+      "scores": {
+        "novelty": 4,
+        "rigor": 5,
+        "clarity": 5,
+        "evidence": 4,
+        "reproducibility": 5,
+        "significance": 4
+      },
       "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md"
     }
   },
@@ -43,13 +51,19 @@
       "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md"
     }
   },
-  "aggregate_conclusion": "The refreshed review context now includes the focused reference audit, including the Schmidhuber/OOPS/Gödel Machine/POWERPLAY self-evolution lineage, and the current goal-completion matrix. The new gate-structure, gate-outcome, and single-gate artifact ablations strengthen IGRE's six-gate method distinctness and show that targeted gate routing can be more useful than full review context in a small OpenReview proxy. They do not close the top-conference evidence gap because independent human ratings, real benchmark gate reruns, and broader matched trajectories are still missing.",
+  "aggregate_conclusion": "Both successful model reviewers recommend weak accept under conservative framing. They support IGRE as a systems-method and measurement paper, not as proof of broad human-gated superiority. The new related-work line positions academic research skills and manuscript copilots as workflow engineering references while preserving IGRE's distinct contribution: human scientific taste is represented as an auditable gate that can change research priors, evaluators, frontiers, micro-evolution tasks, feedback structures, and claim boundaries.",
+  "remaining_blocking_issues": [
+    "mixed or negative empirical evidence for broad human-gated superiority",
+    "zero strict delayed-value positives in three live TFR replays",
+    "no completed independent blind human expert rows",
+    "OpenReview taste/insight classifier not validated against expert labels",
+    "benchmark coverage and matched-budget sample size remain narrow"
+  ],
   "next_required_evidence": [
     "blind human expert ratings with inter-rater agreement",
-    "larger matched autonomous versus human-gated trajectories across tasks/seeds",
-    "real benchmark reruns where gate choices alter downstream experimental outcomes",
-    "narrower primary contribution narrative around participation-mode design",
+    "larger matched autonomous versus human-gated trajectories across tasks/seeds/domains",
     "OpenReview taste/insight classifier validation against expert labels",
-    "scaled retrospective frontier-alignment study for delayed-value review signals"
+    "scaled TFR with semantic frontier metrics and human expert assessment",
+    "real benchmark reruns where gate choices alter downstream experimental outcomes"
   ]
 }

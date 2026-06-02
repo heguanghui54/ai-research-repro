@@ -14,27 +14,27 @@ Reviewer route: Monica OpenAI-compatible API
 | Rigor              | 3     |
 | Clarity            | 4     |
 | Evidence           | 3     |
-| Reproducibility     | 3     |
-| Significance       | 4     |
+| Reproducibility     | 4     |
+| Significance       | 3     |
 
 ## Top three strengths
-1. **Innovative Framework**: The introduction of the Insight-Gated Research Evolution (IGRE) framework is a novel approach that effectively integrates human scientific taste into automated research processes, addressing a significant gap in existing automated research systems.
-2. **Comprehensive Evaluation**: The manuscript provides a thorough evaluation of the proposed framework through various experiments, including gate-structure ablation and review-guided regeneration, which demonstrate the potential utility of human insights in automated research.
-3. **Reproducibility Focus**: The authors emphasize reproducibility by providing a detailed evidence package, including scripts, logs, and methodologies, which enhances the credibility of their findings.
+1. **Innovative Framework**: The introduction of the Insight-Gated Research Evolution (IGRE) framework is a novel approach to integrating human scientific taste into automated research processes, which is a significant advancement in the field.
+2. **Comprehensive Evaluation**: The manuscript provides a detailed evaluation of the proposed methods through various experimental setups, including TFR and FML-bench runs, which adds depth to the findings.
+3. **Reproducibility Focus**: The authors emphasize reproducibility by providing a comprehensive evidence package, including logs, scripts, and methodologies, which enhances the credibility of the research.
 
 ## Top five blocking weaknesses for top-conference readiness
-1. **Limited Empirical Evidence**: The current evidence package lacks independent human expert reviews and large-scale matched benchmark evidence, which are crucial for validating the effectiveness of the proposed framework.
-2. **Mixed Results**: The experiments report mixed or negative results for human-gated short-budget runs, which may undermine the overall claims of the paper regarding the superiority of human involvement in automated science.
-3. **Lack of Generalizability**: The findings are primarily based on a limited set of experiments and specific datasets, raising concerns about the generalizability of the results to broader contexts or different research domains.
-4. **Insufficient Clarity on Limitations**: While the authors acknowledge limitations, the discussion could benefit from a more explicit articulation of the implications of these limitations on the proposed framework's applicability and effectiveness.
-5. **Need for Stronger Claims**: The manuscript often hedges its claims, which may dilute the impact of the contributions. A clearer articulation of the potential benefits and scenarios where IGRE excels would strengthen the paper.
+1. **Insufficient Empirical Evidence**: The current experiments do not provide strong enough evidence to support claims of superiority over existing methods, particularly regarding the effectiveness of human-gated processes compared to fully autonomous systems.
+2. **Mixed Results**: The reported mixed and negative results in several experiments raise questions about the reliability and effectiveness of the proposed methods, which may hinder acceptance in a top-tier venue.
+3. **Lack of Independent Validation**: The absence of independent expert ratings and broader multi-researcher traces limits the generalizability of the findings and the robustness of the claims made.
+4. **Clarity of Claims**: While the paper outlines several contributions, the claims could be more clearly articulated, particularly regarding the implications of the mixed results and the boundaries of the proposed methods.
+5. **Limited Benchmarking**: The reliance on a narrow set of benchmarks (e.g., FML-bench) may not adequately capture the full scope of the proposed methods' capabilities, necessitating a broader benchmarking strategy.
 
 ## Concrete required revisions for the next draft
-1. **Expand Empirical Evidence**: Include independent human expert reviews and additional experiments across diverse datasets to strengthen the empirical foundation of the claims.
-2. **Clarify Limitations**: Provide a more detailed discussion of the limitations and their implications for the proposed framework, including potential biases and contexts where human involvement may not be beneficial.
-3. **Strengthen Claims**: Articulate clearer and more confident claims regarding the advantages of IGRE, supported by robust evidence from the experiments.
-4. **Enhance Clarity**: Improve the clarity of the writing, particularly in sections discussing experimental results and their implications, to ensure that the contributions are easily understood by a broad audience.
-5. **Broaden Generalizability**: Discuss how the findings might apply to other domains or types of research beyond the specific cases studied, potentially including future work that could explore this.
+1. **Enhance Empirical Evidence**: Include additional experiments that provide clearer evidence of the effectiveness of IGRE compared to existing methods, particularly focusing on scenarios where human insight significantly improves outcomes.
+2. **Clarify Claims and Results**: Revise the manuscript to clearly articulate the implications of mixed results and the specific contexts in which human-gated processes are beneficial or detrimental.
+3. **Broaden Benchmarking**: Expand the benchmarking strategy to include a wider variety of tasks and domains to better demonstrate the versatility and effectiveness of the proposed methods.
+4. **Include Independent Validation**: Seek independent evaluations or expert ratings to strengthen the credibility of the findings and provide a more robust assessment of the proposed methods.
+5. **Improve Clarity and Structure**: Revise sections of the manuscript for improved clarity, particularly in the introduction and results sections, to ensure that the contributions and findings are easily understood by the reader.
 
 ## Safer contribution wording
-The proposed Insight-Gated Research Evolution (IGRE) framework offers a structured approach to integrating human scientific taste into automated research processes. While the current evidence suggests that expert review insights can be operationalized as workflow-control signals, further empirical validation is necessary to establish the framework's effectiveness across diverse research contexts. The findings indicate potential pathways for enhancing automated scientific discovery, but caution is warranted in generalizing these results without additional validation.
+This work presents a novel framework, Insight-Gated Research Evolution (IGRE), which aims to integrate human scientific taste into automated research processes. While the current findings indicate that expert review can be operationalized as a control signal within research workflows, the results also highlight the complexity of human involvement in automated science, suggesting that further exploration is needed to fully understand the conditions under which human insight enhances research outcomes.

@@ -22,6 +22,8 @@
 
 AI Scientist-v2 代表全自动科研智能体路线：生成想法、执行实验、撰写论文并评估输出。它的优势是端到端自动化，但人类科研品味并不是其算法中的一等对象。AI Co-Scientist 式工作强调假设生成、批判、排序和演化，与 IGRE 同样把科研看成前沿搜索；但 IGRE 增加了显式人类门控、注意力成本日志和主张校准。
 
+另一条实践路线是把学术劳动封装成可复用的 research skill 或 manuscript-copilot workflow。PaperOrchestra 提出多智能体论文写作框架，并在人工评估中报告相对全自动写作基线的优势；`academic-research-skills` 与 `Claude-Code-Skills-for-Academics` 等公开 skill bundle 则把文献综述、论文写作、论文评审、引用检查、数据 profiling、代码审计、修订流程和会话管理拆成可复用模块。这条线很重要，因为它说明科研辅助可以成为稳定工作流资产，而不只是一次性 prompt。IGRE 参考这类系统的工程组织方式，但算法对象不同：它不把“写作技能”或“pipeline stage”作为核心单位，而是把 human-insight gate 作为核心单位，判断科研先验、evaluator、前沿分支、微演化任务、反馈结构或主张边界是否应该被改变。换言之，manuscript-copilot skills 帮助生产和审计科研产物；IGRE 研究的是哪些人类科研品味应该控制产生这些产物的科学搜索。
+
 AlphaEvolve 和 OpenEvolve 启发了 IGRE 的可验证微演化门控。它们表明，语言模型生成的代码修改可以通过自动评估进行演化。IGRE 对此采取选择性使用：只有当目标可机器评分且额外搜索成本合理时，才触发微演化，而不是把程序搜索当作所有问题的通用替代。
 
 Schmidhuber 的自指学习和代码自我改进路线提供了另一条重要背景。1987 年的 self-referential learning 工作已经提出让学习过程检查和修改自身机制；OOPS 把程序和搜索过程纳入增量式通用搜索；Gödel Machine 要求系统在证明自我改写有收益后才改写自身；POWERPLAY 则同时搜索新任务和 solver modification，并保持已经解决的任务能力。近年的 Darwin Gödel Machine 与 Huxley-Gödel Machine 把这条路线推进到 coding agent 自我改造。IGRE 与这条线的区别在于，它不直接演化 autonomous agent 的完整源码，而是在人类 insight gate 下演化科研轨迹、evaluator、可验证子程序和主张边界。
@@ -199,7 +201,11 @@ Co-Pilot AI Scientist v3 提出 IGRE：一种把人类科研品味和专家评�
 ## 参考文献
 
 - Juraj Gottweis, Wei-Hung Weng, Alexander Daryin 等。*Towards an AI Co-Scientist*。arXiv:2502.18864，2025。
+- Chris Lu, Cong Lu, Robert Tjarko Lange, Yutaro Yamada, Shengran Hu, Jakob Foerster, David Ha, Jeff Clune。*Towards End-to-End Automation of AI Research*。Nature 651, 914-919，2026。
 - Yutaro Yamada, Robert Tjarko Lange, Cong Lu, Shengran Hu, Chris Lu, Jakob Foerster, Jeff Clune, David Ha。*The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search*。arXiv:2504.08066，2025。
+- Yiwen Song, Yuxuan Song, George K. D. Pfister, Rose Yu。*PaperOrchestra: A Multi-Agent Framework for Automated AI Research Paper Writing*。arXiv:2604.05018，2026。
+- Imbad0202。*Academic Research Skills for Claude Code*。GitHub software repository，2026。
+- aspi6246。*Claude-Code-Skills-for-Academics*。GitHub software repository，2026。
 - Alexander Novikov, Ngan Vu, Marvin Eisenberger 等。*AlphaEvolve: A Coding Agent for Scientific and Algorithmic Discovery*。arXiv:2506.13131，2025。
 - Bernardino Romera-Paredes, Mohammadamin Barekatain, Alexander Novikov 等。*Mathematical Discoveries from Program Search with Large Language Models*。Nature，2023。
 - Asankhaya Sharma。*OpenEvolve: An Open-Source Evolutionary Coding Agent*。GitHub software repository，2025。

@@ -10,6 +10,7 @@ that prevents IGRE from reading like a collage of prior systems.
 | --- | --- | --- | --- |
 | End-to-end automated scientists | The AI Scientist; AI Scientist-v2; AI Co-Scientist | Defines the automated research loop: idea generation, experiment execution, paper writing, hypothesis debate, and evidence organization | IGRE does not remove the scientist; it turns human scientific taste into logged search-control gates |
 | Scientific discovery agents beyond ML | Coscientist; ChemCrow; LLMatDesign; materials-discovery and chemistry agents | Shows that agentic science extends beyond ML paper writing into tool use, lab planning, and domain workflows | IGRE is a participation-mode layer, not a chemistry, materials, or wet-lab automation stack |
+| Research-skill and manuscript-copilot workflows | PaperOrchestra; academic-research-skills; Claude-Code-Skills-for-Academics | Shows how research work can be packaged as reusable writing, review, citation, audit, data, and session-management skills | IGRE is not primarily a skill bundle; it defines human-insight gates that decide how the research search process should change |
 | Program search and algorithm discovery | AlphaTensor; AlphaDev; FunSearch; AlphaEvolve; OpenEvolve | Provides the machine-gradeable deep-search operator used in the verifiable micro-evolution gate | IGRE uses program evolution only when the subproblem has a reliable evaluator and a direct-edit baseline is insufficient |
 | Schmidhuber self-referential learning line | 1987 self-referential learning; OOPS; Gödel Machine; POWERPLAY; Darwin Gödel Machine; Huxley-Gödel Machine | Supplies the older self-improvement discipline of ordered program search, self-modification, verification, archive growth, and competence preservation | IGRE does not optimize the agent's whole source code; it evolves bounded research artifacts, evaluators, subproblem programs, and claim policies under human-insight gates |
 | LLM-guided evolution and reflection | PromptBreeder; EvoPrompting; LLMs as evolution strategies; Evolution of Heuristics; ReEvo; multi-objective heuristic evolution; Reflexion; Self-Refine; Voyager; AutoGen | Shows that LLMs can act as mutation operators, reflective critics, skill-library builders, and multi-agent coordinators | IGRE evolves the research trajectory and participation policy, not only prompts, heuristics, or the agent scaffold |
@@ -53,8 +54,12 @@ prove top-conference-level empirical superiority over autonomous AI Scientist-v2
 ## Citation Seed Links
 
 - The AI Scientist: https://arxiv.org/abs/2408.06292
+- The AI Scientist Nature article: https://www.nature.com/articles/s41586-026-10265-5
 - AI Scientist-v2: https://arxiv.org/abs/2504.08066
 - AI Co-Scientist: https://arxiv.org/abs/2502.18864
+- PaperOrchestra: https://arxiv.org/abs/2604.05018
+- academic-research-skills: https://github.com/Imbad0202/academic-research-skills
+- Claude-Code-Skills-for-Academics: https://github.com/aspi6246/Claude-Code-Skills-for-Academics
 - AlphaEvolve: https://arxiv.org/abs/2506.13131
 - OpenEvolve: https://github.com/algorithmicsuperintelligence/openevolve
 - Schmidhuber 1987 self-referential learning: https://people.idsia.ch/~juergen/diploma1987ocr.pdf

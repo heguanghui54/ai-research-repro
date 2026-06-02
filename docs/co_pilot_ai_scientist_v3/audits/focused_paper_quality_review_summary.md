@@ -1,6 +1,6 @@
 # Focused Paper Quality Review Summary
 
-Review date: 2026-06-02
+Review date: 2026-06-03
 
 Manuscript reviewed:
 
@@ -9,86 +9,77 @@ Manuscript reviewed:
 Reviewer routes:
 
 - Monica OpenAI-compatible `gpt-4o-mini`
-- Monica OpenAI-compatible `gemini-2.5-flash` returned a `Borderline`
-  recommendation but the route truncated before a complete rubric; logged as a
-  partial successful review.
+- Monica OpenAI-compatible `gemini-2.5-flash`
 - Monica OpenAI-compatible `claude-3-7-sonnet-latest` attempted but returned
   `504 Gateway Time-out`; logged but not counted as a successful review.
-- Monica OpenAI-compatible `gemini-2.0-flash` attempted but returned an
+- Monica OpenAI-compatible `gemini-2.0-flash` attempted earlier but returned an
   unsupported-model `412`; logged but not counted as a successful review.
 
 ## Aggregate Verdict
 
-The refreshed focused review includes the controlled metric-gaming smoke, the
-archived FML-Bench `Fairness_fairlearn` evaluator-stress replay, the
-OpenReview-derived gate-structure ablation, the downstream gate-outcome
-attribution probe, and the single-gate artifact ablation. The new ablations
-make the method feel less like a collage of prior co-scientist, AI Scientist,
-and AlphaEvolve ideas: IGRE is now evaluated as a distinct gate-routing pattern
-for inserting human scientific taste and insight into automated research loops.
-They also sharpen the central claim: useful human participation is not simply
-"more review context"; it is targeted routing of particular human signals into
-particular control decisions. The paper is still a strong pilot and
-reproducibility package rather than a top-conference-ready systems paper.
+The refreshed focused review includes the three-case live Temporal Frontier
+Replay aggregate, the deterministic TFR audit, the focused reference audit with
+the Schmidhuber/OOPS/Godel Machine/POWERPLAY self-improvement lineage, and the
+new research-skill/manuscript-copilot related-work line covering
+PaperOrchestra, `academic-research-skills`, and
+`Claude-Code-Skills-for-Academics`.
+
+Both successful model reviewers recommend weak accept under conservative
+framing. They agree that IGRE is most defensible as a systems-method and
+measurement paper: it operationalizes human scientific taste as auditable
+control signals, releases a reproducible artifact package, and reports mixed
+or negative evidence rather than claiming broad superiority. The remaining
+top-conference gap is still empirical, not cosmetic: independent human expert
+ratings, larger matched trajectories, broader benchmarks, and stronger
+delayed-value evidence are still missing.
 
 | Reviewer | Recommendation | Novelty | Rigor | Clarity | Evidence | Reproducibility | Significance |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 3 | 4 |
-| `gemini-2.5-flash` | Borderline | n/a | n/a | n/a | n/a | n/a | n/a |
+| `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 4 | 3 |
+| `gemini-2.5-flash` | Weak accept | 4 | 5 | 5 | 4 | 5 | 4 |
 
 ## What Improved
 
-- The paper now gives IGRE a distinct six-gate architecture instead of reading
-  as a direct collage of AI Co-Scientist, AI Scientist-v2, and AlphaEvolve.
-- Human scientific taste is framed as a high-variance search operator whose
-  value must be measured, not assumed.
-- Gate-structure, gate-outcome, and single-gate artifact ablations now test
-  whether the IGRE gates are merely labels or a useful routing structure.
-- The new FML Fairness evaluator-stress replay shows a real archived benchmark
-  failure mode: primary-only selection chooses a degenerate all-negative
-  predictor, while the gate rejects metric gaming and aborts no-valid
-  continuation.
-- The single-gate artifact ablation shows a subtle but important result:
-  targeted `evaluator_stress_test` routing can outperform full review context
-  in a six-paper model-reviewed proxy, so human guidance should be selected and
-  shaped rather than blindly maximized.
-- OpenReview evidence is more carefully bounded as offline taste/insight proxy
-  data, with equal-context ablation and cross-model review caveats.
-- Negative short-budget FML outcomes are reported as design pressure for gate
-  selection rather than hidden.
+- The related-work section now separates manuscript-copilot skill bundles from
+  autonomous discovery systems and positions IGRE as a gate-control theory
+  rather than another writing pipeline.
+- The paper explicitly includes the Schmidhuber self-referential learning and
+  code self-improvement lineage, including OOPS, Godel Machine, POWERPLAY,
+  Darwin Godel Machine, and Huxley-Godel Machine.
+- Three live four-condition TFR cases are now included. They do not provide
+  strict delayed-value positives, but they demonstrate that preregistered rules
+  can correct optimistic model-judge labels and expose weak gate propagation.
+- The main contribution is now clearer: useful human participation is not more
+  review context, but targeted routing of human taste and insight into research
+  priors, evaluators, frontiers, micro-evolution tasks, feedback structures, and
+  claim boundaries.
+- The manuscript is more honest about high variance: human participation can
+  hurt short-budget benchmark outcomes while still being worth studying for
+  high-tail or long-horizon scientific-search effects.
 
 ## Remaining Blocking Issues
 
-- The primary empirical evidence is still mixed or negative for broad
-  human-gated superiority: FML Causality packages favor autonomous baselines,
-  Fairness has no valid co-pilot continuation, and frontier-alignment probes do
-  not yet find delayed-value cases.
-- Regenerated artifact comparisons still rely on model-routed scoring; the
-  preregistered blind human expert packet has zero completed human rows.
-- The manuscript is structurally overloaded, mixing architecture, review mining,
-  benchmark pilots, retrospective frontier alignment, micro-evolution, fairness
-  replay, and audit tooling.
-- The OpenReview-derived taste/insight classifier has not been validated against
+- The primary empirical evidence remains mixed or negative for broad
+  human-gated superiority.
+- The three live TFR replays produce zero strict delayed-value positives under
+  preregistered deterministic rules.
+- Regenerated artifact comparisons still rely mainly on model-routed scoring;
+  the preregistered blind human expert packet has zero completed human rows.
+- The OpenReview-derived taste/insight classifier is not yet validated against
   independent expert labels.
 - Benchmark coverage and matched-budget sample size remain too narrow for a
   strong systems claim.
-- The retrospective delayed-value hypothesis remains mostly an evaluation design
-  rather than positive evidence: current citation-backed and heuristic probes do
-  not yet find a batch of review comments that hurt short-term artifact quality
-  while improving long-term frontier alignment.
+- The paper is now better positioned, but still needs one larger decisive
+  empirical block to move from strong pilot to top-conference-ready evidence.
 
 ## Next Required Evidence
 
-1. Collect the planned blind human expert ratings and report inter-rater
-   agreement.
-2. Run more matched autonomous versus human-gated trajectories across at least
-   three tasks and multiple seeds.
-3. Rerun gate decisions on real benchmarks so the gate choices change
-   downstream experimental outcomes rather than only regenerated text artifacts.
-4. Rewrite the paper around one primary falsifiable contribution, with secondary
-   probes moved to supporting evidence.
-5. Validate the OpenReview taste/insight classifier against independent expert
-   labels and explicitly separate useful taste signals from noisy review text.
-6. Scale the retrospective frontier-alignment protocol to identify delayed-value
-   reviews: comments that may reduce immediate paper-score metrics but better
-   point toward later mainstream or frontier research trajectories.
+1. Collect blind human expert ratings for the prepared paired artifacts and
+   report inter-rater agreement.
+2. Run larger matched autonomous versus human-gated trajectories across tasks,
+   seeds, and domains.
+3. Validate OpenReview taste/insight routing against independent expert labels.
+4. Scale TFR beyond three cases and use semantic frontier metrics plus human
+   expert assessment to find or falsify delayed-value review signals.
+5. Add real benchmark reruns where gate choices alter downstream experimental
+   outcomes, not only regenerated text artifacts.

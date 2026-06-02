@@ -86,6 +86,16 @@ def _prompt(paper_path: Path, *, compact: bool = False) -> str:
         default_limit,
     )
     readiness = _read_excerpt(ROOT / "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md", 2200 if compact else 7000)
+    live_tfr = _read_excerpt(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/live_tfr_replay_aggregate_20260603_003500/README.md",
+        1800 if compact else 5000,
+    )
+    live_tfr_audit = _read_excerpt(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/audits/live_tfr_replay_summary_audit.md",
+        900 if compact else 2500,
+    )
     comparison = _read_excerpt(
         ROOT
         / "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_comparison.md",
@@ -184,6 +194,16 @@ Prospective matched-budget package summary:
 Top-conference readiness audit:
 ```markdown
 {readiness}
+```
+
+Live TFR three-case replay aggregate:
+```markdown
+{live_tfr}
+```
+
+Live TFR aggregate audit:
+```markdown
+{live_tfr_audit}
 ```
 
 MLAgentBench comparison:
