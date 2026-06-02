@@ -6,18 +6,18 @@ Repository source:
 
 - URL: `https://github.com/heguanghui54/ai-research-repro.git`
 - Branch: `codex/co-pilot-ai-scientist-v3`
-- Commit: `e43bac0ab158e056e458d7184008ffa228b1164b`
-- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone-e43bac0ab`
+- Commit: `8d83909e20f0ab4a20389971b0b448cfe852ee74`
+- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone-8d83909e`
 - Clone mode: shallow depth-1 single-branch clone
 
 ## Commands Run
 
 ```bash
-rm -rf /tmp/copilot-v3-clean-clone-e43bac0ab
+rm -rf /tmp/copilot-v3-clean-clone-8d83909e
 git clone --depth 1 --single-branch --branch codex/co-pilot-ai-scientist-v3 \
   https://github.com/heguanghui54/ai-research-repro.git \
-  /tmp/copilot-v3-clean-clone-e43bac0ab
-cd /tmp/copilot-v3-clean-clone-e43bac0ab
+  /tmp/copilot-v3-clean-clone-8d83909e
+cd /tmp/copilot-v3-clean-clone-8d83909e
 git rev-parse HEAD
 git status --short
 python3 -m pip install -q -r requirements.txt
@@ -41,7 +41,7 @@ PY
 | Check | Result |
 | --- | --- |
 | GitHub branch shallow-cloned from scratch | Pass |
-| Checked-out commit | `e43bac0ab158e056e458d7184008ffa228b1164b` |
+| Checked-out commit | `8d83909e20f0ab4a20389971b0b448cfe852ee74` |
 | Python dependencies installed from `requirements.txt` | Pass |
 | Taste/insight coverage audit reran | Pass |
 | Attention-cost audit reran | Pass |
@@ -99,7 +99,7 @@ PY
 ## Interpretation
 
 This clean-clone audit verifies that the pushed GitHub branch at commit
-`e43bac0ab158e056e458d7184008ffa228b1164b` contains a self-contained reproducibility package for the current
+`8d83909e20f0ab4a20389971b0b448cfe852ee74` contains a self-contained reproducibility package for the current
 pilot artifacts. A fresh shallow clone can rebuild the bilingual PDFs and the
 focused bilingual PDFs, rerun the gate-coverage audits, rebuild and audit the
 derived Human Co-Pilot Trace Dataset, validate the reusable Codex skill, and
@@ -132,7 +132,7 @@ Because this run uses `--depth 1`, the trace dataset's commit index contains
 only the checked-out commit. That is expected for this audit mode and does not
 affect artifact presence or PDF rebuild reproducibility. The earlier full-history
 audit checked a larger commit index; this updated audit prioritizes current
-pushed-artifact reproducibility at `e43bac0ab`.
+pushed-artifact reproducibility at `8d83909e`.
 
 This audit does not rerun the remote Ubuntu experiments or prove the central
 performance claims. It strengthens the artifact-delivery and reproducibility
