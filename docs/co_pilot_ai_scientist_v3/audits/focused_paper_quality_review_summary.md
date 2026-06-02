@@ -9,7 +9,9 @@ Manuscript reviewed:
 Reviewer routes:
 
 - Monica OpenAI-compatible `gpt-4o-mini`
-- Monica OpenAI-compatible `gemini-2.5-flash`
+- Monica OpenAI-compatible `gemini-2.5-flash` returned a `Borderline`
+  recommendation but the route truncated before a complete rubric; logged as a
+  partial successful review.
 - Monica OpenAI-compatible `claude-3-7-sonnet-latest` attempted but returned
   `504 Gateway Time-out`; logged but not counted as a successful review.
 - Monica OpenAI-compatible `gemini-2.0-flash` attempted but returned an
@@ -31,17 +33,17 @@ reproducibility package rather than a top-conference-ready systems paper.
 
 | Reviewer | Recommendation | Novelty | Rigor | Clarity | Evidence | Reproducibility | Significance |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 4 | 3 |
+| `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 3 | 4 |
 | `gemini-2.5-flash` | Borderline | n/a | n/a | n/a | n/a | n/a | n/a |
 
 ## What Improved
 
-- The paper now gives IGRE a distinct five-gate architecture instead of reading
+- The paper now gives IGRE a distinct six-gate architecture instead of reading
   as a direct collage of AI Co-Scientist, AI Scientist-v2, and AlphaEvolve.
 - Human scientific taste is framed as a high-variance search operator whose
   value must be measured, not assumed.
 - Gate-structure, gate-outcome, and single-gate artifact ablations now test
-  whether the five IGRE gates are merely labels or a useful routing structure.
+  whether the IGRE gates are merely labels or a useful routing structure.
 - The new FML Fairness evaluator-stress replay shows a real archived benchmark
   failure mode: primary-only selection chooses a degenerate all-negative
   predictor, while the gate rejects metric gaming and aborts no-valid

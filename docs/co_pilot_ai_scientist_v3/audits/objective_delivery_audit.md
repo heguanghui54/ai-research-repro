@@ -1,8 +1,8 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T13:59:00Z`
+- Audit date: `2026-06-02T14:08:30Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `af5c2d1b823acee2bf5dac756418d48df01ffc54`
+- HEAD: `987eb0ef3d6dc04366fc23e79e23bfa32c6d83b1`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
 - Manifest artifacts: `696`
@@ -58,7 +58,7 @@
 - `chinese_usage`: `pass` (19890 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
 - `english_runbook`: `pass` (13724 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
 - `chinese_runbook`: `pass` (12498 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
-- `reusable_skill`: `pass` (22104 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
+- `reusable_skill`: `pass` (22590 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
 - `task_template`: `pass` (2899 bytes) - `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`
 - `gate_template`: `pass` (1789 bytes) - `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`
 

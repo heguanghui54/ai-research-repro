@@ -137,7 +137,7 @@ autonomous baseline.
 
 Supported:
 
-- The trajectory exercises all five IGRE gate types in a single online run.
+- The trajectory exercises the IGRE gate chain in a single online run.
 - The trajectory links gate decisions to remote FML and program-search
   artifacts.
 - The logged evidence is sufficient to generate a complete manuscript-shaped

@@ -141,9 +141,9 @@ Return strict JSON only with this shape:
 
 Constraints:
 - Generate exactly 3 candidate_directions.
-- Include exactly 5 IGRE gates in this order: scientific_taste_prior,
+- Include exactly 6 IGRE gates in this order: scientific_taste_prior,
   evaluator_stress_test, frontier_steering, verifiable_micro_evolution,
-  claim_calibration.
+  structured_feedback, claim_calibration.
 - The task_spec_markdown must include success criteria, failure criteria,
   baselines, benchmarks/evaluators, and expected artifacts.
 - The claim_boundary must state that this is a live skill-reuse smoke, not a
@@ -189,11 +189,12 @@ def _validate_invocation(data: dict[str, Any]) -> list[str]:
         "evaluator_stress_test",
         "frontier_steering",
         "verifiable_micro_evolution",
+        "structured_feedback",
         "claim_calibration",
     ]
     gates = data.get("igre_gate_plan") or []
     if [gate.get("gate_type") for gate in gates] != expected_gates:
-        errors.append("IGRE gate plan does not match required five-gate order")
+        errors.append("IGRE gate plan does not match required six-gate order")
     selected = data.get("selected_direction_id")
     direction_ids = {item.get("id") for item in data.get("candidate_directions") or []}
     if selected not in direction_ids:
@@ -376,7 +377,7 @@ def main() -> None:
         "claim_boundary": (
             "This live skill invocation smoke verifies that the reusable Codex skill can be "
             "applied to a fresh research task with real model calls and produces a task spec, "
-            "five-gate IGRE plan, and audit. It is not a benchmark result, not independent "
+            "six-gate IGRE plan, and audit. It is not a benchmark result, not independent "
             "human review, and not evidence that IGRE improves paper quality or performance."
         ),
     }

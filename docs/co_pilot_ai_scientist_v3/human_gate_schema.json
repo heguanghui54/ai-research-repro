@@ -26,6 +26,7 @@
         "evaluator_stress_test",
         "frontier_steering",
         "verifiable_micro_evolution",
+        "structured_feedback",
         "claim_calibration",
         "idea_selection",
         "hypothesis_refinement",

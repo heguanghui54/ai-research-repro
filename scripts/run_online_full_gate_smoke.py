@@ -582,7 +582,7 @@ def main() -> int:
             "options": [
                 {
                     "option_id": "claim_online_orchestration_feasible",
-                    "summary": "Claim that the online five-gate smoke orchestration is executable.",
+                    "summary": "Claim that the online six-gate smoke orchestration is executable.",
                     "score": 1.0,
                     "evidence": [
                         f"branch_summary={branch_summary_remote}",

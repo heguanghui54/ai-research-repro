@@ -70,6 +70,14 @@ def _prompt(paper_path: Path, *, compact: bool = False) -> str:
     default_limit = 700 if compact else 4500
     paper = _read_excerpt(paper_path, 12000) if compact else _read(paper_path)
     audit = _read_excerpt(ROOT / "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md", default_limit)
+    references_audit = _read_excerpt(
+        ROOT / "docs/co_pilot_ai_scientist_v3/audits/focused_references_audit.md",
+        1200 if compact else 4500,
+    )
+    goal_matrix = _read_excerpt(
+        ROOT / "docs/co_pilot_ai_scientist_v3/audits/goal_completion_matrix.md",
+        2200 if compact else 7000,
+    )
     benchmark = _read_excerpt(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_selection.md", default_limit)
     benchmark_matrix = _read_excerpt(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md", 1600 if compact else 4500)
     prospective_summary = _read_excerpt(
@@ -146,6 +154,16 @@ Manuscript:
 Claim-evidence audit:
 ```markdown
 {audit}
+```
+
+Focused reference coverage audit:
+```markdown
+{references_audit}
+```
+
+Goal-completion matrix:
+```markdown
+{goal_matrix}
 ```
 
 Benchmark selection:

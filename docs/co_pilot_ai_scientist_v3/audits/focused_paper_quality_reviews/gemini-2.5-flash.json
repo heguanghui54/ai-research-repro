@@ -4,14 +4,14 @@
   "response": {
     "id": "chatcmpl-llm-router-openai",
     "object": "chat.completion",
-    "created": 1780390180,
+    "created": 1780409076,
     "model": "gemini-2.5-flash",
     "choices": [
       {
         "index": 0,
         "message": {
           "role": "assistant",
-          "content": "## Executive recommendation: Borderline\n\nThe paper introduces a novel and rigorously defined architecture, Insight-Gated Research Evolution (IGRE), for integrating human scientific taste into automated research workflows. The problem it addresses is highly significant, and the paper's commitment to transparency, auditable design, and reproducibility is exemplary. However, the empirical evidence for the *effectiveness* of IGRE in consistently improving research outcomes over autonomous baselines is currently weak, with many results being mixed, modest, or demonstrating only feasibility rather than superiority. The lack of live human evaluation for the core \"insight-gated\" mechanism is a significant"
+          "content": "## Executive Recommendation\n\n**Borderline**\n\nThis submission presents a novel and rigorously self-audited framework, Insight-Gated Research Evolution (IGRE), for integrating human scientific taste into automated research loops. Its strength lies in its methodological clarity, the introduction of auditable gates, and the exceptional commitment to reproducibility and transparent self-assessment, including the novel Temporal Frontier Replay (TFR) protocol. However, for a"
         },
         "finish_reason": "length",
         "content_filter_results": {
@@ -39,16 +39,16 @@
       }
     ],
     "usage": {
-      "prompt_tokens": 7292,
-      "completion_tokens": 124,
-      "total_tokens": 7416,
+      "prompt_tokens": 8064,
+      "completion_tokens": 86,
+      "total_tokens": 8150,
       "prompt_tokens_details": {
         "audio_tokens": 0,
         "cached_tokens": 0
       },
       "completion_tokens_details": {
         "audio_tokens": 0,
-        "reasoning_tokens": 3072
+        "reasoning_tokens": 2110
       }
     },
     "system_fingerprint": ""

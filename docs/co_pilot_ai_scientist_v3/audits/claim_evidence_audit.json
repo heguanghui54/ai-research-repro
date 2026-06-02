@@ -12,7 +12,7 @@
         "docs/co_pilot_ai_scientist_v3/human_gate_schema.json",
         "skills/co-pilot-ai-scientist-v3/SKILL.md"
       ],
-      "paper_treatment": "Present as this paper's five-gate method, inspired by prior systems but adapted around human taste, attention cost, and claim calibration."
+      "paper_treatment": "Present as Co-Pilot AI Scientist v3's own six-gate workflow, inspired by prior systems but adapted around human taste, evaluator stress testing, frontier steering, verifiable micro-evolution, structured feedback, attention cost, and claim calibration."
     },
     {
       "claim": "Expert peer reviews contain routeable taste and insight signals.",

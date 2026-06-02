@@ -595,13 +595,13 @@
           "rigor": 3,
           "clarity": 4,
           "evidence": 3,
-          "reproducibility": 4,
-          "significance": 3
+          "reproducibility": 3,
+          "significance": 4
         },
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
       },
       "gemini-2.5-flash": {
-        "recommendation": "Borderline",
+        "recommendation": "Borderline (truncated before full rubric)",
         "scores": null,
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md"
       }
@@ -618,7 +618,7 @@
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md"
       }
     },
-    "aggregate_conclusion": "New gate-structure, gate-outcome, and single-gate artifact ablations strengthen IGRE's method distinctness and show that targeted gate routing can be more useful than full review context in a small OpenReview proxy. They do not close the top-conference evidence gap because independent human ratings, real benchmark gate reruns, and broader matched trajectories are still missing.",
+    "aggregate_conclusion": "The refreshed review context now includes the focused reference audit, including the Schmidhuber/OOPS/Gödel Machine/POWERPLAY self-evolution lineage, and the current goal-completion matrix. The new gate-structure, gate-outcome, and single-gate artifact ablations strengthen IGRE's six-gate method distinctness and show that targeted gate routing can be more useful than full review context in a small OpenReview proxy. They do not close the top-conference evidence gap because independent human ratings, real benchmark gate reruns, and broader matched trajectories are still missing.",
     "next_required_evidence": [
       "blind human expert ratings with inter-rater agreement",
       "larger matched autonomous versus human-gated trajectories across tasks/seeds",
@@ -873,7 +873,7 @@
       "reusability": 4
     },
     "safe_claim": "The process outlines a reusable workflow that is structured to refine and validate research outputs.",
-    "claim_boundary": "This live skill invocation smoke verifies that the reusable Codex skill can be applied to a fresh research task with real model calls and produces a task spec, five-gate IGRE plan, and audit. It is not a benchmark result, not independent human review, and not evidence that IGRE improves paper quality or performance."
+    "claim_boundary": "This live skill invocation smoke verifies that the reusable Codex skill can be applied to a fresh research task with real model calls and produces a task spec, IGRE gate plan, and audit. It is not a benchmark result, not independent human review, and not evidence that IGRE improves paper quality or performance."
   },
   "skill_reuse_live_invocation": {
     "status": "pass",
@@ -907,7 +907,7 @@
       "reusability": 4
     },
     "safe_claim": "The process outlines a reusable workflow that is structured to refine and validate research outputs.",
-    "claim_boundary": "This live skill invocation smoke verifies that the reusable Codex skill can be applied to a fresh research task with real model calls and produces a task spec, five-gate IGRE plan, and audit. It is not a benchmark result, not independent human review, and not evidence that IGRE improves paper quality or performance."
+    "claim_boundary": "This live skill invocation smoke verifies that the reusable Codex skill can be applied to a fresh research task with real model calls and produces a task spec, IGRE gate plan, and audit. It is not a benchmark result, not independent human review, and not evidence that IGRE improves paper quality or performance."
   },
   "metric_gaming_evaluator_stress_smoke": {
     "status": "pass",

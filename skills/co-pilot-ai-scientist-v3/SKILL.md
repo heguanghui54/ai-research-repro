@@ -162,15 +162,24 @@ matched evidence and clear boundary conditions.
    - Trigger `verifiable_micro_evolution` before escalating to expensive
      population search.
 
-6. **Write and Calibrate Claims**
+6. **Apply Structured Feedback**
+   - Convert review comments, ablation failures, reproducibility issues, and
+     reader-confusion risks into concrete revision actions.
+   - Separate feedback that improves exposition from feedback that changes
+     hypotheses, evaluators, frontier choices, or claim boundaries.
+   - Trigger `structured_feedback` before final manuscript calibration so that
+     useful review insight is not collapsed into generic approval.
+
+7. **Write and Calibrate Claims**
    - Generate the paper from actual logs, metrics, and citations.
    - Trigger `claim_calibration` to weaken, remove, or reframe unsupported
      claims before final polishing.
    - Produce the formal manuscript in English.
 
-7. **Assemble Gate Trajectory**
+8. **Assemble Gate Trajectory**
    - Link scientific-taste, evaluator-stress, frontier-steering,
-     micro-evolution, and claim-calibration gates into a trajectory artifact.
+     micro-evolution, structured-feedback, and claim-calibration gates into a
+     trajectory artifact.
    - Mark whether the trajectory is a single online run or a retrospective
      chain assembled from separate probes.
    - Never use a retrospective gate chain as evidence of end-to-end
