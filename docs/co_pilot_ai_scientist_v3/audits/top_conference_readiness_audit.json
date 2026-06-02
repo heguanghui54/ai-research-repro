@@ -93,7 +93,11 @@
     "live_skill_invocation_smokes": 1,
     "live_skill_invocation_model_calls": 2,
     "live_skill_invocation_candidate_directions": 3,
-    "live_skill_invocation_gate_count": 5
+    "live_skill_invocation_gate_count": 5,
+    "metric_gaming_evaluator_stress_smokes": 1,
+    "metric_gaming_evaluator_stress_incidents_reduced": 1,
+    "metric_gaming_evaluator_stress_primary_only_incidents": 1,
+    "metric_gaming_evaluator_stress_guardrail_incidents": 0
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -157,7 +161,7 @@
     "independent_human_subject_timing": false,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Collect 3-5 blind human expert score sheets for the prepared OpenReview pair packet, summarize ratings with inter-rater agreement, then expand matched autonomous vs human-gated runs across tasks/seeds.",
+  "next_evidence_milestone": "Run the live reusable skill through a real benchmark task and evaluate independent human expert ratings before upgrading from controlled smoke evidence.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -825,5 +829,46 @@
     },
     "safe_claim": "The process outlines a reusable workflow that is structured to refine and validate research outputs.",
     "claim_boundary": "This live skill invocation smoke verifies that the reusable Codex skill can be applied to a fresh research task with real model calls and produces a task spec, five-gate IGRE plan, and audit. It is not a benchmark result, not independent human review, and not evidence that IGRE improves paper quality or performance."
+  },
+  "metric_gaming_evaluator_stress_smoke": {
+    "status": "pass",
+    "run_id": "metric_gaming_evaluator_stress_smoke_20260602_171500",
+    "script": "scripts/run_metric_gaming_evaluator_stress_smoke.py",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/summary.json",
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/README.md",
+    "linked_live_skill_invocation": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/summary.json",
+    "primary_only_winner": "metric_gaming_all_negative",
+    "evaluator_stress_winner": "guardrailed_utility_model",
+    "metric_gaming_incidents_reduced": 1,
+    "primary_only_metric_gaming_incidents": 1,
+    "evaluator_stress_metric_gaming_incidents": 0,
+    "utility_floor": 0.65,
+    "scores": {
+      "baseline_threshold_model": {
+        "demographic_parity_difference": 0.333333,
+        "balanced_accuracy": 0.833333,
+        "primary_only_score": -0.333333,
+        "utility_floor": 0.65,
+        "guardrail_pass": true,
+        "evaluator_stress_score": -0.333333
+      },
+      "metric_gaming_all_negative": {
+        "demographic_parity_difference": 0,
+        "balanced_accuracy": 0.5,
+        "primary_only_score": 0,
+        "utility_floor": 0.65,
+        "guardrail_pass": false,
+        "evaluator_stress_score": -999.0
+      },
+      "guardrailed_utility_model": {
+        "demographic_parity_difference": 0.166667,
+        "balanced_accuracy": 0.916667,
+        "primary_only_score": -0.166667,
+        "utility_floor": 0.65,
+        "guardrail_pass": true,
+        "evaluator_stress_score": -0.166667
+      }
+    },
+    "claim_boundary": "This is a deterministic evaluator-stress smoke linked to the live skill invocation. It demonstrates that a multi-metric guardrail can reject one synthetic metric-gaming candidate. It is not an FML-bench result, not a human-subject study, and not evidence that IGRE improves average benchmark performance."
   }
 }

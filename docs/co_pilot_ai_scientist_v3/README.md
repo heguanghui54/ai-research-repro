@@ -98,6 +98,11 @@ claim calibration.
   selected `direction_1`, produced a five-gate IGRE plan, and passed a second
   model audit. This is reusable-workflow evidence, not benchmark or paper-quality
   evidence.
+- `experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/`:
+  deterministic evaluator-stress smoke linked to the live skill task. A
+  primary-only fairness metric selects a degenerate all-negative predictor, while
+  the IGRE utility guardrail rejects it and selects a higher-utility candidate.
+  This is controlled evaluator evidence, not an FML-bench result.
 - `audits/attention_cost_logging_smoke_audit.md`: synthetic tooling smoke test
   for creating future human gate logs with complete attention-cost fields.
 - `audits/attention_taste_logging_smoke_audit.md`: synthetic tooling smoke test

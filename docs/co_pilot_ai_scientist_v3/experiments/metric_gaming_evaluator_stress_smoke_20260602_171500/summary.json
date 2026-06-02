@@ -1,0 +1,112 @@
+{
+  "run_id": "metric_gaming_evaluator_stress_smoke_20260602_171500",
+  "timestamp_utc": "2026-06-02T07:46:22Z",
+  "status": "pass",
+  "linked_live_skill_invocation": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/summary.json",
+  "dataset": {
+    "y_true": [
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "sensitive_group": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "candidate_predictions": {
+      "baseline_threshold_model": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "metric_gaming_all_negative": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "guardrailed_utility_model": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "scores": {
+    "baseline_threshold_model": {
+      "demographic_parity_difference": 0.333333,
+      "balanced_accuracy": 0.833333,
+      "primary_only_score": -0.333333,
+      "utility_floor": 0.65,
+      "guardrail_pass": true,
+      "evaluator_stress_score": -0.333333
+    },
+    "metric_gaming_all_negative": {
+      "demographic_parity_difference": 0,
+      "balanced_accuracy": 0.5,
+      "primary_only_score": 0,
+      "utility_floor": 0.65,
+      "guardrail_pass": false,
+      "evaluator_stress_score": -999.0
+    },
+    "guardrailed_utility_model": {
+      "demographic_parity_difference": 0.166667,
+      "balanced_accuracy": 0.916667,
+      "primary_only_score": -0.166667,
+      "utility_floor": 0.65,
+      "guardrail_pass": true,
+      "evaluator_stress_score": -0.166667
+    }
+  },
+  "primary_only_winner": "metric_gaming_all_negative",
+  "evaluator_stress_winner": "guardrailed_utility_model",
+  "primary_only_metric_gaming_incidents": 1,
+  "evaluator_stress_metric_gaming_incidents": 0,
+  "metric_gaming_incidents_reduced": 1,
+  "claim_boundary": "This is a deterministic evaluator-stress smoke linked to the live skill invocation. It demonstrates that a multi-metric guardrail can reject one synthetic metric-gaming candidate. It is not an FML-bench result, not a human-subject study, and not evidence that IGRE improves average benchmark performance."
+}
