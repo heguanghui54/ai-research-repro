@@ -35,7 +35,19 @@
     "derived_trace_taste_insight_records": 10,
     "prospective_matched_packages": 4,
     "same_run_online_paired_smokes": 3,
-    "same_run_online_no_valid_branch_smokes": 1
+    "same_run_online_no_valid_branch_smokes": 1,
+    "live_hypothesis_frontier_smokes": 1
+  },
+  "hypothesis_frontier_smoke": {
+    "status": "live_front_end_smoke_completed",
+    "run_id": "hypothesis_frontier_smoke_20260602_021500",
+    "path": "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/README.md",
+    "provider": "Monica OpenAI-compatible API",
+    "model": "gpt-4o-mini",
+    "live_model_calls": 2,
+    "candidate_count": 4,
+    "selected_for_next_budget": "frontier_004",
+    "interpretation": "AI Co-Scientist-style generate-critique-rank front-end evidence only; not downstream benchmark, paper-quality, or human-selection evidence."
   },
   "clean_clone_reproducibility": {
     "status": "pass",

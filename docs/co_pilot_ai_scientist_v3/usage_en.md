@@ -55,6 +55,19 @@ The archived smoke has a matched autonomous comparison in
 `experiments/online_smoke_matched_autonomous_comparison.md`. The autonomous
 baseline wins on held-out test MAE, so use it as a negative-result template.
 
+For a Monica-routed AI Co-Scientist-style hypothesis-frontier smoke, source the
+global environment and run:
+
+```bash
+source ~/.codex/env
+python3 scripts/run_hypothesis_frontier_smoke.py \
+  --model gpt-4o-mini
+```
+
+This generates candidate research frontiers and a critique/ranking artifact.
+Treat it as front-end orchestration evidence, not as benchmark or paper-quality
+evidence.
+
 For a Monica-routed paper-quality review, source the global environment and run:
 
 ```bash

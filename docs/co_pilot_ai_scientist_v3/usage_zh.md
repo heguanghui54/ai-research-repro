@@ -51,6 +51,18 @@ baseline。它用于证明编排可行性并生成 paired smoke comparison；但
 `experiments/online_smoke_matched_autonomous_comparison.md`。autonomous
 baseline 在 held-out test MAE 上胜出，因此它应作为负结果模板使用。
 
+如果要通过 Monica 路由运行 AI Co-Scientist 风格的 hypothesis-frontier
+smoke，先加载全局环境变量，然后运行：
+
+```bash
+source ~/.codex/env
+python3 scripts/run_hypothesis_frontier_smoke.py \
+  --model gpt-4o-mini
+```
+
+这个脚本会生成候选 research frontiers，并输出 critique/ranking artifact。
+它只能作为前端编排证据，不能作为 benchmark 或论文质量提升证据。
+
 如果要通过 Monica 做论文质量评审，先加载全局环境变量，然后运行：
 
 ```bash

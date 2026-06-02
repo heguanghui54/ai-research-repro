@@ -30,6 +30,9 @@ claim calibration.
   high-tail research upside without pretending it is a complete reward model.
 - `candidates.json`: candidate research directions and a scoring rubric.
 - `experiment_protocol.md`: minimal benchmark and ablation plan.
+- `experiments/hypothesis_frontier_smoke_20260602_021500/`: live
+  Monica-routed AI Co-Scientist-style generate-critique-rank smoke over four
+  new research-frontier candidates.
 - `prospective_matched_budget_protocol.md`: machine-checkable evidence shape
   required before strong top-conference claims about co-pilot superiority,
   human attention efficiency, or paper-quality gains.
@@ -92,7 +95,12 @@ Expected outputs:
 ## Current Status
 
 This is a working research-production scaffold with preliminary Ubuntu-host
-evidence. It includes OpenEvolve-based program search, direct LLM rewrite
+evidence. It now includes a live AI Co-Scientist-style hypothesis-frontier
+smoke: two Monica-routed `gpt-4o-mini` calls generated four candidate research
+frontiers, critiqued/ranked them, and selected `frontier_004` (structured human
+feedback mechanisms) as the next-budget candidate. This supports front-end
+orchestration only; it is not a downstream benchmark or paper-quality result.
+The package also includes OpenEvolve-based program search, direct LLM rewrite
 baselines, richer knapsack and Max-Cut heuristic tasks, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes live
 two-draft FML-bench branch-gate probes, snapshot-seeded selected-branch

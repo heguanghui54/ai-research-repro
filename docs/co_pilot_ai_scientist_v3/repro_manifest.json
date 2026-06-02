@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_attention_taste_priority_gate",
+  "status": "pilot_package_with_live_hypothesis_frontier_smoke",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -23,6 +23,13 @@
     "docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md",
     "docs/co_pilot_ai_scientist_v3/taste_insight_rubric.json",
     "docs/co_pilot_ai_scientist_v3/candidates.json",
+    "scripts/run_hypothesis_frontier_smoke.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/critique_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/generation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/critique_raw_response.txt",
     "docs/co_pilot_ai_scientist_v3/experiment_protocol.md",
     "docs/co_pilot_ai_scientist_v3/paper_en.md",
     "docs/co_pilot_ai_scientist_v3/paper_zh.md",
@@ -443,6 +450,20 @@
     "hypothesis_debate": "Monica-routed GPT/Gemini/Anthropic frontier model when budget allows",
     "claim_audit": "Monica-routed high-reliability model plus human review",
     "api_secret_policy": "Read from environment variables; never print keys."
+  },
+  "hypothesis_frontier_smoke": {
+    "status": "live_front_end_smoke_completed",
+    "script": "scripts/run_hypothesis_frontier_smoke.py",
+    "run_id": "hypothesis_frontier_smoke_20260602_021500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/summary.json",
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/README.md",
+    "provider": "Monica OpenAI-compatible API",
+    "model": "gpt-4o-mini",
+    "live_model_calls": 2,
+    "candidate_count": 4,
+    "selected_for_next_budget": "frontier_004",
+    "performance_evidence": false,
+    "human_selection_evidence": false
   },
   "openevolve_policy": {
     "role": "Open-source AlphaEvolve-style implementation substrate",

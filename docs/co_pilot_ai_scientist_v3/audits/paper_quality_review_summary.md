@@ -110,6 +110,17 @@ complete attention-cost record and 2 complete taste/insight records, so this
 improves ecological validity and process evidence; it does not establish
 population-level human benefit or human attention efficiency.
 
+## Hypothesis Frontier Front End
+
+The package now includes
+`experiments/hypothesis_frontier_smoke_20260602_021500/`, a live
+Monica-routed AI Co-Scientist-style front-end smoke. Two `gpt-4o-mini` calls
+generate four candidate research frontiers and critique/rank them, selecting
+`frontier_004` for possible next-budget evaluation. This improves the upstream
+hypothesis-organization evidence, but it is still front-end orchestration only:
+it does not connect the selected hypothesis to a prospective experiment,
+claim-audited manuscript, or autonomous hypothesis-front-end baseline.
+
 ## Second Prospective FML Package
 
 A second prospective two-step FML package was run after the previous review. It

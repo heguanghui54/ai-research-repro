@@ -32,6 +32,10 @@ and claim responsibility can reshape the trajectory.
 2. **Set Scientific Taste Prior**
    - Use multiple agents or model passes to generate, critique, and refine
      hypotheses.
+   - For a live AI Co-Scientist-style front-end smoke, run
+     `scripts/run_hypothesis_frontier_smoke.py` after sourcing the private model
+     environment. Treat the generated frontier and critique/ranking as
+     orchestration evidence, not as a downstream performance result.
    - Attach evidence, missing evidence, feasibility notes, and risks.
    - Ask the human scientist to select, merge, or rewrite directions using
      field taste, upside asymmetry, and failure value, not only early scores.
