@@ -841,7 +841,20 @@
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_03.json",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_02.json",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_04.json",
-    "docs/co_pilot_ai_scientist_v3/skill_engineering_release_strategy.md"
+    "docs/co_pilot_ai_scientist_v3/skill_engineering_release_strategy.md",
+    "release/co-pilot-ai-scientist-v3-skill/README.md",
+    "release/co-pilot-ai-scientist-v3-skill/QUICKSTART.md",
+    "release/co-pilot-ai-scientist-v3-skill/SKILL.md",
+    "release/co-pilot-ai-scientist-v3-skill/MANIFEST.json",
+    "release/co-pilot-ai-scientist-v3-skill/templates/task_spec_template.md",
+    "release/co-pilot-ai-scientist-v3-skill/templates/human_gate_log_template.json",
+    "release/co-pilot-ai-scientist-v3-skill/templates/claim_audit_template.md",
+    "release/co-pilot-ai-scientist-v3-skill/examples/toy_task_spec.md",
+    "release/co-pilot-ai-scientist-v3-skill/examples/example_gate_log.json",
+    "release/co-pilot-ai-scientist-v3-skill/scripts/validate_release.py",
+    "scripts/audit_igre_skill_release_package.py",
+    "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1866,9 +1879,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "c207e48478982928363a5eaaf7fc55234a53928a",
+    "head": "8ba109522cb3e41592f6e27fb231795d22d6b6ee",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 828,
+    "manifest_artifacts": 841,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1986,5 +1999,12 @@
     "status": "planned_public_skill_release_path",
     "markdown": "docs/co_pilot_ai_scientist_v3/skill_engineering_release_strategy.md",
     "boundary": "Engineering adoption is usability and transfer evidence, not scientific superiority evidence."
+  },
+  "standalone_skill_release_package": {
+    "status": "pass",
+    "release_dir": "release/co-pilot-ai-scientist-v3-skill",
+    "readme": "release/co-pilot-ai-scientist-v3-skill/README.md",
+    "audit": "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.md",
+    "claim_boundary": "Engineering release readiness is not scientific superiority evidence."
   }
 }

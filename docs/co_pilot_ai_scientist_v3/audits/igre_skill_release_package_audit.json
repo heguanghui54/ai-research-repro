@@ -1,0 +1,37 @@
+{
+  "audit_date": "2026-06-02T16:29:21Z",
+  "status": "pass",
+  "release_dir": "release/co-pilot-ai-scientist-v3-skill",
+  "required_files_checked": 9,
+  "checked_files": [
+    "release/co-pilot-ai-scientist-v3-skill/README.md",
+    "release/co-pilot-ai-scientist-v3-skill/QUICKSTART.md",
+    "release/co-pilot-ai-scientist-v3-skill/SKILL.md",
+    "release/co-pilot-ai-scientist-v3-skill/templates/task_spec_template.md",
+    "release/co-pilot-ai-scientist-v3-skill/templates/human_gate_log_template.json",
+    "release/co-pilot-ai-scientist-v3-skill/templates/claim_audit_template.md",
+    "release/co-pilot-ai-scientist-v3-skill/examples/toy_task_spec.md",
+    "release/co-pilot-ai-scientist-v3-skill/examples/example_gate_log.json",
+    "release/co-pilot-ai-scientist-v3-skill/scripts/validate_release.py"
+  ],
+  "validator_result": {
+    "status": "pass",
+    "release_root": "/Users/hgh54913/.codex/worktrees/1b29/research/release/co-pilot-ai-scientist-v3-skill",
+    "required_files_checked": 9,
+    "gates_checked": [
+      "scientific_taste_prior",
+      "evaluator_stress_test",
+      "frontier_steering",
+      "verifiable_micro_evolution",
+      "structured_feedback",
+      "claim_calibration"
+    ],
+    "errors": [],
+    "warnings": [],
+    "claim_boundary": "This release scaffold validates skill packaging and usability, not scientific superiority."
+  },
+  "engineering_track_status": "standalone_release_scaffold_prepared",
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "This audit verifies engineering release readiness for a standalone skill scaffold. It is not scientific evidence that IGRE improves automated research outcomes."
+}

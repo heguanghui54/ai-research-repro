@@ -43,6 +43,8 @@ Start here:
   [docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf](docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf)
 - Reusable Codex skill:
   [skills/co-pilot-ai-scientist-v3/SKILL.md](skills/co-pilot-ai-scientist-v3/SKILL.md)
+- Standalone public skill release scaffold:
+  [release/co-pilot-ai-scientist-v3-skill/README.md](release/co-pilot-ai-scientist-v3-skill/README.md)
 - English usage guide:
   [docs/co_pilot_ai_scientist_v3/usage_en.md](docs/co_pilot_ai_scientist_v3/usage_en.md)
 - Chinese usage guide:
@@ -57,6 +59,7 @@ python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/summarize_human_expert_blind_reviews.py --update-manifest
 python3 scripts/audit_human_expert_blind_review_packet.py
+python3 scripts/audit_igre_skill_release_package.py
 python3 scripts/audit_benchmark_coverage.py
 python3 scripts/audit_prospective_gate_instrumentation.py
 python3 scripts/build_deep_regeneration_cases.py

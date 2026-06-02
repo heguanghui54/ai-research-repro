@@ -1,0 +1,25 @@
+{
+  "name": "co-pilot-ai-scientist-v3-skill",
+  "method": "Insight-Gated Research Evolution",
+  "status": "standalone_release_scaffold",
+  "required_files": [
+    "README.md",
+    "QUICKSTART.md",
+    "SKILL.md",
+    "templates/task_spec_template.md",
+    "templates/human_gate_log_template.json",
+    "templates/claim_audit_template.md",
+    "examples/toy_task_spec.md",
+    "examples/example_gate_log.json",
+    "scripts/validate_release.py"
+  ],
+  "gates": [
+    "scientific_taste_prior",
+    "evaluator_stress_test",
+    "frontier_steering",
+    "verifiable_micro_evolution",
+    "structured_feedback",
+    "claim_calibration"
+  ],
+  "claim_boundary": "This release scaffold validates skill packaging and usability, not scientific superiority."
+}

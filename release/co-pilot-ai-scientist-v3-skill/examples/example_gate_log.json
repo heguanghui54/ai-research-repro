@@ -1,0 +1,79 @@
+{
+  "gate_id": "toy_metric_gaming_guardrail_gate_001",
+  "gate_type": "evaluator_stress_test",
+  "timestamp_utc": "2026-06-03T00:00:00Z",
+  "research_task_id": "toy_metric_gaming_guardrail",
+  "options": [
+    {
+      "option_id": "primary_metric_only",
+      "summary": "Continue with the branch that wins the primary metric.",
+      "score": 2.0,
+      "evidence": [
+        "Primary metric improves."
+      ],
+      "risks": [
+        "The solution may be degenerate or scientifically invalid."
+      ]
+    },
+    {
+      "option_id": "guardrail_evaluator",
+      "summary": "Require a validity guardrail before accepting the branch.",
+      "score": 4.5,
+      "evidence": [
+        "Primary metric and validity guardrail are both checked."
+      ],
+      "risks": [
+        "The stricter evaluator may reject some promising early branches."
+      ]
+    }
+  ],
+  "human_decision": "guardrail_evaluator",
+  "rationale": "The primary metric alone is too easy to game, so the run should require a validity guardrail before continuation.",
+  "affected_artifacts": [
+    "examples/toy_task_spec.md"
+  ],
+  "attention_cost": {
+    "human_actor": "example_user",
+    "interaction_mode": "review",
+    "prompted_at_utc": "2026-06-03T00:00:00Z",
+    "decision_at_utc": "2026-06-03T00:03:00Z",
+    "active_review_minutes": 3,
+    "wall_clock_latency_minutes": 3,
+    "options_reviewed": 2,
+    "artifacts_reviewed_count": 1,
+    "decision_count": 1,
+    "notes": "Example only."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-03",
+    "scores": {
+      "problem_depth": 4,
+      "novelty_potential": 3,
+      "mechanistic_value": 4,
+      "failure_informativeness": 5,
+      "benchmark_taste": 5,
+      "claim_significance": 3,
+      "risk_asymmetry": 4
+    },
+    "taste_insight_score": 4.1,
+    "qualitative_rationale": "Metric gaming is a useful toy case because it reveals whether the agent optimizes the evaluator rather than the scientific target.",
+    "non_metric_factors": [
+      "failure informativeness",
+      "claim boundary",
+      "evaluator validity"
+    ],
+    "expected_high_tail_value": "A guardrail pattern may transfer to real automated-research benchmarks.",
+    "possible_negative_effects": [
+      "May slow early exploration.",
+      "May reject branches before useful debugging."
+    ]
+  },
+  "downstream_budget": {
+    "max_model_calls": 0,
+    "max_runtime_minutes": 10
+  },
+  "follow_up_checks": [
+    "Run the toy evaluator with and without the guardrail.",
+    "Write a claim audit that avoids broad superiority claims."
+  ]
+}

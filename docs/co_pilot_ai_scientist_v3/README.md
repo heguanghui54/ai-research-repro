@@ -128,6 +128,13 @@ does not replace the paper's empirical evidence requirements.
 - `audits/human_expert_blind_review_packet_audit.md`: audit that verifies the
   blind human-expert rating packet is ready for independent collection while
   preserving the no-ratings-yet evidence boundary.
+- `audits/igre_skill_release_package_audit.md`: audit that verifies the
+  standalone public-skill release scaffold, install/quickstart files, examples,
+  validation script, and engineering/science claim boundary.
+- `release/co-pilot-ai-scientist-v3-skill/`: standalone release scaffold for a
+  public GitHub skill. It packages `SKILL.md`, templates, examples, quickstart,
+  manifest, and a local validator so the engineering track can progress
+  independently from the research-paper evidence track.
 - `focused_submission_rewrite_plan.md`: conference-style rewrite plan that
   separates the current lab-record manuscript from the focused main paper
   needed for a strong venue.
