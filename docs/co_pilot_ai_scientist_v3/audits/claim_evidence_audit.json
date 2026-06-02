@@ -251,12 +251,15 @@
     "claim_boundary": "post-hoc design evidence"
   },
   "clean_clone_reproducibility_latest": {
-    "commit": "1d6f3a92894d3e4e843f16ad7ba16de26f99e43e",
-    "manifest_artifacts_checked": 915,
+    "commit": "9989540fa1ab3d3063c202a6947024dd32d2f498",
+    "manifest_artifacts_checked": 918,
     "missing_manifest_artifacts": 0,
     "base_skill_inheritance_audit_status": "pass",
-    "base_loop_steps_preserved": true,
-    "igre_gates_present": true,
+    "prospective_attention_taste_cost_audit_status": "pass",
+    "prospective_attention_gate_records": 7,
+    "prospective_attention_complete_attention_gates": 7,
+    "prospective_attention_complete_taste_gates": 7,
+    "prospective_attention_total_active_review_minutes": 21.0,
     "heldout_trigger_policy_best_policy": "class_imbalance_trigger_0_94",
     "heldout_trigger_policy_best_delta_vs_autonomous_mean": 0.003639444256184343,
     "heldout_trigger_policy_best_wins_losses_ties": [

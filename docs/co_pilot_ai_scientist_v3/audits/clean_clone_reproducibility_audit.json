@@ -1,8 +1,8 @@
 {
-  "audit_date": "2026-06-02T19:24:16Z",
+  "audit_date": "2026-06-02T19:30:56Z",
   "repository_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "branch": "codex/co-pilot-ai-scientist-v3",
-  "commit": "1d6f3a92894d3e4e843f16ad7ba16de26f99e43e",
+  "commit": "9989540fa1ab3d3063c202a6947024dd32d2f498",
   "clean_clone_path": "/tmp/copilot-v3-clean-clone-latest",
   "clone_mode": "shallow_depth_1_single_branch",
   "commands_reran": [
@@ -12,6 +12,7 @@
     "git rev-parse HEAD",
     "python3 -m pip install -q -r requirements.txt",
     "python3 scripts/audit_base_skill_inheritance.py",
+    "python3 scripts/audit_prospective_attention_taste_cost.py",
     "python3 scripts/validate_evaluator_stress_trigger_policy_transfer.py",
     "python3 scripts/audit_delayed_value_replay_multicase.py",
     "python3 scripts/audit_long_horizon_taste_gate.py",
@@ -27,16 +28,23 @@
   ],
   "checks": {
     "status": "pass_for_latest_pushed_verification_rebuild",
-    "commit": "1d6f3a92894d3e4e843f16ad7ba16de26f99e43e",
+    "commit": "9989540fa1ab3d3063c202a6947024dd32d2f498",
     "clean_clone_path": "/tmp/copilot-v3-clean-clone-latest",
     "clone_mode": "shallow_depth_1_single_branch",
-    "manifest_artifacts_checked": 915,
+    "manifest_artifacts_checked": 918,
     "missing_manifest_artifacts": 0,
     "requirements_installed": "pass",
     "base_skill_inheritance_audit_reran": "pass",
     "base_skill_inheritance_audit_status": "pass",
     "base_loop_steps_preserved": true,
     "igre_gates_present": true,
+    "prospective_attention_taste_cost_audit_reran": "pass",
+    "prospective_attention_taste_cost_audit_status": "pass",
+    "prospective_attention_gate_records": 7,
+    "prospective_attention_complete_attention_gates": 7,
+    "prospective_attention_complete_taste_gates": 7,
+    "prospective_attention_total_active_review_minutes": 21.0,
+    "prospective_attention_mean_taste_insight_score": 3.447142857142857,
     "trigger_policy_transfer_reran": "pass",
     "trigger_policy_transfer_status": "pass",
     "heldout_trigger_policy_best_policy": "class_imbalance_trigger_0_94",
@@ -92,7 +100,7 @@
     "audited_pushed_commit": true,
     "remote_ubuntu_experiments_rerun": false,
     "independent_human_expert_ratings_collected": false,
-    "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact checks, including base-skill inheritance. This is not a fresh remote Ubuntu rerun, independent human expert evidence, or broad co-pilot superiority proof."
+    "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact checks, including base-skill inheritance and prospective attention/taste cost measurement. This is not a fresh remote Ubuntu rerun, independent human expert evidence, or broad co-pilot superiority proof."
   },
-  "interpretation": "Clean clone at commit 1d6f3a928 reproduced the latest pushed verification package with 915/915 manifest artifacts. It reran base-skill inheritance, held-out trigger-policy transfer, multicase delayed-value replay, LHTG/DVRS, benchmark coverage, prospective matched packages, focused bilingual PDF builds, roadmap, objective, goal, and package-consistency audits. The base-skill audit confirms that Co-Pilot AI Scientist v3 preserves the installed AI Scientist-v2 loop and adds all six IGRE gates. The frozen evaluator-stress trigger policy class_imbalance_trigger_0_94 achieved held-out delta +0.003639 with 2 wins, 0 losses, and 23 ties; multicase replay still found 0 strict positive DVRS cases."
+  "interpretation": "Clean clone at commit 9989540fa reproduced the latest pushed verification package with 918/918 manifest artifacts. It reran base-skill inheritance, prospective attention/taste cost, held-out trigger-policy transfer, multicase delayed-value replay, LHTG/DVRS, benchmark coverage, prospective matched packages, focused bilingual PDF builds, roadmap, objective, goal, and package-consistency audits. The attention/taste audit confirms 7 prospective gate records with 7/7 complete attention-cost gates and 7/7 complete taste/insight gates, totaling 21.00 active review minutes. The frozen evaluator-stress trigger policy class_imbalance_trigger_0_94 achieved held-out delta +0.003639 with 2 wins, 0 losses, and 23 ties; multicase replay still found 0 strict positive DVRS cases."
 }
