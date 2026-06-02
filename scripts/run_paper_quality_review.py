@@ -71,6 +71,18 @@ def _prompt() -> str:
         ROOT
         / "docs/co_pilot_ai_scientist_v3/experiments/maxcut_program_search_comparison.md"
     )
+    openreview_regen = _read(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/README.md"
+    )
+    openreview_cross_model = _read(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/README.md"
+    )
+    review_utility = _read(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/README.md"
+    )
     return f"""Review the following draft as if it were a submission targetting a strong ML/NLP systems venue.
 
 Return Markdown with these sections:
@@ -119,6 +131,21 @@ MLAgentBench comparison:
 Max-Cut program-search comparison:
 ```markdown
 {maxcut}
+```
+
+OpenReview-guided regeneration evidence:
+```markdown
+{openreview_regen}
+```
+
+OpenReview cross-model regeneration review:
+```markdown
+{openreview_cross_model}
+```
+
+Review utility map:
+```markdown
+{review_utility}
 ```
 """
 

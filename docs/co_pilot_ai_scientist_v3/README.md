@@ -47,6 +47,9 @@ claim calibration.
   logs contain complete scientific taste/insight records.
 - `audits/top_conference_readiness_audit.md`: strict objective-level audit
   separating delivered artifacts from remaining top-conference evidence gaps.
+- `focused_submission_rewrite_plan.md`: conference-style rewrite plan that
+  separates the current lab-record manuscript from the focused main paper
+  needed for a strong venue.
 - `audits/clean_clone_reproducibility_audit.md`: fresh GitHub-clone check that
   rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
 - `audits/skill_reuse_smoke_audit.md`: local smoke test that instantiates the

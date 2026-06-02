@@ -9,29 +9,30 @@ Reviewer routes:
 
 ## Review Context
 
-This review pass was run after adding the prospective matched-budget package
-summary. The reviewers therefore saw the mixed prospective evidence: one
-controlled Max-Cut micro-task favors the human-selected branch, while the
-stronger FML-bench Causality prospective package favors the autonomous baseline.
+The latest review pass was run after adding the expanded OpenReview-guided
+regeneration probe, the deterministic review-utility map, and the Claude
+cross-model review of the six regenerated OpenReview pairs. The reviewers
+therefore saw both the stronger workflow-design evidence and the stricter
+boundary that review text is not automatically beneficial.
 
 ## Aggregate Verdict
 
-The two model reviewers agree on the main diagnosis: the IGRE architecture and
-reproducibility package are promising, but the current paper remains a pilot
-systems/reproducibility package rather than a top-conference empirical result.
-`gpt-4o-mini` gives a generous `Weak accept`, mainly crediting novelty,
-structured human intervention, and reproducibility. `claude-3-7-sonnet-latest`
-gives `Reject` for a strong ML/NLP systems venue because the central
-human-gating and paper-quality claims remain unsupported, the strongest
-FML-bench prospective package is negative for co-pilot performance, and no
-single end-to-end paper-generating trajectory has been demonstrated.
+The two model reviewers agree on the main diagnosis: IGRE is a promising
+architecture and reproducibility package, but the current manuscript is not yet
+a top-conference paper. The updated `gpt-4o-mini` review now gives `Weak
+reject`, not weak accept, mainly because the empirical evidence remains too
+thin despite the stronger OpenReview workflow probes. The updated
+`claude-3-7-sonnet-latest` review still gives `Reject`. Claude's most important
+new diagnosis is structural: the manuscript reads like a lab notebook rather
+than a conference paper, with too many sequential experiment logs in the main
+body and no clean hypothesis-by-hypothesis experiment structure.
 
 ## Rubric Snapshot
 
 | Reviewer | Recommendation | Novelty | Rigor | Clarity | Evidence | Reproducibility | Significance |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 4 | 3 |
-| `claude-3-7-sonnet-latest` | Reject | 3 | 1 | 2 | 1 | 3 | 2 |
+| `gpt-4o-mini` | Weak reject | 3 | 3 | 4 | 2 | 3 | 3 |
+| `claude-3-7-sonnet-latest` | Reject | 3 | 1 | 2 | 1 | 2 | 2 |
 
 ## Shared Required Revisions
 
@@ -50,6 +51,11 @@ single end-to-end paper-generating trajectory has been demonstrated.
   progress logs and setup failures into appendices or repository artifacts.
 - Keep AlphaEvolve wording as `OpenEvolve-based` or `AlphaEvolve-style` unless
   official AlphaEvolve code becomes available.
+- Add a focused main-paper rewrite with a short abstract, one clean method
+  section, a hypothesis-structured experiment section, and explicit negative
+  result framing if matched-budget evidence remains negative.
+- Operationalize or remove the high-tail hypothesis: define a measurable tail
+  outcome and power analysis, or demote it to future work.
 
 ## Mini-Manuscript Probe
 

@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_cross_model_openreview_regeneration_review",
+  "status": "pilot_package_with_updated_quality_review_and_focused_rewrite_plan",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -506,7 +506,8 @@
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/claude-3-7-sonnet-latest_review.json",
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/README.md",
-    "scripts/run_openreview_regeneration_cross_model_review.py"
+    "scripts/run_openreview_regeneration_cross_model_review.py",
+    "docs/co_pilot_ai_scientist_v3/focused_submission_rewrite_plan.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -881,5 +882,17 @@
     "ties": 2,
     "mean_delta_across_models": 0.1667,
     "claim_boundary": "Cross-model review reduces same-model scoring bias for regenerated mini-paper artifacts, but it is still model-routed artifact review, not independent human peer review or experiment rerun."
+  },
+  "latest_paper_quality_review": {
+    "review_date": "2026-06-02",
+    "models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "gpt_recommendation": "Weak reject",
+    "claude_recommendation": "Reject",
+    "summary": "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",
+    "focused_rewrite_plan": "docs/co_pilot_ai_scientist_v3/focused_submission_rewrite_plan.md",
+    "claim_boundary": "Current package remains a pilot workflow-design/reproducibility package, not a top-conference empirical result."
   }
 }

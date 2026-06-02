@@ -60,7 +60,8 @@
     "openreview_regeneration_cross_model_review_pairs": 6,
     "openreview_regeneration_cross_model_review_review_guided_wins": 3,
     "openreview_regeneration_cross_model_review_baseline_wins": 1,
-    "openreview_regeneration_cross_model_review_ties": 2
+    "openreview_regeneration_cross_model_review_ties": 2,
+    "focused_submission_rewrite_plans": 1
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -155,53 +156,31 @@
     "real_performance_evidence": false
   },
   "paper_quality_review": {
-    "status": "mixed_model_review_not_top_conference_ready",
-    "review_date": "2026-06-02",
-    "summary": "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",
-    "models": {
-      "gpt-4o-mini": {
-        "recommendation": "Weak accept",
-        "novelty": 4,
-        "rigor": 3,
-        "clarity": 4,
-        "evidence": 3,
-        "reproducibility": 4,
-        "significance": 3
-      },
-      "claude-3-7-sonnet-latest": {
-        "recommendation": "Reject",
-        "novelty": 3,
-        "rigor": 1,
-        "clarity": 2,
-        "evidence": 1,
-        "reproducibility": 3,
-        "significance": 2
-      }
-    },
-    "shared_blockers": [
-      "more matched tasks/seeds/budgets",
-      "larger same-continuous paper-generating trajectories",
-      "human attention/taste measurement in prospective gates",
-      "independent paper-quality comparison",
-      "high-tail scientific output evaluation beyond short-budget MAE"
+    "status": "updated_after_openreview_cross_model_review",
+    "models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
     ],
-    "matched_mini_manuscript_probe": {
-      "status": "weak_positive_single_package_probe",
-      "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.md",
-      "co_pilot_wins": 2,
-      "autonomous_wins": 0,
-      "ties": 0,
-      "limitation": "single FML package mini-manuscripts only; not full end-to-end paper quality evidence"
+    "gpt_recommendation": "Weak reject",
+    "gpt_scores": {
+      "novelty": 3,
+      "rigor": 3,
+      "clarity": 4,
+      "evidence": 2,
+      "reproducibility": 3,
+      "significance": 3
     },
-    "matched_full_manuscript_generation_probe": {
-      "status": "archived_evidence_probe_not_fresh_end_to_end",
-      "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/full_manuscript_probe/summary.md",
-      "json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/full_manuscript_probe/summary.json",
-      "co_pilot_overall": 4.18,
-      "autonomous_overall": 4.0,
-      "metric_winner": "autonomous",
-      "limitation": "generated from archived evidence; not a fresh full end-to-end paper-quality comparison"
-    }
+    "claude_recommendation": "Reject",
+    "claude_scores": {
+      "novelty": 3,
+      "rigor": 1,
+      "clarity": 2,
+      "evidence": 1,
+      "reproducibility": 2,
+      "significance": 2
+    },
+    "blocking_diagnosis": "The package is promising but reads like a lab notebook; stronger empirical support, independent evaluation, and a focused conference rewrite are required.",
+    "focused_rewrite_plan": "docs/co_pilot_ai_scientist_v3/focused_submission_rewrite_plan.md"
   },
   "fml_matched_comparison_summary": {
     "status": "mixed_underpowered_fml_matched_evidence",
