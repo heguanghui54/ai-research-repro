@@ -169,6 +169,14 @@ structured feedback, and claim calibration.
   triage queue for the next expensive Temporal Frontier Replay cases. It
   selects three concrete deep-replay targets: NTK theory, efficient 3D medical
   segmentation, and causal generalization across designs.
+- `experiments/delayed_value_replay_specs_20260602_234500/`: preregistered
+  replay specifications for the three triaged delayed-value cases. Each case
+  has four conditions (`paper_only`, `raw_review_guided`,
+  `six_gate_hybrid_guided`, and `shuffled_review_control`), per-condition
+  prompts, scoring metrics, failure modes, and a delayed-value decision rule.
+- `audits/delayed_value_replay_specs_audit.md`: audit verifying that the
+  replay-spec package has three cases, four conditions per case, prompt files,
+  and explicit non-execution claim boundaries.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet
@@ -259,6 +267,8 @@ python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/run_delayed_value_review_candidate_mining.py
 python3 scripts/run_delayed_value_candidate_frontier_validation.py
 python3 scripts/build_delayed_value_deep_case_triage.py
+python3 scripts/build_delayed_value_replay_specs.py
+python3 scripts/audit_delayed_value_replay_specs.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/summarize_human_expert_blind_reviews.py --update-manifest

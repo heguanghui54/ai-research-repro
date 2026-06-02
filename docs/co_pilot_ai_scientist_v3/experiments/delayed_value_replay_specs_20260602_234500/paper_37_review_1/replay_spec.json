@@ -1,0 +1,97 @@
+{
+  "run_id": "delayed_value_replay_specs_20260602_234500",
+  "review_id": "paper_37_review_1",
+  "title": "Learning Weighted Representations for Generalization Across Designs",
+  "domain": "causal_generalization",
+  "candidate_label": "long_horizon_positive_candidate",
+  "triage_score": 7.5753,
+  "source_triage": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/selected_cases.json",
+  "replay_question": "Can human taste around causal structure and distribution shift steer an automated researcher from weighted representations toward a stronger study of treatment-effect generalization across changing designs?",
+  "required_conditions": [
+    "paper_only",
+    "raw_review_guided",
+    "six_gate_hybrid_guided",
+    "shuffled_review_control"
+  ],
+  "minimal_experiment": [
+    "Generate a follow-up causal inference experiment with train/test design shift.",
+    "Require a paper-only, review-guided, and control plan to specify covariate shift, treatment-policy shift, and outcome-model shift separately.",
+    "Compare against later frontier descriptors around causal representation learning, domain generalization, and robust policy evaluation."
+  ],
+  "short_term_metrics": [
+    "identification clarity",
+    "baseline choice under design shift",
+    "specificity of synthetic or semi-synthetic benchmark"
+  ],
+  "frontier_metrics": [
+    "alignment with causal representation and domain generalization themes",
+    "explicit handling of policy/design shift",
+    "quality of failure-mode analysis"
+  ],
+  "failure_modes": [
+    "confusing prediction generalization with causal identification",
+    "using generic domain adaptation language without treatment-effect metrics",
+    "review guidance improving prose but not the causal experiment"
+  ],
+  "primary_gates": [
+    "scientific_taste_prior",
+    "structured_feedback"
+  ],
+  "long_horizon_groups": [
+    "mechanism_depth",
+    "novelty_repositioning"
+  ],
+  "friction_groups": [],
+  "review_signal": {
+    "score": 0.28,
+    "frontier_alignment": 0.3,
+    "actionability": 0.2,
+    "matched_frontier_terms": [
+      "causal",
+      "treatment",
+      "effect",
+      "outcome",
+      "under",
+      "distribution"
+    ],
+    "matched_actionability_terms": [
+      "causal"
+    ]
+  },
+  "title_signal": {
+    "score": 0.08,
+    "frontier_alignment": 0.05,
+    "actionability": 0.2,
+    "matched_frontier_terms": [
+      "representation"
+    ],
+    "matched_actionability_terms": [
+      "generalization"
+    ]
+  },
+  "selection_reasons": [
+    "screened as long_horizon_positive_candidate",
+    "review adds frontier signal over title/context by 0.20",
+    "matches future-frontier terms: causal, treatment, effect, outcome, under, distribution",
+    "contains actionability terms: causal",
+    "long-horizon groups: mechanism_depth, novelty_repositioning",
+    "OpenAlex title match is exact or near-exact"
+  ],
+  "required_artifacts_after_execution": [
+    "paper_only_plan.md",
+    "raw_review_guided_plan.md",
+    "six_gate_hybrid_guided_plan.md",
+    "shuffled_review_control_plan.md",
+    "condition_scores.json",
+    "frontier_alignment_judgement.json",
+    "case_analysis.md"
+  ],
+  "positive_delayed_value_rule": [
+    "raw_review_guided or six_gate_hybrid_guided has lower short_term_score than paper_only",
+    "the same guided condition has higher frontier_alignment_score than paper_only",
+    "the same guided condition beats shuffled_review_control on frontier_alignment_score",
+    "the responsible review signal is specific and actionable",
+    "later-frontier evidence passes bibliographic and semantic match guards"
+  ],
+  "claim_boundary": "This is a preregistered replay specification. It is not an executed replay and must not be counted as evidence that human review improves research output."
+}

@@ -736,7 +736,31 @@
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/selected_cases.json",
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/ranked_candidates.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/deferred_candidates.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/deferred_candidates.json",
+    "scripts/build_delayed_value_replay_specs.py",
+    "scripts/audit_delayed_value_replay_specs.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_specs_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_specs_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_105_review_1/paper_only_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_105_review_1/raw_review_guided_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_105_review_1/replay_spec.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_105_review_1/replay_spec.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_105_review_1/shuffled_review_control_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_105_review_1/six_gate_hybrid_guided_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_132_review_2/paper_only_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_132_review_2/raw_review_guided_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_132_review_2/replay_spec.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_132_review_2/replay_spec.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_132_review_2/shuffled_review_control_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_132_review_2/six_gate_hybrid_guided_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/paper_only_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/raw_review_guided_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/replay_spec.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/replay_spec.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/shuffled_review_control_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/six_gate_hybrid_guided_prompt.txt"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1761,9 +1785,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "068f590cce6f5af52ee042a97e569c96145c2c72",
+    "head": "98652e3950b09033cbb3f606b89b095032717bdc",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 723,
+    "manifest_artifacts": 747,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1820,5 +1844,19 @@
     "selected_cases": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/selected_cases.json",
     "script": "scripts/build_delayed_value_deep_case_triage.py",
     "claim_boundary": "Triage selects future expensive replay cases; it is not positive delayed-value evidence."
+  },
+  "delayed_value_replay_specs": {
+    "run_id": "delayed_value_replay_specs_20260602_234500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/summary.json",
+    "audit": "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_specs_audit.json",
+    "script": "scripts/build_delayed_value_replay_specs.py",
+    "case_count": 3,
+    "conditions": [
+      "paper_only",
+      "raw_review_guided",
+      "six_gate_hybrid_guided",
+      "shuffled_review_control"
+    ],
+    "claim_boundary": "Replay specs are preregistration artifacts, not executed delayed-value evidence."
   }
 }

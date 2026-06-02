@@ -1,0 +1,47 @@
+You are running a Temporal Frontier Replay experiment for Co-Pilot AI Scientist v3.
+
+Original paper title: E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation
+Domain: medical_image_segmentation
+Replay question: Can review comments about efficiency, dynamic sparse feature fusion, and mechanism turn an automated follow-up into a stronger study of efficient 3D medical segmentation under deployment constraints?
+
+Original review excerpt available to this spec:
+The paper introduces E2ENet, a novel neural network designed for 3D medical image segmentation, which emphasizes efficiency in computational resource usage without compromising accuracy. This paper introduces a Dynamic Sparse Feature Fusion (DSFF) mechanism that adaptively learns to integrate multi-scale features effectively and a novel application of restricted depth-shift in 3D convolution that Yes, authors have addressed the limitations.
+
+Required output:
+- a concise research hypothesis;
+- a minimal experiment or theorem plan;
+- expected baselines;
+- evaluation metrics;
+- one ablation or stress test;
+- failure modes;
+- claim boundaries.
+
+Do not invent completed results. Write a plan that could be executed under a small research budget.
+
+Condition: six_gate_hybrid_guided. Convert the review into IGRE gate actions before proposing the follow-up.
+
+Primary gates from triage: claim_calibration, scientific_taste_prior
+Long-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning
+Productive friction: weak_immediate_evidence
+
+Required gate routing:
+- scientific_taste_prior: identify the non-obvious taste/insight in the review;
+- evaluator_stress_test: specify what metric or benchmark could expose a weak claim;
+- frontier_steering: state how the follow-up could align with later field movement;
+- verifiable_micro_evolution: name one bounded code, proof, or evaluator subproblem to improve automatically;
+- structured_feedback: rewrite vague review advice into concrete actions;
+- claim_calibration: state what the generated follow-up must not claim.
+
+
+Scoring metrics to satisfy:
+- plausibility of architecture changes
+- quality of ablation plan
+- claim calibration around dataset and deployment limits
+- alignment with efficient 3D medical segmentation trends
+- mechanistic explanation of sparse feature fusion
+- resource-aware evaluation specificity
+
+Known failure modes:
+- architecture shopping without a mechanism
+- accuracy-only evaluation
+- clinical or deployment claims without data

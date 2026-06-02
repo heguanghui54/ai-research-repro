@@ -1,0 +1,55 @@
+{
+  "run_id": "delayed_value_replay_specs_20260602_234500",
+  "timestamp_utc": "2026-06-02T15:19:22Z",
+  "status": "preregistered_replay_specs_only",
+  "source_triage_run": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000",
+  "case_count": 3,
+  "conditions": [
+    "paper_only",
+    "raw_review_guided",
+    "six_gate_hybrid_guided",
+    "shuffled_review_control"
+  ],
+  "cases": [
+    {
+      "review_id": "paper_132_review_2",
+      "title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+      "domain": "deep_learning_theory",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_132_review_2",
+      "triage_score": 9.1377,
+      "required_conditions": [
+        "paper_only",
+        "raw_review_guided",
+        "six_gate_hybrid_guided",
+        "shuffled_review_control"
+      ]
+    },
+    {
+      "review_id": "paper_105_review_1",
+      "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+      "domain": "medical_image_segmentation",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_105_review_1",
+      "triage_score": 7.946,
+      "required_conditions": [
+        "paper_only",
+        "raw_review_guided",
+        "six_gate_hybrid_guided",
+        "shuffled_review_control"
+      ]
+    },
+    {
+      "review_id": "paper_37_review_1",
+      "title": "Learning Weighted Representations for Generalization Across Designs",
+      "domain": "causal_generalization",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1",
+      "triage_score": 7.5753,
+      "required_conditions": [
+        "paper_only",
+        "raw_review_guided",
+        "six_gate_hybrid_guided",
+        "shuffled_review_control"
+      ]
+    }
+  ],
+  "claim_boundary": "The specs make the next delayed-value replay executable and auditable. They do not contain generated papers, benchmark results, or human expert ratings."
+}

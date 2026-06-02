@@ -1,0 +1,34 @@
+You are running a Temporal Frontier Replay experiment for Co-Pilot AI Scientist v3.
+
+Original paper title: Learning Weighted Representations for Generalization Across Designs
+Domain: causal_generalization
+Replay question: Can human taste around causal structure and distribution shift steer an automated researcher from weighted representations toward a stronger study of treatment-effect generalization across changing designs?
+
+Original review excerpt available to this spec:
+The paper proposes a novel way of causal inference in situations where in causal SEM notation the outcome Y = f(T,X) is a function of a treatment T and covariates X. The goal is to infer the treatment effect E(Y|T=1,X=x) - E(Y|T=0,X=x) for binary treatments at every location x. If the treatment effect can be learned, then forecasts of Y under new policies that assign treatment conditional on X will still "work" and the distribution of X can also change without affecting the accuracy of the prediction
+
+Required output:
+- a concise research hypothesis;
+- a minimal experiment or theorem plan;
+- expected baselines;
+- evaluation metrics;
+- one ablation or stress test;
+- failure modes;
+- claim boundaries.
+
+Do not invent completed results. Write a plan that could be executed under a small research budget.
+
+Condition: shuffled_review_control. Use a same-length but unrelated peer-review style control. The control should preserve generic reviewer pressure while removing paper-specific taste.
+
+Scoring metrics to satisfy:
+- identification clarity
+- baseline choice under design shift
+- specificity of synthetic or semi-synthetic benchmark
+- alignment with causal representation and domain generalization themes
+- explicit handling of policy/design shift
+- quality of failure-mode analysis
+
+Known failure modes:
+- confusing prediction generalization with causal identification
+- using generic domain adaptation language without treatment-effect metrics
+- review guidance improving prose but not the causal experiment

@@ -1,0 +1,38 @@
+{
+  "audit_date": "2026-06-02T15:20:37Z",
+  "status": "pass",
+  "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500",
+  "case_count": 3,
+  "conditions": [
+    "paper_only",
+    "raw_review_guided",
+    "shuffled_review_control",
+    "six_gate_hybrid_guided"
+  ],
+  "case_checks": [
+    {
+      "review_id": "paper_132_review_2",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_132_review_2",
+      "missing_files": [],
+      "condition_count": 4,
+      "domain": "deep_learning_theory"
+    },
+    {
+      "review_id": "paper_105_review_1",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_105_review_1",
+      "missing_files": [],
+      "condition_count": 4,
+      "domain": "medical_image_segmentation"
+    },
+    {
+      "review_id": "paper_37_review_1",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1",
+      "missing_files": [],
+      "condition_count": 4,
+      "domain": "causal_generalization"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "A pass means the next delayed-value replay cases are preregistered and executable as specs. It does not mean any replay has been executed or that delayed-value evidence has been found."
+}

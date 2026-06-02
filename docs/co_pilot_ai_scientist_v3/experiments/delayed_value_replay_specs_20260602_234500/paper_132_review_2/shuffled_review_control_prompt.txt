@@ -1,0 +1,34 @@
+You are running a Temporal Frontier Replay experiment for Co-Pilot AI Scientist v3.
+
+Original paper title: Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime
+Domain: deep_learning_theory
+Replay question: Can human review emphasizing generalization and theory steer an automated researcher from a narrow NTK-rate result toward a more frontier-aligned study of averaged SGD, finite-width effects, and generalization mechanisms?
+
+Original review excerpt available to this spec:
+Summary: The paper focuses on the understanding of neural tangent kernel (NTK), which has been a central topic in deep learning theory recently and plays an important role in characterizing the generalization ability of artificial neural networks. In Particular, the authors derive minimax-optimal learning rates of the averaged stochastic gradient descent method for over-parametrized two-layer neural networks with smooth activation functions. The results are novel and offer insights into the connecti
+
+Required output:
+- a concise research hypothesis;
+- a minimal experiment or theorem plan;
+- expected baselines;
+- evaluation metrics;
+- one ablation or stress test;
+- failure modes;
+- claim boundaries.
+
+Do not invent completed results. Write a plan that could be executed under a small research budget.
+
+Condition: shuffled_review_control. Use a same-length but unrelated peer-review style control. The control should preserve generic reviewer pressure while removing paper-specific taste.
+
+Scoring metrics to satisfy:
+- technical correctness of proposed theorem/experiment
+- clarity of assumptions
+- baseline and prior-work calibration
+- alignment with later generalization and finite-width NTK themes
+- mechanistic depth beyond restating the original rate result
+- specificity of testable predictions
+
+Known failure modes:
+- generic theory praise without a new stress test
+- overclaiming beyond the original assumptions
+- frontier alignment driven only by title terms such as neural or generalization

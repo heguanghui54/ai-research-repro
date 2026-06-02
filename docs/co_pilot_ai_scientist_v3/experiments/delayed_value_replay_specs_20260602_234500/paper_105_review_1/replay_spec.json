@@ -1,0 +1,101 @@
+{
+  "run_id": "delayed_value_replay_specs_20260602_234500",
+  "review_id": "paper_105_review_1",
+  "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+  "domain": "medical_image_segmentation",
+  "candidate_label": "delayed_value_replay_candidate",
+  "triage_score": 7.946,
+  "source_triage": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/selected_cases.json",
+  "replay_question": "Can review comments about efficiency, dynamic sparse feature fusion, and mechanism turn an automated follow-up into a stronger study of efficient 3D medical segmentation under deployment constraints?",
+  "required_conditions": [
+    "paper_only",
+    "raw_review_guided",
+    "six_gate_hybrid_guided",
+    "shuffled_review_control"
+  ],
+  "minimal_experiment": [
+    "Generate a compact 3D segmentation follow-up with an explicit efficiency/accuracy tradeoff.",
+    "Require at least one ablation of the sparse fusion mechanism and one deployment-oriented metric.",
+    "Compare against later frontier descriptors around efficient 3D segmentation, transformers, U-Net variants, and clinical constraints."
+  ],
+  "short_term_metrics": [
+    "plausibility of architecture changes",
+    "quality of ablation plan",
+    "claim calibration around dataset and deployment limits"
+  ],
+  "frontier_metrics": [
+    "alignment with efficient 3D medical segmentation trends",
+    "mechanistic explanation of sparse feature fusion",
+    "resource-aware evaluation specificity"
+  ],
+  "failure_modes": [
+    "architecture shopping without a mechanism",
+    "accuracy-only evaluation",
+    "clinical or deployment claims without data"
+  ],
+  "primary_gates": [
+    "claim_calibration",
+    "scientific_taste_prior"
+  ],
+  "long_horizon_groups": [
+    "mechanism_depth",
+    "generalization_scaling",
+    "novelty_repositioning"
+  ],
+  "friction_groups": [
+    "weak_immediate_evidence"
+  ],
+  "review_signal": {
+    "score": 0.24,
+    "frontier_alignment": 0.25,
+    "actionability": 0.2,
+    "matched_frontier_terms": [
+      "segmentation",
+      "medical",
+      "image",
+      "convolution",
+      "feature"
+    ],
+    "matched_actionability_terms": [
+      "mechanism"
+    ]
+  },
+  "title_signal": {
+    "score": 0.16,
+    "frontier_alignment": 0.2,
+    "actionability": 0.0,
+    "matched_frontier_terms": [
+      "segmentation",
+      "medical",
+      "image",
+      "feature"
+    ],
+    "matched_actionability_terms": []
+  },
+  "selection_reasons": [
+    "screened as delayed_value_replay_candidate",
+    "review adds frontier signal over title/context by 0.08",
+    "matches future-frontier terms: segmentation, medical, image, convolution, feature",
+    "contains actionability terms: mechanism",
+    "long-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning",
+    "productive short-term friction: weak_immediate_evidence",
+    "OpenAlex title match is exact or near-exact"
+  ],
+  "required_artifacts_after_execution": [
+    "paper_only_plan.md",
+    "raw_review_guided_plan.md",
+    "six_gate_hybrid_guided_plan.md",
+    "shuffled_review_control_plan.md",
+    "condition_scores.json",
+    "frontier_alignment_judgement.json",
+    "case_analysis.md"
+  ],
+  "positive_delayed_value_rule": [
+    "raw_review_guided or six_gate_hybrid_guided has lower short_term_score than paper_only",
+    "the same guided condition has higher frontier_alignment_score than paper_only",
+    "the same guided condition beats shuffled_review_control on frontier_alignment_score",
+    "the responsible review signal is specific and actionable",
+    "later-frontier evidence passes bibliographic and semantic match guards"
+  ],
+  "claim_boundary": "This is a preregistered replay specification. It is not an executed replay and must not be counted as evidence that human review improves research output."
+}
