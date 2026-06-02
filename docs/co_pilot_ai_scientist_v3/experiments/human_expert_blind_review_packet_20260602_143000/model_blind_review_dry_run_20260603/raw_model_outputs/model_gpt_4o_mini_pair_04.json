@@ -1,0 +1,56 @@
+{
+  "model": "gpt-4o-mini",
+  "status_code": 200,
+  "response": {
+    "id": "chatcmpl-llm-router-openai",
+    "object": "chat.completion",
+    "created": 1780417217,
+    "model": "gpt-4o-mini",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"winner\": \"A\",\n  \"A_problem_framing\": 5,\n  \"A_method_specificity\": 4,\n  \"A_experiment_design\": 4,\n  \"A_limitation_honesty\": 4,\n  \"A_claim_calibration\": 5,\n  \"A_overall_quality\": 5,\n  \"B_problem_framing\": 4,\n  \"B_method_specificity\": 3,\n  \"B_experiment_design\": 3,\n  \"B_limitation_honesty\": 3,\n  \"B_claim_calibration\": 4,\n  \"B_overall_quality\": 3,\n  \"rationale\": \"Variant A presents a clearer problem framing and a more specific method, along with a well-defined experimental design and limitations. Variant B, while insightful, lacks the same level of specificity and clarity in its approach.\"\n}"
+        },
+        "finish_reason": "stop",
+        "content_filter_results": {
+          "hate": {
+            "filtered": false
+          },
+          "self_harm": {
+            "filtered": false
+          },
+          "sexual": {
+            "filtered": false
+          },
+          "violence": {
+            "filtered": false
+          },
+          "jailbreak": {
+            "filtered": false,
+            "detected": false
+          },
+          "profanity": {
+            "filtered": false,
+            "detected": false
+          }
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 41,
+      "completion_tokens": 183,
+      "total_tokens": 1248,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 1024
+      },
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 0
+      }
+    },
+    "system_fingerprint": ""
+  }
+}

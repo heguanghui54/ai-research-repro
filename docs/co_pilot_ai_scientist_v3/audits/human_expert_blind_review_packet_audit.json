@@ -1,9 +1,9 @@
 {
-  "audit_date": "2026-06-02T13:28:01Z",
+  "audit_date": "2026-06-02T16:25:38Z",
   "status": "pass_prepared_no_human_ratings",
   "packet_dir": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000",
   "pair_count": 6,
-  "required_files_checked": 33,
+  "required_files_checked": 37,
   "file_status": {
     "README.md": {
       "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/README.md",
@@ -131,6 +131,30 @@
       "bytes": 1854,
       "ok": true
     },
+    "model_blind_review_dry_run_20260603/run_summary.json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/run_summary.json",
+      "exists": true,
+      "bytes": 6077,
+      "ok": true
+    },
+    "model_blind_review_dry_run_20260603/analysis/summary.json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/analysis/summary.json",
+      "exists": true,
+      "bytes": 12237,
+      "ok": true
+    },
+    "model_blind_review_dry_run_20260603/analysis/summary.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/analysis/summary.md",
+      "exists": true,
+      "bytes": 1218,
+      "ok": true
+    },
+    "model_blind_review_dry_run_20260603/model_score_sheet.csv": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/model_score_sheet.csv",
+      "exists": true,
+      "bytes": 2770,
+      "ok": true
+    },
     "pairs/pair_01.md": {
       "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_01.md",
       "exists": true,
@@ -238,6 +262,9 @@
   "human_score_summary_smoke_status": "no_valid_rows",
   "human_score_summary_valid_rows": 0,
   "human_score_summary_positive_evidence_threshold_met": false,
+  "model_dry_run_status": "model_only_dry_run_not_human_evidence",
+  "model_dry_run_rows": 8,
+  "model_dry_run_positive_evidence_threshold_met": false,
   "school_expert_ready_status": "school_expert_ready_prepared_no_human_ratings_yet",
   "deep_pdf_pair_count": 3,
   "deep_pdf_condition_key_hidden": true,

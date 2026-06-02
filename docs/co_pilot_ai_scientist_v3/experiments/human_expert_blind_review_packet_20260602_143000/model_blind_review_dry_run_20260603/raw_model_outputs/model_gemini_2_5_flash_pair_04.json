@@ -1,0 +1,56 @@
+{
+  "model": "gemini-2.5-flash",
+  "status_code": 200,
+  "response": {
+    "id": "chatcmpl-llm-router-openai",
+    "object": "chat.completion",
+    "created": 1780417268,
+    "model": "gemini-2.5-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```json\n{\n  \"winner\": \"A\",\n  \"A_problem_framing\": 5,\n  \"A_method_specificity\": 5,\n  \"A_experiment_design\": 5,\n  \"A_limitation_honesty\": 5,\n  \"A_claim_calibration\": 5,\n  \"A_overall_quality\": 5,\n  \"B_problem_framing\": 3,\n  \"B_method_specificity\": 2,\n  \"B_experiment_design\": 2,\n  \"B_limitation_honesty\": 2,\n  \"B_claim_calibration\": 3,\n  \"B_overall_quality\": 2,\n  \"rationale\": \"Variant A provides a highly specific problem framing, a concrete method sketch using linear regression, and a detailed experiment plan with clear metrics. Its limitations and claim boundaries are honest and scientifically useful. Variant B, in contrast, is vague across all sections, lacking specificity in its method and experiment design, and its stated limitations are more about presentation than scientific scope.\"\n}\n```"
+        },
+        "finish_reason": "stop",
+        "content_filter_results": {
+          "hate": {
+            "filtered": false
+          },
+          "self_harm": {
+            "filtered": false
+          },
+          "sexual": {
+            "filtered": false
+          },
+          "violence": {
+            "filtered": false
+          },
+          "jailbreak": {
+            "filtered": false,
+            "detected": false
+          },
+          "profanity": {
+            "filtered": false,
+            "detected": false
+          }
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1122,
+      "completion_tokens": 243,
+      "total_tokens": 1365,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1293
+      }
+    },
+    "system_fingerprint": ""
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "model": "gemini-2.5-flash",
+  "status_code": 200,
+  "response": {
+    "id": "chatcmpl-llm-router-openai",
+    "object": "chat.completion",
+    "created": 1780417256,
+    "model": "gemini-2.5-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```json\n{\n  \"winner\": \"B\",\n  \"A_problem_framing\": 3,\n  \"A_method_specificity\": 4,\n  \"A_experiment_design\": 3,\n  \"A_limitation_honesty\": 2,\n  \"A_claim_calibration\": 4,\n  \"A_overall_quality\": 3,\n  \"B_problem_framing\": 4,\n  \"B_method_specificity\": 3,\n  \"B_experiment_design\": 4,\n  \"B_limitation_honesty\": 5,\n  \"B_claim_calibration\": 4,\n  \"B_overall_quality\": 4,\n  \"rationale\": \"Variant B offers a clearer problem framing, a more concrete experiment"
+        },
+        "finish_reason": "length",
+        "content_filter_results": {
+          "hate": {
+            "filtered": false
+          },
+          "self_harm": {
+            "filtered": false
+          },
+          "sexual": {
+            "filtered": false
+          },
+          "violence": {
+            "filtered": false
+          },
+          "jailbreak": {
+            "filtered": false,
+            "detected": false
+          },
+          "profanity": {
+            "filtered": false,
+            "detected": false
+          }
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1136,
+      "completion_tokens": 181,
+      "total_tokens": 1317,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1815
+      }
+    },
+    "system_fingerprint": ""
+  }
+}

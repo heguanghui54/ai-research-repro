@@ -12,6 +12,12 @@ Run collaborative automated research using Insight-Gated Research Evolution
 scientists intervene as explicit high-variance operators where taste, insight,
 and claim responsibility can reshape the trajectory.
 
+The engineering purpose is to make IGRE usable as a public research skill, not
+only as a paper method. The skill should be installable, auditable, modular,
+and easy to adapt to new research topics. It is inspired by the success of
+academic research skill repositories, but its distinguishing feature is the
+six-gate control loop for collaborative automated science.
+
 The purpose is to design and compare useful human-participation patterns, not
 to assume that human involvement always improves average benchmark or paper
 quality. Treat each gate as a workflow-design choice that must be supported by

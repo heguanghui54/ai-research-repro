@@ -1,0 +1,310 @@
+{
+  "status": "model_only_dry_run_not_human_evidence",
+  "score_csv": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/model_score_sheet.csv",
+  "condition_key": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/condition_key.json",
+  "target_condition": "review_guided",
+  "comparator_condition": "context_control_unrelated_reviews",
+  "row_counts": {
+    "raw_rows": 8,
+    "valid_rows": 8,
+    "invalid_rows": 0,
+    "independent_raters": 2
+  },
+  "win_counts": {
+    "review_guided": 0,
+    "context_control_unrelated_reviews": 7,
+    "tie": 1,
+    "other_condition": 0
+  },
+  "exact_binomial_p_excluding_ties": 0.015625,
+  "mean_delta": {
+    "mean": -1.1458333333333333,
+    "ci95_low": -1.6666666666666667,
+    "ci95_high": -0.7083333333333333,
+    "n": 8
+  },
+  "per_field_delta": {
+    "problem_framing": {
+      "mean": -1.0,
+      "ci95_low": -1.375,
+      "ci95_high": -0.625,
+      "n": 8
+    },
+    "method_specificity": {
+      "mean": -1.125,
+      "ci95_low": -1.75,
+      "ci95_high": -0.625,
+      "n": 8
+    },
+    "experiment_design": {
+      "mean": -1.125,
+      "ci95_low": -1.75,
+      "ci95_high": -0.625,
+      "n": 8
+    },
+    "limitation_honesty": {
+      "mean": -1.25,
+      "ci95_low": -2.0,
+      "ci95_high": -0.5,
+      "n": 8
+    },
+    "claim_calibration": {
+      "mean": -0.875,
+      "ci95_low": -1.25,
+      "ci95_high": -0.5,
+      "n": 8
+    },
+    "overall_quality": {
+      "mean": -1.5,
+      "ci95_low": -2.125,
+      "ci95_high": -0.875,
+      "n": 8
+    }
+  },
+  "fleiss_kappa_condition_winner": null,
+  "positive_evidence_threshold_met": false,
+  "valid_rows": [
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "pair_id": "pair_01",
+      "paper_id": "openreview_sample_1",
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "winner_side": "B",
+      "condition_winner": "context_control_unrelated_reviews",
+      "target_condition": "review_guided",
+      "comparator_condition": "context_control_unrelated_reviews",
+      "target_mean": 3.5,
+      "comparator_mean": 4.333333333333333,
+      "target_minus_comparator": -0.833333333333333,
+      "target_fields": {
+        "problem_framing": 4.0,
+        "method_specificity": 3.0,
+        "experiment_design": 3.0,
+        "limitation_honesty": 4.0,
+        "claim_calibration": 4.0,
+        "overall_quality": 3.0
+      },
+      "comparator_fields": {
+        "problem_framing": 5.0,
+        "method_specificity": 4.0,
+        "experiment_design": 4.0,
+        "limitation_honesty": 4.0,
+        "claim_calibration": 5.0,
+        "overall_quality": 4.0
+      },
+      "rationale": "Variant B provides a clearer problem framing and a more detailed method description, along with a concrete experiment plan and well-defined limitations, leading to a higher overall quality compared to Variant A."
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "pair_id": "pair_02",
+      "paper_id": "openreview_sample_17",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "winner_side": "B",
+      "condition_winner": "context_control_unrelated_reviews",
+      "target_condition": "review_guided",
+      "comparator_condition": "context_control_unrelated_reviews",
+      "target_mean": 3.1666666666666665,
+      "comparator_mean": 4.166666666666667,
+      "target_minus_comparator": -1.0000000000000004,
+      "target_fields": {
+        "problem_framing": 4.0,
+        "method_specificity": 3.0,
+        "experiment_design": 3.0,
+        "limitation_honesty": 3.0,
+        "claim_calibration": 3.0,
+        "overall_quality": 3.0
+      },
+      "comparator_fields": {
+        "problem_framing": 5.0,
+        "method_specificity": 4.0,
+        "experiment_design": 4.0,
+        "limitation_honesty": 4.0,
+        "claim_calibration": 4.0,
+        "overall_quality": 4.0
+      },
+      "rationale": "Variant B presents a clearer problem framing and a more specific method, along with a well-defined experiment plan and limitations. Variant A, while solid, lacks the same level of clarity and detail, making B the stronger submission."
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "pair_id": "pair_03",
+      "paper_id": "openreview_sample_2",
+      "title": "Forked Diffusion for Conditional Graph Generation",
+      "winner_side": "B",
+      "condition_winner": "context_control_unrelated_reviews",
+      "target_condition": "review_guided",
+      "comparator_condition": "context_control_unrelated_reviews",
+      "target_mean": 2.8333333333333335,
+      "comparator_mean": 3.8333333333333335,
+      "target_minus_comparator": -1.0,
+      "target_fields": {
+        "problem_framing": 3.0,
+        "method_specificity": 3.0,
+        "experiment_design": 3.0,
+        "limitation_honesty": 2.0,
+        "claim_calibration": 3.0,
+        "overall_quality": 3.0
+      },
+      "comparator_fields": {
+        "problem_framing": 4.0,
+        "method_specificity": 4.0,
+        "experiment_design": 4.0,
+        "limitation_honesty": 3.0,
+        "claim_calibration": 4.0,
+        "overall_quality": 4.0
+      },
+      "rationale": "Variant B provides a clearer problem framing and more specific method details, along with a well-defined experiment plan. It also acknowledges limitations more effectively, leading to a higher overall quality compared to Variant A."
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "pair_id": "pair_04",
+      "paper_id": "openreview_sample_34",
+      "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+      "winner_side": "A",
+      "condition_winner": "context_control_unrelated_reviews",
+      "target_condition": "review_guided",
+      "comparator_condition": "context_control_unrelated_reviews",
+      "target_mean": 3.3333333333333335,
+      "comparator_mean": 4.5,
+      "target_minus_comparator": -1.1666666666666665,
+      "target_fields": {
+        "problem_framing": 4.0,
+        "method_specificity": 3.0,
+        "experiment_design": 3.0,
+        "limitation_honesty": 3.0,
+        "claim_calibration": 4.0,
+        "overall_quality": 3.0
+      },
+      "comparator_fields": {
+        "problem_framing": 5.0,
+        "method_specificity": 4.0,
+        "experiment_design": 4.0,
+        "limitation_honesty": 4.0,
+        "claim_calibration": 5.0,
+        "overall_quality": 5.0
+      },
+      "rationale": "Variant A presents a clearer problem framing and a more specific method, along with a well-defined experimental design and limitations. Variant B, while insightful, lacks the same level of specificity and clarity in its approach."
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "pair_id": "pair_05",
+      "paper_id": "openreview_sample_49",
+      "title": "Unifying semi-supervised and robust learning by mixup",
+      "winner_side": "tie",
+      "condition_winner": "tie",
+      "target_condition": "review_guided",
+      "comparator_condition": "context_control_unrelated_reviews",
+      "target_mean": 4.0,
+      "comparator_mean": 4.0,
+      "target_minus_comparator": 0.0,
+      "target_fields": {
+        "problem_framing": 4.0,
+        "method_specificity": 4.0,
+        "experiment_design": 4.0,
+        "limitation_honesty": 4.0,
+        "claim_calibration": 4.0,
+        "overall_quality": 4.0
+      },
+      "comparator_fields": {
+        "problem_framing": 4.0,
+        "method_specificity": 4.0,
+        "experiment_design": 4.0,
+        "limitation_honesty": 4.0,
+        "claim_calibration": 4.0,
+        "overall_quality": 4.0
+      },
+      "rationale": "Both variants present a clear problem framing and propose plausible methods with well-defined experiment plans. Limitations are acknowledged honestly, and claims are appropriately bounded by evidence, leading to an overall tie in quality."
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "pair_id": "pair_06",
+      "paper_id": "openreview_sample_64",
+      "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+      "winner_side": "A",
+      "condition_winner": "context_control_unrelated_reviews",
+      "target_condition": "review_guided",
+      "comparator_condition": "context_control_unrelated_reviews",
+      "target_mean": 3.3333333333333335,
+      "comparator_mean": 4.5,
+      "target_minus_comparator": -1.1666666666666665,
+      "target_fields": {
+        "problem_framing": 4.0,
+        "method_specificity": 4.0,
+        "experiment_design": 3.0,
+        "limitation_honesty": 3.0,
+        "claim_calibration": 3.0,
+        "overall_quality": 3.0
+      },
+      "comparator_fields": {
+        "problem_framing": 5.0,
+        "method_specificity": 5.0,
+        "experiment_design": 4.0,
+        "limitation_honesty": 4.0,
+        "claim_calibration": 4.0,
+        "overall_quality": 5.0
+      },
+      "rationale": "Variant A presents a clearer problem framing and a more specific method, along with a well-defined experiment plan. Variant B, while still valuable, lacks the same level of detail and clarity in its limitations and claims."
+    },
+    {
+      "reviewer_id": "model_gemini_2_5_flash",
+      "pair_id": "pair_04",
+      "paper_id": "openreview_sample_34",
+      "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+      "winner_side": "A",
+      "condition_winner": "context_control_unrelated_reviews",
+      "target_condition": "review_guided",
+      "comparator_condition": "context_control_unrelated_reviews",
+      "target_mean": 2.3333333333333335,
+      "comparator_mean": 5.0,
+      "target_minus_comparator": -2.6666666666666665,
+      "target_fields": {
+        "problem_framing": 3.0,
+        "method_specificity": 2.0,
+        "experiment_design": 2.0,
+        "limitation_honesty": 2.0,
+        "claim_calibration": 3.0,
+        "overall_quality": 2.0
+      },
+      "comparator_fields": {
+        "problem_framing": 5.0,
+        "method_specificity": 5.0,
+        "experiment_design": 5.0,
+        "limitation_honesty": 5.0,
+        "claim_calibration": 5.0,
+        "overall_quality": 5.0
+      },
+      "rationale": "Variant A provides a highly specific problem framing, a concrete method sketch using linear regression, and a detailed experiment plan with clear metrics. Its limitations and claim boundaries are honest and scientifically useful. Variant B, in contrast, is vague across all sections, lacking specificity in its method and experiment design, and its stated limitations are more about presentation than scientific scope."
+    },
+    {
+      "reviewer_id": "model_gemini_2_5_flash",
+      "pair_id": "pair_06",
+      "paper_id": "openreview_sample_64",
+      "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+      "winner_side": "A",
+      "condition_winner": "context_control_unrelated_reviews",
+      "target_condition": "review_guided",
+      "comparator_condition": "context_control_unrelated_reviews",
+      "target_mean": 2.5,
+      "comparator_mean": 3.8333333333333335,
+      "target_minus_comparator": -1.3333333333333335,
+      "target_fields": {
+        "problem_framing": 3.0,
+        "method_specificity": 2.0,
+        "experiment_design": 3.0,
+        "limitation_honesty": 1.0,
+        "claim_calibration": 4.0,
+        "overall_quality": 2.0
+      },
+      "comparator_fields": {
+        "problem_framing": 4.0,
+        "method_specificity": 3.0,
+        "experiment_design": 4.0,
+        "limitation_honesty": 4.0,
+        "claim_calibration": 4.0,
+        "overall_quality": 4.0
+      },
+      "rationale": "Variant A provides a clearer problem framing, more specific method sketch, and a more concrete experiment plan. Its stated limitations are also more appropriate and useful than Variant B's, which raises concerns about the method's foundational soundness."
+    }
+  ],
+  "invalid_rows": [],
+  "claim_boundary": "This is a model-only blind packet dry run that validates the collection and summarization pipeline. It is not independent human expert evidence."
+}

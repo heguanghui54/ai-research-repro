@@ -17,6 +17,8 @@ Start here:
   [docs/co_pilot_ai_scientist_v3/submission_card_en.md](docs/co_pilot_ai_scientist_v3/submission_card_en.md)
 - Top-conference evidence roadmap:
   [docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md](docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md)
+- IGRE skill engineering and open-source release strategy:
+  [docs/co_pilot_ai_scientist_v3/skill_engineering_release_strategy.md](docs/co_pilot_ai_scientist_v3/skill_engineering_release_strategy.md)
 - Deep regeneration casebook:
   [docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md](docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md)
 - Human expert blind-review protocol:
@@ -89,6 +91,10 @@ Current objective-delivery status:
 Important boundary: the formal paper outcome is the English manuscript/PDF.
 The package also delivers usage guides, a reusable skill, a pushed GitHub
 branch, and reproducibility audits.
+The engineering outcome is also important: IGRE should become a public,
+installable research skill whose six gates can guide collaborative automated
+science workflows, learning from high-adoption academic skill repositories
+while remaining distinct from generic manuscript-copilot tooling.
 The top-conference empirical target is not yet satisfied: this package does
 **not** prove empirical superiority over autonomous AI Scientist-v2. The
 remaining evidence gap is independent human expert ratings, larger matched

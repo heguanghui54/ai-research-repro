@@ -83,6 +83,9 @@ def main() -> None:
     deep_pdf_key_path = PACKET_DIR / "deep_pdf_condition_key.json"
     human_score_smoke_json_path = PACKET_DIR / "human_score_summary_smoke" / "summary.json"
     human_score_smoke_md_path = PACKET_DIR / "human_score_summary_smoke" / "summary.md"
+    model_dry_run_dir = PACKET_DIR / "model_blind_review_dry_run_20260603"
+    model_dry_run_summary_path = model_dry_run_dir / "run_summary.json"
+    model_dry_run_analysis_path = model_dry_run_dir / "analysis" / "summary.json"
 
     summary = _load_json(summary_path)
     pairs = _load_json(pairs_path)
@@ -115,6 +118,10 @@ def main() -> None:
         PACKET_DIR / "expert_reviewer_tracking_template.csv",
         PACKET_DIR / "deep_pdf_reviewer_index.md",
         deep_pdf_key_path,
+        model_dry_run_summary_path,
+        model_dry_run_analysis_path,
+        model_dry_run_dir / "analysis" / "summary.md",
+        model_dry_run_dir / "model_score_sheet.csv",
     ]
     required_files.extend(PACKET_DIR / "pairs" / f"pair_{idx:02d}.md" for idx in range(1, 7))
     required_files.extend(PACKET_DIR / "deep_pdf_pairs" / f"deep_pair_{idx:02d}_{side}.pdf" for idx in range(1, 4) for side in ["A", "B"])
@@ -188,6 +195,17 @@ def main() -> None:
     if "evaluation-readiness artifacts only" not in human_score_smoke.get("claim_boundary", ""):
         errors.append("human score summary smoke claim boundary missing evaluation-readiness warning")
 
+    model_dry_run = _load_json(model_dry_run_summary_path)
+    model_dry_run_analysis = _load_json(model_dry_run_analysis_path)
+    if model_dry_run.get("status") != "model_only_dry_run_not_human_evidence":
+        errors.append("model blind-review dry run must be marked as not human evidence")
+    if "not independent human expert evidence" not in model_dry_run.get("claim_boundary", ""):
+        errors.append("model dry-run claim boundary missing not-human-evidence warning")
+    if model_dry_run_analysis.get("status") != "model_only_dry_run_not_human_evidence":
+        errors.append("model dry-run analysis status should be model_only_dry_run_not_human_evidence")
+    if model_dry_run_analysis.get("positive_evidence_threshold_met") is not False:
+        errors.append("model dry-run analysis must not meet human positive evidence threshold")
+
     planned_minimum_raters = prereg.get("design", {}).get("planned_raters", {}).get("minimum")
     planned_minimum_valid_rows = prereg.get("design", {}).get("planned_minimum_valid_rows")
     if planned_minimum_raters != 3:
@@ -243,6 +261,11 @@ def main() -> None:
         "human_score_summary_positive_evidence_threshold_met": human_score_smoke.get(
             "positive_evidence_threshold_met"
         ),
+        "model_dry_run_status": model_dry_run.get("status"),
+        "model_dry_run_rows": model_dry_run.get("parsed_rows"),
+        "model_dry_run_positive_evidence_threshold_met": model_dry_run_analysis.get(
+            "positive_evidence_threshold_met"
+        ),
         "school_expert_ready_status": school_ready.get("status"),
         "deep_pdf_pair_count": school_ready.get("deep_pdf_pair_count"),
         "deep_pdf_condition_key_hidden": _rel(deep_pdf_key_path) in hidden and _rel(deep_pdf_key_path) not in reviewer_visible,
@@ -273,6 +296,12 @@ def main() -> None:
         (
             "- Human score summary positive evidence threshold met: "
             f"`{audit['human_score_summary_positive_evidence_threshold_met']}`"
+        ),
+        f"- Model dry-run status: `{audit['model_dry_run_status']}`",
+        f"- Model dry-run parsed rows: `{audit['model_dry_run_rows']}`",
+        (
+            "- Model dry-run positive evidence threshold met: "
+            f"`{audit['model_dry_run_positive_evidence_threshold_met']}`"
         ),
         f"- School expert ready status: `{audit['school_expert_ready_status']}`",
         f"- Deep PDF pairs: `{audit['deep_pdf_pair_count']}`",

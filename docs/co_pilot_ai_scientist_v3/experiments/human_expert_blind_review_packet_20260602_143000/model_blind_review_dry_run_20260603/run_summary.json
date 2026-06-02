@@ -1,0 +1,128 @@
+{
+  "created_at": "2026-06-02T16:21:41Z",
+  "status": "model_only_dry_run_not_human_evidence",
+  "packet_dir": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000",
+  "output_dir": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603",
+  "models": [
+    "gpt-4o-mini",
+    "gemini-2.5-flash"
+  ],
+  "pair_count": 6,
+  "parsed_rows": 8,
+  "raw_records": [
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "model": "gpt-4o-mini",
+      "pair_id": "pair_01",
+      "status_code": 200,
+      "parse_status": "parsed",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_01.json"
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "model": "gpt-4o-mini",
+      "pair_id": "pair_02",
+      "status_code": 200,
+      "parse_status": "parsed",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_02.json"
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "model": "gpt-4o-mini",
+      "pair_id": "pair_03",
+      "status_code": 200,
+      "parse_status": "parsed",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_03.json"
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "model": "gpt-4o-mini",
+      "pair_id": "pair_04",
+      "status_code": 200,
+      "parse_status": "parsed",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_04.json"
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "model": "gpt-4o-mini",
+      "pair_id": "pair_05",
+      "status_code": 200,
+      "parse_status": "parsed",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_05.json"
+    },
+    {
+      "reviewer_id": "model_gpt_4o_mini",
+      "model": "gpt-4o-mini",
+      "pair_id": "pair_06",
+      "status_code": 200,
+      "parse_status": "parsed",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_06.json"
+    },
+    {
+      "reviewer_id": "model_gemini_2_5_flash",
+      "model": "gemini-2.5-flash",
+      "pair_id": "pair_01",
+      "status_code": 200,
+      "parse_status": "parse_failed:JSONDecodeError:Unterminated string starting at: line 15 column 16 (char 366)",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_01.json"
+    },
+    {
+      "reviewer_id": "model_gemini_2_5_flash",
+      "model": "gemini-2.5-flash",
+      "pair_id": "pair_02",
+      "status_code": 200,
+      "parse_status": "parse_failed:JSONDecodeError:Unterminated string starting at: line 15 column 16 (char 366)",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_02.json"
+    },
+    {
+      "reviewer_id": "model_gemini_2_5_flash",
+      "model": "gemini-2.5-flash",
+      "pair_id": "pair_03",
+      "status_code": 200,
+      "parse_status": "parse_failed:JSONDecodeError:Unterminated string starting at: line 15 column 16 (char 366)",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_03.json"
+    },
+    {
+      "reviewer_id": "model_gemini_2_5_flash",
+      "model": "gemini-2.5-flash",
+      "pair_id": "pair_04",
+      "status_code": 200,
+      "parse_status": "parsed",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_04.json"
+    },
+    {
+      "reviewer_id": "model_gemini_2_5_flash",
+      "model": "gemini-2.5-flash",
+      "pair_id": "pair_05",
+      "status_code": 200,
+      "parse_status": "parse_failed:JSONDecodeError:Unterminated string starting at: line 8 column 3 (char 161)",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_05.json"
+    },
+    {
+      "reviewer_id": "model_gemini_2_5_flash",
+      "model": "gemini-2.5-flash",
+      "pair_id": "pair_06",
+      "status_code": 200,
+      "parse_status": "parsed",
+      "raw_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_06.json"
+    }
+  ],
+  "analysis": {
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/analysis/summary.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/analysis/summary.md",
+    "win_counts": {
+      "review_guided": 0,
+      "context_control_unrelated_reviews": 7,
+      "tie": 1,
+      "other_condition": 0
+    },
+    "mean_delta": {
+      "mean": -1.1458333333333333,
+      "ci95_low": -1.6666666666666667,
+      "ci95_high": -0.7083333333333333,
+      "n": 8
+    },
+    "positive_evidence_threshold_met": false
+  },
+  "claim_boundary": "Model-only dry run; not independent human expert evidence."
+}

@@ -1,0 +1,56 @@
+{
+  "model": "gpt-4o-mini",
+  "status_code": 200,
+  "response": {
+    "id": "chatcmpl-llm-router-openai",
+    "object": "chat.completion",
+    "created": 1780417222,
+    "model": "gpt-4o-mini",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "{\n  \"winner\": \"tie\",\n  \"A_problem_framing\": 4,\n  \"A_method_specificity\": 4,\n  \"A_experiment_design\": 4,\n  \"A_limitation_honesty\": 4,\n  \"A_claim_calibration\": 4,\n  \"A_overall_quality\": 4,\n  \"B_problem_framing\": 4,\n  \"B_method_specificity\": 4,\n  \"B_experiment_design\": 4,\n  \"B_limitation_honesty\": 4,\n  \"B_claim_calibration\": 4,\n  \"B_overall_quality\": 4,\n  \"rationale\": \"Both variants present a clear problem framing and propose plausible methods with well-defined experiment plans. Limitations are acknowledged honestly, and claims are appropriately bounded by evidence, leading to an overall tie in quality.\"\n}"
+        },
+        "finish_reason": "stop",
+        "content_filter_results": {
+          "hate": {
+            "filtered": false
+          },
+          "self_harm": {
+            "filtered": false
+          },
+          "sexual": {
+            "filtered": false
+          },
+          "violence": {
+            "filtered": false
+          },
+          "jailbreak": {
+            "filtered": false,
+            "detected": false
+          },
+          "profanity": {
+            "filtered": false,
+            "detected": false
+          }
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 80,
+      "completion_tokens": 181,
+      "total_tokens": 1285,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 1024
+      },
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 0
+      }
+    },
+    "system_fingerprint": ""
+  }
+}

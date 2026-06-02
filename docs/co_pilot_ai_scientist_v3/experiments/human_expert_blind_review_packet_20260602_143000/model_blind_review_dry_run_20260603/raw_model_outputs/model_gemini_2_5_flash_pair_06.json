@@ -1,0 +1,56 @@
+{
+  "model": "gemini-2.5-flash",
+  "status_code": 200,
+  "response": {
+    "id": "chatcmpl-llm-router-openai",
+    "object": "chat.completion",
+    "created": 1780417289,
+    "model": "gemini-2.5-flash",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```json\n{\n  \"winner\": \"A\",\n  \"A_problem_framing\": 4,\n  \"A_method_specificity\": 3,\n  \"A_experiment_design\": 4,\n  \"A_limitation_honesty\": 4,\n  \"A_claim_calibration\": 4,\n  \"A_overall_quality\": 4,\n  \"B_problem_framing\": 3,\n  \"B_method_specificity\": 2,\n  \"B_experiment_design\": 3,\n  \"B_limitation_honesty\": 1,\n  \"B_claim_calibration\": 4,\n  \"B_overall_quality\": 2,\n  \"rationale\": \"Variant A provides a clearer problem framing, more specific method sketch, and a more concrete experiment plan. Its stated limitations are also more appropriate and useful than Variant B's, which raises concerns about the method's foundational soundness.\"\n}\n```"
+        },
+        "finish_reason": "stop",
+        "content_filter_results": {
+          "hate": {
+            "filtered": false
+          },
+          "self_harm": {
+            "filtered": false
+          },
+          "sexual": {
+            "filtered": false
+          },
+          "violence": {
+            "filtered": false
+          },
+          "jailbreak": {
+            "filtered": false,
+            "detected": false
+          },
+          "profanity": {
+            "filtered": false,
+            "detected": false
+          }
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 1161,
+      "completion_tokens": 219,
+      "total_tokens": 1380,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1722
+      }
+    },
+    "system_fingerprint": ""
+  }
+}

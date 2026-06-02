@@ -17,6 +17,14 @@ turns human participation into explicit, logged gates for scientific taste,
 evaluator stress-testing, frontier steering, verifiable micro-evolution,
 structured feedback, and claim calibration.
 
+This package now tracks two connected but distinct workstreams. The research
+paper workstream evaluates IGRE as a scientific method and must be supported by
+experiments, audits, blind review, and benchmark evidence. The engineering
+workstream packages IGRE as a reusable public skill, where success is measured
+by installation quality, usability, transfer to new topics, and eventually
+community adoption. Engineering adoption can support the systems story, but it
+does not replace the paper's empirical evidence requirements.
+
 ## Artifact Map
 
 - `problem_statement.md`: precise research framing, success criteria, and risks.
@@ -28,6 +36,10 @@ structured feedback, and claim calibration.
   scientists, scientific discovery agents, algorithm discovery, the Schmidhuber
   self-improvement line, LLM-guided evolution, research-agent benchmarks, and
   peer-review data.
+- `skill_engineering_release_strategy.md`: engineering roadmap for turning the
+  IGRE six-gate theory into a public, reusable research skill, using
+  PaperOrchestra and high-adoption academic skill repositories as references
+  while preserving IGRE's distinct gate-control contribution.
 - `architecture.md`: IGRE data-flow view of the four loops and six gates.
 - `human_expert_blind_review_protocol.md`: protocol for recruiting
   NUS-affiliated or school-affiliated ML/AI experts to blindly evaluate the

@@ -20,6 +20,10 @@ The next version should move from "mode design and pilot evidence" to
 "matched empirical evidence." Every experiment below should be preregistered
 before the generated manuscripts are scored.
 
+The engineering release track is related but separate. It can demonstrate that
+IGRE is usable as public research infrastructure, but it should not be counted
+as empirical proof that co-pilot science outperforms autonomous science.
+
 ## Milestone 1: Blind Human Expert Review
 
 - Claim tested: review-derived and IGRE-gated feedback improves research
@@ -138,6 +142,28 @@ before the generated manuscripts are scored.
 - If it fails: keep benchmark claims explicitly limited to the current pilot
   tasks and program-search subproblems.
 
+## Milestone 7: Public Skill Engineering And Community Adoption
+
+- Claim tested: IGRE is not only a paper idea; it can be packaged as a reusable
+  research skill that other researchers can install, run, and adapt.
+- Reference point: high-adoption academic skill repositories such as
+  `academic-research-skills`, which packages paper-writing and research support
+  workflows and cites PaperOrchestra as one source for multi-agent
+  paper-writing design.
+- Required data: standalone skill README, install instructions, quickstart,
+  templates, validation script, example gate trajectory, and a clear boundary
+  separating engineering adoption from scientific performance claims.
+- Minimum design: publish a clean GitHub skill package with the six IGRE gates,
+  example task, gate-log template, claim-audit template, and at least one
+  reproducible smoke test.
+- Metrics: install success, quickstart completion, external issue/PR activity,
+  example reuse count, and eventually stars or forks.
+- Upgrade condition: at least one external researcher or clean external
+  environment successfully runs the skill on a new topic and produces a valid
+  gate log.
+- If it fails: keep the skill as an internal artifact and do not claim
+  engineering transferability.
+
 ## Decision Rule For The Paper
 
 The paper should be submitted as a strong pilot/system paper only after
@@ -145,6 +171,8 @@ Milestone 1 or Milestone 2 produces positive evidence. It should be submitted
 as a top-conference empirical paper only after Milestone 1 and Milestone 2 both
 pass, with Milestone 3 providing either positive delayed-value evidence or a
 clear negative result that strengthens the measurement contribution.
+Milestone 7 can strengthen the systems and engineering-impact story, but it
+does not replace blind expert review or matched benchmark evidence.
 
 Until then, the correct claim boundary is:
 

@@ -822,7 +822,26 @@
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/claude-3-7-sonnet-latest_raw_response.txt",
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/claude-3-7-sonnet-latest_judgement.json",
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/summary.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/README.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/README.md",
+    "scripts/run_blind_packet_model_dry_run.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/model_score_sheet.csv",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/run_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/analysis/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/analysis/summary.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_01.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_06.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_01.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_06.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_05.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_03.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_02.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_04.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_05.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_03.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gemini_2_5_flash_pair_02.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/raw_model_outputs/model_gpt_4o_mini_pair_04.json",
+    "docs/co_pilot_ai_scientist_v3/skill_engineering_release_strategy.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1847,9 +1866,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "9394c5eb436d71cd60d62b08e37e221ff64868e2",
+    "head": "c207e48478982928363a5eaaf7fc55234a53928a",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 809,
+    "manifest_artifacts": 828,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1954,5 +1973,18 @@
     "strict_positive_count": 0,
     "cross_model_strict_positive_count": 0,
     "claim_boundary": "This aggregate summarizes model-generated mini-paper replay artifacts and model judges. It does not include benchmark reruns, human expert ratings, or proof that human reviews improve long-horizon scientific outcomes."
+  },
+  "model_blind_review_dry_run": {
+    "status": "model_only_dry_run_not_human_evidence",
+    "output_dir": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603",
+    "score_csv": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/model_score_sheet.csv",
+    "analysis_json": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/analysis/summary.json",
+    "analysis_markdown": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/analysis/summary.md",
+    "claim_boundary": "Model-only dry run; not independent human expert evidence."
+  },
+  "skill_engineering_release_strategy": {
+    "status": "planned_public_skill_release_path",
+    "markdown": "docs/co_pilot_ai_scientist_v3/skill_engineering_release_strategy.md",
+    "boundary": "Engineering adoption is usability and transfer evidence, not scientific superiority evidence."
   }
 }
