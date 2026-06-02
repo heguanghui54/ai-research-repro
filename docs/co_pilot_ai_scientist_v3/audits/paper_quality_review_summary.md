@@ -80,21 +80,21 @@ paper-quality scoring.
 ## Online Trajectory Manuscript Probe
 
 We then repeated the same-continuous-trajectory online full-gate manuscript
-probe twice. Each trajectory generates a complete co-pilot manuscript and a
-same-run autonomous AI Scientist-v2 manuscript comparator from the same
-orchestrator invocation. The repeated-smoke summary reports `2` paired runs,
-`0` co-pilot benchmark wins, `1` autonomous benchmark win, and `1` tie. Mean
-co-pilot test MAE is `0.754120`, while mean autonomous test MAE is `0.643337`
-on the lower-is-better Causality metric. The internal rubric gives each
-co-pilot manuscript `4.64` overall and each autonomous comparator manuscript
-`3.48`.
+probe three times. Each trajectory generates a complete co-pilot manuscript and
+a same-run autonomous AI Scientist-v2 manuscript comparator from the same
+orchestrator invocation. Two Causality trajectories have valid scalar test
+metrics: the repeated-smoke summary reports `0` co-pilot benchmark wins, `1`
+autonomous benchmark win, and `1` tie, with mean co-pilot test MAE `0.754120`
+and mean autonomous test MAE `0.643337`. The third trajectory uses
+`Fairness_fairlearn` and is a no-valid-branch failure-mode case, so it is
+counted as unknown/no-valid rather than as a win for either side.
 
-We also ran Monica-routed model-review A/B probes on both paired manuscript
-sets. All four reviewer calls prefer the co-pilot manuscript (`4/4` wins),
-with rationales emphasizing methodological completeness, claim calibration,
-and limitation honesty. This is useful measurement-readiness evidence, but it
-is still model review over two smoke trajectories, not human expert peer
-review or top-conference empirical support.
+We also ran Monica-routed model-review A/B probes on all three paired
+manuscript sets. All six reviewer calls prefer the co-pilot manuscript (`6/6`
+wins), with rationales emphasizing methodological completeness, claim
+calibration, and limitation honesty. This is useful measurement-readiness
+evidence, but it is still model review over three smoke trajectories, not human
+expert peer review or top-conference empirical support.
 
 ## Human Co-Pilot Trace Dataset
 

@@ -1,0 +1,298 @@
+{
+  "trajectory_id": "online_full_gate_smoke_20260602_013612",
+  "generated_at_utc": "2026-06-02T01:36:12Z",
+  "remote_host": "ubuntu-heshi",
+  "remote_root": "/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502",
+  "is_single_online_smoke_run": true,
+  "is_top_conference_evidence": false,
+  "claim_scope": "This is a fresh online smoke trajectory that exercises all five gate types and launches remote FML-bench plus OpenEvolve work. It proves orchestration feasibility, not general performance superiority.",
+  "gates": [
+    {
+      "gate_id": "idea_gate_online_smoke_001",
+      "gate_type": "idea_selection",
+      "timestamp_utc": "2026-06-02T01:36:12Z",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "options": [
+        {
+          "option_id": "hitl-gated-tree-search",
+          "summary": "Human-Gated Agentic Tree Search for Automated Research",
+          "score": 15,
+          "evidence": [
+            "Run matched research tasks with no human gates, idea-only gates, branch-selection gates, and claim-audit gates."
+          ],
+          "risks": [
+            "Human feedback may be too subjective unless captured in a strict schema."
+          ]
+        },
+        {
+          "option_id": "co-scientist-front-end",
+          "summary": "Co-Scientist Front-End for AI Scientist-v2",
+          "score": 12,
+          "evidence": [
+            "Compare AI Scientist-v2 topic-file ideation against multi-agent hypothesis debate on the same benchmark tasks."
+          ],
+          "risks": [
+            "The benefit may disappear once constrained by runnable benchmarks."
+          ]
+        },
+        {
+          "option_id": "alphaevolve-subproblem-optimizer",
+          "summary": "AlphaEvolve-Style Subproblem Optimization Inside Automated Research",
+          "score": 14,
+          "evidence": [
+            "Use OpenEvolve on selected algorithmic or ML-pipeline components within a research task and compare against direct LLM edit search."
+          ],
+          "risks": [
+            "Local metric improvements may not change the final research conclusion."
+          ]
+        },
+        {
+          "option_id": "full-copilot-v3-system",
+          "summary": "Co-Pilot AI Scientist v3 End-to-End System",
+          "score": 13,
+          "evidence": [
+            "Build an orchestration layer with logged human gates and run two small research tasks end to end."
+          ],
+          "risks": [
+            "Scope is large; requires careful staging to avoid a broad but weak paper."
+          ]
+        }
+      ],
+      "human_decision": "hitl-gated-tree-search",
+      "rationale": "Use the currently selected narrow contribution as the online smoke trajectory target.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/candidates.json"
+      ],
+      "downstream_budget": {
+        "branch_steps": 1
+      },
+      "follow_up_checks": [
+        "Do not claim superiority from a single smoke trajectory."
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "async_review",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 4,
+        "artifacts_reviewed_count": 1,
+        "decision_count": 1,
+        "notes": "Online smoke generated without measured human timing; fill this prospectively for matched claims."
+      }
+    },
+    {
+      "gate_id": "evaluator_gate_online_smoke_001",
+      "gate_type": "evaluator_approval",
+      "timestamp_utc": "2026-06-02T01:36:12Z",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "options": [
+        {
+          "option_id": "fml_metric_plus_guardrails",
+          "summary": "Use `configs/tasks/fairness_fairlearn.yaml` validation `primary_metric` for branch selection plus correctness/utility guardrails for subproblem search.",
+          "score": 1.0,
+          "evidence": [
+            "FML task `Fairness_fairlearn` exposes validation/test metrics.",
+            "Knapsack evaluator exposes validity and optimality ratio."
+          ],
+          "risks": [
+            "primary_metric branch selection does not measure whole-paper quality."
+          ]
+        }
+      ],
+      "human_decision": "fml_metric_plus_guardrails",
+      "rationale": "Approve a low-cost evaluator bundle for an online smoke run.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/branch_frontier_summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/program_search_summary.json"
+      ],
+      "downstream_budget": {
+        "continuation_steps": 1,
+        "program_iterations": 1
+      },
+      "follow_up_checks": [
+        "Use matched autonomous baselines before performance claims."
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "async_review",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 1,
+        "artifacts_reviewed_count": 2,
+        "decision_count": 1,
+        "notes": "Online smoke generated without measured human timing; fill this prospectively for matched claims."
+      }
+    },
+    {
+      "gate_id": "branch_gate_online_smoke_001",
+      "gate_type": "branch_selection",
+      "timestamp_utc": "2026-06-02T01:36:12Z",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "options": [
+        {
+          "option_id": "step_0001",
+          "summary": "Validation failed for branch draft_4d307d9ba25c after draft",
+          "score": null,
+          "evidence": [
+            "validation_success=False",
+            "task_config=configs/tasks/fairness_fairlearn.yaml",
+            "Traceback (most recent call last):\n  File \"/home/heshi/work/FML-bench/workspace/Fairness_fairlearn__20260602_093507_736ca73a/fairlearn/train_eval_baseline.py\", line 213, in <module>\n    main()\n  File \"/home/heshi/work/FML-bench/workspace/Fairness_fairlearn__20260602_093507_736ca73a/fairlearn/train_eval_baseline.py\", line 147, in main\n    model.fit(X_train, y_train, sensitive_features=s_train)\n  File \"/home/heshi/work/FML-bench/workspace/Fairness_fairlearn__20260602_093507_736ca73a/fairlearn/algo"
+          ],
+          "risks": [
+            "No valid scored continuation was available."
+          ]
+        }
+      ],
+      "human_decision": "abort_no_valid_branch",
+      "rationale": "No valid branch was available for `configs/tasks/fairness_fairlearn.yaml`; archive this as a failure-mode trajectory.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/branch_frontier_summary.json"
+      ],
+      "downstream_budget": {
+        "selected_snapshot_remote": null,
+        "continuation_summary_remote": null,
+        "no_valid_branch": true,
+        "task_config": "configs/tasks/fairness_fairlearn.yaml"
+      },
+      "follow_up_checks": [
+        "Repair evaluator/task setup before continuation."
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "async_review",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 1,
+        "artifacts_reviewed_count": 1,
+        "decision_count": 1,
+        "notes": "Online smoke generated without measured human timing; fill this prospectively for matched claims."
+      }
+    },
+    {
+      "gate_id": "program_search_gate_online_smoke_001",
+      "gate_type": "program_search_escalation",
+      "timestamp_utc": "2026-06-02T01:36:12Z",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "options": [
+        {
+          "option_id": "run_tiny_openevolve_knapsack",
+          "summary": "Run a tiny OpenEvolve knapsack search as the AlphaEvolve-style subproblem module.",
+          "score": 0.9941773763863808,
+          "evidence": [
+            "best_score=0.994177",
+            "iterations=1"
+          ],
+          "risks": [
+            "One-iteration program search is only a smoke check."
+          ]
+        }
+      ],
+      "human_decision": "run_tiny_openevolve_knapsack",
+      "rationale": "Exercise the program-search escalation gate in the same online smoke trajectory.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/program_search_summary.json"
+      ],
+      "downstream_budget": {
+        "program_summary_remote": "/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502/program_search/knapsack_openevolve_1iter/summary.json"
+      },
+      "follow_up_checks": [
+        "Repeat with direct-edit baseline or larger budget before claiming improvement."
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "async_review",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 1,
+        "artifacts_reviewed_count": 1,
+        "decision_count": 1,
+        "notes": "Online smoke generated without measured human timing; fill this prospectively for matched claims."
+      }
+    },
+    {
+      "gate_id": "claim_gate_online_smoke_001",
+      "gate_type": "claim_audit",
+      "timestamp_utc": "2026-06-02T01:36:12Z",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "options": [
+        {
+          "option_id": "claim_online_orchestration_feasible",
+          "summary": "Claim that the online five-gate smoke orchestration is executable.",
+          "score": 1.0,
+          "evidence": [
+            "branch_summary=/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502/branch_frontier/ai_scientist_v2/Fairness_fairlearn/20260602_093507_8b36a1f7/summary.json",
+            "continuation_summary=not_run_no_valid_branch",
+            "program_summary=/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502/program_search/knapsack_openevolve_1iter/summary.json",
+            "autonomous_summary=/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502/autonomous_baseline/ai_scientist_v2/Fairness_fairlearn/20260602_093627_84f7b730/summary.json"
+          ],
+          "risks": [
+            "Single smoke trajectory is not top-conference-level evidence."
+          ]
+        },
+        {
+          "option_id": "claim_general_superiority",
+          "summary": "Claim full co-pilot superiority over autonomous AI Scientist-v2.",
+          "score": 0.0,
+          "evidence": [],
+          "risks": [
+            "Same-run autonomous baseline is present but still one tiny-budget trajectory."
+          ]
+        }
+      ],
+      "human_decision": "claim_online_orchestration_feasible",
+      "rationale": "The trajectory proves online orchestration feasibility only; superiority remains unproven.",
+      "affected_artifacts": [
+        "paper_en.md",
+        "paper_zh.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/trajectory.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/autonomous_baseline_summary.json"
+      ],
+      "downstream_budget": {
+        "next_required_run": "repeat same-run paired trajectories across tasks/seeds"
+      },
+      "follow_up_checks": [
+        "Repeat paired online trajectories across tasks/seeds before superiority claims."
+      ],
+      "attention_cost": {
+        "human_actor": null,
+        "interaction_mode": "async_review",
+        "prompted_at_utc": null,
+        "decision_at_utc": null,
+        "active_review_minutes": null,
+        "wall_clock_latency_minutes": null,
+        "options_reviewed": 2,
+        "artifacts_reviewed_count": 4,
+        "decision_count": 1,
+        "notes": "Online smoke generated without measured human timing; fill this prospectively for matched claims."
+      }
+    }
+  ],
+  "summary": {
+    "selected_research_direction": "hitl-gated-tree-search",
+    "task_config": "configs/tasks/fairness_fairlearn.yaml",
+    "benchmark_name": "Fairness_fairlearn",
+    "metric_name": "primary_metric",
+    "selected_branch": "abort_no_valid_branch",
+    "selected_branch_val_mae": null,
+    "selected_branch_val_metric": null,
+    "no_valid_branch": true,
+    "continuation_test_mae": null,
+    "program_search_best_score": 0.9941773763863808,
+    "same_run_autonomous_enabled": true,
+    "same_run_autonomous_steps": 1,
+    "same_run_autonomous_test_mae": null,
+    "branch_summary_remote": "/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502/branch_frontier/ai_scientist_v2/Fairness_fairlearn/20260602_093507_8b36a1f7/summary.json",
+    "continuation_summary_remote": null,
+    "program_summary_remote": "/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502/program_search/knapsack_openevolve_1iter/summary.json",
+    "autonomous_summary_remote": "/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502/autonomous_baseline/ai_scientist_v2/Fairness_fairlearn/20260602_093627_84f7b730/summary.json"
+  },
+  "remaining_gap": "Repeat same-run paired trajectories across more tasks and seeds."
+}

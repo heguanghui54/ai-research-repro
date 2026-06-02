@@ -6,7 +6,7 @@ The script orchestrates a real remote sequence on the Ubuntu host:
 1. idea gate: choose the current narrow contribution from candidates.json;
 2. evaluator gate: approve Causality MAE plus correctness/utility guardrails;
 3. branch gate: run a fresh two-draft FML-bench frontier and select the better
-   validation branch;
+   validation branch, or archive a no-valid-branch failure trajectory;
 4. continuation: run AI Scientist-v2 from the selected code snapshot;
 5. program-search gate: run a tiny OpenEvolve knapsack search on the same host;
 6. optional same-run autonomous baseline: run AI Scientist-v2 on the same task,
@@ -93,9 +93,35 @@ def step_metric(step: dict[str, Any]) -> float | None:
 
 def primary_metric(summary: dict[str, Any]) -> float | None:
     try:
-        return float(summary["test_result"]["primary_metric"])
-    except KeyError:
+        test_result = summary.get("test_result") or {}
+        value = test_result.get("primary_metric")
+        if value is not None:
+            return float(value)
+    except (AttributeError, TypeError, ValueError):
         return None
+    try:
+        test_result = summary.get("test_result") or {}
+        return float(test_result["results"]["ihdp_test"]["means"]["mae_mean"])
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
+def infer_benchmark_name(task_config: str) -> str:
+    stem = Path(task_config).stem
+    mapping = {
+        "causality_causalml": "Causality_causalml",
+        "fairness_fairlearn": "Fairness_fairlearn",
+    }
+    return mapping.get(stem, stem)
+
+
+def infer_metric_name(task_config: str) -> str:
+    stem = Path(task_config).stem
+    mapping = {
+        "causality_causalml": "mae",
+        "fairness_fairlearn": "primary_metric",
+    }
+    return mapping.get(stem, "primary_metric")
 
 
 def mark_attention_cost_missing(gates: list[dict[str, Any]]) -> None:
@@ -145,7 +171,14 @@ PY
 """
 
 
-def run_branch_frontier(host: str, remote_root: str, max_steps: int, model: str, provider: str) -> str:
+def run_branch_frontier(
+    host: str,
+    remote_root: str,
+    max_steps: int,
+    model: str,
+    provider: str,
+    task_config: str,
+) -> str:
     output_dir = f"{remote_root}/branch_frontier"
     script = f"""
 set -euo pipefail
@@ -154,7 +187,7 @@ cd /home/heshi/work/FML-bench
 {build_agent_config_patch(num_ideas=2, num_parallel=2, stage_budgets='[1.0, 0.0, 0.0, 0.0]')}
 /home/heshi/miniconda3/bin/conda run -n fmlbench python run_agent_benchmark.py \\
   --agent-config "$TMP" \\
-  --task-config configs/tasks/causality_causalml.yaml \\
+  --task-config {shlex.quote(task_config)} \\
   --model {shlex.quote(model)} \\
   --provider {shlex.quote(provider)} \\
   --output-dir {shlex.quote(output_dir)} \\
@@ -173,6 +206,8 @@ def run_continuation(
     max_steps: int,
     model: str,
     provider: str,
+    task_config: str,
+    benchmark_name: str,
 ) -> str:
     remote_work = "/home/heshi/work/co-pilot-ai-scientist-v3"
     ssh(host, f"mkdir -p {shlex.quote(remote_work)}")
@@ -183,10 +218,10 @@ set -euo pipefail
 source ~/.codex/env
 cd /home/heshi/work/FML-bench
 /home/heshi/miniconda3/bin/conda run -n fmlbench python {remote_work}/run_fmlbench_snapshot_continuation.py \\
-  --benchmark-name Causality_causalml \\
+  --benchmark-name {shlex.quote(benchmark_name)} \\
   --snapshot-json {shlex.quote(selected_snapshot)} \\
   --agent-config configs/agents/ai_scientist_v2.yaml \\
-  --task-config configs/tasks/causality_causalml.yaml \\
+  --task-config {shlex.quote(task_config)} \\
   --output-dir {shlex.quote(output_dir)} \\
   --model {shlex.quote(model)} \\
   --provider {shlex.quote(provider)} \\
@@ -230,6 +265,7 @@ def run_autonomous_baseline(
     max_steps: int,
     model: str,
     provider: str,
+    task_config: str,
 ) -> str:
     output_dir = f"{remote_root}/autonomous_baseline"
     script = f"""
@@ -239,7 +275,7 @@ cd /home/heshi/work/FML-bench
 {build_agent_config_patch(num_ideas=1, num_parallel=1, stage_budgets='[1.0, 0.0, 0.0, 0.0]')}
 /home/heshi/miniconda3/bin/conda run -n fmlbench python run_agent_benchmark.py \\
   --agent-config "$TMP" \\
-  --task-config configs/tasks/causality_causalml.yaml \\
+  --task-config {shlex.quote(task_config)} \\
   --model {shlex.quote(model)} \\
   --provider {shlex.quote(provider)} \\
   --output-dir {shlex.quote(output_dir)} \\
@@ -299,6 +335,9 @@ def main() -> int:
     parser.add_argument("--branch-summary-remote", default=None)
     parser.add_argument("--model", default="deepseek-chat")
     parser.add_argument("--provider", default="DeepSeek")
+    parser.add_argument("--task-config", default="configs/tasks/causality_causalml.yaml")
+    parser.add_argument("--benchmark-name", default=None)
+    parser.add_argument("--metric-name", default=None)
     parser.add_argument("--branch-steps", type=int, default=2)
     parser.add_argument("--continuation-steps", type=int, default=1)
     parser.add_argument("--program-iterations", type=int, default=1)
@@ -311,6 +350,8 @@ def main() -> int:
     remote_root = args.remote_root or f"/home/heshi/work/copilotv3-online-full-gate-smoke-{run_id}"
     out_dir = args.output_dir or EXP_DIR / f"online_full_gate_smoke_{run_id}"
     out_dir.mkdir(parents=True, exist_ok=True)
+    benchmark_name = args.benchmark_name or infer_benchmark_name(args.task_config)
+    metric_name = args.metric_name or infer_metric_name(args.task_config)
 
     candidates = read_json(DOC_DIR / "candidates.json")
     selected_direction = candidates["current_best_direction"]
@@ -324,7 +365,12 @@ def main() -> int:
         )
     else:
         branch_summary_remote = run_branch_frontier(
-            args.host, remote_root, args.branch_steps, args.model, args.provider
+            args.host,
+            remote_root,
+            args.branch_steps,
+            args.model,
+            args.provider,
+            args.task_config,
         )
         scp_from(args.host, branch_summary_remote, branch_summary_local)
     branch_summary = read_json(branch_summary_local)
@@ -343,25 +389,56 @@ def main() -> int:
                 "summary": f"{step['action']} branch {step['idea_id']}",
                 "score": metric,
                 "snapshot_path": snapshot,
-                "evidence": [f"validation_mae={metric:.6f}", "lower_is_better"],
+                "evidence": [f"validation_{metric_name}={metric:.6f}", "lower_is_better"],
                 "risks": ["Small two-draft smoke frontier."],
             }
         )
-    if not branch_options:
-        raise RuntimeError("No scored branch options found in branch summary")
-    selected_branch = min(branch_options, key=lambda item: item["score"])
-
-    continuation_summary_remote = run_continuation(
-        args.host,
-        remote_root,
-        selected_branch["snapshot_path"],
-        args.continuation_steps,
-        args.model,
-        args.provider,
+    no_valid_branch = not branch_options
+    failed_branch_options = []
+    if no_valid_branch:
+        for step in branch_summary.get("val_steps", []):
+            val_result = step.get("val_result") or {}
+            failed_branch_options.append(
+                {
+                    "option_id": f"step_{step.get('step_id', len(failed_branch_options) + 1):04d}",
+                    "summary": f"Validation failed for branch {step.get('idea_id')} after {step.get('action')}",
+                    "score": None,
+                    "evidence": [
+                        "validation_success=False",
+                        f"task_config={args.task_config}",
+                        str(val_result.get("error", "unknown validation error"))[:500],
+                    ],
+                    "risks": ["No valid scored continuation was available."],
+                }
+            )
+    selected_branch = (
+        {
+            "option_id": "abort_no_valid_branch",
+            "score": None,
+            "snapshot_path": None,
+            "summary": "No branch produced a valid validation metric.",
+        }
+        if no_valid_branch
+        else min(branch_options, key=lambda item: item["score"])
     )
-    continuation_summary_local = out_dir / "selected_continuation_summary.json"
-    scp_from(args.host, continuation_summary_remote, continuation_summary_local)
-    continuation_summary = read_json(continuation_summary_local)
+
+    continuation_summary_remote = None
+    continuation_summary_local = None
+    continuation_summary = None
+    if not no_valid_branch:
+        continuation_summary_remote = run_continuation(
+            args.host,
+            remote_root,
+            selected_branch["snapshot_path"],
+            args.continuation_steps,
+            args.model,
+            args.provider,
+            args.task_config,
+            benchmark_name,
+        )
+        continuation_summary_local = out_dir / "selected_continuation_summary.json"
+        scp_from(args.host, continuation_summary_remote, continuation_summary_local)
+        continuation_summary = read_json(continuation_summary_local)
 
     program_summary_remote = run_program_search(
         args.host, remote_root, args.program_iterations, args.model
@@ -378,14 +455,19 @@ def main() -> int:
         if autonomous_steps is None:
             autonomous_steps = args.branch_steps + args.continuation_steps
         autonomous_summary_remote = run_autonomous_baseline(
-            args.host, remote_root, autonomous_steps, args.model, args.provider
+            args.host,
+            remote_root,
+            autonomous_steps,
+            args.model,
+            args.provider,
+            args.task_config,
         )
         autonomous_summary_local = out_dir / "autonomous_baseline_summary.json"
         scp_from(args.host, autonomous_summary_remote, autonomous_summary_local)
         autonomous_summary = read_json(autonomous_summary_local)
 
     generated_at = timestamp.isoformat().replace("+00:00", "Z")
-    continuation_test = primary_metric(continuation_summary)
+    continuation_test = primary_metric(continuation_summary) if continuation_summary else None
     program_score = float(program_summary["best_score"])
     autonomous_test = primary_metric(autonomous_summary) if autonomous_summary else None
     autonomous_steps = (
@@ -429,14 +511,14 @@ def main() -> int:
             "research_task_id": "copilot_v3_online_full_gate_smoke",
             "options": [
                 {
-                    "option_id": "causality_mae_plus_guardrails",
-                    "summary": "Use Causality validation MAE for branch selection plus correctness/utility guardrails for subproblem search.",
+                    "option_id": "fml_metric_plus_guardrails",
+                    "summary": f"Use `{args.task_config}` validation `{metric_name}` for branch selection plus correctness/utility guardrails for subproblem search.",
                     "score": 1.0,
-                    "evidence": ["FML Causality exposes validation/test MAE.", "Knapsack evaluator exposes validity and optimality ratio."],
-                    "risks": ["MAE branch selection does not measure whole-paper quality."],
+                    "evidence": [f"FML task `{benchmark_name}` exposes validation/test metrics.", "Knapsack evaluator exposes validity and optimality ratio."],
+                    "risks": [f"{metric_name} branch selection does not measure whole-paper quality."],
                 }
             ],
-            "human_decision": "causality_mae_plus_guardrails",
+            "human_decision": "fml_metric_plus_guardrails",
             "rationale": "Approve a low-cost evaluator bundle for an online smoke run.",
             "affected_artifacts": [str(branch_summary_local), str(program_summary_local)],
             "downstream_budget": {"continuation_steps": args.continuation_steps, "program_iterations": args.program_iterations},
@@ -449,16 +531,28 @@ def main() -> int:
             "research_task_id": "copilot_v3_online_full_gate_smoke",
             "options": [
                 {k: v for k, v in option.items() if k != "snapshot_path"}
-                for option in branch_options
+                for option in (branch_options or failed_branch_options)
             ],
             "human_decision": selected_branch["option_id"],
-            "rationale": f"Select the lower-validation-MAE branch ({selected_branch['score']:.6f}) from the fresh remote frontier.",
+            "rationale": (
+                f"No valid branch was available for `{args.task_config}`; archive this as a failure-mode trajectory."
+                if no_valid_branch
+                else f"Select the lower-validation-{metric_name} branch ({selected_branch['score']:.6f}) from the fresh remote frontier."
+            ),
             "affected_artifacts": [str(branch_summary_local)],
             "downstream_budget": {
                 "selected_snapshot_remote": selected_branch["snapshot_path"],
                 "continuation_summary_remote": continuation_summary_remote,
+                "no_valid_branch": no_valid_branch,
+                "task_config": args.task_config,
             },
-            "follow_up_checks": ["Archive the selected snapshot and continuation summary."],
+            "follow_up_checks": [
+                (
+                    "Repair evaluator/task setup before continuation."
+                    if no_valid_branch
+                    else "Archive the selected snapshot and continuation summary."
+                )
+            ],
         },
         {
             "gate_id": "program_search_gate_online_smoke_001",
@@ -492,7 +586,11 @@ def main() -> int:
                     "score": 1.0,
                     "evidence": [
                         f"branch_summary={branch_summary_remote}",
-                        f"continuation_summary={continuation_summary_remote}",
+                        *(
+                            [f"continuation_summary={continuation_summary_remote}"]
+                            if continuation_summary_remote
+                            else ["continuation_summary=not_run_no_valid_branch"]
+                        ),
                         f"program_summary={program_summary_remote}",
                         *(
                             [f"autonomous_summary={autonomous_summary_remote}"]
@@ -554,8 +652,13 @@ def main() -> int:
         "gates": gates,
         "summary": {
             "selected_research_direction": selected_direction,
+            "task_config": args.task_config,
+            "benchmark_name": benchmark_name,
+            "metric_name": metric_name,
             "selected_branch": selected_branch["option_id"],
             "selected_branch_val_mae": selected_branch["score"],
+            "selected_branch_val_metric": selected_branch["score"],
+            "no_valid_branch": no_valid_branch,
             "continuation_test_mae": continuation_test,
             "program_search_best_score": program_score,
             "same_run_autonomous_enabled": bool(autonomous_summary),

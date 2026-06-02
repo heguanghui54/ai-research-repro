@@ -82,7 +82,10 @@ def _record_from_trajectory(path: Path) -> dict[str, Any] | None:
     return {
         "trajectory_id": trajectory.get("trajectory_id") or path.parent.name,
         "trajectory": _rel(path),
+        "task_config": summary.get("task_config", "configs/tasks/causality_causalml.yaml"),
+        "benchmark_name": summary.get("benchmark_name", "Causality_causalml"),
         "selected_branch": summary.get("selected_branch"),
+        "no_valid_branch": bool(summary.get("no_valid_branch")),
         "selected_branch_val_mae": summary.get("selected_branch_val_mae"),
         "continuation_test_mae": co_metric,
         "same_run_autonomous_test_mae": auto_metric,
@@ -144,6 +147,10 @@ def _aggregate(records: list[dict[str, Any]]) -> dict[str, Any]:
         "benchmark_ties": sum(
             1 for record in records if record.get("benchmark_winner") == "tie"
         ),
+        "benchmark_unknown": sum(
+            1 for record in records if record.get("benchmark_winner") == "unknown"
+        ),
+        "no_valid_branch_count": sum(1 for record in records if record.get("no_valid_branch")),
         "mean_co_pilot_test_mae": mean(co_metrics) if co_metrics else None,
         "mean_autonomous_test_mae": mean(auto_metrics) if auto_metrics else None,
         "mean_autonomous_minus_copilot_test_mae": mean(deltas) if deltas else None,
@@ -174,15 +181,17 @@ def _aggregate(records: list[dict[str, Any]]) -> dict[str, Any]:
 def _markdown(summary: dict[str, Any]) -> str:
     aggregate = summary["aggregate"]
     rows = [
-        "| Trajectory | Co-pilot test MAE | Autonomous test MAE | Delta auto-co | Winner | Co-pilot manuscript | Autonomous manuscript | Model-review wins |",
-        "| --- | ---: | ---: | ---: | --- | ---: | ---: | ---: |",
+        "| Trajectory | Task | No valid branch | Co-pilot test | Autonomous test | Delta auto-co | Winner | Co-pilot manuscript | Autonomous manuscript | Model-review wins |",
+        "| --- | --- | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: |",
     ]
     for record in summary["records"]:
         model_wins = record.get("model_review_co_pilot_wins")
         model_total = record.get("model_review_successful_reviews")
         rows.append(
-            "| `{}` | {} | {} | {} | {} | {} | {} | {} |".format(
+            "| `{}` | `{}` | {} | {} | {} | {} | {} | {} | {} | {} |".format(
                 record["trajectory_id"],
+                record.get("benchmark_name"),
+                record.get("no_valid_branch"),
                 _fmt(record.get("continuation_test_mae")),
                 _fmt(record.get("same_run_autonomous_test_mae")),
                 _fmt(record.get("autonomous_minus_copilot_test_mae")),
@@ -198,7 +207,9 @@ def _markdown(summary: dict[str, Any]) -> str:
             "",
             "This file aggregates only online full-gate smoke trajectories that",
             "contain a same-continuous-run autonomous AI Scientist-v2 baseline.",
-            "Lower MAE is better for the FML Causality metric.",
+            "For Causality rows, lower MAE is better. Rows with no valid",
+            "scalar test metric are counted as unknown/no-valid rather than",
+            "as wins for either side.",
             "",
             "## Aggregate",
             "",
@@ -206,6 +217,8 @@ def _markdown(summary: dict[str, Any]) -> str:
             f"- Co-pilot benchmark wins: `{aggregate['co_pilot_benchmark_wins']}`",
             f"- Autonomous benchmark wins: `{aggregate['autonomous_benchmark_wins']}`",
             f"- Benchmark ties: `{aggregate['benchmark_ties']}`",
+            f"- Benchmark unknown/no-valid: `{aggregate['benchmark_unknown']}`",
+            f"- No-valid-branch trajectories: `{aggregate['no_valid_branch_count']}`",
             f"- Mean co-pilot test MAE: `{_fmt(aggregate['mean_co_pilot_test_mae'])}`",
             f"- Mean autonomous test MAE: `{_fmt(aggregate['mean_autonomous_test_mae'])}`",
             "- Mean autonomous-minus-co-pilot test MAE: "

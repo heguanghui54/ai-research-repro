@@ -231,10 +231,11 @@ python3 scripts/score_matched_manuscripts.py \
 python3 scripts/summarize_online_paired_smokes.py --update-manifest
 ```
 
-当前 repeated-smoke summary 包含 `2` 条 paired online run，结果是 `0`
-次 co-pilot benchmark 胜、`1` 次 autonomous 胜、`1` 次打平。它只能作为
-在线编排和 manuscript-measurement readiness 证据，不能当作 co-pilot
-benchmark 优越性的证据。
+当前 repeated-smoke summary 包含 `3` 条 paired online run：两条有效
+Causality 指标对照的结果是 `0` 次 co-pilot benchmark 胜、`1` 次
+autonomous 胜、`1` 次打平，另有一条 Fairness no-valid failure trajectory。
+它只能作为在线编排和 manuscript-measurement readiness 证据，不能当作
+co-pilot benchmark 优越性的证据。
 
 如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
 

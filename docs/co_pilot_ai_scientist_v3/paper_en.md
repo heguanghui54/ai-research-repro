@@ -207,19 +207,20 @@ is negative for performance improvement, while still supporting the narrower
 claim that online co-pilot orchestration is executable.
 
 We subsequently repeated the stronger same-continuous-trajectory paired online
-smoke pattern twice. Each run generated complete co-pilot and autonomous
-manuscript artifacts from the same orchestrator invocation. Across the two
-paired smokes, the co-pilot continuation has mean test MAE `0.754120` and the
-same-run autonomous baseline has mean test MAE `0.643337`; lower is better, so
-the benchmark aggregate is `0` co-pilot wins, `1` autonomous win, and `1` tie.
-The generated co-pilot manuscripts receive internal rubric scores of `4.64` in
-both runs, while the autonomous manuscript comparators score `3.48`. Monica-
-routed A/B model-review probes prefer the co-pilot manuscript in all four
-reviewer calls across the two runs. This is stronger than a single archived
-matched-budget comparator because the manuscripts come from repeated same-run
-online smokes. It still does not prove co-pilot superiority: the aggregate
-benchmark metric favors autonomous or tie, the budgets are tiny, and model
-review is not independent expert paper-quality review.
+smoke pattern three times. Each run generated complete co-pilot and autonomous
+manuscript artifacts from the same orchestrator invocation. Two Causality runs
+have valid scalar test metrics: the co-pilot continuation has mean test MAE
+`0.754120` and the same-run autonomous baseline has mean test MAE `0.643337`;
+lower is better, so the valid-metric aggregate is `0` co-pilot wins, `1`
+autonomous win, and `1` tie. The third run switches to `Fairness_fairlearn` and
+is archived as a no-valid-branch failure-mode trajectory; neither side obtains
+a valid scalar test metric. Monica-routed A/B model-review probes prefer the
+co-pilot manuscript in all six reviewer calls across the three runs. This is
+stronger than a single archived matched-budget comparator because the
+manuscripts come from repeated same-run online smokes, including a cross-task
+failure case. It still does not prove co-pilot superiority: the valid benchmark
+aggregate favors autonomous or tie, the budgets are tiny, and model review is
+not independent expert paper-quality review.
 
 ## 4. Benchmark Selection and Evaluation Plan
 
@@ -668,9 +669,11 @@ The current contributions are:
    while the autonomous manuscript scores 4.11 and is the only variant with a
    valid scalar FML test metric in the Fairness package.
 22. A repeated same-continuous-trajectory paired online full-gate
-   manuscript-production summary over two smoke runs; the benchmark aggregate
-   has `0` co-pilot wins, `1` autonomous win, and `1` tie, while Monica-routed
-   model-review probes prefer the co-pilot manuscript in `4/4` reviewer calls.
+   manuscript-production summary over three smoke runs, including one
+   `Fairness_fairlearn` no-valid-branch failure trajectory; the valid
+   Causality benchmark aggregate has `0` co-pilot wins, `1` autonomous win,
+   and `1` tie, while Monica-routed model-review probes prefer the co-pilot
+   manuscript in `6/6` reviewer calls.
 23. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
    real Codex sessions as a single-author longitudinal process corpus after
    privacy-preserving metadata extraction.
@@ -735,14 +738,16 @@ co-pilot manuscript 4.18 and the autonomous manuscript 4.11 on the internal
 rubric, but the autonomous manuscript is the only variant with a valid scalar
 FML test result. The repeated same-continuous online smoke summary now shows
 that fresh online co-pilot trajectories can produce complete manuscript-shaped
-artifacts and same-run autonomous manuscript comparators. Across two paired
-smokes, however, benchmark outcomes are `0` co-pilot wins, `1` autonomous win,
-and `1` tie, with mean test MAE `0.754120` for co-pilot and `0.643337` for
-autonomous. Monica-routed model reviewers prefer the co-pilot manuscripts in
-`4/4` calls, but this is a measurement-readiness signal rather than expert
-review. This is exactly why the co-pilot claim must remain about method
-distinctness, scientific taste logging, and high-tail research search rather
-than average short-budget benchmark superiority.
+artifacts and same-run autonomous manuscript comparators. Across the two valid
+Causality paired smokes, benchmark outcomes are `0` co-pilot wins, `1`
+autonomous win, and `1` tie, with mean test MAE `0.754120` for co-pilot and
+`0.643337` for autonomous. The third `Fairness_fairlearn` paired smoke is a
+no-valid-branch failure trajectory rather than a scored performance comparison.
+Monica-routed model reviewers prefer the co-pilot manuscripts in `6/6` calls,
+but this is a measurement-readiness signal rather than expert review. This is
+exactly why the co-pilot claim must remain about method distinctness,
+scientific taste logging, and high-tail research search rather than average
+short-budget benchmark superiority.
 
 The taste/insight evidence is also only at the logging-readiness stage. The
 archive now contains one complete scientific-taste prior record, grounded in

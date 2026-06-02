@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_repeated_same_run_online_smokes",
+  "status": "pilot_package_with_cross_task_failure_mode_online_smoke",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -402,7 +402,24 @@
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/paper_quality/gpt-4o-mini.json",
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/paper_quality/gpt-4o-mini.md",
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/paper_quality/claude-3-7-sonnet-latest.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/paper_quality/claude-3-7-sonnet-latest.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/paper_quality/claude-3-7-sonnet-latest.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/trajectory.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/autonomous_baseline_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/program_search_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/branch_frontier_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/summary.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/autonomous_online_comparator_manuscript.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/matched_budget_comparison_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/matched_budget_comparison_summary.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/summary.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/gpt-4o-mini.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/gpt-4o-mini.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/claude-3-7-sonnet-latest.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/claude-3-7-sonnet-latest.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -583,8 +600,8 @@
   },
   "online_trajectory_manuscript_probe": {
     "status": "online_trajectory_manuscript_probe",
-    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/trajectory.json",
-    "manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/trajectory.json",
+    "manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/co_pilot_online_full_gate_manuscript.md",
     "fresh_online_smoke": true,
     "matched_autonomous_manuscript": true,
     "scores": {
@@ -596,13 +613,13 @@
       "overall": 4.64
     },
     "interpretation": "This narrows the fresh online manuscript-production gap and adds a same-continuous-trajectory autonomous manuscript comparator; it remains a tiny-budget smoke without independent paper-quality review.",
-    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/summary.md",
-    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/summary.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/summary.json",
     "matched_autonomous_manuscript_scope": "same-continuous-trajectory autonomous baseline",
     "matched_continuous_trajectory": true,
-    "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/autonomous_online_comparator_manuscript.md",
-    "comparison_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/matched_budget_comparison_summary.json",
-    "comparison_markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/matched_budget_comparison_summary.md"
+    "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/autonomous_online_comparator_manuscript.md",
+    "comparison_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/matched_budget_comparison_summary.json",
+    "comparison_markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/matched_budget_comparison_summary.md"
   },
   "latest_online_full_gate_smoke": {
     "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
@@ -615,16 +632,16 @@
   },
   "online_matched_budget_manuscript_comparator": {
     "status": "online_matched_budget_manuscript_comparator",
-    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/trajectory.json",
-    "co_pilot_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/co_pilot_online_full_gate_manuscript.md",
-    "autonomous_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/autonomous_baseline_summary.json",
-    "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/autonomous_online_comparator_manuscript.md",
+    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/trajectory.json",
+    "co_pilot_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+    "autonomous_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/autonomous_baseline_summary.json",
+    "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/autonomous_online_comparator_manuscript.md",
     "matched_continuous_trajectory": true,
     "comparison_type": "same-continuous-trajectory autonomous baseline",
-    "co_pilot_metric": 0.6462237240158368,
-    "autonomous_metric": 0.6462237240158367,
+    "co_pilot_metric": null,
+    "autonomous_metric": null,
     "lower_is_better": true,
-    "autonomous_minus_copilot_metric_delta": -1.1102230246251565e-16,
+    "autonomous_minus_copilot_metric_delta": null,
     "co_pilot_scores": {
       "section_completeness": 5.0,
       "gate_coverage": 5.0,
@@ -636,14 +653,14 @@
     "autonomous_scores": {
       "section_completeness": 5.0,
       "gate_coverage": 0.0,
-      "evidence_grounding": 4.4,
+      "evidence_grounding": 2.5,
       "claim_calibration": 5.0,
       "freshness": 3.0,
-      "overall": 3.48
+      "overall": 3.1
     },
     "interpretation": "This adds an autonomous manuscript comparator to the online trajectory manuscript probe. It is a same-continuous-trajectory baseline when generated from the same online run; it still needs more tasks, seeds, and independent paper-quality review before supporting final paper-quality claims.",
-    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/matched_budget_comparison_summary.md",
-    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/matched_budget_comparison_summary.json"
+    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/matched_budget_comparison_summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/matched_budget_comparison_summary.json"
   },
   "same_continuous_paper_quality_model_review": {
     "status": "model_review_probe_completed",

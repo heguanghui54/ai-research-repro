@@ -34,7 +34,8 @@
     "derived_trace_attention_cost_records": 12,
     "derived_trace_taste_insight_records": 7,
     "prospective_matched_packages": 3,
-    "same_run_online_paired_smokes": 2
+    "same_run_online_paired_smokes": 3,
+    "same_run_online_no_valid_branch_smokes": 1
   },
   "clean_clone_reproducibility": {
     "status": "pass",
@@ -193,50 +194,53 @@
     }
   },
   "online_trajectory_manuscript_probe": {
-    "status": "repeated_same_continuous_trajectory_smoke_manuscripts_generated",
+    "status": "repeated_same_continuous_trajectory_smoke_manuscripts_generated_with_failure_mode",
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.md",
-    "paired_smoke_count": 2,
-    "co_pilot_internal_score_each_run": 4.64,
-    "autonomous_internal_score_each_run": 3.48,
-    "limitation": "repeated same-continuous smoke only; tiny budget, autonomous-or-tie benchmark aggregate, and no independent human expert review"
+    "paired_smoke_count": 3,
+    "no_valid_branch_count": 1,
+    "limitation": "repeated same-continuous smoke only; tiny budget, autonomous-or-tie valid benchmark aggregate, Fairness no-valid failure, and no independent human expert review"
   },
   "online_matched_budget_manuscript_comparator": {
-    "status": "repeated_same_continuous_trajectory_comparators_generated",
+    "status": "repeated_same_continuous_trajectory_comparators_generated_with_failure_mode",
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.md",
-    "paired_smoke_count": 2,
+    "paired_smoke_count": 3,
     "co_pilot_benchmark_wins": 0,
     "autonomous_benchmark_wins": 1,
     "benchmark_ties": 1,
-    "mean_co_pilot_test_mae": 0.7541195479150204,
-    "mean_autonomous_test_mae": 0.6433374075893366,
-    "limitation": "Adds repeated same-run manuscript comparators, but current benchmark result does not favor co-pilot and sample size is two."
+    "benchmark_unknown": 1,
+    "no_valid_branch_count": 1,
+    "mean_co_pilot_test_mae_on_valid_causality_rows": 0.7541195479150204,
+    "mean_autonomous_test_mae_on_valid_causality_rows": 0.6433374075893366,
+    "limitation": "Adds repeated same-run manuscript comparators, but current valid benchmark result does not favor co-pilot and sample size is three with one no-valid task."
   },
   "same_continuous_paper_quality_model_review": {
-    "status": "repeated_model_review_probe_completed",
+    "status": "repeated_model_review_probe_completed_with_failure_mode",
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.md",
     "json": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.json",
-    "successful_reviews": 4,
-    "review_count": 4,
-    "co_pilot_wins": 4,
+    "successful_reviews": 6,
+    "review_count": 6,
+    "co_pilot_wins": 6,
     "autonomous_wins": 0,
     "ties": 0,
-    "limitation": "Monica-routed model review over two tiny-budget same-continuous smokes; not independent human expert review."
+    "limitation": "Monica-routed model review over three tiny-budget same-continuous smokes, including one no-valid Fairness failure; not independent human expert review."
   },
   "online_same_run_paired_smoke_summary": {
-    "status": "repeated_same_continuous_online_smoke_summary",
+    "status": "repeated_same_continuous_online_smoke_summary_with_failure_mode",
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.md",
     "json": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.json",
-    "paired_smoke_count": 2,
+    "paired_smoke_count": 3,
     "co_pilot_benchmark_wins": 0,
     "autonomous_benchmark_wins": 1,
     "benchmark_ties": 1,
-    "mean_co_pilot_test_mae": 0.7541195479150204,
-    "mean_autonomous_test_mae": 0.6433374075893366,
-    "mean_autonomous_minus_copilot_test_mae": -0.1107821403256839,
-    "model_review_probe_count": 2,
-    "model_review_co_pilot_wins": 4,
+    "benchmark_unknown": 1,
+    "no_valid_branch_count": 1,
+    "mean_co_pilot_test_mae_on_valid_causality_rows": 0.7541195479150204,
+    "mean_autonomous_test_mae_on_valid_causality_rows": 0.6433374075893366,
+    "mean_autonomous_minus_copilot_test_mae_on_valid_causality_rows": -0.1107821403256839,
+    "model_review_probe_count": 3,
+    "model_review_co_pilot_wins": 6,
     "model_review_autonomous_wins": 0,
     "model_review_ties": 0,
-    "limitation": "two tiny-budget same-continuous smokes; benchmark aggregate favors autonomous or tie; model review is not independent expert review"
+    "limitation": "three tiny-budget same-continuous smokes; valid benchmark aggregate favors autonomous or tie; Fairness row is no-valid; model review is not independent expert review"
   }
 }

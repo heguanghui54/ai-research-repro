@@ -1,0 +1,56 @@
+{
+  "model": "gpt-4o-mini",
+  "status_code": 200,
+  "response": {
+    "id": "chatcmpl-llm-router-openai",
+    "object": "chat.completion",
+    "created": 1780364234,
+    "model": "gpt-4o-mini",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "```json\n{\n  \"recommendation\": \"A\",\n  \"scores\": {\n    \"A\": {\n      \"claim_calibration\": 4,\n      \"evidence_use\": 4,\n      \"methodological_completeness\": 4,\n      \"limitation_honesty\": 5,\n      \"clarity\": 4,\n      \"overall\": 4\n    },\n    \"B\": {\n      \"claim_calibration\": 3,\n      \"evidence_use\": 3,\n      \"methodological_completeness\": 3,\n      \"limitation_honesty\": 4,\n      \"clarity\": 3,\n      \"overall\": 3\n    }\n  },\n  \"rationale\": \"Manuscript A provides a more comprehensive exploration of the IGRE methodology, with clear claims and a thorough discussion of limitations. It effectively uses evidence to support its claims, while Manuscript B, although useful as a comparator, lacks depth in its methodological discussion and evidence use.\",\n  \"required_next_evidence\": [\n    \"More extensive empirical results comparing both methods\",\n    \"Additional experiments across varied tasks and seeds\",\n    \"Independent evaluation of manuscript quality\"\n  ]\n}\n```"
+        },
+        "finish_reason": "stop",
+        "content_filter_results": {
+          "hate": {
+            "filtered": false
+          },
+          "self_harm": {
+            "filtered": false
+          },
+          "sexual": {
+            "filtered": false
+          },
+          "violence": {
+            "filtered": false
+          },
+          "jailbreak": {
+            "filtered": false,
+            "detected": false
+          },
+          "profanity": {
+            "filtered": false,
+            "detected": false
+          }
+        }
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 2363,
+      "completion_tokens": 245,
+      "total_tokens": 2608,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 0
+      }
+    },
+    "system_fingerprint": ""
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "probe_id": "online_full_gate_smoke_20260602_013502_fairness_failure_mode",
+  "status": "matched_manuscript_quality_probe",
+  "title": "Matched Manuscript Quality Score",
+  "scope_note": "This is a model-review quality probe over a same-run Fairness failure-mode online smoke. Both FML paths lack valid scalar test metrics, so it is not benchmark-performance evidence or human expert peer review.",
+  "probe_kind": "full-manuscripts",
+  "co_pilot_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+  "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/autonomous_online_comparator_manuscript.md",
+  "review_count": 2,
+  "successful_reviews": 2,
+  "co_pilot_wins": 2,
+  "autonomous_wins": 0,
+  "ties": 0,
+  "reviews": [
+    {
+      "model": "gpt-4o-mini",
+      "status_code": 200,
+      "raw_json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/paper_quality/gpt-4o-mini.json",
+      "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/paper_quality/gpt-4o-mini.md",
+      "parsed": {
+        "recommendation": "A",
+        "scores": {
+          "A": {
+            "claim_calibration": 4,
+            "evidence_use": 4,
+            "methodological_completeness": 4,
+            "limitation_honesty": 5,
+            "clarity": 4,
+            "overall": 4
+          },
+          "B": {
+            "claim_calibration": 3,
+            "evidence_use": 3,
+            "methodological_completeness": 3,
+            "limitation_honesty": 4,
+            "clarity": 3,
+            "overall": 3
+          }
+        },
+        "rationale": "Manuscript A provides a more comprehensive exploration of the IGRE methodology, with clear claims and a thorough discussion of limitations. It effectively uses evidence to support its claims, while Manuscript B, although useful as a comparator, lacks depth in its methodological discussion and evidence use.",
+        "required_next_evidence": [
+          "More extensive empirical results comparing both methods",
+          "Additional experiments across varied tasks and seeds",
+          "Independent evaluation of manuscript quality"
+        ]
+      },
+      "interpretation": "co_pilot_preferred"
+    },
+    {
+      "model": "claude-3-7-sonnet-latest",
+      "status_code": 200,
+      "raw_json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/paper_quality/claude-3-7-sonnet-latest.json",
+      "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/paper_quality/claude-3-7-sonnet-latest.md",
+      "parsed": {
+        "recommendation": "A",
+        "scores": {
+          "A": {
+            "claim_calibration": 4,
+            "evidence_use": 3,
+            "methodological_completeness": 3,
+            "limitation_honesty": 5,
+            "clarity": 4,
+            "overall": 4
+          },
+          "B": {
+            "claim_calibration": 3,
+            "evidence_use": 2,
+            "methodological_completeness": 2,
+            "limitation_honesty": 4,
+            "clarity": 3,
+            "overall": 3
+          }
+        },
+        "rationale": "Both manuscripts are smoke-test artifacts with largely missing quantitative results (n/a values throughout), but Manuscript A is more complete and self-consistent. A presents a coherent five-gate IGRE framework with a clear table of gate decisions, an explicit claim audit distinguishing supported from unsupported claims, and a well-articulated limitations section that honestly enumerates what is missing (attention costs, matched baselines, multiple seeds). Its central claim—that the orchestration loop is feasible and produces a trace-bound artifact—is appropriately modest and calibrated to the available evidence. Manuscript B is structurally thinner: it positions itself as a 'comparator' but the comparison table contains only n/a values, making it nearly vacuous as evidence. The method section is sparse, the experimental setup mixes a real baseline metric (0.186632) with n/a test results without explanation, and the conclusion adds little beyond restating that a comparator exists. B's claim calibration is weaker because it frames itself as providing an 'explicit benchmark counterweight' when no actual comparison is possible from the reported data. A's one concrete result (program-search score 0.994177) at least anchors one claim. Both papers suffer from the same fundamental limitation of missing primary results, but A handles this more transparently and provides more methodological scaffolding.",
+        "required_next_evidence": [
+          "Actual validation and test MAE values for the selected FML branch and continuation, replacing all n/a entries in both manuscripts",
+          "Measured human attention-cost (minutes) for each gate decision to support efficiency claims",
+          "Paired autonomous baseline results across multiple tasks and seeds to enable a meaningful co-pilot vs. autonomous comparison"
+        ]
+      },
+      "interpretation": "co_pilot_preferred"
+    }
+  ],
+  "limitations": [
+    "Model review is an audit aid, not human expert peer review.",
+    "A is co-pilot and B is autonomous; anonymized to reviewers but not randomized.",
+    "A strong claim requires broader matched trajectories and independent review."
+  ]
+}

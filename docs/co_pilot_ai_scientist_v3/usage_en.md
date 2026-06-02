@@ -248,10 +248,11 @@ To summarize all archived same-run paired online smokes, run:
 python3 scripts/summarize_online_paired_smokes.py --update-manifest
 ```
 
-The current repeated-smoke summary reports `2` paired online runs, `0`
-co-pilot benchmark wins, `1` autonomous win, and `1` tie. It should be cited as
-orchestration and manuscript-measurement readiness evidence, not as co-pilot
-benchmark superiority.
+The current repeated-smoke summary reports `3` paired online runs: two valid
+Causality metric comparisons with `0` co-pilot benchmark wins, `1` autonomous
+win, and `1` tie, plus one Fairness no-valid failure trajectory. It should be
+cited as orchestration and manuscript-measurement readiness evidence, not as
+co-pilot benchmark superiority.
 
 To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
 
