@@ -1,0 +1,103 @@
+{
+  "packet": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000",
+  "score_csv": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/score_sheet_template.csv",
+  "row_count": 6,
+  "invalid_rows": [
+    {
+      "pair_id": "pair_01",
+      "reason": "missing_or_invalid_winner"
+    },
+    {
+      "pair_id": "pair_02",
+      "reason": "missing_or_invalid_winner"
+    },
+    {
+      "pair_id": "pair_03",
+      "reason": "missing_or_invalid_winner"
+    },
+    {
+      "pair_id": "pair_04",
+      "reason": "missing_or_invalid_winner"
+    },
+    {
+      "pair_id": "pair_05",
+      "reason": "missing_or_invalid_winner"
+    },
+    {
+      "pair_id": "pair_06",
+      "reason": "missing_or_invalid_winner"
+    }
+  ],
+  "condition_wins": {},
+  "condition_win_rates": {},
+  "condition_means": {},
+  "review_guided_minus_other_mean_delta": null,
+  "inter_rater_agreement": {
+    "status": "not_enough_valid_votes",
+    "included_pairs": 0,
+    "kappa": null
+  },
+  "pair_results": [
+    {
+      "pair_id": "pair_01",
+      "mapping": {
+        "paper_id": "openreview_sample_1",
+        "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+        "A": "review_guided",
+        "B": "context_control_unrelated_reviews"
+      },
+      "winner": ""
+    },
+    {
+      "pair_id": "pair_02",
+      "mapping": {
+        "paper_id": "openreview_sample_17",
+        "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+        "A": "review_guided",
+        "B": "context_control_unrelated_reviews"
+      },
+      "winner": ""
+    },
+    {
+      "pair_id": "pair_03",
+      "mapping": {
+        "paper_id": "openreview_sample_2",
+        "title": "Forked Diffusion for Conditional Graph Generation",
+        "A": "review_guided",
+        "B": "context_control_unrelated_reviews"
+      },
+      "winner": ""
+    },
+    {
+      "pair_id": "pair_04",
+      "mapping": {
+        "paper_id": "openreview_sample_34",
+        "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+        "A": "context_control_unrelated_reviews",
+        "B": "review_guided"
+      },
+      "winner": ""
+    },
+    {
+      "pair_id": "pair_05",
+      "mapping": {
+        "paper_id": "openreview_sample_49",
+        "title": "Unifying semi-supervised and robust learning by mixup",
+        "A": "review_guided",
+        "B": "context_control_unrelated_reviews"
+      },
+      "winner": ""
+    },
+    {
+      "pair_id": "pair_06",
+      "mapping": {
+        "paper_id": "openreview_sample_64",
+        "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+        "A": "context_control_unrelated_reviews",
+        "B": "review_guided"
+      },
+      "winner": ""
+    }
+  ],
+  "claim_boundary": "This summary is valid only if the CSV contains independent human expert ratings collected under the packet instructions."
+}
