@@ -19,6 +19,8 @@ Start here:
   [docs/co_pilot_ai_scientist_v3/submission_card_zh.md](docs/co_pilot_ai_scientist_v3/submission_card_zh.md)
 - Top-conference evidence roadmap:
   [docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md](docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md)
+- Deep regeneration casebook:
+  [docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md](docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md)
 - Focused English paper:
   [docs/co_pilot_ai_scientist_v3/paper_en_focused.md](docs/co_pilot_ai_scientist_v3/paper_en_focused.md)
 - Focused Chinese paper:

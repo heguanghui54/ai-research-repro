@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T11:55:13Z",
+  "audit_date": "2026-06-02T12:01:22Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "cdaf98d96cb1e592793b12ef643a15754a865188",
+  "head": "7672c30b51d846371b6c968f6054ef312d398a12",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -48,7 +48,7 @@
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 7526,
+      "bytes": 7681,
       "ok": true
     },
     "english_submission_card": {
@@ -66,13 +66,19 @@
     "top_conference_evidence_roadmap": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
       "exists": true,
-      "bytes": 6940,
+      "bytes": 8336,
       "ok": true
     },
     "top_conference_evidence_roadmap_json": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
       "exists": true,
-      "bytes": 4045,
+      "bytes": 5006,
+      "ok": true
+    },
+    "deep_regeneration_casebook": {
+      "path": "docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md",
+      "exists": true,
+      "bytes": 13397,
       "ok": true
     },
     "english_usage": {
@@ -142,6 +148,7 @@
       "submission_card_en.md": true,
       "submission_card_zh.md": true,
       "top_conference_evidence_roadmap.md": true,
+      "deep_regeneration_casebook.md": true,
       "External Verification Entry Point": true,
       "audit_top_conference_evidence_roadmap.py": true,
       "audit_human_expert_blind_review_packet.py": true,
@@ -173,6 +180,7 @@
       "Blind Human Expert Review": true,
       "Matched Autonomous Versus Human-Gated Runs": true,
       "Long-Horizon Taste Gate": true,
+      "Three Deep Regeneration Case Studies": true,
       "Live Multi-Researcher Co-Pilot Trace Data": true,
       "Non-FML Official Benchmark Check": true,
       "not empirical superiority over autonomous AI Scientist-v2": true
@@ -185,9 +193,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 635,
+  "manifest_artifacts": 636,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "635/635",
+  "manifest_coverage_ratio": "636/636",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",

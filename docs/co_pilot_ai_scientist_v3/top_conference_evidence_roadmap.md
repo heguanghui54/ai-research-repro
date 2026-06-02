@@ -78,7 +78,29 @@ before the generated manuscripts are scored.
 - If it fails: keep LHTG/DVRS as a falsifiable measurement protocol and report
   negative evidence, not as a proven source of breakthrough guidance.
 
-## Milestone 4: Live Multi-Researcher Co-Pilot Trace Data
+## Milestone 4: Three Deep Regeneration Case Studies
+
+- Claim tested: broad OpenReview screening can identify concrete historical
+  paper-review pairs where human review guidance changes the automatic-research
+  trajectory in an interpretable way.
+- Required data: about three selected cases from `deep_regeneration_casebook.md`,
+  each with original paper summary, human review excerpts, regenerated
+  paper-only/review-guided/control artifacts, runnable experiment code or logs,
+  short-term metrics, later-frontier evidence, and a case-level route analysis.
+- Minimum design: at least one positive or frontier-route case, one mixed case,
+  and one negative/boundary case; do not rely only on LLM reviewer win counts.
+- Metrics: actual rerun metrics where possible, changed experiment design,
+  frontier-alignment score, qualitative similarity to later mainstream results,
+  and whether the review changed a decision that an automatic researcher would
+  otherwise not make.
+- Upgrade condition: the case studies reveal concrete, inspectable mechanisms
+  by which review guidance changes benchmarks, methods, failure analysis, or
+  claim boundaries; at least one case should show nontrivial similarity to a
+  later mainstream research route.
+- If it fails: keep the paper as a workflow/protocol proposal and use the case
+  failures to define which human review comments should be downweighted.
+
+## Milestone 5: Live Multi-Researcher Co-Pilot Trace Data
 
 - Claim tested: the gate schema captures real human scientific taste and
   attention cost beyond a single-author Codex trace.
@@ -94,7 +116,7 @@ before the generated manuscripts are scored.
 - If it fails: describe the schema as single-author prototype tooling and mark
   population-level claims as future work.
 
-## Milestone 5: Non-FML Official Benchmark Check
+## Milestone 6: Non-FML Official Benchmark Check
 
 - Claim tested: the workflow is not overfit to FML-Bench-style evidence.
 - Required data: at least one scored official non-FML benchmark, preferably

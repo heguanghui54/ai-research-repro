@@ -112,6 +112,7 @@ def main() -> None:
         "chinese_submission_card": DOC_DIR / "submission_card_zh.md",
         "top_conference_evidence_roadmap": DOC_DIR / "top_conference_evidence_roadmap.md",
         "top_conference_evidence_roadmap_json": DOC_DIR / "top_conference_evidence_roadmap.json",
+        "deep_regeneration_casebook": DOC_DIR / "deep_regeneration_casebook.md",
         "english_usage": DOC_DIR / "usage_en.md",
         "chinese_usage": DOC_DIR / "usage_zh.md",
         "english_runbook": DOC_DIR / "RUNBOOK_EN.md",
@@ -154,6 +155,7 @@ def main() -> None:
                 "submission_card_en.md",
                 "submission_card_zh.md",
                 "top_conference_evidence_roadmap.md",
+                "deep_regeneration_casebook.md",
                 "External Verification Entry Point",
                 "audit_top_conference_evidence_roadmap.py",
                 "audit_human_expert_blind_review_packet.py",
@@ -194,6 +196,7 @@ def main() -> None:
                 "Blind Human Expert Review",
                 "Matched Autonomous Versus Human-Gated Runs",
                 "Long-Horizon Taste Gate",
+                "Three Deep Regeneration Case Studies",
                 "Live Multi-Researcher Co-Pilot Trace Data",
                 "Non-FML Official Benchmark Check",
                 "not empirical superiority over autonomous AI Scientist-v2",
@@ -343,6 +346,7 @@ def main() -> None:
         docs["chinese_submission_card"],
         docs["top_conference_evidence_roadmap"],
         docs["top_conference_evidence_roadmap_json"],
+        docs["deep_regeneration_casebook"],
     ]:
         rel = _rel(path)
         if rel not in manifest["current_artifacts"]:

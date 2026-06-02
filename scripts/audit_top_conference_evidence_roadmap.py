@@ -35,6 +35,12 @@ REQUIRED_MILESTONES = {
         "30 matched controls",
         "positive delayed-value case",
     ],
+    "three_deep_regeneration_case_studies": [
+        "three selected cases",
+        "human review excerpts",
+        "runnable experiment code or logs",
+        "later-frontier evidence",
+    ],
     "live_multi_researcher_copilot_trace_data": [
         "20 prospective gates",
         "5 researchers",
@@ -112,8 +118,9 @@ def main() -> None:
         "Milestone 1: Blind Human Expert Review",
         "Milestone 2: Matched Autonomous Versus Human-Gated Runs",
         "Milestone 3: Long-Horizon Taste Gate / DVRS Replay",
-        "Milestone 4: Live Multi-Researcher Co-Pilot Trace Data",
-        "Milestone 5: Non-FML Official Benchmark Check",
+        "Milestone 4: Three Deep Regeneration Case Studies",
+        "Milestone 5: Live Multi-Researcher Co-Pilot Trace Data",
+        "Milestone 6: Non-FML Official Benchmark Check",
         "Decision Rule For The Paper",
         "not empirical superiority over autonomous AI Scientist-v2",
     ]

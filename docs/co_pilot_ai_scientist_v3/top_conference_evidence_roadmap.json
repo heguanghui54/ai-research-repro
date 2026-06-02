@@ -26,6 +26,13 @@
       "fallback_if_failed": "Keep LHTG/DVRS as a falsifiable measurement protocol and report negative evidence."
     },
     {
+      "id": "three_deep_regeneration_case_studies",
+      "claim_tested": "Broad OpenReview screening can identify concrete historical paper-review pairs where human review guidance changes the automatic-research trajectory in an interpretable way.",
+      "minimum_design": "At least three selected cases from deep_regeneration_casebook.md, each with original paper summary, human review excerpts, regenerated artifacts, runnable experiment code or logs, short-term metrics, later-frontier evidence, and case-level route analysis.",
+      "upgrade_condition": "The cases reveal inspectable mechanisms by which review guidance changes benchmarks, methods, failure analysis, or claim boundaries, with at least one case showing nontrivial similarity to a later mainstream research route.",
+      "fallback_if_failed": "Keep the paper as a workflow/protocol proposal and use the failures to define which human review comments should be downweighted."
+    },
+    {
       "id": "live_multi_researcher_copilot_trace_data",
       "claim_tested": "The gate schema captures real human taste and attention cost beyond a single-author trace.",
       "minimum_design": "At least 20 prospective gates from at least 5 researchers with complete attention_cost and taste_insight fields.",

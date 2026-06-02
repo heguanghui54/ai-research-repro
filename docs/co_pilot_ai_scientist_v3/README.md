@@ -34,6 +34,10 @@ claim calibration.
   portfolio is not FML-only, records positive non-FML scored probes, boundary
   conditions, and blocked official setup probes without inflating them into
   performance claims.
+- `deep_regeneration_casebook.md`: three concrete OpenReview replay candidates
+  that expose the original paper, review guidance, regenerated artifacts,
+  short-term and frontier-alignment data, and the exact deep reruns needed to
+  make the experiment section more persuasive under budget constraints.
 - `top_conference_evidence_roadmap.md/json`: strict next-evidence roadmap
   converting the remaining top-conference blockers into preregistered
   experiments and decision rules.
