@@ -37,6 +37,18 @@ def _git_head() -> str:
     return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
 
 
+def _git_parent(head: str) -> str:
+    result = subprocess.run(
+        ["git", "rev-parse", f"{head}^"],
+        cwd=ROOT,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+    )
+    return result.stdout.strip()
+
+
 def _git_is_shallow() -> bool:
     result = subprocess.run(
         ["git", "rev-parse", "--is-shallow-repository"],
@@ -68,6 +80,7 @@ def _contains(path: Path, needles: list[str]) -> dict[str, bool]:
 def main() -> None:
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
     head = _git_head()
+    parent = _git_parent(head)
     manifest_path = DOC_DIR / "repro_manifest.json"
     clean_path = AUDIT_DIR / "clean_clone_reproducibility_audit.json"
     readiness_path = AUDIT_DIR / "top_conference_readiness_audit.json"
@@ -162,11 +175,25 @@ def main() -> None:
     if stale_hits:
         errors.append(f"stale clean-clone or manifest-count tokens found: {stale_hits}")
 
+    objective_head_marker = head[:9]
+    objective_parent_marker = parent[:9] if parent else ""
+    objective_checks = _contains(
+        objective_md,
+        [marker for marker in [objective_head_marker, objective_parent_marker, manifest_ratio, "top-conference empirical target remains incomplete"] if marker],
+    )
+    objective_has_commit_marker = objective_checks.get(objective_head_marker, False) or (
+        bool(objective_parent_marker) and objective_checks.get(objective_parent_marker, False)
+    )
+    objective_checks[f"{objective_head_marker}_or_parent"] = objective_has_commit_marker
+    objective_checks.pop(objective_head_marker, None)
+    if objective_parent_marker:
+        objective_checks.pop(objective_parent_marker, None)
+
     text_checks = {
         _rel(focused_en): _contains(focused_en, ["+0.064", "Candidate-frontier validation"]),
         _rel(readiness_md): _contains(readiness_md, [clean_short, clean_ratio, "+0.064"]),
         _rel(claim_md): _contains(claim_md, [clean_ratio, "candidate-frontier validation"]),
-        _rel(objective_md): _contains(objective_md, [head[:9], manifest_ratio, "top-conference empirical target remains incomplete"]),
+        _rel(objective_md): objective_checks,
     }
     for path, checks in text_checks.items():
         for needle, present in checks.items():

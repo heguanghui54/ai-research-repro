@@ -709,7 +709,11 @@
     "scripts/audit_frontier_alignment_vector_graph.py",
     "docs/co_pilot_ai_scientist_v3/frontier_alignment_vector_graph_protocol.md",
     "docs/co_pilot_ai_scientist_v3/audits/frontier_alignment_vector_graph_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/frontier_alignment_vector_graph_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/frontier_alignment_vector_graph_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/prepare_relative_python.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/prepare_abs_python.log"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1734,9 +1738,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "987eb0ef3d6dc04366fc23e79e23bfa32c6d83b1",
+    "head": "a9d56f859efc51cb8b65222211fb13331c2ec12b",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 696,
+    "manifest_artifacts": 700,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1764,5 +1768,11 @@
     "json": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/human_score_summary_smoke/summary.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/human_score_summary_smoke/summary.md",
     "positive_evidence_threshold_met": false
+  },
+  "mlagentbench_cifar10_debug_refresh_probe": {
+    "status": "blocked_slow_data_download",
+    "official_score_reported": false,
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/summary.json",
+    "claim_boundary": "Setup evidence only; no second scored official non-FML benchmark result is reported."
   }
 }

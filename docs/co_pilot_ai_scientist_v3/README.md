@@ -419,8 +419,11 @@ population-level human-subjects evidence.
 The latest benchmark-expansion probes are deliberately recorded as setup
 evidence rather than inflated results. A second official MLAgentBench
 `debug`/CIFAR10 attempt repaired the missing `torchvision` dependency but was
-stopped when the 170 MB CIFAR10 archive downloaded at only a few hundred KB over
-half a minute. An additional MLAgentBench `imdb` attempt repaired the missing
+stopped when the 170 MB CIFAR10 archive downloaded too slowly. A 2026-06-02
+refresh fixed the relative-Python invocation and confirmed that the official
+CIFAR source is reachable from `ubuntu-heshi`, but only about 3.28 MB of the
+170 MB archive downloaded in roughly 61 seconds before termination. An
+additional MLAgentBench `imdb` attempt repaired the missing
 `datasets` dependency, but the Ubuntu host could not reach HuggingFace to load
 even a five-example split. A ScienceAgentBench metadata probe confirmed the code repository
 and the April 2026 verified-artifact requirement, but HuggingFace metadata was

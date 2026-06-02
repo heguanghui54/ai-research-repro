@@ -336,7 +336,8 @@ direct editing matches OpenEvolve on a simple standard modeling change.
   feasible.
 - Extend the current two mixed matched-budget Causality pairs across more
   tasks, seeds, and budget schedules.
-- Add a second official MLAgentBench task or download the verified
+- Add a second official MLAgentBench task by pre-caching CIFAR10 or selecting
+  another task with already available data; alternatively download the verified
   ScienceAgentBench artifacts and run a first ScienceAgentBench instance.
 - Add external or rubric-based paper-quality scoring.
 - Run a full four-loop trajectory where hypothesis, evaluator, branch,

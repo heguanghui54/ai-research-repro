@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T13:57:51Z",
+  "audit_date": "2026-06-02T14:17:56Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -59,6 +59,22 @@
           "reason_to_stop": "interactive run would take hours at observed download speed"
         },
         "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_setup_probe/summary.json"
+      },
+      "mlagentbench_cifar10_refresh": {
+        "status": "blocked_slow_data_download",
+        "official_score_reported": false,
+        "blocker": {
+          "type": "slow_external_dataset_download",
+          "description": "CIFAR10 source is reachable from ubuntu-heshi, but throughput is too low for the current interactive run budget.",
+          "next_actions": [
+            "pre-cache CIFAR10 on ubuntu-heshi",
+            "use a faster approved mirror",
+            "select another official MLAgentBench task with local or already available data"
+          ]
+        },
+        "partial_download_bytes": 3276800,
+        "archive_bytes": 170498071,
+        "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/summary.json"
       },
       "mlagentbench_imdb": {
         "status": "setup_blocked_by_huggingface_network",

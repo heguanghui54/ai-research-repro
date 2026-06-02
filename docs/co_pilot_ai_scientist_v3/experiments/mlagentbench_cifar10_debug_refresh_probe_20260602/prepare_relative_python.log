@@ -1,0 +1,19 @@
+2026-06-02T22:12:19+08:00
+python=.venv/bin/python
+Running prepare.py ...
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/heshi/work/bench-probes/MLAgentBench/MLAgentBench/prepare_task.py", line 62, in <module>
+    prepare_task(benchmark_dir, python=python)
+  File "/home/heshi/work/bench-probes/MLAgentBench/MLAgentBench/prepare_task.py", line 42, in prepare_task
+    p = subprocess.run([python, "prepare.py"], cwd=os.path.join(benchmark_dir,"scripts"))
+  File "/usr/lib/python3.10/subprocess.py", line 503, in run
+    with Popen(*popenargs, **kwargs) as process:
+  File "/usr/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: '.venv/bin/python'

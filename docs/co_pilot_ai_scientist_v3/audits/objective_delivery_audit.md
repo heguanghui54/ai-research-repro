@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T14:08:30Z`
+- Audit date: `2026-06-02T14:17:57Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `987eb0ef3d6dc04366fc23e79e23bfa32c6d83b1`
+- HEAD: `a9d56f859efc51cb8b65222211fb13331c2ec12b`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `696`
+- Manifest artifacts: `700`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `696/696`
+- Manifest coverage: `700/700`
 
 ## Explicit Requirements
 
@@ -56,8 +56,8 @@
 - `main_paper_figure`: `pass` (146654 bytes) - `docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png`
 - `english_usage`: `pass` (19460 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
 - `chinese_usage`: `pass` (19890 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
-- `english_runbook`: `pass` (13724 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
-- `chinese_runbook`: `pass` (12498 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
+- `english_runbook`: `pass` (13815 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
+- `chinese_runbook`: `pass` (12555 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
 - `reusable_skill`: `pass` (22590 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
 - `task_template`: `pass` (2899 bytes) - `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`
 - `gate_template`: `pass` (1789 bytes) - `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`

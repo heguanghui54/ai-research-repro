@@ -1,6 +1,6 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T13:57:51Z`
+- Audit date: `2026-06-02T14:17:56Z`
 - Status: `pass`
 - FML entries: `2`
 - Non-FML entries: `9`
@@ -14,6 +14,7 @@
 
 - sklearn diabetes boundary: direct rewrite RMSE `55.89546025654621` matches or beats OpenEvolve median `55.89546025654621`, so program search should be gated rather than automatic.
 - `mlagentbench_cifar10`: `setup_blocked_by_slow_dataset_download`; no official score reported.
+- `mlagentbench_cifar10_refresh`: `blocked_slow_data_download`; no official score reported.
 - `mlagentbench_imdb`: `setup_blocked_by_huggingface_network`; no official score reported.
 - `scienceagentbench`: `metadata_and_verified_artifacts_not_yet_accessible`; no official score reported.
 

@@ -1,0 +1,35 @@
+{
+  "probe_id": "mlagentbench_cifar10_debug_refresh_probe_20260602",
+  "status": "blocked_slow_data_download",
+  "host": "ubuntu-heshi",
+  "remote_repo": "/home/heshi/work/bench-probes/MLAgentBench",
+  "task_alias": "debug",
+  "benchmark_folder": "cifar10",
+  "python": "/home/heshi/work/bench-probes/MLAgentBench/.venv/bin/python",
+  "remote_run_dir": "/home/heshi/work/copilotv3-mlagentbench-cifar10-debug-refresh-20260602",
+  "official_score_reported": false,
+  "relative_python_attempt": {
+    "status": "failed",
+    "reason": "prepare_task changes into the benchmark scripts directory, so relative .venv/bin/python is not resolvable",
+    "log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/prepare_relative_python.log"
+  },
+  "absolute_python_attempt": {
+    "status": "terminated_due_to_slow_download",
+    "download_url": "https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz",
+    "archive_bytes": 170498071,
+    "partial_download_bytes": 3276800,
+    "observed_elapsed_seconds": 61,
+    "prepared_marker_created": false,
+    "log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/prepare_abs_python.log"
+  },
+  "blocker": {
+    "type": "slow_external_dataset_download",
+    "description": "CIFAR10 source is reachable from ubuntu-heshi, but throughput is too low for the current interactive run budget.",
+    "next_actions": [
+      "pre-cache CIFAR10 on ubuntu-heshi",
+      "use a faster approved mirror",
+      "select another official MLAgentBench task with local or already available data"
+    ]
+  },
+  "claim_boundary": "This is setup evidence only. It does not provide a second scored official non-FML benchmark result."
+}

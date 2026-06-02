@@ -54,8 +54,8 @@
     {
       "claim_family": "Official non-FML benchmark expansion",
       "benchmark_or_probe": "MLAgentBench debug/CIFAR10 and imdb setup probes",
-      "current_evidence": "CIFAR10 dependency repair reached data download but was too slow; IMDB dependency repair installed datasets==4.8.5 but HuggingFace access failed with [Errno 101] Network is unreachable.",
-      "supports": "Benchmark choice is being broadened by claim fit and availability rather than convenience; blocked official tasks are logged as evidence.",
+      "current_evidence": "CIFAR10 dependency repair reached data download; a 2026-06-02 refresh fixed the Python-path issue and confirmed the official CIFAR source is reachable, but only about 3.28 MB of the 170 MB archive downloaded in roughly 61 seconds before termination. IMDB dependency repair installed datasets==4.8.5 but HuggingFace access failed with [Errno 101] Network is unreachable.",
+      "supports": "Benchmark choice is being broadened by claim fit and availability rather than convenience; blocked official tasks are logged as evidence with concrete next actions",
       "does_not_prove": "A second scored official non-FML benchmark result."
     },
     {

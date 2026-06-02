@@ -292,8 +292,9 @@ editing 可以匹配 OpenEvolve。
 
 - 如果可行，把 snapshot-seeded continuation 升级为原生 tree-object resume。
 - 将当前两组 mixed matched pair 扩展到更多任务、随机种子和预算分配。
-- 加入第二个官方 MLAgentBench task，或先下载 ScienceAgentBench verified
-  artifacts 后运行第一个 ScienceAgentBench instance。
+- 通过预缓存 CIFAR10 或选择已有数据的任务加入第二个官方 MLAgentBench task；
+  或先下载 ScienceAgentBench verified artifacts 后运行第一个 ScienceAgentBench
+  instance。
 - 加入外部评审或 rubric-based paper-quality scoring。
 - 跑一次完整四循环轨迹，让 hypothesis、evaluator、branch、program-search 和 claim-audit gates 在同一条连续任务中全部生效。
 - 将完整项目包推送到 GitHub。

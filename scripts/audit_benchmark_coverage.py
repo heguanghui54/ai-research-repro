@@ -51,6 +51,7 @@ def main() -> None:
     knapsack_direct_path = EXP_DIR / "knapsack_direct_baseline" / "summary.json"
     sklearn_path = EXP_DIR / "sklearn_diabetes_tabular_summary.json"
     cifar_path = EXP_DIR / "mlagentbench_cifar10_debug_setup_probe" / "summary.json"
+    cifar_refresh_path = EXP_DIR / "mlagentbench_cifar10_debug_refresh_probe_20260602" / "summary.json"
     imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
     science_path = EXP_DIR / "scienceagentbench_metadata_setup_probe" / "summary.json"
 
@@ -65,6 +66,7 @@ def main() -> None:
     knapsack_direct = _load_json(knapsack_direct_path)
     sklearn = _load_json(sklearn_path)
     cifar = _load_json(cifar_path)
+    cifar_refresh = _load_json(cifar_refresh_path)
     imdb = _load_json(imdb_path)
     science = _load_json(science_path)
 
@@ -96,6 +98,14 @@ def main() -> None:
             "official_score_reported": cifar.get("official_score_reported"),
             "blocker": cifar.get("blocker", {}),
             "path": _rel(cifar_path),
+        },
+        "mlagentbench_cifar10_refresh": {
+            "status": cifar_refresh.get("status"),
+            "official_score_reported": cifar_refresh.get("official_score_reported"),
+            "blocker": cifar_refresh.get("blocker", {}),
+            "partial_download_bytes": cifar_refresh.get("absolute_python_attempt", {}).get("partial_download_bytes"),
+            "archive_bytes": cifar_refresh.get("absolute_python_attempt", {}).get("archive_bytes"),
+            "path": _rel(cifar_refresh_path),
         },
         "mlagentbench_imdb": {
             "status": imdb.get("status"),

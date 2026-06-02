@@ -65,7 +65,12 @@ sufficient by itself.
   - A second official `debug`/CIFAR10 setup probe repaired a missing
     `torchvision` dependency but stopped during dataset preparation because the
     170 MB CIFAR10 archive was downloading too slowly for the interactive run.
-    It is archived as setup evidence, not as a score.
+    A 2026-06-02 refresh probe fixed the Python-path invocation and confirmed
+    that the official CIFAR source is reachable from `ubuntu-heshi`, but only
+    about 3.28 MB downloaded in roughly 61 seconds before termination. It is
+    archived as setup evidence, not as a score; the next run should pre-cache
+    CIFAR10, use a faster approved mirror, or select another official task with
+    available data.
 - **sklearn diabetes tabular regression probe**:
   - Role: non-FML, non-runtime-only controlled ML modeling task that does not
     require external dataset credentials.
