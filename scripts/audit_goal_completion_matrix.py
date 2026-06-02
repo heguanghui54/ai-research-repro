@@ -138,10 +138,13 @@ def main() -> None:
             [
                 _rel(DOC_DIR / "experiments" / "prospective_matched_fml_causality_20260602_000001" / "summary.json"),
                 _rel(DOC_DIR / "experiments" / "online_full_gate_smoke_20260602_010521" / "trajectory.json"),
+                _rel(DOC_DIR / "experiments" / "online_full_gate_smoke_20260602_010521" / "online_manuscript" / "co_pilot_online_full_gate_manuscript.md"),
+                _rel(DOC_DIR / "experiments" / "online_full_gate_smoke_20260602_010521" / "online_manuscript" / "autonomous_online_comparator_manuscript.md"),
+                _rel(DOC_DIR / "audits" / "end_to_end_paired_trajectory_audit.md"),
                 _rel(DOC_DIR / "experiments" / "fml_matched_budget_comparison.md"),
             ],
-            "There are runnable smoke and matched-budget traces, but not enough full-scale matched tasks/seeds for a broad superiority claim.",
-            "Run at least 5 matched-budget pairs per task across at least 3 tasks before claiming performance improvement.",
+            "There is now one same-run end-to-end smoke pair with co-pilot and autonomous manuscripts, but not enough full-scale matched tasks/seeds for a broad superiority claim.",
+            "Repeat same-run end-to-end pairs across at least 3 tasks and independent manuscript reviews before claiming performance improvement.",
         ),
         _requirement(
             "alphaevolve_openevolve_search",

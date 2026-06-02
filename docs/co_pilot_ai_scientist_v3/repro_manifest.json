@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_package_consistency_audit",
+  "status": "pilot_package_with_same_continuous_online_manuscript_comparator",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -699,7 +699,10 @@
     "docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png",
     "scripts/audit_focused_references.py",
     "docs/co_pilot_ai_scientist_v3/audits/focused_references_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/focused_references_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/focused_references_audit.md",
+    "scripts/audit_end_to_end_paired_trajectory.py",
+    "docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -931,8 +934,8 @@
   },
   "online_trajectory_manuscript_probe": {
     "status": "online_trajectory_manuscript_probe",
-    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/trajectory.json",
-    "manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
+    "manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/co_pilot_online_full_gate_manuscript.md",
     "fresh_online_smoke": true,
     "matched_autonomous_manuscript": true,
     "scores": {
@@ -944,13 +947,13 @@
       "overall": 4.64
     },
     "interpretation": "This narrows the fresh online manuscript-production gap and adds a same-continuous-trajectory autonomous manuscript comparator; it remains a tiny-budget smoke without independent paper-quality review.",
-    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/summary.md",
-    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/summary.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/summary.json",
     "matched_autonomous_manuscript_scope": "same-continuous-trajectory autonomous baseline",
     "matched_continuous_trajectory": true,
-    "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/autonomous_online_comparator_manuscript.md",
-    "comparison_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/matched_budget_comparison_summary.json",
-    "comparison_markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/matched_budget_comparison_summary.md"
+    "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/autonomous_online_comparator_manuscript.md",
+    "comparison_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.json",
+    "comparison_markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.md"
   },
   "latest_online_full_gate_smoke": {
     "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
@@ -963,16 +966,16 @@
   },
   "online_matched_budget_manuscript_comparator": {
     "status": "online_matched_budget_manuscript_comparator",
-    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/trajectory.json",
-    "co_pilot_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/co_pilot_online_full_gate_manuscript.md",
-    "autonomous_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/autonomous_baseline_summary.json",
-    "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/autonomous_online_comparator_manuscript.md",
+    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
+    "co_pilot_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+    "autonomous_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/autonomous_baseline_summary.json",
+    "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/autonomous_online_comparator_manuscript.md",
     "matched_continuous_trajectory": true,
     "comparison_type": "same-continuous-trajectory autonomous baseline",
-    "co_pilot_metric": null,
-    "autonomous_metric": null,
+    "co_pilot_metric": 0.8620153718142042,
+    "autonomous_metric": 0.6404510911628365,
     "lower_is_better": true,
-    "autonomous_minus_copilot_metric_delta": null,
+    "autonomous_minus_copilot_metric_delta": -0.22156428065136768,
     "co_pilot_scores": {
       "section_completeness": 5.0,
       "gate_coverage": 5.0,
@@ -984,14 +987,14 @@
     "autonomous_scores": {
       "section_completeness": 5.0,
       "gate_coverage": 0.0,
-      "evidence_grounding": 2.5,
+      "evidence_grounding": 4.4,
       "claim_calibration": 5.0,
       "freshness": 3.0,
-      "overall": 3.1
+      "overall": 3.48
     },
     "interpretation": "This adds an autonomous manuscript comparator to the online trajectory manuscript probe. It is a same-continuous-trajectory baseline when generated from the same online run; it still needs more tasks, seeds, and independent paper-quality review before supporting final paper-quality claims.",
-    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/matched_budget_comparison_summary.md",
-    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013502/online_manuscript/matched_budget_comparison_summary.json"
+    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.json"
   },
   "same_continuous_paper_quality_model_review": {
     "status": "model_review_probe_completed",
@@ -1724,9 +1727,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "18d885257c0e80a0cb9118a82398390c4fbe19ac",
+    "head": "c5e4a1d0eeae119f7207ea13d488f53e19b97e25",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 684,
+    "manifest_artifacts": 687,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1734,5 +1737,13 @@
     "status": "pass",
     "json": "docs/co_pilot_ai_scientist_v3/audits/focused_references_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/focused_references_audit.md"
+  },
+  "end_to_end_paired_trajectory_audit": {
+    "status": "pass_same_run_smoke_pair",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.md",
+    "metric_winner": "autonomous",
+    "manuscript_score_winner": "co_pilot",
+    "superiority_supported": false
   }
 }

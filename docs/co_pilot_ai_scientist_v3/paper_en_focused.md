@@ -95,6 +95,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | Candidate-frontier validation | delayed candidates mean 0.24 | controls mean 0.176 | 13 scored of 16 attempted; delayed-control +0.064 | Weak OpenAlex lexical evidence that the replay queue is better than arbitrary controls; not a delayed-value proof. |
 | Prospective matched packages | 1 co-pilot or human-selected win | 3 autonomous/tie/invalid outcomes | 4 packages | Short-budget average benchmark superiority is not supported. |
 | Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
+| End-to-end paired trajectory manuscript | co-pilot manuscript internal score 4.64 | autonomous manuscript internal score 3.48; autonomous benchmark metric wins 0.640451 vs. 0.862015 | one same-run smoke pair | Demonstrates continuous trajectory-to-manuscript comparison readiness, not co-pilot superiority. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
 | Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | no search advantage | Direct editing can be enough on simple modeling tasks. |
 
@@ -192,6 +193,8 @@ direction in a more ambiguous way.
 The prospective FML-bench-style matched packages are intentionally reported as mixed or negative. Across the current passing packages, there is one controlled Max-Cut micro-task where a human-selected branch is useful, and three FML-bench cases where the co-pilot branch loses, ties, aborts, or fails to produce a valid continuation. In repeated online paired smokes, valid Causality runs produce 0 co-pilot benchmark wins, 1 autonomous win, and 1 tie; the Fairness run is a no-valid-branch failure case.
 
 This result is important. It prevents the paper from claiming that human participation improves average benchmark performance under tiny budgets. Instead, it motivates the core design problem: human gates must be specific, budget-aware, and routed to the parts of the workflow where taste and insight actually matter.
+
+We also generate a same-run end-to-end manuscript pair from one online full-gate trajectory. The co-pilot side exercises idea selection, evaluator approval, branch selection, program-search escalation, and claim audit, then renders a trace-bound manuscript. The autonomous side uses the same online run's autonomous baseline summary and the same evidence-bound manuscript template family. This pair is deliberately mixed: the co-pilot manuscript has a higher internal structure and claim-calibration score (4.64 versus 3.48), while the autonomous baseline wins the benchmark metric (0.640451 versus 0.862015, lower is better). This supports workflow completion and comparison readiness, not a claim that co-pilot automation is already better.
 
 ### 4.5 When should verifiable micro-evolution be triggered?
 

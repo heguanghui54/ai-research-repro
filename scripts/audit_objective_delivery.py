@@ -89,6 +89,7 @@ def main() -> None:
     frontier_taxonomy_path = DOC_DIR / "experiments" / "frontier_alignment_taxonomy_20260602_233000" / "summary.json"
     frontier_vector_path = DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "summary.json"
     frontier_disagreement_path = DOC_DIR / "experiments" / "frontier_metric_disagreement_20260603_003000" / "summary.json"
+    end_to_end_paired_trajectory_audit_path = AUDIT_DIR / "end_to_end_paired_trajectory_audit.json"
 
     manifest = _load_json(manifest_path)
     readiness = _load_json(readiness_path)
@@ -104,6 +105,7 @@ def main() -> None:
     frontier_taxonomy = _load_json(frontier_taxonomy_path)
     frontier_vector = _load_json(frontier_vector_path)
     frontier_disagreement = _load_json(frontier_disagreement_path)
+    end_to_end_paired_trajectory = _load_json(end_to_end_paired_trajectory_audit_path)
 
     current_artifacts = manifest.get("current_artifacts", [])
     missing_manifest = [path for path in current_artifacts if not (ROOT / path).exists()]
@@ -127,6 +129,7 @@ def main() -> None:
         "frontier_alignment_taxonomy_summary": frontier_taxonomy_path,
         "frontier_vector_graph_summary": frontier_vector_path,
         "frontier_metric_disagreement_summary": frontier_disagreement_path,
+        "end_to_end_paired_trajectory_audit": end_to_end_paired_trajectory_audit_path,
         "main_paper_figure": DOC_DIR / "figures" / "igre_frontier_main_figure.png",
         "english_usage": DOC_DIR / "usage_en.md",
         "chinese_usage": DOC_DIR / "usage_zh.md",
@@ -270,6 +273,10 @@ def main() -> None:
         and frontier_vector.get("mean_six_minus_raw_projection_gain") == 0.1668,
         "frontier_metric_disagreement_pass": frontier_disagreement.get("status") == "pass"
         and frontier_disagreement.get("disagreement_rate") == 0.6667,
+        "end_to_end_paired_trajectory_smoke_pass": end_to_end_paired_trajectory.get("status")
+        == "pass_same_run_smoke_pair"
+        and end_to_end_paired_trajectory.get("matched_continuous_trajectory") is True
+        and end_to_end_paired_trajectory.get("superiority_supported") is False,
         "main_paper_figure_exists": _file_status(docs["main_paper_figure"], min_bytes=10_000)["ok"],
         "lhtg_operationalized": lhtg.get("status") == "pass_with_no_positive_dvrs"
         and lhtg.get("reusable_workflow_terms_present") is True,
@@ -302,6 +309,19 @@ def main() -> None:
 
     artifact_status = {name: _file_status(path, min_bytes=1_000 if name.endswith("pdf") else 100) for name, path in {**pdfs, **docs}.items()}
 
+    next_required_evidence = list(manifest.get("next_required_evidence", []))
+    if explicit_requirements["end_to_end_paired_trajectory_smoke_pass"]:
+        next_required_evidence = [
+            item
+            for item in next_required_evidence
+            if "Demonstrate one continuous end-to-end trajectory" not in item
+            and "Run matched mini-manuscript scoring on complete end-to-end" not in item
+        ]
+        next_required_evidence.insert(
+            1,
+            "Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.",
+        )
+
     audit = {
         "audit_date": _utc_now(),
         "status": "pass_artifact_delivery_with_empirical_gaps" if not errors else "fail",
@@ -317,7 +337,7 @@ def main() -> None:
         "manifest_coverage_ratio": f"{len(current_artifacts) - len(missing_manifest)}/{len(current_artifacts)}",
         "top_conference_empirical_support_status": readiness.get("top_conference_empirical_support", {}).get("status"),
         "unverified_claims": manifest.get("unverified_claims", []),
-        "next_required_evidence": manifest.get("next_required_evidence", []),
+        "next_required_evidence": next_required_evidence,
         "errors": errors,
         "warnings": warnings,
         "claim_boundary": (
@@ -388,7 +408,10 @@ def main() -> None:
         ROOT / "scripts" / "build_frontier_vector_graph.py",
         ROOT / "scripts" / "build_frontier_metric_disagreement.py",
         ROOT / "scripts" / "build_copilot_v3_main_figure.py",
+        ROOT / "scripts" / "audit_end_to_end_paired_trajectory.py",
         ROOT / "scripts" / "audit_goal_completion_matrix.py",
+        AUDIT_DIR / "end_to_end_paired_trajectory_audit.json",
+        AUDIT_DIR / "end_to_end_paired_trajectory_audit.md",
         ROOT / "scripts" / "audit_deep_regeneration_cases.py",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.json",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.md",

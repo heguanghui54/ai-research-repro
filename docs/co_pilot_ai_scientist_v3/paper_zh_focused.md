@@ -85,6 +85,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | 候选-前沿验证 | delayed candidates 均值 0.24 | controls 均值 0.176 | 16 条尝试中 13 条可评分；delayed-control +0.064 | 弱 OpenAlex 词汇证据显示 replay queue 优于任意控制评论；不是 delayed-value 证明。 |
 | Prospective matched packages | co-pilot 或人类选分支胜 1 次 | autonomous / tie / invalid 3 次 | 4 个 package | 不支持短预算平均 benchmark 优越性。 |
 | Same-run online FML smokes | co-pilot benchmark 胜 0 次 | autonomous 胜 1 次，平 1 次，未知 1 次 | 3 个 paired smoke | 当前有效 benchmark 证据偏向 autonomous 或平局。 |
+| 端到端配对轨迹稿件 | co-pilot 稿件内部得分 4.64 | autonomous 稿件内部得分 3.48；autonomous benchmark 指标 0.640451 优于 0.862015 | 一个 same-run smoke pair | 证明连续轨迹到稿件的可比较性，不证明 co-pilot 优越性。 |
 | MLAgentBench vectorization | 8/8 seeds 保持正确，median 0.024581 s | starter 3.261186 s；direct rewrite 未通过正确性 | 显著运行时间收益 | 可验证微演化适合 correctness-gated 代码子问题。 |
 | Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | 无搜索优势 | 简单建模任务中直接编辑可能足够。 |
 
@@ -142,6 +143,8 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 当前 FML-bench 式 prospective matched packages 被有意报告为混合或负向结果。在已通过审计的包中，有一个受控 Max-Cut 微任务显示人类选择分支有用；但 3 个 FML-bench 案例中，co-pilot 分支出现失败、平局、中止或无法产生有效 continuation。在重复在线 paired smoke 中，有效 Causality 运行得到 0 次 co-pilot benchmark 胜出、1 次 autonomous 胜出、1 次平局；Fairness 运行是 no-valid-branch 失败案例。
 
 这个结果很重要。它阻止论文声称人类参与在短预算平均 benchmark 表现上已经有优势。相反，它强化了本文真正的问题：人类门控必须具体、预算敏感，并且被路由到科研品味和洞察确实能改变轨迹的位置。
+
+我们还从一条在线 full-gate trajectory 生成了 same-run 端到端稿件对。co-pilot 条件依次经过 idea selection、evaluator approval、branch selection、program-search escalation 和 claim audit，并生成绑定轨迹证据的稿件；autonomous 条件则使用同一次在线运行中的 autonomous baseline summary，并采用同一类 evidence-bound 稿件模板。这个配对结果刻意保持混合：co-pilot 稿件在内部结构与主张校准评分上更高（4.64 对 3.48），但 autonomous baseline 赢得 benchmark 指标（0.640451 对 0.862015，越低越好）。这支持的是工作流完成度和可比较性，而不是 co-pilot 自动科研已经优于 autonomous baseline。
 
 ### 4.5 何时应该触发可验证微演化？
 

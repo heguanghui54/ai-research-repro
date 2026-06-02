@@ -1,0 +1,76 @@
+{
+  "audit_date": "2026-06-02T13:16:09Z",
+  "status": "pass_same_run_smoke_pair",
+  "evidence_level": "same_run_smoke_pair",
+  "artifacts": {
+    "trajectory": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
+      "exists": true,
+      "bytes": 13388,
+      "ok": true
+    },
+    "autonomous_summary": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/autonomous_baseline_summary.json",
+      "exists": true,
+      "bytes": 17535,
+      "ok": true
+    },
+    "co_pilot_manuscript": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+      "exists": true,
+      "bytes": 5470,
+      "ok": true
+    },
+    "autonomous_manuscript": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/autonomous_online_comparator_manuscript.md",
+      "exists": true,
+      "bytes": 3749,
+      "ok": true
+    },
+    "online_summary_json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/summary.json",
+      "exists": true,
+      "bytes": 1688,
+      "ok": true
+    },
+    "online_summary_md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/summary.md",
+      "exists": true,
+      "bytes": 941,
+      "ok": true
+    },
+    "comparison_json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.json",
+      "exists": true,
+      "bytes": 1946,
+      "ok": true
+    },
+    "comparison_md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.md",
+      "exists": true,
+      "bytes": 1068,
+      "ok": true
+    }
+  },
+  "trajectory_id": "online_full_gate_smoke_20260602_010521",
+  "gate_count": 5,
+  "gate_types": [
+    "branch_selection",
+    "claim_audit",
+    "evaluator_approval",
+    "idea_selection",
+    "program_search_escalation"
+  ],
+  "matched_continuous_trajectory": true,
+  "fresh_online_smoke": true,
+  "co_pilot_metric": 0.8620153718142042,
+  "autonomous_metric": 0.6404510911628365,
+  "lower_is_better": true,
+  "metric_winner": "autonomous",
+  "co_pilot_manuscript_internal_score": 4.64,
+  "autonomous_manuscript_internal_score": 3.48,
+  "manuscript_score_winner": "co_pilot",
+  "superiority_supported": false,
+  "errors": [],
+  "claim_boundary": "This is a same-run smoke pair from gate orchestration to manuscript production. In this pair the autonomous baseline wins the benchmark metric while the co-pilot manuscript wins the internal manuscript structure/claim-calibration score. It supports workflow completion and comparison readiness, not empirical superiority over autonomous AI Scientist-v2."
+}

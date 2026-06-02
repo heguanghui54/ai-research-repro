@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T13:09:54Z`
+- Audit date: `2026-06-02T13:16:12Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `18d885257c0e80a0cb9118a82398390c4fbe19ac`
+- HEAD: `c5e4a1d0eeae119f7207ea13d488f53e19b97e25`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `684`
+- Manifest artifacts: `687`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `684/684`
+- Manifest coverage: `687/687`
 
 ## Explicit Requirements
 
@@ -26,6 +26,7 @@
 - `frontier_alignment_taxonomy_pass`: `pass`
 - `frontier_vector_graph_pass`: `pass`
 - `frontier_metric_disagreement_pass`: `pass`
+- `end_to_end_paired_trajectory_smoke_pass`: `pass`
 - `main_paper_figure_exists`: `pass`
 - `lhtg_operationalized`: `pass`
 - `top_conference_boundary_kept`: `pass`
@@ -35,8 +36,8 @@
 
 - `english_pdf`: `pass` (51757 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
 - `chinese_pdf`: `pass` (114561 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
-- `focused_english_pdf`: `pass` (188212 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
-- `focused_chinese_pdf`: `pass` (223285 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
+- `focused_english_pdf`: `pass` (188847 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `focused_chinese_pdf`: `pass` (225106 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
 - `root_readme`: `pass` (9744 bytes) - `README.md`
 - `english_submission_card`: `pass` (5177 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `chinese_submission_card`: `pass` (5055 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_zh.md`
@@ -49,6 +50,7 @@
 - `frontier_alignment_taxonomy_summary`: `pass` (20036 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/summary.json`
 - `frontier_vector_graph_summary`: `pass` (6376 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json`
 - `frontier_metric_disagreement_summary`: `pass` (2776 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/summary.json`
+- `end_to_end_paired_trajectory_audit`: `pass` (3023 bytes) - `docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.json`
 - `main_paper_figure`: `pass` (146516 bytes) - `docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png`
 - `english_usage`: `pass` (19460 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
 - `chinese_usage`: `pass` (19890 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
@@ -61,8 +63,7 @@
 ## Remaining Evidence Gap
 
 - Run at least 5 matched-budget pairs per task across at least 3 tasks, with means, variance, and paired tests before making superiority claims.
-- Run matched mini-manuscript scoring on complete end-to-end co-pilot and autonomous manuscripts, not only package mini-manuscripts.
-- Demonstrate one continuous end-to-end trajectory from new hypothesis generation to experiments, claim audit, and final manuscript, plus a matched autonomous manuscript baseline.
+- Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.
 - Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.
 - Obtain at least one scored official non-FML benchmark with a complete matched comparison when data access permits.
 - Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package.
