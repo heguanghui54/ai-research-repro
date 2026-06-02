@@ -867,7 +867,13 @@
     "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills/co-pilot-ai-scientist-v3/MIGRATION.md",
     "docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.md",
-    "scripts/install_and_audit_global_copilot_skill.py"
+    "scripts/install_and_audit_global_copilot_skill.py",
+    "scripts/run_global_skill_reuse_smoke.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/task_spec.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/human_gate_log.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/claim_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/README.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1892,9 +1898,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "6873372c3de37150fe5ddd8240e57fc4ca83760f",
+    "head": "e0554ede426b281162ed427f2384b754f40bbe0b",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 854,
+    "manifest_artifacts": 860,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2041,5 +2047,14 @@
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.md",
     "base_skill_lineage_checked": true,
     "claim_boundary": "This audit verifies that Co-Pilot AI Scientist v3 is installed as a global reusable Codex skill derived from the release package. It is engineering reuse evidence, not scientific superiority evidence."
+  },
+  "global_skill_reuse_smoke": {
+    "status": "pass",
+    "output_dir": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603",
+    "task_spec": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/task_spec.md",
+    "gate_log": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/human_gate_log.json",
+    "claim_audit": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/claim_audit.md",
+    "base_skill_lineage_checked": true,
+    "claim_boundary": "This smoke verifies that the globally installed Co-Pilot AI Scientist v3 skill can instantiate a fresh research task, gate log, and claim audit. It is engineering reuse evidence, not benchmark, human, or scientific-superiority evidence."
   }
 }

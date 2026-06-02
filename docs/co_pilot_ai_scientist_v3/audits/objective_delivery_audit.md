@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T16:49:17Z`
+- Audit date: `2026-06-02T16:52:27Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `6873372c3de37150fe5ddd8240e57fc4ca83760f`
+- HEAD: `e0554ede426b281162ed427f2384b754f40bbe0b`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `854`
+- Manifest artifacts: `860`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `854/854`
+- Manifest coverage: `860/860`
 
 ## Explicit Requirements
 
@@ -15,6 +15,7 @@
 - `documentation_and_guides`: `pass`
 - `reusable_codex_skill`: `pass`
 - `global_codex_skill_installed`: `pass`
+- `global_codex_skill_reuse_smoke`: `pass`
 - `github_branch_pushed`: `pass`
 - `author_recorded`: `pass`
 - `manifest_complete`: `pass`
@@ -39,7 +40,7 @@
 
 - `english_pdf`: `pass` (53210 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
 - `focused_english_pdf`: `pass` (201962 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
-- `root_readme`: `pass` (10666 bytes) - `README.md`
+- `root_readme`: `pass` (10732 bytes) - `README.md`
 - `english_submission_card`: `pass` (5476 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `top_conference_evidence_roadmap`: `pass` (10796 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
 - `top_conference_evidence_roadmap_json`: `pass` (5396 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
@@ -61,6 +62,7 @@
 - `chinese_runbook`: `pass` (12555 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
 - `reusable_skill`: `pass` (24228 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
 - `global_skill_install_audit`: `pass` (2722 bytes) - `docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.json`
+- `global_skill_reuse_smoke`: `pass` (1187 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/summary.json`
 - `task_template`: `pass` (2899 bytes) - `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`
 - `gate_template`: `pass` (1789 bytes) - `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`
 

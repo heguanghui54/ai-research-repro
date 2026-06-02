@@ -1,0 +1,22 @@
+{
+  "run_id": "global_skill_reuse_smoke_20260603",
+  "created_at": "2026-06-02T16:52:24Z",
+  "status": "pass",
+  "skill_dir": "/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3",
+  "output_dir": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603",
+  "task_spec": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/task_spec.md",
+  "gate_log": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/human_gate_log.json",
+  "claim_audit": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/claim_audit.md",
+  "required_global_files_checked": [
+    "SKILL.md",
+    "MIGRATION.md",
+    "templates/task_spec_template.md",
+    "templates/human_gate_log_template.json",
+    "templates/claim_audit_template.md"
+  ],
+  "base_skill_lineage_checked": true,
+  "generated_from_global_install": true,
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "This smoke verifies that the globally installed Co-Pilot AI Scientist v3 skill can instantiate a fresh research task, gate log, and claim audit. It is engineering reuse evidence, not benchmark, human, or scientific-superiority evidence."
+}

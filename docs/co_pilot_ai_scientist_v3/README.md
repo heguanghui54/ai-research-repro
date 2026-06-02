@@ -142,6 +142,10 @@ does not replace the paper's empirical evidence requirements.
   `~/.codex/skills/co-pilot-ai-scientist-v3`, verifies the installed copy,
   checks the `ai-scientist-v2` migration lineage, and records the engineering
   reuse boundary.
+- `experiments/global_skill_reuse_smoke_20260603/`: smoke test that uses the
+  globally installed skill files and templates on a fresh evaluator-stress
+  research task, generating a task spec, gate log, and claim audit. This proves
+  installed-skill artifact reuse, not benchmark or human-evaluation success.
 - `release/co-pilot-ai-scientist-v3-skill/`: standalone release scaffold for a
   public GitHub skill. It packages `SKILL.md`, templates, examples, quickstart,
   manifest, and a local validator so the engineering track can progress

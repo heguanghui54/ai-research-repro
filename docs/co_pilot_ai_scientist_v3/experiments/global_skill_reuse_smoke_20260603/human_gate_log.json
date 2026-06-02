@@ -1,0 +1,85 @@
+{
+  "gate_id": "global_skill_reuse_smoke_evaluator_stress_001",
+  "gate_type": "evaluator_stress_test",
+  "timestamp_utc": "2026-06-02T16:52:24Z",
+  "research_task_id": "global_skill_reuse_smoke_20260603",
+  "options": [
+    {
+      "option_id": "primary_metric_only",
+      "summary": "Trust the primary score without a guardrail.",
+      "score": 0.45,
+      "evidence": [
+        "global installed skill template smoke"
+      ],
+      "risks": [
+        "metric gaming",
+        "false performance improvement"
+      ]
+    },
+    {
+      "option_id": "guarded_evaluator",
+      "summary": "Require a validity guardrail before optimizing the primary metric.",
+      "score": 0.82,
+      "evidence": [
+        "IGRE evaluator_stress_test gate design"
+      ],
+      "risks": [
+        "slower first run",
+        "possible over-filtering"
+      ]
+    }
+  ],
+  "human_decision": "guarded_evaluator",
+  "rationale": "For an AI Scientist-v2-style loop, an evaluator flaw can invalidate the whole downstream paper. The global v3 skill therefore routes this fresh task through evaluator_stress_test before benchmark budget.",
+  "affected_artifacts": [
+    "task_spec.md",
+    "claim_audit.md"
+  ],
+  "downstream_budget": {
+    "future_guarded_evaluator_run": "small toy run only"
+  },
+  "attention_cost": {
+    "human_actor": "scripted_engineering_smoke_not_human_evidence",
+    "interaction_mode": "template_instantiation",
+    "prompted_at_utc": "2026-06-02T16:52:24Z",
+    "decision_at_utc": "2026-06-02T16:52:24Z",
+    "active_review_minutes": 0.0,
+    "wall_clock_latency_minutes": 0.0,
+    "options_reviewed": 2,
+    "artifacts_reviewed_count": 3,
+    "decision_count": 1,
+    "notes": "Scripted from the globally installed skill; not a live human-subject measurement."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-02",
+    "scores": {
+      "problem_depth": 3,
+      "novelty_potential": 2,
+      "mechanistic_value": 3,
+      "failure_informativeness": 5,
+      "benchmark_taste": 5,
+      "claim_significance": 3,
+      "risk_asymmetry": 4
+    },
+    "taste_insight_score": 3.86,
+    "qualitative_rationale": "The useful taste signal is not novelty alone; it is the judgment that evaluator reliability must be checked before trusting an automated paper loop.",
+    "non_metric_factors": [
+      "evaluator_validity",
+      "failure_informativeness",
+      "claim_boundary"
+    ]
+  },
+  "long_horizon_taste_gate": {
+    "is_lhtg_candidate": false,
+    "dvrs_hypothesis": null,
+    "expected_short_term_cost": null,
+    "later_field_evidence": [],
+    "paper_only_control": null,
+    "shuffled_review_control": null,
+    "delayed_value_label": "not_evaluated",
+    "claim_boundary": "Engineering smoke only; no delayed-value claim."
+  },
+  "follow_up_checks": [
+    "Implement guarded evaluator before any performance claim."
+  ]
+}
