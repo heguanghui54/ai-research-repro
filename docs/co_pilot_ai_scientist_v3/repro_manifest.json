@@ -1086,7 +1086,7 @@
     },
     "claim_boundary": "The smoke proves pipeline executability and records a negative heuristic result; it does not prove literature-backed future-frontier alignment.",
     "citation_probe": {
-      "status": "lightweight_citation_backed_pilot_completed_negative_result",
+      "status": "lightweight_citation_backed_pilot_completed_negative_result_with_relevance_filter",
       "script": "scripts/run_retrospective_frontier_citation_probe.py",
       "run_id": "retrospective_frontier_citation_probe_20260602_163000",
       "summary": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_163000/summary.json",
@@ -1096,23 +1096,25 @@
       "paper_count": 1,
       "papers_with_retrieved_citations": 1,
       "thin_citation_graph_papers": 1,
+      "citation_count_after_relevance_filter": 1,
+      "min_relevance_terms": 2,
       "winner_counts": {
         "shuffled_review_control": 1
       },
       "mean_scores": {
         "paper_only": 0.04,
         "review_guided": 0.0,
-        "shuffled_review_control": 0.08
+        "shuffled_review_control": 0.2133
       },
       "mean_delta_review_guided_minus_paper_only": -0.04,
-      "mean_delta_review_guided_minus_shuffled_control": -0.08,
+      "mean_delta_review_guided_minus_shuffled_control": -0.2133,
       "delayed_value_case_count": 0,
       "short_term_positive_long_term_negative_count": 1,
-      "claim_boundary": "This is a lightweight citation-backed pilot using retrieved Semantic Scholar metadata and simple term-overlap scoring. It is stronger than manual descriptors but still not a full citation graph reconstruction, blinded expert review, or proof of long-term SOTA alignment. Thin or topically broad citation graphs can produce misleading frontier terms and require relevance filtering."
+      "claim_boundary": "This is a lightweight citation-backed pilot using retrieved Semantic Scholar metadata and simple term-overlap scoring. It is stronger than manual descriptors but still not a full citation graph reconstruction, blinded expert review, or proof of long-term SOTA alignment. It filters citations by lexical relevance, but thin or topically broad citation graphs can still produce misleading frontier terms."
     }
   },
   "retrospective_frontier_citation_probe": {
-    "status": "lightweight_citation_backed_pilot_completed_negative_result",
+    "status": "lightweight_citation_backed_pilot_completed_negative_result_with_relevance_filter",
     "script": "scripts/run_retrospective_frontier_citation_probe.py",
     "run_id": "retrospective_frontier_citation_probe_20260602_163000",
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_163000/summary.json",
@@ -1122,18 +1124,20 @@
     "paper_count": 1,
     "papers_with_retrieved_citations": 1,
     "thin_citation_graph_papers": 1,
+    "citation_count_after_relevance_filter": 1,
+    "min_relevance_terms": 2,
     "winner_counts": {
       "shuffled_review_control": 1
     },
     "mean_scores": {
       "paper_only": 0.04,
       "review_guided": 0.0,
-      "shuffled_review_control": 0.08
+      "shuffled_review_control": 0.2133
     },
     "mean_delta_review_guided_minus_paper_only": -0.04,
-    "mean_delta_review_guided_minus_shuffled_control": -0.08,
+    "mean_delta_review_guided_minus_shuffled_control": -0.2133,
     "delayed_value_case_count": 0,
     "short_term_positive_long_term_negative_count": 1,
-    "claim_boundary": "This is a lightweight citation-backed pilot using retrieved Semantic Scholar metadata and simple term-overlap scoring. It is stronger than manual descriptors but still not a full citation graph reconstruction, blinded expert review, or proof of long-term SOTA alignment. Thin or topically broad citation graphs can produce misleading frontier terms and require relevance filtering."
+    "claim_boundary": "This is a lightweight citation-backed pilot using retrieved Semantic Scholar metadata and simple term-overlap scoring. It is stronger than manual descriptors but still not a full citation graph reconstruction, blinded expert review, or proof of long-term SOTA alignment. It filters citations by lexical relevance, but thin or topically broad citation graphs can still produce misleading frontier terms."
   }
 }

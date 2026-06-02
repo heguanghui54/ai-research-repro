@@ -35,6 +35,7 @@ STOPWORDS = {
     "against",
     "algorithm",
     "algorithms",
+    "and",
     "approach",
     "based",
     "between",
@@ -48,7 +49,10 @@ STOPWORDS = {
     "evaluation",
     "experiments",
     "framework",
+    "for",
+    "from",
     "generative",
+    "how",
     "improve",
     "improved",
     "improves",
@@ -61,6 +65,7 @@ STOPWORDS = {
     "model",
     "models",
     "neural",
+    "not",
     "paper",
     "performance",
     "propose",
@@ -74,6 +79,8 @@ STOPWORDS = {
     "systems",
     "task",
     "tasks",
+    "that",
+    "the",
     "their",
     "they",
     "these",
@@ -81,6 +88,8 @@ STOPWORDS = {
     "through",
     "training",
     "using",
+    "when",
+    "which",
     "with",
     "without",
     "zhang",
@@ -231,6 +240,37 @@ def _openalex_citations(work_id: str, *, limit: int) -> tuple[list[dict[str, Any
     return rows, None
 
 
+def _compact_match(match: dict[str, Any] | None, *, source: str) -> dict[str, Any] | None:
+    if not match:
+        return None
+    if source == "semantic_scholar":
+        return {
+            "paperId": match.get("paperId"),
+            "title": match.get("title"),
+            "year": match.get("year"),
+            "citationCount": match.get("citationCount"),
+            "influentialCitationCount": match.get("influentialCitationCount"),
+            "externalIds": match.get("externalIds"),
+        }
+    topics = []
+    for topic in match.get("topics") or []:
+        topics.append(
+            {
+                "display_name": topic.get("display_name"),
+                "score": topic.get("score"),
+                "subfield": (topic.get("subfield") or {}).get("display_name"),
+            }
+        )
+    return {
+        "id": match.get("id"),
+        "doi": match.get("doi"),
+        "title": match.get("title") or match.get("display_name"),
+        "publication_year": match.get("publication_year"),
+        "cited_by_count": match.get("cited_by_count"),
+        "topics": topics[:5],
+    }
+
+
 def _artifact_text(artifact: dict[str, Any]) -> str:
     parts = []
     for key in [
@@ -252,11 +292,52 @@ def _artifact_text(artifact: dict[str, Any]) -> str:
 
 
 def _tokens(text: str) -> list[str]:
-    return [
-        token
-        for token in re.findall(r"[a-z][a-z0-9\-]{3,}", text.lower())
-        if token not in STOPWORDS and not token.isdigit()
-    ]
+    tokens = []
+    for token in re.findall(r"[a-z][a-z0-9\-]{2,}", text.lower()):
+        if token.endswith("s") and len(token) > 4:
+            token = token[:-1]
+        if token not in STOPWORDS and not token.isdigit():
+            tokens.append(token)
+    return tokens
+
+
+def _source_terms(source: dict[str, Any]) -> set[str]:
+    text = " ".join(
+        [
+            str(source.get("title") or ""),
+            str(source.get("abstract_excerpt") or ""),
+            " ".join(str(item) for item in source.get("review_snippets") or []),
+        ]
+    )
+    return set(_tokens(text))
+
+
+def _filter_relevant_citations(
+    citations: list[dict[str, Any]],
+    *,
+    source_terms: set[str],
+    min_relevance_terms: int,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    kept = []
+    diagnostics = []
+    for citation in citations:
+        text = " ".join(str(citation.get(key) or "") for key in ["title", "abstract"])
+        citation_terms = set(_tokens(text))
+        overlap = sorted(citation_terms & source_terms)
+        keep = len(overlap) >= min_relevance_terms
+        row = {
+            "paperId": citation.get("paperId"),
+            "title": citation.get("title"),
+            "year": citation.get("year"),
+            "citationCount": citation.get("citationCount"),
+            "overlap_terms": overlap[:20],
+            "overlap_count": len(overlap),
+            "kept": keep,
+        }
+        diagnostics.append(row)
+        if keep:
+            kept.append(citation)
+    return kept, diagnostics
 
 
 def _extract_frontier_terms(citations: list[dict[str, Any]], *, max_terms: int) -> list[str]:
@@ -377,6 +458,8 @@ def main() -> None:
     parser.add_argument("--citation-limit", type=int, default=40)
     parser.add_argument("--max-terms", type=int, default=16)
     parser.add_argument("--max-papers", type=int, default=None)
+    parser.add_argument("--min-relevance-terms", type=int, default=2)
+    parser.add_argument("--prefer-openalex", action="store_true")
     args = parser.parse_args()
 
     selected_list = _load_json(SOURCE_DIR / "selected_papers.json")
@@ -397,11 +480,15 @@ def main() -> None:
     retrieval_records = []
     for source in selected_list:
         paper_id = source["paper_id"]
-        found, search_error = _search_paper(source)
+        found = None
+        search_error = None
         metadata_source = "Semantic Scholar Graph API"
         openalex_match = None
+        openalex_search_error = None
         citation_rows: list[dict[str, Any]] = []
         citation_error = None
+        if not args.prefer_openalex:
+            found, search_error = _search_paper(source)
         if found and found.get("paperId"):
             citation_rows, citation_error = _citations(found["paperId"], limit=args.citation_limit)
         if not citation_rows:
@@ -419,7 +506,12 @@ def main() -> None:
             row for row in citation_rows
             if row.get("title") and (not original_year or not row.get("year") or row["year"] >= original_year)
         ]
-        terms = _extract_frontier_terms(later_citations, max_terms=args.max_terms)
+        relevant_citations, relevance_diagnostics = _filter_relevant_citations(
+            later_citations,
+            source_terms=_source_terms(source),
+            min_relevance_terms=args.min_relevance_terms,
+        )
+        terms = _extract_frontier_terms(relevant_citations, max_terms=args.max_terms)
         condition_artifacts = {
             "paper_only": regenerated[paper_id]["baseline_regeneration"],
             "review_guided": regenerated[paper_id]["review_guided_regeneration"],
@@ -452,13 +544,18 @@ def main() -> None:
             {
                 "paper_id": paper_id,
                 "title": source["title"],
-                "semantic_scholar_match": found,
-                "openalex_match": openalex_match,
+                "semantic_scholar_match": _compact_match(found, source="semantic_scholar"),
+                "openalex_match": _compact_match(openalex_match, source="openalex"),
                 "metadata_source": metadata_source,
                 "search_error": search_error,
                 "citation_error": citation_error,
                 "citation_count_retrieved": len(citation_rows),
-                "citation_count_used": len(later_citations),
+                "citation_count_after_year_filter": len(later_citations),
+                "citation_count_used": len(relevant_citations),
+                "citation_relevance_filter": {
+                    "min_relevance_terms": args.min_relevance_terms,
+                    "diagnostics": relevance_diagnostics,
+                },
                 "frontier_terms": terms,
                 "scores": scores,
                 "winner": _winner(scores),
@@ -474,12 +571,17 @@ def main() -> None:
             {
                 "paper_id": paper_id,
                 "query_title": source["title"],
-                "semantic_scholar_match": found,
-                "openalex_match": openalex_match,
+                "semantic_scholar_match": _compact_match(found, source="semantic_scholar"),
+                "openalex_match": _compact_match(openalex_match, source="openalex"),
                 "metadata_source": metadata_source,
                 "search_error": search_error,
                 "citation_error": citation_error,
-                "citations": later_citations,
+                "citations_after_year_filter": later_citations,
+                "citation_relevance_filter": {
+                    "min_relevance_terms": args.min_relevance_terms,
+                    "diagnostics": relevance_diagnostics,
+                },
+                "citations_used": relevant_citations,
                 "frontier_terms": terms,
             }
         )
@@ -493,6 +595,7 @@ def main() -> None:
         "citation_source": "Semantic Scholar Graph API with OpenAlex fallback",
         "citation_limit": args.citation_limit,
         "max_terms": args.max_terms,
+        "min_relevance_terms": args.min_relevance_terms,
         "source_regeneration_summary": _rel(SOURCE_DIR / "summary.json"),
         "control_source_summary": _rel(CONTROL_DIR / "summary.json"),
         "conditions": ["paper_only", "review_guided", "shuffled_review_control"],
@@ -502,8 +605,8 @@ def main() -> None:
             "This is a lightweight citation-backed pilot using retrieved Semantic Scholar "
             "metadata and simple term-overlap scoring. It is stronger than manual descriptors "
             "but still not a full citation graph reconstruction, blinded expert review, or "
-            "proof of long-term SOTA alignment. Thin or topically broad citation graphs can "
-            "produce misleading frontier terms and require relevance filtering."
+            "proof of long-term SOTA alignment. It filters citations by lexical relevance, "
+            "but thin or topically broad citation graphs can still produce misleading frontier terms."
         ),
     }
     (out_dir / "summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

@@ -56,7 +56,7 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 | OpenReview 等上下文消融 | review-guided 票数 8 | context-control 票数 1，平 3 | 跨模型 mean delta +0.5 | 真实相关评审优于等量无关评审上下文，但 Claude 显示效果较温和。 |
 | 预注册盲评专家评审包 | 已准备 6 对匿名 A/B 产物 | 已完成人类评分 0 行 | 计划 3-5 名评审者 | 仅表示评估就绪，不声称已有人工证据。 |
 | 回溯式前沿对齐 smoke | review-guided 胜 1 次 | shuffled-control 胜 5 次 | 相对 control 平均增量 -0.0855；delayed-value 0 例；短期正向/长期负向 3 例 | 未来前沿对齐比局部论文改进更难；当前仅为启发式 descriptor。 |
-| 引用驱动前沿 pilot | paper-only 胜 1 次 | review-guided 胜 0 次 | 1 篇论文，2 条后续引用，相对 paper-only 均值 -0.04 | 引用图过薄，需要引用相关性过滤后才能支持强主张。 |
+| 引用驱动前沿 pilot | shuffled-control 胜 1 次 | review-guided 胜 0 次 | 1 篇论文，1 条相关性过滤后的后续引用，相对 paper-only 均值 -0.04 | 引用图过薄；已加入相关性过滤但仍不足以支持强主张。 |
 | Prospective matched packages | co-pilot 或人类选分支胜 1 次 | autonomous / tie / invalid 3 次 | 4 个 package | 不支持短预算平均 benchmark 优越性。 |
 | Same-run online FML smokes | co-pilot benchmark 胜 0 次 | autonomous 胜 1 次，平 1 次，未知 1 次 | 3 个 paired smoke | 当前有效 benchmark 证据偏向 autonomous 或平局。 |
 | MLAgentBench vectorization | 8/8 seeds 保持正确，median 0.024581 s | starter 3.261186 s；direct rewrite 未通过正确性 | 显著运行时间收益 | 可验证微演化适合 correctness-gated 代码子问题。 |
@@ -102,7 +102,7 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 当前 smoke 还没有找到这种 delayed-value 模式，反而在 3 个案例中发现了相反诊断：评审引导提高了短期模型评分，但降低了启发式未来前沿对齐分数。这个负结果依然有价值，因为它把“局部 reviewer 满意度”和“长期科研方向性”区分开来，而这正是 co-pilot scientist 必须学会的区分。
 
-第一版引用驱动 pilot 在 Semantic Scholar 限流后使用 OpenAlex fallback，对一个 arXiv 样本检索到 2 条后续引用，结果同样没有发现 delayed-value case：paper-only 得分最高，而 review-guided 是短期正向但 citation-frontier 负向。这不是对假设的反证，因为引用图太薄且主题跨度较大；它提示下一步方法必须加入引用相关性过滤，而不能把所有 citing papers 都直接当作未来主流前沿。
+第一版引用驱动 pilot 在 Semantic Scholar 限流后使用 OpenAlex fallback，对一个 arXiv 样本检索到 2 条后续引用，并用与原论文的词重叠进行相关性过滤，最终保留 1 条关于 LLM refusals 的后续引用。结果同样没有发现 delayed-value case：review-guided 是短期正向但 citation-frontier 负向，shuffled-review-control 的词重叠得分最高。这不是对假设的反证，因为引用图太薄，即使经过相关性过滤，也只代表一个很窄的下游研究分支。它提示下一步必须同时做引用检索和引用相关性过滤，才能构造可信的未来前沿 descriptor。
 
 这也让本文的应用意义更具体。目标不是简单证明人类能提高论文质量，而是设计更优的人类参与模式，用实验数据比较这些模式，并构建一种工作流，使人类科研品味在最可能改变科研轨迹的位置发挥作用。
 
