@@ -580,7 +580,10 @@
     "scripts/run_fml_fairness_evaluator_stress_replay.py",
     "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/README.md",
-    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.json"
+    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.json",
+    "scripts/run_gate_structure_ablation_probe.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/README.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1363,5 +1366,27 @@
       }
     },
     "claim_boundary": "This is a replay over archived real FML-Bench Fairness_fairlearn evaluation artifacts. It supports evaluator-gate design against metric gaming, but it does not show a Fairness improvement, does not rerun the remote benchmark, and does not prove that IGRE improves average benchmark performance."
+  },
+  "gate_structure_ablation_probe": {
+    "status": "pass",
+    "run_id": "gate_structure_ablation_probe_20260602_183000",
+    "source_summary": "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/summary.json",
+    "source_reviews": "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/scored_reviews.json",
+    "review_snippets": 473,
+    "actionable_review_snippets": 398,
+    "best_policy_by_utility_capture": "full_igre",
+    "best_single_gate_policy": "single_evaluator_stress_test",
+    "full_igre_utility_capture_rate": 1.0,
+    "best_single_gate_utility_capture_rate": 0.369083,
+    "random_gate_utility_capture_rate_mean": 0.198716,
+    "no_gate_utility_capture_rate": 0.0,
+    "full_vs_best_single_utility_gain": 2359,
+    "full_vs_random_mean_utility_gain": 2996.0,
+    "claim_boundary": "This is a deterministic routing ablation over archived OpenReview-derived review snippets. It supports the need for a multi-gate logging and routing structure, but it does not prove downstream paper-quality improvement, benchmark superiority, or independent human-review validity.",
+    "artifacts": [
+      "scripts/run_gate_structure_ablation_probe.py",
+      "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/summary.json",
+      "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/README.md"
+    ]
   }
 }

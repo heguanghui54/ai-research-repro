@@ -224,6 +224,12 @@ calibration, and scientific-taste-prior gates receive 245, 210, 140, and 111
 actionable triggers respectively. This supports the workflow claim that useful
 human taste/insight is the subset of review feedback that can alter search
 direction, evaluator design, manuscript structure, or claim boundaries.
+The `gate_structure_ablation_probe_20260602_183000/` artifact then tests the
+IGRE gate structure against no-gate, single-gate, and random-gate policies on
+that same OpenReview-derived utility map. Full IGRE captures all routed utility
+(`1.000`), while the best single gate captures `0.369`, the 128-seed random
+baseline averages `0.199`, and no-gate captures `0.000`. This is routing-level
+evidence for the five-gate architecture, not a downstream paper-quality claim.
 The package also includes OpenEvolve-based program search, direct LLM rewrite
 baselines, richer knapsack and Max-Cut heuristic tasks, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes live

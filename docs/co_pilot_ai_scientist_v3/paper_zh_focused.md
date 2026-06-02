@@ -51,6 +51,7 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 | 探针 | Co-pilot 或 review-guided 结果 | Baseline 或 autonomous 结果 | 增量或胜负 | 解释 |
 | --- | ---: | ---: | ---: | --- |
 | Review utility map | 398 条可行动片段 | 64 条噪声片段 | 共 473 条片段 | 专家评审包含可路由的 taste/insight 信号。 |
+| 门控结构消融 | full IGRE utility capture 1.000 | 最佳单门控 0.369；随机门控均值 0.199；no-gate 0.000 | full 相对最佳单门控 +2359 utility units | 多门控是必要结构，因为评审洞察是异质信号；这是路由证据，不是下游质量证明。 |
 | OpenReview 再生成，同模型评分 | review-guided 胜 5 次 | baseline 胜 1 次 | mean overall +0.8333 | 正向，但可能受同模型评分和额外上下文影响。 |
 | OpenReview 再生成，Claude 复审 | review-guided 胜 3 次 | baseline 胜 1 次，平 2 次 | mean overall +0.1667 | 有温和正向信号，但不是自动提升。 |
 | OpenReview 等上下文消融 | review-guided 票数 8 | context-control 票数 1，平 3 | 跨模型 mean delta +0.5 | 真实相关评审优于等量无关评审上下文，但 Claude 显示效果较温和。 |
@@ -70,6 +71,8 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 我们通过流式访问 Hugging Face 上的 `nhop/OpenReview` 数据集，避免完整下载。探针确认数据集包含 34,638 行，并抽样 160 行。从这些样本中，确定性 review-utility map 提取 473 条评审片段，其中 398 条被标记为可行动信号，64 条被标记为噪声或低行动性信号。
 
 最常见的可行动路由是评估器压力测试，共 245 次触发。结构化反馈有 210 次触发，主张校准 140 次，科研品味先验 111 次。从类别看，评价和指标问题出现 205 次，局限性和主张边界问题 140 次，新颖性和定位问题 111 次，可复现性问题 79 次，方法正确性问题 71 次。
+
+随后我们在同一 review-utility map 上运行门控结构消融。no-gate 策略捕获不到可行动路由 utility。最佳单门控是 evaluator stress testing，只能捕获 0.369 的可用 utility；structured feedback 捕获 0.295；claim calibration 捕获 0.187；scientific-taste prior 捕获 0.148。128 个 seed 的随机门控基线平均捕获 0.199。完整 IGRE 保留五类显式门控，因此捕获 1.000。这个消融不证明最终论文一定更好，但它说明 IGRE 的结构动机：人类评审洞察不是一个泛泛审批信号，如果压缩为单一 gate，就会系统性丢失科研品味、评估设计和主张边界信息。
 
 这支持用户提出的核心直觉：人类真实论文评审意见就是科研品味和科研洞察的具体痕迹。但有用的并不是所有评审文本，而是其中能够改变 evaluator 设计、搜索方向、论文结构或主张边界的部分。
 

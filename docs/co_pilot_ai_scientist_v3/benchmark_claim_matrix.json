@@ -17,6 +17,13 @@
       "does_not_prove": "A successful fairness-task improvement or full benchmark superiority."
     },
     {
+      "claim_family": "Human taste/insight gate structure",
+      "benchmark_or_probe": "OpenReview-derived review utility map plus gate-structure ablation",
+      "current_evidence": "review_utility_map_probe_20260602_071500 maps 473 review snippets into actionable and noisy signals; gate_structure_ablation_probe_20260602_183000 compares no-gate, single-gate, random-gate, and full IGRE policies. Full IGRE captures utility rate 1.000, best single gate 0.369, random gate mean 0.199, and no-gate 0.000.",
+      "supports": "Expert review signals are heterogeneous and need multiple explicit workflow gates rather than one generic human approval step.",
+      "does_not_prove": "Downstream paper-quality improvement, independent human-review validity, or co-pilot superiority."
+    },
+    {
       "claim_family": "AlphaEvolve-style subproblem search",
       "benchmark_or_probe": "OpenEvolve function minimization, knapsack, and Max-Cut",
       "current_evidence": "Direct edit beats or matches tiny function search; OpenEvolve improves the richer knapsack heuristic to 0.999439 average optimality ratio and the controlled Max-Cut heuristic to 0.970833 versus direct rewrite 0.962237.",

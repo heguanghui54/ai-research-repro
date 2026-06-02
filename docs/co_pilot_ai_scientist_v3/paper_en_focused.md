@@ -51,6 +51,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | Probe | Co-pilot or review-guided result | Baseline or autonomous result | Delta or win count | Interpretation |
 | --- | ---: | ---: | ---: | --- |
 | Review utility map | 398 actionable snippets | 64 noisy snippets | 473 snippets total | Expert reviews contain routeable taste/insight signals. |
+| Gate-structure ablation | full IGRE utility capture 1.000 | best single gate 0.369; random gate mean 0.199; no-gate 0.000 | full vs. best single +2359 utility units | Multi-gate routing is needed because review insight is heterogeneous; this is routing evidence, not downstream quality proof. |
 | OpenReview regeneration, same scorer | 5 review-guided wins | 1 baseline win | mean overall +0.8333 | Positive but vulnerable to same-model and extra-context bias. |
 | OpenReview regeneration, Claude cross-review | 3 review-guided wins | 1 baseline win, 2 ties | mean overall +0.1667 | Modest positive signal; not automatic improvement. |
 | OpenReview equal-context ablation | 8 review-guided votes | 1 context-control vote, 3 ties | mean delta across models +0.5 | Paper-specific reviews beat matched unrelated review context, but Claude shows the effect is modest. |
@@ -70,6 +71,8 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 We use the Hugging Face `nhop/OpenReview` dataset through streaming access, avoiding a full local download. The probe verifies 34,638 dataset rows and samples 160 rows. From these rows, a deterministic review-utility map extracts 473 review snippets. It marks 398 snippets as actionable and 64 as noisy or low-actionability.
 
 The most common actionable route is evaluator stress testing, with 245 triggers. Structured feedback receives 210 triggers, claim calibration receives 140, and scientific-taste prior receives 111. At the category level, evaluation and metric issues appear 205 times, limitations and claim-boundary issues 140 times, novelty and positioning 111 times, reproducibility 79 times, and method-correctness 71 times.
+
+We then run a gate-structure ablation on the same review-utility map. A no-gate policy captures no actionable routed utility. The best single-gate policy, evaluator stress testing, captures 0.369 of available utility; structured feedback captures 0.295; claim calibration captures 0.187; scientific-taste prior captures 0.148. A random-gate baseline averaged across 128 seeds captures 0.199. Full IGRE captures 1.000 by preserving all five explicit gates. This ablation does not prove better final papers, but it does establish a structural reason for IGRE: human review insight is not one generic approval signal, so compressing it into a single gate systematically drops useful scientific taste and evaluator-design information.
 
 This supports the user's central intuition: human review is a concrete trace of scientific taste and insight. But the useful signal is not all review text. It is the subset that can alter evaluator design, search direction, manuscript structure, or claim boundaries.
 

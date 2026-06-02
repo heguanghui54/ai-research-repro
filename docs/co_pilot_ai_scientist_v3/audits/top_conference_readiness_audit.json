@@ -101,7 +101,14 @@
     "fml_fairness_evaluator_stress_replays": 1,
     "fml_fairness_evaluator_stress_metric_gaming_incidents_reduced": 1,
     "fml_fairness_evaluator_stress_primary_only_incidents": 1,
-    "fml_fairness_evaluator_stress_guardrail_incidents": 0
+    "fml_fairness_evaluator_stress_guardrail_incidents": 0,
+    "gate_structure_ablation_probes": 1,
+    "gate_structure_ablation_review_snippets": 473,
+    "gate_structure_ablation_full_igre_utility_capture_rate": 1.0,
+    "gate_structure_ablation_best_single_utility_capture_rate": 0.369083,
+    "gate_structure_ablation_random_gate_utility_capture_rate_mean": 0.198716,
+    "gate_structure_ablation_full_vs_best_single_utility_gain": 2359,
+    "gate_structure_ablation_full_vs_random_mean_utility_gain": 2996.0
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -1003,6 +1010,28 @@
       "larger matched autonomous versus human-gated trajectories across tasks/seeds",
       "formal gate-structure ablations",
       "narrower primary contribution narrative"
-    ]
+    ],
+    "gate_structure_ablation_status": "routing-level ablation completed; downstream quality ablations still needed",
+    "gate_structure_ablation_artifact": "experiments/gate_structure_ablation_probe_20260602_183000/"
+  },
+  "gate_structure_ablation_probe": {
+    "status": "pass",
+    "run_id": "gate_structure_ablation_probe_20260602_183000",
+    "artifact_dir": "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000",
+    "best_policy_by_utility_capture": "full_igre",
+    "best_single_gate_policy": "single_evaluator_stress_test",
+    "policy_capture_rates": {
+      "no_gate": 0.0,
+      "single_scientific_taste_prior": 0.148435,
+      "single_evaluator_stress_test": 0.369083,
+      "single_frontier_steering": 0.0,
+      "single_structured_feedback": 0.295266,
+      "single_claim_calibration": 0.187216,
+      "full_igre": 1.0
+    },
+    "random_gate_utility_capture_rate_mean": 0.198716,
+    "full_vs_best_single_utility_gain": 2359,
+    "full_vs_random_mean_utility_gain": 2996.0,
+    "claim_boundary": "This is a deterministic routing ablation over archived OpenReview-derived review snippets. It supports the need for a multi-gate logging and routing structure, but it does not prove downstream paper-quality improvement, benchmark superiority, or independent human-review validity."
   }
 }
