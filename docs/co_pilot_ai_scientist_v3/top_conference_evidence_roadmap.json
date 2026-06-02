@@ -22,6 +22,7 @@
       "claim_tested": "Some short-term-unhelpful human review comments can guide past research toward later frontier developments.",
       "minimum_design": "Replay at least 30 delayed-value candidates and 30 matched controls after match-drift guards.",
       "upgrade_condition": "At least one clear positive delayed-value case plus aggregate advantage over controls under semantic or expert judging.",
+      "delayed_value_success_case": "A replay can be positive even if immediate paper-quality or original-task score decreases, provided the review-guided trajectory is more aligned with later mainstream or SOTA field developments than both paper-only and shuffled-review controls.",
       "fallback_if_failed": "Keep LHTG/DVRS as a falsifiable measurement protocol and report negative evidence."
     },
     {
@@ -45,4 +46,3 @@
   },
   "claim_boundary": "IGRE, LHTG, TFR, and DVRS define an auditable human-participation workflow for automated science; the current package demonstrates reproducible operationalization and pilot signals, but not empirical superiority over autonomous AI Scientist-v2."
 }
-

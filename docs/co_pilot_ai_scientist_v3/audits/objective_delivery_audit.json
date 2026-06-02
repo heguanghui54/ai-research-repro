@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T11:48:00Z",
+  "audit_date": "2026-06-02T11:55:13Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "fb3e666b6f75e1342a59289aa24ee61552356bd8",
+  "head": "cdaf98d96cb1e592793b12ef643a15754a865188",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -15,6 +15,7 @@
     "prospective_package_audit_pass": true,
     "top_conference_roadmap_audit_pass": true,
     "human_expert_blind_review_packet_audit_pass": true,
+    "benchmark_coverage_audit_pass": true,
     "lhtg_operationalized": true,
     "top_conference_boundary_kept": true,
     "unsupported_superiority_claims_kept_unsupported": true
@@ -47,7 +48,7 @@
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 7447,
+      "bytes": 7526,
       "ok": true
     },
     "english_submission_card": {
@@ -65,13 +66,13 @@
     "top_conference_evidence_roadmap": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
       "exists": true,
-      "bytes": 6603,
+      "bytes": 6940,
       "ok": true
     },
     "top_conference_evidence_roadmap_json": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
       "exists": true,
-      "bytes": 3762,
+      "bytes": 4045,
       "ok": true
     },
     "english_usage": {
@@ -144,6 +145,7 @@
       "External Verification Entry Point": true,
       "audit_top_conference_evidence_roadmap.py": true,
       "audit_human_expert_blind_review_packet.py": true,
+      "audit_benchmark_coverage.py": true,
       "pass_artifact_delivery_with_empirical_gaps": true,
       "top-conference empirical target is not yet satisfied": true
     },
@@ -183,9 +185,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 632,
+  "manifest_artifacts": 635,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "632/632",
+  "manifest_coverage_ratio": "635/635",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",

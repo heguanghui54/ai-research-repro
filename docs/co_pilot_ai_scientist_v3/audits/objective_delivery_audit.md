@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T11:48:00Z`
+- Audit date: `2026-06-02T11:55:13Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `fb3e666b6f75e1342a59289aa24ee61552356bd8`
+- HEAD: `cdaf98d96cb1e592793b12ef643a15754a865188`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `632`
+- Manifest artifacts: `635`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `632/632`
+- Manifest coverage: `635/635`
 
 ## Explicit Requirements
 
@@ -21,6 +21,7 @@
 - `prospective_package_audit_pass`: `pass`
 - `top_conference_roadmap_audit_pass`: `pass`
 - `human_expert_blind_review_packet_audit_pass`: `pass`
+- `benchmark_coverage_audit_pass`: `pass`
 - `lhtg_operationalized`: `pass`
 - `top_conference_boundary_kept`: `pass`
 - `unsupported_superiority_claims_kept_unsupported`: `pass`
@@ -31,11 +32,11 @@
 - `chinese_pdf`: `pass` (114561 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
 - `focused_english_pdf`: `pass` (32998 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `focused_chinese_pdf`: `pass` (61838 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
-- `root_readme`: `pass` (7447 bytes) - `README.md`
+- `root_readme`: `pass` (7526 bytes) - `README.md`
 - `english_submission_card`: `pass` (4088 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `chinese_submission_card`: `pass` (4033 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_zh.md`
-- `top_conference_evidence_roadmap`: `pass` (6603 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
-- `top_conference_evidence_roadmap_json`: `pass` (3762 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
+- `top_conference_evidence_roadmap`: `pass` (6940 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
+- `top_conference_evidence_roadmap_json`: `pass` (4045 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - `english_usage`: `pass` (19460 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
 - `chinese_usage`: `pass` (19890 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
 - `english_runbook`: `pass` (13724 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`

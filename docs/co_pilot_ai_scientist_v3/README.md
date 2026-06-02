@@ -30,6 +30,10 @@ claim calibration.
 - `benchmark_selection.md`: tiered benchmark strategy beyond FML-bench.
 - `benchmark_claim_matrix.md`: claim-to-benchmark matrix recording what each
   benchmark can and cannot prove.
+- `audits/benchmark_coverage_audit.md`: audit that verifies the benchmark
+  portfolio is not FML-only, records positive non-FML scored probes, boundary
+  conditions, and blocked official setup probes without inflating them into
+  performance claims.
 - `top_conference_evidence_roadmap.md/json`: strict next-evidence roadmap
   converting the remaining top-conference blockers into preregistered
   experiments and decision rules.
@@ -186,17 +190,21 @@ python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/audit_human_expert_blind_review_packet.py
+python3 scripts/audit_benchmark_coverage.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py
 ```
 
-The latest completed clean-clone audit checks commit `fb3e666b6` from the
-pushed branch and reports `632/632` manifest artifacts present, LHTG/DVRS
-status `pass_with_no_positive_dvrs`, TFR status
+The latest completed clean-clone audit currently targets ancestor commit
+`fb3e666b6` from the pushed branch and reports `632/632` manifest artifacts
+present, LHTG/DVRS status `pass_with_no_positive_dvrs`, TFR status
 `pass_with_negative_delayed_value_evidence`, roadmap audit `pass`, human expert
 blind-review packet audit `pass_prepared_no_human_ratings`, package consistency
 `pass`, and objective delivery `pass_artifact_delivery_with_empirical_gaps`.
+The current working package adds the benchmark coverage audit and reports
+`635/635` local manifest coverage; the clean-clone audit should be refreshed
+after the next push.
 
 The last status phrase is intentional. It means the requested artifact pipeline
 is delivered and auditable, but the original top-conference empirical target is

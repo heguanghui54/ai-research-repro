@@ -42,6 +42,7 @@ python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/audit_human_expert_blind_review_packet.py
+python3 scripts/audit_benchmark_coverage.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py
@@ -50,11 +51,12 @@ python3 scripts/audit_package_consistency.py
 Current objective-delivery status:
 
 - artifact pipeline: `pass_artifact_delivery_with_empirical_gaps`
-- manifest coverage: `632/632`
+- manifest coverage: `635/635`
 - LHTG/DVRS audit: `pass_with_no_positive_dvrs`
 - TFR audit: `pass_with_negative_delayed_value_evidence`
 - roadmap audit: `pass`
 - human expert blind-review packet audit: `pass_prepared_no_human_ratings`
+- benchmark coverage audit: `pass`
 - package consistency: `pass`
 
 Important boundary: this package delivers the requested bilingual papers,

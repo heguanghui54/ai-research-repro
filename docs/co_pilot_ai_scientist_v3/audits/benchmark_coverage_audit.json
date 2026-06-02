@@ -1,0 +1,92 @@
+{
+  "audit_date": "2026-06-02T11:55:12Z",
+  "status": "pass",
+  "checks": {
+    "benchmark_claim_matrix_has_entries": true,
+    "fml_evidence_represented": true,
+    "non_fml_evidence_represented": true,
+    "matrix_records_boundaries": true,
+    "selection_mentions_beyond_fml": true,
+    "mlagentbench_vectorization_scored_multiseed": true,
+    "mlagentbench_vectorization_all_correct": true,
+    "mlagentbench_vectorization_all_faster_than_starter": true,
+    "mlagentbench_direct_rewrite_failed_correctness": true,
+    "mlagentbench_median_runtime_beats_starter": true,
+    "knapsack_openevolve_beats_direct": true,
+    "maxcut_openevolve_beats_direct": true,
+    "sklearn_boundary_direct_matches_or_beats_openevolve": true,
+    "blocked_official_tasks_logged": true,
+    "blocked_tasks_do_not_report_scores": true,
+    "stretch_targets_kept_future": true
+  },
+  "evidence_summary": {
+    "fml_entry_count": 2,
+    "non_fml_entry_count": 9,
+    "mlagentbench_vectorization": {
+      "num_seeds": 8,
+      "num_correct_best_programs": 8,
+      "num_seeds_faster_than_starter": 8,
+      "median_runtime_seconds": 0.024580717086791992,
+      "starter_runtime_seconds": 3.261186361312866,
+      "median_speedup_over_starter": 132.67254774537096,
+      "direct_rewrite_correct": false,
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_multiseed_summary.json"
+    },
+    "algorithmic_program_search": {
+      "knapsack_openevolve_score": 0.9994394752555711,
+      "knapsack_direct_score": 0.9952700988954383,
+      "maxcut_openevolve_minus_direct": 0.0085959186678094,
+      "paths": [
+        "docs/co_pilot_ai_scientist_v3/experiments/knapsack_openevolve_5iter/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/knapsack_direct_baseline/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/maxcut_program_search_comparison.json"
+      ]
+    },
+    "boundary_condition": {
+      "sklearn_initial_rmse": 78.5721894308206,
+      "sklearn_direct_rmse": 55.89546025654621,
+      "sklearn_openevolve_median_rmse": 55.89546025654621,
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_summary.json"
+    },
+    "official_setup_blockers": {
+      "mlagentbench_cifar10": {
+        "status": "setup_blocked_by_slow_dataset_download",
+        "official_score_reported": false,
+        "blocker": {
+          "dataset": "CIFAR10",
+          "archive_size": "170 MB",
+          "observed_progress": "approximately 426 KB after about 35 seconds",
+          "reason_to_stop": "interactive run would take hours at observed download speed"
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_setup_probe/summary.json"
+      },
+      "mlagentbench_imdb": {
+        "status": "setup_blocked_by_huggingface_network",
+        "official_score_reported": false,
+        "blocker": {
+          "service": "huggingface.co",
+          "error": "[Errno 101] Network is unreachable",
+          "reason_to_stop": "official task data could not be loaded from the Ubuntu host"
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/summary.json"
+      },
+      "scienceagentbench": {
+        "status": "metadata_and_verified_artifacts_not_yet_accessible",
+        "score_reported": false,
+        "missing_verified_artifacts": [
+          "benchmark/datasets",
+          "benchmark/eval_programs",
+          "benchmark/gold_programs",
+          "benchmark/scoring_rubrics"
+        ],
+        "path": "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/summary.json"
+      }
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "MLAgentBench vectorization speedups are positive but seed-sensitive.",
+    "Max-Cut OpenEvolve advantage is small and single-seed."
+  ],
+  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, a direct-editing boundary condition, and logged official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
+}

@@ -1,0 +1,248 @@
+#!/usr/bin/env python3
+"""Audit benchmark coverage and claim boundaries for Co-Pilot AI Scientist v3.
+
+This audit checks whether the package uses a benchmark portfolio rather than a
+single convenient benchmark. It treats successful scored probes, boundary
+conditions, and blocked official setups as different kinds of evidence.
+"""
+
+from __future__ import annotations
+
+import json
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+DOC_DIR = ROOT / "docs" / "co_pilot_ai_scientist_v3"
+EXP_DIR = DOC_DIR / "experiments"
+AUDIT_DIR = DOC_DIR / "audits"
+
+
+def _utc_now() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def _rel(path: Path) -> str:
+    return str(path.relative_to(ROOT))
+
+
+def _load_json(path: Path) -> Any:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _read(path: Path) -> str:
+    return path.read_text(encoding="utf-8")
+
+
+def _contains_any(text: str, needles: list[str]) -> bool:
+    return any(needle in text for needle in needles)
+
+
+def main() -> None:
+    AUDIT_DIR.mkdir(parents=True, exist_ok=True)
+
+    matrix_path = DOC_DIR / "benchmark_claim_matrix.json"
+    selection_path = DOC_DIR / "benchmark_selection.md"
+    vector_path = EXP_DIR / "mlagentbench_vectorization_multiseed_summary.json"
+    maxcut_path = EXP_DIR / "maxcut_program_search_comparison.json"
+    knapsack_openevolve_path = EXP_DIR / "knapsack_openevolve_5iter" / "summary.json"
+    knapsack_direct_path = EXP_DIR / "knapsack_direct_baseline" / "summary.json"
+    sklearn_path = EXP_DIR / "sklearn_diabetes_tabular_summary.json"
+    cifar_path = EXP_DIR / "mlagentbench_cifar10_debug_setup_probe" / "summary.json"
+    imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
+    science_path = EXP_DIR / "scienceagentbench_metadata_setup_probe" / "summary.json"
+
+    matrix = _load_json(matrix_path)
+    selection_text = _read(selection_path)
+    matrix_text = json.dumps(matrix, ensure_ascii=False)
+    entries = matrix.get("entries", [])
+
+    vector = _load_json(vector_path)
+    maxcut = _load_json(maxcut_path)
+    knapsack_openevolve = _load_json(knapsack_openevolve_path)
+    knapsack_direct = _load_json(knapsack_direct_path)
+    sklearn = _load_json(sklearn_path)
+    cifar = _load_json(cifar_path)
+    imdb = _load_json(imdb_path)
+    science = _load_json(science_path)
+
+    vector_agg = vector.get("aggregate", {})
+    starter_runtime = vector.get("controlled_starter_runtime_seconds")
+    direct_rewrite = vector.get("direct_deepseek_rewrite", {})
+    maxcut_delta = maxcut.get("deltas", {}).get("openevolve_minus_direct")
+    knapsack_open_score = knapsack_openevolve.get("best_score")
+    knapsack_direct_score = knapsack_direct.get("metrics", {}).get("score")
+    sklearn_initial = sklearn.get("initial_mean_predictor", {}).get("mean_rmse")
+    sklearn_direct = sklearn.get("direct_deepseek_rewrite", {}).get("mean_rmse")
+    sklearn_median = sklearn.get("openevolve_3iter", {}).get("median_rmse")
+
+    fml_entries = [
+        entry
+        for entry in entries
+        if "FML" in entry.get("benchmark_or_probe", "") or "FML" in entry.get("current_evidence", "")
+    ]
+    non_fml_entries = [
+        entry
+        for entry in entries
+        if "FML" not in entry.get("benchmark_or_probe", "")
+        and "FML" not in entry.get("current_evidence", "")
+    ]
+
+    official_blockers = {
+        "mlagentbench_cifar10": {
+            "status": cifar.get("status"),
+            "official_score_reported": cifar.get("official_score_reported"),
+            "blocker": cifar.get("blocker", {}),
+            "path": _rel(cifar_path),
+        },
+        "mlagentbench_imdb": {
+            "status": imdb.get("status"),
+            "official_score_reported": imdb.get("official_score_reported"),
+            "blocker": imdb.get("blocker", {}),
+            "path": _rel(imdb_path),
+        },
+        "scienceagentbench": {
+            "status": science.get("status"),
+            "score_reported": science.get("score_reported"),
+            "missing_verified_artifacts": science.get("missing_verified_artifacts", []),
+            "path": _rel(science_path),
+        },
+    }
+
+    checks = {
+        "benchmark_claim_matrix_has_entries": len(entries) >= 10,
+        "fml_evidence_represented": len(fml_entries) >= 2,
+        "non_fml_evidence_represented": len(non_fml_entries) >= 5,
+        "matrix_records_boundaries": _contains_any(matrix_text, ["does_not_prove", "not prove"]),
+        "selection_mentions_beyond_fml": "beyond FML-bench" in selection_text or "Non-FML" in selection_text,
+        "mlagentbench_vectorization_scored_multiseed": vector_agg.get("num_seeds") == 8,
+        "mlagentbench_vectorization_all_correct": vector_agg.get("num_correct_best_programs") == 8,
+        "mlagentbench_vectorization_all_faster_than_starter": vector_agg.get("num_seeds_faster_than_starter")
+        == 8,
+        "mlagentbench_direct_rewrite_failed_correctness": direct_rewrite.get("correct") is False,
+        "mlagentbench_median_runtime_beats_starter": vector_agg.get("median_runtime_seconds", 10**9)
+        < starter_runtime,
+        "knapsack_openevolve_beats_direct": knapsack_open_score is not None
+        and knapsack_direct_score is not None
+        and knapsack_open_score > knapsack_direct_score,
+        "maxcut_openevolve_beats_direct": maxcut_delta is not None and maxcut_delta > 0,
+        "sklearn_boundary_direct_matches_or_beats_openevolve": sklearn_initial is not None
+        and sklearn_direct is not None
+        and sklearn_median is not None
+        and sklearn_direct <= sklearn_median + 1e-9
+        and sklearn_direct < sklearn_initial,
+        "blocked_official_tasks_logged": all(
+            official_blockers[name].get("status") for name in official_blockers
+        ),
+        "blocked_tasks_do_not_report_scores": cifar.get("official_score_reported") is False
+        and imdb.get("official_score_reported") is False
+        and science.get("score_reported") is False,
+        "stretch_targets_kept_future": _contains_any(matrix_text, ["MLE-bench Lite", "PaperBench", "AIRS-Bench"])
+        and "Not run in the current budget" in matrix_text,
+    }
+
+    errors = [name for name, ok in checks.items() if not ok]
+    warnings: list[str] = []
+    if vector_agg.get("max_runtime_seconds", 0) > 1:
+        warnings.append("MLAgentBench vectorization speedups are positive but seed-sensitive.")
+    if maxcut_delta is not None and maxcut_delta < 0.02:
+        warnings.append("Max-Cut OpenEvolve advantage is small and single-seed.")
+
+    audit = {
+        "audit_date": _utc_now(),
+        "status": "pass" if not errors else "fail",
+        "checks": checks,
+        "evidence_summary": {
+            "fml_entry_count": len(fml_entries),
+            "non_fml_entry_count": len(non_fml_entries),
+            "mlagentbench_vectorization": {
+                "num_seeds": vector_agg.get("num_seeds"),
+                "num_correct_best_programs": vector_agg.get("num_correct_best_programs"),
+                "num_seeds_faster_than_starter": vector_agg.get("num_seeds_faster_than_starter"),
+                "median_runtime_seconds": vector_agg.get("median_runtime_seconds"),
+                "starter_runtime_seconds": starter_runtime,
+                "median_speedup_over_starter": vector_agg.get("median_speedup_over_starter"),
+                "direct_rewrite_correct": direct_rewrite.get("correct"),
+                "path": _rel(vector_path),
+            },
+            "algorithmic_program_search": {
+                "knapsack_openevolve_score": knapsack_open_score,
+                "knapsack_direct_score": knapsack_direct_score,
+                "maxcut_openevolve_minus_direct": maxcut_delta,
+                "paths": [_rel(knapsack_openevolve_path), _rel(knapsack_direct_path), _rel(maxcut_path)],
+            },
+            "boundary_condition": {
+                "sklearn_initial_rmse": sklearn_initial,
+                "sklearn_direct_rmse": sklearn_direct,
+                "sklearn_openevolve_median_rmse": sklearn_median,
+                "path": _rel(sklearn_path),
+            },
+            "official_setup_blockers": official_blockers,
+        },
+        "errors": errors,
+        "warnings": warnings,
+        "claim_boundary": (
+            "Benchmark coverage now includes FML feasibility evidence, non-FML scored "
+            "program-search probes, a direct-editing boundary condition, and logged "
+            "official benchmark blockers. This supports selective workflow design, "
+            "not whole-paper superiority over autonomous AI Scientist-v2."
+        ),
+    }
+
+    json_path = AUDIT_DIR / "benchmark_coverage_audit.json"
+    md_path = AUDIT_DIR / "benchmark_coverage_audit.md"
+    json_path.write_text(json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    lines = [
+        "# Benchmark Coverage Audit",
+        "",
+        f"- Audit date: `{audit['audit_date']}`",
+        f"- Status: `{audit['status']}`",
+        f"- FML entries: `{len(fml_entries)}`",
+        f"- Non-FML entries: `{len(non_fml_entries)}`",
+        "",
+        "## Positive Scored Evidence",
+        "",
+        (
+            "- MLAgentBench vectorization: "
+            f"`{vector_agg.get('num_correct_best_programs')}/{vector_agg.get('num_seeds')}` "
+            "correct best programs; median runtime "
+            f"`{vector_agg.get('median_runtime_seconds')}` seconds versus starter "
+            f"`{starter_runtime}` seconds; direct rewrite correctness "
+            f"`{direct_rewrite.get('correct')}`."
+        ),
+        (
+            "- Program search subproblems: knapsack OpenEvolve "
+            f"`{knapsack_open_score}` versus direct `{knapsack_direct_score}`; "
+            f"Max-Cut OpenEvolve-minus-direct `{maxcut_delta}`."
+        ),
+        "",
+        "## Boundary And Blocked Evidence",
+        "",
+        (
+            "- sklearn diabetes boundary: direct rewrite RMSE "
+            f"`{sklearn_direct}` matches or beats OpenEvolve median `{sklearn_median}`, "
+            "so program search should be gated rather than automatic."
+        ),
+    ]
+    for name, blocker in official_blockers.items():
+        lines.append(f"- `{name}`: `{blocker.get('status')}`; no official score reported.")
+    lines.extend(["", "## Checks", ""])
+    for name, ok in checks.items():
+        lines.append(f"- `{name}`: `{'pass' if ok else 'fail'}`")
+    lines.extend(["", "## Errors", ""])
+    lines.extend([f"- {error}" for error in errors] or ["- None"])
+    lines.extend(["", "## Warnings", ""])
+    lines.extend([f"- {warning}" for warning in warnings] or ["- None"])
+    lines.extend(["", "## Claim Boundary", "", audit["claim_boundary"], ""])
+    md_path.write_text("\n".join(lines), encoding="utf-8")
+
+    print(json.dumps({"json": _rel(json_path), "markdown": _rel(md_path), "status": audit["status"]}, indent=2))
+    if errors:
+        raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()

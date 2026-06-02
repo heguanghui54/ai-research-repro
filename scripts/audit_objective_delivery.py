@@ -84,6 +84,7 @@ def main() -> None:
     focused_review_path = AUDIT_DIR / "focused_paper_quality_review_summary.json"
     roadmap_audit_path = AUDIT_DIR / "top_conference_evidence_roadmap_audit.json"
     human_review_packet_audit_path = AUDIT_DIR / "human_expert_blind_review_packet_audit.json"
+    benchmark_coverage_audit_path = AUDIT_DIR / "benchmark_coverage_audit.json"
 
     manifest = _load_json(manifest_path)
     readiness = _load_json(readiness_path)
@@ -94,6 +95,7 @@ def main() -> None:
     focused_review = _load_json(focused_review_path)
     roadmap_audit = _load_json(roadmap_audit_path)
     human_review_packet_audit = _load_json(human_review_packet_audit_path)
+    benchmark_coverage_audit = _load_json(benchmark_coverage_audit_path)
 
     current_artifacts = manifest.get("current_artifacts", [])
     missing_manifest = [path for path in current_artifacts if not (ROOT / path).exists()]
@@ -155,6 +157,7 @@ def main() -> None:
                 "External Verification Entry Point",
                 "audit_top_conference_evidence_roadmap.py",
                 "audit_human_expert_blind_review_packet.py",
+                "audit_benchmark_coverage.py",
                 "pass_artifact_delivery_with_empirical_gaps",
                 "top-conference empirical target is not yet satisfied",
             ],
@@ -220,6 +223,7 @@ def main() -> None:
         "top_conference_roadmap_audit_pass": roadmap_audit.get("status") == "pass",
         "human_expert_blind_review_packet_audit_pass": human_review_packet_audit.get("status")
         == "pass_prepared_no_human_ratings",
+        "benchmark_coverage_audit_pass": benchmark_coverage_audit.get("status") == "pass",
         "lhtg_operationalized": lhtg.get("status") == "pass_with_no_positive_dvrs"
         and lhtg.get("reusable_workflow_terms_present") is True,
         "top_conference_boundary_kept": readiness.get("top_conference_empirical_support", {}).get("status")
@@ -327,10 +331,13 @@ def main() -> None:
         Path(__file__),
         ROOT / "scripts" / "audit_top_conference_evidence_roadmap.py",
         ROOT / "scripts" / "audit_human_expert_blind_review_packet.py",
+        ROOT / "scripts" / "audit_benchmark_coverage.py",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.json",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.md",
         AUDIT_DIR / "human_expert_blind_review_packet_audit.json",
         AUDIT_DIR / "human_expert_blind_review_packet_audit.md",
+        AUDIT_DIR / "benchmark_coverage_audit.json",
+        AUDIT_DIR / "benchmark_coverage_audit.md",
         docs["root_readme"],
         docs["english_submission_card"],
         docs["chinese_submission_card"],

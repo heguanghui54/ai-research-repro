@@ -70,6 +70,11 @@ before the generated manuscripts are scored.
 - Upgrade condition: at least one clear delayed-value positive case, plus an
   aggregate advantage over matched controls under semantic or expert frontier
   judging.
+- Delayed-value success case: a replay may be counted as theoretically
+  positive even when the regenerated artifact has lower immediate paper-quality
+  or original-task score, if the review-guided trajectory is clearly more
+  aligned with later mainstream or SOTA field developments than both paper-only
+  and shuffled-review controls.
 - If it fails: keep LHTG/DVRS as a falsifiable measurement protocol and report
   negative evidence, not as a proven source of breakthrough guidance.
 
