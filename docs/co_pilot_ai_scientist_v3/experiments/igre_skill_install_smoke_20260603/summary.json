@@ -1,14 +1,15 @@
 {
   "run_id": "igre_skill_install_smoke_20260603",
-  "created_at": "2026-06-02T16:40:53Z",
+  "created_at": "2026-06-02T16:44:23Z",
   "status": "pass",
   "release_dir": "release/co-pilot-ai-scientist-v3-skill",
   "install_root": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills",
   "installed_dir": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills/co-pilot-ai-scientist-v3",
-  "required_files_checked": 14,
+  "required_files_checked": 15,
   "checked_files": [
     "README.md",
     "QUICKSTART.md",
+    "MIGRATION.md",
     "POSITIONING.md",
     "CONTRIBUTING.md",
     "LICENSE",
@@ -35,7 +36,7 @@
   "validator_result": {
     "status": "pass",
     "release_root": "/Users/hgh54913/.codex/worktrees/1b29/research/docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills/co-pilot-ai-scientist-v3",
-    "required_files_checked": 14,
+    "required_files_checked": 15,
     "gates_checked": [
       "scientific_taste_prior",
       "evaluator_stress_test",
@@ -55,7 +56,7 @@
     ],
     "cwd": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills/co-pilot-ai-scientist-v3",
     "returncode": 0,
-    "stdout": "{\n  \"status\": \"pass\",\n  \"release_root\": \"/Users/hgh54913/.codex/worktrees/1b29/research/docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills/co-pilot-ai-scientist-v3\",\n  \"required_files_checked\": 14,\n  \"gates_checked\": [\n    \"scientific_taste_prior\",\n    \"evaluator_stress_test\",\n    \"frontier_steering\",\n    \"verifiable_micro_evolution\",\n    \"structured_feedback\",\n    \"claim_calibration\"\n  ],\n  \"errors\": [],\n  \"warnings\": [],\n  \"claim_boundary\": \"This release scaffold validates skill packaging and usability, not scientific superiority.\"\n}\n",
+    "stdout": "{\n  \"status\": \"pass\",\n  \"release_root\": \"/Users/hgh54913/.codex/worktrees/1b29/research/docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills/co-pilot-ai-scientist-v3\",\n  \"required_files_checked\": 15,\n  \"gates_checked\": [\n    \"scientific_taste_prior\",\n    \"evaluator_stress_test\",\n    \"frontier_steering\",\n    \"verifiable_micro_evolution\",\n    \"structured_feedback\",\n    \"claim_calibration\"\n  ],\n  \"errors\": [],\n  \"warnings\": [],\n  \"claim_boundary\": \"This release scaffold validates skill packaging and usability, not scientific superiority.\"\n}\n",
     "stderr": ""
   },
   "errors": [],

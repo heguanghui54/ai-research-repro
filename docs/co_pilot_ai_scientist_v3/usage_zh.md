@@ -16,6 +16,16 @@
 8. 生成 PDF 前进行最终主张审计。
 9. 跑一次 paper-quality review，并根据审稿意见弱化缺乏证据的顶会级主张。
 
+## 从 `ai-scientist-v2` 迁移
+
+使用 Co-Pilot AI Scientist v3 时，应把它理解为现有 `ai-scientist-v2`
+skill 的扩展，而不是另一个单独的论文写作助手。基础循环仍然保留：问题框定、
+候选想法生成、文献检索、benchmark 发现、实验设计、候选执行与评分、论文写作、
+审稿修订。IGRE gate 只应该在会改变控制决策时插入：候选方向选择、evaluator
+是否可信、frontier 预算分配、是否升级到 OpenEvolve-style search、如何结构化
+修订、以及最终主张边界。standalone release 中的 `MIGRATION.md` 已把
+AI Scientist-v2 的每一步映射到对应 IGRE gate 和需要记录的字段。
+
 当前项目包已经包含一次示例 claim audit，位于
 `docs/co_pilot_ai_scientist_v3/audits/`。后续运行也应沿用这个模式：在最终
 PDF 生成前，把每条主张标记为 supported、partially supported、unsupported

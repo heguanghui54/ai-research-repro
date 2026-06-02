@@ -19,6 +19,18 @@ where expert judgment is most valuable.
 8. Run a final claim audit before producing PDFs.
 9. Run a paper-quality review pass and revise unsupported top-conference claims.
 
+## Migrating From `ai-scientist-v2`
+
+Use Co-Pilot AI Scientist v3 as an extension of the existing
+`ai-scientist-v2` skill, not as a separate writing assistant. Keep the base
+loop: frame the problem, generate candidate ideas, search literature, discover
+benchmarks, design experiments, run and score candidates, write the paper, and
+review/revise claims. Add IGRE gates only when human taste or expert insight
+changes a control decision: candidate selection, evaluator trust, frontier
+budget, OpenEvolve-style escalation, structured revision, or claim boundary.
+The standalone release includes `MIGRATION.md`, which maps every base
+AI Scientist-v2 step to the corresponding IGRE gate and required log fields.
+
 The current package includes an example claim audit under
 `docs/co_pilot_ai_scientist_v3/audits/`. Use it as the model for future runs:
 claims must be marked as supported, partially supported, unsupported, or

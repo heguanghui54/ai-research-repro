@@ -18,6 +18,7 @@ review/revision. IGRE changes where control enters that loop: instead of
 letting the autonomous loop decide everything from scalar metrics, it inserts
 six explicit human-insight gates that can reshape the prior, evaluator,
 frontier, micro-evolution escalation, feedback structure, and claim boundary.
+See `MIGRATION.md` for the step-by-step mapping from the base skill to IGRE.
 
 ## What It Does
 
@@ -110,5 +111,6 @@ baselines and expert review.
 
 - Positioning: `POSITIONING.md`
 - Quickstart: `QUICKSTART.md`
+- Migration from `ai-scientist-v2`: `MIGRATION.md`
 - Contributing: `CONTRIBUTING.md`
 - Release notes: `RELEASE_NOTES.md`

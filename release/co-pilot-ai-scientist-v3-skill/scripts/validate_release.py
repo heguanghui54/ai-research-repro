@@ -27,6 +27,7 @@ def main() -> None:
     skill = read(ROOT / "SKILL.md")
     readme = read(ROOT / "README.md")
     quickstart = read(ROOT / "QUICKSTART.md")
+    migration = read(ROOT / "MIGRATION.md")
     positioning = read(ROOT / "POSITIONING.md")
     contributing = read(ROOT / "CONTRIBUTING.md")
     release_notes = read(ROOT / "RELEASE_NOTES.md")
@@ -44,11 +45,12 @@ def main() -> None:
         "ai-scientist-v2",
         "Base Skill Relationship",
         "AI Scientist-v2 research-production loop",
+        "Migrating From `ai-scientist-v2` To Co-Pilot AI Scientist v3",
         "OpenEvolve",
         "claim_calibration",
         "not scientific superiority",
     ]
-    blob = "\n".join([skill, readme, quickstart, positioning, contributing, release_notes])
+    blob = "\n".join([skill, readme, quickstart, migration, positioning, contributing, release_notes])
     for term in required_terms:
         if term not in blob:
             errors.append(f"required positioning term missing: {term}")

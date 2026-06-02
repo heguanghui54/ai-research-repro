@@ -1,11 +1,12 @@
 {
-  "audit_date": "2026-06-02T16:41:26Z",
+  "audit_date": "2026-06-02T16:44:23Z",
   "status": "pass",
   "release_dir": "release/co-pilot-ai-scientist-v3-skill",
-  "required_files_checked": 14,
+  "required_files_checked": 15,
   "checked_files": [
     "release/co-pilot-ai-scientist-v3-skill/README.md",
     "release/co-pilot-ai-scientist-v3-skill/QUICKSTART.md",
+    "release/co-pilot-ai-scientist-v3-skill/MIGRATION.md",
     "release/co-pilot-ai-scientist-v3-skill/POSITIONING.md",
     "release/co-pilot-ai-scientist-v3-skill/CONTRIBUTING.md",
     "release/co-pilot-ai-scientist-v3-skill/LICENSE",
@@ -22,7 +23,7 @@
   "validator_result": {
     "status": "pass",
     "release_root": "/Users/hgh54913/.codex/worktrees/1b29/research/release/co-pilot-ai-scientist-v3-skill",
-    "required_files_checked": 14,
+    "required_files_checked": 15,
     "gates_checked": [
       "scientific_taste_prior",
       "evaluator_stress_test",
@@ -39,6 +40,7 @@
   "publication_files_checked": [
     "POSITIONING.md",
     "CONTRIBUTING.md",
+    "MIGRATION.md",
     "LICENSE",
     "RELEASE_NOTES.md"
   ],

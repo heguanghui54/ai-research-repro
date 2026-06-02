@@ -20,6 +20,11 @@ Expected output:
 Use `examples/toy_task_spec.md` as the first task. It is intentionally small so
 the first run can produce a gate log within minutes.
 
+If you already use the `ai-scientist-v2` Codex skill, read `MIGRATION.md`
+first. Keep its research-production loop intact, then add IGRE gates only when
+they change a candidate, evaluator, branch-budget, micro-evolution, feedback,
+or claim-boundary decision.
+
 Ask Codex:
 
 ```text

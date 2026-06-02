@@ -77,6 +77,7 @@ def main() -> None:
     release_contributing = _read(RELEASE_DIR / "CONTRIBUTING.md") if (RELEASE_DIR / "CONTRIBUTING.md").exists() else ""
     release_notes = _read(RELEASE_DIR / "RELEASE_NOTES.md") if (RELEASE_DIR / "RELEASE_NOTES.md").exists() else ""
     release_skill = _read(RELEASE_DIR / "SKILL.md") if (RELEASE_DIR / "SKILL.md").exists() else ""
+    release_migration = _read(RELEASE_DIR / "MIGRATION.md") if (RELEASE_DIR / "MIGRATION.md").exists() else ""
     strategy = _read(DOC_DIR / "skill_engineering_release_strategy.md")
     root_readme = _read(ROOT / "README.md")
     project_readme = _read(DOC_DIR / "README.md")
@@ -92,6 +93,7 @@ def main() -> None:
         "Base Skill Relationship",
         "ai-scientist-v2",
         "AI Scientist-v2 research-production loop",
+        "Migrating From `ai-scientist-v2` To Co-Pilot AI Scientist v3",
         "Engineering adoption is not scientific superiority",
         "Do not add fabricated benchmark numbers",
         "model-only reviews",
@@ -103,6 +105,7 @@ def main() -> None:
             release_contributing,
             release_notes,
             release_skill,
+            release_migration,
             strategy,
             root_readme,
             project_readme,
@@ -139,6 +142,7 @@ def main() -> None:
     publication_files = [
         "POSITIONING.md",
         "CONTRIBUTING.md",
+        "MIGRATION.md",
         "LICENSE",
         "RELEASE_NOTES.md",
     ]

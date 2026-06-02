@@ -5,6 +5,7 @@
   "required_files": [
     "README.md",
     "QUICKSTART.md",
+    "MIGRATION.md",
     "POSITIONING.md",
     "CONTRIBUTING.md",
     "LICENSE",

@@ -1,9 +1,9 @@
 # IGRE Skill Release Package Audit
 
-- Audit date: `2026-06-02T16:41:26Z`
+- Audit date: `2026-06-02T16:44:23Z`
 - Status: `pass`
 - Release dir: `release/co-pilot-ai-scientist-v3-skill`
-- Required files checked: `14`
+- Required files checked: `15`
 - Engineering track status: `standalone_release_scaffold_prepared`
 - Standalone validator status: `pass`
 - Install smoke status: `pass`

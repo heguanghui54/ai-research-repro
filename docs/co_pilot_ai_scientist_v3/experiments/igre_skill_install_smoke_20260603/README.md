@@ -1,12 +1,12 @@
 # IGRE Skill Install Smoke Test
 
 - Run id: `igre_skill_install_smoke_20260603`
-- Created at: `2026-06-02T16:40:53Z`
+- Created at: `2026-06-02T16:44:23Z`
 - Status: `pass`
 - Release dir: `release/co-pilot-ai-scientist-v3-skill`
 - Install root: `docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills`
 - Installed dir: `docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills/co-pilot-ai-scientist-v3`
-- Required files checked: `14`
+- Required files checked: `15`
 - Installed validator status: `pass`
 
 ## Errors
