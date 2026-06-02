@@ -1,0 +1,57 @@
+{
+  "paper_id": "openreview_sample_17",
+  "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+  "raw_review_guided": {
+    "condition": "raw_review_guided",
+    "scores": {
+      "method_specificity": 4,
+      "experiment_specificity": 4,
+      "claim_calibration": 3,
+      "frontier_alignment": 3,
+      "structured_actionability": 2,
+      "overall": 3.2
+    },
+    "diagnostics": {
+      "word_count": 207,
+      "routed_action_count": 0,
+      "review_insight_count": 2,
+      "frontier_terms_matched": [
+        "knowledge",
+        "machine",
+        "privacy",
+        "unlearning"
+      ]
+    }
+  },
+  "six_gate_hybrid": {
+    "condition": "six_gate_hybrid",
+    "scores": {
+      "method_specificity": 2,
+      "experiment_specificity": 3,
+      "claim_calibration": 4,
+      "frontier_alignment": 4,
+      "structured_actionability": 4,
+      "overall": 3.4
+    },
+    "diagnostics": {
+      "word_count": 286,
+      "routed_action_count": 6,
+      "review_insight_count": 0,
+      "frontier_terms_matched": [
+        "knowledge",
+        "machine",
+        "privacy",
+        "unlearning"
+      ]
+    }
+  },
+  "winner": "six_gate_hybrid",
+  "overall_delta_six_gate_minus_raw": 0.2,
+  "rationale": "The six-gate artifact is favored when it converts raw review text into explicit frontier steering, evaluator stress, structured feedback, and claim-calibration actions. The raw-review artifact remains competitive when it contains concrete method or experiment details without adding gate overhead.",
+  "claim_boundary": "Deterministic internal rubric review only; not human expert evidence, not independent model review, and not a benchmark-executed rerun.",
+  "source_files": {
+    "raw_review_guided": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_03_openreview_sample_17/regenerated_artifacts.json",
+    "six_gate_hybrid": "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500/case_03_openreview_sample_17/gate_optimized_regeneration.json",
+    "frontier_evidence": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_03_openreview_sample_17/future_frontier_evidence.json"
+  }
+}

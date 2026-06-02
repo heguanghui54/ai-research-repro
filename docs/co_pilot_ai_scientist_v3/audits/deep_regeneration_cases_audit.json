@@ -1,11 +1,15 @@
 {
-  "audit_date": "2026-06-02T12:22:46Z",
+  "audit_date": "2026-06-02T12:31:57Z",
   "status": "pass",
   "casebook": "docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md",
   "deep_run": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000",
   "hybrid_run": "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500",
+  "internal_review_run": "docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500",
   "deep_case_count": 3,
   "hybrid_case_count": 3,
+  "internal_review_case_count": 3,
+  "internal_review_six_gate_wins": 3,
+  "internal_review_mean_delta": 1.133,
   "pdf_count": 6,
   "required_gates": [
     "claim_calibration",
@@ -81,6 +85,26 @@
       }
     }
   ],
+  "internal_review_checks": [
+    {
+      "paper_id": "openreview_sample_1",
+      "winner": "six_gate_hybrid",
+      "delta": 1.6,
+      "missing_files": []
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "winner": "six_gate_hybrid",
+      "delta": 1.6,
+      "missing_files": []
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "winner": "six_gate_hybrid",
+      "delta": 0.2,
+      "missing_files": []
+    }
+  ],
   "pdf_checks": [
     {
       "paper_id": "openreview_sample_1",
@@ -97,5 +121,5 @@
   ],
   "errors": [],
   "warnings": [],
-  "claim_boundary": "A pass means the package exposes concrete paper-level replay cases and six-gate optimized hybrid-review proxies. It does not mean the deep benchmark reruns or long-horizon innovation claims are completed."
+  "claim_boundary": "A pass means the package exposes concrete paper-level replay cases and six-gate optimized hybrid-review proxies. It does not mean the deep benchmark reruns, human expert reviews, or long-horizon innovation claims are completed."
 }

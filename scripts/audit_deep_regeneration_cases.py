@@ -15,6 +15,7 @@ EXP_DIR = DOC_DIR / "experiments"
 AUDIT_DIR = DOC_DIR / "audits"
 DEEP_RUN = EXP_DIR / "deep_regeneration_cases_20260602_203000"
 HYBRID_RUN = EXP_DIR / "six_gate_hybrid_review_cases_20260602_211500"
+INTERNAL_REVIEW_RUN = EXP_DIR / "deep_case_internal_review_20260602_224500"
 PDF_SUMMARY = DOC_DIR / "build" / "deep_regeneration_cases" / "summary.json"
 
 REQUIRED_GATES = {
@@ -51,13 +52,15 @@ def main() -> None:
     casebook_path = DOC_DIR / "deep_regeneration_casebook.md"
     deep_summary_path = DEEP_RUN / "summary.json"
     hybrid_summary_path = HYBRID_RUN / "summary.json"
+    internal_review_summary_path = INTERNAL_REVIEW_RUN / "summary.json"
 
-    for path in [casebook_path, deep_summary_path, hybrid_summary_path, PDF_SUMMARY]:
+    for path in [casebook_path, deep_summary_path, hybrid_summary_path, internal_review_summary_path, PDF_SUMMARY]:
         if not _file_ok(path):
             errors.append(f"missing required artifact: {_rel(path)}")
 
     deep_summary = _load_json(deep_summary_path) if deep_summary_path.exists() else {}
     hybrid_summary = _load_json(hybrid_summary_path) if hybrid_summary_path.exists() else {}
+    internal_review_summary = _load_json(internal_review_summary_path) if internal_review_summary_path.exists() else {}
     pdf_summary = _load_json(PDF_SUMMARY) if PDF_SUMMARY.exists() else {}
 
     deep_cases = deep_summary.get("cases", [])
@@ -70,6 +73,12 @@ def main() -> None:
         errors.append("six-gate hybrid package does not contain the required gate set")
     if pdf_summary.get("pdf_count") != 6:
         errors.append("deep case PDF package does not contain 6 PDFs")
+    if internal_review_summary.get("case_count") != 3:
+        errors.append("internal deep-case review does not contain 3 cases")
+    if internal_review_summary.get("six_gate_hybrid_wins") != 3:
+        errors.append("internal deep-case review should report 3 six-gate wins")
+    if "not replace future human expert blind review" not in internal_review_summary.get("claim_boundary", ""):
+        errors.append("internal deep-case review missing human-review boundary")
 
     case_checks = []
     for case in deep_cases:
@@ -125,6 +134,24 @@ def main() -> None:
             errors.append(f"{case.get('paper_id')} missing PDF outputs: {missing_pdfs}")
         pdf_checks.append({"paper_id": case.get("paper_id"), "missing_pdfs": missing_pdfs})
 
+    internal_review_checks = []
+    for case in internal_review_summary.get("cases", []):
+        missing = []
+        for suffix in ["json", "md"]:
+            path = INTERNAL_REVIEW_RUN / f"{case.get('paper_id')}.{suffix}"
+            if not _file_ok(path):
+                missing.append(_rel(path))
+        if missing:
+            errors.append(f"{case.get('paper_id')} missing internal review files: {missing}")
+        internal_review_checks.append(
+            {
+                "paper_id": case.get("paper_id"),
+                "winner": case.get("winner"),
+                "delta": case.get("overall_delta_six_gate_minus_raw"),
+                "missing_files": missing,
+            }
+        )
+
     casebook_text = casebook_path.read_text(encoding="utf-8") if casebook_path.exists() else ""
     for term in [
         "LLM Refusal And Reliability",
@@ -141,20 +168,26 @@ def main() -> None:
         "casebook": _rel(casebook_path),
         "deep_run": _rel(DEEP_RUN),
         "hybrid_run": _rel(HYBRID_RUN),
+        "internal_review_run": _rel(INTERNAL_REVIEW_RUN),
         "deep_case_count": len(deep_cases),
         "hybrid_case_count": len(hybrid_cases),
+        "internal_review_case_count": internal_review_summary.get("case_count"),
+        "internal_review_six_gate_wins": internal_review_summary.get("six_gate_hybrid_wins"),
+        "internal_review_mean_delta": internal_review_summary.get("mean_delta_six_gate_minus_raw"),
         "pdf_count": pdf_summary.get("pdf_count"),
         "required_gates": sorted(REQUIRED_GATES),
         "hybrid_gates": hybrid_summary.get("gates", []),
         "case_checks": case_checks,
         "hybrid_checks": hybrid_checks,
+        "internal_review_checks": internal_review_checks,
         "pdf_checks": pdf_checks,
         "errors": errors,
         "warnings": warnings,
         "claim_boundary": (
             "A pass means the package exposes concrete paper-level replay cases and "
             "six-gate optimized hybrid-review proxies. It does not mean the deep "
-            "benchmark reruns or long-horizon innovation claims are completed."
+            "benchmark reruns, human expert reviews, or long-horizon innovation "
+            "claims are completed."
         ),
     }
 
@@ -170,6 +203,9 @@ def main() -> None:
         f"- Casebook: `{audit['casebook']}`",
         f"- Deep cases: `{audit['deep_case_count']}`",
         f"- Six-gate hybrid cases: `{audit['hybrid_case_count']}`",
+        f"- Internal review cases: `{audit['internal_review_case_count']}`",
+        f"- Internal six-gate wins: `{audit['internal_review_six_gate_wins']}`",
+        f"- Internal mean delta: `{audit['internal_review_mean_delta']}`",
         f"- Viewable mini-paper PDFs: `{audit['pdf_count']}`",
         f"- Gates: `{', '.join(audit['hybrid_gates'])}`",
         "",
@@ -183,6 +219,12 @@ def main() -> None:
         lines.append(
             f"- `{check['paper_id']}`: missing `{check['missing_files']}`, "
             f"gates with evidence `{check['proxy_metrics'].get('six_gate_action_count')}`"
+        )
+    lines.extend(["", "## Internal Review Checks", ""])
+    for check in internal_review_checks:
+        lines.append(
+            f"- `{check['paper_id']}`: winner `{check['winner']}`, "
+            f"delta `{check['delta']}`, missing `{check['missing_files']}`"
         )
     lines.extend(["", "## PDF Checks", ""])
     for check in pdf_checks:

@@ -50,6 +50,11 @@ structured feedback, and claim calibration.
   scientific-taste, evaluator-stress, frontier-steering, micro-evolution,
   structured-feedback, and claim-calibration actions before regenerating
   mini-paper artifacts.
+- `experiments/deep_case_internal_review_20260602_224500/`: deterministic
+  internal rubric review comparing raw-review-guided and six-gate-hybrid
+  artifacts on the three deep cases. Six-gate wins `3/3` with mean internal
+  delta `+1.133`; this closes the current non-human review loop but is not
+  independent expert evidence.
 - `build/deep_regeneration_cases/`: viewable PDFs for each selected case,
   including raw human-review-guided and six-gate hybrid-review-guided
   mini-paper artifacts.

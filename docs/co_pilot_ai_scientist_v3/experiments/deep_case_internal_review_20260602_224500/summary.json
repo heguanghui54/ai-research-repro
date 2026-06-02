@@ -1,0 +1,166 @@
+{
+  "run_id": "deep_case_internal_review_20260602_224500",
+  "timestamp_utc": "2026-06-02T12:31:48Z",
+  "status": "completed_internal_deterministic_review",
+  "case_count": 3,
+  "six_gate_hybrid_wins": 3,
+  "raw_review_guided_wins": 0,
+  "ties": 0,
+  "mean_delta_six_gate_minus_raw": 1.133,
+  "cases": [
+    {
+      "paper_id": "openreview_sample_1",
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "raw_review_guided": {
+        "condition": "raw_review_guided",
+        "scores": {
+          "method_specificity": 2,
+          "experiment_specificity": 2,
+          "claim_calibration": 3,
+          "frontier_alignment": 1,
+          "structured_actionability": 2,
+          "overall": 2
+        },
+        "diagnostics": {
+          "word_count": 238,
+          "routed_action_count": 0,
+          "review_insight_count": 2,
+          "frontier_terms_matched": []
+        }
+      },
+      "six_gate_hybrid": {
+        "condition": "six_gate_hybrid",
+        "scores": {
+          "method_specificity": 4,
+          "experiment_specificity": 3,
+          "claim_calibration": 4,
+          "frontier_alignment": 3,
+          "structured_actionability": 4,
+          "overall": 3.6
+        },
+        "diagnostics": {
+          "word_count": 303,
+          "routed_action_count": 6,
+          "review_insight_count": 0,
+          "frontier_terms_matched": [
+            "refusal"
+          ]
+        }
+      },
+      "winner": "six_gate_hybrid",
+      "overall_delta_six_gate_minus_raw": 1.6,
+      "rationale": "The six-gate artifact is favored when it converts raw review text into explicit frontier steering, evaluator stress, structured feedback, and claim-calibration actions. The raw-review artifact remains competitive when it contains concrete method or experiment details without adding gate overhead.",
+      "claim_boundary": "Deterministic internal rubric review only; not human expert evidence, not independent model review, and not a benchmark-executed rerun.",
+      "source_files": {
+        "raw_review_guided": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_01_openreview_sample_1/regenerated_artifacts.json",
+        "six_gate_hybrid": "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500/case_01_openreview_sample_1/gate_optimized_regeneration.json",
+        "frontier_evidence": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_01_openreview_sample_1/future_frontier_evidence.json"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "title": "Forked Diffusion for Conditional Graph Generation",
+      "raw_review_guided": {
+        "condition": "raw_review_guided",
+        "scores": {
+          "method_specificity": 2,
+          "experiment_specificity": 2,
+          "claim_calibration": 3,
+          "frontier_alignment": 1,
+          "structured_actionability": 2,
+          "overall": 2
+        },
+        "diagnostics": {
+          "word_count": 230,
+          "routed_action_count": 0,
+          "review_insight_count": 2,
+          "frontier_terms_matched": []
+        }
+      },
+      "six_gate_hybrid": {
+        "condition": "six_gate_hybrid",
+        "scores": {
+          "method_specificity": 4,
+          "experiment_specificity": 4,
+          "claim_calibration": 4,
+          "frontier_alignment": 2,
+          "structured_actionability": 4,
+          "overall": 3.6
+        },
+        "diagnostics": {
+          "word_count": 301,
+          "routed_action_count": 6,
+          "review_insight_count": 0,
+          "frontier_terms_matched": []
+        }
+      },
+      "winner": "six_gate_hybrid",
+      "overall_delta_six_gate_minus_raw": 1.6,
+      "rationale": "The six-gate artifact is favored when it converts raw review text into explicit frontier steering, evaluator stress, structured feedback, and claim-calibration actions. The raw-review artifact remains competitive when it contains concrete method or experiment details without adding gate overhead.",
+      "claim_boundary": "Deterministic internal rubric review only; not human expert evidence, not independent model review, and not a benchmark-executed rerun.",
+      "source_files": {
+        "raw_review_guided": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_02_openreview_sample_2/regenerated_artifacts.json",
+        "six_gate_hybrid": "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500/case_02_openreview_sample_2/gate_optimized_regeneration.json",
+        "frontier_evidence": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_02_openreview_sample_2/future_frontier_evidence.json"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "raw_review_guided": {
+        "condition": "raw_review_guided",
+        "scores": {
+          "method_specificity": 4,
+          "experiment_specificity": 4,
+          "claim_calibration": 3,
+          "frontier_alignment": 3,
+          "structured_actionability": 2,
+          "overall": 3.2
+        },
+        "diagnostics": {
+          "word_count": 207,
+          "routed_action_count": 0,
+          "review_insight_count": 2,
+          "frontier_terms_matched": [
+            "knowledge",
+            "machine",
+            "privacy",
+            "unlearning"
+          ]
+        }
+      },
+      "six_gate_hybrid": {
+        "condition": "six_gate_hybrid",
+        "scores": {
+          "method_specificity": 2,
+          "experiment_specificity": 3,
+          "claim_calibration": 4,
+          "frontier_alignment": 4,
+          "structured_actionability": 4,
+          "overall": 3.4
+        },
+        "diagnostics": {
+          "word_count": 286,
+          "routed_action_count": 6,
+          "review_insight_count": 0,
+          "frontier_terms_matched": [
+            "knowledge",
+            "machine",
+            "privacy",
+            "unlearning"
+          ]
+        }
+      },
+      "winner": "six_gate_hybrid",
+      "overall_delta_six_gate_minus_raw": 0.2,
+      "rationale": "The six-gate artifact is favored when it converts raw review text into explicit frontier steering, evaluator stress, structured feedback, and claim-calibration actions. The raw-review artifact remains competitive when it contains concrete method or experiment details without adding gate overhead.",
+      "claim_boundary": "Deterministic internal rubric review only; not human expert evidence, not independent model review, and not a benchmark-executed rerun.",
+      "source_files": {
+        "raw_review_guided": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_03_openreview_sample_17/regenerated_artifacts.json",
+        "six_gate_hybrid": "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500/case_03_openreview_sample_17/gate_optimized_regeneration.json",
+        "frontier_evidence": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_03_openreview_sample_17/future_frontier_evidence.json"
+      }
+    }
+  ],
+  "claim_boundary": "This closes the current internal evaluation loop for the three deep cases. It is a reproducible rubric proxy and does not replace future human expert blind review."
+}

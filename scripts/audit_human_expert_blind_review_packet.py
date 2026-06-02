@@ -79,11 +79,14 @@ def main() -> None:
     condition_key_path = PACKET_DIR / "condition_key.json"
     score_template_path = PACKET_DIR / "score_sheet_template.csv"
     prereg_json_path = PACKET_DIR / "preregistration_analysis_plan.json"
+    school_ready_path = PACKET_DIR / "school_expert_ready_summary.json"
+    deep_pdf_key_path = PACKET_DIR / "deep_pdf_condition_key.json"
 
     summary = _load_json(summary_path)
     pairs = _load_json(pairs_path)
     condition_key = _load_json(condition_key_path)
     prereg = _load_json(prereg_json_path)
+    school_ready = _load_json(school_ready_path)
 
     errors: list[str] = []
     warnings: list[str] = []
@@ -102,8 +105,15 @@ def main() -> None:
         prereg_json_path,
         PACKET_DIR / "template_summary_smoke" / "summary.json",
         PACKET_DIR / "template_summary_smoke" / "summary.md",
+        school_ready_path,
+        PACKET_DIR / "school_expert_ethics_launch_checklist.md",
+        PACKET_DIR / "online_form_builder_spec.md",
+        PACKET_DIR / "expert_reviewer_tracking_template.csv",
+        PACKET_DIR / "deep_pdf_reviewer_index.md",
+        deep_pdf_key_path,
     ]
     required_files.extend(PACKET_DIR / "pairs" / f"pair_{idx:02d}.md" for idx in range(1, 7))
+    required_files.extend(PACKET_DIR / "deep_pdf_pairs" / f"deep_pair_{idx:02d}_{side}.pdf" for idx in range(1, 4) for side in ["A", "B"])
     file_status = {str(path.relative_to(PACKET_DIR)): _exists(path, min_bytes=20) for path in required_files}
     for rel, status in file_status.items():
         if not status["ok"]:
@@ -126,8 +136,12 @@ def main() -> None:
     hidden = set(summary.get("hidden_files", []))
     hidden_required = {
         _rel(condition_key_path),
+        _rel(deep_pdf_key_path),
         _rel(prereg_json_path),
         _rel(PACKET_DIR / "preregistration_analysis_plan.md"),
+        _rel(PACKET_DIR / "school_expert_ethics_launch_checklist.md"),
+        _rel(PACKET_DIR / "online_form_builder_spec.md"),
+        _rel(PACKET_DIR / "expert_reviewer_tracking_template.csv"),
     }
     if not hidden_required.issubset(hidden):
         errors.append("hidden files do not include condition key and preregistration plan")
@@ -135,6 +149,8 @@ def main() -> None:
         errors.append(f"reviewer-visible files overlap hidden files: {sorted(reviewer_visible & hidden)}")
     if _rel(condition_key_path) in reviewer_visible:
         errors.append("condition key is reviewer-visible")
+    if _rel(deep_pdf_key_path) in reviewer_visible:
+        errors.append("deep PDF condition key is reviewer-visible")
 
     reviewer_index_text = _read(PACKET_DIR / "reviewer_index.md")
     if "condition_key.json" in reviewer_index_text and "not included" not in reviewer_index_text:
@@ -174,6 +190,22 @@ def main() -> None:
 
     if summary.get("status") != "preregistered_packet_prepared_no_human_ratings_yet":
         warnings.append("packet summary status changed; verify whether human ratings exist")
+    if summary.get("school_expert_ready_status") != "prepared_no_human_ratings_yet":
+        errors.append("school expert ready status missing or changed")
+    if school_ready.get("status") != "school_expert_ready_prepared_no_human_ratings_yet":
+        errors.append("school expert ready summary status missing or changed")
+    if school_ready.get("deep_pdf_pair_count") != 3:
+        errors.append("expected 3 deep PDF pairs")
+    ready_terms = [
+        "institutional ethics review",
+        "exemption determination",
+        "NUS-affiliated",
+        "Prolific or crowd-worker evaluation is supplementary",
+    ]
+    ready_blob = json.dumps(summary, ensure_ascii=False) + "\n" + _read(PACKET_DIR / "school_expert_ethics_launch_checklist.md")
+    for term in ready_terms:
+        if term not in ready_blob:
+            errors.append(f"school expert readiness missing term: {term}")
 
     audit = {
         "audit_date": _utc_now(),
@@ -192,6 +224,9 @@ def main() -> None:
             "statistical_tests": prereg.get("statistical_tests", []),
         },
         "template_summary_smoke_status": smoke.get("inter_rater_agreement", {}).get("status"),
+        "school_expert_ready_status": school_ready.get("status"),
+        "deep_pdf_pair_count": school_ready.get("deep_pdf_pair_count"),
+        "deep_pdf_condition_key_hidden": _rel(deep_pdf_key_path) in hidden and _rel(deep_pdf_key_path) not in reviewer_visible,
         "errors": errors,
         "warnings": warnings,
         "claim_boundary": (
@@ -214,6 +249,9 @@ def main() -> None:
         f"- Required files checked: `{audit['required_files_checked']}`",
         f"- Condition key hidden: `{audit['condition_key_hidden']}`",
         f"- Template summary smoke status: `{audit['template_summary_smoke_status']}`",
+        f"- School expert ready status: `{audit['school_expert_ready_status']}`",
+        f"- Deep PDF pairs: `{audit['deep_pdf_pair_count']}`",
+        f"- Deep PDF condition key hidden: `{audit['deep_pdf_condition_key_hidden']}`",
         "",
         "## Preregistration",
         "",

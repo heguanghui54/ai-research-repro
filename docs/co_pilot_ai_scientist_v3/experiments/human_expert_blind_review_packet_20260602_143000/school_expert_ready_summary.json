@@ -1,0 +1,21 @@
+{
+  "status": "school_expert_ready_prepared_no_human_ratings_yet",
+  "timestamp_utc": "2026-06-02T12:31:48Z",
+  "packet_dir": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000",
+  "deep_pdf_pair_count": 3,
+  "reviewer_visible_deep_pdf_files": [
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_01_A.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_01_B.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_02_A.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_02_B.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_03_A.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_03_B.pdf"
+  ],
+  "hidden_files": [
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_condition_key.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/school_expert_ethics_launch_checklist.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/online_form_builder_spec.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/expert_reviewer_tracking_template.csv"
+  ],
+  "claim_boundary": "This prepares recruitment and optional PDF review materials. It is not completed human expert evidence."
+}

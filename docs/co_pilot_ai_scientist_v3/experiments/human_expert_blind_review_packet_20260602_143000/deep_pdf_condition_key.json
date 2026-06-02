@@ -1,0 +1,33 @@
+{
+  "status": "hidden_from_reviewers",
+  "purpose": "Map anonymized deep PDF A/B files to raw-review-guided and six-gate-hybrid conditions.",
+  "pairs": [
+    {
+      "deep_pair_id": "deep_pair_01",
+      "paper_id": "openreview_sample_1",
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "A": "six_gate_hybrid",
+      "A_source": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_1_llm_refusal_and_reliability_six_gate_hybrid.pdf",
+      "B": "raw_review_guided",
+      "B_source": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_1_llm_refusal_and_reliability_review_guided.pdf"
+    },
+    {
+      "deep_pair_id": "deep_pair_02",
+      "paper_id": "openreview_sample_2",
+      "title": "Forked Diffusion for Conditional Graph Generation",
+      "A": "raw_review_guided",
+      "A_source": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_2_conditional_graph_generation_and_molecular_design_review_guided.pdf",
+      "B": "six_gate_hybrid",
+      "B_source": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_2_conditional_graph_generation_and_molecular_design_six_gate_hybrid.pdf"
+    },
+    {
+      "deep_pair_id": "deep_pair_03",
+      "paper_id": "openreview_sample_17",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "A": "six_gate_hybrid",
+      "A_source": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_17_knowledge_unlearning_and_privacy_risk_six_gate_hybrid.pdf",
+      "B": "raw_review_guided",
+      "B_source": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_17_knowledge_unlearning_and_privacy_risk_review_guided.pdf"
+    }
+  ]
+}

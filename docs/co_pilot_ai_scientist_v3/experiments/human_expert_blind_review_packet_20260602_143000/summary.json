@@ -10,25 +10,36 @@
   "equal_context_run": "openreview_equal_context_ablation_20260602_142000",
   "equal_context_summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json",
   "reviewer_visible_files": [
-    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/reviewer_index.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/consent_privacy_note.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/recruitment_email.md",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/collection_protocol.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/consent_privacy_note.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_01_A.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_01_B.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_02_A.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_02_B.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_03_A.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_pairs/deep_pair_03_B.pdf",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_reviewer_index.md",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/instructions.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/score_sheet_template.csv",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_01.md",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_02.md",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_03.md",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_04.md",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_05.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_06.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_06.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/recruitment_email.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/reviewer_index.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/score_sheet_template.csv"
   ],
   "hidden_files": [
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/condition_key.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_condition_key.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/expert_reviewer_tracking_template.csv",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/online_form_builder_spec.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.json",
     "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/preregistration_analysis_plan.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/school_expert_ethics_launch_checklist.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.md"
   ],
   "claim_boundary": "Packet preparation and preregistration only; no human expert ratings have been collected.",
   "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/README.md",
@@ -86,5 +97,18 @@
       "claim_calibration"
     ],
     "claim_boundary": "Preregistration only; no independent human ratings have been collected."
-  }
+  },
+  "school_expert_ready_status": "prepared_no_human_ratings_yet",
+  "preferred_reviewer_pool": "NUS-affiliated or school-affiliated ML/AI faculty, postdocs, PhD students, or advanced research students",
+  "crowd_evaluation_boundary": "Prolific or crowd-worker evaluation is supplementary unless ML/AI expertise is verified.",
+  "ethics_boundary": "Recruitment should proceed only after institutional ethics review, departmental review, or exemption determination.",
+  "deep_pdf_pair_count": 3,
+  "deep_pdf_reviewer_index": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_reviewer_index.md",
+  "deep_pdf_condition_key": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_condition_key.json",
+  "school_expert_ready_files": [
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/school_expert_ethics_launch_checklist.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/online_form_builder_spec.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/expert_reviewer_tracking_template.csv",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/deep_pdf_reviewer_index.md"
+  ]
 }
