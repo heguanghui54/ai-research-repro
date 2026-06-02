@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02",
+  "audit_date": "2026-06-03",
   "overall_status": "focused_pilot_package_not_yet_top_conference_ready",
   "satisfied_artifact_requirements": [
     "English PDF paper",
@@ -38,7 +38,7 @@
     "derived_trace_gate_records": 52,
     "derived_trace_attention_cost_records": 35,
     "derived_trace_taste_insight_records": 10,
-    "prospective_matched_packages": 4,
+    "prospective_matched_packages": 5,
     "same_run_online_paired_smokes": 3,
     "same_run_online_no_valid_branch_smokes": 1,
     "live_hypothesis_frontier_smokes": 1,
@@ -166,7 +166,12 @@
     "lhtg_dvrs_audit_runs": 1,
     "lhtg_delayed_value_positive_cases": 0,
     "lhtg_candidate_queue_size": 120,
-    "lhtg_candidate_frontier_delta": 0.064
+    "lhtg_candidate_frontier_delta": 0.064,
+    "prospective_matched_package_co_pilot_wins": 2,
+    "prospective_matched_package_autonomous_or_tie_wins": 3,
+    "prospective_matched_package_complete_attention_gates": 5,
+    "prospective_matched_package_complete_taste_gates": 5,
+    "prospective_matched_package_total_active_review_minutes": 13.0
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -235,32 +240,30 @@
   },
   "next_evidence_milestone": "Collect blind human expert ratings, rerun gate decisions on real benchmarks, and scale matched autonomous versus human-gated trajectories before upgrading from a pilot package.",
   "prospective_matched_budget_package_audit": {
-    "status": "pass_with_mostly_negative_fml_metric_outcomes",
-    "manifest_files_checked": 3,
-    "passing_packages": 3,
-    "strongest_package_id": "prospective_matched_fml_causality_20260602_000001",
-    "fml_co_pilot_test_mae": 0.646223724015837,
-    "fml_autonomous_test_mae": 0.6247032882621405,
-    "performance_evidence": "mixed_two_package_pilot_not_top_conference_evidence",
+    "status": "pass_with_mixed_metric_outcomes_after_ssh_maxcut",
+    "manifest_files_checked": 5,
+    "passing_packages": 5,
+    "co_pilot_wins": 2,
+    "autonomous_or_tie_wins": 3,
+    "performance_evidence": "mixed_five_package_pilot_not_top_conference_evidence",
     "minimum_evidence_shape_defined": true,
     "package_summary": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md",
-    "micro_pilot_result": {
-      "co_pilot_mean_normalized_score": 0.9844187226218487,
+    "complete_attention_cost_gates": 5,
+    "complete_taste_insight_gates": 5,
+    "total_active_review_minutes": 13.0,
+    "fml_package_count": 3,
+    "fml_negative_or_invalid_package_count": 3,
+    "controlled_micro_task_package_count": 2,
+    "controlled_micro_task_positive_count": 2,
+    "ssh_maxcut_micro_pilot_result": {
+      "package_id": "prospective_matched_micro_pilot_20260603_ssh_maxcut",
+      "co_pilot_mean_normalized_score": 0.9844190321169742,
       "autonomous_mean_normalized_score": 0.5962135415932638,
+      "co_pilot_minus_autonomous": 0.38820549052371045,
       "higher_is_better": true,
-      "interpretation": "positive_controlled_micro_task_not_paper_quality_evidence"
+      "interpretation": "positive_controlled_micro_task_not_paper_quality_or_system_superiority_evidence"
     },
-    "complete_attention_cost_gates": 3,
-    "complete_taste_insight_gates": 3,
-    "fml_package_count": 2,
-    "fml_negative_package_count": 2,
-    "second_fml_pilot_result": {
-      "co_pilot_test_mae": 0.6462237240158367,
-      "autonomous_test_mae": 0.29639917877540584,
-      "autonomous_minus_co_pilot_test_mae": -0.3498245452404309,
-      "lower_is_better": true,
-      "interpretation": "negative_for_co_pilot_performance_in_this_small_run"
-    }
+    "claim_boundary": "The passed package audit proves artifact completeness and matched-budget shape. It does not prove that human-gated AI Scientist-v2 outperforms autonomous AI Scientist-v2."
   },
   "attention_taste_logging_tooling": {
     "status": "operator_recorded_measurement_readiness",
@@ -272,7 +275,7 @@
     "real_performance_evidence": false
   },
   "paper_quality_review": {
-    "status": "updated_after_openreview_cross_model_review",
+    "status": "superseded_by_focused_paper_quality_review_after_ssh_maxcut",
     "models": [
       "gpt-4o-mini",
       "claude-3-7-sonnet-latest"
@@ -296,7 +299,8 @@
       "significance": 2
     },
     "blocking_diagnosis": "The package is promising but reads like a lab notebook; stronger empirical support, independent evaluation, and a focused conference rewrite are required.",
-    "focused_rewrite_plan": "docs/co_pilot_ai_scientist_v3/focused_submission_rewrite_plan.md"
+    "focused_rewrite_plan": "docs/co_pilot_ai_scientist_v3/focused_submission_rewrite_plan.md",
+    "superseded_by": "focused_paper_quality_review"
   },
   "fml_matched_comparison_summary": {
     "status": "mixed_underpowered_fml_matched_evidence",
@@ -322,19 +326,27 @@
     "raw_log_marker_hits": 0
   },
   "prospective_matched_budget_evidence": {
-    "status": "pass_with_mostly_negative_fml_metric_outcomes",
-    "passing_packages": 4,
-    "co_pilot_wins": 1,
+    "status": "pass_with_mixed_metric_outcomes_after_ssh_maxcut",
+    "passing_packages": 5,
+    "co_pilot_wins": 2,
     "autonomous_or_tie_wins": 3,
-    "complete_attention_gates": 4,
-    "complete_taste_gates": 4,
+    "complete_attention_gates": 5,
+    "complete_taste_gates": 5,
     "fml_negative_or_invalid_package_count": 3,
+    "controlled_micro_task_positive_count": 2,
     "fairness_package": {
       "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
       "co_pilot_score": null,
       "autonomous_score": 0.17215212582754802,
       "interpretation": "co-pilot frontier had no valid scored continuation; autonomous completed"
-    }
+    },
+    "ssh_maxcut_package": {
+      "package_id": "prospective_matched_micro_pilot_20260603_ssh_maxcut",
+      "co_pilot_score": 0.9844190321169742,
+      "autonomous_score": 0.5962135415932638,
+      "interpretation": "human-selected local-search branch beats a matched alternating baseline on a controlled weighted Max-Cut micro-task"
+    },
+    "claim_boundary": "Mixed pilot evidence: two controlled Max-Cut micro-tasks favor the human-selected branch, while three FML packages do not support broad co-pilot performance superiority."
   },
   "paper_quality_evidence": {
     "matched_full_manuscript_generation_probe": {
@@ -576,17 +588,9 @@
     "claim_boundary": "Cross-model review reduces same-model scoring bias for regenerated mini-paper artifacts, but it is still model-routed artifact review, not independent human peer review or experiment rerun."
   },
   "focused_paper_quality_review": {
-    "review_date": "2026-06-02",
+    "status": "refreshed_after_ssh_maxcut_integration",
+    "review_date": "2026-06-03",
     "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
-    "evidence_context": [
-      "controlled metric-gaming evaluator-stress smoke",
-      "archived FML-Bench Fairness_fairlearn evaluator-stress replay",
-      "OpenReview equal-context ablation",
-      "gate-structure ablation probe",
-      "gate-outcome attribution probe",
-      "single-gate artifact ablation",
-      "top-conference readiness audit"
-    ],
     "successful_reviews": {
       "gpt-4o-mini": {
         "recommendation": "Weak accept",
@@ -595,39 +599,49 @@
           "rigor": 3,
           "clarity": 4,
           "evidence": 3,
-          "reproducibility": 3,
-          "significance": 4
+          "reproducibility": 4,
+          "significance": 3
         },
-        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md",
+        "status_code": 200,
+        "completion_status": "complete_markdown_review"
       },
       "gemini-2.5-flash": {
-        "recommendation": "Borderline (truncated before full rubric)",
-        "scores": null,
-        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md"
+        "recommendation": "Weak accept",
+        "scores": {
+          "novelty": 4,
+          "rigor": 5,
+          "clarity": 4,
+          "evidence": 3,
+          "reproducibility": 5,
+          "significance": 4
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md",
+        "status_code": 200,
+        "completion_status": "partial_markdown_review_finish_reason_length_but_verdict_and_scores_present"
       }
     },
-    "failed_review_routes": {
+    "failed_or_archived_reviews": {
       "claude-3-7-sonnet-latest": {
         "status_code": 504,
-        "error": "Gateway Time-out",
-        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md",
+        "reason": "Gateway timeout from archived route; retained but not counted as current successful review."
       },
       "gemini-2.0-flash": {
         "status_code": 412,
-        "error": "unsupported model route",
-        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md"
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md",
+        "reason": "Unsupported model route from archived attempt; retained but not counted as current successful review."
       }
     },
-    "aggregate_conclusion": "The refreshed review context now includes the focused reference audit, including the Schmidhuber/OOPS/Gödel Machine/POWERPLAY self-evolution lineage, and the current goal-completion matrix. The new gate-structure, gate-outcome, and single-gate artifact ablations strengthen IGRE's six-gate method distinctness and show that targeted gate routing can be more useful than full review context in a small OpenReview proxy. They do not close the top-conference evidence gap because independent human ratings, real benchmark gate reruns, and broader matched trajectories are still missing.",
-    "next_required_evidence": [
-      "blind human expert ratings with inter-rater agreement",
-      "larger matched autonomous versus human-gated trajectories across tasks/seeds",
-      "real benchmark reruns where gate choices alter downstream experimental outcomes",
-      "narrower primary contribution narrative around participation-mode design",
-      "OpenReview taste/insight classifier validation against expert labels",
-      "scaled retrospective frontier-alignment study for delayed-value review signals"
+    "aggregate_verdict": "Both successful current reviewers recommend Weak accept under conservative framing, while emphasizing that the paper remains a pilot/method-and-measurement contribution rather than top-conference empirical proof of co-pilot superiority.",
+    "blocking_issues": [
+      "No independent human expert ratings have been collected.",
+      "System-level empirical superiority over autonomous AI Scientist-v2 remains unproven.",
+      "Prospective evidence is still small and includes mixed or negative FML outcomes despite the positive SSH Max-Cut micro-pilot.",
+      "Many results remain probes, smoke tests, model-routed reviews, or controlled micro-tasks.",
+      "Scientific taste operationalization needs larger live human or expert-validated data."
     ],
-    "status": "refreshed_with_gate_ablations_and_gemini_review"
+    "claim_boundary": "Model reviews are iteration evidence only. They do not replace independent human expert review, larger matched benchmark runs, or broad multi-researcher traces."
   },
   "openreview_equal_context_ablation": {
     "status": "completed_model_routed_equal_context_ablation",
@@ -1020,35 +1034,27 @@
           "rigor": 3,
           "clarity": 4,
           "evidence": 3,
-          "reproducibility": 3,
-          "significance": 4
-        },
-        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
-      },
-      "claude-3-7-sonnet-latest": {
-        "recommendation": "Weak reject",
-        "scores": {
-          "novelty": 3,
-          "rigor": 2,
-          "clarity": 2,
-          "evidence": 1,
-          "reproducibility": 3,
+          "reproducibility": 4,
           "significance": 3
         },
-        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+        "completion_status": "complete_markdown_review"
+      },
+      "gemini-2.5-flash": {
+        "recommendation": "Weak accept",
+        "scores": {
+          "novelty": 4,
+          "rigor": 5,
+          "clarity": 4,
+          "evidence": 3,
+          "reproducibility": 5,
+          "significance": 4
+        },
+        "completion_status": "partial_markdown_review_finish_reason_length_but_verdict_and_scores_present"
       }
     },
-    "reason": "GPT weakly accepts, but Claude still weakly rejects because evidence remains thin, internally generated, mixed or negative for broad superiority, and lacks independent human expert evaluation.",
-    "next_required_evidence": [
-      "blind human expert ratings with inter-rater agreement",
-      "larger matched autonomous versus human-gated trajectories across tasks/seeds",
-      "formal gate-structure ablations",
-      "narrower primary contribution narrative"
-    ],
-    "gate_structure_ablation_status": "routing-level ablation completed; downstream quality ablations still needed",
-    "gate_structure_ablation_artifact": "experiments/gate_structure_ablation_probe_20260602_183000/",
-    "gate_outcome_attribution_status": "post-hoc downstream attribution completed; causal single-gate artifact ablations still needed",
-    "single_gate_artifact_ablation_status": "small causal-style OpenReview proxy completed; independent human ratings and real benchmark reruns still needed"
+    "reason": "Both current successful model reviewers weakly accept the focused draft after SSH Max-Cut integration, but the evidence remains too small, mixed, and model-reviewed to support top-conference-level empirical claims. Independent human expert ratings, broader matched benchmarks, and system-level AI Scientist-v2 comparisons remain missing.",
+    "ssh_maxcut_context": "Positive controlled micro-task result: co-pilot selected local search mean normalized score 0.984419 vs autonomous alternating baseline 0.596214, delta +0.388205.",
+    "boundary": "Treat current paper as a strong pilot/reproducibility package and workflow-design contribution, not a completed top-conference empirical proof."
   },
   "gate_structure_ablation_probe": {
     "status": "pass",
