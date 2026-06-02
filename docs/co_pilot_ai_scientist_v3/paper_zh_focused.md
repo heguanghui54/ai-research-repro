@@ -55,6 +55,7 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 | OpenReview 再生成，Claude 复审 | review-guided 胜 3 次 | baseline 胜 1 次，平 2 次 | mean overall +0.1667 | 有温和正向信号，但不是自动提升。 |
 | OpenReview 等上下文消融 | review-guided 票数 8 | context-control 票数 1，平 3 | 跨模型 mean delta +0.5 | 真实相关评审优于等量无关评审上下文，但 Claude 显示效果较温和。 |
 | 预注册盲评专家评审包 | 已准备 6 对匿名 A/B 产物 | 已完成人类评分 0 行 | 计划 3-5 名评审者 | 仅表示评估就绪，不声称已有人工证据。 |
+| 回溯式前沿对齐 smoke | review-guided 胜 1 次 | shuffled-control 胜 5 次 | 相对 control 平均增量 -0.0855；delayed-value 0 例；短期正向/长期负向 3 例 | 未来前沿对齐比局部论文改进更难；当前仅为启发式 descriptor。 |
 | Prospective matched packages | co-pilot 或人类选分支胜 1 次 | autonomous / tie / invalid 3 次 | 4 个 package | 不支持短预算平均 benchmark 优越性。 |
 | Same-run online FML smokes | co-pilot benchmark 胜 0 次 | autonomous 胜 1 次，平 1 次，未知 1 次 | 3 个 paired smoke | 当前有效 benchmark 证据偏向 autonomous 或平局。 |
 | MLAgentBench vectorization | 8/8 seeds 保持正确，median 0.024581 s | starter 3.261186 s；direct rewrite 未通过正确性 | 显著运行时间收益 | 可验证微演化适合 correctness-gated 代码子问题。 |
@@ -93,6 +94,12 @@ IGRE 把人类参与重新定义为高方差搜索算子。这比“人类参与
 OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪些人类洞察有用。关于评估薄弱的意见应触发 evaluator stress test；关于新颖性的意见应重塑 taste prior；关于局限性的意见应触发 claim calibration；关于表达不清的意见应转化为 structured feedback。泛泛表扬或泛泛批评则应被赋予较低路由权重。
 
 同行评审数据的过去式属性也可以被转化为测量优势。对于历史论文，后来的学科演化轨迹提供了一个后验前沿目标。因此 IGRE 可以运行回溯式前沿对齐实验：取时间 `t` 的论文及其评审意见，分别在 paper-only、review-guided 和 shuffled-review-control 条件下重新生成后续研究产物，再判断哪些产物更接近后来主流或 SOTA 科研轨迹。这样，优秀评审不只是“打高分”或“批评严厉”的评审，而是其中可行动意见能够把自动科研工作流推向未来重要问题框定、方法、评估规范、失败模式或主张边界的评审。
+
+该协议的第一次确定性 smoke 给出了一个有意保守的信号。在同一批 6 个 OpenReview 案例上，使用人工指定、尚未经过引用验证的未来前沿 descriptor 和关键词/行动性评分，review-guided 产物只赢 1/6，shuffled-review-control 赢 5/6，review-guided 相对 shuffled control 的平均分差为 -0.0855。这并不否定协议本身，因为 descriptor 和评分器还只是管线 smoke；但它说明，面向未来前沿的对齐比局部论文质量提升更严格，“好评审”必须由未来相关方向性来定义，而不能只由泛化 reviewer pressure 定义。
+
+最重要的是时间不对称情形：评审引导重新跑出来的论文，短期看可能比原论文更差，当前 benchmark 或局部论文质量也可能不占优，但它更接近后来学科演化出的主流或 SOTA 方向。这类评审就是 delayed-value review signal。它的价值不在于立刻提升下一篇产物，而在于把搜索轨迹改向未来重要方向。如果能从历史评审语料中找到一批这样的信号并总结范式，IGRE 就可以学习什么时候应当让人类科研品味覆盖短期自动化压力。
+
+当前 smoke 还没有找到这种 delayed-value 模式，反而在 3 个案例中发现了相反诊断：评审引导提高了短期模型评分，但降低了启发式未来前沿对齐分数。这个负结果依然有价值，因为它把“局部 reviewer 满意度”和“长期科研方向性”区分开来，而这正是 co-pilot scientist 必须学会的区分。
 
 这也让本文的应用意义更具体。目标不是简单证明人类能提高论文质量，而是设计更优的人类参与模式，用实验数据比较这些模式，并构建一种工作流，使人类科研品味在最可能改变科研轨迹的位置发挥作用。
 

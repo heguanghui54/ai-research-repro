@@ -62,6 +62,14 @@ claim calibration.
 - `experiments/openreview_equal_context_ablation_20260602_142000/`: follow-up
   OpenReview regeneration ablation comparing real paper-specific review
   guidance against matched-length unrelated review context.
+- `experiments/retrospective_frontier_alignment_smoke_20260602_160000/`:
+  deterministic smoke test for the retrospective frontier-alignment protocol.
+  It compares paper-only, review-guided, and shuffled-review-control artifacts
+  against manual future-frontier descriptors. The result is negative for
+  review-guided frontier alignment (`1/6` wins, mean delta versus shuffled
+  control `-0.0855`, `0` delayed-value cases, `3`
+  short-term-positive/long-term-negative cases), and is reported as pipeline
+  evidence rather than a literature-backed SOTA reconstruction.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet

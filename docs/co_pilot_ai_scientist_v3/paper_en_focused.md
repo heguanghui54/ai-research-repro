@@ -55,6 +55,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | OpenReview regeneration, Claude cross-review | 3 review-guided wins | 1 baseline win, 2 ties | mean overall +0.1667 | Modest positive signal; not automatic improvement. |
 | OpenReview equal-context ablation | 8 review-guided votes | 1 context-control vote, 3 ties | mean delta across models +0.5 | Paper-specific reviews beat matched unrelated review context, but Claude shows the effect is modest. |
 | Preregistered blind expert-review packet | 6 anonymized A/B pairs prepared | 0 completed human rows | planned 3-5 raters | Evaluation readiness only; no human evidence is claimed yet. |
+| Retrospective frontier-alignment smoke | review-guided wins 1 | shuffled-control wins 5 | mean delta vs. control -0.0855; 0 delayed-value cases; 3 short-term-positive/long-term-negative cases | Future-frontier alignment is harder than local paper improvement; heuristic descriptors only. |
 | Prospective matched packages | 1 co-pilot or human-selected win | 3 autonomous/tie/invalid outcomes | 4 packages | Short-budget average benchmark superiority is not supported. |
 | Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
@@ -102,6 +103,32 @@ mainstream or SOTA trajectory. A good review is then not merely a review that
 scores a paper harshly or positively. It is a review whose actionable comments
 would have moved the automated research workflow toward a future-relevant
 problem framing, method, evaluation norm, failure mode, or claim boundary.
+
+A first deterministic smoke of this protocol is intentionally sobering. Using
+manual, non-citation-backed future-frontier descriptors on the same six
+OpenReview cases, the review-guided artifacts win only 1 of 6 comparisons under
+a keyword/actionability score, while shuffled-review-control artifacts win 5 of
+6 and the review-guided mean score is below the shuffled control by 0.0855. This
+does not invalidate the protocol, because the descriptors and score are only a
+pipeline smoke. It does show that future-frontier alignment is a stricter target
+than local paper-quality improvement, and that "good review" must be defined by
+future-relevant directionality rather than by generic reviewer pressure.
+
+The most important case is temporally asymmetric. A review-guided rerun may
+produce a paper that is worse than the original paper under immediate quality
+or benchmark criteria, but better aligned with later field evolution. Such a
+case would be a delayed-value review signal: the human comment is not valuable
+because it improves the next artifact, but because it changes the search
+trajectory toward a future-relevant direction. If a corpus of these comments can
+be identified, IGRE can learn where human taste should override short-term
+automation pressure.
+
+The current smoke does not yet find this delayed-value pattern. It finds the
+opposite diagnostic in three cases: review guidance improves the short-term
+model-scored artifact, but decreases heuristic future-frontier alignment. This
+negative result is useful because it separates local reviewer satisfaction from
+long-horizon scientific directionality, which is exactly the distinction a
+co-pilot scientist must learn.
 
 This makes the paper's application value concrete. The goal is not merely to prove that humans improve paper quality. The goal is to design the best modes of human participation, compare them empirically, and build a workflow in which human taste is used where it has the highest chance of changing the research trajectory.
 

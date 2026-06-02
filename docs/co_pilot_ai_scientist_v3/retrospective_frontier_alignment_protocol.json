@@ -3,6 +3,15 @@
   "status": "proposed_protocol_not_yet_executed",
   "motivation": "Use the retrospective nature of peer-review datasets to evaluate whether historical reviews pointed toward later mainstream or SOTA research trajectories.",
   "core_hypothesis": "Useful human scientific taste is the subset of review feedback that would have changed the research trajectory toward a later high-value frontier.",
+  "temporal_asymmetry_hypothesis": {
+    "definition": "A review-guided rerun can look worse under short-term paper-quality or benchmark criteria while being more valuable under long-term frontier-alignment criteria.",
+    "delayed_value_pattern": [
+      "short_term_paper_quality_or_original_task_score_decreases",
+      "long_term_frontier_alignment_increases",
+      "responsible_review_comment_is_actionable_and_future_relevant"
+    ],
+    "interpretation": "Such comments are high-value human taste/insight signals because they may increase the probability of rare breakthrough trajectories even if average immediate performance falls."
+  },
   "experimental_unit": {
     "paper_t": "paper content available at original submission time",
     "reviews_t": "peer reviews available at original review time",
@@ -26,7 +35,8 @@
     "actionability",
     "non_obviousness",
     "scientific_risk_calibration",
-    "specificity"
+    "specificity",
+    "short_term_quality_long_term_alignment_tradeoff"
   ],
   "good_review_signal_criteria": [
     "actionable_at_time_t",
@@ -36,6 +46,7 @@
   "planned_statistics": [
     "review_guided_vs_paper_only_win_counts",
     "review_guided_vs_shuffled_review_control_win_counts",
+    "delayed_value_case_count",
     "mean_future_frontier_alignment_delta",
     "exact_binomial_test_over_non_tie_wins",
     "qualitative_taxonomy_of_future_alignment_comments",

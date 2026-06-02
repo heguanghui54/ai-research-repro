@@ -20,6 +20,26 @@ high-utility if it points to a future-relevant problem framing, missing
 experiment, architectural change, benchmark shift, theoretical mechanism,
 failure mode, or claim boundary that later research made important.
 
+## Temporal Asymmetry Hypothesis
+
+A review-guided rerun can look worse under short-term criteria while being more
+valuable under long-term frontier criteria. The regenerated paper may be less
+polished, less immediately competitive, or weaker on the original benchmark,
+yet still move toward a research direction that later becomes mainstream or
+breakthrough-level.
+
+This is the central delayed-value pattern:
+
+- short-term paper quality or original-task score decreases;
+- long-term frontier alignment increases;
+- the reviewer comment responsible for the shift is actionable and
+  future-relevant.
+
+Such comments should be treated as high-value human taste/insight even when
+they do not improve the immediate artifact. The goal is not to reward every
+negative review, but to identify reviews whose criticism changes the search
+trajectory toward later important science.
+
 ## Experimental Unit
 
 Each unit is a historical paper-review-future triple:
@@ -73,6 +93,12 @@ Primary metric:
 - Future-frontier alignment: does the artifact point toward concepts,
   experiments, mechanisms, or claims that became important later?
 
+Temporal diagnostic:
+
+- Short-term quality versus long-term alignment: does review guidance reduce
+  local paper quality or original benchmark fit while improving alignment with
+  the later frontier?
+
 Secondary metrics:
 
 - Actionability: could the suggestion have guided a real follow-up project at
@@ -100,12 +126,20 @@ absence later became central. A comment that identifies a missing benchmark,
 failure mode, scaling issue, data assumption, or mechanism that later becomes
 important is strong.
 
+A special high-value subtype is `delayed_value_review_signal`: the comment does
+not improve the short-term artifact score, but it does improve future-frontier
+alignment. These signals are especially important for co-pilot science because
+they model how human taste can trade average immediate performance for a higher
+probability of rare, breakthrough-level trajectories.
+
 ## Analysis
 
 Report:
 
 - review-guided versus paper-only win counts;
 - review-guided versus shuffled-review-control win counts;
+- delayed-value cases where short-term quality decreases but future-frontier
+  alignment increases;
 - mean future-frontier alignment delta;
 - exact binomial test over non-tie wins;
 - qualitative taxonomy of the comments that drove future alignment;

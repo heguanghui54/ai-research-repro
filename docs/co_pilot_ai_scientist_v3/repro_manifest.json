@@ -23,6 +23,10 @@
     "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md",
     "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.json",
     "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_alignment_smoke_20260602_160000/frontier_descriptors.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_alignment_smoke_20260602_160000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_alignment_smoke_20260602_160000/README.md",
+    "scripts/run_retrospective_frontier_alignment_smoke.py",
     "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.md",
     "docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md",
     "docs/co_pilot_ai_scientist_v3/taste_insight_rubric.json",
@@ -1044,17 +1048,38 @@
     ]
   },
   "retrospective_frontier_alignment_protocol": {
-    "status": "proposed_protocol_not_yet_executed",
+    "status": "protocol_plus_deterministic_smoke_completed_not_literature_verified",
     "markdown": "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.md",
     "json": "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.json",
-    "conditions": [
-      "paper_only",
-      "review_guided",
-      "shuffled_review_control",
-      "future_oracle_upper_bound_optional"
-    ],
-    "primary_metric": "future_frontier_alignment",
-    "purpose": "Use later field evolution to identify which historical review comments carried actionable scientific taste or insight.",
-    "claim_boundary": "Protocol only; no retrospective frontier-alignment runs have been executed yet."
+    "temporal_asymmetry_hypothesis": "Short-term artifact quality can decrease while long-term frontier alignment increases.",
+    "smoke": {
+      "status": "deterministic_smoke_completed_not_literature_verified",
+      "script": "scripts/run_retrospective_frontier_alignment_smoke.py",
+      "run_id": "retrospective_frontier_alignment_smoke_20260602_160000",
+      "summary": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_alignment_smoke_20260602_160000/summary.json",
+      "readme": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_alignment_smoke_20260602_160000/README.md",
+      "frontier_descriptors": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_alignment_smoke_20260602_160000/frontier_descriptors.json",
+      "conditions": [
+        "paper_only",
+        "review_guided",
+        "shuffled_review_control"
+      ],
+      "winner_counts": {
+        "review_guided": 1,
+        "shuffled_review_control": 5
+      },
+      "mean_scores": {
+        "paper_only": 0.3428,
+        "review_guided": 0.3378,
+        "shuffled_review_control": 0.4233
+      },
+      "mean_delta_review_guided_minus_paper_only": -0.005,
+      "mean_delta_review_guided_minus_shuffled_control": -0.0855,
+      "delayed_value_case_count": 0,
+      "short_term_positive_long_term_negative_count": 3,
+      "descriptor_status": "manual_heuristic_frontier_descriptors_not_literature_verified",
+      "claim_boundary": "This is a deterministic smoke test for the retrospective frontier-alignment protocol. Frontier descriptors are manually specified placeholders, not a citation-backed SOTA reconstruction. Use it as pipeline evidence, not as proof that historical reviewers predicted later research."
+    },
+    "claim_boundary": "The smoke proves pipeline executability and records a negative heuristic result; it does not prove literature-backed future-frontier alignment."
   }
 }

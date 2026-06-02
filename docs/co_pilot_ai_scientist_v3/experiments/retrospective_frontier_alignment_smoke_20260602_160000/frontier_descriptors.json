@@ -1,0 +1,92 @@
+{
+  "openreview_sample_1": {
+    "frontier_summary": "Reliable LLM deployment increasingly emphasizes calibrated refusal, selective prediction, hallucination auditing, knowledge-boundary estimation, and abstention-aware evaluation beyond narrow arithmetic tasks.",
+    "keywords": [
+      "refusal",
+      "reject",
+      "abstain",
+      "knowledge boundary",
+      "hallucination",
+      "calibration",
+      "selective",
+      "uncertainty",
+      "out-of-domain",
+      "benchmark"
+    ]
+  },
+  "openreview_sample_2": {
+    "frontier_summary": "Conditional graph and molecule generation later centers on controllable property optimization, validity, scaffold or structure constraints, classifier-free/property guidance, scalability, and evaluation beyond single aggregate generation scores.",
+    "keywords": [
+      "conditional",
+      "molecular",
+      "property",
+      "control",
+      "validity",
+      "scaffold",
+      "guidance",
+      "scalability",
+      "baseline",
+      "diversity"
+    ]
+  },
+  "openreview_sample_17": {
+    "frontier_summary": "Language-model unlearning becomes tied to targeted removal, extraction and membership-inference audits, retain-forget tradeoffs, privacy risk, evaluation leakage, and post-training safety controls.",
+    "keywords": [
+      "unlearning",
+      "forget",
+      "privacy",
+      "membership",
+      "extraction",
+      "retain",
+      "forget set",
+      "deletion",
+      "leakage",
+      "audit"
+    ]
+  },
+  "openreview_sample_34": {
+    "frontier_summary": "In-context-learning analysis increasingly studies transformers as implicit learning algorithms, including linear-regression probes, induction-like mechanisms, task inference, algorithmic generalization, and mechanistic explanations of context updates.",
+    "keywords": [
+      "in-context",
+      "linear regression",
+      "implicit",
+      "learning algorithm",
+      "transformer",
+      "task inference",
+      "mechanistic",
+      "generalization",
+      "induction",
+      "context"
+    ]
+  },
+  "openreview_sample_49": {
+    "frontier_summary": "Semi-supervised and robust learning continues to connect mixup-style vicinal objectives with consistency regularization, adversarial robustness, calibration, label noise, and distribution-shift evaluation.",
+    "keywords": [
+      "mixup",
+      "semi-supervised",
+      "robust",
+      "consistency",
+      "adversarial",
+      "calibration",
+      "label noise",
+      "distribution shift",
+      "vicinal",
+      "regularization"
+    ]
+  },
+  "openreview_sample_64": {
+    "frontier_summary": "Safety-critical scene generation later emphasizes causal structure, counterfactual scenarios, closed-loop or downstream safety evaluation, rare-event coverage, distribution shift, and autonomous-driving validation realism.",
+    "keywords": [
+      "causal",
+      "counterfactual",
+      "safety",
+      "scene",
+      "closed-loop",
+      "rare event",
+      "distribution shift",
+      "autonomous",
+      "validation",
+      "realism"
+    ]
+  }
+}

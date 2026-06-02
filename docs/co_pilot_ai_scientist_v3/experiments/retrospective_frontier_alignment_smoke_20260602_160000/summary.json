@@ -1,0 +1,374 @@
+{
+  "run_id": "retrospective_frontier_alignment_smoke_20260602_160000",
+  "timestamp_utc": "2026-06-02T06:47:54Z",
+  "status": "deterministic_retrospective_frontier_alignment_smoke",
+  "source_regeneration_summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+  "control_source_summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json",
+  "descriptor_status": "manual_heuristic_frontier_descriptors_not_literature_verified",
+  "conditions": [
+    "paper_only",
+    "review_guided",
+    "shuffled_review_control"
+  ],
+  "temporal_asymmetry_hypothesis": "A review-guided rerun can be worse under short-term quality or original-task criteria while better aligned with later field evolution. This smoke records that diagnostic, but the current heuristic run does not find delayed-value cases.",
+  "per_paper": [
+    {
+      "paper_id": "openreview_sample_1",
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "frontier_summary": "Reliable LLM deployment increasingly emphasizes calibrated refusal, selective prediction, hallucination auditing, knowledge-boundary estimation, and abstention-aware evaluation beyond narrow arithmetic tasks.",
+      "scores": {
+        "paper_only": {
+          "score": 0.2367,
+          "frontier_alignment": 0.1,
+          "actionability": 0.3333,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "reject"
+          ],
+          "matched_actionability_terms": [
+            "baseline",
+            "evaluate"
+          ]
+        },
+        "review_guided": {
+          "score": 0.24,
+          "frontier_alignment": 0.2,
+          "actionability": 0.0,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "reject",
+            "hallucination"
+          ],
+          "matched_actionability_terms": []
+        },
+        "shuffled_review_control": {
+          "score": 0.2367,
+          "frontier_alignment": 0.1,
+          "actionability": 0.3333,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "reject"
+          ],
+          "matched_actionability_terms": [
+            "evaluate",
+            "dataset"
+          ]
+        }
+      },
+      "winner": "review_guided",
+      "temporal_diagnostic": {
+        "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+        "short_term_review_guided_minus_paper_only": 1,
+        "long_term_frontier_review_guided_minus_paper_only": 0.0033,
+        "pattern": "short_and_long_term_positive"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "title": "Forked Diffusion for Conditional Graph Generation",
+      "frontier_summary": "Conditional graph and molecule generation later centers on controllable property optimization, validity, scaffold or structure constraints, classifier-free/property guidance, scalability, and evaluation beyond single aggregate generation scores.",
+      "scores": {
+        "paper_only": {
+          "score": 0.2033,
+          "frontier_alignment": 0.1,
+          "actionability": 0.1667,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "conditional"
+          ],
+          "matched_actionability_terms": [
+            "evaluate"
+          ]
+        },
+        "review_guided": {
+          "score": 0.24,
+          "frontier_alignment": 0.2,
+          "actionability": 0.0,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "conditional",
+            "molecular"
+          ],
+          "matched_actionability_terms": []
+        },
+        "shuffled_review_control": {
+          "score": 0.4133,
+          "frontier_alignment": 0.4,
+          "actionability": 0.1667,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "conditional",
+            "molecular",
+            "scalability",
+            "diversity"
+          ],
+          "matched_actionability_terms": [
+            "limitation"
+          ]
+        }
+      },
+      "winner": "shuffled_review_control",
+      "temporal_diagnostic": {
+        "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+        "short_term_review_guided_minus_paper_only": 1,
+        "long_term_frontier_review_guided_minus_paper_only": 0.0367,
+        "pattern": "short_and_long_term_positive"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "frontier_summary": "Language-model unlearning becomes tied to targeted removal, extraction and membership-inference audits, retain-forget tradeoffs, privacy risk, evaluation leakage, and post-training safety controls.",
+      "scores": {
+        "paper_only": {
+          "score": 0.3433,
+          "frontier_alignment": 0.3,
+          "actionability": 0.1667,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "unlearning",
+            "forget",
+            "privacy"
+          ],
+          "matched_actionability_terms": [
+            "evaluate"
+          ]
+        },
+        "review_guided": {
+          "score": 0.3067,
+          "frontier_alignment": 0.2,
+          "actionability": 0.3333,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "unlearning",
+            "privacy"
+          ],
+          "matched_actionability_terms": [
+            "baseline",
+            "evaluate"
+          ]
+        },
+        "shuffled_review_control": {
+          "score": 0.3767,
+          "frontier_alignment": 0.3,
+          "actionability": 0.3333,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "unlearning",
+            "forget",
+            "privacy"
+          ],
+          "matched_actionability_terms": [
+            "evaluate",
+            "limitation"
+          ]
+        }
+      },
+      "winner": "shuffled_review_control",
+      "temporal_diagnostic": {
+        "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+        "short_term_review_guided_minus_paper_only": 1,
+        "long_term_frontier_review_guided_minus_paper_only": -0.0366,
+        "pattern": "short_term_positive_long_term_negative"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+      "frontier_summary": "In-context-learning analysis increasingly studies transformers as implicit learning algorithms, including linear-regression probes, induction-like mechanisms, task inference, algorithmic generalization, and mechanistic explanations of context updates.",
+      "scores": {
+        "paper_only": {
+          "score": 0.52,
+          "frontier_alignment": 0.6,
+          "actionability": 0.0,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "in-context",
+            "linear regression",
+            "implicit",
+            "learning algorithm",
+            "transformer",
+            "context"
+          ],
+          "matched_actionability_terms": []
+        },
+        "review_guided": {
+          "score": 0.45,
+          "frontier_alignment": 0.5,
+          "actionability": 0.0,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "in-context",
+            "implicit",
+            "learning algorithm",
+            "transformer",
+            "context"
+          ],
+          "matched_actionability_terms": []
+        },
+        "shuffled_review_control": {
+          "score": 0.5533,
+          "frontier_alignment": 0.6,
+          "actionability": 0.1667,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "in-context",
+            "linear regression",
+            "implicit",
+            "learning algorithm",
+            "transformer",
+            "context"
+          ],
+          "matched_actionability_terms": [
+            "limitation"
+          ]
+        }
+      },
+      "winner": "shuffled_review_control",
+      "temporal_diagnostic": {
+        "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+        "short_term_review_guided_minus_paper_only": 1,
+        "long_term_frontier_review_guided_minus_paper_only": -0.07,
+        "pattern": "short_term_positive_long_term_negative"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "title": "Unifying semi-supervised and robust learning by mixup",
+      "frontier_summary": "Semi-supervised and robust learning continues to connect mixup-style vicinal objectives with consistency regularization, adversarial robustness, calibration, label noise, and distribution-shift evaluation.",
+      "scores": {
+        "paper_only": {
+          "score": 0.41,
+          "frontier_alignment": 0.3,
+          "actionability": 0.5,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "mixup",
+            "semi-supervised",
+            "robust"
+          ],
+          "matched_actionability_terms": [
+            "benchmark",
+            "evaluate",
+            "robust"
+          ]
+        },
+        "review_guided": {
+          "score": 0.3433,
+          "frontier_alignment": 0.3,
+          "actionability": 0.1667,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "mixup",
+            "semi-supervised",
+            "robust"
+          ],
+          "matched_actionability_terms": [
+            "robust"
+          ]
+        },
+        "shuffled_review_control": {
+          "score": 0.4433,
+          "frontier_alignment": 0.3,
+          "actionability": 0.6667,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "mixup",
+            "semi-supervised",
+            "robust"
+          ],
+          "matched_actionability_terms": [
+            "benchmark",
+            "evaluate",
+            "robust",
+            "limitation"
+          ]
+        }
+      },
+      "winner": "shuffled_review_control",
+      "temporal_diagnostic": {
+        "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+        "short_term_review_guided_minus_paper_only": 1,
+        "long_term_frontier_review_guided_minus_paper_only": -0.0667,
+        "pattern": "short_term_positive_long_term_negative"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_64",
+      "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+      "frontier_summary": "Safety-critical scene generation later emphasizes causal structure, counterfactual scenarios, closed-loop or downstream safety evaluation, rare-event coverage, distribution shift, and autonomous-driving validation realism.",
+      "scores": {
+        "paper_only": {
+          "score": 0.3433,
+          "frontier_alignment": 0.3,
+          "actionability": 0.1667,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "causal",
+            "safety",
+            "scene"
+          ],
+          "matched_actionability_terms": [
+            "evaluate"
+          ]
+        },
+        "review_guided": {
+          "score": 0.4467,
+          "frontier_alignment": 0.4,
+          "actionability": 0.3333,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "causal",
+            "safety",
+            "scene",
+            "validation"
+          ],
+          "matched_actionability_terms": [
+            "evaluate",
+            "validation"
+          ]
+        },
+        "shuffled_review_control": {
+          "score": 0.5167,
+          "frontier_alignment": 0.5,
+          "actionability": 0.3333,
+          "claim_calibration": 1.0,
+          "matched_frontier_keywords": [
+            "causal",
+            "safety",
+            "rare event",
+            "autonomous",
+            "realism"
+          ],
+          "matched_actionability_terms": [
+            "evaluate",
+            "limitation"
+          ]
+        }
+      },
+      "winner": "shuffled_review_control",
+      "temporal_diagnostic": {
+        "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+        "short_term_review_guided_minus_paper_only": 0,
+        "long_term_frontier_review_guided_minus_paper_only": 0.1034,
+        "pattern": "mixed_or_tie"
+      }
+    }
+  ],
+  "aggregate": {
+    "winner_counts": {
+      "review_guided": 1,
+      "shuffled_review_control": 5
+    },
+    "mean_scores": {
+      "paper_only": 0.3428,
+      "review_guided": 0.3378,
+      "shuffled_review_control": 0.4233
+    },
+    "mean_delta_review_guided_minus_paper_only": -0.005,
+    "mean_delta_review_guided_minus_shuffled_control": -0.0855,
+    "delayed_value_case_count": 0,
+    "short_term_positive_long_term_negative_count": 3
+  },
+  "claim_boundary": "This is a deterministic smoke test for the retrospective frontier-alignment protocol. Frontier descriptors are manually specified placeholders, not a citation-backed SOTA reconstruction. Use it as pipeline evidence, not as proof that historical reviewers predicted later research."
+}
