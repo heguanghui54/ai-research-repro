@@ -162,6 +162,42 @@ OpenReview-derived novelty, correctness, clarity, impact, and confidence
 signals. This does not replace live multi-researcher co-pilot interaction data,
 but it can support data-driven workflow selection before such data exists.
 
+## Participation-Mode Selection Probe
+
+The package now includes
+`experiments/participation_mode_selection_probe_20260602_060500/`. This probe
+generates matched artifacts for five workflow modes and scores them with an
+OpenReview-conditioned model-routed rubric. The no-gate artifact scores `2`
+overall, taste-prior `3`, evaluator-stress `4`, structured-feedback `5`, and
+claim-calibration `5`. The scorer's explicit `best_mode` field and ranking
+order differ between the two tied top modes, so the conservative interpretation
+is that structured feedback and claim calibration form the current top pair,
+not that one mode has been uniquely proven best.
+
+## OpenReview-Guided Regeneration Probe
+
+The package now includes
+`experiments/openreview_guided_regeneration_probe_20260602_062500/`. It selects
+three ML/AI papers from the OpenReview sample and generates two mini-paper
+artifacts for each: one from title/abstract only and one from title/abstract
+plus real review snippets and decision text. The review-guided artifacts win
+`3/3` pairwise comparisons under the fixed model-routed scorer, raising mean
+overall score from `3.0` to `4.0`. This is the strongest current evidence that
+human review text can be operationalized as scientific taste/insight for
+artifact improvement, but it still does not rerun the original experiments or
+constitute independent expert re-review.
+
+## Review Insight Taxonomy
+
+The package now includes
+`experiments/review_insight_taxonomy_probe_20260602_064500/`. It mines 32
+OpenReview review cases and maps actionable review patterns to IGRE gates:
+novelty concerns to `scientific_taste_prior`, limitations and weaknesses to
+`claim_calibration`, clarity issues to `structured_feedback`, and
+metric/evaluation issues to `evaluator_stress_test`. This taxonomy is useful
+because it separates review comments that can control automated research from
+generic praise or vague reactions.
+
 ## Structured Feedback Probe
 
 The selected `frontier_004` has now been connected to a small downstream

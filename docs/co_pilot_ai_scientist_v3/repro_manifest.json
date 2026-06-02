@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_expert_review_taste_prior_probe",
+  "status": "pilot_package_with_review_insight_taxonomy_probe",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -462,7 +462,31 @@
     "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/expert_review_taste_prior_protocol.md",
     "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/README.md",
-    "scripts/run_expert_review_taste_prior_probe.py"
+    "scripts/run_expert_review_taste_prior_probe.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/generation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/mode_artifacts.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/scoring_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/scoring_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/openreview_exemplars_compact.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/README.md",
+    "scripts/run_participation_mode_selection_probe.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/selected_papers.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/generation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/regenerated_artifacts.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/scoring_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/scoring_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/README.md",
+    "scripts/run_openreview_guided_regeneration_probe.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/review_cases.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/taxonomy_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/taxonomy_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/README.md",
+    "scripts/run_review_insight_taxonomy_probe.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -775,5 +799,40 @@
     "sample_size": 160,
     "required_fields_available": true,
     "claim_boundary": "Offline expert-review taste proxy only; not proof of live human co-pilot improvement."
+  },
+  "participation_mode_selection_probe": {
+    "run_id": "participation_mode_selection_probe_20260602_060500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/summary.json",
+    "expert_review_proxy": "nhop/OpenReview sampled high/low examples from expert_review_taste_prior_probe_20260602_031800",
+    "best_mode": "structured_feedback_gate",
+    "ranking": [
+      "claim_calibration_gate",
+      "structured_feedback_gate",
+      "evaluator_stress_gate",
+      "taste_prior_gate",
+      "no_human_gate"
+    ],
+    "claim_boundary": "Offline OpenReview-derived model-routed workflow-selection probe only."
+  },
+  "openreview_guided_regeneration_probe": {
+    "run_id": "openreview_guided_regeneration_probe_20260602_062500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/summary.json",
+    "selected_papers": 3,
+    "review_guided_wins": 3,
+    "baseline_wins": 0,
+    "ties": 0,
+    "mean_delta_review_guided_minus_baseline": 1.0,
+    "claim_boundary": "Real OpenReview text used as human taste/insight, but regenerated mini-paper artifacts only."
+  },
+  "review_insight_taxonomy_probe": {
+    "run_id": "review_insight_taxonomy_probe_20260602_064500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/summary.json",
+    "review_case_count": 32,
+    "most_useful_categories": [
+      "Clarity Issues",
+      "Novelty Concerns",
+      "Limitations and Weaknesses"
+    ],
+    "claim_boundary": "OpenReview-derived actionable-review taxonomy only; not causal proof."
   }
 }

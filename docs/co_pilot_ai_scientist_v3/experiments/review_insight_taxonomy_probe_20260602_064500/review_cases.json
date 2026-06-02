@@ -1,0 +1,354 @@
+[
+  {
+    "case_id": "review_case_0",
+    "title": "TILP: Differentiable Learning of Temporal Logical Rules on Knowledge Graphs",
+    "decision": true,
+    "mean_score": 0.55,
+    "abstract_excerpt": "Compared with static knowledge graphs, temporal knowledge graphs (tKG), which can capture the evolution and change of information over time, are more realistic and general. However, due to the complexity that the notion of time introduces to the learning of the rules, an accurate graph reasoning, e.g., predicting new links between entities, is still a difficult problem. In this paper, we propose TILP, a differentiabl",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: see above\", \"paper_summary\": \"paper_summary: \\nThe paper proposes a novel method to model temporal logical rules for knowledge graph completion. In specific, the authors first define constrained random walk for rule learning. Then, based on learned rules, the authors design a module to model various temporal features and apply rules for predi",
+      "{\"clarity\": null, \"confidence\": 0.25, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The clarity is bad for me, but may due to the lack of background.\\nQuality is fine.\\nThe method and studying scenario is novel, however I am not sure if those scenarios are interesting due to the lack of background.\", \"paper_summary\": \"paper_summary: This paper proposes a differentiable temporal logical rule method, TILP for temporal knowled"
+    ]
+  },
+  {
+    "case_id": "review_case_1",
+    "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+    "decision": true,
+    "mean_score": 0.53125,
+    "abstract_excerpt": "Large Language Models (LLMs) often generate erroneous outputs, known as hallucinations, due to their limitations in discerning questions beyond their knowledge scope. While addressing hallucination has been a focal point in research, previous efforts primarily concentrate on enhancing correctness without giving due consideration to the significance of rejection mechanisms. In this paper, we conduct a comprehensive ex",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new approach for creating preference data for training reward models, which they call **Reinforcement Learning from Knowledge Feedback** (RLKF). Whereas existing preference data consists of (preferred, non-preferred) pairs where the non-preferred pair might be either incorrect or not helpful, RLKF creates th",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: One of the big problems with LMs is that they constantly hallucinate. They do this a lot when given questions that they don't know the answer to. Some of these questions that are particularly hard for LMs are arithmetic questions where the inputs are more than just a digit or two long. \\n\\nThe authors here propose an RL framework"
+    ]
+  },
+  {
+    "case_id": "review_case_2",
+    "title": "Forked Diffusion for Conditional Graph Generation",
+    "decision": false,
+    "mean_score": 0.3,
+    "abstract_excerpt": "We introduce a novel score-based diffusion framework that incorporates forking for conditional generation. In this framework, a single  parent diffusion process is associated with a primary variable (e.g., structure), while multiple child diffusion processes are employed, each dedicated to a dependent variable (e.g., property). The parent process guides the co-evolution of its child processes towards segregated repre",
+    "review_snippets": [
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.0, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper works on conditional graph generation via score-based generative model. Instead of directly input conditional properties as context to model inside generation, the paper proposes to use a separate variable to model each conditional property and jointly model them inside the score-based diffus",
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.5, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a forked diffusion model for conditional graph generation that introduces parent process and child processes to learn and generate graphs with desired properties. The contributions of this paper include introducing forking as a new technique for conditional generation, "
+    ]
+  },
+  {
+    "case_id": "review_case_3",
+    "title": "Online Limited Memory Neural-Linear Bandits",
+    "decision": false,
+    "mean_score": 0.3703703703703704,
+    "abstract_excerpt": "We study neural-linear bandits for solving problems where both exploration and representation learning play an important role. Neural-linear bandits leverage the representation power of deep neural networks and combine it with efficient exploration mechanisms, designed for linear contextual bandits, on top of the last hidden layer. Since the representation is optimized during learning, information regarding explorati",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The main contribution of the paper is the likelihood matching method for dealing with the catastrophic forgetting and save the memory usage. The empirical results demonstrate that the proposed method achieves good results comparing to other baselines.\\n\\nHowever, the paper has several issues, as discussed below.\\n\\n- The paper lacks the theoretical result",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper proposed a neural-bandit approach using Thomson sampling for leveraging the DNN’s non-linear representation. There is a growing interest in using Multi-armed Bandits with DNN in an end-to-end learning fashion but the difficulty of the understanding how the representation is learned in DNN, makes this problem a very challenging and interesting o"
+    ]
+  },
+  {
+    "case_id": "review_case_4",
+    "title": "On the Optimal Time Complexities in Decentralized Stochastic Asynchronous Optimization",
+    "decision": true,
+    "mean_score": 0.5277777777777778,
+    "abstract_excerpt": "We consider the decentralized stochastic asynchronous optimization setup, where many workers asynchronously calculate stochastic gradients and asynchronously communicate with each other using edges in a multigraph. For both homogeneous and heterogeneous setups, we prove new time complexity lower bounds under the assumption that computation and communication speeds are bounded by constants. After that, we developed a ",
+    "review_snippets": [
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: Most limitations are listed in the weaknesses section.\", \"main_review\": null, \"paper_summary\": \"paper_summary: This paper examines the time complexity lower bounds in decentralized stochastic asynchronous optimization. It introduces two methods, Fragile SGD and Amelie SGD, which achieve near-optimal and optimal convergence, respectiv",
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.25, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: I believe the authors have discussed the limitations of their method.\", \"main_review\": null, \"paper_summary\": \"paper_summary: The paper addresses the decentralized stochastic asynchronous optimization setup. The authors establish new time complexity lower bounds for both homogeneous and heterogeneous setups, assuming bounded computat"
+    ]
+  },
+  {
+    "case_id": "review_case_5",
+    "title": "Enhancing Transformer-based Semantic Matching for Few-shot Learning through Weakly Contrastive Pre-training",
+    "decision": true,
+    "mean_score": 0.5333333333333333,
+    "abstract_excerpt": "The task of semantic text matching focuses on measuring the semantic similarity between two distinct texts and is widely applied in search and ranking scenarios. In recent years, pre-trained models based on the Transformer architecture have demonstrated powerful semantic representation capabilities and have become the mainstream method for text representation. The pipeline of fine-tuning pre-trained language models o",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.6666666666666666, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: - Despite the reasonable motivation and design, the proposed method seems not achieving a remarkable margin improvement (below 1%) over the standard MLM pre-training method. It is true that, from the ablation study, the model seems easier to fine-tune, but, even from Figure 3, it seems that there is not a significant statistical difference between BERT and BERT",
+      "{\"clarity\": null, \"confidence\": 0.3333333333333333, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: In Figure 3, why does the EBSIM method accelerate the model's convergence compared to BERT base (blue line)? A detailed explanation and analysis are needed.\", \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes addressing the quality and quantity issues of downstream data when fine-tuning pre-trained models. Focusing on the task of semanti"
+    ]
+  },
+  {
+    "case_id": "review_case_6",
+    "title": "Dirichlet Energy Constrained Learning for Deep Graph Neural Networks",
+    "decision": true,
+    "mean_score": 0.5833333333333334,
+    "abstract_excerpt": "Graph neural networks (GNNs) integrate deep architectures and topological structure modeling in an effective way. However, the performance of existing GNNs would decrease significantly when they stack many layers, because of the over-smoothing issue. Node embeddings tend to converge to similar vectors when GNNs keep recursively aggregating the representations of neighbors. To enable deep GNNs, several methods have be",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: see above\", \"main_review\": \"main_review: Pros:\\n1.\\tThe paper points out that the Dirichlet energy of each layer of GNN should not too large or too small.\\n2.\\tAccording to the theoretical findings, the paper proposes constraints on Dirichlet energy. Especially, it smartly binds the lower bound of the Dirichlet energy to avoid over-smoothing.\\n3.\\tThe experimental results sh",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: No.\", \"main_review\": \"main_review: This paper leverages a metric of Dirichlet energy of node embeddings to provide a better understanding of the over-smoothing and over-separation issues of deep GNNs. The new Dirichlet energy constrained learning framework is well presented to explain the key constraints in training deep GNNs. Three learning strategies (orthogonal weight con"
+    ]
+  },
+  {
+    "case_id": "review_case_7",
+    "title": "Identifiable Shared Component Analysis of Unpaired Multimodal Mixtures",
+    "decision": true,
+    "mean_score": 0.5277777777777778,
+    "abstract_excerpt": "A core task in multi-modal learning is to integrate information from multiple feature spaces (e.g., text and audio), offering modality-invariant essential representations of data. Recent research showed that, classical tools such as canonical correlation analysis (CCA) provably identify the shared components up to minor ambiguities, when samples in each modality are generated from a linear mixture of shared and priva",
+    "review_snippets": [
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.5, \"correctness\": 1.0, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: - A discussion of the asymptotic computational performance is amiss? Specifically, with respect to d_C and the total sample size.\\n- The paper does not appear to discuss the applicability of the theorems to the case of q > 2 (i.e., more than 2 modalities).\\n- Lacks a discussion of the stability of GAN training, especially with several additional los",
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.5, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: see weaknesses\", \"main_review\": null, \"paper_summary\": \"paper_summary: This work considers a problem similar to classical Canonical Correlation Analysis (CCS), which assumes a linear generative model for data $(x_1, x_2)$: $x_1=W_1z$, $x_2=W_2z$ and aims to identify the underlying components. \\n\\nThis problem has been extended previou"
+    ]
+  },
+  {
+    "case_id": "review_case_8",
+    "title": "Generating Images from Sounds Using Multimodal Features and GANs",
+    "decision": false,
+    "mean_score": 0.2962962962962963,
+    "abstract_excerpt": "Although generative adversarial networks (GANs) have enabled us to convert images from one domain to another similar one, converting between different sensory modalities, such as images and sounds, has been difficult. This study aims to propose a network that reconstructs images from sounds. First, video data with both images and sounds are labeled with pre-trained classifiers. Second, image and sound features are ex",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The authors present a novel method for generating images from sounds using a two parts model composed by a fusion network, aka. multi-modal layers, for learning sound and visual features in a common semantic space, and two conditional GANs for converting sound features into visual features and those into images. To validate their approach they created an ",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: PROS:\\n* The paper was well-written and explained the method and the experiments well\\n\\nCONS:\\n* The problem seems ill-posed to me. Sound is temporal and the problem should probably be sound-to-video conversion not sound-to-image. \\n* A link to generated images from sounds where one could actually evaluate the generations would be useful. Currently the "
+    ]
+  },
+  {
+    "case_id": "review_case_9",
+    "title": "Reconstructing, Understanding, and Analyzing Relief Type Cultural Heritage from a Single Old Photo",
+    "decision": true,
+    "mean_score": 0.6666666666666666,
+    "abstract_excerpt": "Relief-type cultural heritage objects are commonly found at historical sites but often manifest with varying degrees of damage and deterioration. The traditional process of reconstructing these reliefs is laborious and requires extensive manual intervention and specialized archaeological knowledge. By utilizing a single old photo containing predamage information of a given relief, monocular depth estimation can be us",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.3333333333333333, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: In the \\\"Edge detection\\\" subsection, the authors cite some methods for binary edge detection, but other contour detection models which output more than binary edges are not mentioned, such as: \\n\\nManinis, Kevis-Kokitsi, et al. \\\"Convolutional oriented boundaries: From image segmentation to high-level tasks.\\\" _IEEE transactions on pattern analysis and machine",
+      "{\"clarity\": null, \"confidence\": 0.6666666666666666, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: Complexity of Implementation: One significant drawback of the proposed method is its implementation complexity. The multi-task neural network, while robust, requires significant computational resources and expertise in machine learning to deploy effectively. This complexity could limit the accessibility of the technique, especially for institutions with limited"
+    ]
+  },
+  {
+    "case_id": "review_case_10",
+    "title": "Short and Sparse Deconvolution --- A Geometric Approach",
+    "decision": true,
+    "mean_score": 0.5,
+    "abstract_excerpt": "Short-and-sparse deconvolution (SaSD) is the problem of extracting localized, recurring motifs in signals with spatial or temporal structure. Variants of this problem arise in applications such as image deblurring, microscopy, neural spike sorting, and more. The problem is challenging in both theory and practice, as natural optimization formulations are nonconvex. Moreover, practical deconvolution problems involve sm",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper analyzes some of the optimization challenges presented by a particular formulation of \\\"short-and-sparse deconvolution\\\" and proposes a new general purpose algorithm to try to alleviate them. The paper is reasonably clearly written and the experimental results seem impressive (as a non-specialist in this area). However the experim",
+      "{\"clarity\": null, \"confidence\": 0.6666666666666666, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: * Summary\\n\\nThe work considers sparse and short blind deconvolution problem, which is to inverse a convolution of a sparse source (such as spikes at cell locations in microscopy) with a short (of limited spatial size) kernel or point spread function, not known in advance. This is posed as a bilinear lasso optimization problem"
+    ]
+  },
+  {
+    "case_id": "review_case_11",
+    "title": "Factored Policy Gradients: Leveraging Structure for Efficient Learning in MOMDPs",
+    "decision": true,
+    "mean_score": 0.6296296296296297,
+    "abstract_excerpt": "Policy gradient methods can solve complex tasks but often fail when the dimensionality of the action-space or objective multiplicity grow very large. This occurs, in part, because the variance on score-based gradient estimators scales quadratically. In this paper, we address this problem through a factor baseline which exploits independence structure encoded in a novel action-target influence network. Factored policy",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.25, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: - This work is mainly theoretical. Its long-term societal impact is unclear to see.\", \"main_review\": \"main_review: This paper considers an interesting problem in policy learning factored MDPs. I haven’t checked the details of the proof, but the proposed algorithm seems reasonable. Since many decision-making problems in the real world where its system dynamics can be naturall",
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: The authors should clarify that their approach works for a specific sub-class of problems. Other than that, I don't see issues.\", \"main_review\": \"main_review: On the face of it, the paper makes contributions that seem quite reasonable to the actor-critic and policy gradient literature for a specific class of MDP problems: those involving factored action space and multiple obj"
+    ]
+  },
+  {
+    "case_id": "review_case_12",
+    "title": "Invariance Learning based on Label Hierarchy",
+    "decision": true,
+    "mean_score": 0.5,
+    "abstract_excerpt": "Deep Neural Networks inherit spurious correlations embedded in training data and hence may fail to predict desired labels on unseen domains (or environments), which have different distributions from the domain to provide training data. Invariance Learning (IL) has been developed recently to overcome this shortcoming; using training data in many domains, IL estimates such a predictor that is invariant to a change of d",
+    "review_snippets": [
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: The author discusses a little in the limitation section, and lacks discussion on scalability, efficiency, and future research directions.\", \"main_review\": null, \"paper_summary\": \"paper_summary: \\nThis paper proposes a novel framework of invariance learning that enables invariant predictor to be estimated in single domain data by assu",
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 1.0, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: there is a devoted paragraph regarding the topic. \", \"main_review\": null, \"paper_summary\": \"paper_summary: The paper introduces an interesting extension of IRM, which leverages the higher-level classes to learn the invariant classifier, thus it releases the data annotation efforts in many cases when the previous methods require the de"
+    ]
+  },
+  {
+    "case_id": "review_case_13",
+    "title": "KETG: A Knowledge Enhanced Text Generation Framework",
+    "decision": false,
+    "mean_score": 0.1388888888888889,
+    "abstract_excerpt": "Embedding logical knowledge information into text generation is a challenging NLP task. In this paper, we propose a knowledge enhanced text generation (KETG) framework, which incorporates both the knowledge and associated text corpus to address logicality and diversity in text generation. Specifically, we validate our framework on rhetorical text generation from our newly built rhetoric knowledge graph. Experiments s",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposes to use a rhetoric knowledge graph for rhetorical text generation. One of its key contributions is to construct a rhetoric knowledge graph by leveraging SOTA NER and relation classification models.  To generate a rhetorical text, the new method starts with sending a keyword to the knowledge graph to retrieve the neighborhood of the key",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposes a framework that embeds rhetoric knowledge into rhetoric text generation to bring diversity in the output sentences, take both knowledge tuples and their associated sentences as model inputs to emphasize logic relations. Besides, this paper builds the first Chinese rhetoric graph with an innovative mechanism of relationship storage.\\n"
+    ]
+  },
+  {
+    "case_id": "review_case_14",
+    "title": "Polyhedron Attention Module: Learning Adaptive-order Interactions",
+    "decision": true,
+    "mean_score": 0.6111111111111112,
+    "abstract_excerpt": "Learning feature interactions can be the key for multivariate predictive modeling. ReLU-activated neural networks create piecewise linear prediction models, and other nonlinear activation functions lead to models with only high-order feature interactions. Recent methods incorporate candidate polynomial terms of fixed orders into deep learning, which is subject to the issue of combinatorial explosion, or learn the ord",
+    "review_snippets": [
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: Limitations have been properly addressed.\", \"main_review\": null, \"paper_summary\": \"paper_summary: The paper introduces a more general nonlinearity, PAM, to better capture the data features' interactions. Theoretical justification and interoperability are performed along with empirical results.\", \"questions\": \"questions: It will be nic",
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: N/A\", \"main_review\": null, \"paper_summary\": \"paper_summary: The ReLU-activated DNN will split the input space into pieces such as polyhedrons. The author proposes a polyhedron attention module (PAM) to capture the interaction between different pieces of input spaces. And they propose an approximation theorem for PAM. The polyhedrons a"
+    ]
+  },
+  {
+    "case_id": "review_case_15",
+    "title": "CQM: Curriculum Reinforcement Learning with a Quantized World Model",
+    "decision": true,
+    "mean_score": 0.5777777777777777,
+    "abstract_excerpt": "Recent curriculum Reinforcement Learning (RL) has shown notable progress in solving complex tasks by proposing sequences of surrogate tasks. However, the previous approaches often face challenges when they generate curriculum goals in a high-dimensional space. Thus, they usually rely on manually specified goal spaces. To alleviate this limitation and improve the scalability of the curriculum, we propose a novel curri",
+    "review_snippets": [
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: The limitations have been adequately addressed.\\n\\n> After rebuttal\\n\\nSome of my concerns have been addressed. I appreciate the authors' efforts, but the maze in either their submission or rebuttal doesn't match the complexity of the related work I requested for comparison. Thus I'm holding my score.\", \"main_review\": null, \"paper_sum",
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: The authors adequately addressed the limitations and potential negative societal impact.\", \"main_review\": null, \"paper_summary\": \"paper_summary: This paper introduces Curriculum RL with Quantized World Model (CQM), a novel approach that leverages a VQ-VAE to create a discretized goal space and constructs a graph structure over it. CQ"
+    ]
+  },
+  {
+    "case_id": "review_case_16",
+    "title": "KDSalBox: A toolbox of efficient knowledge-distilled saliency models",
+    "decision": true,
+    "mean_score": 0.4444444444444444,
+    "abstract_excerpt": "Dozens of saliency models have been designed over the last few decades, targeted at diverse applications ranging from image compression and retargeting to robot navigation, surveillance, and distractor detection. Barriers to their use include the different and often incompatible software environments that they rely on, as well as the computational inefficiency of older implementations. For application-purposes models",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: While saliency methods have moved towards deep nets trained on the SALICON dataset, there are a number of legacy methods from the 1990s to now that are based on lower level image features and still interesting to study. However the software that implements them is aging, has difficult dependencies and may require commercial (e.g. Matlab) licences. This p",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The authors present a method to build knowledge-distilled saliency models from previously published models, and they aim to release the toolbox as a user-friendly platform.\\n\\nThe methodology is correct, and I only suggest better explaining why only CC and KL metrics are reported, and not NSS or AUC.\\n\\nI understand that for the general public an easy-to"
+    ]
+  },
+  {
+    "case_id": "review_case_17",
+    "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+    "decision": false,
+    "mean_score": 0.55,
+    "abstract_excerpt": "Pretrained Language Models (LMs) memorize a vast amount of knowledge during initial pretraining, including information that may violate the privacy of personal lives and identities. Previous work addressing privacy issues for language models has mostly focused on data preprocessing and differential privacy methods, both requiring re-training the underlying LM. We propose knowledge unlearning as an alternative method ",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: While there may not be a lot of novelty in the methods designed in this work, I do believe that it has a significant contribution to the field of machine unlearning in large LMs. The quality of writing is good, and the authors provide code for reproducibility.\", \"paper_summary\": \"paper_summary: This work performs knowledge unlearning in large",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy act"
+    ]
+  },
+  {
+    "case_id": "review_case_18",
+    "title": "Enhancing Batch Normalized Convolutional Networks using Displaced Rectifier Linear Units: A Systematic Comparative Study",
+    "decision": false,
+    "mean_score": 0.3333333333333333,
+    "abstract_excerpt": "In this paper, we turn our attention to the interworking between the activation functions and the batch normalization, which is a virtually mandatory technique to train deep networks currently. We propose the activation function Displaced Rectifier Linear Unit (DReLU) by conjecturing that extending the identity function of ReLU to the third quadrant enhances compatibility with batch normalization. Moreover, we used s",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper describes DReLU, a shift version of ReLU. DReLU shifts ReLU from (0, 0) to (-\\\\sigma, -\\\\sigma). The author runs a few CIFAR-10/100 experiments with DReLU.\\n\\nComments:\\n\\n1. Using expectation to explain why DReLU works well is not sufficient and convincing. Although DReLU’s expectation is smaller than expectation of ReLU, but it doesn’t explai",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposes an activation function, called displaced ReLU (DReLU), to improve the performance of CNNs that use batch normalization. Compared to ReLU, DReLU cut the identity function at a negative value rather than the zero. As a result, the activations outputted by DReLU can have a mean closer to 0 and a variance closer to 1 than the standard ReL"
+    ]
+  },
+  {
+    "case_id": "review_case_19",
+    "title": "Localized Generations with Deep Neural Networks for Multi-Scale Structured Datasets",
+    "decision": false,
+    "mean_score": 0.5555555555555555,
+    "abstract_excerpt": "Extracting the hidden structure of the external environment is an essential component of intelligent agents and human learning. The real-world datasets that we are interested in are often characterized by the locality: the change in the structural relationship between the data points depending on location in observation space. The local learning approach extracts semantic representations for these datasets by trainin",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.6666666666666666, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposed a local VAE based on the model-agnostic meta-learning concept. Images generated based local VAE are shown to be better than those generated bu \\\\beta-VAE in general in terms of generation quality and disentanglement/compactness/informativeness.\\n\\nThis paper shows an interesting idea of viewing neighbourhoo",
+      "{\"clarity\": null, \"confidence\": 0.3333333333333333, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Incorporating the local learning approaches into the training of the deep generative models can potentially create a new model that has both the capacity for high-dimensional inputs and flexibility for locally changing environments. However, the local learning approach is limited to using only a simple model, because complex m"
+    ]
+  },
+  {
+    "case_id": "review_case_20",
+    "title": "Stochastic Adversarial Video Prediction",
+    "decision": false,
+    "mean_score": 0.5185185185185185,
+    "abstract_excerpt": "Being able to predict what may happen in the future requires an in-depth understanding of the physical and causal rules that govern the world. A model that is able to do so has a number of appealing applications, from robotic planning to representation learning. However, learning to predict raw future observations, such as frames in a video, is exceedingly challenging—the ambiguous nature of the problem can cause a n",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper introduces a generative model for video prediction. The originality stems from a new training criterion which combines a VAE and a GAN criteria. At training time, the GAN and the VAE are trained simultaneously with a shared generator; at test time, prediction conditioned on initial frames is performed by sampling from a latent distribution and g",
+      "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: \\nSummary:\\nThe authors present a video prediction model called SAVP that combines a Variational Auto-Encoder (VAE) model with a Generative Adversarial Network (GAN) to produce more realistic and diverse future samples.\\n\\nDeterministic models and certain loss functions such as Mean Squared Error (MSE) will produce \\nblurry results when making uncertain p"
+    ]
+  },
+  {
+    "case_id": "review_case_21",
+    "title": "Generalized Schrödinger Bridge Matching",
+    "decision": true,
+    "mean_score": 0.7,
+    "abstract_excerpt": "Modern distribution matching algorithms for training diffusion or flow models directly prescribe the time evolution of the marginal distributions between two boundary distributions. In this work, we consider a generalized distribution matching setup, where these marginals are only implicitly described as a solution to some task-specific objective function. The problem setup, known as the Generalized Schrödinger Bridg",
+    "review_snippets": [
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: The authors consider so-called generalised Schrödinger Bridge Matching problem: unlike standard SBM, which can be formulated as an optimisation problem of a drift of some diffusion, the corresponding optimisation problem in case of GSBM involved an additional state cost. The authors propo",
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 1.0, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper focuses on the problem of controlled measure transport. Given a time dependent density $p_t(x)$, how do you adapt $p_t(x)$ with respect to some potential function $V_t(x)$ so that it arrives at a target density $p_{T}(x)$ and does so in some measure of least cost (or as they ref"
+    ]
+  },
+  {
+    "case_id": "review_case_22",
+    "title": "Predicting the Outputs of Finite Networks Trained with Noisy Gradients",
+    "decision": false,
+    "mean_score": 0.4444444444444444,
+    "abstract_excerpt": "A recent line of works studied wide deep neural networks (DNNs) by approximating them as Gaussian Processes (GPs). A DNN trained with gradient flow was shown to map to a GP governed by the Neural Tangent Kernel (NTK), whereas earlier works showed that a DNN with an i.i.d. prior over its parameters maps to the so-called Neural Network Gaussian Process (NNGP). Here we consider a DNN training protocol, involving noise, ",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.25, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: It has been show that practical performance of finite width DNNs deviates from the infinite limiting cases of both the NTK and GP. The reason behind this is still not well understood. This papers develops theory trying to explain this by showing the finite width correction (FWC) for DNNs. The results look very interesting. However, as an educational gues",
+      "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review:  In this paper, the authors propose an analytical framework for DNN training with noisy gradient descent and weight decay. For infinite width, the authors have established a correspondence between DNNs trained with\\nnoisy gradients and the NNGP, and for finite width, the authors introduce a finite width correction (FWC). Overall, the paper is quite intere"
+    ]
+  },
+  {
+    "case_id": "review_case_23",
+    "title": "On Covariate Shift of Latent Confounders in Imitation and Reinforcement Learning",
+    "decision": true,
+    "mean_score": 0.55,
+    "abstract_excerpt": "We consider the problem of using expert data with unobserved confounders for imitation and reinforcement learning. We begin by defining the problem of learning from confounded expert data in a contextual MDP setup. We analyze the limitations of learning from such data with and without external reward and propose an adjustment of standard imitation learning algorithms to fit this setup. In addition, we discuss the pro",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Strengths:\\n\\nThis paper tackles an important and relevant problem of RL in practice -- imitation learning with access to expert data that might be different from the actual experimental/online environment, and more importantly, that lacks contextual (confounders) information. Results in this paper cover settings that one may encounter in pr",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Strengths:\\n- This work tries to categorize the cases that using expert data is helpful in the problem of imitation learning in the presence of latent confounders. It provides cases that is infeasible to solve this problem from expert data. Moreover, it shows some cases this problem becomes feasible. Therefore, it is quite interesting to se"
+    ]
+  },
+  {
+    "case_id": "review_case_24",
+    "title": "Simple Unsupervised Object-Centric Learning for Complex and Naturalistic Videos",
+    "decision": true,
+    "mean_score": 0.5277777777777778,
+    "abstract_excerpt": "Unsupervised object-centric learning aims to represent the modular, compositional, and causal structure of a scene as a set of object representations and thereby promises to resolve many critical limitations of traditional single-vector representations such as poor systematic generalization. Although there have been many remarkable advances in recent years, one of the most critical problems in this direction has been",
+    "review_snippets": [
+      "{\"clarity\": 1.0, \"confidence\": 0.75, \"correctness\": 1.0, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: Limitations are adequately addressed in the paper.\\n\", \"main_review\": null, \"paper_summary\": \"paper_summary: The paper proposes a new method for unsupervised object discovery and tracking in videos called STEVE. This model combines an encoding backbone, a recurrent slot encoder and a transformer-based decoder to achieve impressive object discovery results on comp",
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: The paper does not address its limitations. A section clearly articulating the technical limitations is important. \", \"main_review\": null, \"paper_summary\": \"paper_summary: Learning the compositional structure (e.g. scene graph) in dynamic visual scenes without labels (e.g. object masks) has proven challenging.  Slot-based models leve"
+    ]
+  },
+  {
+    "case_id": "review_case_25",
+    "title": "FHA-Kitchens: A Novel Dataset for Fine-Grained Hand Action Recognition in Kitchen Scenes",
+    "decision": false,
+    "mean_score": 0.30000000000000004,
+    "abstract_excerpt": "A typical task in the field of video understanding is hand action recognition, which has a wide range of applications. Existing works either mainly focus on full-body actions, or the defined action categories are relatively coarse-grained. In this paper, we propose FHA-Kitchens, a novel dataset of fine-grained hand actions in kitchen scenes. In particular, we focus on human hand interaction regions and perform deep e",
+    "review_snippets": [
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.75, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a fine-grained hand action annotation dataset that has 2,377 video clips and 30,047 images from 8 different types of dishes. The hand action is a triplet with a total number of 878 action triplets. Based on the proposed dataset, this paper benchmarked 3 tasks: (1) supe",
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: The paper proposes a video dataset for hand action recognition. Specifically, the videos are specific to the Kitchen environment. They provide labels for fine-grained action classes and bounding box annotations for hands. Based on such data and annotations, the paper benchmarks three task"
+    ]
+  },
+  {
+    "case_id": "review_case_26",
+    "title": "Sequoia: Scalable and Robust Speculative Decoding",
+    "decision": true,
+    "mean_score": 0.6111111111111112,
+    "abstract_excerpt": "As the usage of large language models (LLMs) grows, it becomes increasingly important to serve them quickly and efficiently. While speculative decoding has recently emerged as a promising direction for accelerating LLM serving, existing methods are limited in their ability to scale to larger speculation budgets and adapt to different hyperparameters. This paper introduces Sequoia, a scalable and robust algorithm for ",
+    "review_snippets": [
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 1.0, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: Please refer to the previous sections.\", \"main_review\": null, \"paper_summary\": \"paper_summary: In this paper, the authors propose a novel speculative decoding algorithm to accelerate LLM generation. By leveraging the positional acceptance assumption and dynamic programming, they can determine an optimal tree topology with the tree size and depth. T",
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: The limitations are acknowledged but not fully addressed.\", \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposed an improvement on the tree-based speculative decoding methods to make the accepted tokens scale roughly in logarithm to the number of tokens generated by the draft model.\\n\\nThe author provided theoreti"
+    ]
+  },
+  {
+    "case_id": "review_case_27",
+    "title": "Bayesian Neural Controlled Differential Equations for Treatment Effect Estimation",
+    "decision": true,
+    "mean_score": 0.65,
+    "abstract_excerpt": "Treatment effect estimation in continuous time is crucial for personalized medicine. However, existing methods for this task are limited to point estimates of the potential outcomes, whereas uncertainty estimates have been ignored. Needless to say, uncertainty quantification is crucial for reliable decision-making in medical applications. To fill this gap, we propose a novel Bayesian neural controlled differential eq",
+    "review_snippets": [
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposed to estimate the treatment effect and quantify the uncertainty over continuous time. To achieve this goal, a VAE-based Bayesian method was proposed to learn ODE (resp. SDE) over latent variables (resp. encoder parameters), as well as the posterior distribution of potenti",
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.5, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: The paper introduces BNCDE which combines neural controlled differential equations with neural stochastic differential equations to model the time dimension. It leverages the Bayesian paradigm to account for both model and outcome uncertainty, allowing for uncertainty-aware treatment effec"
+    ]
+  },
+  {
+    "case_id": "review_case_28",
+    "title": "Working memory facilitates reward-modulated Hebbian learning in recurrent neural networks",
+    "decision": true,
+    "mean_score": 0.625,
+    "abstract_excerpt": "Reservoir computing is a powerful tool to explain how the brain learns temporal sequences, such as movements, but existing learning schemes are either biologically implausible or too inefficient to explain animal performance. We show that a network can learn complicated sequences with a reward-modulated Hebbian learning rule if the network of reservoir neurons is combined with a second network that serves as a dynami",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": null, \"correctness\": 0.5, \"ethics\": null, \"impact\": 0.5, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: As mentioned in technical rigor section, more rigorous investigation of the role of attractor for successful learning rule would be great addition to the paper. \", \"paper_summary\": null, \"questions\": null, \"review_summary\": null, \"strength_weakness\": null, \"title\": \"title: Interesting study with nice result showcasing biologically plausible learning rule f",
+      "{\"clarity\": null, \"confidence\": null, \"correctness\": 0.5, \"ethics\": null, \"impact\": 0.5, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The overall contribution of the paper is significant (in the sense of noticeable), but rather incremental.\\n* The biological plausibility of working memory implemented by bump attractors generated by 2500 firing rate unit (which usually represent large populations of spiking neurons) is questionable.  \\n* It is not clear how \\\"u\\\" can be interpreted as a m"
+    ]
+  },
+  {
+    "case_id": "review_case_29",
+    "title": "Interpreting Reinforcement Policies through Local Behaviors",
+    "decision": false,
+    "mean_score": 0.4,
+    "abstract_excerpt": "Many works in explainable AI have focused on explaining black-box classification models. Explaining deep reinforcement learning (RL) policies in a manner that could be understood by domain users has received much less attention. In this paper, we propose a novel perspective to understanding RL policies based on identifying important states from automatically learned meta-states. The key conceptual difference between ",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 1.0, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Strength: (1) The paper proposes a new explanation method against deep reinforcement learning\\nWeakness: (1) The utility of the explanation is vague and needs more details. (2) the evaluation is insufficient. \", \"paper_summary\": \"paper_summary: The paper presents an explanation method for deep reinforcement learning. \", \"questions\": null, \"review_summary\": ",
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper explains DRL policies from an interesting perspective, i.e., explaining via prediction. It draws insights into a DRL agent's policy by predicting certain steps of future moves. Although studying an important problem, this paper has the following limitations that prevent me from supporting it. \\n\\n1. The readability and clarity of t"
+    ]
+  },
+  {
+    "case_id": "review_case_30",
+    "title": "PromptIR: Prompting for All-in-One Image Restoration",
+    "decision": true,
+    "mean_score": 0.42222222222222217,
+    "abstract_excerpt": "Image restoration involves recovering a high-quality clean image from its degraded version. Deep learning-based methods have significantly improved image restoration performance, however, they have limited generalization ability to different degradation types and levels. This restricts their real-world application since it requires training individual models for each specific degradation and knowing the input degrada",
+    "review_snippets": [
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 1.0, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: Limitations of the proposed method were not discussed\", \"main_review\": null, \"paper_summary\": \"paper_summary: The paper proposes prompt based image restoration method that can handle different degradations. the proposed method uses prompts to encode degradation-specific information, which is then used to dynamically guide the restorat",
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 1.0, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: See weakness\", \"main_review\": null, \"paper_summary\": \"paper_summary: This paper restores images from various types and levels of degradation. In detail, degradation information is encoded as prompts and used to guidance the restoration. Based on the classical UNet architecture for restoration, there are two added blocks: prompt genera"
+    ]
+  },
+  {
+    "case_id": "review_case_31",
+    "title": "POPGym: Benchmarking Partially Observable Reinforcement Learning",
+    "decision": true,
+    "mean_score": 0.6,
+    "abstract_excerpt": "Real world applications of Reinforcement Learning (RL) are often partially observable, thus requiring memory. Despite this, partial observability is still largely ignored by contemporary RL benchmarks and libraries. We introduce Partially Observable Process Gym (POPGym), a two-part library containing (1) a diverse collection of 15 partially observable environments, each with multiple difficulties and (2) implementati",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The clarity is high, the quality is decent, novelty is on a borderline level. The reproducibility is good.\", \"paper_summary\": \"paper_summary: The paper performs benchmarks on partially observable RL environments and a bunch of network architectures on memory. The authors make sure the learning of the POPGym environments is affordable with co",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 1.0, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The writing is quite clear and in good quality in my opinion. Below are some minor comments.\\n\\n1. This it would be worthwhile to add that current benchmarks test the high dimensional observations.\\n2. Figure 3. Can you normalize the reward such that 1 would indicate the optimal value? if I understand correctly it seems that the normalisation might make it"
+    ]
+  }
+]

@@ -42,7 +42,13 @@
     "live_hypothesis_frontend_baseline_probes": 1,
     "expert_review_taste_prior_probes": 1,
     "expert_review_taste_prior_sample_rows": 160,
-    "expert_review_taste_prior_dataset_rows": 34638
+    "expert_review_taste_prior_dataset_rows": 34638,
+    "participation_mode_selection_probes": 1,
+    "openreview_guided_regeneration_probes": 1,
+    "review_insight_taxonomy_probes": 1,
+    "openreview_guided_regeneration_selected_papers": 3,
+    "openreview_guided_regeneration_review_guided_wins": 3,
+    "review_insight_taxonomy_review_cases": 32
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -98,7 +104,7 @@
     "independent_human_subject_timing": false,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Use OpenReview-derived expert-review proxies as a participation-mode selection benchmark, then run larger matched online trajectories across tasks, seeds, budgets, independent paper-quality scoring, measured human timing, and ideally multiple human researchers.",
+  "next_evidence_milestone": "Scale OpenReview-guided regeneration beyond 3 papers, use stronger/multiple scorers, rerun actual experiments when feasible, and add independent human expert scoring for selected regenerated artifacts.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -323,8 +329,53 @@
     "interpretation": "Offline expert-review proxy for participation-mode selection; not live human co-pilot interaction data."
   },
   "primary_reframing": {
-    "status": "paper_reframed_as_participation_workflow_design",
-    "claim": "The main contribution is designing and comparing human-participation modes that inject scientific taste and insight into automated research, not proving that humans universally improve paper quality.",
-    "evaluation_target": "Use matched experiments and OpenReview-derived expert-review proxies to choose better gate patterns before larger online multi-researcher data exist."
+    "status": "paper_reframed_as_participation_workflow_design_with_openreview_evidence",
+    "claim": "The main contribution is designing and empirically selecting human-participation modes that inject scientific taste and insight into automated research.",
+    "new_evidence": "OpenReview real review text is now used both to score participation modes and to guide 3 ML/AI mini-paper regenerations."
+  },
+  "participation_mode_selection_probe": {
+    "status": "completed_model_routed_openreview_conditioned_probe",
+    "run_id": "participation_mode_selection_probe_20260602_060500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/participation_mode_selection_probe_20260602_060500/summary.json",
+    "mode_scores": {
+      "no_human_gate": 2,
+      "taste_prior_gate": 3,
+      "evaluator_stress_gate": 4,
+      "structured_feedback_gate": 5,
+      "claim_calibration_gate": 5
+    },
+    "conservative_interpretation": "structured_feedback_gate and claim_calibration_gate are the current top pair; the scorer output has a minor best_mode/ranking inconsistency, so do not claim a unique winner.",
+    "claim_boundary": "Offline OpenReview-conditioned model-routed artifact scoring only."
+  },
+  "openreview_guided_regeneration_probe": {
+    "status": "completed_three_paper_probe",
+    "run_id": "openreview_guided_regeneration_probe_20260602_062500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/summary.json",
+    "selected_papers": 3,
+    "review_guided_wins": 3,
+    "baseline_wins": 0,
+    "ties": 0,
+    "mean_baseline_overall": 3.0,
+    "mean_review_guided_overall": 4.0,
+    "mean_delta_review_guided_minus_baseline": 1.0,
+    "claim_boundary": "Real OpenReview comments used as human taste/insight for mini-paper regeneration; no experiment rerun or independent expert review."
+  },
+  "review_insight_taxonomy_probe": {
+    "status": "completed_actionable_review_taxonomy_probe",
+    "run_id": "review_insight_taxonomy_probe_20260602_064500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/summary.json",
+    "review_case_count": 32,
+    "most_useful_categories": [
+      "Clarity Issues",
+      "Novelty Concerns",
+      "Limitations and Weaknesses"
+    ],
+    "gate_mapping": {
+      "Novelty Concerns": "scientific_taste_prior",
+      "Limitations and Weaknesses": "claim_calibration",
+      "Clarity Issues": "structured_feedback",
+      "Metric and Evaluation Issues": "evaluator_stress_test"
+    },
+    "claim_boundary": "Taxonomy of actionable review signals; not causal proof of final paper improvement."
   }
 }

@@ -1,0 +1,112 @@
+{
+  "dataset": "nhop/OpenReview",
+  "sample_size": 160,
+  "score_summary": {
+    "mean_score": {
+      "available": 160,
+      "mean": 0.5349,
+      "min": 0.1389,
+      "max": 1.0
+    },
+    "mean_novelty": {
+      "available": 27,
+      "mean": 0.6284,
+      "min": 0.4375,
+      "max": 0.8333
+    },
+    "mean_correctness": {
+      "available": 106,
+      "mean": 0.6267,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "mean_clarity": {
+      "available": 71,
+      "mean": 0.5968,
+      "min": 0.3333,
+      "max": 0.8333
+    },
+    "mean_impact": {
+      "available": 73,
+      "mean": 0.5459,
+      "min": 0.25,
+      "max": 0.8333
+    },
+    "mean_reproducibility": {
+      "available": 0,
+      "mean": null,
+      "min": null,
+      "max": null
+    },
+    "mean_confidence": {
+      "available": 158,
+      "mean": 0.6373,
+      "min": 0.0,
+      "max": 0.95
+    }
+  },
+  "high_score_examples": [
+    {
+      "title": "Practical Structured Riemannian Optimization with Momentum by using Generalized Normal Coordinates",
+      "mean_score": 1.0,
+      "decision": true,
+      "abstract_excerpt": "Adding momentum into Riemannian optimization is computationally challenging due to the intractable ODEs needed to define the exponential and parallel transport maps.\nWe address these issues for Gaussian Fisher-Rao manifolds by proposing new local coordinates to exploit sparse structures and efficiently approximate the ODEs, which results in a numerically stable update scheme.\nOur approach extends the structured natural-gradient descent method of Lin et al. (2021a) by incorporating momentum into ",
+      "review_snippets": [
+        "{\"clarity\": 0.6666666666666666, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: Not too many limitations are discussed.  I would appreciate more intuitive discussion of the generalized coordinates (e.g. some practica",
+        "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 1.0, \"ethics\": null, \"impact\": 1.0, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: The authors adequately addressed limitations of their work. \", \"main_review\": null, \"paper_summary\": \"paper_summary: The authors propose a method to perform optimiza"
+      ]
+    },
+    {
+      "title": "Efficient Bayesian Sampling Using Normalizing Flows to Assist Markov Chain Monte Carlo Methods",
+      "mean_score": 1.0,
+      "decision": true,
+      "abstract_excerpt": "Normalizing flows can generate complex target distributions and thus show promise in many applications in Bayesian statistics as an alternative or complement to MCMC for sampling posteriors.\nSince no data set from the target posterior distribution is available beforehand, the flow is typically trained using the reverse Kullback-Leibler (KL) divergence that only requires samples from a base distribution. This strategy  may perform poorly when the posterior is complicated and hard to sample with a",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: Authors consider the classic problem of Bayesian inference: given the prior distribution, the likelihood function, and some data, w",
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: In MCMC, a common strategy to ensure efficient exploration is to perform a combination of small, \\\"local\\\" mutations and large, \\\"gl"
+      ]
+    },
+    {
+      "title": "Unifying semi-supervised and robust learning by mixup",
+      "mean_score": 0.875,
+      "decision": true,
+      "abstract_excerpt": "Supervised deep learning methods require cleanly labeled large-scale datasets, but collecting such data is difficult and sometimes impossible. There exist two popular frameworks to alleviate this problem: semi-supervised learning and robust learning to label noise. Although these frameworks relax the restriction of supervised learning, they are studied independently. Hence, the training scheme that is suitable when only small cleanly-labeled data are available remains unknown. In this study, we ",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Major comments and summary: \\n\\n  Overall, I strongly recommend this paper as a workshop paper, but I think it needs more work to become a great conference p",
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The authors start by introducing a formal setting that includes the semi-supervised and the robust learning tasks as special cases and they then proceed by p"
+      ]
+    }
+  ],
+  "low_score_examples": [
+    {
+      "title": "KETG: A Knowledge Enhanced Text Generation Framework",
+      "mean_score": 0.1388888888888889,
+      "decision": false,
+      "abstract_excerpt": "Embedding logical knowledge information into text generation is a challenging NLP task. In this paper, we propose a knowledge enhanced text generation (KETG) framework, which incorporates both the knowledge and associated text corpus to address logicality and diversity in text generation. Specifically, we validate our framework on rhetorical text generation from our newly built rhetoric knowledge graph. Experiments show that our framework outperforms baseline models such as Transformer and GPT-2",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposes to use a rhetoric knowledge graph for rhetorical text generation. One of its key contributions is to construct a rhetoric knowledge grap",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposes a framework that embeds rhetoric knowledge into rhetoric text generation to bring diversity in the output sentences, take both knowledge"
+      ]
+    },
+    {
+      "title": "Optimizing Data-Flow in Binary Neural Networks",
+      "mean_score": 0.2,
+      "decision": false,
+      "abstract_excerpt": "Binary Neural Networks (BNNs) can significantly accelerate the inference time of a neural network by replacing its expensive floating-point arithmetic with bit-wise operations. Most existing solutions, however, do not fully optimize data flow through the BNN layers, and intermediate conversions from 1 to 16/32 bits often further hinder efficiency. We propose a novel training scheme that can increase data flow and parallelism in the BNN pipeline; specifically, we introduce a clipping block that d",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": null, \"novelty\": 0.25, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Overall the paper is easy to follow and most of the details are provided, although a code release would be recommended to allow for full reprod",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: I believe the paper falls short in terms of novelty (see my comments listed as weaknesses). The contribution of this easy to understand but th"
+      ]
+    },
+    {
+      "title": "Spontaneous Symmetry Breaking in Deep Neural Networks",
+      "mean_score": 0.2222222222222222,
+      "decision": false,
+      "abstract_excerpt": "We propose a framework to understand the unprecedented performance and robustness of deep neural networks using field theory. Correlations between the weights within the same layer can be described by symmetries in that layer, and networks generalize better if such symmetries are broken to reduce the redundancies of the weights. Using a two parameter field theory, we find that the network can break such symmetries itself towards the end of training in a process commonly known in physics as spont",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper promises quite a few intriguing connections between information bottleneck, phase transitions and deep learning. While we think that this is a wort",
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper makes a mathematical analogy between deep neural networks and quantum field theory, and claims that this explains a large number of empirically obs"
+      ]
+    }
+  ]
+}

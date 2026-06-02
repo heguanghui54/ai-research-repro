@@ -1,0 +1,259 @@
+{
+  "run_id": "openreview_guided_regeneration_probe_20260602_062500",
+  "timestamp_utc": "2026-06-02T05:20:52Z",
+  "status": "openreview_guided_regeneration_probe",
+  "model": "gpt-4o-mini",
+  "live_model_calls": 2,
+  "scope_note": "Three selected ML/AI OpenReview papers are regenerated twice: from title/abstract only, and from title/abstract plus real OpenReview review comments as human scientific taste/insight. The comparison scores mini-paper artifacts only.",
+  "selected_indices": [
+    1,
+    34,
+    49
+  ],
+  "selected_papers": [
+    {
+      "paper_id": "openreview_sample_1",
+      "sample_index": 1,
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "venue": "colmweb_org_COLM_2024_Conference",
+      "arxiv_id": "2403.18349",
+      "decision": true,
+      "mean_score": 0.53125,
+      "mean_novelty": null,
+      "mean_correctness": null,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "abstract_excerpt": "Large Language Models (LLMs) often generate erroneous outputs, known as hallucinations, due to their limitations in discerning questions beyond their knowledge scope. While addressing hallucination has been a focal point in research, previous efforts primarily concentrate on enhancing correctness without giving due consideration to the significance of rejection mechanisms. In this paper, we conduct a comprehensive examination of the role of rejection, introducing the alignment goal of model reliability along with corresponding metrics. This goal requires the model to provide accurate responses while adeptly rejecting questions exceeding its knowledge boundaries, thereby minimizing hallucinations. To improve the inherent reliability of LLMs, we present a novel alignment framework called Reinforcement Learning from Knowledge Feedback (RLKF). RLKF leverages knowledge feedback to dynamically",
+      "decision_text_excerpt": "This paper addresses the problem of model hallucination, when models generate incorrect responses to questions. The paper proposes that a fundamental underlying problem is that models cannot recognize when they cannot produce a correct answer, and that one solution is to train models to explicitly reject questions when they are not able to answer correctly. Authors propose a RL-based fine-tuning method that uses external knowledge and/or self-consistency to create train-time preference data that incentivizes correctness and consistency of outputs. \n\nReviewers point out several limitations of the paper. Experiments are limited by the choice of benchmarks (arithmetic only, though authors add T",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new approach for creating preference data for training reward models, which they call **Reinforcement Learning from Knowledge Feedback** (RLKF). Whereas existing preference data consists of (preferred, non-preferred) pairs where the non-preferred pair might be either incorrect or not helpful, RLKF creates three types of pairs: (correct, refuse-to-answer), (refuse-to-answer, incorrect), and (correct, incorrect). This way, the reward model explicitly learns",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: One of the big problems with LMs is that they constantly hallucinate. They do this a lot when given questions that they don't know the answer to. Some of these questions that are particularly hard for LMs are arithmetic questions where the inputs are more than just a digit or two long. \\n\\nThe authors here propose an RL framework to remedy this issue. This framework trains the model to prefer saying \\\"I don't know\\\" versus outputting an incorrect answer. \\n\\nThey have experime",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new RLHF framework to address LLM hallucinations by defining a new reward model for model reliability. It trains LLMs to generate \\\"I don't know\\\" answers to questions outside the model's knowledge boundary. It conducts empirical experiments on two math question datasets to validate the effectiveness of the proposed method in enhancing LLM reliability. \\n\\nThe proposed method is simple and easy to follow and the evaluation is comprehensive, but the result"
+      ]
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "sample_index": 34,
+      "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+      "venue": "ICLR_cc_2023_Conference",
+      "arxiv_id": "2211.15661",
+      "decision": true,
+      "mean_score": 0.8000000000000002,
+      "mean_novelty": 0.5,
+      "mean_correctness": 0.4444444444444444,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "abstract_excerpt": "Neural sequence models, especially transformers, exhibit a remarkable capacity for in-context learning. They can construct new predictors from sequences of labeled examples $(x, f(x))$ presented in the input without further parameter updates. We investigate the hypothesis that transformer-based in-context learners implement standard learning algorithms implicitly, by encoding context-specific parametric models in their hidden representations, and updating these implicit models as new examples appear in the context. Using linear regression as a model problem, we offer three sources of evidence for this hypothesis. First, we prove by construction that transformers can implement learning algorithms for linear models based on gradient descent and closed-form computation of regression parameters. Second, we show that trained in-context learners closely match the predictors computed by gradien",
+      "decision_text_excerpt": "This work investigates why transformers can be trained to be in-context learners (ICL) of linear functions. Specifically, the authors provide different perspectives to support the hypothesis that transformers can learn standard learning algorithms and low-lever algorithmic operations in this way. E.g., a bottom-up construction implying that optimization techniques can be \"embedded\" in their forward pass or testing how similar the outputs of transformers are to well-known algorithms.\n\nAll reviewers agreed that the paper tackles an important question, and while not providing a definite answer, brings interesting perspectives that can further boost research in the direction of understanding wha",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: **QUALITY:** This is a high-quality submission that tackles an important problem and offers interesting and nontrivial insights. \\n\\n**CLARITY:** The paper is very well-written and clear. Here are a couple additional comments (BUNCH OF REQUESTS): \\n* The first sentence of the second paragraph of the introduction imply that _all_ types of in-context learning can be understood via the framework discussed in the paper. It'd be better if the authors clarify that there exist other types of in-",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: \\nThe work in this paper is novel and of high quality. It is mostly clear but the probe technique leveraged in section 5 could use a lot more description to understand that set of experiments.\\n\\nMinor issues and typos:\\n\\nThe plots and legend in figure 3 are hard to read because there are many methods plotted in the same graph with identical colors.\\n\\nI believe there are some typos in the operator definitions of section 3.1. For instance:\\n\\n1. in the \\\"mov\\\" operator's definition, shou",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.0, \"ethics\": null, \"impact\": null, \"novelty\": 0.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-structured, clear and reads easily. The level of technical details provided in the main text is good. The supplementary material provides an extensive and very lengthy details on the derivation of different operators.  The paper has a placeholder link for the code, so I think that the results should be easily reproducible.\\n\", \"paper_summary\": \"paper_summary: The paper investigates the capability of transformer-based in-context learners (ICL) to implicitly implement learning algorithms"
+      ]
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "sample_index": 49,
+      "title": "Unifying semi-supervised and robust learning by mixup",
+      "venue": "ICLR_cc_2019_Workshop_LLD",
+      "arxiv_id": null,
+      "decision": true,
+      "mean_score": 0.875,
+      "mean_novelty": null,
+      "mean_correctness": null,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "abstract_excerpt": "Supervised deep learning methods require cleanly labeled large-scale datasets, but collecting such data is difficult and sometimes impossible. There exist two popular frameworks to alleviate this problem: semi-supervised learning and robust learning to label noise. Although these frameworks relax the restriction of supervised learning, they are studied independently. Hence, the training scheme that is suitable when only small cleanly-labeled data are available remains unknown. In this study, we consider learning from bi-quality data as a generalization of these studies, in which a small portion of data is cleanly labeled, and the rest is corrupt. Under this framework, we compare recent algorithms for semi-supervised and robust learning. The results suggest that semi-supervised learning outperforms robust learning with noisy labels. We also propose a training strategy for mixing mixup tec",
+      "decision_text_excerpt": "",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Major comments and summary: \\n\\n  Overall, I strongly recommend this paper as a workshop paper, but I think it needs more work to become a great conference paper.  The problem is well-motivated and seems very important to me.  My biggest issue is that I feel like one could go much \\\"further\\\" with this idea - and it shows empirically - the only improvement from using the noisy labels is to go from 89% -> 90%, which I would say is only a small improvement.  If this problem gets solved I think you should",
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The authors start by introducing a formal setting that includes the semi-supervised and the robust learning tasks as special cases and they then proceed by proposing a strategy based on mixup [1] for training a model in this unified setting.\\n\\nMy general impression from this work is firmly positive. The manuscript is clearly written, the experimental setup covers adequately alternative methods and the description of the experiments includes the most important details. The results presented, while in m"
+      ]
+    }
+  ],
+  "generation_latency_seconds": 23.653,
+  "scoring_latency_seconds": 10.036,
+  "regenerations": {
+    "papers": [
+      {
+        "paper_id": "openreview_sample_1",
+        "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+        "baseline_regeneration": {
+          "core_contribution": "This paper introduces a novel alignment framework for large language models (LLMs) that enhances their reliability by training them to reject questions that exceed their knowledge boundaries.",
+          "method_sketch": "The proposed method, Reinforcement Learning from Knowledge Feedback (RLKF), utilizes knowledge feedback to create training data that encourages LLMs to prefer rejection over generating incorrect answers.",
+          "experiment_plan": "We will evaluate the effectiveness of RLKF by comparing LLM performance on standard benchmarks for question answering, focusing on metrics related to correctness and rejection rates.",
+          "limitations": "The experiments may be constrained by the choice of benchmarks, which currently focus on arithmetic questions, potentially limiting generalizability.",
+          "claim_boundary": "The effectiveness of RLKF in improving LLM reliability is contingent on the quality of the knowledge feedback and the specific types of questions posed.",
+          "mini_paper_artifact": "This paper proposes a novel approach to enhance the reliability of large language models (LLMs) by training them to reject questions outside their knowledge scope. The core contribution is the introduction of Reinforcement Learning from Knowledge Feedback (RLKF), which generates training data that incentivizes models to prefer saying 'I don't know' rather than providing incorrect answers. The method involves leveraging knowledge feedback to create preference pairs that guide the model's learning process. To validate the effectiveness of RLKF, we will conduct experiments on standard benchmarks, measuring improvements in both correctness and rejection rates. However, the choice of benchmarks may limit the generalizability of our findings. Overall, while RLKF aims to enhance LLM reliability, its success will depend on the quality of feedback and the nature of the questions posed."
+        },
+        "review_guided_regeneration": {
+          "review_insights_used": [
+            "Reviewers pointed out the importance of training models to prefer saying 'I don't know' over generating incorrect answers.",
+            "Concerns were raised regarding the limited choice of benchmarks used in experiments."
+          ],
+          "core_contribution": "This paper proposes an innovative framework, Reinforcement Learning from Knowledge Feedback (RLKF), to enhance the reliability of LLMs by explicitly training them to reject questions they cannot answer correctly.",
+          "method_sketch": "RLKF creates preference data that includes pairs of (correct, refuse-to-answer), (refuse-to-answer, incorrect), and (correct, incorrect). This allows the model to learn a reward structure that promotes correct responses and rejection of unknown queries.",
+          "experiment_plan": "We will conduct experiments using two math question datasets to assess the model's performance in rejecting questions outside its knowledge boundary, comparing it with existing methods.",
+          "limitations": "The experiments are currently limited to arithmetic questions, which may not fully capture the model's performance across a broader range of topics.",
+          "claim_boundary": "The claims regarding improved reliability are limited to the contexts tested in the experiments and may not generalize to all types of questions or domains.",
+          "mini_paper_artifact": "In this study, we introduce Reinforcement Learning from Knowledge Feedback (RLKF), a framework designed to enhance the reliability of large language models (LLMs) by training them to reject questions outside their knowledge scope. Reviewers emphasized the significance of this rejection mechanism, as it addresses the prevalent issue of model hallucination. Our method constructs preference data that encourages LLMs to prefer 'I don't know' responses over incorrect answers, thus improving reliability. We plan to validate our approach through experiments on two math question datasets, focusing on rejection rates and correctness. However, the limited choice of arithmetic benchmarks may restrict the generalizability of our findings. Ultimately, while RLKF aims to improve LLM reliability, its effectiveness will depend on the quality of knowledge feedback and the specific contexts of the questions posed."
+        }
+      },
+      {
+        "paper_id": "openreview_sample_34",
+        "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+        "baseline_regeneration": {
+          "core_contribution": "This paper investigates the implicit learning algorithms utilized by transformer-based models during in-context learning, specifically focusing on linear models.",
+          "method_sketch": "We will analyze how transformers can encode context-specific parametric models and implement learning algorithms through their hidden representations.",
+          "experiment_plan": "Experiments will involve comparing the outputs of transformers with known algorithms for linear regression, assessing both performance and the underlying mechanisms.",
+          "limitations": "The study may be limited by the scope of linear models, which may not fully represent the capabilities of transformers in more complex tasks.",
+          "claim_boundary": "The claims regarding the implementation of learning algorithms are confined to the specific case of linear models and may not extend to all types of in-context learning.",
+          "mini_paper_artifact": "This paper explores the implicit learning algorithms that transformer models utilize during in-context learning, focusing on linear models. The core contribution lies in demonstrating how transformers can encode context-specific parametric models within their hidden representations. Our method involves analyzing the mechanisms by which transformers implement learning algorithms, specifically through gradient descent and closed-form computations for linear regression. We will conduct experiments comparing transformer outputs to known algorithms, assessing both performance and the underlying learning processes. However, the scope may be limited to linear models, which may not capture the full capabilities of transformers in more complex scenarios. The claims regarding the implementation of learning algorithms are thus confined to this specific case and may not generalize to all forms of in-context learning."
+        },
+        "review_guided_regeneration": {
+          "review_insights_used": [
+            "Reviewers acknowledged the novelty and importance of the research question, while suggesting further clarification on the implications of in-context learning.",
+            "Concerns were raised about the clarity of the experimental setup and the need for more detailed descriptions."
+          ],
+          "core_contribution": "This paper investigates the capability of transformer-based models to implicitly implement learning algorithms during in-context learning, providing insights into the mechanisms at play.",
+          "method_sketch": "We will demonstrate that transformers can encode learning algorithms for linear models, utilizing both theoretical constructions and empirical comparisons with known algorithms.",
+          "experiment_plan": "Our experimental plan involves a series of comparisons between transformer outputs and traditional linear regression algorithms, focusing on performance metrics and the nature of the learned representations.",
+          "limitations": "The analysis is primarily focused on linear models, which may not capture the full range of in-context learning capabilities exhibited by transformers.",
+          "claim_boundary": "The findings regarding the implementation of learning algorithms are limited to linear models and may not extend to other types of learning tasks.",
+          "mini_paper_artifact": "In this research, we investigate the implicit learning algorithms that transformer models utilize during in-context learning, particularly in the context of linear models. Reviewers recognized the novelty of our approach and the importance of understanding these mechanisms. Our core contribution lies in demonstrating how transformers can encode learning algorithms, utilizing both theoretical constructions and empirical evidence. We will conduct experiments comparing transformer outputs with traditional linear regression algorithms, focusing on performance metrics and the nature of learned representations. However, the analysis is primarily limited to linear models, which may not fully capture the broader capabilities of transformers in more complex tasks. Consequently, our findings regarding the implementation of learning algorithms are confined to this specific context and may not generalize to other learning scenarios."
+        }
+      },
+      {
+        "paper_id": "openreview_sample_49",
+        "title": "Unifying semi-supervised and robust learning by mixup",
+        "baseline_regeneration": {
+          "core_contribution": "This paper proposes a unified framework for semi-supervised and robust learning using mixup techniques to improve model performance with bi-quality data.",
+          "method_sketch": "We will develop a training strategy that incorporates mixup techniques to enhance learning from both clean and noisy labeled data.",
+          "experiment_plan": "Experiments will compare the effectiveness of the proposed mixup strategy against existing semi-supervised and robust learning methods on benchmark datasets.",
+          "limitations": "The performance improvements observed may be modest, and further exploration is needed to fully realize the potential of the proposed approach.",
+          "claim_boundary": "The claims regarding improvements in model performance are limited to the specific datasets and methods tested in the experiments.",
+          "mini_paper_artifact": "This paper introduces a unified framework that combines semi-supervised and robust learning through the application of mixup techniques. The core contribution lies in developing a training strategy that effectively utilizes both cleanly labeled and noisy data, aiming to improve model performance. We will conduct experiments to compare our mixup-based approach against existing methods in semi-supervised and robust learning, focusing on benchmark datasets. However, the observed performance improvements may be modest, suggesting that further exploration is necessary to fully harness the potential of this approach. Ultimately, the claims regarding performance enhancements are constrained to the specific datasets and methods employed in our experiments."
+        },
+        "review_guided_regeneration": {
+          "review_insights_used": [
+            "Reviewers highlighted the importance of the problem addressed and suggested that the proposed approach could be further developed for greater impact.",
+            "Concerns were raised regarding the modest improvements observed in experiments."
+          ],
+          "core_contribution": "This paper presents a novel training strategy that unifies semi-supervised and robust learning through mixup techniques, aimed at enhancing model performance with bi-quality data.",
+          "method_sketch": "We will implement a mixup-based training strategy that integrates both clean and noisy labeled data to improve learning outcomes.",
+          "experiment_plan": "Our experimental plan includes comparing the proposed mixup strategy against traditional semi-supervised and robust learning methods, using a variety of benchmark datasets to assess performance.",
+          "limitations": "The improvements observed in initial experiments are modest, indicating the need for further refinement and exploration of the proposed approach.",
+          "claim_boundary": "The claims regarding performance enhancements are limited to the datasets and methods tested and may not generalize to all learning scenarios.",
+          "mini_paper_artifact": "In this study, we propose a novel training strategy that unifies semi-supervised and robust learning through the application of mixup techniques. Reviewers recognized the significance of the problem addressed and suggested avenues for further development. Our core contribution is the integration of cleanly labeled and noisy data to enhance learning outcomes. We plan to conduct experiments comparing our mixup-based strategy against traditional methods in semi-supervised and robust learning, utilizing a range of benchmark datasets. However, the initial performance improvements observed are modest, highlighting the need for further refinement of our approach. Consequently, the claims regarding performance enhancements are confined to the specific datasets and methods employed in our experiments."
+        }
+      }
+    ]
+  },
+  "scoring": {
+    "per_paper": [
+      {
+        "paper_id": "openreview_sample_1",
+        "winner": "review_guided",
+        "scores": {
+          "baseline": {
+            "novelty": 3,
+            "correctness": 3,
+            "clarity": 3,
+            "experiment_quality": 3,
+            "limitation_honesty": 3,
+            "claim_calibration": 3,
+            "overall": 3
+          },
+          "review_guided": {
+            "novelty": 4,
+            "correctness": 4,
+            "clarity": 4,
+            "experiment_quality": 4,
+            "limitation_honesty": 4,
+            "claim_calibration": 4,
+            "overall": 4
+          }
+        },
+        "review_insight_effect": "The review insights emphasized the importance of rejection mechanisms, enhancing the framing and clarity of the contribution.",
+        "remaining_risk": "The limited benchmark choice may still affect the generalizability of the findings."
+      },
+      {
+        "paper_id": "openreview_sample_34",
+        "winner": "review_guided",
+        "scores": {
+          "baseline": {
+            "novelty": 3,
+            "correctness": 3,
+            "clarity": 3,
+            "experiment_quality": 3,
+            "limitation_honesty": 3,
+            "claim_calibration": 3,
+            "overall": 3
+          },
+          "review_guided": {
+            "novelty": 4,
+            "correctness": 4,
+            "clarity": 4,
+            "experiment_quality": 4,
+            "limitation_honesty": 4,
+            "claim_calibration": 4,
+            "overall": 4
+          }
+        },
+        "review_insight_effect": "Reviewers highlighted the novelty and clarity of the approach, improving the overall presentation and understanding.",
+        "remaining_risk": "The focus on linear models may limit the applicability of the findings to more complex scenarios."
+      },
+      {
+        "paper_id": "openreview_sample_49",
+        "winner": "review_guided",
+        "scores": {
+          "baseline": {
+            "novelty": 3,
+            "correctness": 3,
+            "clarity": 3,
+            "experiment_quality": 3,
+            "limitation_honesty": 3,
+            "claim_calibration": 3,
+            "overall": 3
+          },
+          "review_guided": {
+            "novelty": 4,
+            "correctness": 4,
+            "clarity": 4,
+            "experiment_quality": 4,
+            "limitation_honesty": 4,
+            "claim_calibration": 4,
+            "overall": 4
+          }
+        },
+        "review_insight_effect": "The insights from reviewers helped clarify the significance of the problem and the need for further development.",
+        "remaining_risk": "The modest improvements observed in experiments may not be sufficient to validate the proposed approach."
+      }
+    ],
+    "aggregate": {
+      "review_guided_wins": 3,
+      "baseline_wins": 0,
+      "ties": 0,
+      "mean_baseline_overall": 3.0,
+      "mean_review_guided_overall": 4.0,
+      "mean_delta_review_guided_minus_baseline": 1.0
+    },
+    "design_lessons": [
+      "Incorporating reviewer insights can significantly enhance the clarity and depth of the research contribution.",
+      "Addressing limitations transparently can improve the perceived reliability of the findings.",
+      "Focusing on broader applicability in experiments can strengthen the overall impact of the research."
+    ],
+    "claim_boundary": "The claims made in the review-guided versions are more nuanced and reflect a deeper understanding of the limitations and contexts of the proposed methods, enhancing their credibility."
+  },
+  "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/summary.json",
+  "artifacts_written": [
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/selected_papers.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/generation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/regenerated_artifacts.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/scoring_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/scoring_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/README.md"
+  ]
+}

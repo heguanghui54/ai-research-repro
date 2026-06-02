@@ -109,6 +109,34 @@ experiment is to use the same OpenReview-derived rubric to compare artifacts
 from different participation modes, such as no gate, taste-prior gate,
 evaluator-stress gate, structured-feedback gate, and claim-calibration gate.
 
+To run that participation-mode comparison directly, use:
+
+```bash
+source ~/.codex/env
+python3 scripts/run_participation_mode_selection_probe.py \
+  --model gpt-4o-mini
+```
+
+To test whether real review comments improve regenerated ML/AI mini-paper
+artifacts, run:
+
+```bash
+source ~/.codex/env
+python3 scripts/run_openreview_guided_regeneration_probe.py \
+  --model gpt-4o-mini \
+  --indices 1,34,49
+```
+
+To mine which review comments are actionable as scientific taste/insight for
+IGRE gates, run:
+
+```bash
+source ~/.codex/env
+python3 scripts/run_review_insight_taxonomy_probe.py \
+  --model gpt-4o-mini \
+  --review-limit 32
+```
+
 For a Monica-routed paper-quality review, source the global environment and run:
 
 ```bash

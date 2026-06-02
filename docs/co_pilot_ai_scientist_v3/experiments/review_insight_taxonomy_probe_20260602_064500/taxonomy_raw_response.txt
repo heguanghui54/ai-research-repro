@@ -1,0 +1,69 @@
+{
+  "taxonomy": [
+    {
+      "category": "Clarity Issues",
+      "description": "Comments indicating that the paper lacks clarity or is difficult to understand.",
+      "actionability": 4,
+      "primary_gate": "structured_feedback",
+      "secondary_gates": [],
+      "useful_signal": "Indicates areas where the manuscript needs clearer explanations or better organization.",
+      "failure_if_ignored": "The manuscript may remain confusing, leading to misunderstandings of the research.",
+      "example_review_patterns": ["The clarity is poor and needs improvement.", "The paper is difficult to follow."]
+    },
+    {
+      "category": "Novelty Concerns",
+      "description": "Comments questioning the novelty or significance of the proposed method.",
+      "actionability": 5,
+      "primary_gate": "scientific_taste_prior",
+      "secondary_gates": ["frontier_steering"],
+      "useful_signal": "Highlights whether the research direction is worth pursuing or if it overlaps significantly with existing work.",
+      "failure_if_ignored": "The research may not contribute new knowledge or advancements in the field.",
+      "example_review_patterns": ["The approach seems similar to existing methods.", "The novelty of the contribution is questionable."]
+    },
+    {
+      "category": "Limitations and Weaknesses",
+      "description": "Comments that point out specific limitations or weaknesses in the methodology or results.",
+      "actionability": 5,
+      "primary_gate": "claim_calibration",
+      "secondary_gates": [],
+      "useful_signal": "Identifies areas where the claims made in the paper may be overstated or unsupported.",
+      "failure_if_ignored": "The paper may present misleading conclusions or fail to address critical flaws.",
+      "example_review_patterns": ["The limitations of the method are not adequately discussed.", "There are significant weaknesses in the experimental design."]
+    },
+    {
+      "category": "Metric and Evaluation Issues",
+      "description": "Comments that critique the metrics used for evaluation or suggest missing baselines.",
+      "actionability": 4,
+      "primary_gate": "evaluator_stress_test",
+      "secondary_gates": [],
+      "useful_signal": "Indicates potential weaknesses in the evaluation framework that could undermine the results.",
+      "failure_if_ignored": "The evaluation may not accurately reflect the performance of the proposed method.",
+      "example_review_patterns": ["The evaluation metrics are not appropriate for this task.", "Missing baseline comparisons weaken the results."]
+    },
+    {
+      "category": "Suggestions for Improvement",
+      "description": "Comments that provide constructive feedback on how to improve the manuscript.",
+      "actionability": 3,
+      "primary_gate": "structured_feedback",
+      "secondary_gates": [],
+      "useful_signal": "Offers actionable suggestions that can enhance the clarity and quality of the manuscript.",
+      "failure_if_ignored": "The manuscript may not reach its full potential and could be less impactful.",
+      "example_review_patterns": ["Consider revising the introduction for better context.", "The results section could benefit from clearer explanations."]
+    }
+  ],
+  "most_useful_categories": ["Clarity Issues", "Novelty Concerns", "Limitations and Weaknesses"],
+  "least_useful_or_noisy_categories": ["General Praise", "Vague Comments"],
+  "workflow_rules": [
+    {
+      "rule": "Prioritize addressing clarity issues in the manuscript.",
+      "target_gate": "structured_feedback",
+      "rationale": "Improving clarity enhances the overall understanding and impact of the research."
+    },
+    {
+      "rule": "Ensure that limitations are clearly stated and discussed.",
+      "target_gate": "claim_calibration",
+      "rationale": "Acknowledging limitations strengthens the credibility of the research and helps set realistic expectations."
+    }
+  ],
+  "claim_boundary": "Claims made in the paper should be supported by robust evidence and clearly articulated limitations to avoid overstating the contributions."
+}

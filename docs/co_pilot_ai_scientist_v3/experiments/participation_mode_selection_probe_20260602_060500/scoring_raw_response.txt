@@ -1,0 +1,67 @@
+{
+  "ranking": ["claim_calibration_gate", "structured_feedback_gate", "evaluator_stress_gate", "taste_prior_gate", "no_human_gate"],
+  "scores": {
+    "no_human_gate": {
+      "novelty": 3,
+      "correctness": 2,
+      "clarity": 2,
+      "impact": 3,
+      "confidence": 2,
+      "claim_calibration": 2,
+      "workflow_utility": 2,
+      "overall": 2
+    },
+    "taste_prior_gate": {
+      "novelty": 4,
+      "correctness": 3,
+      "clarity": 3,
+      "impact": 4,
+      "confidence": 3,
+      "claim_calibration": 3,
+      "workflow_utility": 4,
+      "overall": 3
+    },
+    "evaluator_stress_gate": {
+      "novelty": 4,
+      "correctness": 4,
+      "clarity": 3,
+      "impact": 4,
+      "confidence": 4,
+      "claim_calibration": 3,
+      "workflow_utility": 4,
+      "overall": 4
+    },
+    "structured_feedback_gate": {
+      "novelty": 4,
+      "correctness": 4,
+      "clarity": 4,
+      "impact": 5,
+      "confidence": 4,
+      "claim_calibration": 4,
+      "workflow_utility": 5,
+      "overall": 5
+    },
+    "claim_calibration_gate": {
+      "novelty": 4,
+      "correctness": 4,
+      "clarity": 4,
+      "impact": 4,
+      "confidence": 4,
+      "claim_calibration": 5,
+      "workflow_utility": 4,
+      "overall": 5
+    }
+  },
+  "best_mode": "structured_feedback_gate",
+  "worst_mode": "no_human_gate",
+  "mode_design_lessons": [
+    "Incorporating structured feedback significantly enhances clarity and rigor in AI-generated manuscripts.",
+    "Human calibration of claims can improve the credibility of research outputs.",
+    "Balancing human input with AI autonomy is crucial to avoid overfitting to preferences."
+  ],
+  "why_best_mode_wins": "The structured feedback mode provides a systematic approach to improving AI-generated manuscripts, leading to higher clarity and methodological rigor, which are essential for impactful research outputs.",
+  "where_best_mode_can_fail": [
+    "Feedback may be too prescriptive, potentially stifling creativity in the research process."
+  ],
+  "claim_boundary": "The effectiveness of structured feedback is contingent on the alignment of feedback criteria with the research objectives and the ability of reviewers to provide constructive insights."
+}

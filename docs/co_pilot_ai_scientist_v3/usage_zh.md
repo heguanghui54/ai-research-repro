@@ -102,6 +102,32 @@ human co-pilot interaction data。建议的实验用法是：用同一个 OpenRe
 rubric 比较不同参与模式产生的 artifact，例如 no gate、taste-prior gate、
 evaluator-stress gate、structured-feedback gate 和 claim-calibration gate。
 
+如果要直接运行这种 participation-mode comparison，使用：
+
+```bash
+source ~/.codex/env
+python3 scripts/run_participation_mode_selection_probe.py \
+  --model gpt-4o-mini
+```
+
+如果要测试真实评审意见是否能改善 ML/AI mini-paper artifact 的再生成，运行：
+
+```bash
+source ~/.codex/env
+python3 scripts/run_openreview_guided_regeneration_probe.py \
+  --model gpt-4o-mini \
+  --indices 1,34,49
+```
+
+如果要挖掘哪些评审意见最适合作为 IGRE gate 的科研品味/insight 控制信号，运行：
+
+```bash
+source ~/.codex/env
+python3 scripts/run_review_insight_taxonomy_probe.py \
+  --model gpt-4o-mini \
+  --review-limit 32
+```
+
 如果要通过 Monica 做论文质量评审，先加载全局环境变量，然后运行：
 
 ```bash

@@ -58,6 +58,14 @@ matched evidence and clear boundary conditions.
      evaluator-stress, structured-feedback, and claim-calibration modes against
      the same expert-review rubric before deciding which workflow pattern is
      stronger.
+   - Run `scripts/run_participation_mode_selection_probe.py` to compare those
+     gate patterns directly under the OpenReview-conditioned scorer.
+   - Run `scripts/run_openreview_guided_regeneration_probe.py` when you want to
+     test whether real review snippets improve regenerated ML/AI mini-paper
+     artifacts compared with title/abstract-only baselines.
+   - Run `scripts/run_review_insight_taxonomy_probe.py` to mine which kinds of
+     review comments are actionable for each IGRE gate. Treat the resulting
+     taxonomy as workflow-design guidance, not as causal proof.
    - Attach evidence, missing evidence, feasibility notes, and risks.
    - Ask the human scientist to select, merge, or rewrite directions using
      field taste, upside asymmetry, and failure value, not only early scores.

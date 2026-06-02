@@ -310,6 +310,47 @@ not prove real-world peer-review acceptance, but it can provide data-driven
 support for choosing a better human-in-the-loop workflow before larger online
 studies exist.
 
+We then ran this participation-mode selection experiment. The script
+`run_participation_mode_selection_probe.py` asks the same model to generate
+matched artifacts for five modes: no human gate, taste-prior gate,
+evaluator-stress gate, structured-feedback gate, and claim-calibration gate.
+The scoring call is conditioned on compact high- and low-scoring OpenReview
+examples from the expert-review probe. In this run, the no-gate artifact scores
+`2` overall, taste-prior scores `3`, evaluator-stress scores `4`, and both
+structured-feedback and claim-calibration score `5`. The scorer ranks
+claim-calibration and structured-feedback as the top two modes, with a minor
+internal inconsistency between the explicit `best_mode` field and the ranking
+order; we therefore treat the result as evidence for a top pair rather than a
+single winner. The design lesson is still useful: reviewer-like signals appear
+most immediately valuable when they improve manuscript structure and weaken
+unsupported claims, while upstream taste-prior selection remains promising but
+less directly evidenced in this artifact-level probe.
+
+To make the expert-review signal less abstract, we also ran an
+OpenReview-guided regeneration probe over three ML/AI papers selected from the
+sample: an LLM refusal/RLKF paper, an in-context learning paper, and a
+semi-supervised/robust learning by mixup paper. For each paper,
+`run_openreview_guided_regeneration_probe.py` generates a baseline mini-paper
+artifact from title and abstract only, and a review-guided artifact from title,
+abstract, and the real review snippets/decision text. A fixed model-routed
+scorer prefers the review-guided artifact in all three pairs. The mean overall
+score increases from `3.0` to `4.0`, giving a mean delta of `+1.0`. This is a
+stronger empirical use of OpenReview than the availability probe: real review
+comments act as human scientific taste/insight that improves paper-shaped
+regenerations. The claim remains bounded because the experiment does not rerun
+the original methods or obtain independent expert review.
+
+Finally, `run_review_insight_taxonomy_probe.py` mines 32 OpenReview review
+cases to identify which kinds of review comments are most useful as automated
+research control signals. The model-routed taxonomy marks novelty concerns and
+limitations/weaknesses as highly actionable (`5/5`), mapped primarily to the
+scientific-taste-prior and claim-calibration gates. Clarity issues are also
+actionable (`4/5`) and map to structured feedback, while metric/evaluation
+issues (`4/5`) map to evaluator stress testing. This taxonomy gives IGRE a
+more concrete rule: human review text is most useful when it changes what the
+agent should pursue, what evidence it must gather, what claims it may safely
+make, or how clearly the manuscript communicates the result.
+
 ## 4. Benchmark Selection and Evaluation Plan
 
 We evaluate six variants: autonomous baseline, idea gate only, branch gate only,
@@ -717,70 +758,81 @@ The current contributions are:
    `nhop/OpenReview`, using streaming access to sample 160 rows from a 34,638-row
    expert-review corpus and verifying that it can support limited scientific
    taste-prior experiments.
-6. A same-manuscript structured-feedback probe that operationalizes
+6. A participation-mode selection probe that uses OpenReview-conditioned
+   scoring to compare no-gate, taste-prior, evaluator-stress,
+   structured-feedback, and claim-calibration modes, finding
+   structured-feedback and claim-calibration as the current top pair.
+7. An OpenReview-guided regeneration probe over three ML/AI papers, where
+   real review comments improve review-guided mini-paper artifacts over
+   title/abstract-only baselines in `3/3` pairs, with mean overall score
+   increasing from `3.0` to `4.0`.
+8. A review-insight taxonomy probe over 32 OpenReview review cases that maps
+   novelty concerns, limitations/weaknesses, clarity issues, and
+   metric/evaluation issues to IGRE gates.
+9. A same-manuscript structured-feedback probe that operationalizes
    `frontier_004` and compares informal feedback with IGRE-structured feedback
    through two revisions and a fixed-rubric model score.
-7. A retrospective full-gate trajectory showing idea, evaluator, branch,
+10. A retrospective full-gate trajectory showing idea, evaluator, branch,
    program-search, and claim-audit gates serialized under the shared schema.
-8. A rerunnable full-gate trace script that recomputes the gate chain from
+11. A rerunnable full-gate trace script that recomputes the gate chain from
    archived experiment summaries while marking the output as artifact replay.
-9. A first online full-gate smoke trajectory that exercises idea, evaluator,
+12. A first online full-gate smoke trajectory that exercises idea, evaluator,
    branch, program-search, and claim gates in one remote run, while producing a
    negative continuation outcome.
-10. An evaluation protocol for measuring both mean benchmark performance and
+13. An evaluation protocol for measuring both mean benchmark performance and
    high-tail scientific upside under human intervention.
-11. Initial remote OpenEvolve and FML-bench probes showing that the
+14. Initial remote OpenEvolve and FML-bench probes showing that the
    verifiable micro-evolution and frontier-steering operators can run on the
    Ubuntu host.
-12. Two matched-budget FML-bench Causality comparisons between a human-gated
+15. Two matched-budget FML-bench Causality comparisons between a human-gated
    branch continuation and a four-step autonomous AI Scientist-v2 baseline,
    with mixed outcomes.
-13. A same-FML-step autonomous baseline for the first online full-gate smoke,
+16. A same-FML-step autonomous baseline for the first online full-gate smoke,
    showing a negative performance result for the human-gated continuation.
-14. Non-FML program-search probes for runtime optimization and tabular
+17. Non-FML program-search probes for runtime optimization and tabular
    regression, broadening benchmark coverage beyond FML-bench.
-15. A reusable Codex skill for running the workflow.
-16. Bilingual paper, usage artifacts, and claim-audit artifacts for
+18. A reusable Codex skill for running the workflow.
+19. Bilingual paper, usage artifacts, and claim-audit artifacts for
    reproducibility.
-17. A Monica-routed paper-quality review artifact that records external model
+20. A Monica-routed paper-quality review artifact that records external model
    criticism before the next revision.
-18. A human-gate attention-cost audit over 39 gates showing 1 complete
+21. A human-gate attention-cost audit over 39 gates showing 1 complete
    operator-recorded attention-cost event and 38 incomplete records; future
    prospective experiment gates must record these fields before making
    attention-efficiency claims.
-19. A taste/insight coverage audit showing 2 complete scientific-taste prior
+22. A taste/insight coverage audit showing 2 complete scientific-taste prior
    records and 37 gates that still lack complete taste/insight fields.
-20. A prospective matched-budget package validator that defines the minimum
+23. A prospective matched-budget package validator that defines the minimum
    non-synthetic evidence shape required before claiming paper-quality gains,
    human-attention efficiency, or superiority over autonomous AI Scientist-v2.
-21. A controlled prospective Max-Cut micro-pilot package that passes this
+24. A controlled prospective Max-Cut micro-pilot package that passes this
    validator, with complete attention/taste logging, matched baseline metrics,
    claim audit, and same-run manuscript artifact.
-22. Two prospective FML-bench Causality packages with complete attention/taste
+25. Two prospective FML-bench Causality packages with complete attention/taste
    logging and matched autonomous baselines, both yielding negative co-pilot
    performance results in the small two-step setting.
-23. A prospective package metric summary that separates passing audit packages
+26. A prospective package metric summary that separates passing audit packages
    by task, metric direction, co-pilot score, autonomous score, and claim
    implication; the current result is one positive controlled micro-task, two
    negative Causality FML-bench packages, and one Fairness_fairlearn invalid
    continuation package.
-24. A matched mini-manuscript quality probe for the FML package, where
+27. A matched mini-manuscript quality probe for the FML package, where
    Monica-routed `gpt-4o-mini` and `claude-3-7-sonnet-latest` both prefer the
    co-pilot package mini-manuscript over a generated autonomous
    mini-manuscript, with overall scores of 4 versus 3.
-25. A matched full-manuscript generation probe that renders the same archived
+28. A matched full-manuscript generation probe that renders the same archived
    FML evidence into two complete paper-shaped manuscripts and scores them
    with a deterministic internal rubric; the co-pilot manuscript scores 4.18
    overall for structure, grounding, calibration, and method distinctness,
    while the autonomous manuscript scores 4.11 and is the only variant with a
    valid scalar FML test metric in the Fairness package.
-26. A repeated same-continuous-trajectory paired online full-gate
+29. A repeated same-continuous-trajectory paired online full-gate
    manuscript-production summary over three smoke runs, including one
    `Fairness_fairlearn` no-valid-branch failure trajectory; the valid
    Causality benchmark aggregate has `0` co-pilot wins, `1` autonomous win,
    and `1` tie, while Monica-routed model-review probes prefer the co-pilot
    manuscript in `6/6` reviewer calls.
-27. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
+30. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
    real Codex sessions as a single-author longitudinal process corpus after
    privacy-preserving metadata extraction.
 
@@ -837,10 +889,13 @@ cannot by itself support population-level claims about scientists in general.
 The release audit reduces privacy and leakage risk by checking for secret-like
 strings and raw-log marker fields, but it is not a substitute for institutional
 human-subject review if the dataset is later expanded to multiple researchers.
-The OpenReview/Hugging Face expert-review probe is therefore complementary
-rather than substitutive: it offers a scalable offline proxy for scientific
-taste and reviewer judgment, but it does not contain real-time human decisions
-inside a co-pilot automated-research loop. A true online human-guided
+The OpenReview/Hugging Face expert-review evidence is therefore a legitimate
+source of human scientific taste and insight, but it is an offline and
+asynchronous source rather than a live co-pilot trajectory. It can guide
+artifact regeneration, participation-mode selection, and review-insight
+taxonomy construction, as shown by the three OpenReview probes above. What it
+does not contain is real-time human decisions inside a co-pilot
+automated-research loop. A true online human-guided
 automated-science dataset would require a broadly deployed skill or research
 assistant used by many scientists, with consent, de-identification, artifact
 linking, and prospective logging of interventions, attention cost, and

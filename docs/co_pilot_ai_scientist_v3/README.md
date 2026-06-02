@@ -133,7 +133,20 @@ live human co-pilot interaction data. Its most useful role is as a
 participation-mode selection benchmark: compare hypotheses, plans, evidence
 summaries, or manuscript revisions produced by different gate patterns against
 the same expert-review proxy before deciding which human-in-the-loop workflow
-is strongest.
+is strongest. Three new probes now exercise that idea. The
+`participation_mode_selection_probe_20260602_060500/` artifact compares
+no-gate, taste-prior, evaluator-stress, structured-feedback, and
+claim-calibration modes under an OpenReview-conditioned model scorer; it places
+structured-feedback and claim-calibration as the current top pair. The
+`openreview_guided_regeneration_probe_20260602_062500/` artifact selects three
+ML/AI OpenReview papers and regenerates mini-paper artifacts with and without
+real review snippets; the review-guided versions win in `3/3` pairs, increasing
+mean overall score from `3.0` to `4.0`. The
+`review_insight_taxonomy_probe_20260602_064500/` artifact mines 32 review cases
+and maps actionable review patterns to IGRE gates: novelty concerns to
+scientific taste prior, limitations/weaknesses to claim calibration, clarity
+issues to structured feedback, and metric/evaluation issues to evaluator stress
+testing.
 The package also includes OpenEvolve-based program search, direct LLM rewrite
 baselines, richer knapsack and Max-Cut heuristic tasks, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes live
