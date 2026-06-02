@@ -71,6 +71,15 @@ levels:
   exclusion rules, randomized order, anonymized artifacts, and released
   aggregate scores.
 
+The preregistered score summarizer is
+`scripts/summarize_human_expert_blind_reviews.py`. Running it on the current
+empty score-sheet template produces `no_valid_rows`, which is only a smoke test
+that the analysis path is ready. Once filled blind score sheets are collected,
+the same script should be run with the completed CSV and the hidden condition
+key. Positive evidence requires the preregistered rater and valid-row minimums,
+plus either a supportive exact-binomial preference result or a bootstrap
+confidence interval whose lower bound favors the target condition.
+
 ## Claim Boundary
 
 Until the pilot is completed, this protocol supports only evaluation readiness.

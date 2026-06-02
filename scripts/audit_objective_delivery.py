@@ -189,6 +189,7 @@ def main() -> None:
                 "figures/igre_frontier_main_figure.png",
                 "External Verification Entry Point",
                 "audit_top_conference_evidence_roadmap.py",
+                "summarize_human_expert_blind_reviews.py",
                 "audit_human_expert_blind_review_packet.py",
                 "audit_benchmark_coverage.py",
                 "audit_prospective_gate_instrumentation.py",
@@ -404,6 +405,7 @@ def main() -> None:
         Path(__file__),
         ROOT / "scripts" / "audit_top_conference_evidence_roadmap.py",
         ROOT / "scripts" / "audit_human_expert_blind_review_packet.py",
+        ROOT / "scripts" / "summarize_human_expert_blind_reviews.py",
         ROOT / "scripts" / "audit_benchmark_coverage.py",
         ROOT / "scripts" / "audit_prospective_gate_instrumentation.py",
         ROOT / "scripts" / "build_deep_regeneration_cases.py",
@@ -424,6 +426,16 @@ def main() -> None:
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.md",
         AUDIT_DIR / "human_expert_blind_review_packet_audit.json",
         AUDIT_DIR / "human_expert_blind_review_packet_audit.md",
+        DOC_DIR
+        / "experiments"
+        / "human_expert_blind_review_packet_20260602_143000"
+        / "human_score_summary_smoke"
+        / "summary.json",
+        DOC_DIR
+        / "experiments"
+        / "human_expert_blind_review_packet_20260602_143000"
+        / "human_score_summary_smoke"
+        / "summary.md",
         AUDIT_DIR / "benchmark_coverage_audit.json",
         AUDIT_DIR / "benchmark_coverage_audit.md",
         AUDIT_DIR / "prospective_gate_instrumentation_audit.json",

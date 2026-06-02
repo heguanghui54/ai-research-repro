@@ -1,0 +1,89 @@
+{
+  "status": "no_valid_rows",
+  "score_csv": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/score_sheet_template.csv",
+  "condition_key": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/condition_key.json",
+  "target_condition": "review_guided",
+  "comparator_condition": "context_control_unrelated_reviews",
+  "row_counts": {
+    "raw_rows": 6,
+    "valid_rows": 0,
+    "invalid_rows": 6,
+    "independent_raters": 0
+  },
+  "win_counts": {
+    "review_guided": 0,
+    "context_control_unrelated_reviews": 0,
+    "tie": 0,
+    "other_condition": 0
+  },
+  "exact_binomial_p_excluding_ties": null,
+  "mean_delta": null,
+  "per_field_delta": {
+    "problem_framing": null,
+    "method_specificity": null,
+    "experiment_design": null,
+    "limitation_honesty": null,
+    "claim_calibration": null,
+    "overall_quality": null
+  },
+  "fleiss_kappa_condition_winner": null,
+  "positive_evidence_threshold_met": false,
+  "valid_rows": [],
+  "invalid_rows": [
+    {
+      "csv_line": 2,
+      "pair_id": "pair_01",
+      "errors": [
+        "invalid_or_missing_winner",
+        "missing_or_invalid_rubric_scores",
+        "missing_reviewer_id"
+      ]
+    },
+    {
+      "csv_line": 3,
+      "pair_id": "pair_02",
+      "errors": [
+        "invalid_or_missing_winner",
+        "missing_or_invalid_rubric_scores",
+        "missing_reviewer_id"
+      ]
+    },
+    {
+      "csv_line": 4,
+      "pair_id": "pair_03",
+      "errors": [
+        "invalid_or_missing_winner",
+        "missing_or_invalid_rubric_scores",
+        "missing_reviewer_id"
+      ]
+    },
+    {
+      "csv_line": 5,
+      "pair_id": "pair_04",
+      "errors": [
+        "invalid_or_missing_winner",
+        "missing_or_invalid_rubric_scores",
+        "missing_reviewer_id"
+      ]
+    },
+    {
+      "csv_line": 6,
+      "pair_id": "pair_05",
+      "errors": [
+        "invalid_or_missing_winner",
+        "missing_or_invalid_rubric_scores",
+        "missing_reviewer_id"
+      ]
+    },
+    {
+      "csv_line": 7,
+      "pair_id": "pair_06",
+      "errors": [
+        "invalid_or_missing_winner",
+        "missing_or_invalid_rubric_scores",
+        "missing_reviewer_id"
+      ]
+    }
+  ],
+  "claim_boundary": "Human blind-review evidence is positive only if enough valid expert rows are collected under the preregistered protocol. Empty template or underpowered summaries are evaluation-readiness artifacts only."
+}

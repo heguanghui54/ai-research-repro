@@ -705,7 +705,9 @@
     "docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.md",
     "scripts/audit_prospective_gate_instrumentation.py",
     "docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/human_score_summary_smoke/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/human_score_summary_smoke/summary.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1226,10 +1228,10 @@
     "status": "preregistered_packet_and_validation_tooling_prepared_no_human_ratings_yet",
     "claim_boundary": "Prepared preregistered blind review materials and collection tooling only; no independent human expert results are claimed.",
     "csv_validation": {
-      "validate_only_supported": true,
-      "command": "python3 scripts/summarize_human_expert_blind_reviews.py --packet-dir docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000 --score-csv path/to/reviewer.csv --validate-only",
-      "empty_template_status": "invalid_row_count_6_not_enough_valid_votes",
-      "claim_boundary": "Validation tooling only; no human ratings are collected.",
+      "validate_only_supported": false,
+      "command": "python3 scripts/summarize_human_expert_blind_reviews.py --score-csv docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/<filled_score_sheet>.csv --condition-key docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/condition_key.json --output-dir docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/human_score_summary_completed",
+      "empty_template_status": "no_valid_rows",
+      "claim_boundary": "Empty-template smoke and underpowered summaries are evaluation-readiness artifacts only; no human ratings are claimed until completed blind score sheets satisfy the preregistered thresholds.",
       "exact_win_test_supported": true
     },
     "preregistration": {
@@ -1730,9 +1732,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "5811a808e042ed6b15ee8cacc43d9a411036edc9",
+    "head": "357c725f0367ffe95c3f9def3bd4e7c293cd5fdb",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 690,
+    "manifest_artifacts": 692,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1754,5 +1756,11 @@
     "json": "docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.md",
     "claim_boundary": "A pass means future prospective matched-budget runs have a documented preflight path for complete attention-cost and taste/insight capture. It does not repair missing historical fields and does not provide performance evidence."
+  },
+  "human_expert_blind_review_summary_tool": {
+    "status": "no_valid_rows",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/human_score_summary_smoke/summary.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/human_score_summary_smoke/summary.md",
+    "positive_evidence_threshold_met": false
   }
 }

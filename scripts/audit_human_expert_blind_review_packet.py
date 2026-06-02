@@ -81,6 +81,8 @@ def main() -> None:
     prereg_json_path = PACKET_DIR / "preregistration_analysis_plan.json"
     school_ready_path = PACKET_DIR / "school_expert_ready_summary.json"
     deep_pdf_key_path = PACKET_DIR / "deep_pdf_condition_key.json"
+    human_score_smoke_json_path = PACKET_DIR / "human_score_summary_smoke" / "summary.json"
+    human_score_smoke_md_path = PACKET_DIR / "human_score_summary_smoke" / "summary.md"
 
     summary = _load_json(summary_path)
     pairs = _load_json(pairs_path)
@@ -105,6 +107,8 @@ def main() -> None:
         prereg_json_path,
         PACKET_DIR / "template_summary_smoke" / "summary.json",
         PACKET_DIR / "template_summary_smoke" / "summary.md",
+        human_score_smoke_json_path,
+        human_score_smoke_md_path,
         school_ready_path,
         PACKET_DIR / "school_expert_ethics_launch_checklist.md",
         PACKET_DIR / "online_form_builder_spec.md",
@@ -174,6 +178,16 @@ def main() -> None:
     ):
         warnings.append("template summary smoke claim boundary changed; verify wording")
 
+    human_score_smoke = _load_json(human_score_smoke_json_path)
+    if human_score_smoke.get("status") != "no_valid_rows":
+        errors.append("human score summary smoke should report no_valid_rows before expert ratings are collected")
+    if human_score_smoke.get("row_counts", {}).get("valid_rows") != 0:
+        errors.append("human score summary smoke should have zero valid rows")
+    if human_score_smoke.get("positive_evidence_threshold_met") is not False:
+        errors.append("human score summary smoke should not meet positive evidence threshold")
+    if "evaluation-readiness artifacts only" not in human_score_smoke.get("claim_boundary", ""):
+        errors.append("human score summary smoke claim boundary missing evaluation-readiness warning")
+
     planned_minimum_raters = prereg.get("design", {}).get("planned_raters", {}).get("minimum")
     planned_minimum_valid_rows = prereg.get("design", {}).get("planned_minimum_valid_rows")
     if planned_minimum_raters != 3:
@@ -224,6 +238,11 @@ def main() -> None:
             "statistical_tests": prereg.get("statistical_tests", []),
         },
         "template_summary_smoke_status": smoke.get("inter_rater_agreement", {}).get("status"),
+        "human_score_summary_smoke_status": human_score_smoke.get("status"),
+        "human_score_summary_valid_rows": human_score_smoke.get("row_counts", {}).get("valid_rows"),
+        "human_score_summary_positive_evidence_threshold_met": human_score_smoke.get(
+            "positive_evidence_threshold_met"
+        ),
         "school_expert_ready_status": school_ready.get("status"),
         "deep_pdf_pair_count": school_ready.get("deep_pdf_pair_count"),
         "deep_pdf_condition_key_hidden": _rel(deep_pdf_key_path) in hidden and _rel(deep_pdf_key_path) not in reviewer_visible,
@@ -249,6 +268,12 @@ def main() -> None:
         f"- Required files checked: `{audit['required_files_checked']}`",
         f"- Condition key hidden: `{audit['condition_key_hidden']}`",
         f"- Template summary smoke status: `{audit['template_summary_smoke_status']}`",
+        f"- Human score summary smoke status: `{audit['human_score_summary_smoke_status']}`",
+        f"- Human score summary valid rows: `{audit['human_score_summary_valid_rows']}`",
+        (
+            "- Human score summary positive evidence threshold met: "
+            f"`{audit['human_score_summary_positive_evidence_threshold_met']}`"
+        ),
         f"- School expert ready status: `{audit['school_expert_ready_status']}`",
         f"- Deep PDF pairs: `{audit['deep_pdf_pair_count']}`",
         f"- Deep PDF condition key hidden: `{audit['deep_pdf_condition_key_hidden']}`",

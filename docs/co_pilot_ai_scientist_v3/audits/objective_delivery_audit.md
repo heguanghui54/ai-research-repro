@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T13:21:39Z`
+- Audit date: `2026-06-02T13:28:02Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `5811a808e042ed6b15ee8cacc43d9a411036edc9`
+- HEAD: `357c725f0367ffe95c3f9def3bd4e7c293cd5fdb`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `690`
+- Manifest artifacts: `692`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `690/690`
+- Manifest coverage: `692/692`
 
 ## Explicit Requirements
 
@@ -39,13 +39,13 @@
 - `chinese_pdf`: `pass` (114561 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
 - `focused_english_pdf`: `pass` (188978 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `focused_chinese_pdf`: `pass` (225395 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
-- `root_readme`: `pass` (9878 bytes) - `README.md`
+- `root_readme`: `pass` (9952 bytes) - `README.md`
 - `english_submission_card`: `pass` (5177 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `chinese_submission_card`: `pass` (5055 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_zh.md`
 - `top_conference_evidence_roadmap`: `pass` (8859 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
 - `top_conference_evidence_roadmap_json`: `pass` (5396 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - `deep_regeneration_casebook`: `pass` (13397 bytes) - `docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md`
-- `human_expert_blind_review_protocol`: `pass` (3182 bytes) - `docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md`
+- `human_expert_blind_review_protocol`: `pass` (3755 bytes) - `docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md`
 - `prospective_gate_instrumentation_audit`: `pass` (3542 bytes) - `docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.json`
 - `deep_case_pdf_summary`: `pass` (3048 bytes) - `docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json`
 - `deep_case_internal_review_summary`: `pass` (7494 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500/summary.json`

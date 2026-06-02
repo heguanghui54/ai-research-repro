@@ -1,14 +1,14 @@
 {
-  "audit_date": "2026-06-02T12:31:57Z",
+  "audit_date": "2026-06-02T13:28:01Z",
   "status": "pass_prepared_no_human_ratings",
   "packet_dir": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000",
   "pair_count": 6,
-  "required_files_checked": 31,
+  "required_files_checked": 33,
   "file_status": {
     "README.md": {
       "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/README.md",
       "exists": true,
-      "bytes": 2042,
+      "bytes": 3087,
       "ok": true
     },
     "reviewer_index.md": {
@@ -81,6 +81,18 @@
       "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/template_summary_smoke/summary.md",
       "exists": true,
       "bytes": 699,
+      "ok": true
+    },
+    "human_score_summary_smoke/summary.json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/human_score_summary_smoke/summary.json",
+      "exists": true,
+      "bytes": 2469,
+      "ok": true
+    },
+    "human_score_summary_smoke/summary.md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/human_score_summary_smoke/summary.md",
+      "exists": true,
+      "bytes": 1639,
       "ok": true
     },
     "school_expert_ready_summary.json": {
@@ -223,6 +235,9 @@
     ]
   },
   "template_summary_smoke_status": "not_enough_valid_votes",
+  "human_score_summary_smoke_status": "no_valid_rows",
+  "human_score_summary_valid_rows": 0,
+  "human_score_summary_positive_evidence_threshold_met": false,
   "school_expert_ready_status": "school_expert_ready_prepared_no_human_ratings_yet",
   "deep_pdf_pair_count": 3,
   "deep_pdf_condition_key_hidden": true,

@@ -231,6 +231,7 @@ python3 -m pip install -r requirements.txt
 python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
+python3 scripts/summarize_human_expert_blind_reviews.py --update-manifest
 python3 scripts/audit_human_expert_blind_review_packet.py
 python3 scripts/audit_benchmark_coverage.py
 python3 scripts/build_deep_regeneration_cases.py
