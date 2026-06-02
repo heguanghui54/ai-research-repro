@@ -4,9 +4,10 @@
 This audit separates three evidence classes that are easy to blur:
 
 1. MLAgentBench vectorization is the first scored non-FML result.
-2. The open-data sklearn package is a scored, official-like matched package
+2. MLAgentBench CIFAR10/debug is now a scored official non-FML task.
+3. The open-data sklearn package is a scored, official-like matched package
    with held-out trigger-policy transfer.
-3. Larger official MLAgentBench/ScienceAgentBench tasks remain blocked and
+4. Larger remaining official MLAgentBench/ScienceAgentBench tasks remain blocked and
    must not be reported as scored.
 """
 
@@ -130,12 +131,14 @@ def main() -> None:
     train_trigger_path = EXP_DIR / TRAIN_PACKAGE / "evaluator_stress_trigger_policy_summary.json"
     heldout_trigger_path = EXP_DIR / HELDOUT_PACKAGE / "evaluator_stress_trigger_policy_summary.json"
     transfer_path = EXP_DIR / TRANSFER_PACKAGE / "summary.json"
+    cifar_official_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
 
     train_metrics = _load_json(train_metrics_path)
     heldout_metrics = _load_json(heldout_metrics_path)
     train_trigger = _load_json(train_trigger_path)
     heldout_trigger = _load_json(heldout_trigger_path)
     transfer = _load_json(transfer_path)
+    cifar_official = _load_json(cifar_official_path)
 
     train_metric_checks = _metric_checks(train_metrics)
     heldout_metric_checks = _metric_checks(heldout_metrics)
@@ -159,6 +162,13 @@ def main() -> None:
         )
         > 0,
     }
+    official_cifar_checks = {
+        "official_cifar_audit_pass": cifar_official.get("status") == "pass",
+        "official_cifar_scored": cifar_official.get("evidence_class")
+        == "scored_official_mlagentbench_non_fml_task",
+        "official_cifar_candidate_beats_baseline": cifar_official.get("candidate_score", 0)
+        > cifar_official.get("baseline_score", 1),
+    }
 
     official_blockers_kept_unscored = all(item["kept_unscored"] for item in official_blockers.values())
     checks = {
@@ -167,6 +177,7 @@ def main() -> None:
         "train_trigger_checks": train_trigger_checks,
         "heldout_trigger_checks": heldout_trigger_checks,
         "transfer_checks": transfer_checks,
+        "official_cifar_checks": official_cifar_checks,
         "official_blockers_kept_unscored": official_blockers_kept_unscored,
     }
     errors: list[str] = []
@@ -186,8 +197,21 @@ def main() -> None:
         "audit_date": _utc_now(),
         "status": "pass" if not errors else "fail",
         "head": _git_head(),
-        "evidence_class": "scored_official_like_non_fml_matched_package_not_official_benchmark",
+        "evidence_class": "scored_official_mlagentbench_non_fml_plus_official_like_package",
         "priority_queue_item": "Second scored non-FML benchmark package",
+        "official_mlagentbench_cifar10": {
+            "audit_path": _rel(cifar_official_path),
+            "task": cifar_official.get("task"),
+            "metric": cifar_official.get("metric"),
+            "baseline_score": cifar_official.get("baseline_score"),
+            "candidate_score": cifar_official.get("candidate_score"),
+            "delta": cifar_official.get("delta"),
+        },
+        "official_like_package": {
+            "train_package": TRAIN_PACKAGE,
+            "heldout_package": HELDOUT_PACKAGE,
+            "transfer_package": TRANSFER_PACKAGE,
+        },
         "train_package": TRAIN_PACKAGE,
         "heldout_package": HELDOUT_PACKAGE,
         "transfer_package": TRANSFER_PACKAGE,
@@ -220,10 +244,10 @@ def main() -> None:
         "errors": errors,
         "claim_boundary": (
             "This closes a low-cost official-like non-FML matched-package gap: "
-            "the package is scored, open-data, matched, held-out, and auditable. "
-            "It is still not a second scored official MLAgentBench or "
-            "ScienceAgentBench benchmark, and it does not prove full AI "
-            "Scientist-v2 paper-quality superiority."
+            "the package is scored, open-data, matched, held-out, and auditable; "
+            "it also adds a scored official MLAgentBench CIFAR10/debug result. "
+            "The evidence is still one official task plus one official-like package, "
+            "not broad AI Scientist-v2 paper-quality superiority."
         ),
     }
 
@@ -238,6 +262,9 @@ def main() -> None:
         f"- Status: `{audit['status']}`",
         f"- Evidence class: `{audit['evidence_class']}`",
         f"- Priority queue item: `{audit['priority_queue_item']}`",
+        f"- Official MLAgentBench CIFAR10 baseline score: `{audit['official_mlagentbench_cifar10']['baseline_score']}`",
+        f"- Official MLAgentBench CIFAR10 co-pilot selected score: `{audit['official_mlagentbench_cifar10']['candidate_score']}`",
+        f"- Official MLAgentBench CIFAR10 delta: `{audit['official_mlagentbench_cifar10']['delta']}`",
         f"- Train package: `{audit['train_package']}`",
         f"- Held-out package: `{audit['heldout_package']}`",
         f"- Selected trigger policy: `{audit['selected_trigger_policy']}`",

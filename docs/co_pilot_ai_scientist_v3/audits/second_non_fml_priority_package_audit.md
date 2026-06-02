@@ -1,9 +1,12 @@
 # Second Non-FML Priority Package Audit
 
-- Audit date: `2026-06-02T20:00:23Z`
+- Audit date: `2026-06-02T20:50:46Z`
 - Status: `pass`
-- Evidence class: `scored_official_like_non_fml_matched_package_not_official_benchmark`
+- Evidence class: `scored_official_mlagentbench_non_fml_plus_official_like_package`
 - Priority queue item: `Second scored non-FML benchmark package`
+- Official MLAgentBench CIFAR10 baseline score: `0.5103`
+- Official MLAgentBench CIFAR10 co-pilot selected score: `0.7782`
+- Official MLAgentBench CIFAR10 delta: `0.2679`
 - Train package: `prospective_matched_open_data_multitask_20260603`
 - Held-out package: `prospective_matched_open_data_multitask_holdout_20260603`
 - Selected trigger policy: `class_imbalance_trigger_0_94`
@@ -34,4 +37,4 @@
 
 ## Claim Boundary
 
-This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable. It is still not a second scored official MLAgentBench or ScienceAgentBench benchmark, and it does not prove full AI Scientist-v2 paper-quality superiority.
+This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable; it also adds a scored official MLAgentBench CIFAR10/debug result. The evidence is still one official task plus one official-like package, not broad AI Scientist-v2 paper-quality superiority.

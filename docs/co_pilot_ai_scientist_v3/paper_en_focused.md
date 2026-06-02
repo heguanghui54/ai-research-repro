@@ -132,19 +132,23 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
 | End-to-end paired trajectory manuscript | co-pilot manuscript internal score 4.64; model reviewers prefer co-pilot 2/2 | autonomous manuscript internal score 3.48; autonomous benchmark metric wins 0.640451 vs. 0.862015 | one same-run smoke pair | Demonstrates continuous trajectory-to-manuscript comparison readiness and metric/quality disagreement, not co-pilot superiority. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
+| MLAgentBench CIFAR10/debug | co-pilot-selected branch official score 0.7782 | starter baseline official score 0.5103 | one official MLAgentBench task; delta +0.2679 | Stronger non-FML official evidence, but still one task and one seed rather than broad benchmark coverage. |
 | Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | no search advantage | Direct editing can be enough on simple modeling tasks. |
 
-The non-FML benchmark expansion is deliberately reported with blocked setup
-attempts rather than hidden. Beyond the scored MLAgentBench vectorization task,
-we attempted official MLAgentBench CIFAR10/debug, IMDB, CLRS, and house-price
-setups. CIFAR10 reached the official data source but was too slow for the
-interactive budget, IMDB was blocked by Hugging Face network access, CLRS
-reached `train.py` but timed out on CPU without a checkpoint, and house-price
-reached the official prepare script but required Kaggle tooling and likely
-competition consent. These are not scores, but they are useful benchmark
-selection evidence: IGRE's current positive non-FML result is narrow, and the
-paper should not imply broad official benchmark coverage until a second scored
-official task is completed.
+The non-FML benchmark expansion is deliberately reported with both scored runs
+and blocked setup attempts rather than hidden. Beyond the scored MLAgentBench
+vectorization task, we upgraded the official MLAgentBench CIFAR10/debug path
+from a slow-download blocker to a scored run by pre-caching the official CIFAR10
+archive on `ubuntu-heshi`. The official starter baseline scores 0.5103 test
+accuracy, while a co-pilot-selected branch using a small batch-normalized CNN,
+light augmentation, AdamW, cosine decay, label smoothing, and eight epochs
+scores 0.7782 under the same official evaluator. IMDB remains blocked by Hugging
+Face network access, CLRS reaches `train.py` but times out on CPU without a
+checkpoint, and house-price reaches the official prepare script but requires
+Kaggle tooling and likely competition consent. This improves the official
+non-FML evidence boundary, but it is still one task and one seed; the paper
+should not imply broad official benchmark coverage until CIFAR10 is repeated or
+another official task is scored.
 
 The resulting claim-to-evidence map is deliberately conservative.
 

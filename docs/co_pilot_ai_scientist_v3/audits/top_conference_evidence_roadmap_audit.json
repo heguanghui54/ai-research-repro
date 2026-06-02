@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T20:00:30Z",
+  "audit_date": "2026-06-02T20:50:46Z",
   "status": "pass",
   "roadmap_json": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
   "roadmap_markdown": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
@@ -93,8 +93,8 @@
       },
       "term_presence": {
         "non-FML": true,
-        "matched package": true,
-        "evaluator-safety": true
+        "official": true,
+        "more seeds": true
       },
       "ok": true
     },
@@ -117,7 +117,7 @@
   "priority_queue_checks": {
     "count": 5,
     "items": {
-      "second_scored_non_fml_benchmark_package": {
+      "official_non_fml_benchmark_scaling": {
         "priority": true,
         "action": true,
         "proof_target": true,
@@ -160,7 +160,7 @@
     }
   },
   "priority_term_presence": {
-    "Second scored non-FML benchmark package": true,
+    "Official non-FML benchmark scaling": true,
     "Blind expert review packet collection": true,
     "Matched multi-task autonomous versus human-gated runs": true,
     "Deep TFR replay cases from the candidate queue": true,
@@ -178,7 +178,7 @@
     "Milestone 6: Non-FML Official Benchmark Check": true,
     "Milestone 7: Public Skill Engineering And Community Adoption": true,
     "Prioritized Next Evidence Queue": true,
-    "Second scored non-FML benchmark package": true,
+    "Official non-FML benchmark scaling": true,
     "Blind expert review packet collection": true,
     "Matched multi-task autonomous versus human-gated runs": true,
     "Deep TFR replay cases from the candidate queue": true,

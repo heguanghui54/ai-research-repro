@@ -296,7 +296,7 @@
     "audited_pushed_commit": true,
     "remote_ubuntu_experiments_rerun": false,
     "independent_human_expert_ratings_collected": false,
-    "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact checks, including release skill trigger-policy guidance, base-skill inheritance, focused figure/table readiness, prospective attention/taste cost measurement, and the scored official-like non-FML matched package. This is not a fresh remote Ubuntu rerun, independent human expert evidence, a second scored official MLAgentBench/ScienceAgentBench result, or broad co-pilot superiority proof."
+    "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact checks up to the previous audited commit, including release skill trigger-policy guidance, base-skill inheritance, focused figure/table readiness, prospective attention/taste cost measurement, and the scored official-like non-FML matched package. The current local package additionally contains a scored official MLAgentBench CIFAR10/debug audit (0.5103 starter baseline versus 0.7782 co-pilot-selected branch, delta +0.2679), but this new artifact still needs a refreshed clean-clone audit after push and does not provide independent human expert evidence, multi-seed robustness, or broad co-pilot superiority proof."
   },
   "skill_reuse_smoke": {
     "status": "pass",
@@ -1030,7 +1030,7 @@
       "audited_pushed_commit": true,
       "remote_ubuntu_experiments_rerun": false,
       "independent_human_expert_ratings_collected": false,
-      "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact checks, including release skill trigger-policy guidance, base-skill inheritance, focused figure/table readiness, prospective attention/taste cost measurement, and the scored official-like non-FML matched package. This is not a fresh remote Ubuntu rerun, independent human expert evidence, a second scored official MLAgentBench/ScienceAgentBench result, or broad co-pilot superiority proof."
+      "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact checks up to the previous audited commit, including release skill trigger-policy guidance, base-skill inheritance, focused figure/table readiness, prospective attention/taste cost measurement, and the scored official-like non-FML matched package. The current local package additionally contains a scored official MLAgentBench CIFAR10/debug audit (0.5103 starter baseline versus 0.7782 co-pilot-selected branch, delta +0.2679), but this new artifact still needs a refreshed clean-clone audit after push and does not provide independent human expert evidence, multi-seed robustness, or broad co-pilot superiority proof."
     },
     "interpretation": "Clean clone at commit 9fd364202 reproduced the latest pushed verification package with 926/926 manifest artifacts, including release skill trigger-policy guidance and the second non-FML official-like matched package audit."
   },
@@ -1531,5 +1531,16 @@
     "total_active_review_minutes": 21.0,
     "mean_taste_insight_score": 3.447142857142857,
     "claim_boundary": "This audit supports prospective operator-recorded attention and taste/insight measurement across the matched-budget packages. It is not independent human-subject evidence, does not estimate population-level attention cost, and does not prove that human gates improve paper quality."
+  },
+  "mlagentbench_cifar10_official": {
+    "status": "pass",
+    "json": "audits/mlagentbench_cifar10_official_audit.json",
+    "markdown": "audits/mlagentbench_cifar10_official_audit.md",
+    "benchmark": "MLAgentBench CIFAR10/debug",
+    "baseline_score": 0.5103,
+    "co_pilot_selected_score": 0.7782,
+    "delta": 0.2679,
+    "evidence_class": "scored_official_mlagentbench_non_fml_task",
+    "claim_boundary": "One official MLAgentBench task and one seed; not broad benchmark coverage or co-pilot superiority proof."
   }
 }

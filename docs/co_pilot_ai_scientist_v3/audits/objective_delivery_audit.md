@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T20:15:47Z`
+- Audit date: `2026-06-02T20:50:47Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `9fd36420203fdd43baa0b431397ae617e35bfe7c`
+- HEAD: `d484eb8c0e034a4abf8c666238865a9a137d5a13`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `926`
+- Manifest artifacts: `938`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `926/926`
+- Manifest coverage: `938/938`
 
 ## Explicit Requirements
 
@@ -27,6 +27,7 @@
 - `human_expert_blind_review_packet_audit_pass`: `pass`
 - `benchmark_coverage_audit_pass`: `pass`
 - `second_non_fml_priority_package_audit_pass`: `pass`
+- `mlagentbench_cifar10_official_audit_pass`: `pass`
 - `prospective_gate_instrumentation_audit_pass`: `pass`
 - `deep_regeneration_cases_audit_pass`: `pass`
 - `frontier_alignment_taxonomy_pass`: `pass`
@@ -41,12 +42,12 @@
 
 ## Artifact Status
 
-- `english_pdf`: `pass` (53210 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
-- `focused_english_pdf`: `pass` (211266 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `english_pdf`: `pass` (53460 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
+- `focused_english_pdf`: `pass` (211595 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `root_readme`: `pass` (10931 bytes) - `README.md`
 - `english_submission_card`: `pass` (5476 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
-- `top_conference_evidence_roadmap`: `pass` (14699 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
-- `top_conference_evidence_roadmap_json`: `pass` (10886 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
+- `top_conference_evidence_roadmap`: `pass` (14831 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
+- `top_conference_evidence_roadmap_json`: `pass` (11013 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - `deep_regeneration_casebook`: `pass` (13397 bytes) - `docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md`
 - `human_expert_blind_review_protocol`: `pass` (3755 bytes) - `docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md`
 - `prospective_gate_instrumentation_audit`: `pass` (3542 bytes) - `docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.json`
@@ -76,7 +77,7 @@
 - Run at least 5 matched-budget pairs per task across at least 3 tasks, with means, variance, and paired tests before making superiority claims.
 - Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.
 - Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.
-- Pursue a true second scored official non-FML benchmark task when data access permits; the current open-data matched package is official-like boundary evidence, not an official MLAgentBench/ScienceAgentBench result.
+- Scale the scored official MLAgentBench CIFAR10/debug task across more seeds or add another accessible official non-FML task; keep the open-data package labeled as official-like boundary evidence.
 - Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package.
 
 ## Errors

@@ -30,18 +30,18 @@ The next experiments should be selected by the weakest claim that can be
 credibly improved under the available budget, not by the easiest script to run.
 The current priority order is:
 
-1. **Second scored non-FML benchmark package.**
-   Proof target: reduce the benchmark-coverage gap by adding one official or
-   official-like non-FML matched package beyond MLAgentBench vectorization.
-   Current progress: the open-data sklearn matched package now provides a
-   scored official-like non-FML package with held-out trigger-policy transfer;
-   it should be reported as a low-cost benchmark-ladder step, not as a second
-   scored official MLAgentBench/ScienceAgentBench result.
-   Best near-term path: pre-cache or repair one MLAgentBench task whose setup
-   has already been audited, then run a matched autonomous versus human-gated
-   package with complete gate logs. Blocking condition: data access, CPU/GPU
-   runtime, or external account consent prevents an official score. If blocked,
-   record a scored local surrogate only as boundary evidence.
+1. **Official non-FML benchmark scaling.**
+   Proof target: move from one scored official MLAgentBench task to a more
+   robust non-FML evidence slice. Current progress: MLAgentBench vectorization
+   is scored, the open-data sklearn matched package provides official-like
+   held-out trigger-policy evidence, and MLAgentBench CIFAR10/debug is now a
+   scored official task after pre-caching the official CIFAR10 archive
+   (`0.5103` starter baseline versus `0.7782` co-pilot-selected branch, delta
+   `+0.2679`). Best near-term path: rerun CIFAR10/debug across additional
+   seeds or repair one more accessible MLAgentBench task with complete gate
+   logs. Blocking condition: data access, CPU/GPU runtime, or external account
+   consent prevents additional official scores. If blocked, report the current
+   official CIFAR result as one-task evidence only.
 
 2. **Blind expert review packet collection.**
    Proof target: test whether qualified human reviewers prefer IGRE-gated or
@@ -187,18 +187,19 @@ The current priority order is:
 
 ## Milestone 6: Non-FML Official Benchmark Check
 
-- Claim tested: the workflow is not overfit to FML-Bench-style evidence.
-- Required data: at least one scored official non-FML benchmark, preferably
-  MLAgentBench, ScienceAgentBench, or another task where AI Scientist-v2-style
-  agents can be compared under matched budgets.
-- Minimum design: one scored matched package with complete autonomous and
-  human-gated trajectories, plus an evaluator-stress gate.
+- Claim tested: the workflow is not overfit to FML-Bench-style evidence and can
+  be evaluated on official non-FML MLAgentBench tasks.
+- Required data: the current scored official CIFAR10/debug run plus additional
+  seeds or another accessible official task when budget permits.
+- Minimum design: at least one scored official non-FML MLAgentBench task, with
+  a documented baseline, co-pilot-selected branch, official evaluator output,
+  and a plan to scale beyond one task/seed.
 - Metrics: official task score, validity, runtime or cost, evaluator-stress
-  outcome, and manuscript/claim quality.
-- Upgrade condition: at least one non-FML benchmark shows a clear workflow
-  benefit or a concrete evaluator-safety benefit.
-- If it fails: keep benchmark claims explicitly limited to the current pilot
-  tasks and program-search subproblems.
+  outcome where applicable, and manuscript/claim quality.
+- Upgrade condition: the official non-FML benchmark shows workflow benefit or
+  evaluator-safety benefit and is not treated as broad coverage without scale.
+- If it fails: keep official non-FML claims limited to the scored CIFAR10/debug
+  task and keep broader benchmark claims future-facing.
 
 ## Milestone 7: Public Skill Engineering And Community Adoption
 

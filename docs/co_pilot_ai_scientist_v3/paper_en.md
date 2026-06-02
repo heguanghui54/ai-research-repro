@@ -414,13 +414,16 @@ benchmark because it is already runnable in our Ubuntu environment and exposes
 branch-level logs. For machine-gradeable algorithmic subproblems, we use
 OpenEvolve-controlled tasks such as function minimization, knapsack heuristic
 search, and weighted Max-Cut. For broader evidence beyond FML-bench, we include an initial
-MLAgentBench vectorization probe for end-to-end ML experimentation and track
-setup probes for additional MLAgentBench and ScienceAgentBench tasks. The
-current evidence still does not include a second scored official non-FML
-benchmark: the MLAgentBench CIFAR10/debug run was blocked by slow dataset
-download, the MLAgentBench IMDB probe repaired the missing `datasets`
-dependency but could not reach HuggingFace from the Ubuntu host, and
-ScienceAgentBench metadata/artifacts were not reachable. Higher-cost stretch benchmarks include
+MLAgentBench vectorization probe for end-to-end ML experimentation and now add
+one scored official MLAgentBench non-FML task. After pre-caching the official
+CIFAR10 archive, the MLAgentBench CIFAR10/debug starter baseline receives an
+official score of `0.5103`, while the co-pilot-selected branch receives
+`0.7782` under the official CIFAR10 evaluator, a single-task delta of
+`+0.2679`. This strengthens non-FML coverage, but it remains one official task
+and one seed; it is not broad benchmark evidence. The MLAgentBench IMDB probe
+repaired the missing `datasets` dependency but could not reach HuggingFace from
+the Ubuntu host, and ScienceAgentBench metadata/artifacts were not reachable.
+Higher-cost stretch benchmarks include
 MLE-bench Lite for Kaggle-style ML engineering, PaperBench for paper-to-code
 replication and hierarchical rubric grading, and AIRS-Bench for full ML research
 lifecycle evaluation.
@@ -739,22 +742,25 @@ also gives an important boundary condition: when the improvement is a standard
 small modeling change, direct editing can be as effective as program search.
 Thus the program-search gate should be selective, not automatic.
 
-We also attempted three benchmark-expansion probes. First, we tried to add a
-second official MLAgentBench `debug` task, which maps to CIFAR10. The setup
-probe repaired a missing `torchvision` dependency by installing the matching
-CPU wheel for the local `torch` version, but the run stopped during dataset
-preparation because the 170 MB CIFAR10 archive was downloading too slowly for
-the interactive budget. Second, we probed ScienceAgentBench. The repository was
-present on the Ubuntu host, and its README points to the April 2026 verified
-split and `benchmark_verified.zip`, but the local benchmark directory did not
-contain the verified artifacts and the HuggingFace metadata request failed with
-`[Errno 101] Network is unreachable`. Third, we probed the official
+We also ran benchmark-expansion probes. The strongest upgrade is the official
+MLAgentBench CIFAR10/debug task. Its setup probe first repaired a missing
+`torchvision` dependency by installing the matching CPU wheel for the local
+`torch` version; after the official 170 MB CIFAR10 archive was pre-cached, the
+official starter run completed with score `0.5103`, and a co-pilot-selected
+batch-normalized CNN with augmentation, AdamW, cosine learning rate, label
+smoothing, and eight training epochs reached official score `0.7782`. We also
+probed ScienceAgentBench. The repository was present on the Ubuntu host, and
+its README points to the April 2026 verified split and
+`benchmark_verified.zip`, but the local benchmark directory did not contain the
+verified artifacts and the HuggingFace metadata request failed with
+`[Errno 101] Network is unreachable`. We further probed the official
 MLAgentBench `imdb` folder. After installing the missing `datasets` dependency
 required by its official `eval.py`, even a five-example dataset load failed
-with the same HuggingFace network error. We therefore report these as setup
-artifacts and not as benchmark scores. The next official non-FML score requires
-pre-cached data or a different network path, not a convenient retreat back to
-FML-bench alone.
+with the same HuggingFace network error. We therefore report CIFAR10/debug as a
+scored official non-FML task, while ScienceAgentBench and IMDB remain setup
+artifacts rather than benchmark scores. The next non-FML expansion should scale
+CIFAR10/debug across seeds or add another accessible official task, not retreat
+to FML-bench alone.
 
 ### 4.5 Claim Audit
 

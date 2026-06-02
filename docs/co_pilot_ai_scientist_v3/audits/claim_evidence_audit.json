@@ -243,6 +243,16 @@
         "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md"
       ],
       "paper_treatment": "Present as a strong pilot and reproducibility package with explicit next evidence requirements."
+    },
+    {
+      "claim_id": "mlagentbench_cifar10_official_non_fml",
+      "claim": "The benchmark package now includes one scored official MLAgentBench non-FML task.",
+      "evidence": "mlagentbench_cifar10_official_audit.md/json verifies the official MLAgentBench CIFAR10/debug starter baseline score 0.5103, co-pilot-selected score 0.7782, and delta +0.2679; second_non_fml_priority_package_audit.md/json keeps the open-data sklearn package labeled as official-like boundary evidence.",
+      "status": "supported_narrowly_one_official_task_one_seed",
+      "baseline_score": 0.5103,
+      "co_pilot_selected_score": 0.7782,
+      "delta": 0.2679,
+      "boundary": "Report CIFAR10/debug as stronger non-FML official evidence, but do not claim broad benchmark coverage, multi-seed robustness, or co-pilot superiority."
     }
   ],
   "trigger_policy_analysis": {

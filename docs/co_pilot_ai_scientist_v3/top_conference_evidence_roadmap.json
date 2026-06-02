@@ -42,10 +42,10 @@
     },
     {
       "id": "non_fml_official_benchmark_check",
-      "claim_tested": "The workflow is not overfit to FML-Bench-style evidence.",
-      "minimum_design": "At least one scored official non-FML matched package with autonomous and human-gated trajectories.",
-      "upgrade_condition": "A non-FML benchmark shows workflow benefit or evaluator-safety benefit.",
-      "fallback_if_failed": "Limit benchmark claims to current pilot tasks and program-search subproblems."
+      "claim_tested": "The workflow is not overfit to FML-Bench-style evidence and can be evaluated on official non-FML MLAgentBench tasks.",
+      "minimum_design": "At least one scored official non-FML MLAgentBench task plus a plan to scale across more seeds or another official task.",
+      "upgrade_condition": "The official non-FML benchmark shows workflow benefit or evaluator-safety benefit and is not treated as broad coverage without scale.",
+      "fallback_if_failed": "Limit official non-FML claims to the scored CIFAR10/debug task and keep broader benchmark claims future-facing."
     },
     {
       "id": "public_skill_engineering_and_community_adoption",
@@ -65,13 +65,13 @@
   "priority_queue": [
     {
       "priority": 1,
-      "id": "second_scored_non_fml_benchmark_package",
-      "action": "Second scored non-FML benchmark package",
-      "proof_target": "Reduce the benchmark-coverage gap by adding one official or official-like non-FML matched package beyond MLAgentBench vectorization.",
-      "current_progress": "The open-data sklearn matched package provides a scored official-like non-FML package with held-out trigger-policy transfer; it is a low-cost benchmark-ladder step, not a second scored official MLAgentBench or ScienceAgentBench result.",
-      "best_near_term_path": "Pre-cache or repair one MLAgentBench task whose setup has already been audited, then run a matched autonomous versus human-gated package with complete gate logs.",
-      "blocking_condition": "Data access, CPU/GPU runtime, or external account consent prevents an official score.",
-      "fallback_if_blocked": "Record a scored local surrogate only as boundary evidence and keep official non-FML benchmark claims incomplete."
+      "id": "official_non_fml_benchmark_scaling",
+      "action": "Official non-FML benchmark scaling",
+      "proof_target": "Move from one scored official MLAgentBench task to a more robust non-FML evidence slice.",
+      "current_progress": "MLAgentBench vectorization is scored, the open-data sklearn matched package provides official-like held-out trigger-policy evidence, and MLAgentBench CIFAR10/debug is now a scored official task after pre-caching the official CIFAR10 archive: 0.5103 starter baseline versus 0.7782 co-pilot-selected branch, delta +0.2679.",
+      "best_near_term_path": "Rerun CIFAR10/debug across additional seeds or repair one more accessible MLAgentBench task with complete gate logs.",
+      "blocking_condition": "Data access, CPU/GPU runtime, or external account consent prevents additional official scores.",
+      "fallback_if_blocked": "Report the current official CIFAR result as one-task evidence only."
     },
     {
       "priority": 2,

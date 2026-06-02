@@ -49,8 +49,8 @@ REQUIRED_MILESTONES = {
     ],
     "non_fml_official_benchmark_check": [
         "non-FML",
-        "matched package",
-        "evaluator-safety",
+        "official",
+        "more seeds",
     ],
     "public_skill_engineering_and_community_adoption": [
         "standalone skill README",
@@ -60,7 +60,7 @@ REQUIRED_MILESTONES = {
 }
 
 REQUIRED_PRIORITY_QUEUE_TERMS = [
-    "Second scored non-FML benchmark package",
+    "Official non-FML benchmark scaling",
     "Blind expert review packet collection",
     "Matched multi-task autonomous versus human-gated runs",
     "Deep TFR replay cases from the candidate queue",
@@ -168,7 +168,7 @@ def main() -> None:
         "Milestone 6: Non-FML Official Benchmark Check",
         "Milestone 7: Public Skill Engineering And Community Adoption",
         "Prioritized Next Evidence Queue",
-        "Second scored non-FML benchmark package",
+        "Official non-FML benchmark scaling",
         "Blind expert review packet collection",
         "Matched multi-task autonomous versus human-gated runs",
         "Deep TFR replay cases from the candidate queue",

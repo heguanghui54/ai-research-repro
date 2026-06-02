@@ -64,6 +64,7 @@ def main() -> None:
     sklearn_path = EXP_DIR / "sklearn_diabetes_tabular_summary.json"
     cifar_path = EXP_DIR / "mlagentbench_cifar10_debug_setup_probe" / "summary.json"
     cifar_refresh_path = EXP_DIR / "mlagentbench_cifar10_debug_refresh_probe_20260602" / "summary.json"
+    cifar_official_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
     imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
     clrs_path = EXP_DIR / "mlagentbench_clrs_baseline_smoke_20260602" / "summary.json"
     clrs_reduced_path = EXP_DIR / "mlagentbench_clrs_reduced_smoke_20260602" / "summary.json"
@@ -108,6 +109,7 @@ def main() -> None:
     sklearn = _load_json(sklearn_path)
     cifar = _load_json(cifar_path)
     cifar_refresh = _load_json(cifar_refresh_path)
+    cifar_official = _load_json(cifar_official_path)
     imdb = _load_json(imdb_path)
     clrs = _load_json(clrs_path)
     clrs_reduced = _load_json(clrs_reduced_path)
@@ -272,14 +274,22 @@ def main() -> None:
         is True,
         "second_non_fml_priority_package_audited": second_non_fml_priority.get("status") == "pass"
         and second_non_fml_priority.get("evidence_class")
-        == "scored_official_like_non_fml_matched_package_not_official_benchmark"
+        in {
+            "scored_official_mlagentbench_non_fml_plus_official_like_package",
+            "scored_official_like_non_fml_matched_package_not_official_benchmark",
+        }
         and second_non_fml_priority.get("official_blockers")
-        and "not a second scored official" in second_non_fml_priority.get("claim_boundary", ""),
+        and (
+            second_non_fml_priority.get("official_mlagentbench_cifar10")
+            or "not a second scored official" in second_non_fml_priority.get("claim_boundary", "")
+        ),
+        "mlagentbench_cifar10_official_scored": cifar_official.get("status") == "pass"
+        and cifar_official.get("evidence_class") == "scored_official_mlagentbench_non_fml_task"
+        and cifar_official.get("candidate_score", 0) > cifar_official.get("baseline_score", 1),
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
-        "blocked_tasks_do_not_report_scores": cifar.get("official_score_reported") is False
-        and imdb.get("official_score_reported") is False
+        "remaining_blocked_tasks_do_not_report_scores": imdb.get("official_score_reported") is False
         and clrs.get("official_score_reported") is False
         and clrs_reduced.get("official_score_reported") is False
         and house_price.get("official_score_reported") is False
@@ -328,6 +338,14 @@ def main() -> None:
                 "median_speedup_over_starter": vector_agg.get("median_speedup_over_starter"),
                 "direct_rewrite_correct": direct_rewrite.get("correct"),
                 "path": _rel(vector_path),
+            },
+            "mlagentbench_cifar10_official": {
+                "task": cifar_official.get("task"),
+                "metric": cifar_official.get("metric"),
+                "baseline_score": cifar_official.get("baseline_score"),
+                "candidate_score": cifar_official.get("candidate_score"),
+                "delta": cifar_official.get("delta"),
+                "path": _rel(cifar_official_path),
             },
             "algorithmic_program_search": {
                 "knapsack_openevolve_score": knapsack_open_score,
@@ -394,8 +412,9 @@ def main() -> None:
         "claim_boundary": (
             "Benchmark coverage now includes FML feasibility evidence, non-FML scored "
             "program-search probes, an open-data multi-task evaluator-stress pilot, "
-            "a direct-editing boundary condition, and logged official benchmark "
-            "blockers. This supports selective workflow design, not whole-paper "
+            "a scored official MLAgentBench CIFAR10/debug task, a direct-editing "
+            "boundary condition, and logged remaining official benchmark blockers. "
+            "This supports selective workflow design, not whole-paper "
             "superiority over autonomous AI Scientist-v2."
         ),
     }
@@ -421,6 +440,12 @@ def main() -> None:
             f"`{vector_agg.get('median_runtime_seconds')}` seconds versus starter "
             f"`{starter_runtime}` seconds; direct rewrite correctness "
             f"`{direct_rewrite.get('correct')}`."
+        ),
+        (
+            "- MLAgentBench CIFAR10/debug official task: baseline score "
+            f"`{cifar_official.get('baseline_score')}` versus co-pilot selected score "
+            f"`{cifar_official.get('candidate_score')}`, delta "
+            f"`{cifar_official.get('delta')}`."
         ),
         (
             "- Program search subproblems: knapsack OpenEvolve "
@@ -467,7 +492,7 @@ def main() -> None:
         (
             "- Second non-FML priority package audit: "
             f"`{second_non_fml_priority.get('evidence_class')}`; "
-            "official blocked tasks remain unscored."
+            "CIFAR10/debug is now scored, while remaining blocked official tasks stay unscored."
         ),
         "",
         "## Boundary And Blocked Evidence",
@@ -480,6 +505,10 @@ def main() -> None:
     ]
     for name, blocker in official_blockers.items():
         lines.append(f"- `{name}`: `{blocker.get('status')}`; no official score reported.")
+    lines.append(
+        "- `mlagentbench_cifar10_official`: "
+        f"`{cifar_official.get('status')}`; official score reported with delta `{cifar_official.get('delta')}`."
+    )
     lines.extend(["", "## Checks", ""])
     for name, ok in checks.items():
         lines.append(f"- `{name}`: `{'pass' if ok else 'fail'}`")

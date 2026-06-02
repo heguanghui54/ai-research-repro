@@ -1,0 +1,40 @@
+{
+  "audit_date": "2026-06-02T20:50:46Z",
+  "status": "pass",
+  "head": "d484eb8c0e034a4abf8c666238865a9a137d5a13",
+  "evidence_class": "scored_official_mlagentbench_non_fml_task",
+  "task": "MLAgentBench debug / cifar10",
+  "metric": "CIFAR10 test accuracy; higher is better",
+  "baseline_eval_path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_official_20260603/baseline/eval.json",
+  "candidate_summary_path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_official_20260603/co_pilot_selected/summary.json",
+  "baseline_score": 0.5103,
+  "candidate_score": 0.7782,
+  "delta": 0.2679,
+  "baseline_total_time_seconds": 65.81158947944641,
+  "candidate_mode": "co_pilot_selected_branch_direct_official_eval",
+  "remote_baseline_run": "/home/heshi/work/copilotv3-mlagentbench-cifar10-debug-official-baseline-20260603",
+  "remote_candidate_run": "/home/heshi/work/copilotv3-mlagentbench-cifar10-debug-human-gated-20260603",
+  "file_checks": {
+    "mlagentbench_cifar10_debug_official_20260603/README.md": true,
+    "eval.json": true,
+    "runner.stdout.log": true,
+    "eval.stdout.log": true,
+    "trace.json": true,
+    "overall_time.txt": true,
+    "co_pilot_selected/summary.json": true,
+    "co_pilot_selected/train.py": true,
+    "co_pilot_selected/train.stdout.log": true
+  },
+  "checks": {
+    "all_required_files_present": true,
+    "baseline_official_eval_score_present": true,
+    "baseline_submitted_final_answer": true,
+    "baseline_no_error_flags": true,
+    "candidate_official_eval_score_present": true,
+    "candidate_beats_baseline": true,
+    "candidate_training_completed": true,
+    "same_official_task": true
+  },
+  "errors": [],
+  "claim_boundary": "This is a scored official MLAgentBench CIFAR10/debug task using the official evaluation script. It supports non-FML benchmark expansion and a concrete co-pilot-selected branch improvement over the starter baseline. It is still one task, one seed, and not independent human evidence or broad AI Scientist-v2 paper-quality superiority."
+}

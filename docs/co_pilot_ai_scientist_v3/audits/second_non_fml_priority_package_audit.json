@@ -1,9 +1,22 @@
 {
-  "audit_date": "2026-06-02T20:00:23Z",
+  "audit_date": "2026-06-02T20:50:46Z",
   "status": "pass",
-  "head": "2baceba1538251ea72f7578bf164e3b3882eec74",
-  "evidence_class": "scored_official_like_non_fml_matched_package_not_official_benchmark",
+  "head": "d484eb8c0e034a4abf8c666238865a9a137d5a13",
+  "evidence_class": "scored_official_mlagentbench_non_fml_plus_official_like_package",
   "priority_queue_item": "Second scored non-FML benchmark package",
+  "official_mlagentbench_cifar10": {
+    "audit_path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.json",
+    "task": "MLAgentBench debug / cifar10",
+    "metric": "CIFAR10 test accuracy; higher is better",
+    "baseline_score": 0.5103,
+    "candidate_score": 0.7782,
+    "delta": 0.2679
+  },
+  "official_like_package": {
+    "train_package": "prospective_matched_open_data_multitask_20260603",
+    "heldout_package": "prospective_matched_open_data_multitask_holdout_20260603",
+    "transfer_package": "evaluator_trigger_policy_transfer_20260603"
+  },
   "train_package": "prospective_matched_open_data_multitask_20260603",
   "heldout_package": "prospective_matched_open_data_multitask_holdout_20260603",
   "transfer_package": "evaluator_trigger_policy_transfer_20260603",
@@ -67,6 +80,11 @@
       "heldout_delta_beats_always_on": true,
       "heldout_delta_positive": true
     },
+    "official_cifar_checks": {
+      "official_cifar_audit_pass": true,
+      "official_cifar_scored": true,
+      "official_cifar_candidate_beats_baseline": true
+    },
     "official_blockers_kept_unscored": true
   },
   "official_blockers": {
@@ -108,5 +126,5 @@
     }
   },
   "errors": [],
-  "claim_boundary": "This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable. It is still not a second scored official MLAgentBench or ScienceAgentBench benchmark, and it does not prove full AI Scientist-v2 paper-quality superiority."
+  "claim_boundary": "This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable; it also adds a scored official MLAgentBench CIFAR10/debug result. The evidence is still one official task plus one official-like package, not broad AI Scientist-v2 paper-quality superiority."
 }

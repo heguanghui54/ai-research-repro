@@ -105,6 +105,7 @@ def main() -> None:
     deep_summary = _load_json(deep_internal)
     remote_branch_pushed = _remote_contains_branch(remote_url, branch)
     benchmark_vector = benchmark_coverage.get("evidence_summary", {}).get("mlagentbench_vectorization", {})
+    benchmark_cifar = benchmark_coverage.get("evidence_summary", {}).get("mlagentbench_cifar10_official", {})
     second_non_fml = benchmark_coverage.get("checks", {}).get("second_non_fml_priority_package_audited")
     second_non_fml_summary = benchmark_coverage.get("evidence_summary", {}).get(
         "open_data_multitask_evaluator_stress", {}
@@ -122,6 +123,10 @@ def main() -> None:
         and second_non_fml_summary.get("dataset_count") == 5
         and second_non_fml_summary.get("split_count") == 5
         and second_non_fml_summary.get("total_dataset_split_evaluations") == 25
+    )
+    official_cifar_complete = (
+        benchmark_coverage.get("checks", {}).get("mlagentbench_cifar10_official_scored") is True
+        and benchmark_cifar.get("candidate_score", 0) > benchmark_cifar.get("baseline_score", 1)
     )
 
     requirements = [
@@ -184,13 +189,22 @@ def main() -> None:
                 _rel(DOC_DIR / "benchmark_claim_matrix.md"),
                 _rel(DOC_DIR / "audits" / "benchmark_coverage_audit.md"),
                 _rel(second_non_fml_audit_path),
+                _rel(DOC_DIR / "audits" / "mlagentbench_cifar10_official_audit.md"),
             ],
             (
                 "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, "
+                "all faster than the starter, and a failed direct-rewrite correctness baseline. It now also has a scored official MLAgentBench "
+                f"CIFAR10/debug task with baseline {benchmark_cifar.get('baseline_score')} and co-pilot-selected score {benchmark_cifar.get('candidate_score')}, "
+                f"delta {benchmark_cifar.get('delta')}. The official-like open-data matched package adds 5 sklearn tasks, 5 split seeds, "
+                "25 paired selections, and held-out trigger-policy transfer. This supports benchmark-portfolio coverage, but one official task "
+                "and one official-like package do not prove broad top-conference empirical sufficiency."
+            )
+            if non_fml_scored_complete and second_non_fml_official_like_complete and official_cifar_complete
+            else (
+                "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, "
                 "all faster than the starter, and a failed direct-rewrite correctness baseline. It also has a scored official-like open-data "
                 "matched package across 5 sklearn tasks, 5 split seeds, and 25 paired selections, with held-out trigger-policy transfer. "
-                "This supports benchmark-portfolio coverage, but the official-like package is not a second scored official MLAgentBench or "
-                "ScienceAgentBench result and neither result proves broad top-conference empirical sufficiency."
+                "This supports benchmark-portfolio coverage, but the official-like package is not broad official benchmark coverage."
             )
             if non_fml_scored_complete and second_non_fml_official_like_complete
             else (
@@ -200,7 +214,7 @@ def main() -> None:
             )
             if non_fml_scored_complete
             else "The package considers FML-bench, MLAgentBench, OpenReview, OpenEvolve-style probes, and TFR, but a complete scored non-FML comparison is not yet proven.",
-            "Pursue a true second scored official non-FML task when data access and setup permit; keep the open-data package labeled as official-like boundary evidence.",
+            "Scale CIFAR10/debug across more seeds or add another scored official task; keep the open-data package labeled as official-like boundary evidence.",
         ),
         _requirement(
             "human_taste_and_insight_theory",

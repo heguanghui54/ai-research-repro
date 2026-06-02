@@ -1,11 +1,11 @@
 {
-  "audit_date": "2026-06-02T20:15:49Z",
+  "audit_date": "2026-06-02T20:50:48Z",
   "status": "pass_with_top_conference_gap",
-  "head": "9fd36420203fdd43baa0b431397ae617e35bfe7c",
+  "head": "d484eb8c0e034a4abf8c666238865a9a137d5a13",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "remote_branch_pushed": true,
-  "manifest_artifacts": 926,
+  "manifest_artifacts": 938,
   "missing_manifest_artifacts": 0,
   "requirement_count": 15,
   "status_counts": {
@@ -72,10 +72,11 @@
         "docs/co_pilot_ai_scientist_v3/benchmark_selection.md",
         "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md",
         "docs/co_pilot_ai_scientist_v3/audits/benchmark_coverage_audit.md",
-        "docs/co_pilot_ai_scientist_v3/audits/second_non_fml_priority_package_audit.md"
+        "docs/co_pilot_ai_scientist_v3/audits/second_non_fml_priority_package_audit.md",
+        "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.md"
       ],
-      "gap": "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, all faster than the starter, and a failed direct-rewrite correctness baseline. It also has a scored official-like open-data matched package across 5 sklearn tasks, 5 split seeds, and 25 paired selections, with held-out trigger-policy transfer. This supports benchmark-portfolio coverage, but the official-like package is not a second scored official MLAgentBench or ScienceAgentBench result and neither result proves broad top-conference empirical sufficiency.",
-      "next_action": "Pursue a true second scored official non-FML task when data access and setup permit; keep the open-data package labeled as official-like boundary evidence."
+      "gap": "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, all faster than the starter, and a failed direct-rewrite correctness baseline. This supports benchmark-portfolio coverage, but it remains a narrow program-search subproblem rather than broad top-conference empirical sufficiency.",
+      "next_action": "Scale CIFAR10/debug across more seeds or add another scored official task; keep the open-data package labeled as official-like boundary evidence."
     },
     {
       "key": "human_taste_and_insight_theory",
@@ -149,7 +150,7 @@
       "evidence": [
         "https://github.com/heguanghui54/ai-research-repro.git",
         "codex/co-pilot-ai-scientist-v3",
-        "9fd36420203fdd43baa0b431397ae617e35bfe7c"
+        "d484eb8c0e034a4abf8c666238865a9a137d5a13"
       ],
       "gap": "Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate.",
       "next_action": "Create a release or PR only when the user wants a public submission package."

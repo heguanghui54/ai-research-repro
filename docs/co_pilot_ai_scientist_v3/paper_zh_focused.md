@@ -101,9 +101,10 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | Same-run online FML smokes | co-pilot benchmark 胜 0 次 | autonomous 胜 1 次，平 1 次，未知 1 次 | 3 个 paired smoke | 当前有效 benchmark 证据偏向 autonomous 或平局。 |
 | 端到端配对轨迹稿件 | co-pilot 稿件内部得分 4.64；模型复审 2/2 偏好 co-pilot | autonomous 稿件内部得分 3.48；autonomous benchmark 指标 0.640451 优于 0.862015 | 一个 same-run smoke pair | 证明连续轨迹到稿件的可比较性和指标/质量分歧，不证明 co-pilot 优越性。 |
 | MLAgentBench vectorization | 8/8 seeds 保持正确，median 0.024581 s | starter 3.261186 s；direct rewrite 未通过正确性 | 显著运行时间收益 | 可验证微演化适合 correctness-gated 代码子问题。 |
+| MLAgentBench CIFAR10/debug | co-pilot-selected branch official score 0.7782 | starter baseline official score 0.5103 | 一个官方 MLAgentBench task；delta +0.2679 | 更强的非 FML 官方证据，但仍只是单任务单种子，不是广泛 benchmark 覆盖。 |
 | Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | 无搜索优势 | 简单建模任务中直接编辑可能足够。 |
 
-非 FML benchmark 扩展部分被有意以“阻塞 setup 尝试”的形式报告，而不是隐藏。除了已经可评分的 MLAgentBench vectorization 任务，我们还尝试了官方 MLAgentBench CIFAR10/debug、IMDB、CLRS 和 house-price setup。CIFAR10 已到达官方数据源，但在当前交互预算内下载过慢；IMDB 被 Hugging Face 网络访问阻塞；CLRS 已到达 `train.py`，但 CPU 运行超时且没有生成 checkpoint；house-price 到达官方 prepare script，但需要 Kaggle tooling，并且很可能需要竞赛规则同意。这些都不是分数，但它们是有用的 benchmark selection 证据：IGRE 当前的正向非 FML 结果仍然很窄，在完成第二个官方可评分任务前，论文不应暗示已经具备广泛官方 benchmark 覆盖。
+非 FML benchmark 扩展部分被有意同时报告“已评分 run”和“阻塞 setup 尝试”，而不是隐藏不利证据。除了已经可评分的 MLAgentBench vectorization 任务，我们把官方 MLAgentBench CIFAR10/debug 从慢速下载 blocker 推进为已评分 run：通过在 `ubuntu-heshi` 上预缓存官方 CIFAR10 archive，official prepare 成功完成；starter baseline 的官方 test accuracy 为 0.5103，而 co-pilot 选择的小型 batch-normalized CNN、轻量数据增强、AdamW、cosine decay、label smoothing、8 epoch 分支在相同官方 evaluator 下达到 0.7782。IMDB 仍被 Hugging Face 网络访问阻塞；CLRS 已到达 `train.py`，但 CPU 运行超时且没有生成 checkpoint；house-price 到达官方 prepare script，但需要 Kaggle tooling，并且很可能需要竞赛规则同意。因此，当前非 FML 官方证据边界已经增强，但仍只是一个官方任务和一个 seed；在重复 CIFAR10 或评分另一个官方任务前，论文仍不应暗示已经具备广泛官方 benchmark 覆盖。
 
 由此得到的主张-证据映射被有意保持保守。
 

@@ -31,7 +31,7 @@ setup probe becomes a scored run.
 | --- | --- | --- | --- | --- |
 | A | FML-bench | AI Scientist-v2-style ML benchmark search over target code | Branch gate, selected-branch continuation, evaluator failures | Runnable and already used |
 | A | OpenEvolve-controlled tasks | Machine-gradeable program search | AlphaEvolve-style escalation gate and direct-edit ablation | Runnable; function minimization, knapsack, and Max-Cut archived |
-| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug was refreshed on 2026-06-02 and the official CIFAR source is reachable but too slow for the current interactive budget; IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but both the official CPU-only baseline and a reduced feasibility run timed out without a checkpoint; house-price reached the official prepare script but is blocked by Kaggle CLI and likely competition-consent requirements |
+| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug is now a scored official run after pre-caching the official CIFAR10 archive, with starter baseline `0.5103` and co-pilot-selected branch `0.7782`; IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but both the official CPU-only baseline and a reduced feasibility run timed out without a checkpoint; house-price reached the official prepare script but is blocked by Kaggle CLI and likely competition-consent requirements |
 | B | sklearn diabetes tabular probe | Lightweight supervised-learning model search | Non-FML, non-runtime-only boundary test for direct edit vs program search | Three OpenEvolve seeds and one direct rewrite archived |
 | B | ScienceAgentBench | Data-driven scientific discovery code tasks from publications | Non-FML scientific workflow validation, especially evaluator/claim gates | Code present; HuggingFace metadata and verified artifacts currently unreachable from Ubuntu host |
 | C | MLE-bench Lite | Kaggle-style ML engineering | High-signal, higher-cost end-to-end ML engineering evidence | Stretch benchmark |
@@ -67,18 +67,22 @@ of Co-Pilot AI Scientist v3.
    editing and OpenEvolve improve the rudimentary mean predictor, and direct
    editing matches OpenEvolve, so this acts as a boundary condition for the
    escalation policy.
-4. **MLAgentBench vectorization extension**: baseline, direct LLM rewrite, and
+4. **MLAgentBench vectorization and CIFAR10/debug extension**: baseline, direct LLM rewrite, and
    OpenEvolve-style runtime optimization now run under a correctness-gated
    evaluator with an eight-seed robustness probe. A follow-up official
    CIFAR10/debug setup probe repaired the missing `torchvision` dependency but
    stopped at slow CIFAR10 data download. A 2026-06-02 refresh probe fixed the
    relative-Python invocation, confirmed that the official CIFAR archive is
    reachable from `ubuntu-heshi`, and then terminated after about 61 seconds
-   because only about 3.28 MB of the 170 MB archive had downloaded. Therefore
-   no second official score is reported yet. An additional official `imdb`
-   probe repaired the missing `datasets` dependency but failed when the Ubuntu
-   host could not reach HuggingFace, so it is also reported as setup evidence
-   only. A CLRS probe repaired the earlier dependency gap by installing
+   because only about 3.28 MB of the 170 MB archive had downloaded. On
+   2026-06-03, the official CIFAR10 archive was pre-cached on `ubuntu-heshi`,
+   official prepare completed, and the MLAgentBench `debug` task produced a
+   scored official baseline and co-pilot-selected branch: the starter baseline
+   scored `0.5103` test accuracy and the co-pilot-selected branch scored
+   `0.7782`, delta `+0.2679`, under the same official evaluator. An additional
+   official `imdb` probe repaired the missing `datasets` dependency but failed
+   when the Ubuntu host could not reach HuggingFace, so it is still reported as
+   setup evidence only. A CLRS probe repaired the earlier dependency gap by installing
    `dm-clrs`, `jax`, `tensorflow`, and related packages; MLAgentBench reached
    the CLRS task prompt and launched `train.py`, but the CPU-only baseline
    timed out at 900 seconds without `checkpoints/best.pkl`. A reduced
@@ -88,7 +92,8 @@ of Co-Pilot AI Scientist v3.
    A house-price setup probe reached the official MLAgentBench prepare script,
    but the task requires the Kaggle CLI and likely Kaggle account/rule consent;
    it is therefore logged as a credential-bound official benchmark blocker, not
-   as a score.
+   as a score. The current official CIFAR result is one task and one seed; it
+   should be scaled before claiming broad MLAgentBench coverage.
 5. **ScienceAgentBench single task**: first download the verified benchmark
    artifacts on the Ubuntu host. A metadata setup probe confirmed that the
    repository is present but HuggingFace metadata access fails from the Ubuntu

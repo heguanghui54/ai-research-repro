@@ -1,6 +1,6 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T20:02:59Z`
+- Audit date: `2026-06-02T20:50:46Z`
 - Status: `pass`
 - FML entries: `2`
 - Non-FML entries: `11`
@@ -8,12 +8,13 @@
 ## Positive Scored Evidence
 
 - MLAgentBench vectorization: `8/8` correct best programs; median runtime `0.024580717086791992` seconds versus starter `3.261186361312866` seconds; direct rewrite correctness `False`.
+- MLAgentBench CIFAR10/debug official task: baseline score `0.5103` versus co-pilot selected score `0.7782`, delta `0.2679`.
 - Program search subproblems: knapsack OpenEvolve `0.9994394752555711` versus direct `0.9952700988954383`; Max-Cut OpenEvolve-minus-direct `0.0085959186678094`.
 - Open-data evaluator-stress pilot: `5` sklearn tasks, `5` split seeds, `25` paired selections, `8` candidates each, co-pilot mean balanced accuracy `0.9264256134480804` versus autonomous `0.9248566268790939`, delta `0.00156898656898655`; selection changed in `4` paired selections.
 - Evaluator-stress trigger policy: best policy `class_imbalance_trigger_0_94` with delta `0.003076923076923066` versus always-on delta `0.00156898656898655`.
 - Held-out trigger-policy validation: best policy `class_imbalance_trigger_0_94` with delta `0.003639444256184343` versus held-out always-on delta `0.0025821297988698876`.
 - Frozen trigger-policy transfer: discovery selected `class_imbalance_trigger_0_94`; held-out frozen delta `0.003639444256184343` versus held-out always-on delta `0.0025821297988698876`, with held-out losses `0` versus always-on losses `2`.
-- Second non-FML priority package audit: `scored_official_like_non_fml_matched_package_not_official_benchmark`; official blocked tasks remain unscored.
+- Second non-FML priority package audit: `scored_official_mlagentbench_non_fml_plus_official_like_package`; CIFAR10/debug is now scored, while remaining blocked official tasks stay unscored.
 
 ## Boundary And Blocked Evidence
 
@@ -25,6 +26,7 @@
 - `mlagentbench_clrs_reduced`: `blocked_reduced_cpu_timeout_no_checkpoint`; no official score reported.
 - `mlagentbench_house_price`: `setup_blocked_by_missing_kaggle_cli_and_competition_consent`; no official score reported.
 - `scienceagentbench`: `metadata_and_verified_artifacts_not_yet_accessible`; no official score reported.
+- `mlagentbench_cifar10_official`: `pass`; official score reported with delta `0.2679`.
 
 ## Checks
 
@@ -46,8 +48,9 @@
 - `evaluator_stress_trigger_policy_heldout_scored`: `pass`
 - `evaluator_stress_trigger_policy_transfer_validated`: `pass`
 - `second_non_fml_priority_package_audited`: `pass`
+- `mlagentbench_cifar10_official_scored`: `pass`
 - `blocked_official_tasks_logged`: `pass`
-- `blocked_tasks_do_not_report_scores`: `pass`
+- `remaining_blocked_tasks_do_not_report_scores`: `pass`
 - `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`
 - `mlagentbench_clrs_reduced_kept_non_official_and_unscored`: `pass`
 - `mlagentbench_house_price_credential_blocker_logged`: `pass`
@@ -64,4 +67,4 @@
 
 ## Claim Boundary
 
-Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a direct-editing boundary condition, and logged official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.
+Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official MLAgentBench CIFAR10/debug task, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.
