@@ -8,8 +8,8 @@ not count as qualifying performance evidence.
 ## Summary
 
 - Overall status: `pass`
-- Manifest files checked: 4
-- Passing packages: 4
+- Manifest files checked: 5
+- Passing packages: 5
 - Failing packages: 0
 
 ## `prospective_matched_fml_causality_20260602_000001`
@@ -40,6 +40,15 @@ not count as qualifying performance evidence.
 
 
 ## `prospective_matched_micro_pilot_20260602_000001`
+
+- Status: `pass`
+- Gate records checked: 1
+- Complete attention-cost gates: 1
+- Complete taste/insight gates: 1
+- Errors: 0
+
+
+## `prospective_matched_micro_pilot_20260603_ssh_maxcut`
 
 - Status: `pass`
 - Gate records checked: 1

@@ -61,6 +61,15 @@ as empirical proof that co-pilot science outperforms autonomous science.
   tool access, same step budget, same task, and preregistered stopping rules.
 - Metrics: task score, valid-run rate, evaluator-gaming failures, paper-quality
   proxy score, and claim-calibration violations.
+- Current micro-pilot progress: the SSH Ubuntu package
+  `prospective_matched_micro_pilot_20260603_ssh_maxcut` now supplies one
+  controlled matched-budget run on weighted Max-Cut. On 12 deterministic
+  machine-gradeable instances, the autonomous alternating baseline scores
+  `0.596214` mean normalized score and the co-pilot-selected local-search
+  branch scores `0.984419` (`+0.388205`). This validates the prospective
+  package shape and a machine-gradeable frontier-steering gate, but it is still
+  a small controlled subproblem rather than an AI Scientist-v2 research-task
+  benchmark.
 - Upgrade condition: the human-gated condition should improve either valid
   high-quality manuscript rate or evaluator-robustness rate without a large
   average task-score regression.

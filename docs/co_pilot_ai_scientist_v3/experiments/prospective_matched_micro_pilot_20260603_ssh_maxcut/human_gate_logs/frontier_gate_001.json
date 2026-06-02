@@ -1,0 +1,74 @@
+{
+  "gate_id": "prospective_matched_micro_pilot_20260603_ssh_maxcut_frontier_gate_001",
+  "gate_type": "frontier_steering",
+  "timestamp_utc": "2026-06-02T17:08:32Z",
+  "research_task_id": "prospective_matched_micro_pilot_20260603_ssh_maxcut",
+  "options": [
+    {
+      "option_id": "alternating_baseline",
+      "summary": "Continue with the simple alternating Max-Cut policy.",
+      "score": null,
+      "evidence": [
+        "Low implementation risk but weak mechanistic search value."
+      ],
+      "risks": [
+        "May under-test whether a human gate can preserve a richer branch."
+      ]
+    },
+    {
+      "option_id": "local_search_policy",
+      "summary": "Use a local-search repair policy selected for mechanistic value.",
+      "score": null,
+      "evidence": [
+        "Machine-gradeable evaluator; local improvements are inspectable."
+      ],
+      "risks": [
+        "Tiny controlled task; not evidence of paper-level superiority."
+      ]
+    }
+  ],
+  "human_decision": "local_search_policy",
+  "rationale": "Select the local-search branch because it is a clearer test of frontier steering on a machine-gradeable subproblem while keeping the task small enough for a prospective package smoke.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260603_ssh_maxcut/remote_metrics.json"
+  ],
+  "downstream_budget": {
+    "remote_instances": 12,
+    "same_task_as_autonomous": true,
+    "purpose": "controlled_micro_pilot"
+  },
+  "attention_cost": {
+    "human_actor": "codex_operator_for_author",
+    "interaction_mode": "async_review",
+    "prompted_at_utc": "2026-06-02T17:06:32Z",
+    "decision_at_utc": "2026-06-02T17:08:32Z",
+    "active_review_minutes": 2.0,
+    "wall_clock_latency_minutes": 2.0,
+    "options_reviewed": 2,
+    "artifacts_reviewed_count": 1,
+    "decision_count": 1,
+    "notes": "Prospective operator-recorded micro-pilot gate; not an independent human-subject measurement."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-02",
+    "scores": {
+      "problem_depth": 3,
+      "novelty_potential": 2,
+      "mechanistic_value": 4,
+      "failure_informativeness": 4,
+      "benchmark_taste": 4,
+      "claim_significance": 2,
+      "risk_asymmetry": 3
+    },
+    "taste_insight_score": 3.14,
+    "qualitative_rationale": "This gate has modest novelty but useful mechanistic value: it tests whether the prospective package can connect a taste-motivated branch choice to a machine-gradeable evaluator without overclaiming.",
+    "non_metric_factors": [
+      "mechanistic-branch-interpretability",
+      "package-shape-validation"
+    ]
+  },
+  "follow_up_checks": [
+    "Do not use this micro-pilot as top-conference performance evidence.",
+    "Replace with AI Scientist-v2/FML or MLAgentBench prospective package."
+  ]
+}

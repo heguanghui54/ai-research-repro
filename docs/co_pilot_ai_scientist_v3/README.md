@@ -156,6 +156,14 @@ does not replace the paper's empirical evidence requirements.
   fresh global-skill reuse smoke, and toy evaluator-stress smoke. This is
   engineering reuse evidence only, not independent human evidence or
   scientific-superiority evidence.
+- `experiments/prospective_matched_micro_pilot_20260603_ssh_maxcut/`: SSH
+  Ubuntu prospective matched-budget micro-pilot on a controlled weighted
+  Max-Cut task. It compares an autonomous alternating baseline with a
+  co-pilot-selected local-search branch on the same 12 graph instances,
+  improving mean normalized score from `0.596214` to `0.984419`
+  (`+0.388205`). This is evidence that the matched package shape can be
+  generated and audited remotely; it is not AI Scientist-v2 paper-quality
+  evidence.
 - `release/co-pilot-ai-scientist-v3-skill/`: standalone release scaffold for a
   public GitHub skill. It packages `SKILL.md`, templates, examples, quickstart,
   manifest, and a local validator so the engineering track can progress
