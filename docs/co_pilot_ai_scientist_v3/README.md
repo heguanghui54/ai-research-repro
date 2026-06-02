@@ -230,6 +230,14 @@ that same OpenReview-derived utility map. Full IGRE captures all routed utility
 (`1.000`), while the best single gate captures `0.369`, the 128-seed random
 baseline averages `0.199`, and no-gate captures `0.000`. This is routing-level
 evidence for the five-gate architecture, not a downstream paper-quality claim.
+The `gate_outcome_attribution_probe_20260602_191500/` artifact adds a first
+downstream attribution analysis by combining the review-derived gate utilities
+with observed GPT/Claude score deltas from the equal-context regeneration
+pairs. Full IGRE obtains aligned-outcome score `75.166660`, while the best
+single gate obtains `37.249994` and the 512-seed random single-gate baseline
+averages `15.264972`. The nonzero downstream signal comes from
+evaluator-stress, structured-feedback, and scientific-taste-prior gates in this
+six-paper subset. This is post-hoc attribution, not causal proof.
 The package also includes OpenEvolve-based program search, direct LLM rewrite
 baselines, richer knapsack and Max-Cut heuristic tasks, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes live

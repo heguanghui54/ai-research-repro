@@ -583,7 +583,10 @@
     "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.json",
     "scripts/run_gate_structure_ablation_probe.py",
     "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/summary.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/README.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/README.md",
+    "scripts/run_gate_outcome_attribution_probe.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/README.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1387,6 +1390,30 @@
       "scripts/run_gate_structure_ablation_probe.py",
       "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/summary.json",
       "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/README.md"
+    ]
+  },
+  "gate_outcome_attribution_probe": {
+    "status": "pass",
+    "run_id": "gate_outcome_attribution_probe_20260602_191500",
+    "paper_count": 6,
+    "review_models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "source_reviews": "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/scored_reviews.json",
+    "source_regeneration": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+    "source_equal_context": "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json",
+    "full_igre_aligned_outcome_score": 75.16666,
+    "best_single_gate_policy": "single_evaluator_stress_test",
+    "best_single_gate_aligned_outcome_score": 37.249994,
+    "random_gate_aligned_outcome_score_mean": 15.264972,
+    "full_vs_best_single_aligned_score_gain": 37.916666,
+    "full_vs_random_mean_aligned_score_gain": 59.901688,
+    "claim_boundary": "This is a post-hoc attribution over six OpenReview regeneration pairs and model-review scores. It supports downstream gate-quality analysis as a design signal, but it does not prove causal improvement, independent human validity, or benchmark superiority.",
+    "artifacts": [
+      "scripts/run_gate_outcome_attribution_probe.py",
+      "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/summary.json",
+      "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/README.md"
     ]
   }
 }

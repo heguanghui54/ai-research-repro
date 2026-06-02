@@ -108,7 +108,14 @@
     "gate_structure_ablation_best_single_utility_capture_rate": 0.369083,
     "gate_structure_ablation_random_gate_utility_capture_rate_mean": 0.198716,
     "gate_structure_ablation_full_vs_best_single_utility_gain": 2359,
-    "gate_structure_ablation_full_vs_random_mean_utility_gain": 2996.0
+    "gate_structure_ablation_full_vs_random_mean_utility_gain": 2996.0,
+    "gate_outcome_attribution_probes": 1,
+    "gate_outcome_attribution_papers": 6,
+    "gate_outcome_attribution_full_igre_aligned_score": 75.16666,
+    "gate_outcome_attribution_best_single_aligned_score": 37.249994,
+    "gate_outcome_attribution_random_gate_aligned_score_mean": 15.264972,
+    "gate_outcome_attribution_full_vs_best_single_gain": 37.916666,
+    "gate_outcome_attribution_full_vs_random_mean_gain": 59.901688
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -1012,7 +1019,8 @@
       "narrower primary contribution narrative"
     ],
     "gate_structure_ablation_status": "routing-level ablation completed; downstream quality ablations still needed",
-    "gate_structure_ablation_artifact": "experiments/gate_structure_ablation_probe_20260602_183000/"
+    "gate_structure_ablation_artifact": "experiments/gate_structure_ablation_probe_20260602_183000/",
+    "gate_outcome_attribution_status": "post-hoc downstream attribution completed; causal single-gate artifact ablations still needed"
   },
   "gate_structure_ablation_probe": {
     "status": "pass",
@@ -1033,5 +1041,60 @@
     "full_vs_best_single_utility_gain": 2359,
     "full_vs_random_mean_utility_gain": 2996.0,
     "claim_boundary": "This is a deterministic routing ablation over archived OpenReview-derived review snippets. It supports the need for a multi-gate logging and routing structure, but it does not prove downstream paper-quality improvement, benchmark superiority, or independent human-review validity."
+  },
+  "gate_outcome_attribution_probe": {
+    "status": "pass",
+    "run_id": "gate_outcome_attribution_probe_20260602_191500",
+    "artifact_dir": "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500",
+    "paper_count": 6,
+    "review_models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "policy_scores": {
+      "no_gate": 0.0,
+      "full_igre": 75.16666,
+      "single_scientific_taste_prior": 12.333333,
+      "single_evaluator_stress_test": 37.249994,
+      "single_frontier_steering": 0.0,
+      "single_structured_feedback": 25.583333,
+      "single_claim_calibration": 0.0
+    },
+    "best_single_gate_policy": "single_evaluator_stress_test",
+    "random_gate_policy": {
+      "seeds": 512,
+      "aligned_outcome_score_mean": 15.264972,
+      "aligned_outcome_score_std": 9.245891,
+      "min": 0.0,
+      "max": 42.749994
+    },
+    "per_gate_attribution": {
+      "scientific_taste_prior": {
+        "paper_count_with_signal": 2,
+        "total_gate_utility": 24.666666,
+        "mean_aligned_delta_when_present": 0.5
+      },
+      "evaluator_stress_test": {
+        "paper_count_with_signal": 6,
+        "total_gate_utility": 71.666666,
+        "mean_aligned_delta_when_present": 0.472222
+      },
+      "frontier_steering": {
+        "paper_count_with_signal": 0,
+        "total_gate_utility": 0,
+        "mean_aligned_delta_when_present": 0.0
+      },
+      "structured_feedback": {
+        "paper_count_with_signal": 4,
+        "total_gate_utility": 59.666666,
+        "mean_aligned_delta_when_present": 0.375
+      },
+      "claim_calibration": {
+        "paper_count_with_signal": 0,
+        "total_gate_utility": 0,
+        "mean_aligned_delta_when_present": 0.0
+      }
+    },
+    "claim_boundary": "This is a post-hoc attribution over six OpenReview regeneration pairs and model-review scores. It supports downstream gate-quality analysis as a design signal, but it does not prove causal improvement, independent human validity, or benchmark superiority."
   }
 }

@@ -1,0 +1,535 @@
+{
+  "run_id": "gate_outcome_attribution_probe_20260602_191500",
+  "timestamp_utc": "2026-06-02T08:20:51Z",
+  "status": "pass",
+  "source_reviews": "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/scored_reviews.json",
+  "source_regeneration": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+  "source_equal_context": "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json",
+  "paper_count": 6,
+  "review_models": [
+    "gpt-4o-mini",
+    "claude-3-7-sonnet-latest"
+  ],
+  "gate_target_dimensions": {
+    "scientific_taste_prior": [
+      "novelty",
+      "overall"
+    ],
+    "evaluator_stress_test": [
+      "correctness",
+      "experiment_quality",
+      "overall"
+    ],
+    "frontier_steering": [
+      "novelty",
+      "experiment_quality",
+      "overall"
+    ],
+    "structured_feedback": [
+      "clarity",
+      "overall"
+    ],
+    "claim_calibration": [
+      "limitation_honesty",
+      "claim_calibration",
+      "overall"
+    ]
+  },
+  "paper_score_deltas": {
+    "openreview_sample_1": {
+      "novelty": 0.5,
+      "correctness": 0.5,
+      "clarity": 1.0,
+      "experiment_quality": 1.0,
+      "limitation_honesty": 0.0,
+      "claim_calibration": 0.5,
+      "overall": 1.0
+    },
+    "openreview_sample_2": {
+      "novelty": 0.5,
+      "correctness": 0.5,
+      "clarity": 0.5,
+      "experiment_quality": 0.5,
+      "limitation_honesty": 1.0,
+      "claim_calibration": 0.5,
+      "overall": 0.5
+    },
+    "openreview_sample_17": {
+      "novelty": 0.5,
+      "correctness": 0.5,
+      "clarity": 0.5,
+      "experiment_quality": 0.5,
+      "limitation_honesty": 0.5,
+      "claim_calibration": 0.5,
+      "overall": 0.5
+    },
+    "openreview_sample_34": {
+      "novelty": 0.5,
+      "correctness": 0.5,
+      "clarity": 0.5,
+      "experiment_quality": 0.5,
+      "limitation_honesty": 0.5,
+      "claim_calibration": 0.5,
+      "overall": 0.5
+    },
+    "openreview_sample_49": {
+      "novelty": 0.0,
+      "correctness": 0.0,
+      "clarity": 0.0,
+      "experiment_quality": 0.0,
+      "limitation_honesty": 0.5,
+      "claim_calibration": 0.5,
+      "overall": 0.0
+    },
+    "openreview_sample_64": {
+      "novelty": 0.5,
+      "correctness": 0.5,
+      "clarity": 0.5,
+      "experiment_quality": 0.5,
+      "limitation_honesty": 0.5,
+      "claim_calibration": 0.5,
+      "overall": 0.5
+    }
+  },
+  "paper_gate_utility": {
+    "openreview_sample_1": {
+      "paper_index": 1,
+      "gate_utility": {
+        "scientific_taste_prior": 0,
+        "evaluator_stress_test": 17.0,
+        "frontier_steering": 0,
+        "structured_feedback": 0,
+        "claim_calibration": 0
+      },
+      "gate_review_counts": {
+        "scientific_taste_prior": 0,
+        "evaluator_stress_test": 2,
+        "frontier_steering": 0,
+        "structured_feedback": 0,
+        "claim_calibration": 0
+      },
+      "review_count": 3,
+      "actionable_review_count": 2
+    },
+    "openreview_sample_2": {
+      "paper_index": 2,
+      "gate_utility": {
+        "scientific_taste_prior": 0,
+        "evaluator_stress_test": 16.0,
+        "frontier_steering": 0,
+        "structured_feedback": 10.0,
+        "claim_calibration": 0
+      },
+      "gate_review_counts": {
+        "scientific_taste_prior": 0,
+        "evaluator_stress_test": 3,
+        "frontier_steering": 0,
+        "structured_feedback": 2,
+        "claim_calibration": 0
+      },
+      "review_count": 3,
+      "actionable_review_count": 3
+    },
+    "openreview_sample_17": {
+      "paper_index": 17,
+      "gate_utility": {
+        "scientific_taste_prior": 20.333333,
+        "evaluator_stress_test": 11.333333,
+        "frontier_steering": 0,
+        "structured_feedback": 20.333333,
+        "claim_calibration": 0
+      },
+      "gate_review_counts": {
+        "scientific_taste_prior": 3,
+        "evaluator_stress_test": 2,
+        "frontier_steering": 0,
+        "structured_feedback": 3,
+        "claim_calibration": 0
+      },
+      "review_count": 3,
+      "actionable_review_count": 3
+    },
+    "openreview_sample_34": {
+      "paper_index": 34,
+      "gate_utility": {
+        "scientific_taste_prior": 4.333333,
+        "evaluator_stress_test": 12.833333,
+        "frontier_steering": 0,
+        "structured_feedback": 20.833333,
+        "claim_calibration": 0
+      },
+      "gate_review_counts": {
+        "scientific_taste_prior": 1,
+        "evaluator_stress_test": 2,
+        "frontier_steering": 0,
+        "structured_feedback": 3,
+        "claim_calibration": 0
+      },
+      "review_count": 3,
+      "actionable_review_count": 3
+    },
+    "openreview_sample_49": {
+      "paper_index": 49,
+      "gate_utility": {
+        "scientific_taste_prior": 0,
+        "evaluator_stress_test": 8.5,
+        "frontier_steering": 0,
+        "structured_feedback": 8.5,
+        "claim_calibration": 0
+      },
+      "gate_review_counts": {
+        "scientific_taste_prior": 0,
+        "evaluator_stress_test": 2,
+        "frontier_steering": 0,
+        "structured_feedback": 2,
+        "claim_calibration": 0
+      },
+      "review_count": 2,
+      "actionable_review_count": 2
+    },
+    "openreview_sample_64": {
+      "paper_index": 64,
+      "gate_utility": {
+        "scientific_taste_prior": 0,
+        "evaluator_stress_test": 6.0,
+        "frontier_steering": 0,
+        "structured_feedback": 0,
+        "claim_calibration": 0
+      },
+      "gate_review_counts": {
+        "scientific_taste_prior": 0,
+        "evaluator_stress_test": 1,
+        "frontier_steering": 0,
+        "structured_feedback": 0,
+        "claim_calibration": 0
+      },
+      "review_count": 2,
+      "actionable_review_count": 1
+    }
+  },
+  "per_gate_attribution": {
+    "scientific_taste_prior": {
+      "paper_count_with_signal": 2,
+      "total_gate_utility": 24.666666,
+      "mean_aligned_delta_when_present": 0.5,
+      "rows": [
+        {
+          "paper_id": "openreview_sample_17",
+          "gate_utility": 20.333333,
+          "aligned_delta": 0.5
+        },
+        {
+          "paper_id": "openreview_sample_34",
+          "gate_utility": 4.333333,
+          "aligned_delta": 0.5
+        }
+      ]
+    },
+    "evaluator_stress_test": {
+      "paper_count_with_signal": 6,
+      "total_gate_utility": 71.666666,
+      "mean_aligned_delta_when_present": 0.472222,
+      "rows": [
+        {
+          "paper_id": "openreview_sample_1",
+          "gate_utility": 17.0,
+          "aligned_delta": 0.833333
+        },
+        {
+          "paper_id": "openreview_sample_2",
+          "gate_utility": 16.0,
+          "aligned_delta": 0.5
+        },
+        {
+          "paper_id": "openreview_sample_17",
+          "gate_utility": 11.333333,
+          "aligned_delta": 0.5
+        },
+        {
+          "paper_id": "openreview_sample_34",
+          "gate_utility": 12.833333,
+          "aligned_delta": 0.5
+        },
+        {
+          "paper_id": "openreview_sample_49",
+          "gate_utility": 8.5,
+          "aligned_delta": 0.0
+        },
+        {
+          "paper_id": "openreview_sample_64",
+          "gate_utility": 6.0,
+          "aligned_delta": 0.5
+        }
+      ]
+    },
+    "frontier_steering": {
+      "paper_count_with_signal": 0,
+      "total_gate_utility": 0,
+      "mean_aligned_delta_when_present": 0.0,
+      "rows": []
+    },
+    "structured_feedback": {
+      "paper_count_with_signal": 4,
+      "total_gate_utility": 59.666666,
+      "mean_aligned_delta_when_present": 0.375,
+      "rows": [
+        {
+          "paper_id": "openreview_sample_2",
+          "gate_utility": 10.0,
+          "aligned_delta": 0.5
+        },
+        {
+          "paper_id": "openreview_sample_17",
+          "gate_utility": 20.333333,
+          "aligned_delta": 0.5
+        },
+        {
+          "paper_id": "openreview_sample_34",
+          "gate_utility": 20.833333,
+          "aligned_delta": 0.5
+        },
+        {
+          "paper_id": "openreview_sample_49",
+          "gate_utility": 8.5,
+          "aligned_delta": 0.0
+        }
+      ]
+    },
+    "claim_calibration": {
+      "paper_count_with_signal": 0,
+      "total_gate_utility": 0,
+      "mean_aligned_delta_when_present": 0.0,
+      "rows": []
+    }
+  },
+  "policy_scores": {
+    "no_gate": {
+      "aligned_outcome_score": 0.0,
+      "positive_contribution": 0.0,
+      "negative_contribution": 0.0,
+      "nonzero_contributions": 0,
+      "top_contributions": [],
+      "negative_contributions": []
+    },
+    "full_igre": {
+      "aligned_outcome_score": 75.16666,
+      "positive_contribution": 75.16666,
+      "negative_contribution": 0.0,
+      "nonzero_contributions": 12,
+      "top_contributions": [
+        {
+          "paper_id": "openreview_sample_1",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 17.0,
+          "aligned_delta": 0.833333,
+          "contribution": 14.166661
+        },
+        {
+          "paper_id": "openreview_sample_34",
+          "gate": "structured_feedback",
+          "gate_utility": 20.833333,
+          "aligned_delta": 0.5,
+          "contribution": 10.416666
+        },
+        {
+          "paper_id": "openreview_sample_17",
+          "gate": "structured_feedback",
+          "gate_utility": 20.333333,
+          "aligned_delta": 0.5,
+          "contribution": 10.166666
+        },
+        {
+          "paper_id": "openreview_sample_17",
+          "gate": "scientific_taste_prior",
+          "gate_utility": 20.333333,
+          "aligned_delta": 0.5,
+          "contribution": 10.166666
+        },
+        {
+          "paper_id": "openreview_sample_2",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 16.0,
+          "aligned_delta": 0.5,
+          "contribution": 8.0
+        },
+        {
+          "paper_id": "openreview_sample_34",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 12.833333,
+          "aligned_delta": 0.5,
+          "contribution": 6.416666
+        },
+        {
+          "paper_id": "openreview_sample_17",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 11.333333,
+          "aligned_delta": 0.5,
+          "contribution": 5.666666
+        },
+        {
+          "paper_id": "openreview_sample_2",
+          "gate": "structured_feedback",
+          "gate_utility": 10.0,
+          "aligned_delta": 0.5,
+          "contribution": 5.0
+        },
+        {
+          "paper_id": "openreview_sample_64",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 6.0,
+          "aligned_delta": 0.5,
+          "contribution": 3.0
+        },
+        {
+          "paper_id": "openreview_sample_34",
+          "gate": "scientific_taste_prior",
+          "gate_utility": 4.333333,
+          "aligned_delta": 0.5,
+          "contribution": 2.166666
+        }
+      ],
+      "negative_contributions": []
+    },
+    "single_scientific_taste_prior": {
+      "aligned_outcome_score": 12.333333,
+      "positive_contribution": 12.333333,
+      "negative_contribution": 0.0,
+      "nonzero_contributions": 2,
+      "top_contributions": [
+        {
+          "paper_id": "openreview_sample_17",
+          "gate": "scientific_taste_prior",
+          "gate_utility": 20.333333,
+          "aligned_delta": 0.5,
+          "contribution": 10.166666
+        },
+        {
+          "paper_id": "openreview_sample_34",
+          "gate": "scientific_taste_prior",
+          "gate_utility": 4.333333,
+          "aligned_delta": 0.5,
+          "contribution": 2.166666
+        }
+      ],
+      "negative_contributions": []
+    },
+    "single_evaluator_stress_test": {
+      "aligned_outcome_score": 37.249994,
+      "positive_contribution": 37.249994,
+      "negative_contribution": 0.0,
+      "nonzero_contributions": 6,
+      "top_contributions": [
+        {
+          "paper_id": "openreview_sample_1",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 17.0,
+          "aligned_delta": 0.833333,
+          "contribution": 14.166661
+        },
+        {
+          "paper_id": "openreview_sample_2",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 16.0,
+          "aligned_delta": 0.5,
+          "contribution": 8.0
+        },
+        {
+          "paper_id": "openreview_sample_34",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 12.833333,
+          "aligned_delta": 0.5,
+          "contribution": 6.416666
+        },
+        {
+          "paper_id": "openreview_sample_17",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 11.333333,
+          "aligned_delta": 0.5,
+          "contribution": 5.666666
+        },
+        {
+          "paper_id": "openreview_sample_64",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 6.0,
+          "aligned_delta": 0.5,
+          "contribution": 3.0
+        },
+        {
+          "paper_id": "openreview_sample_49",
+          "gate": "evaluator_stress_test",
+          "gate_utility": 8.5,
+          "aligned_delta": 0.0,
+          "contribution": 0.0
+        }
+      ],
+      "negative_contributions": []
+    },
+    "single_frontier_steering": {
+      "aligned_outcome_score": 0.0,
+      "positive_contribution": 0.0,
+      "negative_contribution": 0.0,
+      "nonzero_contributions": 0,
+      "top_contributions": [],
+      "negative_contributions": []
+    },
+    "single_structured_feedback": {
+      "aligned_outcome_score": 25.583333,
+      "positive_contribution": 25.583333,
+      "negative_contribution": 0.0,
+      "nonzero_contributions": 4,
+      "top_contributions": [
+        {
+          "paper_id": "openreview_sample_34",
+          "gate": "structured_feedback",
+          "gate_utility": 20.833333,
+          "aligned_delta": 0.5,
+          "contribution": 10.416666
+        },
+        {
+          "paper_id": "openreview_sample_17",
+          "gate": "structured_feedback",
+          "gate_utility": 20.333333,
+          "aligned_delta": 0.5,
+          "contribution": 10.166666
+        },
+        {
+          "paper_id": "openreview_sample_2",
+          "gate": "structured_feedback",
+          "gate_utility": 10.0,
+          "aligned_delta": 0.5,
+          "contribution": 5.0
+        },
+        {
+          "paper_id": "openreview_sample_49",
+          "gate": "structured_feedback",
+          "gate_utility": 8.5,
+          "aligned_delta": 0.0,
+          "contribution": 0.0
+        }
+      ],
+      "negative_contributions": []
+    },
+    "single_claim_calibration": {
+      "aligned_outcome_score": 0.0,
+      "positive_contribution": 0.0,
+      "negative_contribution": 0.0,
+      "nonzero_contributions": 0,
+      "top_contributions": [],
+      "negative_contributions": []
+    }
+  },
+  "random_gate_policy": {
+    "seeds": 512,
+    "aligned_outcome_score_mean": 15.264972,
+    "aligned_outcome_score_std": 9.245891,
+    "min": 0.0,
+    "max": 42.749994
+  },
+  "best_single_gate_policy": "single_evaluator_stress_test",
+  "full_vs_best_single_aligned_score_gain": 37.916666,
+  "full_vs_random_mean_aligned_score_gain": 59.901688,
+  "interpretation": "The observed equal-context OpenReview gains are aligned with several review-derived IGRE gates, especially evaluator-stress and structured feedback. Full IGRE has the highest aligned-outcome score because it keeps heterogeneous review signals instead of compressing them into a single gate.",
+  "claim_boundary": "This is a post-hoc attribution over six OpenReview regeneration pairs and model-review scores. It supports downstream gate-quality analysis as a design signal, but it does not prove causal improvement, independent human validity, or benchmark superiority.",
+  "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/summary.json",
+  "readme_path": "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/README.md"
+}

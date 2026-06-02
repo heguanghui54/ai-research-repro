@@ -24,6 +24,13 @@
       "does_not_prove": "Downstream paper-quality improvement, independent human-review validity, or co-pilot superiority."
     },
     {
+      "claim_family": "Downstream gate-quality attribution",
+      "benchmark_or_probe": "OpenReview equal-context regeneration plus gate-outcome attribution",
+      "current_evidence": "gate_outcome_attribution_probe_20260602_191500 combines six equal-context OpenReview pairs, GPT/Claude score deltas, and review-derived gate utility. Full IGRE aligned score is 75.17, best single gate is 37.25, and random single-gate mean is 15.26.",
+      "supports": "Review-derived gate signals align with observed downstream artifact improvements, especially evaluator-stress, structured-feedback, and scientific-taste-prior signals.",
+      "does_not_prove": "Causal single-gate artifact ablation, independent human expert validity, or benchmark superiority."
+    },
+    {
       "claim_family": "AlphaEvolve-style subproblem search",
       "benchmark_or_probe": "OpenEvolve function minimization, knapsack, and Max-Cut",
       "current_evidence": "Direct edit beats or matches tiny function search; OpenEvolve improves the richer knapsack heuristic to 0.999439 average optimality ratio and the controlled Max-Cut heuristic to 0.970833 versus direct rewrite 0.962237.",
