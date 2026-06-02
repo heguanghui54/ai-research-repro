@@ -215,6 +215,47 @@ We also generate a same-run end-to-end manuscript pair from one online full-gate
 
 OpenEvolve-style search is valuable on some machine-gradeable subproblems, but not all. On a vectorization task, direct rewrite fails correctness while short OpenEvolve-style search retains correct programs and finds large runtime improvements. On Max-Cut, direct editing improves the starter, while OpenEvolve-style search gives a small additional gain. On a simple sklearn diabetes regression probe, direct editing matches the median OpenEvolve result. This boundary condition is central to IGRE: program search should be triggered by evaluator readiness and expected marginal value, not by methodological fashion.
 
+### 4.6 What do the negative results change in the method?
+
+The negative and mixed results are not only limitations; they are algorithm-design
+signals. We therefore add an explicit mixed-evidence audit that maps each failure
+class to an IGRE design rule. The strongest warning comes from the model-only
+blind packet dry run: review-guided artifacts obtain 0 wins, while unrelated
+equal-context review controls obtain 7 wins and 1 tie, with mean delta -1.1458.
+This does not say that peer review is useless. It says that raw review text is a
+bad intervention primitive. Ungated comments can overfit the generator to
+reviewer phrasing, add irrelevant pressure, or erase the original technical
+frame. IGRE therefore treats review text as input to gate-specific actions, not
+as more context to paste into the next generation prompt.
+
+The FML and prospective package results impose a second rule. Human gates can
+help on evaluator-ready micro-problems, as the SSH Max-Cut run shows, but they
+do not yet improve average short-budget AI Scientist-v2 benchmark performance.
+This separates two claims that are often conflated in co-pilot papers: a human
+gate can improve a local branch decision without proving that the whole
+co-pilot system beats autonomous search. IGRE therefore logs benchmark score,
+manuscript score, frontier movement, claim calibration, and attention cost as
+separate outcomes.
+
+The TFR results impose a third rule. Same-model judges initially label all
+three live four-condition replay cases positive, but the preregistered
+delayed-value rule repairs all three to mixed because the short-term penalty
+condition is not met. This is a concrete failure mechanism: model judges are
+too willing to call guided artifacts future-aligned when the temporal
+asymmetry is absent. TFR therefore requires deterministic rule checks,
+paper-only and shuffled-review controls, and cross-model or human frontier
+judges before a review can be called a delayed-value signal.
+
+Finally, frontier metrics disagree. Internal review and lexical frontier
+coverage favor six-gate artifacts in all three deep cases, while vector
+projection favors them in two cases and direct frontier cosine in only one.
+This forces a methodological constraint: scientific taste cannot be compressed
+into a single reward. The final workflow reports whether a gate improves local
+quality, moves along the original-to-frontier direction, creates orthogonal
+novelty, or merely increases generic reviewer satisfaction. In this sense, the
+paper's negative results are part of the algorithm: they determine when human
+input should be routed, downweighted, delayed for replay, or rejected.
+
 ## 5. Discussion
 
 IGRE reframes human participation as a high-variance search operator. This is a better fit for science than the claim that human involvement is always positive. Human judgement can increase the chance of rare, high-value trajectories by noticing problem depth, mechanism, novelty, or claim risk that a metric misses. But it can also reduce average score under short budgets.

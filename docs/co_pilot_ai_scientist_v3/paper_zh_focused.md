@@ -158,6 +158,16 @@ FAVG 这个向量视角比单一标量更稳健。在 3 个深度案例中，词
 
 OpenEvolve 式搜索在某些可机器评分子问题上有效，但并非总是必要。在 vectorization 任务中，直接 rewrite 未通过 correctness gate，而短程 OpenEvolve 式搜索能保持正确性并找到显著运行时间改进。在 Max-Cut 中，直接编辑已经改善 starter，OpenEvolve 式搜索只带来小幅额外收益。在简单 sklearn diabetes 回归探针中，直接编辑达到与 OpenEvolve 中位数相当的 RMSE。这个边界条件是 IGRE 的核心：程序搜索应由 evaluator 就绪性和预期边际收益触发，而不是由方法潮流触发。
 
+### 4.6 负结果如何反过来改变方法？
+
+本文的负结果和混合结果不只是局限性，它们本身也是算法设计信号。因此我们新增一个 mixed-evidence audit，把每类失败映射到对应的 IGRE 设计规则。最强的警告来自模型-only 盲评包 dry run：review-guided artifact 获得 0 次胜出，而等上下文无关评审 control 获得 7 次胜出和 1 次平局，平均差值为 -1.1458。这并不说明同行评审无用，而是说明 raw review text 不是好的干预原语。未经门控的评论可能让生成器过拟合评审措辞、加入无关 reviewer pressure，或丢失原论文的技术框架。因此 IGRE 不把评审文字当作直接粘贴进下一轮 prompt 的额外上下文，而是先把它转化为 gate-specific actions。
+
+FML 和 prospective packages 给出第二条规则。人类门控可以在 evaluator-ready 的微型问题上有用，SSH Max-Cut 运行就是正例；但它尚未改善短预算 AI Scientist-v2 benchmark 的平均表现。这把 co-pilot 论文中常被混淆的两个主张分开：一个人类门控可能改善局部分支选择，但这不等于整个 co-pilot 系统已经优于 autonomous search。因此 IGRE 分别记录 benchmark score、manuscript score、frontier movement、claim calibration 和 attention cost，而不把它们合成一个看起来漂亮的总分。
+
+TFR 结果给出第三条规则。在三条 live four-condition replay 中，同模型 judge 最初都把案例标为 positive，但预注册 delayed-value 规则都把它们修正为 mixed，因为短期惩罚条件并不成立。这暴露了一个具体失败机制：当时间不对称结构不存在时，模型 judge 仍可能过度乐观地把 guided artifact 判为 future-aligned。因此 TFR 必须包含确定性规则校验、paper-only 与 shuffled-review controls，以及跨模型或人类 frontier judge，之后才能把某条评审称为 delayed-value signal。
+
+最后，frontier metrics 之间也会分歧。内部评议和词汇式前沿覆盖在 3 个深度案例中都偏好 six-gate artifact，但向量投影只支持 2 个案例，直接 frontier cosine 只支持 1 个案例。这迫使方法保留一个约束：科研品味不能被压缩为单一 reward。最终工作流应分别报告某个 gate 是否改善局部质量、是否沿着 original-to-frontier 方向移动、是否产生正交新颖性，或者只是提高了泛化 reviewer satisfaction。正是在这个意义上，本文的负结果也是算法的一部分：它们决定什么时候人类输入应被路由、降权、延迟进入 replay，或者直接拒绝。
+
 ## 5. 讨论
 
 IGRE 把人类参与重新定义为高方差搜索算子。这比“人类参与一定正向”更符合科学研究。人类判断可能通过捕捉问题深度、机制、新颖性或主张风险，提高罕见高价值轨迹出现的概率；但它也可能在短预算下拉低平均分数。
