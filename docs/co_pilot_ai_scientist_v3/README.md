@@ -70,6 +70,13 @@ claim calibration.
   control `-0.0855`, `0` delayed-value cases, `3`
   short-term-positive/long-term-negative cases), and is reported as pipeline
   evidence rather than a literature-backed SOTA reconstruction.
+- `experiments/retrospective_frontier_citation_probe_20260602_163000/`:
+  lightweight citation-backed frontier pilot using Semantic Scholar with
+  OpenAlex fallback. The first arXiv-linked sample retrieves two later citing
+  papers and remains negative for review-guided frontier alignment
+  (`paper_only` wins, review-guided minus paper-only `-0.04`). This is reported
+  as evidence that citation-backed frontier reconstruction needs relevance
+  filtering, not as a rejection of the delayed-value hypothesis.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet

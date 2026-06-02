@@ -56,6 +56,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | OpenReview equal-context ablation | 8 review-guided votes | 1 context-control vote, 3 ties | mean delta across models +0.5 | Paper-specific reviews beat matched unrelated review context, but Claude shows the effect is modest. |
 | Preregistered blind expert-review packet | 6 anonymized A/B pairs prepared | 0 completed human rows | planned 3-5 raters | Evaluation readiness only; no human evidence is claimed yet. |
 | Retrospective frontier-alignment smoke | review-guided wins 1 | shuffled-control wins 5 | mean delta vs. control -0.0855; 0 delayed-value cases; 3 short-term-positive/long-term-negative cases | Future-frontier alignment is harder than local paper improvement; heuristic descriptors only. |
+| Citation-backed frontier pilot | paper-only wins 1 | review-guided wins 0 | 1 paper, 2 later citations, mean delta vs. paper-only -0.04 | Retrieved citation graph is thin; citation relevance filtering is needed before strong claims. |
 | Prospective matched packages | 1 co-pilot or human-selected win | 3 autonomous/tie/invalid outcomes | 4 packages | Short-budget average benchmark superiority is not supported. |
 | Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
@@ -129,6 +130,14 @@ model-scored artifact, but decreases heuristic future-frontier alignment. This
 negative result is useful because it separates local reviewer satisfaction from
 long-horizon scientific directionality, which is exactly the distinction a
 co-pilot scientist must learn.
+
+A first citation-backed version of the probe uses OpenAlex fallback metadata for
+one arXiv-linked sample after Semantic Scholar rate limiting. It retrieves two
+later citing papers and again finds no delayed-value case: paper-only scores
+highest, while review guidance is short-term-positive but citation-frontier
+negative. This is not yet evidence against the hypothesis. The citation graph is
+too thin and topically broad, so the main lesson is methodological: future
+frontier descriptors need relevance filtering, not only raw citation retrieval.
 
 This makes the paper's application value concrete. The goal is not merely to prove that humans improve paper quality. The goal is to design the best modes of human participation, compare them empirically, and build a workflow in which human taste is used where it has the highest chance of changing the research trajectory.
 
