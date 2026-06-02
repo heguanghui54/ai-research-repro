@@ -68,16 +68,22 @@ on code evolution driven by automatic evaluation. FunSearch provides an earlier
 example of LLM-guided program search for mathematical discovery. Coscientist
 shows how LLM agents can connect to chemistry tools and laboratory automation.
 
-This work also sits in the older self-improving program-search tradition. OOPS
-organized incremental search over programs and search procedures. The Gödel
-Machine formalized self-referential problem solvers that may rewrite their own
-software once they prove expected improvement. POWERPLAY continually searches
-for new tasks and solver modifications while preserving previous competence.
-Recent Darwin Gödel Machine and Huxley-Gödel Machine work brings this lineage
-back into coding agents that modify their own codebases under benchmark or
-metaproductivity signals. IGRE does not claim to solve recursive
-self-improvement. It uses this lineage more modestly: code evolution is allowed
-only inside verifiable micro-gates, with archived evidence and claim boundaries.
+This work also sits in the older Schmidhuber line of self-referential learning
+and self-improving program search. That line begins well before LLM agents:
+Schmidhuber's 1987 self-referential learning thesis framed learning-how-to-learn
+as a problem in which a system can inspect and modify parts of its own learning
+procedure; OOPS later organized incremental universal search over programs and
+search procedures; the Gödel Machine formalized self-referential problem solvers
+that may rewrite their own software once they prove expected improvement; and
+POWERPLAY continually searches for new tasks and solver modifications while
+preserving previous competence. Recent Darwin Gödel Machine and Huxley-Gödel
+Machine work brings this lineage back into coding agents that modify their own
+codebases under benchmark, archive, or metaproductivity signals. IGRE does not
+claim to solve recursive self-improvement. It uses this lineage more modestly:
+code evolution is allowed only inside verifiable micro-gates, with archived
+evidence and claim boundaries. The object being evolved is also different: not
+the agent's whole source code, but bounded research artifacts, evaluators,
+subproblem programs, and claim policies selected through human-insight gates.
 
 IGRE borrows design pressure from these systems, not their control logic. From
 hypothesis agents it takes the need for diverse conjectures, but replaces

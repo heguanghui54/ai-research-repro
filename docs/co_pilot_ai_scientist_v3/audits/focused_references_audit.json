@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T13:55:43Z",
+  "audit_date": "2026-06-02T14:22:57Z",
   "status": "pass",
   "checks": {
     "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
@@ -14,6 +14,7 @@
         "AlphaEvolve": true,
         "OpenEvolve": true,
         "Schmidhuber": true,
+        "self-referential learning": true,
         "OOPS": true,
         "Gödel Machine": true,
         "POWERPLAY": true,
@@ -43,6 +44,7 @@
         "alphadev": true,
         "funsearch": true,
         "openevolve": true,
+        "schmidhuber1987selfreferential": true,
         "schmidhuber2004oops": true,
         "schmidhuber2003godel": true,
         "schmidhuber2011powerplay": true,

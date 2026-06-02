@@ -1,6 +1,6 @@
 # Focused References Audit
 
-- Audit date: `2026-06-02T13:55:43Z`
+- Audit date: `2026-06-02T14:22:57Z`
 - Status: `pass`
 
 ## Key Terms
@@ -14,6 +14,7 @@
 - `AlphaEvolve`
 - `OpenEvolve`
 - `Schmidhuber`
+- `self-referential learning`
 - `OOPS`
 - `Gödel Machine`
 - `POWERPLAY`

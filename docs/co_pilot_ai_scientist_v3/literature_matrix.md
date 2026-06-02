@@ -65,3 +65,29 @@
 - Candidate examples to adapt: function minimization, symbolic regression,
   circle packing, adaptive sorting, and GPU/kernel optimization tasks.
 - Link: https://github.com/algorithmicsuperintelligence/openevolve
+
+## Schmidhuber Self-Referential Learning Line
+
+- Role in this proposal: historical and conceptual foundation for bounded
+  self-improvement, verification, and capability preservation.
+- Imported idea: self-improving systems should not be treated as arbitrary
+  repeated prompting. The line from self-referential learning, OOPS, Gödel
+  Machines, and POWERPLAY frames improvement as ordered program search,
+  self-modification under evidence or proof, and preservation of prior
+  competence.
+- Modern continuation: Darwin Gödel Machine and Huxley-Gödel Machine adapt this
+  line to coding agents that rewrite or branch their own codebases under
+  benchmark, archive, or metaproductivity signals.
+- Human node: IGRE relocates self-improvement pressure away from autonomous
+  full-agent self-rewrite and into human-insight-gated evolution of research
+  artifacts, evaluators, subproblem programs, and claim boundaries.
+- Limitation addressed here: full recursive self-improvement is too broad and
+  unsafe as a claim for this paper. IGRE uses the discipline of this lineage
+  only inside bounded, auditable micro-evolution and trajectory-steering gates.
+- Links:
+  - https://people.idsia.ch/~juergen/diploma1987ocr.pdf
+  - https://people.idsia.ch/~juergen/oopsweb/oopsweb.html
+  - https://arxiv.org/abs/cs/0309048
+  - https://arxiv.org/abs/1112.5309
+  - https://arxiv.org/abs/2505.22954
+  - https://arxiv.org/abs/2510.21614

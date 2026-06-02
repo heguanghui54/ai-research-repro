@@ -18,6 +18,8 @@
 
 AI Co-Scientist 将科学发现建模为假设生成、讨论和演化，优势在于研究早期的想象力和证据组织。AI Scientist-v2 通过 agentic tree search 将候选想法转化为可运行实验和论文。AlphaEvolve 使用自动评估驱动代码进化，适合机器可评分问题。FunSearch 是 LLM 引导程序搜索用于数学发现的早期代表。Coscientist 则展示了 LLM agent 如何连接化学工具和实验自动化。
 
+本文还必须放在 Schmidhuber 自指学习和代码自我改进这条更早的谱系中理解。1987 年的 self-referential learning 工作已经把 learning-how-to-learn 表述为学习过程能够检查和修改自身机制的问题；OOPS 把程序与搜索过程放进增量式通用搜索；Gödel Machine 把自指问题求解器形式化为在证明改写有收益后才改写自身软件；POWERPLAY 则持续寻找新任务和 solver modification，同时保持旧任务能力。近年的 Darwin Gödel Machine 和 Huxley-Gödel Machine 把这条线重新带回 coding agent 场景，让 agent 在 benchmark、archive 或 metaproductivity 信号下修改自身代码库。IGRE 不声称解决递归自我改进，而是借用这条线中的验证、归档和能力保持纪律：被演化的对象不是 agent 整体源码，而是 bounded research artifacts、evaluator、子问题程序和主张边界，并且这些变化必须经过人类 insight gate。
+
 IGRE 借鉴这些系统带来的设计压力，但不照搬它们的控制逻辑。它从假设生成系统中吸收多样化 conjecture 的需求，但把自由辩论改造成可记录的科研品味先验；它从自动论文系统中吸收可执行实验搜索，但在 benchmark 分数不足以决定方向的地方加入前沿转向和主张校准；它从程序演化系统中吸收机器可评分子问题的深度搜索，但通过选择性升级 gate 控制成本和适用范围。因此，本文优化的不是单个任务指标，而是一条证据对齐、上限更高的科研轨迹。
 
 ### 2.1 与一般科研 co-pilot 的区别
