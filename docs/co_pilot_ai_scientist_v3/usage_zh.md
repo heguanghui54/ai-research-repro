@@ -142,6 +142,24 @@ python3 scripts/run_semantic_frontier_judge_probe.py \
 python3 scripts/audit_temporal_frontier_replay.py
 ```
 
+对于“人类科研品味是否有长时域价值”这个问题，应把 LHTG/DVRS 作为 TFR 外层的
+路由策略来使用。LHTG 不是第六个普通审批 gate，而是判断哪些人类评议值得进入
+delayed-value replay 的规则：这些评议短期可能让 artifact 分数变差，但可能把研究
+方向推向后来主流或 SOTA 的轨迹。
+
+如果要筛选并验证 delayed-value review candidates，运行：
+
+```bash
+python3 scripts/run_delayed_value_review_candidate_mining.py
+python3 scripts/run_delayed_value_candidate_frontier_validation.py
+python3 scripts/audit_long_horizon_taste_gate.py
+```
+
+这个 audit 必须保守解释。当前归档包找到 `120` 条 delayed-value replay
+candidates，并且小规模 citation-frontier validation 中 delayed candidates 相比
+control 有弱正向优势；但正向 delayed-value cases 仍然是 `0`。因此它支持 replay
+prioritization 和可证伪协议，不支持“人类评议已经证明能提升长时域科研发现”的强主张。
+
 TFR 必须保守解释。正向 delayed-value case 要求 review guidance 降低短期质量，
 但提高后续前沿对齐，并且超过 paper-only 与 shuffled-review-control 条件。当前
 归档 audit 对 delayed-value 证据是负向的，这表示测量边界，而不是协议失败。
@@ -382,6 +400,7 @@ continuation 的失败案例，因此应把它们作为 pilot evidence 和后续
 ## 人类参与节点
 
 - `scientific_taste_prior`：基于科研品味和上行空间选择或改写研究假设，而不只看当前分数。
+- `long_horizon_taste_gate`：当评审意见或人类干预可能降低短期质量、但指向后来的学科轨迹时，把它路由到 delayed-value replay。
 - `evaluator_stress_test`：审批指标、baseline 和防投机失败条件。
 - `frontier_steering`：决定哪些实验分支继续获得预算，包括当前分数不是最好但上行空间更大的分支。
 - `verifiable_micro_evolution`：决定某个子问题是否值得深度代码进化。

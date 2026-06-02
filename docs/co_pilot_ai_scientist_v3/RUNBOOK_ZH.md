@@ -107,6 +107,12 @@ python3 scripts/run_openevolve_program_search.py \
 每个人类决策点都应写出符合 `human_gate_schema.json` 的 JSON 日志。新运行
 可以复用 `skills/co-pilot-ai-scientist-v3/templates/` 中的模板。
 
+对于长时域科研品味，还要记录该决策是否是 LHTG/DVRS candidate。这里关注的是：
+人类评议短期可能制造阻力或降低 artifact 分数，但可能把 agent 引向后来主流或
+SOTA 的方向。只有在 Temporal Frontier Replay 中通过 paper-only、
+review-guided、shuffled-review-control 三种条件，并与 later-field evidence
+对齐后，才能把它记为正向 delayed-value case。
+
 当前 replay 和 live-probe 证据：
 
 - Causality FML replay：停止较弱的第二个 draft，继续较强的第一分支。
@@ -126,6 +132,25 @@ python3 scripts/run_openevolve_program_search.py \
 
 当前 continuation 通过 snapshot seeding 实现。更强版本应保存并恢复原始
 AI Scientist-v2 tree object。
+
+## 6A. 长期科研品味门控 / DVRS 审计
+
+在本地运行 delayed-value candidate 和 audit 路径：
+
+```bash
+python3 scripts/run_delayed_value_review_candidate_mining.py
+python3 scripts/run_delayed_value_candidate_frontier_validation.py
+python3 scripts/audit_temporal_frontier_replay.py
+python3 scripts/audit_long_horizon_taste_gate.py
+```
+
+当前预期边界：
+
+- delayed-value replay candidates：`120`；
+- positive delayed-value cases：`0`；
+- LHTG/DVRS 状态：已经操作化，但还没有正向 delayed-value 证明。
+
+这应作为 routing 和可证伪性审计，而不是“人类评议已经提升长时域科研发现”的证据。
 
 ## 7. 所选分支 continuation
 

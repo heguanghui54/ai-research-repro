@@ -151,6 +151,25 @@ python3 scripts/run_semantic_frontier_judge_probe.py \
 python3 scripts/audit_temporal_frontier_replay.py
 ```
 
+For the long-horizon human-taste question, use LHTG/DVRS as the routing layer
+around TFR. LHTG is not a sixth ordinary gate; it is the rule that decides which
+human reviews deserve delayed-value replay because they may look costly in the
+short term while pointing toward later mainstream or SOTA directions.
+
+To screen and validate delayed-value review candidates, run:
+
+```bash
+python3 scripts/run_delayed_value_review_candidate_mining.py
+python3 scripts/run_delayed_value_candidate_frontier_validation.py
+python3 scripts/audit_long_horizon_taste_gate.py
+```
+
+Interpret this audit conservatively. The current archived package finds `120`
+delayed-value replay candidates and a small delayed-candidate-vs-control
+frontier advantage, but `0` positive delayed-value cases. This supports replay
+prioritization and a falsifiable protocol, not a claim that human reviews have
+already improved long-horizon discovery.
+
 TFR should be interpreted strictly. A positive delayed-value case requires
 review guidance to reduce short-term quality while increasing later-frontier
 alignment beyond both paper-only and shuffled-review-control conditions. The
@@ -412,6 +431,9 @@ larger runs.
 
 - `scientific_taste_prior`: choose or rewrite the research hypothesis using
   scientific taste and upside, not only current scores.
+- `long_horizon_taste_gate`: route reviews or human interventions into
+  delayed-value replay when they may reduce short-term quality but point toward
+  later field trajectories.
 - `evaluator_stress_test`: approve metrics, baselines, and anti-gaming failure
   conditions.
 - `frontier_steering`: choose which experiment branches receive more budget,

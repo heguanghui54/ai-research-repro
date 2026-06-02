@@ -89,9 +89,25 @@ matched evidence and clear boundary conditions.
      historical review snippets themselves carry future-frontier signals, and
      `scripts/run_semantic_frontier_judge_probe.py` when lexical overlap is too
      weak and a semantic judge over citation metadata is needed.
+   - Use the Long-Horizon Taste Gate (LHTG) as a cross-gate meta-policy, not as
+     another approval button. LHTG routes human comments that may be locally
+     costly but directionally important into delayed-value replay. A Delayed-
+     Value Review Signal (DVRS) is only positive when review guidance worsens
+     or fails to improve the short-term artifact while improving alignment with
+     later field evidence beyond paper-only and shuffled-review controls.
+   - Before spending expensive replay budget, run
+     `scripts/run_delayed_value_review_candidate_mining.py` to screen a larger
+     review sample for long-horizon candidate comments, then run
+     `scripts/run_delayed_value_candidate_frontier_validation.py` to test
+     whether those candidates are more aligned with later citation-frontier
+     evidence than controls.
    - Run `scripts/audit_temporal_frontier_replay.py` after TFR probes, or when
      using the archived TFR package, to verify the operational spec, required
      replay conditions, delayed-value definition, and archived probe summaries.
+   - Run `scripts/audit_long_horizon_taste_gate.py` whenever LHTG/DVRS is
+     discussed in the paper or package. This audit ties the method language to
+     the TFR spec, candidate queue, validation probe, and negative evidence
+     boundary.
    - Treat delayed-value review signals as the high-value but hard case:
      review guidance may reduce short-term artifact quality while improving
      alignment with later mainstream or SOTA directions. If the probe finds no
@@ -342,6 +358,10 @@ Reusable templates are stored next to this skill:
 - attention+taste logging smoke audit;
 - human attention-cost audit;
 - taste/insight coverage audit;
+- delayed-value review candidate mining;
+- delayed-value candidate frontier validation;
+- Temporal Frontier Replay audit;
+- Long-Horizon Taste Gate / DVRS audit;
 - prospective matched-budget package audit;
 - full-gate trajectory artifact;
 - executable full-gate trace replay when archived summaries are available;
@@ -374,4 +394,9 @@ Reusable templates are stored next to this skill:
 - Treat human decisions as high-variance search data, not informal chat context.
 - Do not assume human participation always helps. Report negative results and
   distinguish mean benchmark performance from high-tail scientific upside.
+- For delayed-value claims, require temporal evidence: a historical paper,
+  real review guidance, paper-only and shuffled-review controls, later-field
+  evidence, and an explicit short-term-vs-long-term label.
+- If LHTG/DVRS audits find zero positive delayed-value cases, state that the
+  protocol is operationalized but the long-horizon benefit remains unproven.
 - Keep the final paper aligned with actual experiment artifacts.

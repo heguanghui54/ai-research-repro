@@ -43,5 +43,15 @@
     "qualitative_rationale": "Record why this decision reflects scientific taste or insight beyond the current metric.",
     "non_metric_factors": []
   },
+  "long_horizon_taste_gate": {
+    "is_lhtg_candidate": false,
+    "dvrs_hypothesis": null,
+    "expected_short_term_cost": null,
+    "later_field_evidence": [],
+    "paper_only_control": null,
+    "shuffled_review_control": null,
+    "delayed_value_label": "not_evaluated",
+    "claim_boundary": "Candidate only unless TFR validates short-term friction plus later-frontier alignment."
+  },
   "follow_up_checks": []
 }

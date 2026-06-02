@@ -108,6 +108,13 @@ Every human decision point should write a JSON log matching
 `human_gate_schema.json`. Use the templates in
 `skills/co-pilot-ai-scientist-v3/templates/` for new runs.
 
+For long-horizon scientific taste, also log whether a decision is an LHTG/DVRS
+candidate. This is the case where human review may introduce short-term
+friction but could point the agent toward later mainstream or SOTA directions.
+Do not score such cases as positive until Temporal Frontier Replay validates
+paper-only, review-guided, and shuffled-review-control conditions against
+later-field evidence.
+
 Current replay and live-probe evidence:
 
 - Causality FML replay: stop the lower-value second draft and continue the
@@ -130,6 +137,26 @@ Current replay and live-probe evidence:
 
 The current continuation is implemented by snapshot seeding. A stronger future
 version should preserve and resume the original AI Scientist-v2 tree object.
+
+## 6A. Long-Horizon Taste Gate / DVRS Audit
+
+Run the delayed-value candidate and audit path locally:
+
+```bash
+python3 scripts/run_delayed_value_review_candidate_mining.py
+python3 scripts/run_delayed_value_candidate_frontier_validation.py
+python3 scripts/audit_temporal_frontier_replay.py
+python3 scripts/audit_long_horizon_taste_gate.py
+```
+
+Expected current boundary:
+
+- delayed-value replay candidates: `120`;
+- positive delayed-value cases: `0`;
+- LHTG/DVRS status: operationalized, with no positive delayed-value proof.
+
+Use this as a routing and falsifiability audit. It is not evidence that human
+reviews already improve long-horizon discovery.
 
 ## 7. Selected-Branch Continuation
 

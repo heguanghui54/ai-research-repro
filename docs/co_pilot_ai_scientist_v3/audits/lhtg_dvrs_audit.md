@@ -1,6 +1,6 @@
 # Long-Horizon Taste Gate / DVRS Audit
 
-- Audit date: `2026-06-02T10:52:20Z`
+- Audit date: `2026-06-02T11:03:53Z`
 - Status: `pass_with_no_positive_dvrs`
 - Method terms present: `True`
 - TFR status: `pass_with_negative_delayed_value_evidence`
