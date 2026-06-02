@@ -138,13 +138,50 @@ To reduce same-model scoring bias, we rescore the same six pairs with a stricter
 
 This probe has an important confound. The review-guided condition receives more information than the title/abstract baseline. We therefore run an equal-context ablation using matched-length unrelated OpenReview snippets as a context-control condition. Across two reviewer models and six papers, review-guided artifacts receive 8 winning votes, context-control receives 1, and 3 comparisons tie, with mean delta across models +0.5. The stricter Claude review gives 3 review-guided wins, 0 context-control wins, and 3 ties, with mean delta +0.1667. This supports a more precise conclusion: paper-specific reviews can add value beyond generic reviewer pressure, but mostly when they contain concrete method details or explicit claim-calibration warnings.
 
-### 4.3 Do short-budget human gates beat autonomous baselines?
+### 4.3 Do regenerated artifacts move toward current research frontiers?
+
+Local paper-quality scores are not enough for the central claim of this paper.
+A human review may lower short-term benchmark or writing scores while still
+moving a research trajectory toward a later important direction. Conversely, a
+review may improve reviewer satisfaction while moving the artifact away from
+the field's current frontier. To make this distinction measurable, we add a
+frontier-vector graph.
+
+We seed a small current-frontier taxonomy from official ICLR, ICML, and ACL
+2025 award-paper pages, then define a six-dimensional frontier space:
+alignment/safety/reliability, mechanistic/theoretical insight,
+efficient systems/inference, adaptive long-horizon search,
+evaluation/benchmark shift, and deployment/social value. Each original paper,
+raw review-guided artifact, six-gate hybrid artifact, and frontier seed is
+mapped to a nonnegative vector in this space. Let `o` be the original paper
+vector, `a` be a regenerated artifact vector, and `f` be the centroid of the
+current frontier seeds. We report three complementary quantities:
+
+1. `cos(a, f) - cos(o, f)`, the change in direct similarity to the current
+   frontier centroid.
+2. `dot(a - o, f - o) / ||f - o||`, the projection of the regeneration movement
+   onto the original-to-frontier direction.
+3. the norm of the component of `a - o` orthogonal to `f - o`, which measures
+   sideways novelty rather than direct frontier convergence.
+
+This vector view makes the evaluation less brittle than a single scalar. In the
+three deep cases, the lexical frontier-alignment score favors six-gate hybrid
+artifacts in all three cases, with mean delta +3.467. The vector graph is more
+diagnostic: mean six-gate projection gain is +0.1668, but mean cosine gain is
+-0.0641; two cases move more strongly along the original-to-frontier direction,
+while one case moves away. This mixed signal is exactly why IGRE needs
+frontier-aware gates. A useful human insight is not merely a comment that makes
+the next artifact score higher. It is a comment that changes the search vector
+in a direction worth pursuing, or deliberately creates orthogonal novelty whose
+value should be tested by later evidence.
+
+### 4.4 Do short-budget human gates beat autonomous baselines?
 
 The prospective FML-bench-style matched packages are intentionally reported as mixed or negative. Across the current passing packages, there is one controlled Max-Cut micro-task where a human-selected branch is useful, and three FML-bench cases where the co-pilot branch loses, ties, aborts, or fails to produce a valid continuation. In repeated online paired smokes, valid Causality runs produce 0 co-pilot benchmark wins, 1 autonomous win, and 1 tie; the Fairness run is a no-valid-branch failure case.
 
 This result is important. It prevents the paper from claiming that human participation improves average benchmark performance under tiny budgets. Instead, it motivates the core design problem: human gates must be specific, budget-aware, and routed to the parts of the workflow where taste and insight actually matter.
 
-### 4.4 When should verifiable micro-evolution be triggered?
+### 4.5 When should verifiable micro-evolution be triggered?
 
 OpenEvolve-style search is valuable on some machine-gradeable subproblems, but not all. On a vectorization task, direct rewrite fails correctness while short OpenEvolve-style search retains correct programs and finds large runtime improvements. On Max-Cut, direct editing improves the starter, while OpenEvolve-style search gives a small additional gain. On a simple sklearn diabetes regression probe, direct editing matches the median OpenEvolve result. This boundary condition is central to IGRE: program search should be triggered by evaluator readiness and expected marginal value, not by methodological fashion.
 
