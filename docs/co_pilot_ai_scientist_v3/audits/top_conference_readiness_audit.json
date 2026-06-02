@@ -516,34 +516,48 @@
     "claim_boundary": "Cross-model review reduces same-model scoring bias for regenerated mini-paper artifacts, but it is still model-routed artifact review, not independent human peer review or experiment rerun."
   },
   "focused_paper_quality_review": {
-    "status": "improved_structure_but_not_top_conference_ready",
+    "review_date": "2026-06-02",
     "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
-    "summary": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md",
-    "gpt_recommendation": "Weak accept",
-    "gpt_scores": {
-      "novelty": 4,
-      "rigor": 3,
-      "clarity": 4,
-      "evidence": 3,
-      "reproducibility": 4,
-      "significance": 3
+    "evidence_context": [
+      "controlled metric-gaming evaluator-stress smoke",
+      "archived FML-Bench Fairness_fairlearn evaluator-stress replay",
+      "OpenReview equal-context ablation",
+      "top-conference readiness audit"
+    ],
+    "reviews": {
+      "gpt-4o-mini": {
+        "recommendation": "Weak accept",
+        "scores": {
+          "novelty": 4,
+          "rigor": 3,
+          "clarity": 4,
+          "evidence": 3,
+          "reproducibility": 3,
+          "significance": 4
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
+      },
+      "claude-3-7-sonnet-latest": {
+        "recommendation": "Weak reject",
+        "scores": {
+          "novelty": 3,
+          "rigor": 2,
+          "clarity": 2,
+          "evidence": 1,
+          "reproducibility": 3,
+          "significance": 3
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+      }
     },
-    "claude_recommendation": "Weak reject",
-    "claude_scores": {
-      "novelty": 3,
-      "rigor": 2,
-      "clarity": 2,
-      "evidence": 1,
-      "reproducibility": 3,
-      "significance": 3
-    },
-    "blocking_diagnosis": "Focused rewrite improves narrative and method distinctness, but independent human expert review, equal-context OpenReview ablation, and broader matched runs are still missing.",
+    "aggregate_conclusion": "Updated FML evaluator-stress evidence strengthens gate-design support but does not close top-conference empirical gaps.",
     "next_required_evidence": [
-      "blind_human_expert_pair_ratings",
-      "multi_task_multi_seed_matched_runs",
-      "unified_result_table_with_effect_sizes",
-      "independent_human_attention_cost_records"
-    ]
+      "blind human expert ratings with inter-rater agreement",
+      "larger matched autonomous versus human-gated trajectories across tasks/seeds",
+      "formal gate-structure ablations",
+      "narrower primary contribution narrative"
+    ],
+    "status": "refreshed_with_fml_evaluator_stress_replay"
   },
   "openreview_equal_context_ablation": {
     "status": "completed_model_routed_equal_context_ablation",
@@ -954,5 +968,41 @@
       }
     },
     "claim_boundary": "This is a replay over archived real FML-Bench Fairness_fairlearn evaluation artifacts. It supports evaluator-gate design against metric gaming, but it does not show a Fairness improvement, does not rerun the remote benchmark, and does not prove that IGRE improves average benchmark performance."
+  },
+  "top_conference_empirical_support": {
+    "status": "not_supported_yet",
+    "latest_focused_reviews": {
+      "gpt-4o-mini": {
+        "recommendation": "Weak accept",
+        "scores": {
+          "novelty": 4,
+          "rigor": 3,
+          "clarity": 4,
+          "evidence": 3,
+          "reproducibility": 3,
+          "significance": 4
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
+      },
+      "claude-3-7-sonnet-latest": {
+        "recommendation": "Weak reject",
+        "scores": {
+          "novelty": 3,
+          "rigor": 2,
+          "clarity": 2,
+          "evidence": 1,
+          "reproducibility": 3,
+          "significance": 3
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+      }
+    },
+    "reason": "GPT weakly accepts, but Claude still weakly rejects because evidence remains thin, internally generated, mixed or negative for broad superiority, and lacks independent human expert evaluation.",
+    "next_required_evidence": [
+      "blind human expert ratings with inter-rater agreement",
+      "larger matched autonomous versus human-gated trajectories across tasks/seeds",
+      "formal gate-structure ablations",
+      "narrower primary contribution narrative"
+    ]
   }
 }

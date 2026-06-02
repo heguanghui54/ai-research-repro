@@ -1,0 +1,43 @@
+{
+  "review_date": "2026-06-02",
+  "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+  "evidence_context": [
+    "controlled metric-gaming evaluator-stress smoke",
+    "archived FML-Bench Fairness_fairlearn evaluator-stress replay",
+    "OpenReview equal-context ablation",
+    "top-conference readiness audit"
+  ],
+  "reviews": {
+    "gpt-4o-mini": {
+      "recommendation": "Weak accept",
+      "scores": {
+        "novelty": 4,
+        "rigor": 3,
+        "clarity": 4,
+        "evidence": 3,
+        "reproducibility": 3,
+        "significance": 4
+      },
+      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
+    },
+    "claude-3-7-sonnet-latest": {
+      "recommendation": "Weak reject",
+      "scores": {
+        "novelty": 3,
+        "rigor": 2,
+        "clarity": 2,
+        "evidence": 1,
+        "reproducibility": 3,
+        "significance": 3
+      },
+      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+    }
+  },
+  "aggregate_conclusion": "Updated FML evaluator-stress evidence strengthens gate-design support but does not close top-conference empirical gaps.",
+  "next_required_evidence": [
+    "blind human expert ratings with inter-rater agreement",
+    "larger matched autonomous versus human-gated trajectories across tasks/seeds",
+    "formal gate-structure ablations",
+    "narrower primary contribution narrative"
+  ]
+}

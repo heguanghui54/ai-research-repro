@@ -579,7 +579,8 @@
     "scripts/run_metric_gaming_evaluator_stress_smoke.py",
     "scripts/run_fml_fairness_evaluator_stress_replay.py",
     "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/summary.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/README.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/README.md",
+    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -990,14 +991,45 @@
   "focused_paper_quality_review": {
     "review_date": "2026-06-02",
     "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
-    "models": [
-      "gpt-4o-mini",
-      "claude-3-7-sonnet-latest"
+    "evidence_context": [
+      "controlled metric-gaming evaluator-stress smoke",
+      "archived FML-Bench Fairness_fairlearn evaluator-stress replay",
+      "OpenReview equal-context ablation",
+      "top-conference readiness audit"
     ],
-    "gpt_recommendation": "Weak accept",
-    "claude_recommendation": "Weak reject",
-    "summary": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md",
-    "claim_boundary": "Focused manuscript now incorporates the equal-context OpenReview ablation; independent human expert review remains missing."
+    "reviews": {
+      "gpt-4o-mini": {
+        "recommendation": "Weak accept",
+        "scores": {
+          "novelty": 4,
+          "rigor": 3,
+          "clarity": 4,
+          "evidence": 3,
+          "reproducibility": 3,
+          "significance": 4
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
+      },
+      "claude-3-7-sonnet-latest": {
+        "recommendation": "Weak reject",
+        "scores": {
+          "novelty": 3,
+          "rigor": 2,
+          "clarity": 2,
+          "evidence": 1,
+          "reproducibility": 3,
+          "significance": 3
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+      }
+    },
+    "aggregate_conclusion": "Updated FML evaluator-stress evidence strengthens gate-design support but does not close top-conference empirical gaps.",
+    "next_required_evidence": [
+      "blind human expert ratings with inter-rater agreement",
+      "larger matched autonomous versus human-gated trajectories across tasks/seeds",
+      "formal gate-structure ablations",
+      "narrower primary contribution narrative"
+    ]
   },
   "openreview_equal_context_ablation": {
     "run_id": "openreview_equal_context_ablation_20260602_142000",

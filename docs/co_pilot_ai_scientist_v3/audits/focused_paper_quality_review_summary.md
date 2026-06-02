@@ -13,47 +13,57 @@ Reviewer routes:
 
 ## Aggregate Verdict
 
-The focused manuscript improves the earlier lab-record-style draft by giving
-IGRE a clearer method name, a standard conference-paper structure, and a more
-honest evidence boundary. The two reviewers diverge in recommendation but agree
-on the main remaining blockers.
+The refreshed focused review includes the controlled metric-gaming smoke and the
+archived FML-Bench `Fairness_fairlearn` evaluator-stress replay. The added FML
+replay strengthens the evaluator-gate design evidence, but it does not change
+the central readiness conclusion: the paper is still a strong pilot and
+reproducibility package rather than a top-conference-ready systems paper.
 
 | Reviewer | Recommendation | Novelty | Rigor | Clarity | Evidence | Reproducibility | Significance |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 4 | 3 |
+| `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 3 | 4 |
 | `claude-3-7-sonnet-latest` | Weak reject | 3 | 2 | 2 | 1 | 3 | 3 |
 
 ## What Improved
 
-- The paper now frames IGRE as a distinct five-gate architecture rather than a
-  collage of AI Co-Scientist, AI Scientist-v2, and AlphaEvolve/OpenEvolve.
-- Human scientific taste is treated as a high-variance, auditable search
-  operator, not as guaranteed positive supervision.
-- OpenReview expert-review text is positioned as an offline proxy for human
-  taste and insight, with explicit limits.
-- Negative short-budget FML results are reported as evidence for gate-selection
-  discipline rather than hidden.
+- The paper now gives IGRE a distinct five-gate architecture instead of reading
+  as a direct collage of AI Co-Scientist, AI Scientist-v2, and AlphaEvolve.
+- Human scientific taste is framed as a high-variance search operator whose
+  value must be measured, not assumed.
+- The new FML Fairness evaluator-stress replay shows a real archived benchmark
+  failure mode: primary-only selection chooses a degenerate all-negative
+  predictor, while the gate rejects metric gaming and aborts no-valid
+  continuation.
+- OpenReview evidence is more carefully bounded as offline taste/insight proxy
+  data, with equal-context ablation and cross-model review caveats.
+- Negative short-budget FML outcomes are reported as design pressure for gate
+  selection rather than hidden.
 
 ## Remaining Blocking Issues
 
-- The strongest current claim should be narrowed further: expert review text
-  can be mapped to workflow-control signals, and review-guided regeneration
-  shows a modest positive signal that needs independent human validation.
-- The first OpenReview regeneration probe had an information-quantity confound.
-  A follow-up equal-context ablation now compares real paper-specific reviews
-  against matched-length unrelated OpenReview snippets; this reduces the
-  confound but still relies on model-routed scoring.
-- The manuscript needs a unified result table with metric, co-pilot result,
-  autonomous/baseline result, delta, and interpretation.
-- The evidence still lacks independent human expert ratings, inter-rater
-  agreement, and prospective multi-researcher co-pilot traces.
-- Benchmark coverage remains narrow for a strong general systems claim.
+- The primary empirical evidence is still mixed or negative for broad
+  human-gated superiority: FML Causality packages favor autonomous baselines,
+  Fairness has no valid co-pilot continuation, and frontier-alignment probes do
+  not yet find delayed-value cases.
+- Regenerated artifact comparisons still rely on model-routed scoring; the
+  preregistered blind human expert packet has zero completed human rows.
+- The manuscript is structurally overloaded, mixing architecture, review mining,
+  benchmark pilots, retrospective frontier alignment, micro-evolution, fairness
+  replay, and audit tooling.
+- The OpenReview-derived taste/insight classifier has not been validated against
+  independent expert labels.
+- Benchmark coverage and matched-budget sample size remain too narrow for a
+  strong systems claim.
 
 ## Next Required Evidence
 
-1. Obtain blind human expert ratings on the paired regenerated mini-manuscripts.
-2. Expand matched autonomous versus human-gated runs across more tasks, seeds,
-   and budgets.
-3. Report all benchmark and artifact-quality probes in one consolidated table.
-4. Keep the paper's main claim at workflow-design and measurement-readiness
-   level until the above evidence exists.
+1. Collect the planned blind human expert ratings and report inter-rater
+   agreement.
+2. Run more matched autonomous versus human-gated trajectories across at least
+   three tasks and multiple seeds.
+3. Add a formal gate-structure ablation: no-gate, single-gate, random-gate, and
+   full IGRE.
+4. Rewrite the paper around one primary falsifiable contribution, with secondary
+   probes moved to supporting evidence.
+5. Keep the safest claim at workflow architecture, logging protocol, and
+   measurement-readiness level until stronger evidence exists.

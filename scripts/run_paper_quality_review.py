@@ -83,6 +83,14 @@ def _prompt(paper_path: Path) -> str:
         ROOT
         / "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/README.md"
     )
+    metric_gaming_smoke = _read(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/README.md"
+    )
+    fml_fairness_replay = _read(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/README.md"
+    )
     return f"""Review the following draft as if it were a submission targetting a strong ML/NLP systems venue.
 
 Return Markdown with these sections:
@@ -146,6 +154,16 @@ OpenReview cross-model regeneration review:
 Review utility map:
 ```markdown
 {review_utility}
+```
+
+Controlled metric-gaming evaluator-stress smoke:
+```markdown
+{metric_gaming_smoke}
+```
+
+FML Fairness evaluator-stress replay:
+```markdown
+{fml_fairness_replay}
 ```
 """
 
