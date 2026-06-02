@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T14:53:00Z",
+  "audit_date": "2026-06-02T15:07:07Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "28df91c83ad7b00603e0a66dfa4cb1a74447e10d",
+  "head": "4e78e03cec562cda4b4c7f895a49203855c1342e",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -250,9 +250,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 708,
+  "manifest_artifacts": 717,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "708/708",
+  "manifest_coverage_ratio": "717/717",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",

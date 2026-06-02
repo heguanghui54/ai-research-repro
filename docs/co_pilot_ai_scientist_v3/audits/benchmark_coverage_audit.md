@@ -1,6 +1,6 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T14:52:41Z`
+- Audit date: `2026-06-02T15:06:48Z`
 - Status: `pass`
 - FML entries: `2`
 - Non-FML entries: `9`
@@ -17,6 +17,7 @@
 - `mlagentbench_cifar10_refresh`: `blocked_slow_data_download`; no official score reported.
 - `mlagentbench_imdb`: `setup_blocked_by_huggingface_network`; no official score reported.
 - `mlagentbench_clrs`: `blocked_cpu_timeout_no_checkpoint`; no official score reported.
+- `mlagentbench_clrs_reduced`: `blocked_reduced_cpu_timeout_no_checkpoint`; no official score reported.
 - `scienceagentbench`: `metadata_and_verified_artifacts_not_yet_accessible`; no official score reported.
 
 ## Checks
@@ -37,6 +38,7 @@
 - `blocked_official_tasks_logged`: `pass`
 - `blocked_tasks_do_not_report_scores`: `pass`
 - `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`
+- `mlagentbench_clrs_reduced_kept_non_official_and_unscored`: `pass`
 - `stretch_targets_kept_future`: `pass`
 
 ## Errors

@@ -1,0 +1,14 @@
+run_root=/home/heshi/work/copilotv3-mlagentbench-clrs-reduced-smoke-20260602
+started_at=2026-06-02T22:54:34+08:00
+mode=reduced_clrs_feasibility_not_official
+command=train.py --train_steps=1 --eval_every=1 --test_every=1 --log_every=1 --train_lengths=4 --batch_size=1 --hidden_size=16 --nb_triplet_fts=2 --nb_msg_passing_steps=1 --checkpoint_path=./checkpoints
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780412075.007750  227288 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780412076.538521  227288 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+clrs==2.0.3
+jax==0.6.2
+tensorflow==2.21.0
+haiku==0.0.16
+optax==0.2.8
+tensorflow_datasets==4.9.9+nightly

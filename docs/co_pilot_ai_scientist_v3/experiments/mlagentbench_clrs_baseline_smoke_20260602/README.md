@@ -58,3 +58,8 @@ that MLAgentBench can enter the CLRS baseline runner, but it does not provide a
 second scored official non-FML result. A future scored CLRS run would need
 either a longer CPU/GPU budget, a reduced official training configuration with a
 pre-registered scoring rule, or a cached checkpoint/evaluation path.
+
+Follow-up note: a reduced feasibility run was attempted with one training step,
+length 4, batch size 1, and hidden size 16. It also timed out before checkpoint
+creation, so the current package treats CLRS as a CPU-cost blocker rather than
+a near-term scored benchmark.

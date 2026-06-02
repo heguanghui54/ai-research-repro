@@ -1,0 +1,28 @@
+{
+  "run_id": "mlagentbench_clrs_reduced_smoke_20260602",
+  "date": "2026-06-02",
+  "remote_host": "ubuntu-heshi",
+  "remote_run_root": "/home/heshi/work/copilotv3-mlagentbench-clrs-reduced-smoke-20260602",
+  "mode": "reduced_feasibility_not_official",
+  "base_workspace": "/home/heshi/work/copilotv3-mlagentbench-clrs-baseline-smoke-20260602b/workspace/CLRS",
+  "command": "python -u train.py --train_steps=1 --eval_every=1 --test_every=1 --log_every=1 --train_lengths=4 --batch_size=1 --hidden_size=16 --nb_triplet_fts=2 --nb_msg_passing_steps=1 --checkpoint_path=./checkpoints",
+  "train_timeout_seconds": 600,
+  "train_exit_code": 124,
+  "checkpoint_produced": false,
+  "spec_list_produced": false,
+  "direct_eval_attempted": true,
+  "direct_eval_error": "FileNotFoundError for checkpoints/spec_list.pkl",
+  "official_score_reported": false,
+  "status": "blocked_reduced_cpu_timeout_no_checkpoint",
+  "claim_boundary": "Reduced CLRS feasibility and cost evidence only; not an official MLAgentBench CLRS score.",
+  "artifacts": {
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/README.md",
+    "env_check_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/env_check.log",
+    "train_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/train.log",
+    "train_exit_code": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/train_exit_code.txt",
+    "eval_original_logfolder_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/eval_original_logfolder.log",
+    "eval_original_logfolder_json": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/eval_original_logfolder.json",
+    "direct_eval_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/direct_eval.log",
+    "direct_eval_json": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/direct_eval.json"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T14:52:41Z",
+  "audit_date": "2026-06-02T15:06:48Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -18,6 +18,7 @@
     "blocked_official_tasks_logged": true,
     "blocked_tasks_do_not_report_scores": true,
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,
+    "mlagentbench_clrs_reduced_kept_non_official_and_unscored": true,
     "stretch_targets_kept_future": true
   },
   "evidence_summary": {
@@ -100,6 +101,16 @@
           "description": "The official MLAgentBench CLRS baseline launched train.py but did not produce checkpoints/best.pkl within the 900-second runner timeout on the CPU-only Ubuntu host."
         },
         "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/summary.json"
+      },
+      "mlagentbench_clrs_reduced": {
+        "status": "blocked_reduced_cpu_timeout_no_checkpoint",
+        "mode": "reduced_feasibility_not_official",
+        "official_score_reported": false,
+        "train_exit_code": 124,
+        "checkpoint_produced": false,
+        "spec_list_produced": false,
+        "direct_eval_error": "FileNotFoundError for checkpoints/spec_list.pkl",
+        "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/summary.json"
       },
       "scienceagentbench": {
         "status": "metadata_and_verified_artifacts_not_yet_accessible",

@@ -54,6 +54,7 @@ def main() -> None:
     cifar_refresh_path = EXP_DIR / "mlagentbench_cifar10_debug_refresh_probe_20260602" / "summary.json"
     imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
     clrs_path = EXP_DIR / "mlagentbench_clrs_baseline_smoke_20260602" / "summary.json"
+    clrs_reduced_path = EXP_DIR / "mlagentbench_clrs_reduced_smoke_20260602" / "summary.json"
     science_path = EXP_DIR / "scienceagentbench_metadata_setup_probe" / "summary.json"
 
     matrix = _load_json(matrix_path)
@@ -70,6 +71,7 @@ def main() -> None:
     cifar_refresh = _load_json(cifar_refresh_path)
     imdb = _load_json(imdb_path)
     clrs = _load_json(clrs_path)
+    clrs_reduced = _load_json(clrs_reduced_path)
     science = _load_json(science_path)
 
     vector_agg = vector.get("aggregate", {})
@@ -126,6 +128,16 @@ def main() -> None:
             "blocker": clrs.get("blocker", {}),
             "path": _rel(clrs_path),
         },
+        "mlagentbench_clrs_reduced": {
+            "status": clrs_reduced.get("status"),
+            "mode": clrs_reduced.get("mode"),
+            "official_score_reported": clrs_reduced.get("official_score_reported"),
+            "train_exit_code": clrs_reduced.get("train_exit_code"),
+            "checkpoint_produced": clrs_reduced.get("checkpoint_produced"),
+            "spec_list_produced": clrs_reduced.get("spec_list_produced"),
+            "direct_eval_error": clrs_reduced.get("direct_eval_error"),
+            "path": _rel(clrs_reduced_path),
+        },
         "scienceagentbench": {
             "status": science.get("status"),
             "score_reported": science.get("score_reported"),
@@ -162,6 +174,7 @@ def main() -> None:
         "blocked_tasks_do_not_report_scores": cifar.get("official_score_reported") is False
         and imdb.get("official_score_reported") is False
         and clrs.get("official_score_reported") is False
+        and clrs_reduced.get("official_score_reported") is False
         and science.get("score_reported") is False,
         "mlagentbench_clrs_dependency_repaired_but_unscored": clrs.get("dependency_status") == "repaired"
         and clrs.get("runner_reached_task_prompt") is True
@@ -169,6 +182,12 @@ def main() -> None:
         and clrs.get("runner_exit_code") == 124
         and clrs.get("checkpoint_produced") is False
         and clrs.get("official_score_reported") is False,
+        "mlagentbench_clrs_reduced_kept_non_official_and_unscored": clrs_reduced.get("mode")
+        == "reduced_feasibility_not_official"
+        and clrs_reduced.get("train_exit_code") == 124
+        and clrs_reduced.get("checkpoint_produced") is False
+        and clrs_reduced.get("spec_list_produced") is False
+        and clrs_reduced.get("official_score_reported") is False,
         "stretch_targets_kept_future": _contains_any(matrix_text, ["MLE-bench Lite", "PaperBench", "AIRS-Bench"])
         and "Not run in the current budget" in matrix_text,
     }

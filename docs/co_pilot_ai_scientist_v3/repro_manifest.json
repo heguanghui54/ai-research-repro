@@ -721,7 +721,16 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/run.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/eval.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/eval.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/runner_exit_code.txt"
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/runner_exit_code.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/env_check.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/train.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/train_exit_code.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/eval_original_logfolder.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/eval_original_logfolder.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/direct_eval.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/direct_eval.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1746,9 +1755,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "28df91c83ad7b00603e0a66dfa4cb1a74447e10d",
+    "head": "4e78e03cec562cda4b4c7f895a49203855c1342e",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 708,
+    "manifest_artifacts": 717,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1792,5 +1801,11 @@
     "official_score_reported": false,
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/summary.json",
     "claim_boundary": "Setup and runtime-cost evidence only; no second scored official non-FML benchmark result is reported."
+  },
+  "mlagentbench_clrs_reduced_smoke": {
+    "status": "blocked_reduced_cpu_timeout_no_checkpoint",
+    "official_score_reported": false,
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/summary.json",
+    "claim_boundary": "Reduced CLRS feasibility and cost evidence only; not an official MLAgentBench CLRS score."
   }
 }

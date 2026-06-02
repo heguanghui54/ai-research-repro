@@ -31,7 +31,7 @@ setup probe becomes a scored run.
 | --- | --- | --- | --- | --- |
 | A | FML-bench | AI Scientist-v2-style ML benchmark search over target code | Branch gate, selected-branch continuation, evaluator failures | Runnable and already used |
 | A | OpenEvolve-controlled tasks | Machine-gradeable program search | AlphaEvolve-style escalation gate and direct-edit ablation | Runnable; function minimization, knapsack, and Max-Cut archived |
-| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug was refreshed on 2026-06-02 and the official CIFAR source is reachable but too slow for the current interactive budget; IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but the CPU-only baseline timed out at 900 seconds without a checkpoint |
+| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug was refreshed on 2026-06-02 and the official CIFAR source is reachable but too slow for the current interactive budget; IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but both the official CPU-only baseline and a reduced feasibility run timed out without a checkpoint |
 | B | sklearn diabetes tabular probe | Lightweight supervised-learning model search | Non-FML, non-runtime-only boundary test for direct edit vs program search | Three OpenEvolve seeds and one direct rewrite archived |
 | B | ScienceAgentBench | Data-driven scientific discovery code tasks from publications | Non-FML scientific workflow validation, especially evaluator/claim gates | Code present; HuggingFace metadata and verified artifacts currently unreachable from Ubuntu host |
 | C | MLE-bench Lite | Kaggle-style ML engineering | High-signal, higher-cost end-to-end ML engineering evidence | Stretch benchmark |
@@ -81,8 +81,10 @@ of Co-Pilot AI Scientist v3.
    only. A CLRS probe repaired the earlier dependency gap by installing
    `dm-clrs`, `jax`, `tensorflow`, and related packages; MLAgentBench reached
    the CLRS task prompt and launched `train.py`, but the CPU-only baseline
-   timed out at 900 seconds without `checkpoints/best.pkl`, so CLRS is also
-   setup/cost evidence rather than a scored result.
+   timed out at 900 seconds without `checkpoints/best.pkl`. A reduced
+   feasibility configuration (`train_steps=1`, `train_lengths=4`,
+   `batch_size=1`, `hidden_size=16`) also timed out before writing
+   `spec_list.pkl`, so CLRS is setup/cost evidence rather than a scored result.
 5. **ScienceAgentBench single task**: first download the verified benchmark
    artifacts on the Ubuntu host. A metadata setup probe confirmed that the
    repository is present but HuggingFace metadata access fails from the Ubuntu

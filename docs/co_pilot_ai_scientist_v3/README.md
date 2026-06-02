@@ -181,6 +181,10 @@ structured feedback, and claim calibration.
   MLAgentBench CLRS setup/cost probe. The correct `dm-clrs` dependency stack was
   installed and the runner reached CLRS `train.py`, but the CPU-only baseline
   timed out at 900 seconds without a checkpoint or official score.
+- `experiments/mlagentbench_clrs_reduced_smoke_20260602/`: reduced CLRS
+  feasibility probe with one training step, length 4, batch size 1, and hidden
+  size 16. It also timed out before writing `spec_list.pkl`, so it is kept as
+  non-official cost-boundary evidence.
 - `experiments/fml_fairness_evaluator_stress_replay_20260602_180000/`:
   replay over archived real FML-Bench `Fairness_fairlearn` outputs. The
   primary-only FML metric selects the all-negative predictor, while the
