@@ -190,5 +190,13 @@
       "metric_winner": "autonomous",
       "limitation": "internal deterministic rubric; autonomous is only valid scalar metric path; not independent paper-quality proof"
     }
+  },
+  "online_trajectory_manuscript_probe": {
+    "status": "fresh_online_smoke_manuscript_generated",
+    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/online_manuscript/summary.md",
+    "overall": 4.64,
+    "matched_autonomous_manuscript": false,
+    "limitation": "fresh online smoke trajectory only; lacks matched autonomous manuscript baseline and independent review"
   }
 }

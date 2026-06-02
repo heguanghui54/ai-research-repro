@@ -77,6 +77,18 @@ narrows the manuscript-generation gap but does not satisfy the reviewer request
 for a fresh end-to-end paper-generating trajectory or independent expert
 paper-quality scoring.
 
+## Online Trajectory Manuscript Probe
+
+We then added a fresh online full-gate trajectory manuscript probe. The latest
+trajectory selects a Causality branch with validation MAE `0.627837`, continues
+to test MAE `0.646224`, runs an OpenEvolve knapsack smoke with best score
+`0.995619`, and generates a complete co-pilot manuscript directly from the
+trajectory log. The internal rubric gives this online manuscript `4.64`
+overall. This is stronger than archived-evidence manuscript generation because
+the manuscript comes from a newly executed trajectory, but it is still a smoke
+artifact: it has no matched fresh autonomous manuscript and no independent
+paper-quality review.
+
 ## Human Co-Pilot Trace Dataset
 
 The paper now includes `human_copilot_trace_dataset.md/json`, a derived metadata

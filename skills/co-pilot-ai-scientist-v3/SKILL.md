@@ -259,6 +259,8 @@ Reusable templates are stored next to this skill:
 - full-gate trajectory artifact;
 - executable full-gate trace replay when archived summaries are available;
 - online full-gate smoke trajectory logs when remote execution is available;
+- online trajectory manuscript probes when an online full-gate trajectory needs
+  to be rendered into a claim-audited manuscript artifact;
 - prospective matched-budget micro-pilot package when remote execution is
   available;
 - matched mini- and full-manuscript generation probes when manuscript evidence

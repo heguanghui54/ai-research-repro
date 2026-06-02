@@ -194,6 +194,18 @@ probe 的内部 rubric 为 co-pilot `4.18`、autonomous `4.11`，但 autonomous
 这只是基于已归档证据的 manuscript probe，不是 fresh end-to-end research
 trajectory，也不是独立专家评审。
 
+如果要从 online full-gate trajectory 生成论文形态 manuscript，运行：
+
+```bash
+python3 scripts/generate_online_trajectory_manuscript.py \
+  --trajectory-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json \
+  --update-manifest
+```
+
+归档的 `online_full_gate_smoke_20260602_004933` 是 fresh online smoke
+trajectory，并且已经生成 manuscript；但它仍然缺少 matched autonomous
+manuscript baseline。
+
 如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
 
 ```bash

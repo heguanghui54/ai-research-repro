@@ -209,6 +209,18 @@ metric.
 It is an archived-evidence manuscript probe, not a fresh end-to-end research
 trajectory or independent expert review.
 
+To generate a manuscript from an online full-gate trajectory, run:
+
+```bash
+python3 scripts/generate_online_trajectory_manuscript.py \
+  --trajectory-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json \
+  --update-manifest
+```
+
+The archived `online_full_gate_smoke_20260602_004933` run is a fresh online
+smoke trajectory with manuscript production, but it still lacks a matched
+autonomous manuscript baseline.
+
 To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
 
 ```bash

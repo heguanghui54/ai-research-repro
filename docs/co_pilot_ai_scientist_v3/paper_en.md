@@ -206,6 +206,18 @@ human-gated smoke continuation's test MAE `0.862015`. This paired smoke result
 is negative for performance improvement, while still supporting the narrower
 claim that online co-pilot orchestration is executable.
 
+We subsequently ran a newer fresh online full-gate smoke trajectory and used
+its trajectory log to generate a complete claim-calibrated manuscript artifact.
+This run selected a Causality branch with validation MAE `0.627837`, continued
+it to held-out test MAE `0.646224`, and ran an OpenEvolve knapsack smoke with
+best score `0.995619`. The generated online manuscript receives an internal
+rubric score of `4.64` for section completeness, gate coverage, evidence
+grounding, claim calibration, and freshness. This closes a narrow orchestration
+gap: a fresh online trajectory can now produce a full manuscript-shaped output.
+It still does not close the scientific evidence gap, because there is no
+matched autonomous manuscript generated from the same fresh trajectory and no
+independent paper-quality review.
+
 ## 4. Benchmark Selection and Evaluation Plan
 
 We evaluate six variants: autonomous baseline, idea gate only, branch gate only,
@@ -652,7 +664,11 @@ The current contributions are:
    overall for structure, grounding, calibration, and method distinctness,
    while the autonomous manuscript scores 4.11 and is the only variant with a
    valid scalar FML test metric in the Fairness package.
-22. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
+22. A fresh online full-gate manuscript-production smoke trajectory that
+   generates a complete co-pilot manuscript from a newly executed trajectory
+   and scores it `4.64` with the same internal rubric, while explicitly lacking
+   a matched fresh autonomous manuscript baseline.
+23. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
    real Codex sessions as a single-author longitudinal process corpus after
    privacy-preserving metadata extraction.
 
@@ -714,12 +730,13 @@ structured evidence to generate two complete, claim-calibrated manuscripts
 under a matched prompt-free template. The latest Fairness probe scores the
 co-pilot manuscript 4.18 and the autonomous manuscript 4.11 on the internal
 rubric, but the autonomous manuscript is the only variant with a valid scalar
-FML test result. It does not show that a fresh online system can run from
-hypothesis generation through final manuscript without intervention, and it
-does not replace independent expert paper-quality review. This is exactly why
-the co-pilot claim must remain about method distinctness,
-scientific taste logging, and high-tail research search rather than average
-short-budget benchmark superiority.
+FML test result. The newer online trajectory manuscript smoke shows that a
+fresh online co-pilot trajectory can produce a complete manuscript-shaped
+artifact with an internal score of 4.64, but it is still a smoke run: it lacks a
+matched autonomous manuscript from the same trajectory and does not replace
+independent expert paper-quality review. This is exactly why the co-pilot claim
+must remain about method distinctness, scientific taste logging, and high-tail
+research search rather than average short-budget benchmark superiority.
 
 The taste/insight evidence is also only at the logging-readiness stage. The
 archive now contains one complete scientific-taste prior record, grounded in
@@ -728,12 +745,11 @@ research taste, but it does not yet show that this decision improved downstream
 research outcomes. Future runs must log taste rationales prospectively rather
 than reconstructing them from successful outcomes.
 
-The current implementation still lacks a complete paper-generating end-to-end
-demonstration in which all four loops operate in a single continuous trajectory
-from new hypothesis generation through final manuscript production. The online
-smoke run proves orchestration feasibility, but the next systems-paper draft
-must report a larger matched trajectory from hypothesis generation to final
-claim-audited manuscript.
+The current implementation now has a smoke-level paper-generating online
+demonstration, but it still lacks the matched autonomous manuscript trajectory
+needed for a systems-paper comparison. The next systems-paper draft must report
+a larger matched trajectory pair from hypothesis generation to final
+claim-audited manuscripts.
 
 ## 7. Conclusion
 

@@ -1,0 +1,18 @@
+{
+  "status": "online_trajectory_manuscript_probe",
+  "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json",
+  "manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+  "fresh_online_smoke": true,
+  "matched_autonomous_manuscript": false,
+  "scores": {
+    "section_completeness": 5.0,
+    "gate_coverage": 5.0,
+    "evidence_grounding": 4.2,
+    "claim_calibration": 5.0,
+    "freshness": 4.0,
+    "overall": 4.64
+  },
+  "interpretation": "This narrows the fresh online manuscript-production gap, but it is still a smoke trajectory without a matched autonomous manuscript baseline.",
+  "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/online_manuscript/summary.md",
+  "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/online_manuscript/summary.json"
+}

@@ -279,3 +279,14 @@ manuscript scores `4.18` overall and the autonomous manuscript scores `4.11`,
 while the autonomous baseline is the only path with a valid scalar FML test
 metric. This narrows the manuscript-generation gap but is still not a fresh
 online end-to-end trajectory or independent expert paper-quality result.
+
+The newest online manuscript-production smoke is archived under
+`experiments/online_full_gate_smoke_20260602_004933/`. It reruns a fresh online
+five-gate trajectory on `ubuntu-heshi`, then renders the logged trajectory into
+`online_manuscript/co_pilot_online_full_gate_manuscript.md`. The run selected
+branch `step_0001` with validation MAE `0.627837`, reached continuation test MAE
+`0.646224`, and produced a one-iteration knapsack program-search score
+`0.995619`. The generated online manuscript scores `4.64` on the internal
+trace-bound rubric. This narrows the fresh end-to-end manuscript-production
+gap, but it still lacks a matched autonomous manuscript baseline and independent
+paper-quality review.
