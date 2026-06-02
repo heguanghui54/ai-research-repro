@@ -251,9 +251,11 @@
     "claim_boundary": "post-hoc design evidence"
   },
   "clean_clone_reproducibility_latest": {
-    "commit": "da62c4764df6590ea1e476e09602716dbcd8662f",
-    "manifest_artifacts_checked": 921,
+    "commit": "2d37a34ab3ead441edb105e29888bb68e6d821af",
+    "manifest_artifacts_checked": 923,
     "missing_manifest_artifacts": 0,
+    "release_skill_audit_status": "pass",
+    "release_skill_trigger_policy_clean_clone_status": "pass",
     "base_skill_inheritance_status": "pass",
     "prospective_attention_taste_cost_status": "pass",
     "focused_figure_table_readiness_status": "pass",

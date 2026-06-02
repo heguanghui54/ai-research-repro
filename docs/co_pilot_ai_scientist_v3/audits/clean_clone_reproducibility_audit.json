@@ -1,16 +1,19 @@
 {
-  "audit_date": "2026-06-02T19:41:36Z",
+  "audit_date": "2026-06-02T19:50:39Z",
   "repository": "https://github.com/heguanghui54/ai-research-repro.git",
   "branch": "codex/co-pilot-ai-scientist-v3",
-  "commit": "da62c4764df6590ea1e476e09602716dbcd8662f",
+  "commit": "2d37a34ab3ead441edb105e29888bb68e6d821af",
   "checks": {
     "status": "pass_for_latest_pushed_verification_rebuild",
-    "commit": "da62c4764df6590ea1e476e09602716dbcd8662f",
+    "commit": "2d37a34ab3ead441edb105e29888bb68e6d821af",
     "clean_clone_path": "/tmp/copilot-v3-clean-clone-latest",
     "clone_mode": "shallow_depth_1_single_branch",
-    "manifest_artifacts_checked": 921,
+    "manifest_artifacts_checked": 923,
     "missing_manifest_artifacts": 0,
     "requirements_installed": "pass",
+    "release_skill_audit_reran": "pass",
+    "release_skill_audit_status": "pass",
+    "release_skill_trigger_policy_clean_clone_status": "pass",
     "base_skill_inheritance_audit_reran": "pass",
     "base_skill_inheritance_audit_status": "pass",
     "base_loop_steps_preserved": true,
@@ -82,7 +85,7 @@
     "audited_pushed_commit": true,
     "remote_ubuntu_experiments_rerun": false,
     "independent_human_expert_ratings_collected": false,
-    "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact checks, including base-skill inheritance, focused figure/table readiness, and prospective attention/taste cost measurement. This is not a fresh remote Ubuntu rerun, independent human expert evidence, or broad co-pilot superiority proof."
+    "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact checks, including release skill trigger-policy guidance, base-skill inheritance, focused figure/table readiness, and prospective attention/taste cost measurement. This is not a fresh remote Ubuntu rerun, independent human expert evidence, or broad co-pilot superiority proof."
   },
   "commands": [
     "rm -rf /tmp/copilot-v3-clean-clone-latest",
@@ -90,6 +93,7 @@
     "cd /tmp/copilot-v3-clean-clone-latest",
     "git rev-parse HEAD",
     "python3 -m pip install -q -r requirements.txt",
+    "python3 scripts/audit_igre_skill_release_package.py",
     "python3 scripts/audit_base_skill_inheritance.py",
     "python3 scripts/audit_prospective_attention_taste_cost.py",
     "python3 scripts/validate_evaluator_stress_trigger_policy_transfer.py",
