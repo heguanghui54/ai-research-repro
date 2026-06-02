@@ -105,7 +105,7 @@ useful adjacent evidence, but they do not directly provide human scientist
 interventions inside AI Scientist-v2-style hypothesis-experiment-paper loops.
 The derived trace currently indexes 52 gate records, 35 records with
 attention-cost fields, 10 records with taste/insight fields, 4 prospective
-matched packages, and 57 relevant commits. The stricter gate audits find 1
+matched packages, and 58 relevant commits. The stricter gate audits find 1
 complete attention-cost record and 2 complete taste/insight records, so this
 improves ecological validity and process evidence; it does not establish
 population-level human benefit or human attention efficiency.

@@ -32,7 +32,7 @@
     "attention_cost_records": 35,
     "taste_insight_records": 10,
     "prospective_package_count": 4,
-    "commit_count": 57
+    "commit_count": 58
   },
   "gate_records": [
     {
@@ -595,6 +595,11 @@
     }
   ],
   "commit_index": [
+    {
+      "commit": "b06933c319f1f86521fb66b29a04c308096ba0d0",
+      "date": "2026-06-02",
+      "subject": "Add attention taste priority gate evidence"
+    },
     {
       "commit": "3a7671340501230b0f87c3d0e57e9d2e03526864",
       "date": "2026-06-02",

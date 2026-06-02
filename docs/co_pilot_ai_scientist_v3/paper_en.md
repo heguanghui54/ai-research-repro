@@ -286,14 +286,14 @@ co-pilot trace corpus derived from this project: gate records, artifact paths,
 commit IDs, benchmark metrics, manuscript revisions, and claim-audit outcomes,
 without releasing raw chat logs or credentials. The current derived snapshot
 indexes 52 gate records, 35 records with attention-cost fields, 10 records with
-taste/insight fields, 4 prospective matched packages, and 57 relevant commits.
+taste/insight fields, 4 prospective matched packages, and 58 relevant commits.
 This supports ecological and process claims, but not population-level claims
 about all scientists.
 
 We add a release-readiness audit for this dataset. The audit verifies required
 top-level fields, gate schema coverage, explicit claim boundaries, and scans for
 secret-like strings and raw-log markers. The current audit passes with 4
-public-dataset survey entries, 52 gate records, 4 prospective packages, 57
+public-dataset survey entries, 52 gate records, 4 prospective packages, 58
 commit-index entries, 0 secret-pattern hits, and 0 raw-log marker hits. This
 permits release as a derived metadata case-study artifact, not as raw chat logs
 or human-subject population data.

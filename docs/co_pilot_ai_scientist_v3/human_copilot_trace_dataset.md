@@ -35,7 +35,7 @@ manuscript revisions, and claim-audit outcomes.
 - Records with attention cost: 35
 - Records with taste/insight: 10
 - Prospective matched packages: 4
-- Git commits indexed for this package: 57
+- Git commits indexed for this package: 58
 
 ## What This Dataset Can Support
 
@@ -70,7 +70,7 @@ python3 scripts/audit_human_copilot_trace_dataset.py
 Current expected result: `pass`. The audit should find 4
 public-dataset survey entries, 52 gate records,
 4 prospective packages,
-57 commit-index entries, 0 secret-pattern hits,
+58 commit-index entries, 0 secret-pattern hits,
 and 0 raw-log marker hits. This means the artifact is suitable as a
 derived metadata case-study dataset, not as a raw chat-log release or
 population-level human-subject dataset.
