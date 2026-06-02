@@ -72,6 +72,7 @@ def main() -> None:
     clean_path = AUDIT_DIR / "clean_clone_reproducibility_audit.json"
     readiness_path = AUDIT_DIR / "top_conference_readiness_audit.json"
     claim_path = AUDIT_DIR / "claim_evidence_audit.json"
+    objective_path = AUDIT_DIR / "objective_delivery_audit.json"
     validation_path = DOC_DIR / "experiments" / "delayed_value_candidate_frontier_validation_20260603_011500" / "summary.json"
     tfr_path = AUDIT_DIR / "temporal_frontier_replay_audit.json"
 
@@ -79,6 +80,7 @@ def main() -> None:
     clean = _load_json(clean_path)
     readiness = _load_json(readiness_path)
     claim = _load_json(claim_path)
+    objective = _load_json(objective_path)
     validation = _load_json(validation_path)
     tfr = _load_json(tfr_path)
 
@@ -141,8 +143,10 @@ def main() -> None:
     focused_zh = DOC_DIR / "paper_zh_focused.md"
     readiness_md = AUDIT_DIR / "top_conference_readiness_audit.md"
     claim_md = AUDIT_DIR / "claim_evidence_audit.md"
+    objective_md = AUDIT_DIR / "objective_delivery_audit.md"
     clean_short = audited_commit[:9] if audited_commit else ""
     manifest_ratio = f"{manifest_count}/{manifest_count}"
+    clean_ratio = f"{clean_checks.get('manifest_artifacts_checked')}/{clean_checks.get('manifest_artifacts_checked')}"
     stale_tokens = ["dc8f35be7", "dc8f35be", "603/603", '"manifest_artifacts_checked": 603']
     stale_scan_paths = [
         manifest_path,
@@ -162,8 +166,9 @@ def main() -> None:
     text_checks = {
         _rel(focused_en): _contains(focused_en, ["+0.064", "Candidate-frontier validation"]),
         _rel(focused_zh): _contains(focused_zh, ["+0.064", "候选-前沿验证"]),
-        _rel(readiness_md): _contains(readiness_md, [clean_short, manifest_ratio, "+0.064"]),
-        _rel(claim_md): _contains(claim_md, [manifest_ratio, "candidate-frontier validation"]),
+        _rel(readiness_md): _contains(readiness_md, [clean_short, clean_ratio, "+0.064"]),
+        _rel(claim_md): _contains(claim_md, [clean_ratio, "candidate-frontier validation"]),
+        _rel(objective_md): _contains(objective_md, [head[:9], manifest_ratio, "top-conference empirical target remains incomplete"]),
     }
     for path, checks in text_checks.items():
         for needle, present in checks.items():
@@ -198,6 +203,7 @@ def main() -> None:
             "not_scored_count": validation_agg.get("not_scored_count"),
         },
         "tfr_status": tfr.get("status"),
+        "objective_delivery_status": objective.get("status"),
         "pdf_bytes": pdf_bytes,
         "text_checks": text_checks,
         "stale_token_hits": stale_hits,

@@ -633,7 +633,10 @@
     "docs/co_pilot_ai_scientist_v3/audits/package_consistency_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.md",
-    "scripts/audit_long_horizon_taste_gate.py"
+    "scripts/audit_long_horizon_taste_gate.py",
+    "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
+    "scripts/audit_objective_delivery.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1636,5 +1639,15 @@
     "candidate_queue_size": 120,
     "candidate_frontier_delta": 0.064,
     "claim_boundary": "LHTG/DVRS is operationalized as a routing and replay policy, but the current archived evidence validates only candidate prioritization and negative/weak TFR boundaries. It does not prove that human reviews improve long-horizon discovery."
+  },
+  "objective_delivery_audit": {
+    "status": "pass_artifact_delivery_with_empirical_gaps",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
+    "head": "80d30961b2c0a8d4c1df0bdfc79d3422bd85f94e",
+    "branch": "codex/co-pilot-ai-scientist-v3",
+    "manifest_artifacts": 621,
+    "missing_manifest_artifacts": 0,
+    "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   }
 }

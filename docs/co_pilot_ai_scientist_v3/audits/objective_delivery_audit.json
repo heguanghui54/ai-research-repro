@@ -1,0 +1,136 @@
+{
+  "audit_date": "2026-06-02T11:11:21Z",
+  "status": "pass_artifact_delivery_with_empirical_gaps",
+  "head": "80d30961b2c0a8d4c1df0bdfc79d3422bd85f94e",
+  "branch": "codex/co-pilot-ai-scientist-v3",
+  "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
+  "explicit_requirements": {
+    "bilingual_pdfs": true,
+    "bilingual_usage": true,
+    "reusable_codex_skill": true,
+    "github_branch_pushed": true,
+    "author_recorded": true,
+    "manifest_complete": true,
+    "package_consistency_pass": true,
+    "prospective_package_audit_pass": true,
+    "lhtg_operationalized": true,
+    "top_conference_boundary_kept": true,
+    "unsupported_superiority_claims_kept_unsupported": true
+  },
+  "artifact_status": {
+    "english_pdf": {
+      "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf",
+      "exists": true,
+      "bytes": 51757,
+      "ok": true
+    },
+    "chinese_pdf": {
+      "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf",
+      "exists": true,
+      "bytes": 114561,
+      "ok": true
+    },
+    "focused_english_pdf": {
+      "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
+      "exists": true,
+      "bytes": 32998,
+      "ok": true
+    },
+    "focused_chinese_pdf": {
+      "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf",
+      "exists": true,
+      "bytes": 61838,
+      "ok": true
+    },
+    "english_usage": {
+      "path": "docs/co_pilot_ai_scientist_v3/usage_en.md",
+      "exists": true,
+      "bytes": 18808,
+      "ok": true
+    },
+    "chinese_usage": {
+      "path": "docs/co_pilot_ai_scientist_v3/usage_zh.md",
+      "exists": true,
+      "bytes": 19330,
+      "ok": true
+    },
+    "english_runbook": {
+      "path": "docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md",
+      "exists": true,
+      "bytes": 13411,
+      "ok": true
+    },
+    "chinese_runbook": {
+      "path": "docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md",
+      "exists": true,
+      "bytes": 12189,
+      "ok": true
+    },
+    "reusable_skill": {
+      "path": "skills/co-pilot-ai-scientist-v3/SKILL.md",
+      "exists": true,
+      "bytes": 21753,
+      "ok": true
+    },
+    "task_template": {
+      "path": "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
+      "exists": true,
+      "bytes": 2140,
+      "ok": true
+    },
+    "gate_template": {
+      "path": "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json",
+      "exists": true,
+      "bytes": 1789,
+      "ok": true
+    }
+  },
+  "paper_checks": {
+    "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
+      "Insight-Gated Research Evolution": true,
+      "AI Scientist-v2": true,
+      "AI Co-Scientist": true,
+      "OpenEvolve": true,
+      "Long-Horizon Taste Gate": true,
+      "We do not claim": true
+    },
+    "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md": {
+      "Insight-Gated Research Evolution": true,
+      "AI Scientist-v2": true,
+      "AI Co-Scientist": true,
+      "OpenEvolve": true,
+      "长期科研品味门控": true,
+      "不能": true
+    }
+  },
+  "skill_checks": {
+    "skills/co-pilot-ai-scientist-v3/SKILL.md": {
+      "AI Scientist-v2": true,
+      "AI Co-Scientist": true,
+      "OpenEvolve": true,
+      "Long-Horizon Taste Gate": true,
+      "human": true
+    }
+  },
+  "manifest_artifacts": 621,
+  "missing_manifest_artifacts": 0,
+  "manifest_coverage_ratio": "621/621",
+  "top_conference_empirical_support_status": "not_supported_yet",
+  "unverified_claims": [
+    "Human gates improve paper quality.",
+    "OpenEvolve-style subproblem optimization improves downstream research outcomes.",
+    "The full co-pilot v3 system outperforms autonomous AI Scientist-v2 on selected tasks.",
+    "Current package satisfies artifact-delivery requirements, but top-conference empirical support remains incomplete; see top_conference_readiness_audit.md."
+  ],
+  "next_required_evidence": [
+    "Run at least 5 matched-budget pairs per task across at least 3 tasks, with means, variance, and paired tests before making superiority claims.",
+    "Run matched mini-manuscript scoring on complete end-to-end co-pilot and autonomous manuscripts, not only package mini-manuscripts.",
+    "Demonstrate one continuous end-to-end trajectory from new hypothesis generation to experiments, claim audit, and final manuscript, plus a matched autonomous manuscript baseline.",
+    "Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.",
+    "Obtain at least one scored official non-FML benchmark with a complete matched comparison when data access permits.",
+    "Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package."
+  ],
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
+}
