@@ -157,7 +157,14 @@
     "delayed_value_candidate_mining_replay_candidates": 120,
     "delayed_value_candidate_mining_candidate_rate": 0.2537,
     "delayed_value_candidate_mining_long_horizon_positive_candidates": 84,
-    "delayed_value_candidate_mining_short_term_repair_signals": 90
+    "delayed_value_candidate_mining_short_term_repair_signals": 90,
+    "delayed_value_candidate_frontier_validation_runs": 1,
+    "delayed_value_candidate_frontier_validation_attempted_reviews": 16,
+    "delayed_value_candidate_frontier_validation_scored_reviews": 13,
+    "delayed_value_candidate_frontier_validation_not_scored_match_drift": 3,
+    "delayed_value_candidate_frontier_validation_delayed_mean_score": 0.24,
+    "delayed_value_candidate_frontier_validation_control_mean_score": 0.176,
+    "delayed_value_candidate_frontier_validation_delayed_minus_control": 0.064
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -192,7 +199,7 @@
     "remote_ubuntu_experiments_rerun": false,
     "full_pdfs_rebuilt_in_this_audit": false,
     "claim_boundary": "Candidate mining prioritizes future TFR replay cases but does not validate positive delayed-value evidence.",
-    "note": "Verifies the current pushed TFR candidate-mining package at da140a845 with a shallow clean clone. This audit is narrower than earlier full package audits and focuses on the newly added delayed-value candidate-mining path."
+    "note": "Latest clean clone is at da140a845 for the delayed-value candidate-mining path. The newly added candidate-frontier validation still needs a fresh clean-clone refresh after push."
   },
   "skill_reuse_smoke": {
     "status": "pass",

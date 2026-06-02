@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_delayed_value_candidate_mining",
+  "status": "pilot_package_with_candidate_frontier_validation",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -623,7 +623,11 @@
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/candidate_reviews.json",
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/tfr_replay_queue.json",
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/README.md",
-    "scripts/run_delayed_value_review_candidate_mining.py"
+    "scripts/run_delayed_value_review_candidate_mining.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_candidate_frontier_validation_20260603_011500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_candidate_frontier_validation_20260603_011500/per_item.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_candidate_frontier_validation_20260603_011500/README.md",
+    "scripts/run_delayed_value_candidate_frontier_validation.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1632,5 +1636,12 @@
     "candidate_count": 120,
     "candidate_rate": 0.2537,
     "claim_boundary": "Candidate screening for TFR replay, not positive delayed-value evidence."
+  },
+  "delayed_value_candidate_frontier_validation": {
+    "run_id": "delayed_value_candidate_frontier_validation_20260603_011500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_candidate_frontier_validation_20260603_011500/summary.json",
+    "scored_count": 13,
+    "delayed_minus_control_mean_score": 0.064,
+    "claim_boundary": "OpenAlex lexical citation-frontier validation, not proof of causal delayed-value insight."
   }
 }

@@ -1,6 +1,6 @@
 # Temporal Frontier Replay Audit
 
-Audit date: `2026-06-02T10:10:56Z`
+Audit date: `2026-06-02T10:22:05Z`
 
 Status: `pass_with_negative_delayed_value_evidence`
 
@@ -32,9 +32,18 @@ Status: `pass_with_negative_delayed_value_evidence`
 - Long-horizon positive candidates: `84`
 - Short-term repair signals: `90`
 
+## Candidate Frontier Validation
+
+- Attempted reviews: `16`
+- Scored reviews: `13`
+- Not scored after match-drift guard: `3`
+- Delayed-candidate mean review signal: `0.24`
+- Control mean review signal: `0.176`
+- Delayed minus control mean score: `0.064`
+
 ## Claim Boundary
 
-TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, but these candidates are not positive delayed-value cases until paper-only, review-guided, and shuffled controls are judged against later frontier evidence.
+TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, and a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment. These candidates are still not positive delayed-value cases until paper-only, review-guided, and shuffled controls are judged against later frontier evidence.
 
 ## Warnings
 

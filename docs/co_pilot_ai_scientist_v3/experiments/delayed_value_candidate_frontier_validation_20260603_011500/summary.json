@@ -1,0 +1,1013 @@
+{
+  "run_id": "delayed_value_candidate_frontier_validation_20260603_011500",
+  "timestamp_utc": "2026-06-02T10:21:21Z",
+  "status": "candidate_frontier_validation",
+  "candidate_source": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/candidate_reviews.json",
+  "openalex_api": "https://api.openalex.org/",
+  "selection": {
+    "per_label": 4,
+    "citation_limit": 15,
+    "frontier_terms": 20,
+    "labels": [
+      "delayed_value_replay_candidate",
+      "long_horizon_positive_candidate",
+      "short_term_repair_signal",
+      "generic_or_unrouted"
+    ]
+  },
+  "aggregate": {
+    "attempted_count": 16,
+    "scored_count": 13,
+    "not_scored_count": 3,
+    "label_table": {
+      "delayed_value_replay_candidate": {
+        "scored_count": 3,
+        "mean_review_signal_score": 0.24,
+        "mean_frontier_alignment": 0.2833,
+        "mean_review_minus_title_score": 0.04,
+        "review_beats_title_count": 2
+      },
+      "generic_or_unrouted": {
+        "scored_count": 3,
+        "mean_review_signal_score": 0.1867,
+        "mean_frontier_alignment": 0.2,
+        "mean_review_minus_title_score": 0.0667,
+        "review_beats_title_count": 2
+      },
+      "long_horizon_positive_candidate": {
+        "scored_count": 3,
+        "mean_review_signal_score": 0.28,
+        "mean_frontier_alignment": 0.3,
+        "mean_review_minus_title_score": 0.1867,
+        "review_beats_title_count": 3
+      },
+      "short_term_repair_signal": {
+        "scored_count": 4,
+        "mean_review_signal_score": 0.09,
+        "mean_frontier_alignment": 0.1,
+        "mean_review_minus_title_score": 0.03,
+        "review_beats_title_count": 2
+      }
+    },
+    "delayed_candidate_mean_review_signal_score": 0.24,
+    "control_mean_review_signal_score": 0.176,
+    "delayed_minus_control_mean_score": 0.064,
+    "delayed_review_beats_title_count": 2,
+    "delayed_scored_count": 3
+  },
+  "per_item": [
+    {
+      "review_id": "paper_105_review_1",
+      "paper_index": 105,
+      "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+      "candidate_label": "delayed_value_replay_candidate",
+      "delayed_candidate_score": 6.0,
+      "decision": true,
+      "mean_score": 0.5555555555555556,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W4415795480",
+      "openalex_title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+      "openalex_year": 2024,
+      "openalex_cited_by_count": 3,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 3,
+      "frontier_terms": [
+        "segmentation",
+        "medical",
+        "image",
+        "u-net",
+        "convolution",
+        "transformer-based",
+        "mri",
+        "cafnet",
+        "information",
+        "heterogeneou",
+        "disease",
+        "clinical",
+        "diagnostic",
+        "feature",
+        "transformer",
+        "diagnosi",
+        "has",
+        "its",
+        "architecture",
+        "remain"
+      ],
+      "review_signal": {
+        "score": 0.24,
+        "frontier_alignment": 0.25,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "segmentation",
+          "medical",
+          "image",
+          "convolution",
+          "feature"
+        ],
+        "matched_actionability_terms": [
+          "mechanism"
+        ]
+      },
+      "title_signal": {
+        "score": 0.16,
+        "frontier_alignment": 0.2,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "segmentation",
+          "medical",
+          "image",
+          "feature"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.08,
+      "primary_gates": [
+        "claim_calibration",
+        "scientific_taste_prior"
+      ],
+      "actionable_categories": [
+        "limitations_claim_boundary",
+        "novelty_positioning"
+      ],
+      "excerpt": "The paper introduces E2ENet, a novel neural network designed for 3D medical image segmentation, which emphasizes efficiency in computational resource usage without compromising accuracy. This paper introduces a Dynamic Sparse Feature Fusion (DSFF) mechanism that adaptively learns to integrate multi-scale features effectively and a novel application of restricted depth-shift in 3D convolution that Yes, authors have addressed the limitations."
+    },
+    {
+      "review_id": "paper_86_review_1",
+      "paper_index": 86,
+      "title": "Interpretable Relational Representations for Food Ingredient Recommendation Systems",
+      "candidate_label": "delayed_value_replay_candidate",
+      "delayed_candidate_score": 5.75,
+      "decision": false,
+      "mean_score": 0.4444444444444444,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W3123145243",
+      "openalex_title": "Interpretable Relational Representations for Food Ingredient Recommendation Systems",
+      "openalex_year": 2021,
+      "openalex_cited_by_count": 1,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 1,
+      "frontier_terms": [
+        "food",
+        "recommender"
+      ],
+      "review_signal": {
+        "score": 0.4,
+        "frontier_alignment": 0.5,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "food"
+        ],
+        "matched_actionability_terms": []
+      },
+      "title_signal": {
+        "score": 0.4,
+        "frontier_alignment": 0.5,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "food"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.0,
+      "primary_gates": [
+        "claim_calibration",
+        "evaluator_stress_test",
+        "scientific_taste_prior",
+        "structured_feedback"
+      ],
+      "actionable_categories": [
+        "evaluation_metric",
+        "limitations_claim_boundary",
+        "novelty_positioning",
+        "reproducibility_detail"
+      ],
+      "excerpt": "Overall, I vote for accepting. The authors propose a novel approach to support chefs with creating/experimenting with new recipes to overcome the challenging combinations of taste/texture etc. that can result from addition of new ingredients. Their idea of adding interpretability to their results from a Food Knowledge Base has a lot of appeal, especially to end-user’s (chef’s in this case). The author’s proposed solution is well supported by the robust and detailed evaluation results. The concerns deta"
+    },
+    {
+      "review_id": "paper_140_review_1",
+      "paper_index": 140,
+      "title": "Online Learning for Obstacle Avoidance",
+      "candidate_label": "delayed_value_replay_candidate",
+      "status": "not_scored_possible_match_drift",
+      "openalex_id": "https://openalex.org/W2017414052",
+      "openalex_title": "Online-learning and Attention-based Approach to Obstacle Avoidance Using a Range Finder",
+      "openalex_year": 2007,
+      "title_token_overlap": 0.2857
+    },
+    {
+      "review_id": "paper_147_review_1",
+      "paper_index": 147,
+      "title": "Prometheus: Inducing Fine-Grained Evaluation Capability in Language Models",
+      "candidate_label": "delayed_value_replay_candidate",
+      "delayed_candidate_score": 5.75,
+      "decision": true,
+      "mean_score": 0.4,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W4387635896",
+      "openalex_title": "Prometheus: Inducing Fine-grained Evaluation Capability in Language Models",
+      "openalex_year": 2023,
+      "openalex_cited_by_count": 15,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 15,
+      "frontier_terms": [
+        "language",
+        "video",
+        "llms",
+        "design",
+        "finding",
+        "chatgpt",
+        "retrieval",
+        "synthetic",
+        "challenge",
+        "critical",
+        "information",
+        "visualization",
+        "transportation",
+        "mllm",
+        "often",
+        "but",
+        "llm-based",
+        "however",
+        "both",
+        "question"
+      ],
+      "review_signal": {
+        "score": 0.08,
+        "frontier_alignment": 0.1,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "llms",
+          "but"
+        ],
+        "matched_actionability_terms": []
+      },
+      "title_signal": {
+        "score": 0.04,
+        "frontier_alignment": 0.05,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "language"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.04,
+      "primary_gates": [
+        "evaluator_stress_test",
+        "scientific_taste_prior",
+        "structured_feedback"
+      ],
+      "actionable_categories": [
+        "clarity_presentation",
+        "evaluation_metric",
+        "novelty_positioning"
+      ],
+      "excerpt": "Paper presents a new benchmark for building evaluation systems with LLMs. Although the paper contribution is promising, there are some serious problems in the paper. Many of the figures are missing and unvisible. The paper contribution, whether this is a novel LLM, or a data set generated by gpt-4 is unclear. The model is advertised as open-source but how the data will be shared is unstated. If an LLM is built on this data, which is described as a 100K synthesized data set, how i"
+    },
+    {
+      "review_id": "paper_118_review_1",
+      "paper_index": 118,
+      "title": "Bag of Tricks for Unsupervised Text-to-Speech",
+      "candidate_label": "long_horizon_positive_candidate",
+      "status": "not_scored_possible_match_drift",
+      "openalex_id": "https://openalex.org/W3135028703",
+      "openalex_title": "Machine Learning: Algorithms, Real-World Applications and Research Directions",
+      "openalex_year": 2021,
+      "title_token_overlap": 0.0
+    },
+    {
+      "review_id": "paper_132_review_2",
+      "paper_index": 132,
+      "title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+      "candidate_label": "long_horizon_positive_candidate",
+      "delayed_candidate_score": 4.75,
+      "decision": true,
+      "mean_score": 0.7333333333333332,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W3124880721",
+      "openalex_title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+      "openalex_year": 2021,
+      "openalex_cited_by_count": 11,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 11,
+      "frontier_terms": [
+        "network",
+        "neural",
+        "training",
+        "gnns",
+        "generalization",
+        "function",
+        "result",
+        "which",
+        "descent",
+        "theoretical",
+        "kernel",
+        "extrapolate",
+        "gradient",
+        "connection",
+        "when",
+        "mlps",
+        "well",
+        "convergence",
+        "regression",
+        "sgd"
+      ],
+      "review_signal": {
+        "score": 0.44,
+        "frontier_alignment": 0.45,
+        "actionability": 0.4,
+        "matched_frontier_terms": [
+          "network",
+          "neural",
+          "generalization",
+          "function",
+          "result",
+          "which",
+          "descent",
+          "kernel",
+          "gradient"
+        ],
+        "matched_actionability_terms": [
+          "generalization",
+          "theory"
+        ]
+      },
+      "title_signal": {
+        "score": 0.16,
+        "frontier_alignment": 0.2,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "neural",
+          "descent",
+          "kernel",
+          "gradient"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.28,
+      "primary_gates": [
+        "evaluator_stress_test",
+        "scientific_taste_prior"
+      ],
+      "actionable_categories": [
+        "evaluation_metric",
+        "novelty_positioning"
+      ],
+      "excerpt": "Summary: The paper focuses on the understanding of neural tangent kernel (NTK), which has been a central topic in deep learning theory recently and plays an important role in characterizing the generalization ability of artificial neural networks. In Particular, the authors derive minimax-optimal learning rates of the averaged stochastic gradient descent method for over-parametrized two-layer neural networks with smooth activation functions. The results are novel and offer insights into the connecti"
+    },
+    {
+      "review_id": "paper_37_review_1",
+      "paper_index": 37,
+      "title": "Learning Weighted Representations for Generalization Across Designs",
+      "candidate_label": "long_horizon_positive_candidate",
+      "delayed_candidate_score": 4.5,
+      "decision": false,
+      "mean_score": 0.6296296296296297,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W2787551658",
+      "openalex_title": "Learning Weighted Representations for Generalization Across Designs",
+      "openalex_year": 2018,
+      "openalex_cited_by_count": 38,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 15,
+      "frontier_terms": [
+        "causal",
+        "treatment",
+        "effect",
+        "representation",
+        "outcome",
+        "estimation",
+        "observational",
+        "algorithm",
+        "policy",
+        "which",
+        "has",
+        "under",
+        "domain",
+        "distribution",
+        "target",
+        "result",
+        "estimating",
+        "estimate",
+        "both",
+        "framework"
+      ],
+      "review_signal": {
+        "score": 0.28,
+        "frontier_alignment": 0.3,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "causal",
+          "treatment",
+          "effect",
+          "outcome",
+          "under",
+          "distribution"
+        ],
+        "matched_actionability_terms": [
+          "causal"
+        ]
+      },
+      "title_signal": {
+        "score": 0.08,
+        "frontier_alignment": 0.05,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "representation"
+        ],
+        "matched_actionability_terms": [
+          "generalization"
+        ]
+      },
+      "review_minus_title_score": 0.2,
+      "primary_gates": [
+        "scientific_taste_prior",
+        "structured_feedback"
+      ],
+      "actionable_categories": [
+        "clarity_presentation",
+        "novelty_positioning"
+      ],
+      "excerpt": "The paper proposes a novel way of causal inference in situations where in causal SEM notation the outcome Y = f(T,X) is a function of a treatment T and covariates X. The goal is to infer the treatment effect E(Y|T=1,X=x) - E(Y|T=0,X=x) for binary treatments at every location x. If the treatment effect can be learned, then forecasts of Y under new policies that assign treatment conditional on X will still \"work\" and the distribution of X can also change without affecting the accuracy of the prediction"
+    },
+    {
+      "review_id": "paper_137_review_0",
+      "paper_index": 137,
+      "title": "GITA: Graph to Visual and Textual Integration for Vision-Language Graph Reasoning",
+      "candidate_label": "long_horizon_positive_candidate",
+      "delayed_candidate_score": 4.5,
+      "decision": true,
+      "mean_score": 0.5,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W4415799100",
+      "openalex_title": "GITA: Graph to Visual and Textual Integration for Vision-Language Graph Reasoning",
+      "openalex_year": 2024,
+      "openalex_cited_by_count": 2,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 2,
+      "frontier_terms": [
+        "vlms",
+        "visual",
+        "perception",
+        "correction",
+        "perceive",
+        "accurately",
+        "ability",
+        "vgpe",
+        "information",
+        "handwritten",
+        "ocr",
+        "industrial",
+        "document",
+        "vision",
+        "language",
+        "perform",
+        "other",
+        "addres",
+        "cannot",
+        "such"
+      ],
+      "review_signal": {
+        "score": 0.12,
+        "frontier_alignment": 0.15,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "visual",
+          "language",
+          "addres"
+        ],
+        "matched_actionability_terms": []
+      },
+      "title_signal": {
+        "score": 0.04,
+        "frontier_alignment": 0.05,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "visual"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.08,
+      "primary_gates": [
+        "scientific_taste_prior",
+        "structured_feedback"
+      ],
+      "actionable_categories": [
+        "actionable_suggestion",
+        "novelty_positioning"
+      ],
+      "excerpt": "This paper introduces Graph to Visual and Textual Integration (GITA), a novel framework that enhances graph reasoning by integrating visual representations with traditional text-based processing. GITA's innovation lies in using both visual and textual inputs to address graph-structured data, a significant deviation from the typical text-only approaches in Large Language Models (LLMs). Key contributions include the develo Yes."
+    },
+    {
+      "review_id": "paper_99_review_2",
+      "paper_index": 99,
+      "title": "CLASS-INCREMENTAL LEARNING USING GENERATIVE EXPERIENCE REPLAY BASED ON TIME-AWARE REGULARIZATION",
+      "candidate_label": "short_term_repair_signal",
+      "delayed_candidate_score": 3.75,
+      "decision": false,
+      "mean_score": 0.30000000000000004,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W4394653308",
+      "openalex_title": "Class-Incremental Learning Using Generative Experience Replay Based on Time-aware Regularization",
+      "openalex_year": 2023,
+      "openalex_cited_by_count": 1,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 1,
+      "frontier_terms": [
+        "feature",
+        "robust",
+        "framework",
+        "continual",
+        "re-consolidation",
+        "neuroscience",
+        "rehearsal",
+        "experience",
+        "catastrophic",
+        "forgetting",
+        "distillation",
+        "artificial",
+        "intelligence",
+        "research",
+        "insight",
+        "existing",
+        "adversarial",
+        "mammalian",
+        "brain",
+        "proces"
+      ],
+      "review_signal": {
+        "score": 0.0,
+        "frontier_alignment": 0.0,
+        "actionability": 0.0,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": []
+      },
+      "title_signal": {
+        "score": 0.04,
+        "frontier_alignment": 0.05,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "experience"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": -0.04,
+      "primary_gates": [
+        "claim_calibration",
+        "evaluator_stress_test",
+        "scientific_taste_prior"
+      ],
+      "actionable_categories": [
+        "evaluation_metric",
+        "limitations_claim_boundary",
+        "novelty_positioning"
+      ],
+      "excerpt": "The authors target the modal collapse challenge in generative replay methods for class incremental learning. By adjusting the weights of $L_{reconstruct}$ and $D_{KL}$, they aim to dynamically regularize against losing the diversity of early classes (i.e., modal collapse). Experimental results support the authors' claim that the proposed method improves memory retention while increasing the average performance over continually arriving"
+    },
+    {
+      "review_id": "paper_56_review_1",
+      "paper_index": 56,
+      "title": "CBOW Is Not All You Need: Combining CBOW with the Compositional Matrix Space Model",
+      "candidate_label": "short_term_repair_signal",
+      "delayed_candidate_score": 3.5,
+      "decision": true,
+      "mean_score": 0.5185185185185185,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W2911558106",
+      "openalex_title": "CBOW Is Not All You Need: Combining CBOW with the Compositional Matrix Space Model",
+      "openalex_year": 2019,
+      "openalex_cited_by_count": 3,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 3,
+      "frontier_terms": [
+        "classification",
+        "financial",
+        "text",
+        "emotion",
+        "research",
+        "sentiment",
+        "message",
+        "social",
+        "multi-label",
+        "accuracy",
+        "step",
+        "language",
+        "representation",
+        "risk",
+        "prediction",
+        "information",
+        "gru",
+        "lstm",
+        "media",
+        "use"
+      ],
+      "review_signal": {
+        "score": 0.0,
+        "frontier_alignment": 0.0,
+        "actionability": 0.0,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": []
+      },
+      "title_signal": {
+        "score": 0.0,
+        "frontier_alignment": 0.0,
+        "actionability": 0.0,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.0,
+      "primary_gates": [
+        "claim_calibration",
+        "evaluator_stress_test",
+        "scientific_taste_prior"
+      ],
+      "actionable_categories": [
+        "evaluation_metric",
+        "limitations_claim_boundary",
+        "novelty_positioning"
+      ],
+      "excerpt": "The main contribution of this paper in practice seems to be a way to initialize the Continuous Matrix Space Model so that training actually converges, followed by a slightly different contrastive loss function used to train these models. The paper explores the pure matrix model and a mixed matrix / vector model, showing that both together improve on simpler methods on many benchmark tasks. My main concern is that the chained matrix multiplication involved in this method is not substantially simpler"
+    },
+    {
+      "review_id": "paper_3_review_2",
+      "paper_index": 3,
+      "title": "Online Limited Memory Neural-Linear Bandits",
+      "candidate_label": "short_term_repair_signal",
+      "delayed_candidate_score": 3.0,
+      "decision": false,
+      "mean_score": 0.3703703703703704,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W3128147955",
+      "openalex_title": "Online Limited Memory Neural-Linear Bandits with Likelihood Matching",
+      "openalex_year": 2021,
+      "openalex_cited_by_count": 2,
+      "title_token_overlap": 0.7143,
+      "citation_error": null,
+      "citation_count_retrieved": 2,
+      "frontier_terms": [
+        "bandit",
+        "neural",
+        "recommendation",
+        "proces",
+        "problem",
+        "online",
+        "clustering",
+        "contextual",
+        "has",
+        "reward",
+        "function",
+        "user",
+        "algorithm",
+        "m-cnb",
+        "utilize",
+        "upper",
+        "confidence",
+        "bound",
+        "guarantee",
+        "state-of-the-art"
+      ],
+      "review_signal": {
+        "score": 0.16,
+        "frontier_alignment": 0.2,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "bandit",
+          "neural",
+          "problem",
+          "online"
+        ],
+        "matched_actionability_terms": []
+      },
+      "title_signal": {
+        "score": 0.08,
+        "frontier_alignment": 0.1,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "bandit",
+          "online"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.08,
+      "primary_gates": [
+        "evaluator_stress_test",
+        "structured_feedback"
+      ],
+      "actionable_categories": [
+        "actionable_suggestion",
+        "clarity_presentation",
+        "evaluation_metric"
+      ],
+      "excerpt": "Online Limited Memory Neural-Linear Bandits The presented paper suggests a method for neural linear bandits that use limited memory. The memory limit is introduced by forgetting past observations and fitting the likelihood of the data under moments constraints using a semi definite program. The paper presents an interesting approach to a relevant problem but lacks novelty. Moreover, the presentation of the paper needs improvement (i.e. figures are not readable and results should be highlighted better"
+    },
+    {
+      "review_id": "paper_8_review_1",
+      "paper_index": 8,
+      "title": "Generating Images from Sounds Using Multimodal Features and GANs",
+      "candidate_label": "short_term_repair_signal",
+      "delayed_candidate_score": 3.0,
+      "decision": false,
+      "mean_score": 0.2962962962962963,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W2929648250",
+      "openalex_title": "Generating Images from Sounds Using Multimodal Features and GANs",
+      "openalex_year": 2018,
+      "openalex_cited_by_count": 1,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 1,
+      "frontier_terms": [
+        "image",
+        "bird",
+        "sound",
+        "generation",
+        "generative",
+        "adversarial",
+        "network",
+        "generate",
+        "s2i-bird",
+        "sound-to-image",
+        "specie",
+        "generating",
+        "challenging",
+        "corresponding",
+        "information",
+        "include",
+        "encoder",
+        "order",
+        "extract",
+        "suitable"
+      ],
+      "review_signal": {
+        "score": 0.2,
+        "frontier_alignment": 0.2,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "image",
+          "sound",
+          "generation",
+          "sound-to-image"
+        ],
+        "matched_actionability_terms": [
+          "baseline"
+        ]
+      },
+      "title_signal": {
+        "score": 0.12,
+        "frontier_alignment": 0.15,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "image",
+          "sound",
+          "generating"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.08,
+      "primary_gates": [
+        "evaluator_stress_test",
+        "structured_feedback"
+      ],
+      "actionable_categories": [
+        "actionable_suggestion",
+        "clarity_presentation",
+        "evaluation_metric",
+        "method_correctness"
+      ],
+      "excerpt": "PROS: * The paper was well-written and explained the method and the experiments well CONS: * The problem seems ill-posed to me. Sound is temporal and the problem should probably be sound-to-video conversion not sound-to-image. * A link to generated images from sounds where one could actually evaluate the generations would be useful. Currently the only way to evaluate the results is via labels. * Similarly, a baseline where images are generated given the classification labels of the sounds woul"
+    },
+    {
+      "review_id": "paper_52_review_1",
+      "paper_index": 52,
+      "title": "Robust Constrained Reinforcement Learning for Continuous Control with Model Misspecification",
+      "candidate_label": "generic_or_unrouted",
+      "delayed_candidate_score": 3.5,
+      "decision": false,
+      "mean_score": 0.38888888888888884,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W3094028496",
+      "openalex_title": "Robust Constrained Reinforcement Learning for Continuous Control with Model Misspecification",
+      "openalex_year": 2020,
+      "openalex_cited_by_count": 4,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 4,
+      "frontier_terms": [
+        "challenge",
+        "policy",
+        "real-world",
+        "reinforcement",
+        "gradient",
+        "constrained",
+        "robust",
+        "lagrangian",
+        "serie",
+        "markov",
+        "decision",
+        "algorithm",
+        "adversarial",
+        "constraint",
+        "optimisation",
+        "analysi",
+        "management",
+        "some",
+        "proces",
+        "which"
+      ],
+      "review_signal": {
+        "score": 0.12,
+        "frontier_alignment": 0.1,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "constrained",
+          "robust"
+        ],
+        "matched_actionability_terms": [
+          "uncertainty"
+        ]
+      },
+      "title_signal": {
+        "score": 0.12,
+        "frontier_alignment": 0.15,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "reinforcement",
+          "constrained",
+          "robust"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.0,
+      "primary_gates": [],
+      "actionable_categories": [],
+      "excerpt": "In this paper, the author combines robust MDP and constrained MDP for continuous control tasks. 1.First of all, I found such a combination is straightforward. I didn’t see any insight from such combinations 2.The introduction on “constrained model misspecification (CMM)” appears to be unnatural. In control engineering, the perturbation to certain parameters can be treated as an uncertainty; disturbance can appear anytime. And most of the time, such “misspecification” is unknown and can be qu"
+    },
+    {
+      "review_id": "paper_87_review_0",
+      "paper_index": 87,
+      "title": "Improving End-to-End Object Tracking Using Relational Reasoning",
+      "candidate_label": "generic_or_unrouted",
+      "status": "not_scored_possible_match_drift",
+      "openalex_id": "https://openalex.org/W4392145873",
+      "openalex_title": "Two new Later Stone Age sites from the Final Pleistocene in the Falémé Valley, eastern Senegal",
+      "openalex_year": 2024,
+      "title_token_overlap": 0.0
+    },
+    {
+      "review_id": "paper_3_review_0",
+      "paper_index": 3,
+      "title": "Online Limited Memory Neural-Linear Bandits",
+      "candidate_label": "generic_or_unrouted",
+      "delayed_candidate_score": 3.25,
+      "decision": false,
+      "mean_score": 0.3703703703703704,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W3128147955",
+      "openalex_title": "Online Limited Memory Neural-Linear Bandits with Likelihood Matching",
+      "openalex_year": 2021,
+      "openalex_cited_by_count": 2,
+      "title_token_overlap": 0.7143,
+      "citation_error": null,
+      "citation_count_retrieved": 2,
+      "frontier_terms": [
+        "bandit",
+        "neural",
+        "recommendation",
+        "proces",
+        "problem",
+        "online",
+        "clustering",
+        "contextual",
+        "has",
+        "reward",
+        "function",
+        "user",
+        "algorithm",
+        "m-cnb",
+        "utilize",
+        "upper",
+        "confidence",
+        "bound",
+        "guarantee",
+        "state-of-the-art"
+      ],
+      "review_signal": {
+        "score": 0.12,
+        "frontier_alignment": 0.1,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "has",
+          "algorithm"
+        ],
+        "matched_actionability_terms": [
+          "baseline"
+        ]
+      },
+      "title_signal": {
+        "score": 0.08,
+        "frontier_alignment": 0.1,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "bandit",
+          "online"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.04,
+      "primary_gates": [
+        "evaluator_stress_test",
+        "scientific_taste_prior"
+      ],
+      "actionable_categories": [
+        "evaluation_metric",
+        "novelty_positioning"
+      ],
+      "excerpt": "The main contribution of the paper is the likelihood matching method for dealing with the catastrophic forgetting and save the memory usage. The empirical results demonstrate that the proposed method achieves good results comparing to other baselines. However, the paper has several issues, as discussed below. - The paper lacks the theoretical result on their algorithm. It is understandable that an algorithm based on DNN may be hard to analyze. But the NeuralUCB algorithm of Zhou et al. (2019) doe"
+    },
+    {
+      "review_id": "paper_33_review_1",
+      "paper_index": 33,
+      "title": "Machine Learning by Two-Dimensional Hierarchical Tensor Networks: A Quantum Information Theoretic Perspective on Deep Architectures",
+      "candidate_label": "generic_or_unrouted",
+      "delayed_candidate_score": 3.25,
+      "decision": false,
+      "mean_score": 0.3703703703703704,
+      "status": "scored",
+      "openalex_id": "https://openalex.org/W2766980496",
+      "openalex_title": "Machine Learning by Two-Dimensional Hierarchical Tensor Networks: A Quantum Information Theoretic Perspective on Deep Architectures",
+      "openalex_year": 2017,
+      "openalex_cited_by_count": 14,
+      "title_token_overlap": 1.0,
+      "citation_error": null,
+      "citation_count_retrieved": 14,
+      "frontier_terms": [
+        "quantum",
+        "network",
+        "tensor",
+        "state",
+        "correlation",
+        "machine",
+        "classification",
+        "restt",
+        "proces",
+        "such",
+        "feature",
+        "gaussian",
+        "neural",
+        "circuit",
+        "algorithm",
+        "which",
+        "image",
+        "bell",
+        "used",
+        "function"
+      ],
+      "review_signal": {
+        "score": 0.32,
+        "frontier_alignment": 0.4,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "quantum",
+          "network",
+          "tensor",
+          "machine",
+          "neural",
+          "which",
+          "image",
+          "used"
+        ],
+        "matched_actionability_terms": []
+      },
+      "title_signal": {
+        "score": 0.16,
+        "frontier_alignment": 0.2,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "quantum",
+          "network",
+          "tensor",
+          "machine"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_minus_title_score": 0.16,
+      "primary_gates": [
+        "scientific_taste_prior"
+      ],
+      "actionable_categories": [
+        "novelty_positioning"
+      ],
+      "excerpt": "The paper studies the mapping of a mathematical object representing quantum entanglement to a neural network architecture that can be trained to predict data, e.g. images. A contribution of the paper is to propose a 2D tensor network model for that purpose, which has higher representation power than simple tensor networks used in previous works. There are several issues with the paper: First, it is hard to relate the presented model to its machine learning counterpart. e.g. it is not stated cle"
+    }
+  ],
+  "interpretation": "This probe asks whether delayed-value candidates are more aligned with citation-derived future-frontier terms than control review comments. It is useful as a screening validation for replay priority, but the lexical score can miss semantic direction changes.",
+  "claim_boundary": "This is an OpenAlex lexical validation of candidate ranking. It does not prove that a review caused or would have caused a future frontier trajectory; positive candidates still require full TFR replay and semantic or human future-frontier judgement.",
+  "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_candidate_frontier_validation_20260603_011500/summary.json"
+}

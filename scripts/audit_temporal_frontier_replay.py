@@ -69,11 +69,26 @@ def main() -> None:
         / "delayed_value_review_candidate_mining_20260603_001500"
         / "summary.json"
     )
+    validation_path = (
+        DOC_DIR
+        / "experiments"
+        / "delayed_value_candidate_frontier_validation_20260603_011500"
+        / "summary.json"
+    )
 
     errors: list[str] = []
     warnings: list[str] = []
 
-    required_paths = [spec_path, protocol_path, smoke_path, citation_path, review_signal_path, semantic_path, candidate_path]
+    required_paths = [
+        spec_path,
+        protocol_path,
+        smoke_path,
+        citation_path,
+        review_signal_path,
+        semantic_path,
+        candidate_path,
+        validation_path,
+    ]
     for path in required_paths:
         if not path.exists():
             errors.append(f"missing required artifact: {_rel(path)}")
@@ -93,6 +108,7 @@ def main() -> None:
         review_signal = _load_json(review_signal_path)
         semantic = _load_json(semantic_path)
         candidate_mining = _load_json(candidate_path)
+        candidate_validation = _load_json(validation_path)
 
         for condition in ["paper_only", "review_guided", "shuffled_review_control"]:
             if condition not in spec.get("required_conditions", []):
@@ -148,6 +164,7 @@ def main() -> None:
                 "review_frontier_signal_probe": _rel(review_signal_path),
                 "semantic_frontier_judge_probe": _rel(semantic_path),
                 "delayed_value_candidate_mining": _rel(candidate_path),
+                "delayed_value_candidate_frontier_validation": _rel(validation_path),
             },
             "required_conditions_present": not errors,
             "delayed_value_definition_complete": not any(
@@ -211,12 +228,28 @@ def main() -> None:
                 ),
                 "claim_boundary": candidate_mining.get("claim_boundary"),
             },
+            "delayed_value_candidate_frontier_validation": {
+                "attempted_count": candidate_validation.get("aggregate", {}).get("attempted_count"),
+                "scored_count": candidate_validation.get("aggregate", {}).get("scored_count"),
+                "not_scored_count": candidate_validation.get("aggregate", {}).get("not_scored_count"),
+                "delayed_candidate_mean_review_signal_score": candidate_validation.get("aggregate", {}).get(
+                    "delayed_candidate_mean_review_signal_score"
+                ),
+                "control_mean_review_signal_score": candidate_validation.get("aggregate", {}).get(
+                    "control_mean_review_signal_score"
+                ),
+                "delayed_minus_control_mean_score": candidate_validation.get("aggregate", {}).get(
+                    "delayed_minus_control_mean_score"
+                ),
+                "claim_boundary": candidate_validation.get("claim_boundary"),
+            },
             "claim_boundary": (
                 "TFR is operationalized and auditable, but the archived probes are negative for "
                 "delayed-value human-review evidence. Candidate mining can prioritize which "
-                "historical comments should enter expensive replay, but these candidates are "
-                "not positive delayed-value cases until paper-only, review-guided, and shuffled "
-                "controls are judged against later frontier evidence."
+                "historical comments should enter expensive replay, and a small OpenAlex "
+                "validation shows weak positive candidate-vs-control frontier alignment. These "
+                "candidates are still not positive delayed-value cases until paper-only, "
+                "review-guided, and shuffled controls are judged against later frontier evidence."
             ),
             "errors": errors,
             "warnings": warnings,
@@ -245,6 +278,7 @@ def main() -> None:
         semantic = audit["semantic_frontier_judge_probe"]
         review = audit["review_frontier_signal_probe"]
         candidates = audit["delayed_value_candidate_mining"]
+        validation = audit["delayed_value_candidate_frontier_validation"]
         lines.extend(
             [
                 "",
@@ -268,6 +302,15 @@ def main() -> None:
                 f"- Candidate rate: `{candidates['candidate_rate']}`",
                 f"- Long-horizon positive candidates: `{candidates['long_horizon_positive_candidate_count']}`",
                 f"- Short-term repair signals: `{candidates['short_term_repair_signal_count']}`",
+                "",
+                "## Candidate Frontier Validation",
+                "",
+                f"- Attempted reviews: `{validation['attempted_count']}`",
+                f"- Scored reviews: `{validation['scored_count']}`",
+                f"- Not scored after match-drift guard: `{validation['not_scored_count']}`",
+                f"- Delayed-candidate mean review signal: `{validation['delayed_candidate_mean_review_signal_score']}`",
+                f"- Control mean review signal: `{validation['control_mean_review_signal_score']}`",
+                f"- Delayed minus control mean score: `{validation['delayed_minus_control_mean_score']}`",
                 "",
                 "## Claim Boundary",
                 "",
