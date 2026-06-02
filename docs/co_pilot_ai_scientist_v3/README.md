@@ -62,8 +62,9 @@ claim calibration.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet
-  template, collection protocol, hidden condition key, and a summarizer smoke
-  test. No human expert ratings have been collected yet.
+  template, recruitment email, consent/privacy note, collection protocol,
+  hidden condition key, CSV validation mode, and a summarizer smoke test. No
+  human expert ratings have been collected yet.
 - `audits/clean_clone_reproducibility_audit.md`: fresh GitHub-clone check that
   rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
 - `audits/skill_reuse_smoke_audit.md`: local smoke test that instantiates the

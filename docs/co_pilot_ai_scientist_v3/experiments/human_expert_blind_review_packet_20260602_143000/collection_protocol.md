@@ -17,8 +17,10 @@ artifacts beyond equal amounts of unrelated review context.
 
 Send each rater only:
 
+- `recruitment_email.md` as invitation text, if useful
 - `reviewer_index.md`
 - `instructions.md`
+- `consent_privacy_note.md`
 - `pairs/pair_01.md` through `pairs/pair_06.md`
 - `score_sheet_template.csv`
 
@@ -35,8 +37,17 @@ Do not send:
 3. Ask the rater to set each `winner` to `A`, `B`, or `tie`.
 4. Store completed CSVs outside the reviewer-visible packet until all are
    collected.
-5. Concatenate all completed rows into one CSV.
-6. Run:
+5. Validate each completed CSV before concatenation:
+
+```bash
+python3 scripts/summarize_human_expert_blind_reviews.py \
+  --packet-dir docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000 \
+  --score-csv path/to/reviewer_R1.csv \
+  --validate-only
+```
+
+6. Concatenate all completed rows into one CSV.
+7. Run:
 
 ```bash
 python3 scripts/summarize_human_expert_blind_reviews.py \

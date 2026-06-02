@@ -252,13 +252,28 @@ def main() -> None:
     parser.add_argument("--packet-dir", required=True)
     parser.add_argument("--score-csv", required=True)
     parser.add_argument("--output-dir", default=None)
+    parser.add_argument(
+        "--validate-only",
+        action="store_true",
+        help="Validate the score CSV and print a compact status without writing outputs.",
+    )
     args = parser.parse_args()
 
     packet_dir = ROOT / args.packet_dir
     score_csv = ROOT / args.score_csv
+    summary = _summarize(packet_dir, score_csv)
+    if args.validate_only:
+        status = {
+            "score_csv": _rel(score_csv),
+            "row_count": summary["row_count"],
+            "invalid_row_count": len(summary["invalid_rows"]),
+            "valid_winner_count": sum(summary["condition_wins"].values()),
+            "inter_rater_agreement_status": summary["inter_rater_agreement"].get("status"),
+        }
+        print(json.dumps(status, indent=2))
+        return
     out_dir = ROOT / args.output_dir if args.output_dir else packet_dir / "human_rating_summary"
     out_dir.mkdir(parents=True, exist_ok=True)
-    summary = _summarize(packet_dir, score_csv)
     json_path = out_dir / "summary.json"
     md_path = out_dir / "summary.md"
     json_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

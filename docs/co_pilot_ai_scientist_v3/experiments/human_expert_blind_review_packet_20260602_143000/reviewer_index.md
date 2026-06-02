@@ -8,13 +8,14 @@ sheet template.
 ## Reviewer-Visible Files
 
 1. `instructions.md`
-2. `pairs/pair_01.md`
-3. `pairs/pair_02.md`
-4. `pairs/pair_03.md`
-5. `pairs/pair_04.md`
-6. `pairs/pair_05.md`
-7. `pairs/pair_06.md`
-8. `score_sheet_template.csv`
+2. `consent_privacy_note.md`
+3. `pairs/pair_01.md`
+4. `pairs/pair_02.md`
+5. `pairs/pair_03.md`
+6. `pairs/pair_04.md`
+7. `pairs/pair_05.md`
+8. `pairs/pair_06.md`
+9. `score_sheet_template.csv`
 
 ## What To Submit
 

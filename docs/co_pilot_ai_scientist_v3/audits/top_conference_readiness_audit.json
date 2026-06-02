@@ -74,7 +74,8 @@
     "human_expert_blind_review_packets": 1,
     "human_expert_blind_review_pairs_prepared": 6,
     "human_expert_completed_rating_rows": 0,
-    "human_expert_collection_smokes": 1
+    "human_expert_collection_smokes": 1,
+    "human_expert_validation_smokes": 1
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -516,12 +517,14 @@
     "limitation": "Model-routed scoring only; no independent human expert review and no experiment rerun."
   },
   "human_expert_blind_review_packet": {
-    "status": "packet_and_collection_tooling_prepared_no_human_ratings_yet",
+    "status": "packet_recruitment_materials_and_validation_tooling_prepared_no_human_ratings_yet",
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/README.md",
     "condition": "equal_context",
     "pair_count": 6,
     "reviewer_visible_files": [
       "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/reviewer_index.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/consent_privacy_note.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/recruitment_email.md",
       "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/collection_protocol.md",
       "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/instructions.md",
       "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/score_sheet_template.csv",
@@ -551,6 +554,12 @@
       "inter_rater_agreement_status": "not_enough_valid_votes",
       "claim_boundary": "Smoke test only; it uses the empty template and is not human evidence."
     },
-    "interpretation": "Evaluation readiness only; this does not satisfy independent human expert validation until completed score sheets are collected and summarized."
+    "interpretation": "Evaluation readiness only; this does not satisfy independent human expert validation until completed score sheets are collected and summarized.",
+    "csv_validation": {
+      "validate_only_supported": true,
+      "command": "python3 scripts/summarize_human_expert_blind_reviews.py --packet-dir docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000 --score-csv path/to/reviewer.csv --validate-only",
+      "empty_template_status": "invalid_row_count_6_not_enough_valid_votes",
+      "claim_boundary": "Validation tooling only; no human ratings are collected."
+    }
   }
 }
