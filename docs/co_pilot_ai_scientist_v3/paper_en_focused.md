@@ -54,6 +54,25 @@ The sixth gate is claim calibration. It edits the manuscript-level interpretatio
 
 The gates form the following algorithmic loop. The system proposes a research frontier, evaluates early artifacts, maps human or review-derived signals into gate actions, updates the frontier or evaluator, optionally performs micro-evolution, and finally writes a claim-audited manuscript. Every gate has a structured record containing the gate type, artifact reviewed, options considered, decision, rationale, expected upside, possible harm, attention cost, and downstream evidence. This structure is what distinguishes IGRE from informal co-pilot interaction.
 
+A concrete run looks as follows. Suppose an AI Scientist-v2-style loop proposes
+a new robustness benchmark for small tabular models. The AI Co-Scientist-style
+front end first generates several hypotheses: distribution-shift detection,
+metric-gaming avoidance, and low-cost evaluator repair. The scientific-taste
+prior gate keeps the evaluator-repair direction because it has clearer failure
+value and can expose a common automated-science mistake. The evaluator-stress
+gate then rejects a primary metric that rewards an all-negative classifier and
+adds a balanced-utility guardrail. At the next budget checkpoint, frontier
+steering keeps a branch that is not the best early score but tests a more
+diagnostic failure mode. If the branch contains a small machine-gradeable
+heuristic, verifiable micro-evolution runs an OpenEvolve-style search under the
+guardrailed evaluator. When the manuscript is drafted, structured feedback
+turns reviewer comments into concrete ablation and exposition edits, and claim
+calibration prevents the paper from calling the result a general superiority
+claim when the evidence only supports metric-gaming detection. The important
+point is not that every gate fires in every run. The point is that each human or
+review-derived intervention has a typed effect on the research loop and a
+separate evidence record.
+
 IGRE also defines a cross-gate meta-policy, the Long-Horizon Taste Gate (LHTG).
 LHTG is the part of the method that operationalizes the paper's central
 intuition: a human review may make the next artifact worse under short-term
@@ -261,6 +280,33 @@ input should be routed, downweighted, delayed for replay, or rejected.
 IGRE reframes human participation as a high-variance search operator. This is a better fit for science than the claim that human involvement is always positive. Human judgement can increase the chance of rare, high-value trajectories by noticing problem depth, mechanism, novelty, or claim risk that a metric misses. But it can also reduce average score under short budgets.
 
 The OpenReview experiments suggest a practical way forward. Real review comments can be mined to discover what types of human insight are useful. Comments about weak evaluation should trigger evaluator stress tests. Comments about novelty should reshape the taste prior. Comments about missing limitations should trigger claim calibration. Comments about unclear presentation should become structured feedback. Vague praise or generic criticism should have low routing weight.
+
+IGRE is intended to generalize across domains by changing the evaluator and
+gate evidence, not by pretending that every field uses the same research loop.
+In ML, a gate may alter benchmark metrics, ablations, or code-evolution tasks.
+In wet-lab or biomedical settings, the same gate types would attach to protocol
+feasibility, safety constraints, assay choice, literature evidence, and
+experiment triage. In social science, the evaluator-stress and claim-calibration
+gates would focus on identification assumptions, measurement validity, and
+construct drift. In theoretical work, the verifiable part may be a proof-check,
+counterexample search, or symbolic computation rather than a benchmark score.
+This is why IGRE is framed as a participation-mode layer rather than a domain
+tool stack: each field supplies its own evaluators, but the question of when
+human taste should reshape the prior, evaluator, frontier, feedback, or claim
+boundary remains shared.
+
+The same structure creates ethical and governance obligations. Human taste is
+not automatically fair, diverse, or correct. It may introduce prestige bias,
+conservatism, overfitting to reviewer preference, or unsafe overconfidence when
+an expert intuition is not backed by evidence. IGRE therefore logs attention
+cost, rationale, possible harm, and claim boundary for each gate, and it treats
+OpenReview-derived signals as noisy retrospective proxies rather than ground
+truth. A deployed co-pilot scientist should require consent for live trace
+collection, minimize stored content, separate private research notes from
+publishable metadata, and never use community adoption or repository stars as
+evidence of scientific validity. These constraints are not administrative
+details; they are part of making human participation auditable instead of
+merely influential.
 
 The retrospective nature of peer review can also be used as a measurement
 advantage. For historical papers, later field evolution provides a post-hoc

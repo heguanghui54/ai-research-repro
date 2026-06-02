@@ -58,5 +58,15 @@
     "The latest Gemini route praises rigor and transparency but recommends Weak Reject because top-conference empirical impact remains insufficient.",
     "Presentation remains dense and needs a clearer abstract, running example, and broader domain/scalability discussion."
   ],
-  "claim_boundary": "Model reviews are iteration evidence only. They do not replace independent human expert review, larger matched benchmark runs, or broad multi-researcher traces."
+  "claim_boundary": "Model reviews are iteration evidence only. They do not replace independent human expert review, larger matched benchmark runs, or broad multi-researcher traces.",
+  "post_review_revision_note": {
+    "status": "addressed_without_rerunning_model_reviews",
+    "audit": "docs/co_pilot_ai_scientist_v3/audits/focused_accessibility_revision_audit.json",
+    "changes": [
+      "Added a concrete running example that walks through the six IGRE gates on an evaluator-repair benchmark scenario.",
+      "Added cross-domain scalability discussion for ML, wet-lab/biomedical, social science, and theoretical research settings.",
+      "Added ethics and governance discussion covering bias, consent, privacy, and why adoption metrics such as GitHub stars are not scientific-validity evidence."
+    ],
+    "claim_boundary": "These revisions address presentation, ethics, and scalability review comments. They do not add new empirical evidence or change the top-conference evidence gap."
+  }
 }

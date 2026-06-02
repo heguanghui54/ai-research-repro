@@ -1,0 +1,32 @@
+{
+  "audit_date": "2026-06-02T17:48:42Z",
+  "status": "pass",
+  "english_paper": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+  "chinese_paper": "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md",
+  "english_checks": {
+    "A concrete run looks as follows": true,
+    "evaluator-repair direction": true,
+    "balanced-utility guardrail": true,
+    "IGRE is intended to generalize across domains": true,
+    "wet-lab or biomedical settings": true,
+    "social science": true,
+    "theoretical work": true,
+    "ethical and governance obligations": true,
+    "require consent": true,
+    "repository stars": true
+  },
+  "chinese_checks": {
+    "一个具体运行例子如下": true,
+    "evaluator-repair 方向": true,
+    "balanced-utility guardrail": true,
+    "跨领域扩展": true,
+    "湿实验或生物医学场景": true,
+    "社会科学": true,
+    "理论研究": true,
+    "伦理和治理要求": true,
+    "实时轨迹收集取得同意": true,
+    "GitHub star": true
+  },
+  "errors": [],
+  "claim_boundary": "This audit checks that the paper addresses presentation, running-example, ethics, and scalability revision requests. It does not judge empirical strength."
+}

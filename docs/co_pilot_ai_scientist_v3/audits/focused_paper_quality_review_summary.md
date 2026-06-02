@@ -26,6 +26,10 @@
 
 Current successful model reviews are one `Weak accept` and one `Weak Reject`. The added mixed-negative evidence analysis improves rigor and transparency, especially by making failure modes part of the method, but the refreshed Gemini route still judges the paper below strong-venue readiness because empirical scale, independent human validation, and broad matched benchmark gains remain insufficient.
 
+## Post-Review Revision Note
+
+After the refreshed reviews, the focused paper added a concrete six-gate running example plus cross-domain scalability and ethics/governance discussion. The new `focused_accessibility_revision_audit.md/json` verifies that the English and Chinese focused papers contain the running-example, domain-generalization, consent/privacy, bias, and adoption-metric boundary terms. This addresses presentation and governance review comments, but it does not add new empirical evidence or close the top-conference evidence gap.
+
 ## Claim Boundary
 
 Model reviews are iteration evidence only. They do not replace independent human expert review, larger matched benchmark runs, or broad multi-researcher traces.

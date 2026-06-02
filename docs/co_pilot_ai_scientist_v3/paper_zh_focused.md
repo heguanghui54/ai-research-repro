@@ -50,6 +50,8 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 
 这些门控形成如下算法循环：系统提出研究前沿，评估早期产物，把人类或评审派生信号映射为门控动作，更新前沿或 evaluator，必要时执行微演化，最后生成经过主张审计的论文。每个门控记录门控类型、被审查产物、候选选项、决策、理由、预期收益、潜在伤害、注意力成本和下游证据。这一结构使 IGRE 区别于非正式 co-pilot 互动。
 
+一个具体运行例子如下。假设 AI Scientist-v2 式循环提出一个面向小型表格模型的 robustness benchmark。AI Co-Scientist 式前端先生成若干假设：分布偏移检测、metric-gaming avoidance、低成本 evaluator repair。科研品味先验门控保留 evaluator-repair 方向，因为它的失败信息量更清楚，也能暴露自动科研中常见的评估器投机问题。随后 evaluator-stress gate 拒绝一个会奖励 all-negative classifier 的 primary metric，并加入 balanced-utility guardrail。在下一次预算节点，frontier steering 保留一个早期分数不是最高、但更能测试诊断性失败模式的分支。如果该分支包含小型可机器评分启发式，verifiable micro-evolution 就在 guardrailed evaluator 下运行 OpenEvolve 式搜索。论文草稿生成后，structured feedback 把评审意见转为具体消融和表达修订；claim calibration 则阻止论文把“发现 metric gaming”夸大成“co-pilot 整体优越性”。关键不在于每次运行都触发全部门控，而在于每次人类或评审派生介入都有明确类型、明确影响对象和独立证据记录。
+
 IGRE 还定义一个跨门控元策略：长期科研品味门控（Long-Horizon Taste
 Gate, LHTG）。LHTG 用来操作化本文最核心的直觉：一条人类评议可能让下一版产物在短期质量评分上更差，却把科研轨迹推向后来主流或 SOTA 方向。LHTG 寻找 delayed-value review signals（DVRS），也就是同时包含短期摩擦和长期方向性的评审或人类门控信号。DVRS 不会被默认视为正确；系统会把其可行动部分路由到合适的 IGRE gate，放入 TFR replay queue，并同时审计即时产物质量与未来前沿对齐。这让本文方法区别于普通 co-pilot 辅助：科研品味不是审批、偏好标注或额外上下文，而是一种选择性、带风险、可检验的搜索覆盖信号。
 
@@ -173,6 +175,10 @@ TFR 结果给出第三条规则。在三条 live four-condition replay 中，同
 IGRE 把人类参与重新定义为高方差搜索算子。这比“人类参与一定正向”更符合科学研究。人类判断可能通过捕捉问题深度、机制、新颖性或主张风险，提高罕见高价值轨迹出现的概率；但它也可能在短预算下拉低平均分数。
 
 OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪些人类洞察有用。关于评估薄弱的意见应触发 evaluator stress test；关于新颖性的意见应重塑 taste prior；关于局限性的意见应触发 claim calibration；关于表达不清的意见应转化为 structured feedback。泛泛表扬或泛泛批评则应被赋予较低路由权重。
+
+IGRE 的跨领域扩展不是假设所有学科都使用同一套 benchmark，而是保持门控结构不变、替换 evaluator 和证据类型。在 ML 中，门控可能改变 benchmark 指标、消融或代码演化任务；在湿实验或生物医学场景中，同样的门控会连接到实验可行性、安全约束、assay 选择、文献证据和实验优先级；在社会科学中，evaluator-stress 和 claim-calibration 更关注识别假设、测量有效性和构念漂移；在理论研究中，可验证部分可能是 proof check、反例搜索或符号计算，而不是 benchmark 分数。这也是 IGRE 被定义为 participation-mode layer，而不是某个特定学科工具栈的原因。
+
+这种结构也带来伦理和治理要求。人类科研品味并不天然公平、多元或正确，它可能引入声望偏见、保守性、对评审偏好的过拟合，或在缺乏证据时制造过度自信。因此 IGRE 要求每个 gate 记录注意力成本、理由、潜在伤害和主张边界，并把 OpenReview 派生信号视为有噪声的回顾性代理，而不是 ground truth。真正部署 co-pilot scientist 时，应对实时轨迹收集取得同意，最小化存储内容，把私人研究笔记与可发表元数据分开，并且不能把 GitHub star、社区采用度或工具可用性当成科学有效性的证据。这些不是行政细节，而是让人类参与可审计、而不只是有影响力的必要条件。
 
 同行评审数据的过去式属性也可以被转化为测量优势。对于历史论文，后来的学科演化轨迹提供了一个后验前沿目标。因此 IGRE 可以运行回溯式前沿对齐实验：取时间 `t` 的论文及其评审意见，分别在 paper-only、review-guided 和 shuffled-review-control 条件下重新生成后续研究产物，再判断哪些产物更接近后来主流或 SOTA 科研轨迹。这样，优秀评审不只是“打高分”或“批评严厉”的评审，而是其中可行动意见能够把自动科研工作流推向未来重要问题框定、方法、评估规范、失败模式或主张边界的评审。
 
