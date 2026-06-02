@@ -1,8 +1,8 @@
 # Goal Completion Matrix
 
-- Audit date: `2026-06-02T17:59:41Z`
+- Audit date: `2026-06-02T18:02:45Z`
 - Status: `pass_with_top_conference_gap`
-- HEAD: `ff0afc45e558be69923f1a2364944ca494f6c947`
+- HEAD: `68512c144fa70b1d04c792127bc354dbffb50c5b`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote branch pushed: `True`
 - Manifest artifacts: `882`
@@ -28,7 +28,7 @@ Top-conference empirical sufficiency remains incomplete: the package has auditab
 | english_paper_pdfs | achieved | `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf` | The English PDF exists and is audited; final camera-ready paper still depends on stronger evidence. | Rebuild PDFs after any substantive manuscript revision. |
 | bilingual_usage | achieved | `docs/co_pilot_ai_scientist_v3/usage_en.md`<br>`docs/co_pilot_ai_scientist_v3/usage_zh.md`<br>`docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`<br>`docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md` | Usage is complete for the current package shape. | Keep commands synchronized with new experiment scripts. |
 | reusable_codex_skill | achieved | `skills/co-pilot-ai-scientist-v3/SKILL.md`<br>`skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`<br>`skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json` | Skill is packaged and smoke-audited, but broader external reuse is not yet observed. | Run the skill on a fresh topic outside this repository when evaluating generality. |
-| github_push | achieved | `https://github.com/heguanghui54/ai-research-repro.git`<br>`codex/co-pilot-ai-scientist-v3`<br>`ff0afc45e558be69923f1a2364944ca494f6c947` | Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate. | Create a release or PR only when the user wants a public submission package. |
+| github_push | achieved | `https://github.com/heguanghui54/ai-research-repro.git`<br>`codex/co-pilot-ai-scientist-v3`<br>`68512c144fa70b1d04c792127bc354dbffb50c5b` | Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate. | Create a release or PR only when the user wants a public submission package. |
 | ssh_ubuntu_experiments | partial | `docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/README.md`<br>`docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/co_pilot_trajectory.json`<br>`docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_house_price_setup_probe/README.md` | Several Ubuntu traces exist, but some official benchmark attempts hit data/auth/setup blockers. | Pre-cache datasets or choose official tasks with open data to complete non-FML scored comparisons. |
 | model_selection_monica | achieved | `docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/summary.json`<br>`docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md`<br>`docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md`<br>`docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md` | Model reviews help audit quality but do not count as independent human expert review. | Use model reviews for iteration; use human experts only as future supplementary validation. |
 | author_record | achieved | `docs/co_pilot_ai_scientist_v3/paper_en_focused.md` | Author metadata is recorded in the paper package. | Keep author information synchronized in any final submission template. |
