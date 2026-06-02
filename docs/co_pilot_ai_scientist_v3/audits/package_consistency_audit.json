@@ -1,10 +1,11 @@
 {
-  "audit_date": "2026-06-02T10:35:11Z",
+  "audit_date": "2026-06-02T10:38:22Z",
   "status": "pass",
-  "head": "f105d98e154062f69b0ef7f79f31629e1d831f5f",
+  "head": "41e3f4578553cd2d1272512b3e68e17e8d89b948",
   "clean_clone_audited_commit": "c2d3beefe05cbe7b5611843fd8ed9ca427bd9a94",
   "clean_clone_commit_is_head": false,
   "clean_clone_commit_is_head_ancestor": true,
+  "git_repository_is_shallow": false,
   "manifest_artifacts": 615,
   "missing_manifest_artifacts": 0,
   "duplicate_manifest_artifacts": 0,

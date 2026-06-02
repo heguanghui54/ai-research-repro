@@ -37,6 +37,18 @@ def _git_head() -> str:
     return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
 
 
+def _git_is_shallow() -> bool:
+    result = subprocess.run(
+        ["git", "rev-parse", "--is-shallow-repository"],
+        cwd=ROOT,
+        check=False,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.DEVNULL,
+        text=True,
+    )
+    return result.stdout.strip().lower() == "true"
+
+
 def _git_is_ancestor(ancestor: str, descendant: str) -> bool:
     result = subprocess.run(
         ["git", "merge-base", "--is-ancestor", ancestor, descendant],
@@ -79,6 +91,7 @@ def main() -> None:
 
     errors: list[str] = []
     warnings: list[str] = []
+    is_shallow_repository = _git_is_shallow()
 
     if missing:
         errors.append(f"manifest lists {len(missing)} missing artifacts")
@@ -102,7 +115,11 @@ def main() -> None:
     if tfr.get("status") != clean_checks.get("temporal_frontier_replay_audit_status"):
         errors.append("TFR audit status disagrees with clean-clone audit")
     if audited_commit and not clean_commit_is_ancestor:
-        errors.append("clean-clone audited commit is not an ancestor of current HEAD")
+        message = "clean-clone audited commit is not an ancestor of current HEAD"
+        if is_shallow_repository and audited_commit != head:
+            warnings.append(message + " in this shallow checkout")
+        else:
+            errors.append(message)
 
     current_counts = readiness.get("current_counts", {})
     if current_counts.get("delayed_value_candidate_frontier_validation_scored_reviews") != validation_agg.get(
@@ -169,6 +186,7 @@ def main() -> None:
         "clean_clone_audited_commit": audited_commit,
         "clean_clone_commit_is_head": clean_commit_is_head,
         "clean_clone_commit_is_head_ancestor": clean_commit_is_ancestor,
+        "git_repository_is_shallow": is_shallow_repository,
         "manifest_artifacts": manifest_count,
         "missing_manifest_artifacts": len(missing),
         "duplicate_manifest_artifacts": len(duplicate_artifacts),
