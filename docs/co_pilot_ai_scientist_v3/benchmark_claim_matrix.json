@@ -31,6 +31,13 @@
       "does_not_prove": "Causal single-gate artifact ablation, independent human expert validity, or benchmark superiority."
     },
     {
+      "claim_family": "Causal-style single-gate artifact ablation",
+      "benchmark_or_probe": "OpenReview selected papers with newly generated isolated-gate artifacts",
+      "current_evidence": "single_gate_artifact_ablation_20260602_203000 generates single-gate mini-paper artifacts using only gate-specific review snippets. Best single gate (single_evaluator_stress_test) mean overall is 3.6667, full review guidance is 3.5, and baseline is 2.9166; winner votes are baseline 3, full review-guided 2, evaluator-stress 6, structured-feedback 1.",
+      "supports": "Targeted gate routing can outperform both no-review baseline and full review context in a small model-reviewed proxy; more human context is not automatically better.",
+      "does_not_prove": "Independent human expert validity, real benchmark reruns, broad task generality, or proof that every gate is useful in isolation."
+    },
+    {
       "claim_family": "AlphaEvolve-style subproblem search",
       "benchmark_or_probe": "OpenEvolve function minimization, knapsack, and Max-Cut",
       "current_evidence": "Direct edit beats or matches tiny function search; OpenEvolve improves the richer knapsack heuristic to 0.999439 average optimality ratio and the controlled Max-Cut heuristic to 0.970833 versus direct rewrite 0.962237.",

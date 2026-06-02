@@ -1,0 +1,299 @@
+{
+  "per_paper": [
+    {
+      "paper_id": "openreview_sample_1",
+      "winner": "single_evaluator_stress_test",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 4,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 4
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "best_single_gate": "single_evaluator_stress_test",
+      "useful_gate_signal": "It provided detailed insights that enhanced the contribution and clarity of the paper.",
+      "failure_or_confound": "N/A"
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "winner": "baseline",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 2,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_structured_feedback": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 4
+        }
+      },
+      "best_single_gate": "single_structured_feedback",
+      "useful_gate_signal": "It focused on structural clarity and actionable suggestions, improving manuscript quality.",
+      "failure_or_confound": "The full review signals competed but did not significantly enhance focus."
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "winner": "single_structured_feedback",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 4,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 4
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 4,
+          "overall": 4
+        },
+        "single_structured_feedback": {
+          "novelty": 5,
+          "correctness": 4,
+          "clarity": 5,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 5
+        },
+        "single_scientific_taste_prior": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 4
+        }
+      },
+      "best_single_gate": "single_structured_feedback",
+      "useful_gate_signal": "It promoted clarity and structured feedback that enhanced the overall presentation.",
+      "failure_or_confound": "N/A"
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "winner": "baseline",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 3,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 4
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 4,
+          "overall": 4
+        },
+        "single_structured_feedback": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 4,
+          "overall": 4
+        },
+        "single_scientific_taste_prior": {
+          "novelty": 4,
+          "correctness": 3,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "best_single_gate": "single_evaluator_stress_test",
+      "useful_gate_signal": "It provided rigorous evaluations that stressed the empirical validation of the hypothesis.",
+      "failure_or_confound": "N/A"
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "winner": "baseline",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_structured_feedback": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "best_single_gate": "single_structured_feedback",
+      "useful_gate_signal": "It offered suggestions that improved both the structure and clarity of the manuscript.",
+      "failure_or_confound": "N/A"
+    },
+    {
+      "paper_id": "openreview_sample_64",
+      "winner": "single_evaluator_stress_test",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 2,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 2
+        },
+        "full_review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 3,
+          "experiment_quality": 4,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 4
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 2,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "best_single_gate": "single_evaluator_stress_test",
+      "useful_gate_signal": "It enhanced the clarity and detailed aspects of the technical presentation, guiding improvements.",
+      "failure_or_confound": "N/A"
+    }
+  ],
+  "design_lessons": [
+    "Incorporating structured feedback significantly enhances clarity and overall quality.",
+    "Single types of reviews can sometimes yield better focus and quality than mixed signals.",
+    "Clear and focused experiment plans are crucial for improving the perceived reliability of findings."
+  ],
+  "claim_boundary": "The claims made in these studies primarily revolve around specific applications of new methods across defined contexts, making them less generalizable to unrelated fields or approaches. Further empirical validation is necessary to explore broader applicability.",
+  "model": "gpt-4o-mini",
+  "aggregate": {
+    "winner_counts": {
+      "baseline": 3,
+      "single_evaluator_stress_test": 2,
+      "single_structured_feedback": 1
+    },
+    "best_single_gate_counts": {
+      "single_evaluator_stress_test": 3,
+      "single_structured_feedback": 3
+    },
+    "mean_overall_by_condition": {
+      "baseline": 2.8333,
+      "full_review_guided": 3.6667,
+      "single_evaluator_stress_test": 3.6667,
+      "single_scientific_taste_prior": 4.0,
+      "single_structured_feedback": 4.25
+    }
+  }
+}

@@ -115,7 +115,15 @@
     "gate_outcome_attribution_best_single_aligned_score": 37.249994,
     "gate_outcome_attribution_random_gate_aligned_score_mean": 15.264972,
     "gate_outcome_attribution_full_vs_best_single_gain": 37.916666,
-    "gate_outcome_attribution_full_vs_random_mean_gain": 59.901688
+    "gate_outcome_attribution_full_vs_random_mean_gain": 59.901688,
+    "single_gate_artifact_ablation_probes": 1,
+    "single_gate_artifact_ablation_papers": 6,
+    "single_gate_artifact_ablation_live_model_calls": 3,
+    "single_gate_artifact_ablation_best_single_mean_overall": 3.6667,
+    "single_gate_artifact_ablation_full_review_guided_mean_overall": 3.5,
+    "single_gate_artifact_ablation_baseline_mean_overall": 2.9166,
+    "single_gate_artifact_ablation_best_single_minus_baseline": 0.7501,
+    "single_gate_artifact_ablation_full_minus_best_single": -0.1667
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -1020,7 +1028,8 @@
     ],
     "gate_structure_ablation_status": "routing-level ablation completed; downstream quality ablations still needed",
     "gate_structure_ablation_artifact": "experiments/gate_structure_ablation_probe_20260602_183000/",
-    "gate_outcome_attribution_status": "post-hoc downstream attribution completed; causal single-gate artifact ablations still needed"
+    "gate_outcome_attribution_status": "post-hoc downstream attribution completed; causal single-gate artifact ablations still needed",
+    "single_gate_artifact_ablation_status": "small causal-style OpenReview proxy completed; independent human ratings and real benchmark reruns still needed"
   },
   "gate_structure_ablation_probe": {
     "status": "pass",
@@ -1096,5 +1105,67 @@
       }
     },
     "claim_boundary": "This is a post-hoc attribution over six OpenReview regeneration pairs and model-review scores. It supports downstream gate-quality analysis as a design signal, but it does not prove causal improvement, independent human validity, or benchmark superiority."
+  },
+  "single_gate_artifact_ablation": {
+    "status": "pass",
+    "run_id": "single_gate_artifact_ablation_20260602_203000",
+    "artifact_dir": "docs/co_pilot_ai_scientist_v3/experiments/single_gate_artifact_ablation_20260602_203000",
+    "paper_count": 6,
+    "live_model_calls": 3,
+    "generation_model": "gpt-4o-mini",
+    "review_models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "missing_generated_gates": {},
+    "aggregate": {
+      "model_count": 2,
+      "winner_counts": {
+        "baseline": 3,
+        "single_evaluator_stress_test": 6,
+        "single_structured_feedback": 1,
+        "full_review_guided": 2
+      },
+      "best_single_gate_counts": {
+        "single_evaluator_stress_test": 9,
+        "single_structured_feedback": 3
+      },
+      "mean_overall_by_condition": {
+        "baseline": 2.9166,
+        "full_review_guided": 3.5,
+        "single_evaluator_stress_test": 3.6667,
+        "single_scientific_taste_prior": 3.5,
+        "single_structured_feedback": 3.625
+      },
+      "best_single_condition_by_mean": "single_evaluator_stress_test",
+      "full_review_guided_minus_baseline": 0.5834,
+      "full_review_guided_minus_best_single": -0.1667,
+      "best_single_minus_baseline": 0.7501,
+      "per_paper_votes": {
+        "openreview_sample_1": {
+          "single_evaluator_stress_test": 2
+        },
+        "openreview_sample_2": {
+          "baseline": 1,
+          "full_review_guided": 1
+        },
+        "openreview_sample_17": {
+          "single_structured_feedback": 1,
+          "single_evaluator_stress_test": 1
+        },
+        "openreview_sample_34": {
+          "baseline": 1,
+          "full_review_guided": 1
+        },
+        "openreview_sample_49": {
+          "baseline": 1,
+          "single_evaluator_stress_test": 1
+        },
+        "openreview_sample_64": {
+          "single_evaluator_stress_test": 2
+        }
+      }
+    },
+    "claim_boundary": "This is a six-paper, model-reviewed OpenReview proxy using generated mini-paper artifacts. It is closer to a causal gate ablation than post-hoc attribution, but it does not replace independent human expert ratings, real benchmark reruns, or multi-task AI Scientist-v2 matched experiments."
   }
 }

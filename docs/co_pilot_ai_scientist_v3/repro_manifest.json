@@ -586,7 +586,11 @@
     "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/README.md",
     "scripts/run_gate_outcome_attribution_probe.py",
     "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/summary.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/README.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/README.md",
+    "scripts/run_single_gate_artifact_ablation.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/single_gate_artifact_ablation_20260602_203000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/single_gate_artifact_ablation_20260602_203000/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/single_gate_artifact_ablation_20260602_203000/single_gate_artifacts.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1414,6 +1418,48 @@
       "scripts/run_gate_outcome_attribution_probe.py",
       "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/summary.json",
       "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/README.md"
+    ]
+  },
+  "single_gate_artifact_ablation": {
+    "status": "pass",
+    "run_id": "single_gate_artifact_ablation_20260602_203000",
+    "paper_count": 6,
+    "live_model_calls": 3,
+    "generation_model": "gpt-4o-mini",
+    "review_models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "source_summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+    "source_scored_reviews": "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/scored_reviews.json",
+    "missing_generated_gates": {},
+    "mean_overall_by_condition": {
+      "baseline": 2.9166,
+      "full_review_guided": 3.5,
+      "single_evaluator_stress_test": 3.6667,
+      "single_scientific_taste_prior": 3.5,
+      "single_structured_feedback": 3.625
+    },
+    "winner_counts": {
+      "baseline": 3,
+      "single_evaluator_stress_test": 6,
+      "single_structured_feedback": 1,
+      "full_review_guided": 2
+    },
+    "best_single_gate_counts": {
+      "single_evaluator_stress_test": 9,
+      "single_structured_feedback": 3
+    },
+    "best_single_condition_by_mean": "single_evaluator_stress_test",
+    "full_review_guided_minus_baseline": 0.5834,
+    "full_review_guided_minus_best_single": -0.1667,
+    "best_single_minus_baseline": 0.7501,
+    "claim_boundary": "This is a six-paper, model-reviewed OpenReview proxy using generated mini-paper artifacts. It is closer to a causal gate ablation than post-hoc attribution, but it does not replace independent human expert ratings, real benchmark reruns, or multi-task AI Scientist-v2 matched experiments.",
+    "artifacts": [
+      "scripts/run_single_gate_artifact_ablation.py",
+      "docs/co_pilot_ai_scientist_v3/experiments/single_gate_artifact_ablation_20260602_203000/summary.json",
+      "docs/co_pilot_ai_scientist_v3/experiments/single_gate_artifact_ablation_20260602_203000/README.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/single_gate_artifact_ablation_20260602_203000/single_gate_artifacts.json"
     ]
   }
 }

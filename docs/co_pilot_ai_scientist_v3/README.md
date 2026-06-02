@@ -238,6 +238,13 @@ single gate obtains `37.249994` and the 512-seed random single-gate baseline
 averages `15.264972`. The nonzero downstream signal comes from
 evaluator-stress, structured-feedback, and scientific-taste-prior gates in this
 six-paper subset. This is post-hoc attribution, not causal proof.
+The `single_gate_artifact_ablation_20260602_203000/` artifact then generates
+new mini-paper artifacts from isolated gate-specific review snippets. It finds
+mean overall `3.6667` for the best single gate (`single_evaluator_stress_test`),
+`3.5` for full review guidance, and `2.9166` for title/abstract baseline across
+GPT and Claude reviewers. This makes the method claim sharper: useful human
+input is not maximal review context, but targeted gate routing. The artifact is
+still a six-paper model-reviewed proxy, not independent human evidence.
 The package also includes OpenEvolve-based program search, direct LLM rewrite
 baselines, richer knapsack and Max-Cut heuristic tasks, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes live

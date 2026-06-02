@@ -1,0 +1,299 @@
+{
+  "per_paper": [
+    {
+      "paper_id": "openreview_sample_1",
+      "winner": "single_evaluator_stress_test",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "best_single_gate": "single_evaluator_stress_test",
+      "useful_gate_signal": "The evaluator stress test gate correctly identified the three types of preference pairs (correct/refuse/incorrect) as central to the method, producing a more precise and technically grounded artifact than baseline. It also surfaced the specific dataset scope (math questions) and GDPR-adjacent framing.",
+      "failure_or_confound": "Full_review_guided adds the preference pair detail but dilutes it with generic hedging about benchmark limitations, ending up only marginally better than baseline rather than clearly superior to the single gate."
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "winner": "full_review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 4,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_structured_feedback": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 2,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "best_single_gate": "single_evaluator_stress_test",
+      "useful_gate_signal": "The evaluator stress test gate introduced the SDE mathematical framework detail and molecular dataset scope, both substantive additions absent from baseline. Structured feedback gate added little beyond organizational commentary.",
+      "failure_or_confound": "Single_structured_feedback largely recycled surface-level praise about writing quality without adding technical depth, making it the weakest single gate. Full_review_guided wins by combining SDE rigor with the versatility/motivation gap critique."
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "winner": "single_evaluator_stress_test",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        },
+        "single_structured_feedback": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_scientific_taste_prior": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "best_single_gate": "single_evaluator_stress_test",
+      "useful_gate_signal": "The evaluator stress test gate uniquely surfaced the GDPR right-to-be-forgotten framing and the baseline justification gap as a concrete limitation, adding regulatory context and methodological self-awareness that neither baseline nor other gates provided.",
+      "failure_or_confound": "Single_structured_feedback and single_scientific_taste_prior both produced artifacts that are nearly identical to baseline in substance, only adding generic quality praise. Full_review_guided combines gradient ascent detail but also regresses to vague hedging, making it roughly equivalent to baseline overall."
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "winner": "full_review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_structured_feedback": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 2,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_scientific_taste_prior": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "best_single_gate": "single_evaluator_stress_test",
+      "useful_gate_signal": "The evaluator stress test gate at least flagged the probe technique description gap as a concrete methodological weakness, adding specificity. Scientific taste and structured feedback gates produced nearly identical generic artifacts.",
+      "failure_or_confound": "None of the single gates clearly beat baseline here; all produce similarly thin artifacts. Full_review_guided wins because it combines the probe critique with the multiple-perspectives framing of the method. Single_structured_feedback is the weakest gate, adding only vague organizational praise."
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "winner": "single_evaluator_stress_test",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 3,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        },
+        "single_structured_feedback": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 2,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "best_single_gate": "single_evaluator_stress_test",
+      "useful_gate_signal": "The evaluator stress test gate honestly reported that the improvement with noisy labels is marginal and raised the question of effectiveness, producing an artifact with better calibrated claims and more honest limitations than baseline.",
+      "failure_or_confound": "Full_review_guided adds 'modest improvements' language but also inserts vague optimism about 'significant potential for further exploration,' somewhat neutralizing the honest signal. Single_structured_feedback adds no technical depth and is the weakest condition."
+    },
+    {
+      "paper_id": "openreview_sample_64",
+      "winner": "single_evaluator_stress_test",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 2,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "full_review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "single_evaluator_stress_test": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "best_single_gate": "single_evaluator_stress_test",
+      "useful_gate_signal": "The evaluator stress test gate introduced the causal-constraint-via-flows mechanism detail and grounded the paper in the driving scene use case, producing a more technically precise artifact with better claim calibration than baseline.",
+      "failure_or_confound": "Full_review_guided is marginally better than baseline but spends too much space on the presentation-clarity critique without adding methodological substance, making single_evaluator_stress_test the clear winner."
+    }
+  ],
+  "design_lessons": [
+    "The evaluator_stress_test gate consistently provides the most actionable single-gate signal because it tends to surface concrete methodological details (e.g., specific dataset types, algorithmic pair structures, regulatory framing) rather than generic quality assessments, making it the most reliable single gate for improving artifact specificity and claim calibration.",
+    "The structured_feedback gate is the weakest single gate across papers: when isolated, it collapses to organizational commentary and surface praise, adding little technical content over baseline. It only gains value when combined with other signals in full_review_guided.",
+    "Full_review_guided wins when multiple signals are complementary (e.g., technical detail from evaluator + versatility scope from structured), but can regress toward baseline when signals conflict or dilute each other with vague hedging. The combination benefit is contingent on signal compatibility, not guaranteed by aggregation alone.",
+    "Baseline artifacts are surprisingly competitive when the abstract is already information-dense; single gates must add genuinely novel technical detail to justify their use. Generic gates that restate abstract-level information provide no measurable uplift.",
+    "Honest limitation signaling (e.g., 'marginal improvement,' 'baseline justification insufficient') from a single gate significantly improves claim_calibration and limitation_honesty scores even when novelty and experiment_quality gains are modest, suggesting that critique-oriented gate signals have disproportionate value for artifact trustworthiness."
+  ],
+  "claim_boundary": "Across all six papers, the evaluator_stress_test gate is the most reliably useful single gate, producing artifacts that beat baseline in 5 of 6 cases by introducing specific technical content absent from the abstract. The structured_feedback gate fails to beat baseline when isolated, functioning only as a complement to other signals. Full_review_guided wins outright in 2 cases where multiple complementary signals exist, but the single gate wins in 3 cases where the combined signal introduces diluting hedges. These findings are limited to short mini-paper artifacts generated from title and abstract alone; results may not generalize to longer-form artifacts, other domains, or gate combinations beyond those tested. The scoring rubric used here treats technical specificity and honest limitation acknowledgment as primary value drivers, which may not reflect all downstream use cases for generated research artifacts.",
+  "model": "claude-3-7-sonnet-latest",
+  "aggregate": {
+    "winner_counts": {
+      "full_review_guided": 2,
+      "single_evaluator_stress_test": 4
+    },
+    "best_single_gate_counts": {
+      "single_evaluator_stress_test": 6
+    },
+    "mean_overall_by_condition": {
+      "baseline": 3.0,
+      "full_review_guided": 3.3333,
+      "single_evaluator_stress_test": 3.6667,
+      "single_scientific_taste_prior": 3.0,
+      "single_structured_feedback": 3.0
+    }
+  }
+}
