@@ -1,0 +1,59 @@
+{
+  "audit_date": "2026-06-02T19:35:37Z",
+  "status": "pass",
+  "english_paper": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+  "chinese_paper": "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md",
+  "english_table_count": 2,
+  "chinese_table_count": 2,
+  "english_images": [
+    {
+      "src": "figures/igre_frontier_main_figure.png",
+      "path": "docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png",
+      "alt_chars": 338,
+      "exists": true,
+      "bytes": 146654,
+      "width": 1800,
+      "height": 1080
+    }
+  ],
+  "chinese_images": [
+    {
+      "src": "figures/igre_frontier_main_figure.png",
+      "path": "docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png",
+      "alt_chars": 144,
+      "exists": true,
+      "bytes": 146654,
+      "width": 1800,
+      "height": 1080
+    }
+  ],
+  "english_marker_checks": {
+    "Review utility map": true,
+    "Gate-structure ablation": true,
+    "Held-out review-gate validation": true,
+    "Prospective matched packages": true,
+    "Prospective attention/taste instrumentation": true,
+    "Open-data evaluator-stress pilot": true,
+    "Evaluator-stress trigger-policy transfer": true,
+    "MLAgentBench vectorization": true,
+    "Sklearn diabetes tabular probe": true,
+    "Paper claim": true,
+    "Claim boundary": true
+  },
+  "chinese_marker_checks": {
+    "Review utility map": true,
+    "Prospective matched packages": true,
+    "Prospective attention/taste instrumentation": true,
+    "Open-data evaluator-stress pilot": true,
+    "Evaluator-stress trigger-policy transfer": true,
+    "MLAgentBench vectorization": true
+  },
+  "stale_marker_hits": {
+    "3 co-pilot or human-selected wins": false,
+    "6 packages; SSH Max-Cut delta": false,
+    "co-pilot 或人类选分支胜 3 次": false,
+    "6 个 package；SSH Max-Cut delta": false
+  },
+  "errors": [],
+  "claim_boundary": "This audit checks whether the focused papers expose the main figure, evidence table, claim-boundary table, and current prospective-package counts. It does not judge whether the evidence is top-conference sufficient."
+}
