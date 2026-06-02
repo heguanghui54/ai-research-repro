@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-03",
+  "audit_date": "2026-06-02",
   "purpose": "Keep the Co-Pilot AI Scientist v3 manuscript aligned with the archived evidence package.",
   "global_claim_boundary": "IGRE and TFR are reproducible participation-mode design methods. Current evidence does not prove that human-gated automated science outperforms autonomous AI Scientist-v2 on average.",
   "claims": [
@@ -223,8 +223,22 @@
     "claim_boundary": "post-hoc design evidence"
   },
   "clean_clone_reproducibility_latest": {
-    "commit": "0bc6b479c63f6cb68e4d241969c7acfb2b57ff0a",
-    "manifest_artifacts_checked": 907,
-    "claim_boundary": "artifact reproducibility only"
+    "commit": "872d8f2c0d786c16596ef7fab17354a532d2cb10",
+    "manifest_artifacts_checked": 913,
+    "missing_manifest_artifacts": 0,
+    "heldout_trigger_policy_best_policy": "class_imbalance_trigger_0_94",
+    "heldout_trigger_policy_best_delta_vs_autonomous_mean": 0.003639444256184343,
+    "heldout_trigger_policy_best_wins_losses_ties": [
+      2,
+      0,
+      23
+    ],
+    "delayed_value_replay_multicase_status": "pass_with_no_strict_positive_dvrs",
+    "delayed_value_replay_multicase_cases": 3,
+    "delayed_value_replay_multicase_strict_positive_cases": 0,
+    "candidate_frontier_scored_reviews": 13,
+    "delayed_minus_control_mean_score": 0.064,
+    "package_consistency_audit_status": "pass",
+    "claim_boundary": "artifact reproducibility only; not independent human evidence or broad superiority proof"
   }
 }
