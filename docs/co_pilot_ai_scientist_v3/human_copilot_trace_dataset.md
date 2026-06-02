@@ -35,7 +35,7 @@ manuscript revisions, and claim-audit outcomes.
 - Records with attention cost: 12
 - Records with taste/insight: 7
 - Prospective matched packages: 3
-- Git commits indexed for this package: 46
+- Git commits indexed for this package: 47
 
 ## What This Dataset Can Support
 
@@ -58,3 +58,19 @@ manuscript revisions, and claim-audit outcomes.
 3. Preserve enough artifact links for reproducibility.
 4. Mark operator-recorded timing separately from independent human-subject timing.
 5. Treat the first release as a single-author longitudinal case study.
+
+## Release Audit
+
+Run:
+
+```bash
+python3 scripts/audit_human_copilot_trace_dataset.py
+```
+
+Current expected result: `pass`. The audit should find 4
+public-dataset survey entries, 29 gate records,
+3 prospective packages,
+47 commit-index entries, 0 secret-pattern hits,
+and 0 raw-log marker hits. This means the artifact is suitable as a
+derived metadata case-study dataset, not as a raw chat-log release or
+population-level human-subject dataset.

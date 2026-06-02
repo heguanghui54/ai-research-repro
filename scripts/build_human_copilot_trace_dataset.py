@@ -215,6 +215,22 @@ def _markdown(data: dict[str, Any]) -> str:
             "4. Mark operator-recorded timing separately from independent human-subject timing.",
             "5. Treat the first release as a single-author longitudinal case study.",
             "",
+            "## Release Audit",
+            "",
+            "Run:",
+            "",
+            "```bash",
+            "python3 scripts/audit_human_copilot_trace_dataset.py",
+            "```",
+            "",
+            f"Current expected result: `pass`. The audit should find {len(data['public_dataset_survey'])}",
+            f"public-dataset survey entries, {data['current_snapshot']['gate_record_count']} gate records,",
+            f"{data['current_snapshot']['prospective_package_count']} prospective packages,",
+            f"{data['current_snapshot']['commit_count']} commit-index entries, 0 secret-pattern hits,",
+            "and 0 raw-log marker hits. This means the artifact is suitable as a",
+            "derived metadata case-study dataset, not as a raw chat-log release or",
+            "population-level human-subject dataset.",
+            "",
         ]
     )
     return "\n".join(lines)

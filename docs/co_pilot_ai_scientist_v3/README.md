@@ -246,6 +246,9 @@ resources, but they do not directly provide human scientist co-pilot
 interventions inside an AI Scientist-v2-style hypothesis-experiment-paper loop.
 The paper therefore uses a privacy-preserving derived metadata layer from the
 author's own Codex sessions as its primary process trace dataset.
+`audits/human_copilot_trace_dataset_audit.md/json` checks this release layer:
+the current audit passes with 0 secret-pattern hits and 0 raw-log marker hits,
+so the dataset is suitable as a derived single-author case-study artifact.
 
 The package now includes a first matched mini-manuscript quality probe under
 `experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/`.

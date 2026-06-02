@@ -124,6 +124,11 @@ and claim responsibility can reshape the trajectory.
      dataset, run `scripts/build_human_copilot_trace_dataset.py`. Treat the
      resulting `human_copilot_trace_dataset.md/json` as a single-author
      longitudinal trace corpus, not as population-level human-subject evidence.
+   - Before releasing that derived trace dataset, run
+     `scripts/audit_human_copilot_trace_dataset.py`. Report the audit status,
+     required-field coverage, claim-boundary check, and secret/raw-log scan
+     counts. A passing release audit reduces leakage risk; it does not replace
+     human-subject review if the corpus expands beyond the author's own traces.
    - To check the package shape on a controlled remote computation, run
      `scripts/run_prospective_matched_budget_micro_pilot.py`; treat it only as
      evidence-shape validation, not as AI Scientist-v2 superiority evidence.

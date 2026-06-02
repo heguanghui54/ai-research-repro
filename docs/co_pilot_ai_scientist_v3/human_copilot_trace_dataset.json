@@ -32,7 +32,7 @@
     "attention_cost_records": 12,
     "taste_insight_records": 7,
     "prospective_package_count": 3,
-    "commit_count": 46
+    "commit_count": 47
   },
   "gate_records": [
     {
@@ -356,6 +356,11 @@
     }
   ],
   "commit_index": [
+    {
+      "commit": "a6eef510c76ccf8d7fea7ce80c137614ed131322",
+      "date": "2026-06-02",
+      "subject": "Add human co-pilot trace dataset and FML pilot"
+    },
     {
       "commit": "cc1b8894aad940976609da1df33dc9e5a7dac862",
       "date": "2026-06-02",

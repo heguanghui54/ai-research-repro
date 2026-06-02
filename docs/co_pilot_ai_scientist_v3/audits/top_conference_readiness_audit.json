@@ -163,6 +163,12 @@
     "attention_cost_records": 12,
     "taste_insight_records": 7,
     "prospective_packages": 3,
-    "claim_scope": "supports process/ecological case-study claims, not population-level human benefit"
+    "claim_scope": "supports process/ecological case-study claims, not population-level human benefit",
+    "release_audit_markdown": "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.md",
+    "release_audit_json": "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.json",
+    "release_audit_status": "pass",
+    "secret_pattern_hits": 0,
+    "raw_log_marker_hits": 0,
+    "commit_index_entries": 47
   }
 }

@@ -272,6 +272,14 @@ taste/insight fields, 3 prospective matched packages, and 46 relevant commits.
 This supports ecological and process claims, but not population-level claims
 about all scientists.
 
+We add a release-readiness audit for this dataset. The audit verifies required
+top-level fields, gate schema coverage, explicit claim boundaries, and scans for
+secret-like strings and raw-log markers. The current audit passes with 4
+public-dataset survey entries, 29 gate records, 3 prospective packages, 47
+commit-index entries, 0 secret-pattern hits, and 0 raw-log marker hits. This
+permits release as a derived metadata case-study artifact, not as raw chat logs
+or human-subject population data.
+
 Following the latest paper-quality review, we made attention cost an explicit
 auditable artifact rather than an informal metric. The human-gate schema now
 contains an optional `attention_cost` object with active review minutes,
@@ -681,6 +689,9 @@ The derived Human Co-Pilot Trace Dataset improves ecological validity because it
 comes from the author's real Codex workflow, but it is still a single-author
 longitudinal process corpus. It can support process and case-study claims; it
 cannot by itself support population-level claims about scientists in general.
+The release audit reduces privacy and leakage risk by checking for secret-like
+strings and raw-log marker fields, but it is not a substitute for institutional
+human-subject review if the dataset is later expanded to multiple researchers.
 
 The full-manuscript probe reduces one specific gap but does not close the
 top-conference evidence gap. It shows that the archived FML package contains

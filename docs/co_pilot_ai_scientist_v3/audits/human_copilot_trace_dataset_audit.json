@@ -1,0 +1,22 @@
+{
+  "status": "pass",
+  "dataset": "docs/co_pilot_ai_scientist_v3/human_copilot_trace_dataset.json",
+  "errors": [],
+  "warnings": [],
+  "counts": {
+    "public_dataset_survey_entries": 4,
+    "gate_records": 29,
+    "prospective_packages": 3,
+    "commit_index_entries": 47,
+    "secret_pattern_hits": 0,
+    "raw_log_marker_hits": 0
+  },
+  "release_positioning": {
+    "can_release_as": "derived_metadata_case_study",
+    "not_certified_for": [
+      "raw_chat_log_release",
+      "population_level_human_subject_claims",
+      "attention_efficiency_claims_without_independent_timing"
+    ]
+  }
+}

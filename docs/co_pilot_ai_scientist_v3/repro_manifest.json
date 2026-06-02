@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_human_trace_dataset_and_second_fml_negative_pilot",
+  "status": "pilot_package_with_audited_human_trace_dataset_and_second_fml_negative_pilot",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -340,7 +340,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/co_pilot_trajectory.json",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/human_gate_logs/frontier_gate_001.json",
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/manuscript.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/prospective_manifest.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/prospective_manifest.json",
+    "scripts/audit_human_copilot_trace_dataset.py",
+    "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -485,7 +488,14 @@
     "gate_records": 29,
     "attention_cost_records": 12,
     "taste_insight_records": 7,
-    "positioning": "single_author_longitudinal_case_study_not_population_level_evidence"
+    "positioning": "single_author_longitudinal_case_study_not_population_level_evidence",
+    "release_audit_script": "scripts/audit_human_copilot_trace_dataset.py",
+    "release_audit_markdown": "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.md",
+    "release_audit_json": "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.json",
+    "release_audit_status": "pass",
+    "secret_pattern_hits": 0,
+    "raw_log_marker_hits": 0,
+    "commit_index_entries": 47
   },
   "second_prospective_fml_package": {
     "package_id": "prospective_matched_fml_causality_20260602_010002",

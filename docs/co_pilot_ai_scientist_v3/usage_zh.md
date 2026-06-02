@@ -81,6 +81,16 @@ python3 scripts/build_human_copilot_trace_dataset.py
 prospective packages 和 artifact links。它刻意不发布原始 Codex chat logs 或密钥，
 因此应被视为单作者纵向过程数据，而不是总体人群层面的 human-subject 数据。
 
+如果要做发布前审计，运行：
+
+```bash
+python3 scripts/audit_human_copilot_trace_dataset.py
+```
+
+当前审计会写出 `audits/human_copilot_trace_dataset_audit.md/json`，检查必需字段、
+gate schema、主张边界，并扫描类似密钥的字符串与原始日志标记。当前版本通过审计，
+secret-pattern hits 和 raw-log marker hits 都为 0。
+
 如果要生成同时带完整 attention cost 和 scientific taste/insight 的 prospective gate log，可以使用：
 
 ```bash

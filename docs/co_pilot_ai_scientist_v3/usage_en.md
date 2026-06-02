@@ -86,6 +86,14 @@ This writes `human_copilot_trace_dataset.md/json`. It indexes gate records,
 commits, prospective packages, and artifact links. It deliberately avoids
 publishing raw Codex chat logs or credentials, so treat it as a single-author
 longitudinal process dataset rather than population-level human-subject data.
+Before release, audit the derived dataset:
+
+```bash
+python3 scripts/audit_human_copilot_trace_dataset.py
+```
+
+The current audit writes `audits/human_copilot_trace_dataset_audit.md/json` and
+passes with zero secret-pattern hits and zero raw-log marker hits.
 
 To create a schema-compatible prospective gate log with measured attention
 cost and scientific taste/insight, use:
