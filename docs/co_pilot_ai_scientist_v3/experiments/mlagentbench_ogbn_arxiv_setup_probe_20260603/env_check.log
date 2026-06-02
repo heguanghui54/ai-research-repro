@@ -1,0 +1,39 @@
+Wed Jun  3 05:46:34 CST 2026
+ogb ok 1.3.6
+torch_geometric ok 2.7.0
+torch ok 2.12.0+cpu
+sklearn ok 1.7.2
+pandas ok 2.3.3
+numpy ok 1.26.4
+Name: ogb
+Version: 1.3.6
+Summary: Open Graph Benchmark
+Home-page: https://github.com/snap-stanford/ogb
+Author: OGB Team
+Author-email: ogb@cs.stanford.edu
+License: MIT
+Location: /home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages
+Requires: numpy, outdated, pandas, scikit-learn, six, torch, tqdm, urllib3
+Required-by: 
+---
+Name: torch-geometric
+Version: 2.7.0
+Summary: Graph Neural Network Library for PyTorch
+Home-page: https://pyg.org
+Author: 
+Author-email: Matthias Fey <matthias@pyg.org>
+License-Expression: MIT
+Location: /home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages
+Requires: aiohttp, fsspec, jinja2, numpy, psutil, pyparsing, requests, tqdm, xxhash
+Required-by: 
+---
+Name: torch
+Version: 2.12.0+cpu
+Summary: Tensors and Dynamic neural networks in Python with strong GPU acceleration
+Home-page: https://pytorch.org
+Author: 
+Author-email: PyTorch Team <packages@pytorch.org>
+License: BSD-3-Clause
+Location: /home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages
+Requires: filelock, fsspec, jinja2, networkx, setuptools, sympy, typing-extensions
+Required-by: ogb, torchvision

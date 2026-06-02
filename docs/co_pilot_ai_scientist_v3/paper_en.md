@@ -765,7 +765,12 @@ required by its official `eval.py`, even a five-example dataset load failed
 with the same HuggingFace network error. We therefore report CIFAR10/debug as a
 scored official non-FML task with a small three-seed robustness check, while
 ScienceAgentBench and IMDB remain setup artifacts rather than benchmark scores.
-The next non-FML expansion should add another accessible official task or scale
+We also probed MLAgentBench `ogbn-arxiv`: after installing `ogb` and
+`torch_geometric`, the Stanford SNAP data download and official prepare
+completed under `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1`, but starter baseline
+scoring failed before `submission.csv` because PyG neighbor sampling requires
+`pyg-lib` or `torch-sparse`. The next non-FML expansion should repair this
+backend dependency, add another accessible official task, or scale
 to a larger official task portfolio, not retreat to FML-bench alone.
 
 ### 4.5 Claim Audit

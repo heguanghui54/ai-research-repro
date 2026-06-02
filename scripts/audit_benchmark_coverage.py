@@ -70,6 +70,7 @@ def main() -> None:
     clrs_path = EXP_DIR / "mlagentbench_clrs_baseline_smoke_20260602" / "summary.json"
     clrs_reduced_path = EXP_DIR / "mlagentbench_clrs_reduced_smoke_20260602" / "summary.json"
     house_price_path = EXP_DIR / "mlagentbench_house_price_setup_probe" / "summary.json"
+    ogbn_path = EXP_DIR / "mlagentbench_ogbn_arxiv_setup_probe_20260603" / "summary.json"
     science_path = EXP_DIR / "scienceagentbench_metadata_setup_probe" / "summary.json"
     open_data_path = (
         EXP_DIR
@@ -116,6 +117,7 @@ def main() -> None:
     clrs = _load_json(clrs_path)
     clrs_reduced = _load_json(clrs_reduced_path)
     house_price = _load_json(house_price_path)
+    ogbn = _load_json(ogbn_path)
     science = _load_json(science_path)
     open_data = _load_json(open_data_path)
     trigger_policy = _load_json(trigger_policy_path)
@@ -196,6 +198,16 @@ def main() -> None:
             "official_score_reported": house_price.get("official_score_reported"),
             "blocker": house_price.get("blocker", {}),
             "path": _rel(house_price_path),
+        },
+        "mlagentbench_ogbn_arxiv": {
+            "status": ogbn.get("status"),
+            "mode": ogbn.get("mode"),
+            "official_score_reported": ogbn.get("official_score_reported"),
+            "data_download_completed": ogbn.get("data_access", {}).get("download_completed"),
+            "prepare_torch_compat_status": ogbn.get("prepare_torch_compat", {}).get("status"),
+            "baseline_failure_type": ogbn.get("baseline_train", {}).get("failure_type"),
+            "required_backend": ogbn.get("baseline_train", {}).get("required_backend"),
+            "path": _rel(ogbn_path),
         },
         "scienceagentbench": {
             "status": science.get("status"),
@@ -301,6 +313,7 @@ def main() -> None:
         and clrs.get("official_score_reported") is False
         and clrs_reduced.get("official_score_reported") is False
         and house_price.get("official_score_reported") is False
+        and ogbn.get("official_score_reported") is False
         and science.get("score_reported") is False,
         "mlagentbench_clrs_dependency_repaired_but_unscored": clrs.get("dependency_status") == "repaired"
         and clrs.get("runner_reached_task_prompt") is True
@@ -319,6 +332,13 @@ def main() -> None:
         and house_price.get("official_score_reported") is False
         and house_price.get("blocker", {}).get("missing_tool") == "kaggle"
         and house_price.get("blocker", {}).get("requires_kaggle_competition_consent") is True,
+        "mlagentbench_ogbn_arxiv_data_ready_but_unscored": ogbn.get("status")
+        == "setup_repaired_data_ready_but_sampler_dependency_blocked"
+        and ogbn.get("data_access", {}).get("download_completed") is True
+        and ogbn.get("prepare_torch_compat", {}).get("status") == "pass"
+        and ogbn.get("baseline_train", {}).get("submission_csv_produced") is False
+        and ogbn.get("baseline_train", {}).get("failure_type") == "missing_pyg_neighbor_sampler_backend"
+        and ogbn.get("official_score_reported") is False,
         "stretch_targets_kept_future": _contains_any(matrix_text, ["MLE-bench Lite", "PaperBench", "AIRS-Bench"])
         and "Not run in the current budget" in matrix_text,
     }
@@ -428,6 +448,14 @@ def main() -> None:
                 "path": _rel(trigger_policy_transfer_path),
             },
             "official_setup_blockers": official_blockers,
+            "mlagentbench_ogbn_arxiv_repair_probe": {
+                "status": ogbn.get("status"),
+                "data_download_completed": ogbn.get("data_access", {}).get("download_completed"),
+                "prepare_torch_compat_status": ogbn.get("prepare_torch_compat", {}).get("status"),
+                "baseline_failure_type": ogbn.get("baseline_train", {}).get("failure_type"),
+                "official_score_reported": ogbn.get("official_score_reported"),
+                "path": _rel(ogbn_path),
+            },
         },
         "errors": errors,
         "warnings": warnings,
@@ -435,7 +463,8 @@ def main() -> None:
             "Benchmark coverage now includes FML feasibility evidence, non-FML scored "
             "program-search probes, an open-data multi-task evaluator-stress pilot, "
             "a scored official multi-seed MLAgentBench CIFAR10/debug task, a direct-editing "
-            "boundary condition, and logged remaining official benchmark blockers. "
+            "boundary condition, an OGBN-arxiv repaired setup probe, and logged "
+            "remaining official benchmark blockers. "
             "This supports selective workflow design, not whole-paper "
             "superiority over autonomous AI Scientist-v2."
         ),
@@ -523,6 +552,12 @@ def main() -> None:
             "- Second non-FML priority package audit: "
             f"`{second_non_fml_priority.get('evidence_class')}`; "
             "CIFAR10/debug is now scored, while remaining blocked official tasks stay unscored."
+        ),
+        (
+            "- MLAgentBench OGBN-arxiv setup repair: data download completed "
+            f"`{ogbn.get('data_access', {}).get('download_completed')}`, prepare with PyTorch "
+            f"compatibility `{ogbn.get('prepare_torch_compat', {}).get('status')}`, baseline "
+            f"failure `{ogbn.get('baseline_train', {}).get('failure_type')}`; no official score."
         ),
         "",
         "## Boundary And Blocked Evidence",

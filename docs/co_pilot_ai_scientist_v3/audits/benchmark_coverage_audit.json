@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T21:39:59Z",
+  "audit_date": "2026-06-02T21:52:42Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -40,6 +40,7 @@
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,
     "mlagentbench_clrs_reduced_kept_non_official_and_unscored": true,
     "mlagentbench_house_price_credential_blocker_logged": true,
+    "mlagentbench_ogbn_arxiv_data_ready_but_unscored": true,
     "stretch_targets_kept_future": true
   },
   "evidence_summary": {
@@ -249,6 +250,16 @@
         },
         "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_house_price_setup_probe/summary.json"
       },
+      "mlagentbench_ogbn_arxiv": {
+        "status": "setup_repaired_data_ready_but_sampler_dependency_blocked",
+        "mode": "official_task_setup_probe_not_scored",
+        "official_score_reported": false,
+        "data_download_completed": true,
+        "prepare_torch_compat_status": "pass",
+        "baseline_failure_type": "missing_pyg_neighbor_sampler_backend",
+        "required_backend": "pyg-lib or torch-sparse",
+        "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/summary.json"
+      },
       "scienceagentbench": {
         "status": "metadata_and_verified_artifacts_not_yet_accessible",
         "score_reported": false,
@@ -260,6 +271,14 @@
         ],
         "path": "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/summary.json"
       }
+    },
+    "mlagentbench_ogbn_arxiv_repair_probe": {
+      "status": "setup_repaired_data_ready_but_sampler_dependency_blocked",
+      "data_download_completed": true,
+      "prepare_torch_compat_status": "pass",
+      "baseline_failure_type": "missing_pyg_neighbor_sampler_backend",
+      "official_score_reported": false,
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/summary.json"
     }
   },
   "errors": [],
@@ -267,5 +286,5 @@
     "MLAgentBench vectorization speedups are positive but seed-sensitive.",
     "Max-Cut OpenEvolve advantage is small and single-seed."
   ],
-  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
+  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a direct-editing boundary condition, an OGBN-arxiv repaired setup probe, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
 }

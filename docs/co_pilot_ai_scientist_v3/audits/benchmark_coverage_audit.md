@@ -1,6 +1,6 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T21:39:59Z`
+- Audit date: `2026-06-02T21:52:42Z`
 - Status: `pass`
 - FML entries: `2`
 - Non-FML entries: `11`
@@ -16,6 +16,7 @@
 - Held-out trigger-policy validation: best policy `class_imbalance_trigger_0_94` with delta `0.003639444256184343` versus held-out always-on delta `0.0025821297988698876`.
 - Frozen trigger-policy transfer: discovery selected `class_imbalance_trigger_0_94`; held-out frozen delta `0.003639444256184343` versus held-out always-on delta `0.0025821297988698876`, with held-out losses `0` versus always-on losses `2`.
 - Second non-FML priority package audit: `scored_official_mlagentbench_non_fml_plus_official_like_package`; CIFAR10/debug is now scored, while remaining blocked official tasks stay unscored.
+- MLAgentBench OGBN-arxiv setup repair: data download completed `True`, prepare with PyTorch compatibility `pass`, baseline failure `missing_pyg_neighbor_sampler_backend`; no official score.
 
 ## Boundary And Blocked Evidence
 
@@ -26,6 +27,7 @@
 - `mlagentbench_clrs`: `blocked_cpu_timeout_no_checkpoint`; no official score reported.
 - `mlagentbench_clrs_reduced`: `blocked_reduced_cpu_timeout_no_checkpoint`; no official score reported.
 - `mlagentbench_house_price`: `setup_blocked_by_missing_kaggle_cli_and_competition_consent`; no official score reported.
+- `mlagentbench_ogbn_arxiv`: `setup_repaired_data_ready_but_sampler_dependency_blocked`; no official score reported.
 - `scienceagentbench`: `metadata_and_verified_artifacts_not_yet_accessible`; no official score reported.
 - `mlagentbench_cifar10_official`: `pass`; official score reported with delta `0.2679`.
 - `mlagentbench_cifar10_multiseed`: `pass`; `3` official co-pilot-selected seeds with minimum score `0.7709`.
@@ -57,6 +59,7 @@
 - `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`
 - `mlagentbench_clrs_reduced_kept_non_official_and_unscored`: `pass`
 - `mlagentbench_house_price_credential_blocker_logged`: `pass`
+- `mlagentbench_ogbn_arxiv_data_ready_but_unscored`: `pass`
 - `stretch_targets_kept_future`: `pass`
 
 ## Errors
@@ -70,4 +73,4 @@
 
 ## Claim Boundary
 
-Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.
+Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a direct-editing boundary condition, an OGBN-arxiv repaired setup probe, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.

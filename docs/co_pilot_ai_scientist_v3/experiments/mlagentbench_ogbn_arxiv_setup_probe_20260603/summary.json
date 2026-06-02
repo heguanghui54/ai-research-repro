@@ -1,0 +1,46 @@
+{
+  "run_id": "mlagentbench_ogbn_arxiv_setup_probe_20260603",
+  "date": "2026-06-03",
+  "remote_host": "ubuntu-heshi",
+  "remote_run_root": "/tmp/copilotv3-ogbn-prepare-probe",
+  "benchmark": "MLAgentBench",
+  "task": "ogbn-arxiv",
+  "mode": "official_task_setup_probe_not_scored",
+  "dependency_status": "partially_repaired",
+  "dependency_repairs": [
+    "Installed ogb in the MLAgentBench virtual environment.",
+    "Installed torch_geometric in the MLAgentBench virtual environment.",
+    "Used TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1 to work around PyTorch 2.6+ torch.load default compatibility for OGB/PyG processed graph files."
+  ],
+  "data_access": {
+    "source": "http://snap.stanford.edu/ogb/data/nodeproppred/arxiv.zip",
+    "download_completed": true,
+    "processed_graph_files_present": true,
+    "huggingface_required": false,
+    "kaggle_required": false
+  },
+  "prepare_initial": {
+    "exit_code": 1,
+    "failure_type": "pytorch_weights_only_compatibility",
+    "log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/prepare_initial.log"
+  },
+  "prepare_torch_compat": {
+    "exit_code": 0,
+    "status": "pass",
+    "log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/prepare_torch_compat.log"
+  },
+  "baseline_train": {
+    "attempted": true,
+    "exit_code": 1,
+    "submission_csv_produced": false,
+    "failure_type": "missing_pyg_neighbor_sampler_backend",
+    "required_backend": "pyg-lib or torch-sparse",
+    "torch_sparse_install_attempted": true,
+    "torch_sparse_install_result": "stopped_after_slow_source_build_no_matching_wheel",
+    "log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/train_baseline.log"
+  },
+  "official_score_reported": false,
+  "status": "setup_repaired_data_ready_but_sampler_dependency_blocked",
+  "claim_boundary": "This is stronger second-official-task feasibility evidence than a pure setup blocker because OGBN-arxiv data download and prepare complete under a documented PyTorch compatibility setting. It is not an official MLAgentBench score because baseline training fails before producing submission.csv.",
+  "next_step": "Install a PyG neighbor-sampling backend matching torch 2.12 CPU, or pin torch/PyG to an available wheel set, then rerun starter baseline and only then compare a co-pilot-selected branch."
+}

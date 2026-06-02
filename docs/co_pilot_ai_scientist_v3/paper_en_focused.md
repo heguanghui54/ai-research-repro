@@ -146,9 +146,14 @@ scores 0.7782 in the first run under the same official evaluator. We then reran
 the same co-pilot-selected branch with two additional seeds, producing official
 scores 0.7709 and 0.7738. Across three seeds, the mean score is 0.7743, the
 minimum score is 0.7709, and the sample standard deviation is 0.003676. IMDB
-remains blocked by Hugging Face network access, CLRS reaches `train.py` but
-times out on CPU without a checkpoint, and house-price reaches the official
-prepare script but requires Kaggle tooling and likely competition consent. This
+remains blocked by Hugging Face network access. OGBN-arxiv is a stronger next
+official candidate: the Stanford SNAP data download and official prepare
+complete under a documented PyTorch compatibility setting, but starter scoring
+still fails before `submission.csv` because PyG neighbor sampling lacks
+`pyg-lib` or `torch-sparse` in the current torch 2.12 CPU environment. CLRS
+reaches `train.py` but times out on CPU without a checkpoint, and house-price
+reaches the official prepare script but requires Kaggle tooling and likely
+competition consent. This
 improves the official non-FML evidence boundary, but it is still one official
 task; the paper should not imply broad official benchmark coverage until
 another official task is scored or the task portfolio is expanded.

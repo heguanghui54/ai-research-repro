@@ -493,6 +493,12 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/run.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/env_check.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/prepare_initial.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/prepare_torch_compat.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/train_baseline.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/eval.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/final_train.py",
@@ -2023,9 +2029,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "e16a6451eff560db1db6eeb054ce48c3b1c219a6",
+    "head": "c1be3bd03ecb600d0357f8a9dd8ff442cc058137",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 949,
+    "manifest_artifacts": 955,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2585,5 +2591,14 @@
     "mean_delta_vs_baseline": 0.264,
     "all_seeds_beat_baseline": true,
     "claim_boundary": "Three co-pilot-selected seeds for one official MLAgentBench CIFAR10/debug task; still not broad benchmark coverage, independent human evidence, or paper-quality superiority."
+  },
+  "mlagentbench_ogbn_arxiv_setup_probe": {
+    "status": "setup_repaired_data_ready_but_sampler_dependency_blocked",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/summary.json",
+    "official_score_reported": false,
+    "data_download_completed": true,
+    "prepare_torch_compat_status": "pass",
+    "baseline_failure_type": "missing_pyg_neighbor_sampler_backend",
+    "claim_boundary": "Second official MLAgentBench candidate setup evidence only; no official score is reported until the PyG neighbor-sampling backend is repaired and starter baseline produces submission.csv."
   }
 }

@@ -1,0 +1,32 @@
+/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/ogb/nodeproppred/dataset_pyg.py:69: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch_geometric/loader/neighbor_loader.py:229: UserWarning: Using 'NeighborSampler' without a 'pyg-lib' installation is deprecated and will be removed soon. Please install 'pyg-lib' for accelerated neighborhood sampling
+  neighbor_sampler = NeighborSampler(
+  0%|          | 0/90941 [00:00<?, ?it/s]Epoch 00:   0%|          | 0/90941 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/tmp/copilotv3-ogbn-prepare-probe/ogbn-arxiv/env/train.py", line 115, in <module>
+    for batch in train_loader:
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 718, in __next__
+    data = self._next_data()
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1525, in _next_data
+    return self._process_data(data, worker_id)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1563, in _process_data
+    data.reraise()
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch/_utils.py", line 774, in reraise
+    raise exception
+ImportError: Caught ImportError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/worker.py", line 374, in _worker_loop
+    data = fetcher.fetch(index)  # type: ignore[possibly-undefined]
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch/utils/data/_utils/fetch.py", line 57, in fetch
+    return self.collate_fn(data)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch_geometric/loader/node_loader.py", line 147, in collate_fn
+    out = self.node_sampler.sample_from_nodes(input_data)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch_geometric/sampler/neighbor_sampler.py", line 403, in sample_from_nodes
+    out = node_sample(inputs, self._sample)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch_geometric/sampler/neighbor_sampler.py", line 815, in node_sample
+    out = sample_fn(seed, seed_time)
+  File "/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/torch_geometric/sampler/neighbor_sampler.py", line 606, in _sample
+    raise ImportError(f"'{self.__class__.__name__}' requires "
+ImportError: 'NeighborSampler' requires either 'pyg-lib' or 'torch-sparse'
+
+Epoch 00:   0%|          | 0/90941 [00:01<?, ?it/s]
