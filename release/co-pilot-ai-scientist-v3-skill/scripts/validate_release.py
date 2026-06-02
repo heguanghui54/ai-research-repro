@@ -41,6 +41,9 @@ def main() -> None:
     required_terms = [
         "Insight-Gated Research Evolution",
         "human scientific taste",
+        "ai-scientist-v2",
+        "Base Skill Relationship",
+        "AI Scientist-v2 research-production loop",
         "OpenEvolve",
         "claim_calibration",
         "not scientific superiority",

@@ -76,6 +76,7 @@ def main() -> None:
     release_positioning = _read(RELEASE_DIR / "POSITIONING.md") if (RELEASE_DIR / "POSITIONING.md").exists() else ""
     release_contributing = _read(RELEASE_DIR / "CONTRIBUTING.md") if (RELEASE_DIR / "CONTRIBUTING.md").exists() else ""
     release_notes = _read(RELEASE_DIR / "RELEASE_NOTES.md") if (RELEASE_DIR / "RELEASE_NOTES.md").exists() else ""
+    release_skill = _read(RELEASE_DIR / "SKILL.md") if (RELEASE_DIR / "SKILL.md").exists() else ""
     strategy = _read(DOC_DIR / "skill_engineering_release_strategy.md")
     root_readme = _read(ROOT / "README.md")
     project_readme = _read(DOC_DIR / "README.md")
@@ -88,6 +89,9 @@ def main() -> None:
         "blind expert review",
         "academic-research-skills",
         "PaperOrchestra",
+        "Base Skill Relationship",
+        "ai-scientist-v2",
+        "AI Scientist-v2 research-production loop",
         "Engineering adoption is not scientific superiority",
         "Do not add fabricated benchmark numbers",
         "model-only reviews",
@@ -98,6 +102,7 @@ def main() -> None:
             release_positioning,
             release_contributing,
             release_notes,
+            release_skill,
             strategy,
             root_readme,
             project_readme,

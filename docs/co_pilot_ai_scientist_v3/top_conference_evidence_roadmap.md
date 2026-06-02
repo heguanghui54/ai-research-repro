@@ -151,11 +151,15 @@ as empirical proof that co-pilot science outperforms autonomous science.
   workflows and cites PaperOrchestra as one source for multi-agent
   paper-writing design.
 - Required data: standalone skill README, install instructions, quickstart,
-  templates, validation script, example gate trajectory, and a clear boundary
-  separating engineering adoption from scientific performance claims.
+  templates, validation script, example gate trajectory, isolated install
+  smoke test, and a clear boundary separating engineering adoption from
+  scientific performance claims.
 - Minimum design: publish a clean GitHub skill package with the six IGRE gates,
-  example task, gate-log template, claim-audit template, and at least one
-  reproducible smoke test.
+  example task, gate-log template, claim-audit template, local validator, and
+  at least one reproducible smoke test. The current package satisfies the
+  internal install-smoke part by installing into an isolated `CODEX_SKILLS_DIR`
+  and validating the installed copy; it still needs an external researcher or
+  clean external environment to demonstrate community transfer.
 - Metrics: install success, quickstart completion, external issue/PR activity,
   example reuse count, and eventually stars or forks.
 - Upgrade condition: at least one external researcher or clean external

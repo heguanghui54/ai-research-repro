@@ -37,6 +37,7 @@ The next human-evaluation step is a minimal-risk blind expert study with 3-5 NUS
 - OpenReview regeneration: review-guided artifacts win 5/6 under one model scorer; cross-model review gives 3/6 wins, 1/6 baseline win, and 2 ties.
 - Equal-context ablation: review-specific context wins 8 pairs versus 1 unrelated-review win and 3 ties.
 - Deep regeneration case PDFs: three selected OpenReview papers now have viewable raw-review-guided and six-gate-hybrid mini-paper PDFs.
+- Standalone skill install smoke: the public IGRE skill release scaffold installs into an isolated `CODEX_SKILLS_DIR`, checks 14 required files, and passes the installed validator.
 - Candidate-frontier validation: 13/16 delayed-value candidates scored; delayed-control mean delta is +0.064.
 - Boundary evidence: LHTG/DVRS has 0 positive delayed-value cases in the current small sample, and FML short-budget evidence remains mixed or negative.
 
@@ -57,6 +58,8 @@ Run from the repository root:
 python3 -m pip install -r requirements.txt
 python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_temporal_frontier_replay.py
+python3 scripts/run_igre_skill_install_smoke.py --update-manifest
+python3 scripts/audit_igre_skill_release_package.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 python3 scripts/build_deep_regeneration_cases.py
 python3 scripts/build_six_gate_hybrid_review_cases.py

@@ -23,6 +23,29 @@ to assume that human involvement always improves average benchmark or paper
 quality. Treat each gate as a workflow-design choice that must be supported by
 matched evidence and clear boundary conditions.
 
+## Base Skill Relationship
+
+This skill is an IGRE extension of the user's existing `ai-scientist-v2` Codex
+skill, not an unrelated replacement. Preserve the base AI Scientist-v2 loop:
+frame the problem, generate multiple candidate ideas, search literature, select
+benchmarks, design experiments, run and score candidates, write the paper, and
+review/revise claims against the logs. Co-Pilot AI Scientist v3 modifies that
+loop by adding explicit human-insight gates at the places where non-metric
+scientific taste can change the trajectory:
+
+- before candidate selection: `scientific_taste_prior`;
+- before trusting metrics: `evaluator_stress_test`;
+- during tree-search budget allocation: `frontier_steering`;
+- when a subproblem is automatically gradeable: `verifiable_micro_evolution`;
+- before manuscript revision: `structured_feedback`;
+- before final claims: `claim_calibration`.
+
+When using this skill, first run the AI Scientist-v2 research-production loop,
+then decide which IGRE gates should interrupt or reshape that loop. Do not skip
+the base loop's non-negotiables: do not invent results, prefer narrow claims,
+compare multiple candidate directions, keep the best direction only after
+evidence supports it, and make the final paper match the experiment log.
+
 ## Use This Skill When
 
 - A user wants to turn a broad research idea into a paper with human guidance.

@@ -17,6 +17,18 @@ Scientist v3 should learn from that engineering model while keeping a distinct
 scientific contribution: IGRE is a six-gate control theory for deciding when
 human scientific taste should change the automated research search process.
 
+The implementation should explicitly build on the author's existing
+`ai-scientist-v2` Codex skill rather than starting from a blank prompt. The
+base skill already defines the research-production loop: frame the problem,
+generate multiple candidate ideas, check literature, discover benchmarks,
+design experiments, run and score candidates, write the paper, and revise
+claims against the evidence. The Co-Pilot AI Scientist v3 skill should preserve
+those non-negotiables and insert IGRE gates into the loop where human taste,
+insight, evaluator skepticism, or claim responsibility can change a decision.
+This makes the engineering artifact an upgrade path from autonomous
+AI Scientist-v2-style production to human-guided co-pilot production, not a
+separate manuscript-writing assistant.
+
 This is a separate engineering task from the research-paper task. The paper may
 mention the public skill as a reproducibility and transfer artifact, but the
 paper's scientific claims should still be judged by experiments, blind review,

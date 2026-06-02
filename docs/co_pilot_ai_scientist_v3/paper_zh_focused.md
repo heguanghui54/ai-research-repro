@@ -79,6 +79,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | 前沿指标分歧矩阵 | 内部评议和词汇指标均 six-gate 胜 3/3 | 向量投影 six-gate 胜 2/3；cosine six-gate 胜 1/3 | 分歧率 0.6667 | 说明短期评议胜利、词汇前沿覆盖和向量移动衡量的是不同对象。 |
 | 预注册盲评专家评审包 | 已准备 6 对匿名 A/B 产物 | 已完成人类评分 0 行 | 计划 3-5 名评审者 | 仅表示评估就绪，不声称已有人工证据。 |
 | Live skill invocation smoke | 生成 3 个候选方向和一个归档的一版 IGRE gate plan | template-only skill smoke | 2 次真实模型调用，audit recommendation pass | 说明 Codex skill 可在新任务上复用；不是 benchmark 证据。 |
+| Standalone skill install smoke | public release scaffold 安装到隔离 `CODEX_SKILLS_DIR` 并通过 installed validator | release files without install execution | 检查 14 个 required files；install smoke pass | 工程迁移性证据，说明 IGRE skill 包可安装和自验证；不是科学优越性证据。 |
 | Metric-gaming evaluator-stress smoke | evaluator-stress gate 选择 `guardrailed_utility_model` | primary-only 公平性指标选择 `metric_gaming_all_negative` | 减少 1 个合成 metric-gaming 事件 | 将 live skill 任务连接到真实 evaluator；这是受控 toy 证据，不是 FML-bench 结果。 |
 | FML Fairness evaluator-stress replay | gate 拒绝 metric-gaming 并中止无有效 continuation | primary-only FML 指标选择 `metric_gaming_all_negative` | 减少 1 个归档 FML metric-gaming 事件 | 真实 FML-Bench artifact replay；支持 gate 设计，不支持公平性提升。 |
 | 回溯式前沿对齐 smoke | review-guided 胜 1 次 | shuffled-control 胜 5 次 | 相对 control 平均增量 -0.0855；delayed-value 0 例；短期正向/长期负向 3 例 | 未来前沿对齐比局部论文改进更难；当前仅为启发式 descriptor。 |
@@ -194,7 +195,7 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 这些局限也是未来研究方向。为了把下一步做实，仓库已经准备并预注册了 6 对 OpenReview 再生成产物的盲评包：评审者只看到匿名 A/B 产物、固定 rubric 和评分表模板，condition key 与分析计划在评分完成前由协调者隐藏保存。该计划把有用的人类 taste 与 insight 定义为能够改变科研控制决策的评审信号，而不是泛泛认可。这还不是实验证据，因为尚未收集独立人类专家评分。更强的研究应把可复用 co-pilot scientist skill 部署给大量科研人员，在知情同意和隐私保护下收集门控元数据，跨任务运行 matched autonomous 与 human-gated 轨迹，并把成对输出交给盲审专家评估。目前，这种实时多研究者数据更可能由主流 agent 公司或大模型公司完成，而不是小型独立项目。IGRE 因此使用 OpenReview 作为可扩展离线代理，并明确标记这一缺口。
 
-同样的边界也适用于工程化传播。一个易安装、跨主题可用并被研究者采用的公开 IGRE skill 会是重要的系统证据：它说明六门控理论可以成为可复用科研基础设施，而不只是论文概念。但是 GitHub stars、forks 或社区采用度衡量的是可用性和迁移性，不等于科学性能优势；它们应当补充而不是替代盲审专家评估和 matched benchmark 证据。
+同样的边界也适用于工程化传播。当前发布包已经包含 standalone IGRE skill scaffold、本地安装脚本、validator、templates、examples，以及一个隔离安装 smoke test：它把 skill 安装到临时 `CODEX_SKILLS_DIR`，并验证安装后的副本。这是有用的系统证据，说明六门控理论可以成为可复用科研基础设施，而不只是论文概念。但是 GitHub stars、forks、quickstart completions 或社区采用度衡量的是可用性和迁移性，不等于科学性能优势；它们应当补充而不是替代盲审专家评估和 matched benchmark 证据。
 
 ## 7. 结论
 

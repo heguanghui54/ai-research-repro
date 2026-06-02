@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T16:36:27Z",
+  "audit_date": "2026-06-02T16:41:03Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "f92f6290bee413e7474d104c9631a18e659cd0c8",
+  "head": "6647fdf29fa983d4539f18c79480c9fea457c54b",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -38,7 +38,7 @@
     "focused_english_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
       "exists": true,
-      "bytes": 201595,
+      "bytes": 201962,
       "ok": true
     },
     "root_readme": {
@@ -50,13 +50,13 @@
     "english_submission_card": {
       "path": "docs/co_pilot_ai_scientist_v3/submission_card_en.md",
       "exists": true,
-      "bytes": 5177,
+      "bytes": 5476,
       "ok": true
     },
     "top_conference_evidence_roadmap": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
       "exists": true,
-      "bytes": 10492,
+      "bytes": 10796,
       "ok": true
     },
     "top_conference_evidence_roadmap_json": {
@@ -164,7 +164,7 @@
     "reusable_skill": {
       "path": "skills/co-pilot-ai-scientist-v3/SKILL.md",
       "exists": true,
-      "bytes": 22957,
+      "bytes": 24228,
       "ok": true
     },
     "task_template": {

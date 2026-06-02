@@ -8,6 +8,17 @@ fully autonomous paper generator. The skill turns human scientific taste and
 expert judgment into six auditable workflow gates inside an AI
 Scientist-v2-style research loop.
 
+## Base Skill Lineage
+
+Co-Pilot AI Scientist v3 is designed as an extension of the existing
+`ai-scientist-v2` Codex skill. It preserves the base research-production loop:
+problem framing, multi-candidate ideation, literature and benchmark discovery,
+experiment design, candidate execution and scoring, paper writing, and
+review/revision. IGRE changes where control enters that loop: instead of
+letting the autonomous loop decide everything from scalar metrics, it inserts
+six explicit human-insight gates that can reshape the prior, evaluator,
+frontier, micro-evolution escalation, feedback structure, and claim boundary.
+
 ## What It Does
 
 - Helps frame a research question and success/failure criteria.
