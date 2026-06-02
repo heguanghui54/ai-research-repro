@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T22:08:21Z",
+  "audit_date": "2026-06-02T22:24:11Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -36,6 +36,7 @@
     "mlagentbench_cifar10_official_scored": true,
     "mlagentbench_cifar10_multiseed_scored": true,
     "mlagentbench_ogbn_arxiv_official_eval_scored": true,
+    "mlagentbench_ogbn_arxiv_multiseed_scored": true,
     "blocked_official_tasks_logged": true,
     "remaining_blocked_tasks_do_not_report_scores": true,
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,
@@ -89,6 +90,24 @@
       "candidate_name": "full_batch_normalized_adamw_mlp",
       "claim_boundary": "This scored official-evaluator OGBN-arxiv run supports non-FML benchmark expansion and dependency-aware official task repair. Because the starter baseline is a compatibility translation rather than the unmodified NeighborLoader starter, it should not be used as broad MLAgentBench superiority evidence.",
       "path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_official_audit.json"
+    },
+    "mlagentbench_ogbn_arxiv_multiseed": {
+      "task": "ogbn-arxiv",
+      "metric": "OGBN-arxiv test accuracy from official MLAgentBench eval.py; higher is better",
+      "baseline_score": 0.02744686541983005,
+      "seed_scores": [
+        0.5399872435857869,
+        0.5408925374976853,
+        0.5436289940950148
+      ],
+      "seed_count": 3,
+      "mean_score": 0.5415029250594956,
+      "min_score": 0.5399872435857869,
+      "max_score": 0.5436289940950148,
+      "sample_std": 0.0018960528538453166,
+      "mean_delta_vs_baseline": 0.5140560596396655,
+      "claim_boundary": "Three co-pilot-selected seeds under the official OGBN-arxiv evaluator support robustness of the compatibility path. The baseline remains a compatibility translation rather than the unmodified NeighborLoader starter, so this is not broad MLAgentBench superiority evidence.",
+      "path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_ogbn_arxiv_multiseed_audit.json"
     },
     "algorithmic_program_search": {
       "knapsack_openevolve_score": 0.9994394752555711,
@@ -298,5 +317,5 @@
     "MLAgentBench vectorization speedups are positive but seed-sensitive.",
     "Max-Cut OpenEvolve advantage is small and single-seed."
   ],
-  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored OGBN-arxiv official-evaluator compatibility run, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
+  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored multi-seed OGBN-arxiv official-evaluator compatibility run, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
 }

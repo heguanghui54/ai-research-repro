@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T22:08:46Z",
+  "audit_date": "2026-06-02T22:24:29Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "d7922b3d6ecae3f5e7acfdc38e3e853d58350d95",
+  "head": "32f443c85e986a3c5ff342dced15d837d9eea3d0",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -23,6 +23,7 @@
     "second_non_fml_priority_package_audit_pass": true,
     "mlagentbench_cifar10_official_audit_pass": true,
     "mlagentbench_cifar10_multiseed_audit_pass": true,
+    "mlagentbench_ogbn_arxiv_multiseed_audit_pass": true,
     "prospective_gate_instrumentation_audit_pass": true,
     "deep_regeneration_cases_audit_pass": true,
     "frontier_alignment_taxonomy_pass": true,
@@ -39,13 +40,13 @@
     "english_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf",
       "exists": true,
-      "bytes": 54212,
+      "bytes": 54337,
       "ok": true
     },
     "focused_english_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
       "exists": true,
-      "bytes": 212264,
+      "bytes": 212782,
       "ok": true
     },
     "root_readme": {
@@ -63,7 +64,7 @@
     "top_conference_evidence_roadmap": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
       "exists": true,
-      "bytes": 15295,
+      "bytes": 15484,
       "ok": true
     },
     "top_conference_evidence_roadmap_json": {
@@ -282,9 +283,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 966,
+  "manifest_artifacts": 975,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "966/966",
+  "manifest_coverage_ratio": "975/975",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",

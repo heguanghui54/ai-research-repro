@@ -67,6 +67,7 @@ def main() -> None:
     cifar_official_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
     cifar_multiseed_path = AUDIT_DIR / "mlagentbench_cifar10_multiseed_audit.json"
     ogbn_official_path = AUDIT_DIR / "mlagentbench_ogbn_arxiv_official_audit.json"
+    ogbn_multiseed_path = AUDIT_DIR / "mlagentbench_ogbn_arxiv_multiseed_audit.json"
     imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
     clrs_path = EXP_DIR / "mlagentbench_clrs_baseline_smoke_20260602" / "summary.json"
     clrs_reduced_path = EXP_DIR / "mlagentbench_clrs_reduced_smoke_20260602" / "summary.json"
@@ -115,6 +116,7 @@ def main() -> None:
     cifar_official = _load_json(cifar_official_path)
     cifar_multiseed = _load_json(cifar_multiseed_path)
     ogbn_official = _load_json(ogbn_official_path)
+    ogbn_multiseed = _load_json(ogbn_multiseed_path)
     imdb = _load_json(imdb_path)
     clrs = _load_json(clrs_path)
     clrs_reduced = _load_json(clrs_reduced_path)
@@ -291,6 +293,7 @@ def main() -> None:
         "second_non_fml_priority_package_audited": second_non_fml_priority.get("status") == "pass"
         and second_non_fml_priority.get("evidence_class")
         in {
+            "two_scored_official_mlagentbench_multiseed_paths_plus_official_like_package",
             "scored_official_mlagentbench_non_fml_plus_official_like_package",
             "two_scored_official_mlagentbench_paths_plus_official_like_package",
             "scored_official_like_non_fml_matched_package_not_official_benchmark",
@@ -314,6 +317,12 @@ def main() -> None:
         == "scored_official_mlagentbench_non_fml_task_with_compatibility_baseline"
         and ogbn_official.get("candidate_score", 0) > ogbn_official.get("baseline_score", 1)
         and "compatibility" in ogbn_official.get("claim_boundary", "").lower(),
+        "mlagentbench_ogbn_arxiv_multiseed_scored": ogbn_multiseed.get("status") == "pass"
+        and ogbn_multiseed.get("evidence_class")
+        == "three_seed_scored_official_mlagentbench_ogbn_arxiv_compatibility_path"
+        and ogbn_multiseed.get("seed_count", 0) >= 3
+        and min(ogbn_multiseed.get("seed_scores", [0])) > ogbn_multiseed.get("baseline_score", 1)
+        and "compatibility" in ogbn_multiseed.get("claim_boundary", "").lower(),
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -408,6 +417,20 @@ def main() -> None:
                 "claim_boundary": ogbn_official.get("claim_boundary"),
                 "path": _rel(ogbn_official_path),
             },
+            "mlagentbench_ogbn_arxiv_multiseed": {
+                "task": ogbn_multiseed.get("task"),
+                "metric": ogbn_multiseed.get("metric"),
+                "baseline_score": ogbn_multiseed.get("baseline_score"),
+                "seed_scores": ogbn_multiseed.get("seed_scores"),
+                "seed_count": ogbn_multiseed.get("seed_count"),
+                "mean_score": ogbn_multiseed.get("mean_score"),
+                "min_score": ogbn_multiseed.get("min_score"),
+                "max_score": ogbn_multiseed.get("max_score"),
+                "sample_std": ogbn_multiseed.get("sample_std"),
+                "mean_delta_vs_baseline": ogbn_multiseed.get("mean_delta_vs_baseline"),
+                "claim_boundary": ogbn_multiseed.get("claim_boundary"),
+                "path": _rel(ogbn_multiseed_path),
+            },
             "algorithmic_program_search": {
                 "knapsack_openevolve_score": knapsack_open_score,
                 "knapsack_direct_score": knapsack_direct_score,
@@ -482,7 +505,7 @@ def main() -> None:
             "Benchmark coverage now includes FML feasibility evidence, non-FML scored "
             "program-search probes, an open-data multi-task evaluator-stress pilot, "
             "a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored "
-            "OGBN-arxiv official-evaluator compatibility run, a direct-editing "
+            "multi-seed OGBN-arxiv official-evaluator compatibility run, a direct-editing "
             "boundary condition, and logged "
             "remaining official benchmark blockers. "
             "This supports selective workflow design, not whole-paper "
@@ -531,6 +554,14 @@ def main() -> None:
             f"`{ogbn_official.get('baseline_score')}` versus co-pilot selected "
             f"`{ogbn_official.get('candidate_score')}`, delta `{ogbn_official.get('delta')}`; "
             "baseline is a compatibility translation, not the unmodified NeighborLoader starter."
+        ),
+        (
+            "- MLAgentBench OGBN-arxiv multi-seed official-evaluator check: "
+            f"`{ogbn_multiseed.get('seed_count')}` co-pilot-selected seeds; mean score "
+            f"`{ogbn_multiseed.get('mean_score'):.4f}`, min score "
+            f"`{ogbn_multiseed.get('min_score'):.4f}`, sample std "
+            f"`{ogbn_multiseed.get('sample_std'):.6f}`, mean delta vs compatibility baseline "
+            f"`{ogbn_multiseed.get('mean_delta_vs_baseline'):.4f}`."
         ),
         (
             "- Program search subproblems: knapsack OpenEvolve "

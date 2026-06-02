@@ -1,6 +1,6 @@
 # MLAgentBench OGBN-arxiv Official-Evaluator Audit
 
-- Audit date: `2026-06-02T22:08:21Z`
+- Audit date: `2026-06-02T22:24:10Z`
 - Status: `pass`
 - Evidence class: `scored_official_mlagentbench_non_fml_task_with_compatibility_baseline`
 - Task: `ogbn-arxiv`

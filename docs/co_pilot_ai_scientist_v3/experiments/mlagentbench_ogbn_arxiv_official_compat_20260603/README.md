@@ -11,9 +11,12 @@ a full-batch MLP compatibility translation that does not require NeighborLoader.
 Results:
 
 - Compatibility starter baseline official-evaluator score: `0.02744686541983005`.
-- Co-pilot-selected full-batch MLP branch official-evaluator score:
-  `0.5399872435857869`.
-- Delta: `+0.5125403781659569`.
+- Co-pilot-selected full-batch MLP branch official-evaluator scores:
+  `0.5399872435857869`, `0.5408925374976853`, and `0.5436289940950148`.
+- Three-seed mean score: `0.5415029250594956`.
+- Three-seed minimum score: `0.5399872435857869`.
+- Three-seed sample standard deviation: `0.0018960528538453166`.
+- Mean delta versus compatibility starter: `+0.5140560596396655`.
 
 Claim boundary: this is a scored official MLAgentBench task using the official
 OGBN-arxiv evaluator and official prepared data, but the baseline is a

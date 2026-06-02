@@ -537,19 +537,23 @@ records and find 1 complete attention-cost record plus 2 complete taste/insight
 records. It is still a single-author longitudinal case study, not
 population-level human-subjects evidence.
 
-The latest benchmark-expansion probes are deliberately recorded as setup
-evidence rather than inflated results. A second official MLAgentBench
-`debug`/CIFAR10 attempt repaired the missing `torchvision` dependency but was
-stopped when the 170 MB CIFAR10 archive downloaded too slowly. A 2026-06-02
-refresh fixed the relative-Python invocation and confirmed that the official
-CIFAR source is reachable from `ubuntu-heshi`, but only about 3.28 MB of the
-170 MB archive downloaded in roughly 61 seconds before termination. An
-additional MLAgentBench `imdb` attempt repaired the missing
-`datasets` dependency, but the Ubuntu host could not reach HuggingFace to load
-even a five-example split. A ScienceAgentBench metadata probe confirmed the code repository
-and the April 2026 verified-artifact requirement, but HuggingFace metadata was
-not reachable from the Ubuntu host. Neither probe is reported as a benchmark
-score.
+The latest benchmark-expansion probes are deliberately recorded as scored runs
+only when they really produce official-evaluator scores; blocked attempts remain
+setup evidence. The official MLAgentBench `debug`/CIFAR10 path is now scored
+after pre-caching the official CIFAR10 archive on `ubuntu-heshi`: the starter
+baseline scores `0.5103`, while the co-pilot-selected branch scores `0.7782`,
+`0.7709`, and `0.7738` across three seeds, with mean `0.7743` and sample std
+`0.003676`. OGBN-arxiv is also scored under the official MLAgentBench
+`eval.py`: the full-batch compatibility starter scores `0.02745`, while the
+co-pilot-selected normalized AdamW MLP scores `0.53999`, `0.54089`, and
+`0.54363` across three seeds, with mean `0.5415` and sample std `0.001896`.
+The OGBN baseline remains a compatibility translation rather than the
+unmodified NeighborLoader starter. An additional MLAgentBench `imdb` attempt
+repaired the missing `datasets` dependency, but the Ubuntu host could not reach
+HuggingFace to load even a five-example split. A ScienceAgentBench metadata
+probe confirmed the code repository and the April 2026 verified-artifact
+requirement, but HuggingFace metadata was not reachable from the Ubuntu host.
+Those blocked probes are not reported as benchmark scores.
 
 The package now also includes a retrospective full-gate trajectory. It links
 the selected research direction, Fairness evaluator guardrail, live Causality

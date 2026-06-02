@@ -1,0 +1,52 @@
+{
+  "audit_date": "2026-06-02T22:24:10Z",
+  "status": "pass",
+  "evidence_class": "three_seed_scored_official_mlagentbench_ogbn_arxiv_compatibility_path",
+  "task": "ogbn-arxiv",
+  "metric": "OGBN-arxiv test accuracy from official MLAgentBench eval.py; higher is better",
+  "baseline_score": 0.02744686541983005,
+  "seed_scores": [
+    0.5399872435857869,
+    0.5408925374976853,
+    0.5436289940950148
+  ],
+  "seed_count": 3,
+  "mean_score": 0.5415029250594956,
+  "min_score": 0.5399872435857869,
+  "max_score": 0.5436289940950148,
+  "sample_std": 0.0018960528538453166,
+  "mean_delta_vs_baseline": 0.5140560596396655,
+  "per_seed_checks": [
+    {
+      "seed": 20260603,
+      "train_completed": true,
+      "eval_score_present": true,
+      "score_beats_baseline": true
+    },
+    {
+      "seed": 20260604,
+      "train_completed": true,
+      "eval_score_present": true,
+      "score_beats_baseline": true
+    },
+    {
+      "seed": 20260605,
+      "train_completed": true,
+      "eval_score_present": true,
+      "score_beats_baseline": true
+    }
+  ],
+  "checks": {
+    "all_required_files_present": true,
+    "seed_count_at_least_three": true,
+    "all_train_logs_completed": true,
+    "all_eval_logs_match_summary": true,
+    "all_seeds_beat_baseline": true,
+    "mean_score_matches_summary": true,
+    "min_score_matches_summary": true,
+    "sample_std_matches_summary": true,
+    "compatibility_boundary_recorded": true
+  },
+  "errors": [],
+  "claim_boundary": "Three co-pilot-selected seeds under the official OGBN-arxiv evaluator support robustness of the compatibility path. The baseline remains a compatibility translation rather than the unmodified NeighborLoader starter, so this is not broad MLAgentBench superiority evidence."
+}

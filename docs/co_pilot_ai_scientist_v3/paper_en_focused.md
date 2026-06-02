@@ -133,7 +133,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | End-to-end paired trajectory manuscript | co-pilot manuscript internal score 4.64; model reviewers prefer co-pilot 2/2 | autonomous manuscript internal score 3.48; autonomous benchmark metric wins 0.640451 vs. 0.862015 | one same-run smoke pair | Demonstrates continuous trajectory-to-manuscript comparison readiness and metric/quality disagreement, not co-pilot superiority. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
 | MLAgentBench CIFAR10/debug | co-pilot-selected branch mean official score 0.7743 over 3 seeds | starter baseline official score 0.5103 | one official MLAgentBench task; mean delta +0.2640; min score 0.7709 | Stronger non-FML official evidence, but still one task rather than broad benchmark coverage. |
-| MLAgentBench OGBN-arxiv | co-pilot-selected official-evaluator score 0.53999 | compatibility starter score 0.02745 | delta +0.51254 | Second official-evaluator path, but baseline is a compatibility translation rather than the unmodified NeighborLoader starter. |
+| MLAgentBench OGBN-arxiv | co-pilot-selected branch mean official-evaluator score 0.5415 over 3 seeds | compatibility starter score 0.02745 | mean delta +0.5141; min score 0.53999; sample std 0.001896 | Second official-evaluator path, but baseline is a compatibility translation rather than the unmodified NeighborLoader starter. |
 | Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | no search advantage | Direct editing can be enough on simple modeling tasks. |
 
 The non-FML benchmark expansion is deliberately reported with both scored runs
@@ -151,8 +151,10 @@ advanced OGBN-arxiv from setup-only evidence to a scored official-evaluator
 path: the Stanford SNAP data download and official prepare complete under a
 documented PyTorch compatibility setting, and a full-batch MLP compatibility
 starter scores 0.02745 under the official `eval.py`. A co-pilot-selected
-normalized AdamW MLP branch scores 0.53999, for delta +0.51254. This is a
-second official-evaluator MLAgentBench path, but the baseline is a compatibility
+normalized AdamW MLP branch scores 0.53999, 0.54089, and 0.54363 across three
+seeds; the mean is 0.5415, the minimum is 0.53999, the sample standard
+deviation is 0.001896, and the mean delta versus the compatibility starter is
++0.5141. This is a second official-evaluator MLAgentBench path, but the baseline is a compatibility
 translation because the unmodified NeighborLoader starter requires `pyg-lib` or
 `torch-sparse` in the current torch 2.12 CPU environment. IMDB remains blocked
 by Hugging Face network access, CLRS reaches `train.py` but times out on CPU

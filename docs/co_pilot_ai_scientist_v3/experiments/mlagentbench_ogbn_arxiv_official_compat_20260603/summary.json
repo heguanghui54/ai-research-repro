@@ -35,5 +35,46 @@
   },
   "delta": 0.5125403781659569,
   "status": "pass_scored_official_eval_with_compatibility_baseline",
-  "claim_boundary": "This scored official-evaluator OGBN-arxiv run supports non-FML benchmark expansion and dependency-aware official task repair. Because the starter baseline is a compatibility translation rather than the unmodified NeighborLoader starter, it should not be used as broad MLAgentBench superiority evidence."
+  "claim_boundary": "This scored official-evaluator OGBN-arxiv run supports non-FML benchmark expansion and dependency-aware official task repair. Because the starter baseline is a compatibility translation rather than the unmodified NeighborLoader starter, it should not be used as broad MLAgentBench superiority evidence.",
+  "co_pilot_multiseed": {
+    "name": "full_batch_normalized_adamw_mlp_three_seed_robustness_check",
+    "seed_count": 3,
+    "baseline_score": 0.02744686541983005,
+    "seeds": [
+      {
+        "seed": 20260603,
+        "score": 0.5399872435857869,
+        "best_validation_accuracy": 0.5618,
+        "seconds": 149.01,
+        "train_script": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp/train.py",
+        "train_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp/train.stdout.log",
+        "eval_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp/eval.stdout.log"
+      },
+      {
+        "seed": 20260604,
+        "score": 0.5408925374976853,
+        "best_validation_accuracy": 0.5639,
+        "seconds": 146.34,
+        "train_script": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp_seed20260604/train.py",
+        "train_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp_seed20260604/train.stdout.log",
+        "eval_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp_seed20260604/eval.stdout.log"
+      },
+      {
+        "seed": 20260605,
+        "score": 0.5436289940950148,
+        "best_validation_accuracy": 0.5646,
+        "seconds": 126.47,
+        "train_script": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp_seed20260605/train.py",
+        "train_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp_seed20260605/train.stdout.log",
+        "eval_log": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_official_compat_20260603/co_pilot_mlp_seed20260605/eval.stdout.log"
+      }
+    ],
+    "mean_score": 0.5415029250594956,
+    "min_score": 0.5399872435857869,
+    "max_score": 0.5436289940950148,
+    "sample_std": 0.0018960528538453166,
+    "mean_delta_vs_baseline": 0.5140560596396655,
+    "all_seeds_beat_baseline": true,
+    "claim_boundary": "Three co-pilot-selected seeds under the official OGBN-arxiv evaluator support robustness of the compatibility path. The baseline remains a compatibility translation rather than the unmodified NeighborLoader starter, so this is not broad MLAgentBench superiority evidence."
+  }
 }

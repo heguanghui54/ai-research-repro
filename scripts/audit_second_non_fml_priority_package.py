@@ -135,6 +135,7 @@ def main() -> None:
     cifar_official_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
     cifar_multiseed_path = AUDIT_DIR / "mlagentbench_cifar10_multiseed_audit.json"
     ogbn_official_path = AUDIT_DIR / "mlagentbench_ogbn_arxiv_official_audit.json"
+    ogbn_multiseed_path = AUDIT_DIR / "mlagentbench_ogbn_arxiv_multiseed_audit.json"
 
     train_metrics = _load_json(train_metrics_path)
     heldout_metrics = _load_json(heldout_metrics_path)
@@ -144,6 +145,7 @@ def main() -> None:
     cifar_official = _load_json(cifar_official_path)
     cifar_multiseed = _load_json(cifar_multiseed_path)
     ogbn_official = _load_json(ogbn_official_path)
+    ogbn_multiseed = _load_json(ogbn_multiseed_path)
 
     train_metric_checks = _metric_checks(train_metrics)
     heldout_metric_checks = _metric_checks(heldout_metrics)
@@ -184,6 +186,12 @@ def main() -> None:
         == "scored_official_mlagentbench_non_fml_task_with_compatibility_baseline",
         "official_ogbn_candidate_beats_baseline": ogbn_official.get("candidate_score", 0)
         > ogbn_official.get("baseline_score", 1),
+        "official_ogbn_multiseed_audit_pass": ogbn_multiseed.get("status") == "pass",
+        "official_ogbn_multiseed_seed_count": ogbn_multiseed.get("seed_count", 0) >= 3,
+        "official_ogbn_multiseed_all_beat_baseline": min(
+            ogbn_multiseed.get("seed_scores", [0])
+        )
+        > ogbn_multiseed.get("baseline_score", 1),
         "official_ogbn_boundary_recorded": "compatibility" in ogbn_official.get(
             "claim_boundary", ""
         ).lower(),
@@ -217,7 +225,7 @@ def main() -> None:
         "audit_date": _utc_now(),
         "status": "pass" if not errors else "fail",
         "head": _git_head(),
-        "evidence_class": "two_scored_official_mlagentbench_paths_plus_official_like_package",
+        "evidence_class": "two_scored_official_mlagentbench_multiseed_paths_plus_official_like_package",
         "priority_queue_item": "Second scored non-FML benchmark package",
         "official_mlagentbench_cifar10": {
             "audit_path": _rel(cifar_official_path),
@@ -235,11 +243,17 @@ def main() -> None:
         },
         "official_mlagentbench_ogbn_arxiv": {
             "audit_path": _rel(ogbn_official_path),
+            "multiseed_audit_path": _rel(ogbn_multiseed_path),
             "task": ogbn_official.get("task"),
             "metric": ogbn_official.get("metric"),
             "baseline_score": ogbn_official.get("baseline_score"),
             "candidate_score": ogbn_official.get("candidate_score"),
             "delta": ogbn_official.get("delta"),
+            "seed_count": ogbn_multiseed.get("seed_count"),
+            "mean_score": ogbn_multiseed.get("mean_score"),
+            "min_score": ogbn_multiseed.get("min_score"),
+            "sample_std": ogbn_multiseed.get("sample_std"),
+            "mean_delta_vs_baseline": ogbn_multiseed.get("mean_delta_vs_baseline"),
             "baseline_name": ogbn_official.get("baseline_name"),
             "candidate_name": ogbn_official.get("candidate_name"),
             "claim_boundary": ogbn_official.get("claim_boundary"),
@@ -283,8 +297,8 @@ def main() -> None:
             "This closes a low-cost official-like non-FML matched-package gap: "
             "the package is scored, open-data, matched, held-out, and auditable; "
             "it also adds a three-seed scored official MLAgentBench CIFAR10/debug result "
-            "and a scored OGBN-arxiv official-evaluator compatibility run. The OGBN "
-            "baseline is a compatibility translation, so this is still not broad "
+            "and a three-seed scored OGBN-arxiv official-evaluator compatibility run. "
+            "The OGBN baseline is a compatibility translation, so this is still not broad "
             "MLAgentBench superiority evidence, independent human evidence, or "
             "paper-quality proof."
         ),
@@ -310,6 +324,9 @@ def main() -> None:
         f"- Official MLAgentBench OGBN-arxiv compatibility baseline score: `{audit['official_mlagentbench_ogbn_arxiv']['baseline_score']}`",
         f"- Official MLAgentBench OGBN-arxiv co-pilot selected score: `{audit['official_mlagentbench_ogbn_arxiv']['candidate_score']}`",
         f"- Official MLAgentBench OGBN-arxiv delta: `{audit['official_mlagentbench_ogbn_arxiv']['delta']}`",
+        f"- Official MLAgentBench OGBN-arxiv multi-seed mean score: `{audit['official_mlagentbench_ogbn_arxiv']['mean_score']}`",
+        f"- Official MLAgentBench OGBN-arxiv multi-seed min score: `{audit['official_mlagentbench_ogbn_arxiv']['min_score']}`",
+        f"- Official MLAgentBench OGBN-arxiv multi-seed sample std: `{audit['official_mlagentbench_ogbn_arxiv']['sample_std']}`",
         f"- Train package: `{audit['train_package']}`",
         f"- Held-out package: `{audit['heldout_package']}`",
         f"- Selected trigger policy: `{audit['selected_trigger_policy']}`",

@@ -1,0 +1,69 @@
+/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/ogb/nodeproppred/dataset_pyg.py:69: UserWarning: Environment variable TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD detected, since the`weights_only` argument was not explicitly passed to `torch.load`, forcing weights_only=False.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+/home/heshi/work/copilotv3-mlagentbench-ogbn-arxiv-official-compat-20260603/copilot_mlp_seed20260605/env/train.py:65: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:838.)
+  print(f"epoch={epoch} loss={float(loss):.6f} train_acc={train_acc:.4f} val_acc={val_acc:.4f} best_val={best_val:.4f}", flush=True)
+epoch=0 loss=3.839961 train_acc=0.3853 val_acc=0.4016 best_val=0.4016
+epoch=1 loss=2.574577 train_acc=0.4155 val_acc=0.4286 best_val=0.4286
+epoch=2 loss=2.317459 train_acc=0.4311 val_acc=0.4523 best_val=0.4523
+epoch=3 loss=2.191919 train_acc=0.4618 val_acc=0.4716 best_val=0.4716
+epoch=4 loss=2.078387 train_acc=0.4681 val_acc=0.4696 best_val=0.4716
+epoch=5 loss=2.010240 train_acc=0.4699 val_acc=0.4666 best_val=0.4716
+epoch=6 loss=1.958714 train_acc=0.4695 val_acc=0.4632 best_val=0.4716
+epoch=7 loss=1.921015 train_acc=0.4763 val_acc=0.4686 best_val=0.4716
+epoch=8 loss=1.885744 train_acc=0.4877 val_acc=0.4795 best_val=0.4795
+epoch=9 loss=1.849010 train_acc=0.4959 val_acc=0.4908 best_val=0.4908
+epoch=10 loss=1.819374 train_acc=0.5035 val_acc=0.5018 best_val=0.5018
+epoch=11 loss=1.793588 train_acc=0.5090 val_acc=0.5079 best_val=0.5079
+epoch=12 loss=1.770629 train_acc=0.5131 val_acc=0.5102 best_val=0.5102
+epoch=13 loss=1.749487 train_acc=0.5149 val_acc=0.5097 best_val=0.5102
+epoch=14 loss=1.735028 train_acc=0.5164 val_acc=0.5103 best_val=0.5103
+epoch=15 loss=1.724020 train_acc=0.5179 val_acc=0.5116 best_val=0.5116
+epoch=16 loss=1.708384 train_acc=0.5220 val_acc=0.5150 best_val=0.5150
+epoch=17 loss=1.698013 train_acc=0.5264 val_acc=0.5189 best_val=0.5189
+epoch=18 loss=1.687052 train_acc=0.5316 val_acc=0.5239 best_val=0.5239
+epoch=19 loss=1.677088 train_acc=0.5362 val_acc=0.5287 best_val=0.5287
+epoch=20 loss=1.666026 train_acc=0.5387 val_acc=0.5316 best_val=0.5316
+epoch=21 loss=1.652411 train_acc=0.5405 val_acc=0.5344 best_val=0.5344
+epoch=22 loss=1.644828 train_acc=0.5423 val_acc=0.5374 best_val=0.5374
+epoch=23 loss=1.636581 train_acc=0.5445 val_acc=0.5406 best_val=0.5406
+epoch=24 loss=1.627011 train_acc=0.5467 val_acc=0.5435 best_val=0.5435
+epoch=25 loss=1.621342 train_acc=0.5484 val_acc=0.5455 best_val=0.5455
+epoch=26 loss=1.614841 train_acc=0.5504 val_acc=0.5475 best_val=0.5475
+epoch=27 loss=1.608184 train_acc=0.5521 val_acc=0.5489 best_val=0.5489
+epoch=28 loss=1.604879 train_acc=0.5543 val_acc=0.5501 best_val=0.5501
+epoch=29 loss=1.596998 train_acc=0.5556 val_acc=0.5515 best_val=0.5515
+epoch=30 loss=1.592516 train_acc=0.5571 val_acc=0.5525 best_val=0.5525
+epoch=31 loss=1.586022 train_acc=0.5582 val_acc=0.5536 best_val=0.5536
+epoch=32 loss=1.581564 train_acc=0.5594 val_acc=0.5542 best_val=0.5542
+epoch=33 loss=1.576945 train_acc=0.5608 val_acc=0.5558 best_val=0.5558
+epoch=34 loss=1.573747 train_acc=0.5617 val_acc=0.5572 best_val=0.5572
+epoch=35 loss=1.570370 train_acc=0.5621 val_acc=0.5588 best_val=0.5588
+epoch=36 loss=1.563136 train_acc=0.5628 val_acc=0.5595 best_val=0.5595
+epoch=37 loss=1.560692 train_acc=0.5636 val_acc=0.5606 best_val=0.5606
+epoch=38 loss=1.558087 train_acc=0.5643 val_acc=0.5615 best_val=0.5615
+epoch=39 loss=1.553410 train_acc=0.5656 val_acc=0.5623 best_val=0.5623
+epoch=40 loss=1.551253 train_acc=0.5662 val_acc=0.5620 best_val=0.5623
+epoch=41 loss=1.547177 train_acc=0.5666 val_acc=0.5619 best_val=0.5623
+epoch=42 loss=1.542031 train_acc=0.5673 val_acc=0.5622 best_val=0.5623
+epoch=43 loss=1.540932 train_acc=0.5680 val_acc=0.5622 best_val=0.5623
+epoch=44 loss=1.537027 train_acc=0.5689 val_acc=0.5633 best_val=0.5633
+epoch=45 loss=1.533507 train_acc=0.5692 val_acc=0.5632 best_val=0.5633
+epoch=46 loss=1.536134 train_acc=0.5698 val_acc=0.5634 best_val=0.5634
+epoch=47 loss=1.533220 train_acc=0.5704 val_acc=0.5639 best_val=0.5639
+epoch=48 loss=1.529890 train_acc=0.5710 val_acc=0.5645 best_val=0.5645
+epoch=49 loss=1.525119 train_acc=0.5718 val_acc=0.5646 best_val=0.5646
+epoch=50 loss=1.525697 train_acc=0.5723 val_acc=0.5643 best_val=0.5646
+epoch=51 loss=1.523638 train_acc=0.5727 val_acc=0.5644 best_val=0.5646
+epoch=52 loss=1.524813 train_acc=0.5729 val_acc=0.5645 best_val=0.5646
+epoch=53 loss=1.520069 train_acc=0.5733 val_acc=0.5643 best_val=0.5646
+epoch=54 loss=1.519336 train_acc=0.5736 val_acc=0.5641 best_val=0.5646
+epoch=55 loss=1.518989 train_acc=0.5740 val_acc=0.5642 best_val=0.5646
+epoch=56 loss=1.516686 train_acc=0.5743 val_acc=0.5643 best_val=0.5646
+epoch=57 loss=1.514545 train_acc=0.5744 val_acc=0.5641 best_val=0.5646
+epoch=58 loss=1.515757 train_acc=0.5747 val_acc=0.5642 best_val=0.5646
+epoch=59 loss=1.513298 train_acc=0.5748 val_acc=0.5644 best_val=0.5646
+epoch=60 loss=1.512723 train_acc=0.5752 val_acc=0.5643 best_val=0.5646
+epoch=61 loss=1.509012 train_acc=0.5755 val_acc=0.5643 best_val=0.5646
+early_stop epoch=61
+done best_val=0.5646 seconds=126.47

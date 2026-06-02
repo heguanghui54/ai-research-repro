@@ -40,10 +40,12 @@ The current priority order is:
    `0.7782`, `0.7709`, and `0.7738` across three seeds, with mean `0.7743`,
    minimum `0.7709`, sample std `0.003676`, and mean delta `+0.2640`. OGBN-arxiv
    now adds a second scored official-evaluator path: compatibility starter
-   `0.02745`, co-pilot-selected normalized AdamW MLP `0.53999`, delta
-   `+0.51254`, with the boundary that the baseline is a compatibility
+   `0.02745`, co-pilot-selected normalized AdamW MLP scores `0.53999`,
+   `0.54089`, and `0.54363` across three seeds, with mean `0.5415`,
+   minimum `0.53999`, sample std `0.001896`, and mean delta `+0.5141`,
+   with the boundary that the baseline is a compatibility
    translation rather than the unmodified NeighborLoader starter. Best near-term
-   path: add seeds or another task. Blocking condition:
+   path: add another task or expand matched end-to-end trajectories. Blocking condition:
    data access, CPU/GPU runtime, or external account consent prevents
    additional official scores. If blocked, report the current official CIFAR
    result as one-task evidence only.
@@ -195,8 +197,9 @@ The current priority order is:
 - Claim tested: the workflow is not overfit to FML-Bench-style evidence and can
   be evaluated on official non-FML MLAgentBench tasks.
 - Required data: the current three-seed scored official CIFAR10/debug run plus
-  the scored OGBN-arxiv official-evaluator compatibility run, then another
-  accessible official task or more OGBN/CIFAR seeds when budget permits.
+  the three-seed scored OGBN-arxiv official-evaluator compatibility run, then
+  another accessible official task or more matched end-to-end trajectories when
+  budget permits.
 - Minimum design: at least one scored official non-FML MLAgentBench task with
   a documented baseline, co-pilot-selected branch, official evaluator output,
   multi-seed robustness when feasible, and a plan to scale beyond one task.

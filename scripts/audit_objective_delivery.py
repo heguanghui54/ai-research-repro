@@ -99,6 +99,7 @@ def main() -> None:
     second_non_fml_priority_audit_path = AUDIT_DIR / "second_non_fml_priority_package_audit.json"
     cifar_official_audit_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
     cifar_multiseed_audit_path = AUDIT_DIR / "mlagentbench_cifar10_multiseed_audit.json"
+    ogbn_multiseed_audit_path = AUDIT_DIR / "mlagentbench_ogbn_arxiv_multiseed_audit.json"
     deep_regeneration_cases_audit_path = AUDIT_DIR / "deep_regeneration_cases_audit.json"
     prospective_gate_instrumentation_audit_path = AUDIT_DIR / "prospective_gate_instrumentation_audit.json"
     frontier_taxonomy_path = DOC_DIR / "experiments" / "frontier_alignment_taxonomy_20260602_233000" / "summary.json"
@@ -126,6 +127,7 @@ def main() -> None:
     second_non_fml_priority_audit = _load_json(second_non_fml_priority_audit_path)
     cifar_official_audit = _load_json(cifar_official_audit_path)
     cifar_multiseed_audit = _load_json(cifar_multiseed_audit_path)
+    ogbn_multiseed_audit = _load_json(ogbn_multiseed_audit_path)
     deep_regeneration_cases_audit = _load_json(deep_regeneration_cases_audit_path)
     prospective_gate_instrumentation_audit = _load_json(prospective_gate_instrumentation_audit_path)
     frontier_taxonomy = _load_json(frontier_taxonomy_path)
@@ -290,6 +292,7 @@ def main() -> None:
         == "pass"
         and second_non_fml_priority_audit.get("evidence_class")
         in {
+            "two_scored_official_mlagentbench_multiseed_paths_plus_official_like_package",
             "two_scored_official_mlagentbench_paths_plus_official_like_package",
             "scored_official_mlagentbench_non_fml_plus_official_like_package",
             "scored_official_like_non_fml_matched_package_not_official_benchmark",
@@ -299,6 +302,10 @@ def main() -> None:
         "mlagentbench_cifar10_multiseed_audit_pass": cifar_multiseed_audit.get("status") == "pass"
         and cifar_multiseed_audit.get("seed_count", 0) >= 3
         and cifar_multiseed_audit.get("all_seeds_beat_baseline") is True,
+        "mlagentbench_ogbn_arxiv_multiseed_audit_pass": ogbn_multiseed_audit.get("status") == "pass"
+        and ogbn_multiseed_audit.get("seed_count", 0) >= 3
+        and min(ogbn_multiseed_audit.get("seed_scores", [0]))
+        > ogbn_multiseed_audit.get("baseline_score", 1),
         "prospective_gate_instrumentation_audit_pass": prospective_gate_instrumentation_audit.get("status")
         == "pass_with_known_historical_gaps",
         "deep_regeneration_cases_audit_pass": deep_regeneration_cases_audit.get("status") == "pass",

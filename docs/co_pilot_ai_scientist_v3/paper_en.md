@@ -422,9 +422,11 @@ official score of `0.5103`, while the co-pilot-selected branch receives
 the same co-pilot-selected branch for two additional seeds, obtaining official
 scores `0.7709` and `0.7738`; across three seeds, the mean score is `0.7743`,
 the minimum is `0.7709`, and the sample standard deviation is `0.003676`.
-We also add a scored OGBN-arxiv official-evaluator compatibility run: a
-full-batch compatibility starter scores `0.02745`, while a co-pilot-selected
-normalized AdamW MLP scores `0.53999`, delta `+0.51254`. This strengthens
+We also add a three-seed scored OGBN-arxiv official-evaluator compatibility run:
+a full-batch compatibility starter scores `0.02745`, while a co-pilot-selected
+normalized AdamW MLP scores `0.53999`, `0.54089`, and `0.54363`, with mean
+`0.5415`, minimum `0.53999`, sample standard deviation `0.001896`, and mean
+delta `+0.5141`. This strengthens
 non-FML coverage, but the OGBN baseline is a compatibility translation rather
 than the unmodified NeighborLoader starter, and the evidence is still not broad
 benchmark coverage. The MLAgentBench IMDB probe
@@ -775,8 +777,9 @@ completed under `TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=1`. The unmodified
 NeighborLoader starter still needs `pyg-lib` or `torch-sparse`, so we use a
 full-batch compatibility starter for the scored path. Under the official
 `eval.py`, that compatibility starter scores `0.02745`, while a co-pilot-selected
-normalized AdamW MLP scores `0.53999`. The next non-FML expansion should add
-seeds or another accessible official task, not retreat to FML-bench alone.
+normalized AdamW MLP scores `0.53999`, `0.54089`, and `0.54363` across three
+seeds. The next non-FML expansion should add another accessible official task or
+scale matched end-to-end trajectories, not retreat to FML-bench alone.
 
 ### 4.5 Claim Audit
 
