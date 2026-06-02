@@ -102,6 +102,8 @@ def main() -> None:
     }
     docs = {
         "root_readme": ROOT / "README.md",
+        "english_submission_card": DOC_DIR / "submission_card_en.md",
+        "chinese_submission_card": DOC_DIR / "submission_card_zh.md",
         "english_usage": DOC_DIR / "usage_en.md",
         "chinese_usage": DOC_DIR / "usage_zh.md",
         "english_runbook": DOC_DIR / "RUNBOOK_EN.md",
@@ -141,9 +143,37 @@ def main() -> None:
             docs["root_readme"],
             [
                 "Co-Pilot AI Scientist v3",
+                "submission_card_en.md",
+                "submission_card_zh.md",
                 "External Verification Entry Point",
                 "pass_artifact_delivery_with_empirical_gaps",
                 "top-conference empirical target is not yet satisfied",
+            ],
+        ),
+        _rel(docs["english_submission_card"]): _contains(
+            docs["english_submission_card"],
+            [
+                "Insight-Gated Research Evolution",
+                "Long-Horizon Taste Gate",
+                "Delayed-Value Review Signal",
+                "AI Scientist-v2",
+                "AI Co-Scientist",
+                "OpenEvolve",
+                "Do not claim",
+                "External Verification",
+            ],
+        ),
+        _rel(docs["chinese_submission_card"]): _contains(
+            docs["chinese_submission_card"],
+            [
+                "Insight-Gated Research Evolution",
+                "长期科研品味门控",
+                "延迟价值评议信号",
+                "AI Scientist-v2",
+                "AI Co-Scientist",
+                "OpenEvolve",
+                "不能声称",
+                "外部复现入口",
             ],
         ),
         _rel(docs["reusable_skill"]): _contains(
@@ -268,7 +298,14 @@ def main() -> None:
         "missing_manifest_artifacts": len(missing_manifest),
         "claim_boundary": audit["claim_boundary"],
     }
-    for path in [json_path, md_path, Path(__file__), docs["root_readme"]]:
+    for path in [
+        json_path,
+        md_path,
+        Path(__file__),
+        docs["root_readme"],
+        docs["english_submission_card"],
+        docs["chinese_submission_card"],
+    ]:
         rel = _rel(path)
         if rel not in manifest["current_artifacts"]:
             manifest["current_artifacts"].append(rel)

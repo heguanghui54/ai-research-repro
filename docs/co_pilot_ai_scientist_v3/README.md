@@ -20,6 +20,10 @@ claim calibration.
 ## Artifact Map
 
 - `problem_statement.md`: precise research framing, success criteria, and risks.
+- `submission_card_en.md`: compact reviewer-facing summary of the method,
+  evidence status, external verification commands, and unsupported claims.
+- `submission_card_zh.md`: Chinese reviewer-facing summary of the same
+  submission boundary and evidence status.
 - `literature_matrix.md`: how AI Co-Scientist, AI Scientist-v2, AlphaEvolve,
   Coscientist, and related systems map into this proposal.
 - `architecture.md`: IGRE data-flow view of the four loops and five gates.

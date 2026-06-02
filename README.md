@@ -13,6 +13,10 @@ Start here:
 
 - Research package README:
   [docs/co_pilot_ai_scientist_v3/README.md](docs/co_pilot_ai_scientist_v3/README.md)
+- English submission card:
+  [docs/co_pilot_ai_scientist_v3/submission_card_en.md](docs/co_pilot_ai_scientist_v3/submission_card_en.md)
+- Chinese submission card:
+  [docs/co_pilot_ai_scientist_v3/submission_card_zh.md](docs/co_pilot_ai_scientist_v3/submission_card_zh.md)
 - Focused English paper:
   [docs/co_pilot_ai_scientist_v3/paper_en_focused.md](docs/co_pilot_ai_scientist_v3/paper_en_focused.md)
 - Focused Chinese paper:

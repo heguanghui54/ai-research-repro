@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T11:23:40Z",
+  "audit_date": "2026-06-02T11:27:47Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "d6e6537f432eee5b150f25b9e63c96f4ebc12b5a",
+  "head": "ab2ffc9a2af9a83dcb2b0703c54983471201e669",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -45,7 +45,19 @@
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 6791,
+      "bytes": 7063,
+      "ok": true
+    },
+    "english_submission_card": {
+      "path": "docs/co_pilot_ai_scientist_v3/submission_card_en.md",
+      "exists": true,
+      "bytes": 4088,
+      "ok": true
+    },
+    "chinese_submission_card": {
+      "path": "docs/co_pilot_ai_scientist_v3/submission_card_zh.md",
+      "exists": true,
+      "bytes": 4033,
       "ok": true
     },
     "english_usage": {
@@ -112,9 +124,31 @@
   "skill_checks": {
     "README.md": {
       "Co-Pilot AI Scientist v3": true,
+      "submission_card_en.md": true,
+      "submission_card_zh.md": true,
       "External Verification Entry Point": true,
       "pass_artifact_delivery_with_empirical_gaps": true,
       "top-conference empirical target is not yet satisfied": true
+    },
+    "docs/co_pilot_ai_scientist_v3/submission_card_en.md": {
+      "Insight-Gated Research Evolution": true,
+      "Long-Horizon Taste Gate": true,
+      "Delayed-Value Review Signal": true,
+      "AI Scientist-v2": true,
+      "AI Co-Scientist": true,
+      "OpenEvolve": true,
+      "Do not claim": true,
+      "External Verification": true
+    },
+    "docs/co_pilot_ai_scientist_v3/submission_card_zh.md": {
+      "Insight-Gated Research Evolution": true,
+      "长期科研品味门控": true,
+      "延迟价值评议信号": true,
+      "AI Scientist-v2": true,
+      "AI Co-Scientist": true,
+      "OpenEvolve": true,
+      "不能声称": true,
+      "外部复现入口": true
     },
     "skills/co-pilot-ai-scientist-v3/SKILL.md": {
       "AI Scientist-v2": true,
@@ -124,9 +158,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 622,
+  "manifest_artifacts": 624,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "622/622",
+  "manifest_coverage_ratio": "624/624",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",
