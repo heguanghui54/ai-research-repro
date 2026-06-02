@@ -1,6 +1,6 @@
 # Temporal Frontier Replay Audit
 
-Audit date: `2026-06-02T10:22:05Z`
+Audit date: `2026-06-02T15:14:51Z`
 
 Status: `pass_with_negative_delayed_value_evidence`
 
@@ -41,9 +41,18 @@ Status: `pass_with_negative_delayed_value_evidence`
 - Control mean review signal: `0.176`
 - Delayed minus control mean score: `0.064`
 
+## Deep Case Triage
+
+- Selected cases: `3`
+- Mean selected triage score: `8.2197`
+- Mean selected review-title delta: `0.1867`
+- `paper_132_review_2` `long_horizon_positive_candidate` triage `9.1377`: Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime
+- `paper_105_review_1` `delayed_value_replay_candidate` triage `7.946`: E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation
+- `paper_37_review_1` `long_horizon_positive_candidate` triage `7.5753`: Learning Weighted Representations for Generalization Across Designs
+
 ## Claim Boundary
 
-TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, and a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment. These candidates are still not positive delayed-value cases until paper-only, review-guided, and shuffled controls are judged against later frontier evidence.
+TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment, and the deep-case triage queue now selects three concrete cases for future expensive replay. These candidates are still not positive delayed-value cases until paper-only, raw-review-guided, six-gate-hybrid-guided, and shuffled controls are judged against later frontier evidence.
 
 ## Warnings
 

@@ -1,0 +1,261 @@
+[
+  {
+    "rank": 1,
+    "triage_score": 9.1377,
+    "score_components": {
+      "label_priority": 0.85,
+      "frontier_validation": 0.88,
+      "review_over_title": 1.0,
+      "mining_strength": 0.7917,
+      "long_horizon_density": 1.0,
+      "temporal_asymmetry": 0.0,
+      "gate_coverage": 0.6667,
+      "frontier_term_count": 1.0,
+      "actionability_terms": 1.0,
+      "openalex_match": 1.0,
+      "citation_trace": 1.0,
+      "productive_friction": 0.0,
+      "mechanism_or_frontier_group": 1.0
+    },
+    "review_id": "paper_132_review_2",
+    "paper_index": 132,
+    "title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+    "candidate_label": "long_horizon_positive_candidate",
+    "status": "scored",
+    "decision": true,
+    "mean_score": 0.7333333333333332,
+    "delayed_candidate_score": 4.75,
+    "long_horizon_score": 3.35,
+    "temporal_asymmetry_score": 0.0,
+    "openalex_id": "https://openalex.org/W3124880721",
+    "openalex_year": 2021,
+    "openalex_cited_by_count": 11,
+    "title_token_overlap": 1.0,
+    "review_signal": {
+      "score": 0.44,
+      "frontier_alignment": 0.45,
+      "actionability": 0.4,
+      "matched_frontier_terms": [
+        "network",
+        "neural",
+        "generalization",
+        "function",
+        "result",
+        "which",
+        "descent",
+        "kernel",
+        "gradient"
+      ],
+      "matched_actionability_terms": [
+        "generalization",
+        "theory"
+      ]
+    },
+    "title_signal": {
+      "score": 0.16,
+      "frontier_alignment": 0.2,
+      "actionability": 0.0,
+      "matched_frontier_terms": [
+        "neural",
+        "descent",
+        "kernel",
+        "gradient"
+      ],
+      "matched_actionability_terms": []
+    },
+    "review_minus_title_score": 0.28,
+    "primary_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior"
+    ],
+    "actionable_categories": [
+      "evaluation_metric",
+      "novelty_positioning"
+    ],
+    "long_horizon_groups": [
+      "mechanism_depth",
+      "generalization_scaling",
+      "novelty_repositioning"
+    ],
+    "friction_groups": [],
+    "excerpt": "Summary: The paper focuses on the understanding of neural tangent kernel (NTK), which has been a central topic in deep learning theory recently and plays an important role in characterizing the generalization ability of artificial neural networks. In Particular, the authors derive minimax-optimal learning rates of the averaged stochastic gradient descent method for over-parametrized two-layer neural networks with smooth activation functions. The results are novel and offer insights into the connecti",
+    "selection_reasons": [
+      "screened as long_horizon_positive_candidate",
+      "review adds frontier signal over title/context by 0.28",
+      "matches future-frontier terms: network, neural, generalization, function, result, which",
+      "contains actionability terms: generalization, theory",
+      "long-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning",
+      "OpenAlex title match is exact or near-exact"
+    ]
+  },
+  {
+    "rank": 2,
+    "triage_score": 7.946,
+    "score_components": {
+      "label_priority": 1.0,
+      "frontier_validation": 0.48,
+      "review_over_title": 0.2857,
+      "mining_strength": 1.0,
+      "long_horizon_density": 1.0,
+      "temporal_asymmetry": 0.5,
+      "gate_coverage": 0.6667,
+      "frontier_term_count": 1.0,
+      "actionability_terms": 0.5,
+      "openalex_match": 1.0,
+      "citation_trace": 0.3,
+      "productive_friction": 0.5,
+      "mechanism_or_frontier_group": 1.0
+    },
+    "review_id": "paper_105_review_1",
+    "paper_index": 105,
+    "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+    "candidate_label": "delayed_value_replay_candidate",
+    "status": "scored",
+    "decision": true,
+    "mean_score": 0.5555555555555556,
+    "delayed_candidate_score": 6.0,
+    "long_horizon_score": 3.0,
+    "temporal_asymmetry_score": 1.25,
+    "openalex_id": "https://openalex.org/W4415795480",
+    "openalex_year": 2024,
+    "openalex_cited_by_count": 3,
+    "title_token_overlap": 1.0,
+    "review_signal": {
+      "score": 0.24,
+      "frontier_alignment": 0.25,
+      "actionability": 0.2,
+      "matched_frontier_terms": [
+        "segmentation",
+        "medical",
+        "image",
+        "convolution",
+        "feature"
+      ],
+      "matched_actionability_terms": [
+        "mechanism"
+      ]
+    },
+    "title_signal": {
+      "score": 0.16,
+      "frontier_alignment": 0.2,
+      "actionability": 0.0,
+      "matched_frontier_terms": [
+        "segmentation",
+        "medical",
+        "image",
+        "feature"
+      ],
+      "matched_actionability_terms": []
+    },
+    "review_minus_title_score": 0.08,
+    "primary_gates": [
+      "claim_calibration",
+      "scientific_taste_prior"
+    ],
+    "actionable_categories": [
+      "limitations_claim_boundary",
+      "novelty_positioning"
+    ],
+    "long_horizon_groups": [
+      "mechanism_depth",
+      "generalization_scaling",
+      "novelty_repositioning"
+    ],
+    "friction_groups": [
+      "weak_immediate_evidence"
+    ],
+    "excerpt": "The paper introduces E2ENet, a novel neural network designed for 3D medical image segmentation, which emphasizes efficiency in computational resource usage without compromising accuracy. This paper introduces a Dynamic Sparse Feature Fusion (DSFF) mechanism that adaptively learns to integrate multi-scale features effectively and a novel application of restricted depth-shift in 3D convolution that Yes, authors have addressed the limitations.",
+    "selection_reasons": [
+      "screened as delayed_value_replay_candidate",
+      "review adds frontier signal over title/context by 0.08",
+      "matches future-frontier terms: segmentation, medical, image, convolution, feature",
+      "contains actionability terms: mechanism",
+      "long-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning",
+      "productive short-term friction: weak_immediate_evidence",
+      "OpenAlex title match is exact or near-exact"
+    ]
+  },
+  {
+    "rank": 3,
+    "triage_score": 7.5753,
+    "score_components": {
+      "label_priority": 0.85,
+      "frontier_validation": 0.56,
+      "review_over_title": 0.7143,
+      "mining_strength": 0.75,
+      "long_horizon_density": 0.6667,
+      "temporal_asymmetry": 0.3,
+      "gate_coverage": 0.3333,
+      "frontier_term_count": 1.0,
+      "actionability_terms": 0.5,
+      "openalex_match": 1.0,
+      "citation_trace": 1.0,
+      "productive_friction": 0.0,
+      "mechanism_or_frontier_group": 1.0
+    },
+    "review_id": "paper_37_review_1",
+    "paper_index": 37,
+    "title": "Learning Weighted Representations for Generalization Across Designs",
+    "candidate_label": "long_horizon_positive_candidate",
+    "status": "scored",
+    "decision": false,
+    "mean_score": 0.6296296296296297,
+    "delayed_candidate_score": 4.5,
+    "long_horizon_score": 2.0,
+    "temporal_asymmetry_score": 0.75,
+    "openalex_id": "https://openalex.org/W2787551658",
+    "openalex_year": 2018,
+    "openalex_cited_by_count": 38,
+    "title_token_overlap": 1.0,
+    "review_signal": {
+      "score": 0.28,
+      "frontier_alignment": 0.3,
+      "actionability": 0.2,
+      "matched_frontier_terms": [
+        "causal",
+        "treatment",
+        "effect",
+        "outcome",
+        "under",
+        "distribution"
+      ],
+      "matched_actionability_terms": [
+        "causal"
+      ]
+    },
+    "title_signal": {
+      "score": 0.08,
+      "frontier_alignment": 0.05,
+      "actionability": 0.2,
+      "matched_frontier_terms": [
+        "representation"
+      ],
+      "matched_actionability_terms": [
+        "generalization"
+      ]
+    },
+    "review_minus_title_score": 0.2,
+    "primary_gates": [
+      "scientific_taste_prior",
+      "structured_feedback"
+    ],
+    "actionable_categories": [
+      "clarity_presentation",
+      "novelty_positioning"
+    ],
+    "long_horizon_groups": [
+      "mechanism_depth",
+      "novelty_repositioning"
+    ],
+    "friction_groups": [],
+    "excerpt": "The paper proposes a novel way of causal inference in situations where in causal SEM notation the outcome Y = f(T,X) is a function of a treatment T and covariates X. The goal is to infer the treatment effect E(Y|T=1,X=x) - E(Y|T=0,X=x) for binary treatments at every location x. If the treatment effect can be learned, then forecasts of Y under new policies that assign treatment conditional on X will still \"work\" and the distribution of X can also change without affecting the accuracy of the prediction",
+    "selection_reasons": [
+      "screened as long_horizon_positive_candidate",
+      "review adds frontier signal over title/context by 0.20",
+      "matches future-frontier terms: causal, treatment, effect, outcome, under, distribution",
+      "contains actionability terms: causal",
+      "long-horizon groups: mechanism_depth, novelty_repositioning",
+      "OpenAlex title match is exact or near-exact"
+    ]
+  }
+]

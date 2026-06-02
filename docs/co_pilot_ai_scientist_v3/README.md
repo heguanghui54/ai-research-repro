@@ -155,6 +155,20 @@ structured feedback, and claim calibration.
   cases, gives paper context 4 wins and review-guided artifact 1 win, and finds
   `0` delayed-value candidates. This supports the boundary that delayed-value
   is measurable but not yet demonstrated in the small OpenReview sample.
+- `experiments/delayed_value_review_candidate_mining_20260603_001500/`:
+  delayed-value review candidate mining over 473 OpenReview reviews and 160
+  papers. It separates local repair comments from long-horizon scientific-taste
+  comments and identifies 120 delayed-value replay candidates plus 84
+  long-horizon positive candidates.
+- `experiments/delayed_value_candidate_frontier_validation_20260603_011500/`:
+  OpenAlex-backed validation for a small stratified review sample. The delayed
+  candidate group has weak positive frontier-signal advantage over controls
+  (`+0.064` mean score), but this remains candidate-prioritization evidence,
+  not proof of delayed value.
+- `experiments/delayed_value_deep_case_triage_20260602_232000/`: transparent
+  triage queue for the next expensive Temporal Frontier Replay cases. It
+  selects three concrete deep-replay targets: NTK theory, efficient 3D medical
+  segmentation, and causal generalization across designs.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet
@@ -242,6 +256,9 @@ For a quick external check after cloning the pushed GitHub branch, run:
 ```bash
 python3 -m pip install -r requirements.txt
 python3 scripts/audit_long_horizon_taste_gate.py
+python3 scripts/run_delayed_value_review_candidate_mining.py
+python3 scripts/run_delayed_value_candidate_frontier_validation.py
+python3 scripts/build_delayed_value_deep_case_triage.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/summarize_human_expert_blind_reviews.py --update-manifest

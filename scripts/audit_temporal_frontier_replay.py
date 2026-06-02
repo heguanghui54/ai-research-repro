@@ -75,6 +75,12 @@ def main() -> None:
         / "delayed_value_candidate_frontier_validation_20260603_011500"
         / "summary.json"
     )
+    triage_path = (
+        DOC_DIR
+        / "experiments"
+        / "delayed_value_deep_case_triage_20260602_232000"
+        / "summary.json"
+    )
 
     errors: list[str] = []
     warnings: list[str] = []
@@ -88,6 +94,7 @@ def main() -> None:
         semantic_path,
         candidate_path,
         validation_path,
+        triage_path,
     ]
     for path in required_paths:
         if not path.exists():
@@ -109,6 +116,7 @@ def main() -> None:
         semantic = _load_json(semantic_path)
         candidate_mining = _load_json(candidate_path)
         candidate_validation = _load_json(validation_path)
+        deep_case_triage = _load_json(triage_path)
 
         for condition in ["paper_only", "review_guided", "shuffled_review_control"]:
             if condition not in spec.get("required_conditions", []):
@@ -165,6 +173,7 @@ def main() -> None:
                 "semantic_frontier_judge_probe": _rel(semantic_path),
                 "delayed_value_candidate_mining": _rel(candidate_path),
                 "delayed_value_candidate_frontier_validation": _rel(validation_path),
+                "delayed_value_deep_case_triage": _rel(triage_path),
             },
             "required_conditions_present": not errors,
             "delayed_value_definition_complete": not any(
@@ -243,13 +252,24 @@ def main() -> None:
                 ),
                 "claim_boundary": candidate_validation.get("claim_boundary"),
             },
+            "delayed_value_deep_case_triage": {
+                "selected_case_count": deep_case_triage.get("selected_case_count"),
+                "mean_selected_triage_score": deep_case_triage.get("mean_selected_triage_score"),
+                "mean_selected_review_minus_title_score": deep_case_triage.get(
+                    "mean_selected_review_minus_title_score"
+                ),
+                "selected_cases": deep_case_triage.get("selected_cases", []),
+                "claim_boundary": deep_case_triage.get("claim_boundary"),
+            },
             "claim_boundary": (
                 "TFR is operationalized and auditable, but the archived probes are negative for "
                 "delayed-value human-review evidence. Candidate mining can prioritize which "
-                "historical comments should enter expensive replay, and a small OpenAlex "
-                "validation shows weak positive candidate-vs-control frontier alignment. These "
+                "historical comments should enter expensive replay, a small OpenAlex validation "
+                "shows weak positive candidate-vs-control frontier alignment, and the deep-case "
+                "triage queue now selects three concrete cases for future expensive replay. These "
                 "candidates are still not positive delayed-value cases until paper-only, "
-                "review-guided, and shuffled controls are judged against later frontier evidence."
+                "raw-review-guided, six-gate-hybrid-guided, and shuffled controls are judged "
+                "against later frontier evidence."
             ),
             "errors": errors,
             "warnings": warnings,
@@ -279,6 +299,7 @@ def main() -> None:
         review = audit["review_frontier_signal_probe"]
         candidates = audit["delayed_value_candidate_mining"]
         validation = audit["delayed_value_candidate_frontier_validation"]
+        triage = audit["delayed_value_deep_case_triage"]
         lines.extend(
             [
                 "",
@@ -311,6 +332,20 @@ def main() -> None:
                 f"- Delayed-candidate mean review signal: `{validation['delayed_candidate_mean_review_signal_score']}`",
                 f"- Control mean review signal: `{validation['control_mean_review_signal_score']}`",
                 f"- Delayed minus control mean score: `{validation['delayed_minus_control_mean_score']}`",
+                "",
+                "## Deep Case Triage",
+                "",
+                f"- Selected cases: `{triage['selected_case_count']}`",
+                f"- Mean selected triage score: `{triage['mean_selected_triage_score']}`",
+                f"- Mean selected review-title delta: `{triage['mean_selected_review_minus_title_score']}`",
+            ]
+        )
+        for case in triage.get("selected_cases", []):
+            lines.append(
+                f"- `{case['review_id']}` `{case['candidate_label']}` triage `{case['triage_score']}`: {case['title']}"
+            )
+        lines.extend(
+            [
                 "",
                 "## Claim Boundary",
                 "",

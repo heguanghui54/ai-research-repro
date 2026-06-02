@@ -730,7 +730,13 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/eval_original_logfolder.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/eval_original_logfolder.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/direct_eval.log",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/direct_eval.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/direct_eval.json",
+    "scripts/build_delayed_value_deep_case_triage.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/selected_cases.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/ranked_candidates.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/deferred_candidates.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1755,9 +1761,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "4e78e03cec562cda4b4c7f895a49203855c1342e",
+    "head": "068f590cce6f5af52ee042a97e569c96145c2c72",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 717,
+    "manifest_artifacts": 723,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1807,5 +1813,12 @@
     "official_score_reported": false,
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/summary.json",
     "claim_boundary": "Reduced CLRS feasibility and cost evidence only; not an official MLAgentBench CLRS score."
+  },
+  "delayed_value_deep_case_triage": {
+    "run_id": "delayed_value_deep_case_triage_20260602_232000",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/summary.json",
+    "selected_cases": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/selected_cases.json",
+    "script": "scripts/build_delayed_value_deep_case_triage.py",
+    "claim_boundary": "Triage selects future expensive replay cases; it is not positive delayed-value evidence."
   }
 }

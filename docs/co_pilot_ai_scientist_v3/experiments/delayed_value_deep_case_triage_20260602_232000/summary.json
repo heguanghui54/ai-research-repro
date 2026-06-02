@@ -1,0 +1,1563 @@
+{
+  "run_id": "delayed_value_deep_case_triage_20260602_232000",
+  "timestamp_utc": "2026-06-02T15:13:07Z",
+  "status": "deep_case_triage_only",
+  "candidate_source": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/candidate_reviews.json",
+  "frontier_validation_source": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_candidate_frontier_validation_20260603_011500/per_item.json",
+  "input_review_count": 473,
+  "input_paper_count": 160,
+  "validated_candidate_count": 16,
+  "ranked_candidate_count": 16,
+  "selected_case_count": 3,
+  "selected_label_counts": {
+    "long_horizon_positive_candidate": 2,
+    "delayed_value_replay_candidate": 1
+  },
+  "mean_selected_triage_score": 8.2197,
+  "mean_selected_review_minus_title_score": 0.1867,
+  "selected_cases": [
+    {
+      "rank": 1,
+      "review_id": "paper_132_review_2",
+      "title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+      "candidate_label": "long_horizon_positive_candidate",
+      "triage_score": 9.1377,
+      "review_minus_title_score": 0.28,
+      "openalex_cited_by_count": 11,
+      "primary_gates": [
+        "evaluator_stress_test",
+        "scientific_taste_prior"
+      ],
+      "long_horizon_groups": [
+        "mechanism_depth",
+        "generalization_scaling",
+        "novelty_repositioning"
+      ],
+      "friction_groups": [],
+      "selection_reasons": [
+        "screened as long_horizon_positive_candidate",
+        "review adds frontier signal over title/context by 0.28",
+        "matches future-frontier terms: network, neural, generalization, function, result, which",
+        "contains actionability terms: generalization, theory",
+        "long-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning",
+        "OpenAlex title match is exact or near-exact"
+      ]
+    },
+    {
+      "rank": 2,
+      "review_id": "paper_105_review_1",
+      "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+      "candidate_label": "delayed_value_replay_candidate",
+      "triage_score": 7.946,
+      "review_minus_title_score": 0.08,
+      "openalex_cited_by_count": 3,
+      "primary_gates": [
+        "claim_calibration",
+        "scientific_taste_prior"
+      ],
+      "long_horizon_groups": [
+        "mechanism_depth",
+        "generalization_scaling",
+        "novelty_repositioning"
+      ],
+      "friction_groups": [
+        "weak_immediate_evidence"
+      ],
+      "selection_reasons": [
+        "screened as delayed_value_replay_candidate",
+        "review adds frontier signal over title/context by 0.08",
+        "matches future-frontier terms: segmentation, medical, image, convolution, feature",
+        "contains actionability terms: mechanism",
+        "long-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning",
+        "productive short-term friction: weak_immediate_evidence",
+        "OpenAlex title match is exact or near-exact"
+      ]
+    },
+    {
+      "rank": 3,
+      "review_id": "paper_37_review_1",
+      "title": "Learning Weighted Representations for Generalization Across Designs",
+      "candidate_label": "long_horizon_positive_candidate",
+      "triage_score": 7.5753,
+      "review_minus_title_score": 0.2,
+      "openalex_cited_by_count": 38,
+      "primary_gates": [
+        "scientific_taste_prior",
+        "structured_feedback"
+      ],
+      "long_horizon_groups": [
+        "mechanism_depth",
+        "novelty_repositioning"
+      ],
+      "friction_groups": [],
+      "selection_reasons": [
+        "screened as long_horizon_positive_candidate",
+        "review adds frontier signal over title/context by 0.20",
+        "matches future-frontier terms: causal, treatment, effect, outcome, under, distribution",
+        "contains actionability terms: causal",
+        "long-horizon groups: mechanism_depth, novelty_repositioning",
+        "OpenAlex title match is exact or near-exact"
+      ]
+    }
+  ],
+  "source_aggregate": {
+    "candidate_mining": {
+      "review_count": 473,
+      "paper_count": 160,
+      "label_counts": {
+        "delayed_value_replay_candidate": 120,
+        "long_horizon_positive_candidate": 84,
+        "generic_or_unrouted": 176,
+        "low_routeability_or_noisy": 3,
+        "short_term_repair_signal": 90
+      },
+      "gate_counts": {
+        "claim_calibration": 140,
+        "scientific_taste_prior": 111,
+        "evaluator_stress_test": 245,
+        "structured_feedback": 210
+      },
+      "delayed_value_replay_candidate_count": 120,
+      "long_horizon_positive_candidate_count": 84,
+      "short_term_repair_signal_count": 90,
+      "mean_delayed_candidate_score": 2.5832,
+      "mean_score_delayed_candidates": 4.019,
+      "candidate_rate": 0.2537,
+      "top_delayed_candidates": [
+        {
+          "review_id": "paper_105_review_1",
+          "paper_index": 105,
+          "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+          "decision": true,
+          "mean_score": 0.5555555555555556,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 6.0,
+          "long_horizon_score": 3.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "The paper introduces E2ENet, a novel neural network designed for 3D medical image segmentation, which emphasizes efficiency in computational resource usage without compromising accuracy. This paper introduces a Dynamic Sparse Feature Fusion (DSFF) mechanism that adaptively learns to integrate multi-scale features effectively and a novel application of restricted depth-shift in 3D convolution that Yes, authors have addressed the limitations."
+        },
+        {
+          "review_id": "paper_86_review_1",
+          "paper_index": 86,
+          "title": "Interpretable Relational Representations for Food Ingredient Recommendation Systems",
+          "decision": false,
+          "mean_score": 0.4444444444444444,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 2.5,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "novelty_positioning",
+            "reproducibility_detail"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "Overall, I vote for accepting. The authors propose a novel approach to support chefs with creating/experimenting with new recipes to overcome the challenging combinations of taste/texture etc. that can result from addition of new ingredients. Their idea of adding interpretability to their results from a Food Knowledge Base has a lot of appeal, especially to end-user’s (chef’s in this case). The author’s proposed solution is well supported by the robust and detailed evaluation results. The concerns deta"
+        },
+        {
+          "review_id": "paper_140_review_1",
+          "paper_index": 140,
+          "title": "Online Learning for Obstacle Avoidance",
+          "decision": false,
+          "mean_score": 0.32,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 2.0,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "actionable_suggestion",
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "method_correctness",
+            "novelty_positioning",
+            "reproducibility_detail"
+          ],
+          "long_horizon_groups": [
+            "mechanism_depth",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation"
+          ],
+          "excerpt": "The paper is mostly well-written. Some details mentioned above could be improved. Unfortunately, its main result is a proof in a six page appendix, which I did not carefully check for correctness. The authors propose a novel method for obstacle avoidance by using online learning theory and provide regret bounds on this. The proposed method is claimed to be efficient, provides instance-optimalty to perturbations and compares favorably to baseline open-loo"
+        },
+        {
+          "review_id": "paper_147_review_1",
+          "paper_index": 147,
+          "title": "Prometheus: Inducing Fine-Grained Evaluation Capability in Language Models",
+          "decision": true,
+          "mean_score": 0.4,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 2.1,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "evaluation_metric",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "presentation_or_claim_friction"
+          ],
+          "excerpt": "Paper presents a new benchmark for building evaluation systems with LLMs. Although the paper contribution is promising, there are some serious problems in the paper. Many of the figures are missing and unvisible. The paper contribution, whether this is a novel LLM, or a data set generated by gpt-4 is unclear. The model is advertised as open-source but how the data will be shared is unstated. If an LLM is built on this data, which is described as a 100K synthesized data set, how i"
+        },
+        {
+          "review_id": "paper_124_review_0",
+          "paper_index": 124,
+          "title": "Retaining Knowledge for Learning with Dynamic Definition",
+          "decision": true,
+          "mean_score": 0.5833333333333333,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.35,
+          "long_horizon_score": 2.35,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "- This paper proposes RIDDLE, a model with novel parameters grouping strategy, to tackle the catastrophic forgetting problem. In this paper, the catastrophic forgetting problem is formulated as the data distribution deviations between the original and the new tasks. RIDDLE helps solve th Yes. The authors have pointed out the potential limitation, and I agree with the authors that this work poses minimal negative social impact."
+        },
+        {
+          "review_id": "paper_41_review_2",
+          "paper_index": 41,
+          "title": "Topoformer: brain-like topographic organization in Transformer language models through spatial querying and reweighting",
+          "decision": false,
+          "mean_score": 0.56,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.25,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "mechanism_depth",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "Paper 2 proposes a novel approach to training Transformer language models with topographic organization, called Topoformer. The key idea of Topoformer is to arrange the keys and queries of the self-attention mechanism on a 2D grid, and to associate local pools of queries with a given key. This allows Topoformer to learn topographic representations of language, which are more interpretable and efficient than the unstructured representat"
+        },
+        {
+          "review_id": "paper_89_review_0",
+          "paper_index": 89,
+          "title": "A Region-Shrinking-Based Acceleration for Classification-Based Derivative-Free Optimization",
+          "decision": false,
+          "mean_score": 0.35000000000000003,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.25,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "mechanism_depth",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "Authors propose a novel algorithm RACE-CARS for derivate-free global optimization that adds a mechanism of region-shrinking and theoretically show how this allows them to obtain an upper bound that is tighter than bound obtain to SRACOS algorithm."
+        },
+        {
+          "review_id": "paper_140_review_2",
+          "paper_index": 140,
+          "title": "Online Learning for Obstacle Avoidance",
+          "decision": false,
+          "mean_score": 0.32,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.25,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 2.0,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "novelty_positioning",
+            "reproducibility_detail"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "presentation_or_claim_friction"
+          ],
+          "excerpt": "The author is well-organized with a clear structure. The related work is well-written, especially for readers (like me), who are not very familiar with the field of robust planning. One issue is that the experimental analysis is not enough to support the low-regret claim. And it seems that the major contribution (the non-convex memory FPL algorithm) mainly comes from previous work. The reviewer believes that the results of the experiment are reproducible."
+        },
+        {
+          "review_id": "paper_82_review_1",
+          "paper_index": 82,
+          "title": "Beyond Object Recognition: A New Benchmark towards Object Concept Learning",
+          "decision": false,
+          "mean_score": 0.45,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.2,
+          "long_horizon_score": 2.7,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "evaluator_stress_test"
+          ],
+          "actionable_categories": [
+            "evaluation_metric"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth"
+          ],
+          "friction_groups": [],
+          "excerpt": "+ves: + Present-day ML models lay a great emphasis on categorizing objects based solely on appearance. In case of distribution shift in a real-world dataset, such models find it difficult to generalize. A deeper understanding of objects based on their physical properties and affordances can avoid such problems, and the dataset introduced in this paper is a notable step in the right direction. + The constructed dataset is large-scale which will encourage the generalization of models tow"
+        },
+        {
+          "review_id": "paper_105_review_0",
+          "paper_index": 105,
+          "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+          "decision": true,
+          "mean_score": 0.5555555555555556,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.175,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.425,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "In this paper, the authors propose a novel architecture that addresses the challenges observed in increasing the model size and computational complexity of neural network architectures. This leads to concerns in the deployment stage, mainly because of resource-limited hardware. The authors propose a 3D medical image segmentation model named Efficient to E The authors didn't discuss the limitations of the proposed methodology."
+        },
+        {
+          "review_id": "paper_15_review_1",
+          "paper_index": 15,
+          "title": "CQM: Curriculum Reinforcement Learning with a Quantized World Model",
+          "decision": true,
+          "mean_score": 0.5777777777777777,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.0,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "This paper introduces Curriculum RL with Quantized World Model (CQM), a novel approach that leverages a VQ-VAE to create a discretized goal space and constructs a graph structure over it. CQM further proposes a curriculum strategy based on uncertainty and temporal distance to guide the learning process. The authors evaluate the effectiven The authors adequately addressed the limitations and potential negative societal impact."
+        },
+        {
+          "review_id": "paper_66_review_2",
+          "paper_index": 66,
+          "title": "Differentiable Quantum Computing for Large-scale Linear Control",
+          "decision": true,
+          "mean_score": 0.4722222222222222,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.0,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "method_correctness",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "The paper \"Differentiable Quantum Computing for Large-scale Linear Control\" introduces a quantum algorithm for linear-quadratic control problems, offering provable speedups. It utilizes a policy gradient method enhanced with a novel quantum subroutine for solving th The primary limitation of the proposed method is its dependency on the availability of quantum resources and the sparsity assumptions for the matrices involved."
+        },
+        {
+          "review_id": "paper_69_review_2",
+          "paper_index": 69,
+          "title": "Neural Tangent Kernel Maximum Mean Discrepancy",
+          "decision": true,
+          "mean_score": 0.3888888888888889,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.0,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "The main contribution of this paper lies in developing a novel neural network MMD statistic. It introduces the advantage of deep neural networks' representation and optimization to kernel MMD testing procedure, which solves the computational and memory difficulties of using MMD statistic. The observation that training of a network in a short time nearly means computing the witness function of a kernel MM The authors adequately addressed the limitations and potential negative societal impact."
+        },
+        {
+          "review_id": "paper_77_review_2",
+          "paper_index": 77,
+          "title": "$\\epsilon$-Softmax: Approximating One-Hot Vectors for Mitigating Label Noise",
+          "decision": true,
+          "mean_score": 0.5333333333333334,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.0,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "This manuscript proposes a novel method to approximate the symmetric condition of the loss function, which is necessary for robustness to label noise. Specifically, the proposed method, named \\\\\\\\( \\\\\\\\epsilon \\\\\\\\)-softmax, can adjust the model output to approximate one-hot vector. However, the proposed method alone suffers from underfitting, so The authors have acknowledged the limitations and societal impact of their work."
+        },
+        {
+          "review_id": "paper_22_review_0",
+          "paper_index": 22,
+          "title": "Predicting the Outputs of Finite Networks Trained with Noisy Gradients",
+          "decision": false,
+          "mean_score": 0.4444444444444444,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.85,
+          "long_horizon_score": 2.35,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "evaluation_metric",
+            "method_correctness"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth"
+          ],
+          "friction_groups": [],
+          "excerpt": "It has been show that practical performance of finite width DNNs deviates from the infinite limiting cases of both the NTK and GP. The reason behind this is still not well understood. This papers develops theory trying to explain this by showing the finite width correction (FWC) for DNNs. The results look very interesting. However, as an educational guest on this topic, I find the paper written in a way that causes a lot of confusions, making me not fully understand the results. First of all, the p"
+        },
+        {
+          "review_id": "paper_7_review_2",
+          "paper_index": 7,
+          "title": "Identifiable Shared Component Analysis of Unpaired Multimodal Mixtures",
+          "decision": true,
+          "mean_score": 0.5277777777777778,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.75,
+          "primary_gates": [
+            "claim_calibration",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "actionable_suggestion",
+            "limitations_claim_boundary"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "The paper considers the identifiability of shared components from a linear mixture. The theory requires multiple domains. However, compared to previous works, the required domains do not need to be aligned in this work. A practical estimation model has been proposed according to the theory. The authors have discussed the limitations."
+        },
+        {
+          "review_id": "paper_71_review_0",
+          "paper_index": 71,
+          "title": "Analogies and Feature Attributions for Model Agnostic Explanation of Similarity Learners",
+          "decision": false,
+          "mean_score": 0.44000000000000006,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 1.0,
+          "temporal_asymmetry_score": 2.5,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "actionable_suggestion",
+            "clarity_presentation",
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "presentation_or_claim_friction"
+          ],
+          "excerpt": "Strengths: - Novel formalization of objective function for finding analogies and feature attribution for BB similarity learners - Diverse evaluation of approach using both objective metrics and a user study Weaknesses/questions: - On objective 1: how can one compare doing LIME over the concatenated (x,z) to having A be diagonal? - On objective 2: Optimization over $\\\\lambda_1, \\\\lambda_2$ is unclear, how can one systematically search over them to get intuitive analogies? Fu - Novel formalization of objective function for finding analogies and feature attribution for BB similarity learners - Diverse evaluation of approach using both objective metrics and a user study Weaknesses/questions: - O"
+        },
+        {
+          "review_id": "paper_83_review_1",
+          "paper_index": 83,
+          "title": "The Minority Matters: A Diversity-Promoting Collaborative Metric Learning Algorithm",
+          "decision": true,
+          "mean_score": 0.7407407407407406,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.0,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "This paper focuses on Collaborative Metric Learning (CML) based recommendation systems (RS). The authors point out that the current CML-based studies might result in a limited recommendation performance due to the insufficient consideration of the multiple categories of user preferences in practical RS. To alleviate this problem, they propose a novel algorithm named Diversity-Promoting Collaborative Metric Learning (DPC None."
+        },
+        {
+          "review_id": "paper_93_review_1",
+          "paper_index": 93,
+          "title": "Optimizing Data-Flow in Binary Neural Networks",
+          "decision": false,
+          "mean_score": 0.2,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 1.0,
+          "temporal_asymmetry_score": 2.0,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling"
+          ],
+          "friction_groups": [
+            "missing_evaluation"
+          ],
+          "excerpt": "I believe the paper falls short in terms of novelty (see my comments listed as weaknesses). The contribution of this easy to understand but there are some aspects missing such as scaling factor of binarization. This paper presents a training scheme to increase data pipeline of binary neural networks when implemented on ARM. To this end, a two-step clipping method and 8-bit batch normalization have been proposed. The clipping method insures that the va"
+        },
+        {
+          "review_id": "paper_98_review_0",
+          "paper_index": 98,
+          "title": "Offline RL for Online RL: Decoupled Policy Learning for Mitigating Exploration Bias",
+          "decision": false,
+          "mean_score": 0.55,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "The paper you provided proposes a novel framework called Offline-to-Online-to-Offline (OOO) for reinforcement learning (RL). This framework tries to address the issue of exploration bias in online RL, where exploration bonuses can negatively impact the effectiveness of the learned policy. The OOO approach involves using an optimistic policy for exploration and interaction with the environment, while concurrently training a separate, pes"
+        }
+      ],
+      "tfr_replay_queue": [
+        {
+          "review_id": "paper_105_review_1",
+          "paper_index": 105,
+          "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+          "decision": true,
+          "mean_score": 0.5555555555555556,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 6.0,
+          "long_horizon_score": 3.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "The paper introduces E2ENet, a novel neural network designed for 3D medical image segmentation, which emphasizes efficiency in computational resource usage without compromising accuracy. This paper introduces a Dynamic Sparse Feature Fusion (DSFF) mechanism that adaptively learns to integrate multi-scale features effectively and a novel application of restricted depth-shift in 3D convolution that Yes, authors have addressed the limitations."
+        },
+        {
+          "review_id": "paper_86_review_1",
+          "paper_index": 86,
+          "title": "Interpretable Relational Representations for Food Ingredient Recommendation Systems",
+          "decision": false,
+          "mean_score": 0.4444444444444444,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 2.5,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "novelty_positioning",
+            "reproducibility_detail"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "Overall, I vote for accepting. The authors propose a novel approach to support chefs with creating/experimenting with new recipes to overcome the challenging combinations of taste/texture etc. that can result from addition of new ingredients. Their idea of adding interpretability to their results from a Food Knowledge Base has a lot of appeal, especially to end-user’s (chef’s in this case). The author’s proposed solution is well supported by the robust and detailed evaluation results. The concerns deta"
+        },
+        {
+          "review_id": "paper_140_review_1",
+          "paper_index": 140,
+          "title": "Online Learning for Obstacle Avoidance",
+          "decision": false,
+          "mean_score": 0.32,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 2.0,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "actionable_suggestion",
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "method_correctness",
+            "novelty_positioning",
+            "reproducibility_detail"
+          ],
+          "long_horizon_groups": [
+            "mechanism_depth",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation"
+          ],
+          "excerpt": "The paper is mostly well-written. Some details mentioned above could be improved. Unfortunately, its main result is a proof in a six page appendix, which I did not carefully check for correctness. The authors propose a novel method for obstacle avoidance by using online learning theory and provide regret bounds on this. The proposed method is claimed to be efficient, provides instance-optimalty to perturbations and compares favorably to baseline open-loo"
+        },
+        {
+          "review_id": "paper_147_review_1",
+          "paper_index": 147,
+          "title": "Prometheus: Inducing Fine-Grained Evaluation Capability in Language Models",
+          "decision": true,
+          "mean_score": 0.4,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 2.1,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "evaluation_metric",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "presentation_or_claim_friction"
+          ],
+          "excerpt": "Paper presents a new benchmark for building evaluation systems with LLMs. Although the paper contribution is promising, there are some serious problems in the paper. Many of the figures are missing and unvisible. The paper contribution, whether this is a novel LLM, or a data set generated by gpt-4 is unclear. The model is advertised as open-source but how the data will be shared is unstated. If an LLM is built on this data, which is described as a 100K synthesized data set, how i"
+        },
+        {
+          "review_id": "paper_124_review_0",
+          "paper_index": 124,
+          "title": "Retaining Knowledge for Learning with Dynamic Definition",
+          "decision": true,
+          "mean_score": 0.5833333333333333,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.35,
+          "long_horizon_score": 2.35,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "- This paper proposes RIDDLE, a model with novel parameters grouping strategy, to tackle the catastrophic forgetting problem. In this paper, the catastrophic forgetting problem is formulated as the data distribution deviations between the original and the new tasks. RIDDLE helps solve th Yes. The authors have pointed out the potential limitation, and I agree with the authors that this work poses minimal negative social impact."
+        },
+        {
+          "review_id": "paper_41_review_2",
+          "paper_index": 41,
+          "title": "Topoformer: brain-like topographic organization in Transformer language models through spatial querying and reweighting",
+          "decision": false,
+          "mean_score": 0.56,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.25,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "mechanism_depth",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "Paper 2 proposes a novel approach to training Transformer language models with topographic organization, called Topoformer. The key idea of Topoformer is to arrange the keys and queries of the self-attention mechanism on a 2D grid, and to associate local pools of queries with a given key. This allows Topoformer to learn topographic representations of language, which are more interpretable and efficient than the unstructured representat"
+        },
+        {
+          "review_id": "paper_89_review_0",
+          "paper_index": 89,
+          "title": "A Region-Shrinking-Based Acceleration for Classification-Based Derivative-Free Optimization",
+          "decision": false,
+          "mean_score": 0.35000000000000003,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.25,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "mechanism_depth",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "Authors propose a novel algorithm RACE-CARS for derivate-free global optimization that adds a mechanism of region-shrinking and theoretically show how this allows them to obtain an upper bound that is tighter than bound obtain to SRACOS algorithm."
+        },
+        {
+          "review_id": "paper_140_review_2",
+          "paper_index": 140,
+          "title": "Online Learning for Obstacle Avoidance",
+          "decision": false,
+          "mean_score": 0.32,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.25,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 2.0,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "novelty_positioning",
+            "reproducibility_detail"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "presentation_or_claim_friction"
+          ],
+          "excerpt": "The author is well-organized with a clear structure. The related work is well-written, especially for readers (like me), who are not very familiar with the field of robust planning. One issue is that the experimental analysis is not enough to support the low-regret claim. And it seems that the major contribution (the non-convex memory FPL algorithm) mainly comes from previous work. The reviewer believes that the results of the experiment are reproducible."
+        },
+        {
+          "review_id": "paper_82_review_1",
+          "paper_index": 82,
+          "title": "Beyond Object Recognition: A New Benchmark towards Object Concept Learning",
+          "decision": false,
+          "mean_score": 0.45,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.2,
+          "long_horizon_score": 2.7,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "evaluator_stress_test"
+          ],
+          "actionable_categories": [
+            "evaluation_metric"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth"
+          ],
+          "friction_groups": [],
+          "excerpt": "+ves: + Present-day ML models lay a great emphasis on categorizing objects based solely on appearance. In case of distribution shift in a real-world dataset, such models find it difficult to generalize. A deeper understanding of objects based on their physical properties and affordances can avoid such problems, and the dataset introduced in this paper is a notable step in the right direction. + The constructed dataset is large-scale which will encourage the generalization of models tow"
+        },
+        {
+          "review_id": "paper_105_review_0",
+          "paper_index": 105,
+          "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+          "decision": true,
+          "mean_score": 0.5555555555555556,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.175,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.425,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "In this paper, the authors propose a novel architecture that addresses the challenges observed in increasing the model size and computational complexity of neural network architectures. This leads to concerns in the deployment stage, mainly because of resource-limited hardware. The authors propose a 3D medical image segmentation model named Efficient to E The authors didn't discuss the limitations of the proposed methodology."
+        },
+        {
+          "review_id": "paper_15_review_1",
+          "paper_index": 15,
+          "title": "CQM: Curriculum Reinforcement Learning with a Quantized World Model",
+          "decision": true,
+          "mean_score": 0.5777777777777777,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.0,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "This paper introduces Curriculum RL with Quantized World Model (CQM), a novel approach that leverages a VQ-VAE to create a discretized goal space and constructs a graph structure over it. CQM further proposes a curriculum strategy based on uncertainty and temporal distance to guide the learning process. The authors evaluate the effectiven The authors adequately addressed the limitations and potential negative societal impact."
+        },
+        {
+          "review_id": "paper_66_review_2",
+          "paper_index": 66,
+          "title": "Differentiable Quantum Computing for Large-scale Linear Control",
+          "decision": true,
+          "mean_score": 0.4722222222222222,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.0,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "method_correctness",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "The paper \"Differentiable Quantum Computing for Large-scale Linear Control\" introduces a quantum algorithm for linear-quadratic control problems, offering provable speedups. It utilizes a policy gradient method enhanced with a novel quantum subroutine for solving th The primary limitation of the proposed method is its dependency on the availability of quantum resources and the sparsity assumptions for the matrices involved."
+        },
+        {
+          "review_id": "paper_69_review_2",
+          "paper_index": 69,
+          "title": "Neural Tangent Kernel Maximum Mean Discrepancy",
+          "decision": true,
+          "mean_score": 0.3888888888888889,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.0,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "The main contribution of this paper lies in developing a novel neural network MMD statistic. It introduces the advantage of deep neural networks' representation and optimization to kernel MMD testing procedure, which solves the computational and memory difficulties of using MMD statistic. The observation that training of a network in a short time nearly means computing the witness function of a kernel MM The authors adequately addressed the limitations and potential negative societal impact."
+        },
+        {
+          "review_id": "paper_77_review_2",
+          "paper_index": 77,
+          "title": "$\\epsilon$-Softmax: Approximating One-Hot Vectors for Mitigating Label Noise",
+          "decision": true,
+          "mean_score": 0.5333333333333334,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 5.0,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "This manuscript proposes a novel method to approximate the symmetric condition of the loss function, which is necessary for robustness to label noise. Specifically, the proposed method, named \\\\\\\\( \\\\\\\\epsilon \\\\\\\\)-softmax, can adjust the model output to approximate one-hot vector. However, the proposed method alone suffers from underfitting, so The authors have acknowledged the limitations and societal impact of their work."
+        },
+        {
+          "review_id": "paper_22_review_0",
+          "paper_index": 22,
+          "title": "Predicting the Outputs of Finite Networks Trained with Noisy Gradients",
+          "decision": false,
+          "mean_score": 0.4444444444444444,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.85,
+          "long_horizon_score": 2.35,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "evaluation_metric",
+            "method_correctness"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth"
+          ],
+          "friction_groups": [],
+          "excerpt": "It has been show that practical performance of finite width DNNs deviates from the infinite limiting cases of both the NTK and GP. The reason behind this is still not well understood. This papers develops theory trying to explain this by showing the finite width correction (FWC) for DNNs. The results look very interesting. However, as an educational guest on this topic, I find the paper written in a way that causes a lot of confusions, making me not fully understand the results. First of all, the p"
+        },
+        {
+          "review_id": "paper_7_review_2",
+          "paper_index": 7,
+          "title": "Identifiable Shared Component Analysis of Unpaired Multimodal Mixtures",
+          "decision": true,
+          "mean_score": 0.5277777777777778,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.75,
+          "primary_gates": [
+            "claim_calibration",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "actionable_suggestion",
+            "limitations_claim_boundary"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "The paper considers the identifiability of shared components from a linear mixture. The theory requires multiple domains. However, compared to previous works, the required domains do not need to be aligned in this work. A practical estimation model has been proposed according to the theory. The authors have discussed the limitations."
+        },
+        {
+          "review_id": "paper_71_review_0",
+          "paper_index": 71,
+          "title": "Analogies and Feature Attributions for Model Agnostic Explanation of Similarity Learners",
+          "decision": false,
+          "mean_score": 0.44000000000000006,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 1.0,
+          "temporal_asymmetry_score": 2.5,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "actionable_suggestion",
+            "clarity_presentation",
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "presentation_or_claim_friction"
+          ],
+          "excerpt": "Strengths: - Novel formalization of objective function for finding analogies and feature attribution for BB similarity learners - Diverse evaluation of approach using both objective metrics and a user study Weaknesses/questions: - On objective 1: how can one compare doing LIME over the concatenated (x,z) to having A be diagonal? - On objective 2: Optimization over $\\\\lambda_1, \\\\lambda_2$ is unclear, how can one systematically search over them to get intuitive analogies? Fu - Novel formalization of objective function for finding analogies and feature attribution for BB similarity learners - Diverse evaluation of approach using both objective metrics and a user study Weaknesses/questions: - O"
+        },
+        {
+          "review_id": "paper_83_review_1",
+          "paper_index": 83,
+          "title": "The Minority Matters: A Diversity-Promoting Collaborative Metric Learning Algorithm",
+          "decision": true,
+          "mean_score": 0.7407407407407406,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.0,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "This paper focuses on Collaborative Metric Learning (CML) based recommendation systems (RS). The authors point out that the current CML-based studies might result in a limited recommendation performance due to the insufficient consideration of the multiple categories of user preferences in practical RS. To alleviate this problem, they propose a novel algorithm named Diversity-Promoting Collaborative Metric Learning (DPC None."
+        },
+        {
+          "review_id": "paper_93_review_1",
+          "paper_index": 93,
+          "title": "Optimizing Data-Flow in Binary Neural Networks",
+          "decision": false,
+          "mean_score": 0.2,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 1.0,
+          "temporal_asymmetry_score": 2.0,
+          "primary_gates": [
+            "claim_calibration",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling"
+          ],
+          "friction_groups": [
+            "missing_evaluation"
+          ],
+          "excerpt": "I believe the paper falls short in terms of novelty (see my comments listed as weaknesses). The contribution of this easy to understand but there are some aspects missing such as scaling factor of binarization. This paper presents a training scheme to increase data pipeline of binary neural networks when implemented on ARM. To this end, a two-step clipping method and 8-bit batch normalization have been proposed. The clipping method insures that the va"
+        },
+        {
+          "review_id": "paper_98_review_0",
+          "paper_index": 98,
+          "title": "Offline RL for Online RL: Decoupled Policy Learning for Mitigating Exploration Bias",
+          "decision": false,
+          "mean_score": 0.55,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "The paper you provided proposes a novel framework called Offline-to-Online-to-Offline (OOO) for reinforcement learning (RL). This framework tries to address the issue of exploration bias in online RL, where exploration bonuses can negatively impact the effectiveness of the learned policy. The OOO approach involves using an optimistic policy for exploration and interaction with the environment, while concurrently training a separate, pes"
+        },
+        {
+          "review_id": "paper_108_review_0",
+          "paper_index": 108,
+          "title": "GraphSeq2Seq: Graph-Sequence-to-Sequence for Neural Machine Translation",
+          "decision": false,
+          "mean_score": 0.5555555555555556,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "actionable_suggestion",
+            "evaluation_metric",
+            "novelty_positioning",
+            "reproducibility_detail"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "This paper proposes a method for combining the Graph2Seq and Seq2Seq models into a unified model that captures the benefits of both. The paper thoroughly describes in series of experiments that demonstrate that the authors' proposed method outperforms several of the other NMT methods on a few translation tasks. I like the synthesis of methods that the authors' present. It is a logical and practical implementation that seems to provide solid benefits over the existing state of the art. I think tha"
+        },
+        {
+          "review_id": "paper_118_review_1",
+          "paper_index": 118,
+          "title": "Bag of Tricks for Unsupervised Text-to-Speech",
+          "decision": true,
+          "mean_score": 0.7333333333333334,
+          "candidate_label": "long_horizon_positive_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 3.0,
+          "temporal_asymmetry_score": 0.0,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "evaluation_metric",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "generalization_scaling",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "The contributions are somewhat new. Aspects of the contributions exist in prior work. The paper studies the important problem of learning text-to-speech synthesis from noisy unpaired data. To order to achieve this, the authors propose several practical tricks, including normalizing variable and noisy information in speech data, curriculum learning, length augmentation and auxiliary supervised learning. Experimental results on public datasets confirm t"
+        },
+        {
+          "review_id": "paper_132_review_2",
+          "paper_index": 132,
+          "title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+          "decision": true,
+          "mean_score": 0.7333333333333332,
+          "candidate_label": "long_horizon_positive_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 3.35,
+          "temporal_asymmetry_score": 0.0,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "evaluation_metric",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth",
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "Summary: The paper focuses on the understanding of neural tangent kernel (NTK), which has been a central topic in deep learning theory recently and plays an important role in characterizing the generalization ability of artificial neural networks. In Particular, the authors derive minimax-optimal learning rates of the averaged stochastic gradient descent method for over-parametrized two-layer neural networks with smooth activation functions. The results are novel and offer insights into the connecti"
+        },
+        {
+          "review_id": "paper_156_review_2",
+          "paper_index": 156,
+          "title": "Quantifying and Learning Disentangled Representations with Limited Supervision",
+          "decision": false,
+          "mean_score": 0.4444444444444444,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.75,
+          "long_horizon_score": 1.0,
+          "temporal_asymmetry_score": 2.0,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "actionable_suggestion",
+            "evaluation_metric",
+            "method_correctness",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling"
+          ],
+          "friction_groups": [
+            "missing_evaluation"
+          ],
+          "excerpt": "Summary: This paper follows on the work of Higgins et al. 2018 that used linear symmetry based disentangled (LSBD) representations where real-world transformations provide some structure in the data that can be leveraged. The main contribution of this paper is to provide a metric to measure the quality of disentanglement in the learned representation. The paper makes some assumptions on the samples in the dataset and assumes that there are some group actions that relate one data point to another. Under"
+        },
+        {
+          "review_id": "paper_15_review_0",
+          "paper_index": 15,
+          "title": "CQM: Curriculum Reinforcement Learning with a Quantized World Model",
+          "decision": true,
+          "mean_score": 0.5777777777777777,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.675,
+          "long_horizon_score": 1.0,
+          "temporal_asymmetry_score": 1.925,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "novelty_repositioning"
+          ],
+          "friction_groups": [
+            "missing_evaluation",
+            "weak_immediate_evidence"
+          ],
+          "excerpt": "The paper proposed a new curriculum reinforcement learning method, CQM, that uses VQ-VAE to learn a quantized goal space, const The limitations have been adequately addressed. > After rebuttal Some of my concerns have been addressed. I appreciate the authors' efforts, but the maze in either their submission or rebuttal doesn't match the complexity of the related work I requested for comparison. Thus I'm holding my score."
+        },
+        {
+          "review_id": "paper_13_review_0",
+          "paper_index": 13,
+          "title": "KETG: A Knowledge Enhanced Text Generation Framework",
+          "decision": false,
+          "mean_score": 0.1388888888888889,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.6,
+          "long_horizon_score": 1.35,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "scientific_taste_prior"
+          ],
+          "actionable_categories": [
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "This paper proposes to use a rhetoric knowledge graph for rhetorical text generation. One of its key contributions is to construct a rhetoric knowledge graph by leveraging SOTA NER and relation classification models. To generate a rhetorical text, the new method starts with sending a keyword to the knowledge graph to retrieve the neighborhood of the keywords as its context words. Both the context words and the original query word are fed into a language model to generate the final word sequence."
+        },
+        {
+          "review_id": "paper_17_review_2",
+          "paper_index": 17,
+          "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+          "decision": false,
+          "mean_score": 0.55,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.6,
+          "long_horizon_score": 1.35,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "evaluation_metric",
+            "novelty_positioning",
+            "reproducibility_detail"
+          ],
+          "long_horizon_groups": [
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "The work appears novel, the writing is clear and is easy to read, and the approach is simple and straightforward enough that reproducing the results is likely feasible. The authors propose a simple approach for unlearning specific token sequences in large pretrained language models (LMs). To unlearn a specific sequence of tokens x, the proposed approach simply negates the original training objective of minimizing the negative log-likelihood of x; this p"
+        },
+        {
+          "review_id": "paper_44_review_0",
+          "paper_index": 44,
+          "title": "Analyzing Few-Shot Neural Architecture Search in a Metric-Driven Framework",
+          "decision": true,
+          "mean_score": 0.45000000000000007,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.6,
+          "long_horizon_score": 2.35,
+          "temporal_asymmetry_score": 1.25,
+          "primary_gates": [
+            "claim_calibration",
+            "evaluator_stress_test",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "actionable_suggestion",
+            "evaluation_metric",
+            "limitations_claim_boundary",
+            "method_correctness"
+          ],
+          "long_horizon_groups": [
+            "frontier_direction",
+            "mechanism_depth"
+          ],
+          "friction_groups": [
+            "missing_evaluation"
+          ],
+          "excerpt": "One-short and Few-shot NAS are significant areas of research for AutoML. This study focuses on analyzing the impact of using validation accuracy for subnet selection as well as investigating the benefits of splitting across 17 algorithms and metrics concluding supernet selection methods are flawed. However, the study does not provide any ablation study(if conducted) and merely claims based on tunning epochs. It's important to provide a theoretical explanation as to why author"
+        },
+        {
+          "review_id": "paper_143_review_0",
+          "paper_index": 143,
+          "title": "Reinforcement learning for instance segmentation with high-level priors",
+          "decision": false,
+          "mean_score": 0.5,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.6,
+          "long_horizon_score": 1.35,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "evaluator_stress_test",
+            "scientific_taste_prior",
+            "structured_feedback"
+          ],
+          "actionable_categories": [
+            "clarity_presentation",
+            "evaluation_metric",
+            "novelty_positioning"
+          ],
+          "long_horizon_groups": [
+            "novelty_repositioning"
+          ],
+          "friction_groups": [],
+          "excerpt": "This paper presents a novel idea of applying RL methodology to instance segmentation. The stateless actor-critic reinforcement learning theme enables non-differential rewards which could incorporate prior knowledge to guide the segmentation, and relaxes the heavy requirement of pixel-wise labeling. The idea is unique and quite interesting. The related work looks sufficient to me. The experiments are well designed with convincing results. The writing is overall clear, but there are a fe N/A"
+        },
+        {
+          "review_id": "paper_19_review_1",
+          "paper_index": 19,
+          "title": "Localized Generations with Deep Neural Networks for Multi-Scale Structured Datasets",
+          "decision": false,
+          "mean_score": 0.5555555555555555,
+          "candidate_label": "delayed_value_replay_candidate",
+          "delayed_candidate_score": 4.5,
+          "long_horizon_score": 2.0,
+          "temporal_asymmetry_score": 1.5,
+          "primary_gates": [
+            "evaluator_stress_test"
+          ],
+          "actionable_categories": [
+            "evaluation_metric"
+          ],
+          "long_horizon_groups": [
+            "generalization_scaling",
+            "mechanism_depth"
+          ],
+          "friction_groups": [],
+          "excerpt": "Incorporating the local learning approaches into the training of the deep generative models can potentially create a new model that has both the capacity for high-dimensional inputs and flexibility for locally changing environments. However, the local learning approach is limited to using only a simple model, because complex models require a large amount of data and extended training time. This paper overcomes this trade-off based on the insight that the real-world dataset"
+        }
+      ]
+    },
+    "frontier_validation": {
+      "attempted_count": 16,
+      "scored_count": 13,
+      "not_scored_count": 3,
+      "label_table": {
+        "delayed_value_replay_candidate": {
+          "scored_count": 3,
+          "mean_review_signal_score": 0.24,
+          "mean_frontier_alignment": 0.2833,
+          "mean_review_minus_title_score": 0.04,
+          "review_beats_title_count": 2
+        },
+        "generic_or_unrouted": {
+          "scored_count": 3,
+          "mean_review_signal_score": 0.1867,
+          "mean_frontier_alignment": 0.2,
+          "mean_review_minus_title_score": 0.0667,
+          "review_beats_title_count": 2
+        },
+        "long_horizon_positive_candidate": {
+          "scored_count": 3,
+          "mean_review_signal_score": 0.28,
+          "mean_frontier_alignment": 0.3,
+          "mean_review_minus_title_score": 0.1867,
+          "review_beats_title_count": 3
+        },
+        "short_term_repair_signal": {
+          "scored_count": 4,
+          "mean_review_signal_score": 0.09,
+          "mean_frontier_alignment": 0.1,
+          "mean_review_minus_title_score": 0.03,
+          "review_beats_title_count": 2
+        }
+      },
+      "delayed_candidate_mean_review_signal_score": 0.24,
+      "control_mean_review_signal_score": 0.176,
+      "delayed_minus_control_mean_score": 0.064,
+      "delayed_review_beats_title_count": 2,
+      "delayed_scored_count": 3
+    }
+  },
+  "ranking_rule": {
+    "positive_terms": [
+      "delayed or long-horizon candidate label",
+      "review frontier signal stronger than title-only signal",
+      "frontier/actionability terms in the review",
+      "scientific taste, evaluator stress, frontier, or claim-calibration gate coverage",
+      "exact or near-exact OpenAlex match",
+      "productive short-term friction coupled to long-horizon groups"
+    ],
+    "penalties": [
+      "possible OpenAlex match drift",
+      "unscored candidate"
+    ]
+  },
+  "claim_boundary": "This artifact selects the next expensive deep replay cases. It does not claim that the reviews caused future progress or that review-guided regeneration improves the original papers. Each selected case still requires paper-only, raw-review-guided, six-gate-hybrid-guided, and shuffled-review-control regeneration plus short-term and future-frontier judging."
+}

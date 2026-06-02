@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T10:22:05Z",
+  "audit_date": "2026-06-02T15:14:51Z",
   "status": "pass_with_negative_delayed_value_evidence",
   "spec": "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.json",
   "protocol": "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.json",
@@ -9,7 +9,8 @@
     "review_frontier_signal_probe": "docs/co_pilot_ai_scientist_v3/experiments/review_frontier_signal_probe_20260602_214500/summary.json",
     "semantic_frontier_judge_probe": "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/summary.json",
     "delayed_value_candidate_mining": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/summary.json",
-    "delayed_value_candidate_frontier_validation": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_candidate_frontier_validation_20260603_011500/summary.json"
+    "delayed_value_candidate_frontier_validation": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_candidate_frontier_validation_20260603_011500/summary.json",
+    "delayed_value_deep_case_triage": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_deep_case_triage_20260602_232000/summary.json"
   },
   "required_conditions_present": true,
   "delayed_value_definition_complete": true,
@@ -88,7 +89,98 @@
     "delayed_minus_control_mean_score": 0.064,
     "claim_boundary": "This is an OpenAlex lexical validation of candidate ranking. It does not prove that a review caused or would have caused a future frontier trajectory; positive candidates still require full TFR replay and semantic or human future-frontier judgement."
   },
-  "claim_boundary": "TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, and a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment. These candidates are still not positive delayed-value cases until paper-only, review-guided, and shuffled controls are judged against later frontier evidence.",
+  "delayed_value_deep_case_triage": {
+    "selected_case_count": 3,
+    "mean_selected_triage_score": 8.2197,
+    "mean_selected_review_minus_title_score": 0.1867,
+    "selected_cases": [
+      {
+        "rank": 1,
+        "review_id": "paper_132_review_2",
+        "title": "Optimal Rates for Averaged Stochastic Gradient Descent under Neural Tangent Kernel Regime",
+        "candidate_label": "long_horizon_positive_candidate",
+        "triage_score": 9.1377,
+        "review_minus_title_score": 0.28,
+        "openalex_cited_by_count": 11,
+        "primary_gates": [
+          "evaluator_stress_test",
+          "scientific_taste_prior"
+        ],
+        "long_horizon_groups": [
+          "mechanism_depth",
+          "generalization_scaling",
+          "novelty_repositioning"
+        ],
+        "friction_groups": [],
+        "selection_reasons": [
+          "screened as long_horizon_positive_candidate",
+          "review adds frontier signal over title/context by 0.28",
+          "matches future-frontier terms: network, neural, generalization, function, result, which",
+          "contains actionability terms: generalization, theory",
+          "long-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning",
+          "OpenAlex title match is exact or near-exact"
+        ]
+      },
+      {
+        "rank": 2,
+        "review_id": "paper_105_review_1",
+        "title": "E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation",
+        "candidate_label": "delayed_value_replay_candidate",
+        "triage_score": 7.946,
+        "review_minus_title_score": 0.08,
+        "openalex_cited_by_count": 3,
+        "primary_gates": [
+          "claim_calibration",
+          "scientific_taste_prior"
+        ],
+        "long_horizon_groups": [
+          "mechanism_depth",
+          "generalization_scaling",
+          "novelty_repositioning"
+        ],
+        "friction_groups": [
+          "weak_immediate_evidence"
+        ],
+        "selection_reasons": [
+          "screened as delayed_value_replay_candidate",
+          "review adds frontier signal over title/context by 0.08",
+          "matches future-frontier terms: segmentation, medical, image, convolution, feature",
+          "contains actionability terms: mechanism",
+          "long-horizon groups: mechanism_depth, generalization_scaling, novelty_repositioning",
+          "productive short-term friction: weak_immediate_evidence",
+          "OpenAlex title match is exact or near-exact"
+        ]
+      },
+      {
+        "rank": 3,
+        "review_id": "paper_37_review_1",
+        "title": "Learning Weighted Representations for Generalization Across Designs",
+        "candidate_label": "long_horizon_positive_candidate",
+        "triage_score": 7.5753,
+        "review_minus_title_score": 0.2,
+        "openalex_cited_by_count": 38,
+        "primary_gates": [
+          "scientific_taste_prior",
+          "structured_feedback"
+        ],
+        "long_horizon_groups": [
+          "mechanism_depth",
+          "novelty_repositioning"
+        ],
+        "friction_groups": [],
+        "selection_reasons": [
+          "screened as long_horizon_positive_candidate",
+          "review adds frontier signal over title/context by 0.20",
+          "matches future-frontier terms: causal, treatment, effect, outcome, under, distribution",
+          "contains actionability terms: causal",
+          "long-horizon groups: mechanism_depth, novelty_repositioning",
+          "OpenAlex title match is exact or near-exact"
+        ]
+      }
+    ],
+    "claim_boundary": "This artifact selects the next expensive deep replay cases. It does not claim that the reviews caused future progress or that review-guided regeneration improves the original papers. Each selected case still requires paper-only, raw-review-guided, six-gate-hybrid-guided, and shuffled-review-control regeneration plus short-term and future-frontier judging."
+  },
+  "claim_boundary": "TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment, and the deep-case triage queue now selects three concrete cases for future expensive replay. These candidates are still not positive delayed-value cases until paper-only, raw-review-guided, six-gate-hybrid-guided, and shuffled controls are judged against later frontier evidence.",
   "errors": [],
   "warnings": [
     "No delayed-value review signal is found in the current archived TFR probes."
