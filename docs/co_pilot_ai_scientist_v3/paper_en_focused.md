@@ -20,13 +20,19 @@ The primary claim of this paper is therefore deliberately narrow: expert review 
 
 ## 2. Related Work
 
-AI Scientist-v2 represents the autonomous research-agent line: generate ideas, execute experiments, write papers, and evaluate outputs. Its strength is end-to-end automation, but this also means that human scientific taste is not a first-class object in the algorithm. AI Co-Scientist-style work emphasizes hypothesis generation, critique, ranking, and evolution. It is close to IGRE in its view of scientific search as a frontier, but IGRE adds explicit human gates, attention-cost logging, and claim calibration.
+End-to-end automated scientists. The AI Scientist introduced an automated machine-learning research loop that proposes ideas, writes code, runs experiments, produces figures and manuscripts, and applies an automated reviewer. AI Scientist-v2 extends this line with progressive agentic tree search, broader ML domains, and workshop-level autonomous paper generation. AI Co-Scientist systems instead emphasize multi-agent hypothesis generation, debate, ranking, and evolution over biomedical research goals. These systems motivate IGRE's end-to-end setting, but they do not make human scientific taste a first-class control variable. IGRE asks where a human or review-derived signal should enter the loop, how much attention it costs, and whether it changes the downstream search trajectory.
 
-AlphaEvolve and OpenEvolve motivate IGRE's verifiable micro-evolution gate. They show that language-model-generated code changes can be evolved through automatic evaluation. IGRE uses this idea selectively: micro-evolution is triggered when the target is machine-gradeable and the cost is justified, rather than being treated as a universal replacement for direct editing.
+Scientific discovery agents beyond ML. Coscientist and ChemCrow show that LLM agents can connect literature reasoning, tool use, and chemistry workflows; related systems in materials science and scientific hypothesis generation explore domain-specific agent scaffolds. These works strengthen the case that automated discovery is not only an ML-paper-writing problem. IGRE is complementary: it does not propose a new wet-lab or domain-tool stack, but a participation-mode layer for deciding when expert insight should reshape the problem, evaluator, frontier, or claim boundary.
 
-Human-AI co-pilot systems usually provide assistance, editing, or approval. IGRE differs by making the human role algorithmic. A human intervention must be classified, logged, connected to evidence, and audited against downstream outcomes. The point is not that every human comment is useful. The point is to identify which comments are actionable as scientific search controls.
+Program search and algorithm discovery. AlphaTensor, AlphaDev, FunSearch, and AlphaEvolve demonstrate that learned search, LLM-guided program evolution, or evolutionary coding agents can discover algorithms and optimize real computational infrastructure when candidates can be evaluated automatically. OpenEvolve provides an open implementation inspired by AlphaEvolve-style evolutionary coding. IGRE uses this family selectively through the verifiable micro-evolution gate. It treats program evolution as an escalation operator for machine-gradeable subproblems, not as the universal form of scientific reasoning.
 
-Peer-review datasets such as OpenReview provide a useful proxy for this problem. Real reviews contain human judgements about novelty, evaluation, correctness, clarity, impact, and claim boundaries. They are imperfect, noisy, and retrospective, but they are one of the few large public traces of expert scientific taste. IGRE uses them not as a replacement for live human co-pilot data, but as a scalable offline testbed for participation-mode design.
+Self-referential program search before LLMs. A longer lineage of AI self-improvement predates current LLM agents. Schmidhuber's Optimal Ordered Problem Solver (OOPS) organized incremental universal search over programs and search procedures; the Gödel Machine formalized fully self-referential problem solvers that rewrite their own software after proving an expected improvement; and POWERPLAY continually searched for new tasks together with solver modifications that preserve all previously solved tasks. These works matter for IGRE because they frame self-improvement as a problem of ordered search, verification, and preservation of previous competence, not merely as repeated prompting. Recent Darwin Gödel Machine and Huxley-Gödel Machine work revisits this tradition with coding agents that modify agent codebases and select self-modification branches using benchmark or metaproductivity signals. IGRE is not itself a self-modifying agent architecture, but its verifiable micro-evolution gate borrows the same discipline: branch changes should be evaluated, archived, and claim-bounded rather than treated as free-form creativity.
+
+LLM-guided evolution and reflective improvement. PromptBreeder, EvoPrompting, Evolution of Heuristics, ReEvo, multi-objective heuristic evolution, LLM-as-evolution-strategy work, and recent algorithm-discovery systems combining evolutionary search with reinforcement learning all show that LLMs can serve as mutation operators, reflective evaluators, heuristic generators, or learned search policies. Self-Refine, Reflexion, Voyager, and AutoGen demonstrate related feedback, reflection, skill-library, and multi-agent conversation patterns. IGRE differs from these self-evolution lines by keeping the object of evolution outside the model itself: the research trajectory is evolved under explicit human gates and evidence audits.
+
+Benchmarks for research agents. MLAgentBench, MLE-bench, and FML-bench provide complementary ways to evaluate agents that perform machine-learning experimentation, engineering, or research-strategy search. They are essential because co-pilot claims should not rest only on polished manuscripts or model-judge preferences. IGRE therefore reports matched autonomous and human-gated probes, including negative short-budget results, and uses benchmark disagreement as evidence about when human taste should or should not override metric-driven search.
+
+Human feedback, peer review, and scientific taste. Generic co-pilot systems often treat humans as approvers, prompt writers, preference labelers, or editors. IGRE makes a different algorithmic claim: human input should be classified as a search-control signal, logged with rationale and attention cost, and tested against downstream outcomes. OpenReview-style peer-review data is useful here because real reviews contain judgements about novelty, evaluation, correctness, clarity, impact, and claim boundaries. Such data is noisy and retrospective, but it is one of the few public traces of expert scientific taste. IGRE uses it as an offline testbed for participation-mode design rather than as a substitute for future live human co-pilot traces.
 
 ## 3. Method: Insight-Gated Research Evolution
 
@@ -350,10 +356,35 @@ Co-Pilot AI Scientist v3 proposes IGRE, a six-gate architecture for inserting hu
 
 ## References
 
-- Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, and others. *Towards an AI Co-Scientist*. arXiv:2502.18864, 2025.
+- Chris Lu, Cong Lu, Robert Tjarko Lange, Jakob Foerster, Jeff Clune, and David Ha. *The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery*. arXiv:2408.06292, 2024.
 - Yutaro Yamada, Robert Tjarko Lange, Cong Lu, Shengran Hu, Chris Lu, Jakob Foerster, Jeff Clune, and David Ha. *The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search*. arXiv:2504.08066, 2025.
-- Alexander Novikov, Ngan Vu, Marvin Eisenberger, and others. *AlphaEvolve: A Coding Agent for Scientific and Algorithmic Discovery*. arXiv:2506.13131, 2025.
+- Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, and others. *Towards an AI Co-Scientist*. arXiv:2502.18864, 2025.
+- Daniil A. Boiko, Robert MacKnight, Ben Kline, and Gabe Gomes. *Autonomous Chemical Research with Large Language Models*. Nature, 2023.
+- Andres M. Bran, Sam Cox, Oliver Schilter, Carlo Baldassari, Andrew D. White, and Philippe Schwaller. *Augmenting Large Language Models with Chemistry Tools*. Nature Machine Intelligence, 2024.
+- Seongok Miret and N. M. Anoop Krishnan. *Are LLMs Ready for Real-World Materials Discovery?* arXiv:2402.05200, 2024.
+- Shuyi Jia, Chao Zhang, and Victor Fung. *LLMatDesign: Autonomous Materials Discovery with Large Language Models*. arXiv:2406.13163, 2024.
+- Alhussein Fawzi, Matej Balog, Aja Huang, Thomas Hubert, Bernardino Romera-Paredes, and others. *Discovering Faster Matrix Multiplication Algorithms with Reinforcement Learning*. Nature, 2022.
+- Daniel J. Mankowitz, Andrea Michi, Anton Zhernov, Michael Gelmi, Mark Selvi, and others. *Faster Sorting Algorithms Discovered Using Deep Reinforcement Learning*. Nature, 2023.
 - Bernardino Romera-Paredes, Mohammadamin Barekatain, Alexander Novikov, and others. *Mathematical Discoveries from Program Search with Large Language Models*. Nature, 2023.
+- Alexander Novikov, Ngan Vu, Marvin Eisenberger, and others. *AlphaEvolve: A Coding Agent for Scientific and Algorithmic Discovery*. arXiv:2506.13131, 2025.
 - Asankhaya Sharma. *OpenEvolve: An Open-Source Evolutionary Coding Agent*. GitHub software repository, 2025.
-- `nhop/OpenReview`. *OpenReview Dataset*. Hugging Face Datasets, accessed 2026-06-02.
+- Jürgen Schmidhuber. *Optimal Ordered Problem Solver*. Machine Learning, 2004.
+- Jürgen Schmidhuber. *Gödel Machines: Self-Referential Universal Problem Solvers Making Provably Optimal Self-Improvements*. arXiv:cs/0309048, 2003.
+- Jürgen Schmidhuber. *POWERPLAY: Training an Increasingly General Problem Solver by Continually Searching for the Simplest Still Unsolvable Problem*. arXiv:1112.5309, 2011.
+- Jenny Zhang, Shengran Hu, Cong Lu, Robert Tjarko Lange, and Jeff Clune. *Darwin Gödel Machine: Open-Ended Evolution of Self-Improving Agents*. arXiv:2505.22954, 2025.
+- Wenyi Wang, Piotr Piękos, Li Nanbo, Firas Laakom, Yimeng Chen, Mateusz Ostaszewski, Mingchen Zhuge, and Jürgen Schmidhuber. *Huxley-Gödel Machine: Human-Level Coding Agent Development by an Approximation of the Optimal Self-Improving Machine*. arXiv:2510.21614, 2025.
+- Fernando et al. *PromptBreeder: Self-Referential Self-Improvement via Prompt Evolution*. arXiv:2309.16797, 2023.
+- Angelica Chen, David Dohan, and David So. *EvoPrompting: Language Models for Code-Level Neural Architecture Search*. NeurIPS, 2023.
+- Robert Tjarko Lange, Yujin Tang, and David Ha. *Large Language Models as Evolution Strategies*. GECCO Companion, 2024.
+- Fei Liu, Xialiang Tong, Mingxuan Yuan, Xi Lin, Fu Luo, Zhenkun Wang, and Qingfu Zhang. *Evolution of Heuristics: Towards Efficient Automatic Algorithm Design Using Large Language Model*. arXiv:2401.02051, 2024.
+- Haoran Ye, Jiarui Wang, Zhiguang Cao, Federico Berto, Chuanbo Hua, and others. *ReEvo: Large Language Models as Hyper-Heuristics with Reflective Evolution*. NeurIPS, 2024.
+- Sheng Yao, Fei Liu, Xi Lin, Zhenkun Wang, and Qingfu Zhang. *Multi-Objective Evolution of Heuristic Using Large Language Model*. AAAI, 2025.
+- Surina et al. *Algorithm Discovery with LLMs: Evolutionary Search Meets Reinforcement Learning*. arXiv:2504.05108, 2025.
+- Noah Shinn, Federico Cassano, Ashwin Gopinath, Karthik Narasimhan, and Shunyu Yao. *Reflexion: Language Agents with Verbal Reinforcement Learning*. NeurIPS, 2023.
+- Madaan et al. *Self-Refine: Iterative Refinement with Self-Feedback*. NeurIPS, 2023.
+- Guanzhi Wang, Yuqi Xie, Yunfan Jiang, Ajay Mandlekar, Chaowei Xiao, Yuke Zhu, Linxi Fan, and Anima Anandkumar. *Voyager: An Open-Ended Embodied Agent with Large Language Models*. arXiv:2305.16291, 2023.
+- Qingyun Wu, Gagan Bansal, Jieyu Zhang, Yiran Wu, Beibin Li, and others. *AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation*. arXiv:2308.08155, 2023.
+- Qian Liu, Yihong Chen, Bingheng Li, et al. *MLAgentBench: Evaluating Language Agents on Machine Learning Experimentation*. ICML, 2024.
+- Jun Shern Chan, Neil Chowdhury, Oliver Jaffe, James Aung, Dane Sherburn, Evan Mays, Giulio Starace, and others. *MLE-bench: Evaluating Machine Learning Agents on Machine Learning Engineering*. arXiv:2410.07095, 2024.
 - *FML-bench: A Controlled Study of AI Research Agent Strategies from the Perspective of Search Dynamics*. arXiv:2605.17373, 2026.
+- `nhop/OpenReview`. *OpenReview Dataset*. Hugging Face Datasets, accessed 2026-06-02.

@@ -50,7 +50,7 @@ PY
 | Top-conference evidence roadmap audit status | `pass` |
 | Human expert blind-review packet audit reran | Pass |
 | Human expert blind-review packet audit status | `pass_prepared_no_human_ratings` |
-| Focused English and focused Chinese PDFs rebuilt | Pass |
+| Focused English PDF rebuilt | Pass |
 | Package consistency audit reran | Pass |
 | Objective delivery audit reran | Pass |
 | Manifest artifacts found | Pass: 632/632 |
@@ -64,14 +64,13 @@ PY
 | Package consistency audit status | `pass` |
 | Objective delivery audit status | `pass_artifact_delivery_with_empirical_gaps` |
 | Focused English PDF bytes | 32998 |
-| Focused Chinese PDF bytes | 61838 |
 
 ## Interpretation
 
 A fresh shallow clone of the pushed branch at commit `fb3e666b6` reproduced
 the current verification package with `632/632` manifest artifacts present. It
 reran LHTG/DVRS, TFR, the top-conference evidence roadmap audit, the human
-expert blind-review packet readiness audit, focused PDF builds,
+expert blind-review packet readiness audit, the focused English PDF build,
 package consistency, and objective delivery audits. The result supports
 artifact reproducibility and workflow auditability, not top-conference
 empirical sufficiency.

@@ -68,6 +68,17 @@ on code evolution driven by automatic evaluation. FunSearch provides an earlier
 example of LLM-guided program search for mathematical discovery. Coscientist
 shows how LLM agents can connect to chemistry tools and laboratory automation.
 
+This work also sits in the older self-improving program-search tradition. OOPS
+organized incremental search over programs and search procedures. The Gödel
+Machine formalized self-referential problem solvers that may rewrite their own
+software once they prove expected improvement. POWERPLAY continually searches
+for new tasks and solver modifications while preserving previous competence.
+Recent Darwin Gödel Machine and Huxley-Gödel Machine work brings this lineage
+back into coding agents that modify their own codebases under benchmark or
+metaproductivity signals. IGRE does not claim to solve recursive
+self-improvement. It uses this lineage more modestly: code evolution is allowed
+only inside verifiable micro-gates, with archived evidence and claim boundaries.
+
 IGRE borrows design pressure from these systems, not their control logic. From
 hypothesis agents it takes the need for diverse conjectures, but replaces
 free-form debate with a logged scientific-taste prior. From automated paper

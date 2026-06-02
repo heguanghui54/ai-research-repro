@@ -1,8 +1,8 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T13:41:17Z`
+- Audit date: `2026-06-02T13:51:37Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `664f1137573db1cfe495d9958cc1a97e5ed0f648`
+- HEAD: `380c030dafe289996477d1c13a36cb85e5e20e4a`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
 - Manifest artifacts: `696`
@@ -36,8 +36,8 @@
 
 ## Artifact Status
 
-- `english_pdf`: `pass` (51757 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
-- `focused_english_pdf`: `pass` (188856 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `english_pdf`: `pass` (52426 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
+- `focused_english_pdf`: `pass` (195081 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `root_readme`: `pass` (9792 bytes) - `README.md`
 - `english_submission_card`: `pass` (5177 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `top_conference_evidence_roadmap`: `pass` (8859 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`

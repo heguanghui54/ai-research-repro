@@ -5,15 +5,13 @@
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
-    "Chinese PDF",
     "English usage guide",
     "Chinese usage guide",
     "Runnable experiment logs from Ubuntu host",
     "Human gate logs",
     "Reusable Codex skill",
     "GitHub repository push",
-    "Focused English conference-style PDF paper",
-    "Focused Chinese PDF"
+    "Focused English conference-style PDF paper"
   ],
   "current_artifacts": [
     "docs/co_pilot_ai_scientist_v3/problem_statement.md",
@@ -1736,7 +1734,7 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "664f1137573db1cfe495d9958cc1a97e5ed0f648",
+    "head": "380c030dafe289996477d1c13a36cb85e5e20e4a",
     "branch": "codex/co-pilot-ai-scientist-v3",
     "manifest_artifacts": 696,
     "missing_manifest_artifacts": 0,
