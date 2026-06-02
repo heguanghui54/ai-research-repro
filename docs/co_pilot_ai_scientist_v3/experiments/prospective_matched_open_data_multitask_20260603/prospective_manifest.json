@@ -1,0 +1,25 @@
+{
+  "package_id": "prospective_matched_open_data_multitask_20260603",
+  "status": "prospective_pilot",
+  "co_pilot_trajectory": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/co_pilot_trajectory.json",
+  "autonomous_baseline": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/autonomous_baseline_summary.json",
+  "human_gate_logs": [
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/human_gate_logs/evaluator_gate_001.json"
+  ],
+  "claim_audit": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/claim_audit.md",
+  "manuscript": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/manuscript.md",
+  "matched_budget": {
+    "same_task": true,
+    "same_model_family": true,
+    "same_step_budget": true,
+    "same_tool_access": true,
+    "notes": "Both variants used the same built-in datasets, deterministic splits, candidate portfolio, and sklearn execution environment; no LLM calls were used in this open-data pilot."
+  },
+  "remote_metrics": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/remote_metrics.json",
+  "limitations": [
+    "Open-data deterministic branch-selection pilot only.",
+    "No full AI Scientist-v2 tree-search or paper-writing loop.",
+    "No independent human-subject timing.",
+    "Does not evaluate final paper quality."
+  ]
+}

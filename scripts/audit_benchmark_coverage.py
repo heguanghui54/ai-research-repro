@@ -57,6 +57,11 @@ def main() -> None:
     clrs_reduced_path = EXP_DIR / "mlagentbench_clrs_reduced_smoke_20260602" / "summary.json"
     house_price_path = EXP_DIR / "mlagentbench_house_price_setup_probe" / "summary.json"
     science_path = EXP_DIR / "scienceagentbench_metadata_setup_probe" / "summary.json"
+    open_data_path = (
+        EXP_DIR
+        / "prospective_matched_open_data_multitask_20260603"
+        / "remote_metrics.json"
+    )
 
     matrix = _load_json(matrix_path)
     selection_text = _read(selection_path)
@@ -75,6 +80,7 @@ def main() -> None:
     clrs_reduced = _load_json(clrs_reduced_path)
     house_price = _load_json(house_price_path)
     science = _load_json(science_path)
+    open_data = _load_json(open_data_path)
 
     vector_agg = vector.get("aggregate", {})
     starter_runtime = vector.get("controlled_starter_runtime_seconds")
@@ -176,6 +182,12 @@ def main() -> None:
         and sklearn_median is not None
         and sklearn_direct <= sklearn_median + 1e-9
         and sklearn_direct < sklearn_initial,
+        "open_data_multitask_evaluator_stress_scored": open_data.get("dataset_count") == 5
+        and open_data.get("candidate_count_per_dataset") == 8
+        and open_data.get("selection_changed_count") == 1
+        and open_data.get("delta_mean_test_balanced_accuracy", 0) > 0
+        and open_data.get("co_pilot_dataset_wins") == 1
+        and open_data.get("autonomous_dataset_wins") == 0,
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -242,15 +254,32 @@ def main() -> None:
                 "sklearn_openevolve_median_rmse": sklearn_median,
                 "path": _rel(sklearn_path),
             },
+            "open_data_multitask_evaluator_stress": {
+                "dataset_count": open_data.get("dataset_count"),
+                "candidate_count_per_dataset": open_data.get("candidate_count_per_dataset"),
+                "co_pilot_mean_test_balanced_accuracy": open_data.get("co_pilot_variant", {}).get(
+                    "mean_test_balanced_accuracy"
+                ),
+                "autonomous_mean_test_balanced_accuracy": open_data.get("autonomous_baseline", {}).get(
+                    "mean_test_balanced_accuracy"
+                ),
+                "delta_mean_test_balanced_accuracy": open_data.get("delta_mean_test_balanced_accuracy"),
+                "co_pilot_dataset_wins": open_data.get("co_pilot_dataset_wins"),
+                "autonomous_dataset_wins": open_data.get("autonomous_dataset_wins"),
+                "dataset_ties": open_data.get("dataset_ties"),
+                "selection_changed_count": open_data.get("selection_changed_count"),
+                "path": _rel(open_data_path),
+            },
             "official_setup_blockers": official_blockers,
         },
         "errors": errors,
         "warnings": warnings,
         "claim_boundary": (
             "Benchmark coverage now includes FML feasibility evidence, non-FML scored "
-            "program-search probes, a direct-editing boundary condition, and logged "
-            "official benchmark blockers. This supports selective workflow design, "
-            "not whole-paper superiority over autonomous AI Scientist-v2."
+            "program-search probes, an open-data multi-task evaluator-stress pilot, "
+            "a direct-editing boundary condition, and logged official benchmark "
+            "blockers. This supports selective workflow design, not whole-paper "
+            "superiority over autonomous AI Scientist-v2."
         ),
     }
 
@@ -280,6 +309,16 @@ def main() -> None:
             "- Program search subproblems: knapsack OpenEvolve "
             f"`{knapsack_open_score}` versus direct `{knapsack_direct_score}`; "
             f"Max-Cut OpenEvolve-minus-direct `{maxcut_delta}`."
+        ),
+        (
+            "- Open-data evaluator-stress pilot: "
+            f"`{open_data.get('dataset_count')}` sklearn tasks, "
+            f"`{open_data.get('candidate_count_per_dataset')}` candidates each, "
+            f"co-pilot mean balanced accuracy "
+            f"`{open_data.get('co_pilot_variant', {}).get('mean_test_balanced_accuracy')}` "
+            f"versus autonomous `{open_data.get('autonomous_baseline', {}).get('mean_test_balanced_accuracy')}`, "
+            f"delta `{open_data.get('delta_mean_test_balanced_accuracy')}`; "
+            f"selection changed in `{open_data.get('selection_changed_count')}` task."
         ),
         "",
         "## Boundary And Blocked Evidence",

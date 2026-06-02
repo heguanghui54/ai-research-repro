@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T17:58:40Z",
+  "audit_date": "2026-06-02T18:24:41Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -15,6 +15,7 @@
     "knapsack_openevolve_beats_direct": true,
     "maxcut_openevolve_beats_direct": true,
     "sklearn_boundary_direct_matches_or_beats_openevolve": true,
+    "open_data_multitask_evaluator_stress_scored": true,
     "blocked_official_tasks_logged": true,
     "blocked_tasks_do_not_report_scores": true,
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,
@@ -24,7 +25,7 @@
   },
   "evidence_summary": {
     "fml_entry_count": 2,
-    "non_fml_entry_count": 9,
+    "non_fml_entry_count": 10,
     "mlagentbench_vectorization": {
       "num_seeds": 8,
       "num_correct_best_programs": 8,
@@ -50,6 +51,18 @@
       "sklearn_direct_rmse": 55.89546025654621,
       "sklearn_openevolve_median_rmse": 55.89546025654621,
       "path": "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_summary.json"
+    },
+    "open_data_multitask_evaluator_stress": {
+      "dataset_count": 5,
+      "candidate_count_per_dataset": 8,
+      "co_pilot_mean_test_balanced_accuracy": 0.9340080883091787,
+      "autonomous_mean_test_balanced_accuracy": 0.9190640015589245,
+      "delta_mean_test_balanced_accuracy": 0.014944086750254137,
+      "co_pilot_dataset_wins": 1,
+      "autonomous_dataset_wins": 0,
+      "dataset_ties": 4,
+      "selection_changed_count": 1,
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/remote_metrics.json"
     },
     "official_setup_blockers": {
       "mlagentbench_cifar10": {
@@ -142,5 +155,5 @@
     "MLAgentBench vectorization speedups are positive but seed-sensitive.",
     "Max-Cut OpenEvolve advantage is small and single-seed."
   ],
-  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, a direct-editing boundary condition, and logged official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
+  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a direct-editing boundary condition, and logged official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
 }

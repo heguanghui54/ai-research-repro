@@ -17,6 +17,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DOC_DIR = ROOT / "docs" / "co_pilot_ai_scientist_v3"
 
 REQUIRED_MANIFEST_FIELDS = [
     "package_id",
@@ -52,6 +53,44 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 def _rel(path: Path) -> str:
     return str(path.relative_to(ROOT))
+
+
+def _update_manifest(summary: dict[str, Any], output_json: Path, output_md: Path, manifests: list[Path]) -> None:
+    manifest_path = DOC_DIR / "repro_manifest.json"
+    if not manifest_path.exists():
+        return
+    manifest = _load_json(manifest_path)
+    artifacts = manifest.setdefault("current_artifacts", [])
+    paths = [output_json, output_md, Path(__file__)] + manifests
+    for package_manifest_path in manifests:
+        package_manifest = _load_json(package_manifest_path)
+        for field in ["co_pilot_trajectory", "autonomous_baseline", "claim_audit", "manuscript", "remote_metrics"]:
+            value = package_manifest.get(field)
+            if isinstance(value, str):
+                paths.append(ROOT / value)
+        for value in package_manifest.get("human_gate_logs", []):
+            if isinstance(value, str):
+                paths.append(ROOT / value)
+    for path in paths:
+        if path.exists():
+            rel = _rel(path)
+            if rel not in artifacts:
+                artifacts.append(rel)
+    manifest["prospective_matched_budget_package_audit"] = {
+        "status": "pass_with_mixed_metric_outcomes" if summary["passing_packages"] else "fail_no_passing_package",
+        "script": "scripts/audit_prospective_matched_budget_package.py",
+        "audit": _rel(output_md),
+        "json": _rel(output_json),
+        "passing_packages": summary["passing_packages"],
+        "manifest_files_checked": summary["manifest_files_checked"],
+        "failing_packages": summary["failing_packages"],
+        "package_ids": [package.get("package_id") for package in summary["packages"]],
+        "performance_evidence": (
+            "prospective packages are mixed: FML pilots remain negative or invalid, "
+            "controlled Max-Cut is positive, and open-data evaluator-stress is narrowly positive."
+        ),
+    }
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def _as_paths(value: Any) -> list[str]:
@@ -309,6 +348,7 @@ def main() -> None:
     output_json.parent.mkdir(parents=True, exist_ok=True)
     output_json.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     output_md.write_text(_markdown(summary), encoding="utf-8")
+    _update_manifest(summary, output_json, output_md, manifests)
     print(json.dumps(summary, ensure_ascii=False, indent=2))
 
 

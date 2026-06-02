@@ -17,6 +17,13 @@
       "does_not_prove": "A successful fairness-task improvement or full benchmark superiority."
     },
     {
+      "claim_family": "Open-data evaluator-stress branch selection",
+      "benchmark_or_probe": "SSH Ubuntu sklearn built-in datasets plus deterministic imbalance stress task",
+      "current_evidence": "prospective_matched_open_data_multitask_20260603 runs 5 open-data tasks with 8 shared candidates per task. The autonomous selector chooses by validation accuracy; the IGRE gate chooses by balanced accuracy with a macro-F1 guardrail. Four clean tasks tie, while the imbalance stress task changes selection from svc_rbf_standardized to svc_rbf_balanced_standardized, improving test balanced accuracy by 0.074720 and aggregate mean by 0.014944.",
+      "supports": "Evaluator-stress gates can be selective: they need not change clean tasks, but can alter branch choice when raw accuracy and balanced utility diverge.",
+      "does_not_prove": "Full AI Scientist-v2 paper-quality superiority, independent human evidence, or broad benchmark performance."
+    },
+    {
       "claim_family": "Human taste/insight gate structure",
       "benchmark_or_probe": "OpenReview-derived review utility map plus gate-structure ablation",
       "current_evidence": "review_utility_map_probe_20260602_071500 maps 473 review snippets into actionable and noisy signals; gate_structure_ablation_probe_20260602_183000 compares no-gate, single-gate, random-gate, and full IGRE policies. Full IGRE captures utility rate 1.000, best single gate 0.369, random gate mean 0.199, and no-gate 0.000.",

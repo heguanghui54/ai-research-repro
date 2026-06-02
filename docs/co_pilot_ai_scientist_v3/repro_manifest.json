@@ -901,7 +901,14 @@
     "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/six_gate_log.json",
     "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/claim_audit.md",
     "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/summary.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/README.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/prospective_manifest.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/co_pilot_trajectory.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/autonomous_baseline_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/claim_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/manuscript.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/remote_metrics.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/human_gate_logs/evaluator_gate_001.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1041,29 +1048,22 @@
     "performance_evidence": false
   },
   "prospective_matched_budget_package_audit": {
-    "status": "pass_with_mostly_negative_fml_pilots",
+    "status": "pass_with_mixed_metric_outcomes",
     "script": "scripts/audit_prospective_matched_budget_package.py",
     "audit": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.md",
-    "protocol": "docs/co_pilot_ai_scientist_v3/prospective_matched_budget_protocol.md",
-    "passing_packages": 4,
-    "manifest_files_checked": 4,
-    "strongest_package_id": "prospective_matched_fml_causality_20260602_000001",
-    "fml_pilot_result": {
-      "co_pilot_test_mae": 0.646223724015837,
-      "autonomous_test_mae": 0.6247032882621405,
-      "autonomous_minus_co_pilot_test_mae": -0.021520435753696474,
-      "lower_is_better": true,
-      "interpretation": "negative_for_co_pilot_performance_in_this_small_run"
-    },
-    "performance_evidence": "small_fml_pilots_negative_or_invalid_for_co_pilot_not_top_conference_evidence",
-    "fairness_package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
-    "fairness_pilot_result": {
-      "co_pilot_test_primary_metric": null,
-      "autonomous_test_primary_metric": 0.17215212582754802,
-      "metric": "abs_demographic_parity_diff_mean",
-      "lower_is_better": true,
-      "interpretation": "negative_invalid_continuation_for_co_pilot_frontier"
-    }
+    "json": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.json",
+    "passing_packages": 6,
+    "manifest_files_checked": 6,
+    "failing_packages": 0,
+    "package_ids": [
+      "prospective_matched_fml_causality_20260602_000001",
+      "prospective_matched_fml_causality_20260602_010002",
+      "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+      "prospective_matched_micro_pilot_20260602_000001",
+      "prospective_matched_micro_pilot_20260603_ssh_maxcut",
+      "prospective_matched_open_data_multitask_20260603"
+    ],
+    "performance_evidence": "prospective packages are mixed: FML pilots remain negative or invalid, controlled Max-Cut is positive, and open-data evaluator-stress is narrowly positive."
   },
   "attention_taste_logging_tooling": {
     "status": "operator_recorded_measurement_readiness",
@@ -1080,16 +1080,17 @@
     "performance_evidence": false
   },
   "prospective_matched_package_summary": {
-    "status": "mostly_negative_metric_outcomes",
+    "status": "mixed_metric_outcomes",
     "script": "scripts/summarize_prospective_matched_packages.py",
     "summary": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md",
     "json": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.json",
-    "package_count": 4,
-    "co_pilot_wins": 1,
+    "package_count": 6,
+    "co_pilot_wins": 3,
     "autonomous_or_tie_wins": 3,
-    "interpretation": "four passing prospective packages; one micro-task co-pilot win and three FML negative_or_invalid outcomes; superiority_not_supported",
-    "complete_attention_gates": 4,
-    "complete_taste_gates": 4
+    "complete_attention_gates": 6,
+    "complete_taste_gates": 6,
+    "total_active_review_minutes": 17.0,
+    "interpretation": "six passing prospective packages; controlled Max-Cut and open-data evaluator-stress provide narrow positives, while FML pilots remain negative or invalid; superiority_not_supported"
   },
   "paper_quality_review": {
     "status": "gpt_weak_accept_claude_reject_after_prospective_summary",
@@ -1972,9 +1973,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "91b550081df55c11adc350108bd791121616eda0",
+    "head": "e9b3aa4b6329edf7d42cec431d38034c3bade9f7",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 888,
+    "manifest_artifacts": 895,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },

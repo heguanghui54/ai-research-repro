@@ -1,14 +1,15 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T17:58:40Z`
+- Audit date: `2026-06-02T18:24:41Z`
 - Status: `pass`
 - FML entries: `2`
-- Non-FML entries: `9`
+- Non-FML entries: `10`
 
 ## Positive Scored Evidence
 
 - MLAgentBench vectorization: `8/8` correct best programs; median runtime `0.024580717086791992` seconds versus starter `3.261186361312866` seconds; direct rewrite correctness `False`.
 - Program search subproblems: knapsack OpenEvolve `0.9994394752555711` versus direct `0.9952700988954383`; Max-Cut OpenEvolve-minus-direct `0.0085959186678094`.
+- Open-data evaluator-stress pilot: `5` sklearn tasks, `8` candidates each, co-pilot mean balanced accuracy `0.9340080883091787` versus autonomous `0.9190640015589245`, delta `0.014944086750254137`; selection changed in `1` task.
 
 ## Boundary And Blocked Evidence
 
@@ -36,6 +37,7 @@
 - `knapsack_openevolve_beats_direct`: `pass`
 - `maxcut_openevolve_beats_direct`: `pass`
 - `sklearn_boundary_direct_matches_or_beats_openevolve`: `pass`
+- `open_data_multitask_evaluator_stress_scored`: `pass`
 - `blocked_official_tasks_logged`: `pass`
 - `blocked_tasks_do_not_report_scores`: `pass`
 - `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`
@@ -54,4 +56,4 @@
 
 ## Claim Boundary
 
-Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, a direct-editing boundary condition, and logged official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.
+Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a direct-editing boundary condition, and logged official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.

@@ -16,6 +16,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DOC_DIR = ROOT / "docs" / "co_pilot_ai_scientist_v3"
 
 
 def _load_json(path: Path) -> dict[str, Any]:
@@ -24,6 +25,36 @@ def _load_json(path: Path) -> dict[str, Any]:
 
 def _rel(path: Path) -> str:
     return str(path.relative_to(ROOT))
+
+
+def _update_manifest(summary: dict[str, Any], json_out: Path, markdown_out: Path) -> None:
+    manifest_path = DOC_DIR / "repro_manifest.json"
+    if not manifest_path.exists():
+        return
+    manifest = _load_json(manifest_path)
+    artifacts = manifest.setdefault("current_artifacts", [])
+    for path in [json_out, markdown_out, Path(__file__)]:
+        rel = _rel(path)
+        if rel not in artifacts:
+            artifacts.append(rel)
+    manifest["prospective_matched_package_summary"] = {
+        "status": "mixed_metric_outcomes",
+        "script": "scripts/summarize_prospective_matched_packages.py",
+        "summary": _rel(markdown_out),
+        "json": _rel(json_out),
+        "package_count": summary["package_count"],
+        "co_pilot_wins": summary["co_pilot_wins"],
+        "autonomous_or_tie_wins": summary["autonomous_or_tie_wins"],
+        "complete_attention_gates": summary["complete_attention_gates"],
+        "complete_taste_gates": summary["complete_taste_gates"],
+        "total_active_review_minutes": summary["total_active_review_minutes"],
+        "interpretation": (
+            "six passing prospective packages; controlled Max-Cut and open-data "
+            "evaluator-stress provide narrow positives, while FML pilots remain "
+            "negative or invalid; superiority_not_supported"
+        ),
+    }
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def _as_float(value: Any) -> float | None:
@@ -111,6 +142,28 @@ def _micro_metrics(trajectory: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _open_data_metrics(trajectory: dict[str, Any]) -> dict[str, Any]:
+    metrics = trajectory.get("metrics", {})
+    co_score = _as_float(metrics.get("co_pilot_variant", {}).get("mean_test_balanced_accuracy"))
+    auto_score = _as_float(metrics.get("autonomous_baseline", {}).get("mean_test_balanced_accuracy"))
+    delta = co_score - auto_score if co_score is not None and auto_score is not None else None
+    return {
+        "task": metrics.get("task", "open_data_multitask_sklearn_evaluator_stress"),
+        "benchmark_family": metrics.get("benchmark_family", "open_data_sklearn_builtin"),
+        "metric": metrics.get("metric", "test_balanced_accuracy"),
+        "metric_direction": metrics.get("metric_direction", "higher"),
+        "co_pilot_score": co_score,
+        "autonomous_score": auto_score,
+        "co_pilot_minus_autonomous": delta,
+        "winner": "co_pilot" if delta is not None and delta > 0 else "autonomous_or_tie",
+        "dataset_count": metrics.get("dataset_count"),
+        "co_pilot_dataset_wins": metrics.get("co_pilot_dataset_wins"),
+        "autonomous_dataset_wins": metrics.get("autonomous_dataset_wins"),
+        "dataset_ties": metrics.get("dataset_ties"),
+        "selection_changed_count": metrics.get("selection_changed_count"),
+    }
+
+
 def _fml_metrics(trajectory: dict[str, Any], baseline: dict[str, Any]) -> dict[str, Any]:
     co_score = _as_float(trajectory.get("co_pilot_test_metric"))
     auto_score = _as_float(trajectory.get("autonomous_test_metric"))
@@ -138,7 +191,14 @@ def summarize_manifest(path: Path) -> dict[str, Any]:
     baseline = _load_json(baseline_path)
     package_id = manifest.get("package_id", package_dir.name)
 
-    if "fml" in package_id:
+    if "open_data_multitask" in package_id:
+        metrics = _open_data_metrics(trajectory)
+        claim_implication = (
+            "Positive but narrow open-data evaluator-stress result: the gate changes "
+            "selection only on the imbalanced stress task and improves mean balanced "
+            "accuracy slightly. This supports selective gate triggering, not broad superiority."
+        )
+    elif "fml" in package_id:
         metrics = _fml_metrics(trajectory, baseline)
         claim_implication = (
             "Negative co-pilot performance result for this small FML budget; "
@@ -215,6 +275,10 @@ def _markdown(summary: dict[str, Any]) -> str:
             "an AI Scientist-v2 task and should not be used as a paper-quality result.",
             "The FML-bench Causality packages are stronger as benchmark-shaped packages,",
             "but they are negative for co-pilot performance at the current two-step budget.",
+            "The open-data multi-task pilot adds a middle rung: across five sklearn",
+            "tasks, the evaluator-stress gate changes selection only on the synthetic",
+            "imbalanced stress task, giving a small positive mean balanced-accuracy",
+            "delta while preserving ties on the four clean built-in tasks.",
             "Together, these packages support the IGRE logging and matched-budget",
             "protocol, while preserving the central limitation: human taste and insight",
             "are high-variance search interventions whose value must be tested across",
@@ -275,6 +339,7 @@ def main() -> None:
     markdown_out.parent.mkdir(parents=True, exist_ok=True)
     json_out.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     markdown_out.write_text(_markdown(summary), encoding="utf-8")
+    _update_manifest(summary, json_out, markdown_out)
     print(f"Wrote {_rel(json_out)}")
     print(f"Wrote {_rel(markdown_out)}")
 
