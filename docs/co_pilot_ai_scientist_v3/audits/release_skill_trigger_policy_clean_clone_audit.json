@@ -1,0 +1,26 @@
+{
+  "audit_date": "2026-06-02T19:48:25Z",
+  "repository": "https://github.com/heguanghui54/ai-research-repro.git",
+  "branch": "codex/co-pilot-ai-scientist-v3",
+  "commit": "3b1634032253141b847abee6bdcd583d85eb6697",
+  "checks": {
+    "status": "pass_for_release_skill_trigger_policy_sync",
+    "commit": "3b1634032253141b847abee6bdcd583d85eb6697",
+    "clean_clone_path": "/tmp/copilot-v3-clean-clone-release-sync",
+    "manifest_artifacts_checked": 921,
+    "missing_manifest_artifacts": 0,
+    "release_audit_status": "pass",
+    "base_skill_inheritance_status": "pass",
+    "release_trigger_policy_terms": {
+      "always-on and triggered": true,
+      "scripts/analyze_evaluator_stress_trigger_policy.py": true,
+      "scripts/validate_evaluator_stress_trigger_policy_transfer.py": true
+    },
+    "claim_boundary": "This lightweight clean-clone refresh verifies the pushed release skill contains trigger-conditioned evaluator-stress guidance. It is engineering release evidence, not scientific superiority evidence."
+  },
+  "errors": [],
+  "warnings": [
+    "package_consistency was intentionally not used for this lightweight release-sync audit because full clean-clone metadata is refreshed separately."
+  ],
+  "status": "pass"
+}

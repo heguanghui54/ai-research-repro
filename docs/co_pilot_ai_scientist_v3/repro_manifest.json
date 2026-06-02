@@ -105,6 +105,8 @@
     "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.json",
     "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md",
+    "docs/co_pilot_ai_scientist_v3/audits/release_skill_trigger_policy_clean_clone_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/release_skill_trigger_policy_clean_clone_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/skill_reuse_smoke_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/skill_reuse_smoke_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/skill_reuse_smoke_human_gate_log.json",
@@ -2020,9 +2022,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "67d8ef75303da9b35bf4625d319461e1fb319241",
+    "head": "3b1634032253141b847abee6bdcd583d85eb6697",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 921,
+    "manifest_artifacts": 923,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2359,5 +2361,11 @@
     "total_active_review_minutes": 21.0,
     "mean_taste_insight_score": 3.447142857142857,
     "claim_boundary": "This audit supports prospective operator-recorded attention and taste/insight measurement across the matched-budget packages. It is not independent human-subject evidence, does not estimate population-level attention cost, and does not prove that human gates improve paper quality."
+  },
+  "release_skill_trigger_policy_clean_clone_audit": {
+    "status": "pass",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/release_skill_trigger_policy_clean_clone_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/release_skill_trigger_policy_clean_clone_audit.md",
+    "claim_boundary": "Engineering release-sync evidence only; not scientific superiority evidence."
   }
 }
