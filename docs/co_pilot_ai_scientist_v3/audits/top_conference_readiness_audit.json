@@ -1,6 +1,6 @@
 {
   "audit_date": "2026-06-02",
-  "overall_status": "pilot_package_not_yet_top_conference_ready",
+  "overall_status": "focused_pilot_package_not_yet_top_conference_ready",
   "satisfied_artifact_requirements": [
     "English PDF paper",
     "Chinese PDF paper",
@@ -8,7 +8,9 @@
     "Reusable Codex skill artifact",
     "Reusable skill template/schema smoke test",
     "GitHub branch pushed",
-    "Clean-clone artifact reproducibility"
+    "Clean-clone artifact reproducibility",
+    "Focused English conference-style PDF paper",
+    "Focused Chinese conference-style PDF paper"
   ],
   "partially_supported_method_requirements": [
     "AI Co-Scientist-style hypothesis organization",
@@ -61,7 +63,9 @@
     "openreview_regeneration_cross_model_review_review_guided_wins": 3,
     "openreview_regeneration_cross_model_review_baseline_wins": 1,
     "openreview_regeneration_cross_model_review_ties": 2,
-    "focused_submission_rewrite_plans": 1
+    "focused_submission_rewrite_plans": 1,
+    "focused_conference_manuscripts": 2,
+    "focused_paper_quality_reviews": 2
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -117,7 +121,7 @@
     "independent_human_subject_timing": false,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Scale OpenReview-guided regeneration beyond 3 papers, use stronger/multiple scorers, rerun actual experiments when feasible, and add independent human expert scoring for selected regenerated artifacts.",
+  "next_evidence_milestone": "Run equal-context OpenReview regeneration ablation, obtain blind human expert ratings on regenerated pairs, and expand matched autonomous vs human-gated runs across tasks/seeds.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -458,5 +462,35 @@
     "ties": 2,
     "mean_delta_across_models": 0.1667,
     "claim_boundary": "Cross-model review reduces same-model scoring bias for regenerated mini-paper artifacts, but it is still model-routed artifact review, not independent human peer review or experiment rerun."
+  },
+  "focused_paper_quality_review": {
+    "status": "improved_structure_but_not_top_conference_ready",
+    "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+    "summary": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md",
+    "gpt_recommendation": "Weak accept",
+    "gpt_scores": {
+      "novelty": 4,
+      "rigor": 3,
+      "clarity": 4,
+      "evidence": 3,
+      "reproducibility": 4,
+      "significance": 3
+    },
+    "claude_recommendation": "Weak reject",
+    "claude_scores": {
+      "novelty": 3,
+      "rigor": 2,
+      "clarity": 2,
+      "evidence": 1,
+      "reproducibility": 3,
+      "significance": 3
+    },
+    "blocking_diagnosis": "Focused rewrite improves narrative and method distinctness, but independent human expert review, equal-context OpenReview ablation, and broader matched runs are still missing.",
+    "next_required_evidence": [
+      "equal_context_openreview_regeneration_ablation",
+      "blind_human_expert_pair_ratings",
+      "multi_task_multi_seed_matched_runs",
+      "unified_result_table_with_effect_sizes"
+    ]
   }
 }

@@ -53,8 +53,8 @@ def _call_model(model: str, prompt: str, max_tokens: int) -> dict:
     }
 
 
-def _prompt() -> str:
-    paper = _read(ROOT / "docs/co_pilot_ai_scientist_v3/paper_en.md")
+def _prompt(paper_path: Path) -> str:
+    paper = _read(paper_path)
     audit = _read(ROOT / "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md")
     benchmark = _read(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_selection.md")
     benchmark_matrix = _read(ROOT / "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md")
@@ -153,6 +153,11 @@ Review utility map:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "--paper-path",
+        default="docs/co_pilot_ai_scientist_v3/paper_en.md",
+        help="Markdown manuscript path relative to the repository root.",
+    )
+    parser.add_argument(
         "--models",
         nargs="+",
         default=["gpt-4o-mini", "claude-3-7-sonnet-latest"],
@@ -166,7 +171,8 @@ def main() -> None:
 
     out_dir = ROOT / args.output_dir
     out_dir.mkdir(parents=True, exist_ok=True)
-    prompt = _prompt()
+    paper_path = ROOT / args.paper_path
+    prompt = _prompt(paper_path)
 
     summaries = []
     for model in args.models:
@@ -190,6 +196,7 @@ def main() -> None:
             {
                 "model": model,
                 "status_code": result["status_code"],
+                "paper_path": str(paper_path.relative_to(ROOT)),
                 "markdown": str(md_path.relative_to(ROOT)),
             }
         )
@@ -205,10 +212,17 @@ def main() -> None:
     for item in summaries:
         merged[item["model"]] = item
     summary_path.write_text(
-        json.dumps({"reviews": list(merged.values())}, ensure_ascii=False, indent=2),
+        json.dumps(
+            {
+                "paper_path": str(paper_path.relative_to(ROOT)),
+                "reviews": list(merged.values()),
+            },
+            ensure_ascii=False,
+            indent=2,
+        ),
         encoding="utf-8",
     )
-    print(json.dumps({"reviews": list(merged.values())}, indent=2))
+    print(json.dumps({"paper_path": str(paper_path.relative_to(ROOT)), "reviews": list(merged.values())}, indent=2))
 
 
 if __name__ == "__main__":

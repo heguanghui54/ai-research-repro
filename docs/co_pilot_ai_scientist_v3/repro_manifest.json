@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_focused_conference_manuscript",
+  "status": "pilot_package_with_focused_reviewed_conference_manuscript",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -513,7 +513,13 @@
     "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
     "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md",
     "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
-    "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf"
+    "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf",
+    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md",
+    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.json",
+    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md",
+    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.json",
+    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/summary.json",
+    "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -899,8 +905,21 @@
     "claude_recommendation": "Reject",
     "summary": "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",
     "focused_rewrite_plan": "docs/co_pilot_ai_scientist_v3/focused_submission_rewrite_plan.md",
-    "claim_boundary": "Focused draft frames IGRE as workflow design and measurement readiness, not co-pilot superiority.",
+    "claim_boundary": "Focused manuscript now includes a primary-claim boundary, unified evidence table, and OpenReview information-quantity confound; still not top-conference empirical support.",
     "focused_rewrite": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
-    "focused_rewrite_zh": "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md"
+    "focused_rewrite_zh": "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md",
+    "focused_review_summary": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md"
+  },
+  "focused_paper_quality_review": {
+    "review_date": "2026-06-02",
+    "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+    "models": [
+      "gpt-4o-mini",
+      "claude-3-7-sonnet-latest"
+    ],
+    "gpt_recommendation": "Weak accept",
+    "claude_recommendation": "Weak reject",
+    "summary": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md",
+    "claim_boundary": "Focused manuscript improves structure but remains a pilot workflow-design paper; independent human review and equal-context OpenReview ablation are still missing."
   }
 }

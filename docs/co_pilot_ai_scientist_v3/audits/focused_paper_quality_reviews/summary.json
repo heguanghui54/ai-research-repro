@@ -1,0 +1,17 @@
+{
+  "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+  "reviews": [
+    {
+      "model": "gpt-4o-mini",
+      "status_code": 200,
+      "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+      "markdown": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
+    },
+    {
+      "model": "claude-3-7-sonnet-latest",
+      "status_code": 200,
+      "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+      "markdown": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+    }
+  ]
+}

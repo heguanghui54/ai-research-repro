@@ -14,7 +14,7 @@ This paper asks a narrower and more useful question than whether human participa
 
 We propose Insight-Gated Research Evolution (IGRE), the core algorithmic pattern of Co-Pilot AI Scientist v3. IGRE is inspired by prior automated-research systems, but it is not a direct collage of them. The method adapts their ideas around a different object: not autonomous discovery alone, but the insertion of human scientific taste into the parts of the loop where non-metric judgement is useful and dangerous. IGRE treats human insight as a logged search operator. It can modify the prior over research directions, stress the evaluator, steer the hypothesis frontier, trigger small verifiable program searches, or calibrate manuscript claims.
 
-The current paper makes four contributions. First, it defines IGRE as a five-gate architecture for human-guided automated science. Second, it releases a reproducible evidence package with bilingual manuscripts, scripts, logs, gate schemas, audits, and a reusable Codex skill. Third, it uses OpenReview data as an offline proxy for expert scientific taste, showing how review comments can be mapped into actionable workflow gates. Fourth, it reports mixed and negative short-budget results alongside positive workflow probes, keeping the claim boundary explicit: IGRE currently supports workflow design and measurement readiness, not a top-conference-level proof of co-pilot superiority.
+The primary claim of this paper is therefore deliberately narrow: expert review and human scientific judgement can be operationalized as auditable workflow-control signals, and the usefulness of those signals can be compared experimentally. We do not claim that the current co-pilot system outperforms autonomous AI Scientist-v2. The current paper makes four contributions. First, it defines IGRE as a five-gate architecture for human-guided automated science. Second, it releases a reproducible evidence package with bilingual manuscripts, scripts, logs, gate schemas, audits, and a reusable Codex skill. Third, it uses OpenReview data as an offline proxy for expert scientific taste, showing how review comments can be mapped into actionable workflow gates. Fourth, it reports mixed and negative short-budget results alongside positive workflow probes, keeping the claim boundary explicit: IGRE currently supports workflow design and measurement readiness, not a top-conference-level proof of co-pilot superiority.
 
 ## 2. Related Work
 
@@ -46,6 +46,18 @@ The gates form the following algorithmic loop. The system proposes a research fr
 
 The experiments are designed around participation-mode selection, not around proving that humans always beat automation. The evidence package asks four questions.
 
+The main quantitative evidence is summarized below. The table intentionally mixes positive, mixed, and negative results because IGRE is evaluated as a gate-selection framework, not as a guaranteed performance booster.
+
+| Probe | Co-pilot or review-guided result | Baseline or autonomous result | Delta or win count | Interpretation |
+| --- | ---: | ---: | ---: | --- |
+| Review utility map | 398 actionable snippets | 64 noisy snippets | 473 snippets total | Expert reviews contain routeable taste/insight signals. |
+| OpenReview regeneration, same scorer | 5 review-guided wins | 1 baseline win | mean overall +0.8333 | Positive but vulnerable to same-model and extra-context bias. |
+| OpenReview regeneration, Claude cross-review | 3 review-guided wins | 1 baseline win, 2 ties | mean overall +0.1667 | Modest positive signal; not automatic improvement. |
+| Prospective matched packages | 1 co-pilot or human-selected win | 3 autonomous/tie/invalid outcomes | 4 packages | Short-budget average benchmark superiority is not supported. |
+| Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
+| MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
+| Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | no search advantage | Direct editing can be enough on simple modeling tasks. |
+
 ### 4.1 Can expert review text be mapped into useful workflow gates?
 
 We use the Hugging Face `nhop/OpenReview` dataset through streaming access, avoiding a full local download. The probe verifies 34,638 dataset rows and samples 160 rows. From these rows, a deterministic review-utility map extracts 473 review snippets. It marks 398 snippets as actionable and 64 as noisy or low-actionability.
@@ -59,6 +71,8 @@ This supports the user's central intuition: human review is a concrete trace of 
 We select six ML/AI OpenReview papers and generate paired mini-paper artifacts. The baseline condition uses only title and abstract. The review-guided condition also uses real review snippets and decision text. An initial scorer prefers review-guided artifacts in 5 of 6 pairs, increasing mean overall score from 3.0 to 3.8333.
 
 To reduce same-model scoring bias, we rescore the same six pairs with a stricter cross-model review route. Under this review, review-guided artifacts win 3 of 6 pairs, the baseline wins 1 pair, and 2 pairs tie, with a smaller mean delta of +0.1667. The conservative conclusion is that review text is useful when it adds concrete method detail, experiment specificity, limitation awareness, or claim calibration. It is not automatically helpful when the feedback is generic or causes the regeneration to lose the original technical framing.
+
+This probe has an important confound. The review-guided condition receives more information than the title/abstract baseline. The result therefore does not yet isolate review-specific scientific taste from extra context. The next required ablation is an equal-context control in which the baseline receives matched-length non-review text, generic critique, or unrelated review text.
 
 ### 4.3 Do short-budget human gates beat autonomous baselines?
 
@@ -80,7 +94,7 @@ This makes the paper's application value concrete. The goal is not merely to pro
 
 ## 6. Limitations
 
-The current evidence is a pilot package. It does not include independent human expert review of the final IGRE paper. The live co-pilot trace is a single-author derived metadata corpus, not a population-level dataset of many scientists using the system. OpenReview is offline asynchronous review data, not real-time human intervention inside an AI Scientist-v2 run. The matched-budget FML evidence is underpowered and currently negative or mixed for benchmark performance. The high-tail hypothesis, that human taste may increase rare breakthrough probability even if average score falls, is conceptually important but not yet statistically operationalized.
+The current evidence is a pilot package. It does not include independent human expert review of the final IGRE paper or of the paired regenerated artifacts. The live co-pilot trace is a single-author derived metadata corpus, not a population-level dataset of many scientists using the system. OpenReview is offline asynchronous review data, not real-time human intervention inside an AI Scientist-v2 run. The matched-budget FML evidence is underpowered and currently negative or mixed for benchmark performance. The OpenReview regeneration probe has an information-quantity confound that must be controlled before making stronger claims about review-specific insight. The high-tail hypothesis, that human taste may increase rare breakthrough probability even if average score falls, is conceptually important but not yet statistically operationalized.
 
 These limitations are also future research directions. A stronger study would deploy a reusable co-pilot scientist skill to many researchers, collect privacy-preserving gate metadata with consent, run matched autonomous and human-gated trajectories across tasks, and submit paired outputs to blind expert review. At present, such live multi-researcher data is more feasible for major agent or model companies than for a small independent project. IGRE therefore uses OpenReview as a scalable offline proxy and clearly marks the gap.
 

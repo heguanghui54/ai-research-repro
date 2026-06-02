@@ -14,7 +14,7 @@
 
 我们提出 IGRE，这是 Co-Pilot AI Scientist v3 的核心算法模式。IGRE 受已有自动科研系统启发，但不是把几篇论文的方法拼接在一起。它围绕一个不同对象重新组织这些思想：不是单纯追求全自动发现，而是在自动科研循环中识别人类科研品味适合介入的位置，并把这种介入变成可记录、可比较、可审计的搜索算子。IGRE 可以改变研究方向先验，压力测试评估器，调度假设前沿，触发小规模可验证程序搜索，或校准最终论文主张。
 
-本文贡献包括四点。第一，定义 IGRE 作为人类引导自动科研的五门控架构。第二，发布包含双语论文、脚本、日志、门控 schema、审计文件和可复用 Codex skill 的可复现证据包。第三，把 OpenReview 数据用作离线专家科研品味代理，展示评审意见如何映射为可行动的工作流门控。第四，在报告正向工作流探针的同时，也报告混合和负向短预算结果，明确主张边界：当前 IGRE 支持的是工作流设计和测量就绪性，而不是顶会级别的 co-pilot 优越性证明。
+因此本文的主张被有意收窄：专家评审与人类科研判断可以被操作化为可审计的工作流控制信号，而这些信号的有效性可以通过实验比较。我们不声称当前 co-pilot 系统已经优于全自动 AI Scientist-v2。本文贡献包括四点。第一，定义 IGRE 作为人类引导自动科研的五门控架构。第二，发布包含双语论文、脚本、日志、门控 schema、审计文件和可复用 Codex skill 的可复现证据包。第三，把 OpenReview 数据用作离线专家科研品味代理，展示评审意见如何映射为可行动的工作流门控。第四，在报告正向工作流探针的同时，也报告混合和负向短预算结果，明确主张边界：当前 IGRE 支持的是工作流设计和测量就绪性，而不是顶会级别的 co-pilot 优越性证明。
 
 ## 2. 相关工作
 
@@ -46,6 +46,18 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 
 实验目标是比较人类参与模式，而不是证明人类总是胜过自动化。证据包围绕四个问题展开。
 
+主要量化证据如下表所示。表中有正向、混合和负向结果，因为 IGRE 被评估为一种门控选择框架，而不是保证提升性能的技巧。
+
+| 探针 | Co-pilot 或 review-guided 结果 | Baseline 或 autonomous 结果 | 增量或胜负 | 解释 |
+| --- | ---: | ---: | ---: | --- |
+| Review utility map | 398 条可行动片段 | 64 条噪声片段 | 共 473 条片段 | 专家评审包含可路由的 taste/insight 信号。 |
+| OpenReview 再生成，同模型评分 | review-guided 胜 5 次 | baseline 胜 1 次 | mean overall +0.8333 | 正向，但可能受同模型评分和额外上下文影响。 |
+| OpenReview 再生成，Claude 复审 | review-guided 胜 3 次 | baseline 胜 1 次，平 2 次 | mean overall +0.1667 | 有温和正向信号，但不是自动提升。 |
+| Prospective matched packages | co-pilot 或人类选分支胜 1 次 | autonomous / tie / invalid 3 次 | 4 个 package | 不支持短预算平均 benchmark 优越性。 |
+| Same-run online FML smokes | co-pilot benchmark 胜 0 次 | autonomous 胜 1 次，平 1 次，未知 1 次 | 3 个 paired smoke | 当前有效 benchmark 证据偏向 autonomous 或平局。 |
+| MLAgentBench vectorization | 8/8 seeds 保持正确，median 0.024581 s | starter 3.261186 s；direct rewrite 未通过正确性 | 显著运行时间收益 | 可验证微演化适合 correctness-gated 代码子问题。 |
+| Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | 无搜索优势 | 简单建模任务中直接编辑可能足够。 |
+
 ### 4.1 专家评审文本能否映射为有用的工作流门控？
 
 我们通过流式访问 Hugging Face 上的 `nhop/OpenReview` 数据集，避免完整下载。探针确认数据集包含 34,638 行，并抽样 160 行。从这些样本中，确定性 review-utility map 提取 473 条评审片段，其中 398 条被标记为可行动信号，64 条被标记为噪声或低行动性信号。
@@ -59,6 +71,8 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 我们选择 6 篇 ML/AI OpenReview 论文并生成成对 mini-paper 产物。baseline 条件只使用标题和摘要；review-guided 条件额外使用真实评审片段和 decision 文本。初始评分器偏好 review-guided 产物 5/6 次，平均 overall score 从 3.0 提升到 3.8333。
 
 为降低同模型评分偏差，我们用更严格的跨模型复审重新评分同一批 6 对产物。在该复审中，review-guided 胜出 3/6 次，baseline 胜出 1 次，2 次平局，平均增量缩小为 +0.1667。保守结论是：当评审文本带来具体方法细节、实验特异性、局限意识或主张校准时，它是有用的；当反馈过于泛化，或使再生成产物丢失原始技术框架时，它并不自动有益。
+
+这个探针还有一个重要混淆：review-guided 条件比 title/abstract baseline 获得了更多信息。因此结果尚未完全区分“评审特有的科研品味”与“额外上下文本身”的作用。下一步必须加入等长上下文控制，例如给 baseline 提供等长非评审文本、通用批评文本或无关评审文本。
 
 ### 4.3 短预算人类门控是否优于全自动基线？
 
@@ -80,7 +94,7 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 ## 6. 局限性
 
-当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。高尾假设，即人类品味可能增加罕见突破概率、即使平均分下降，在概念上重要，但尚未被统计操作化。
+当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文或成对再生成产物的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。OpenReview 再生成探针仍存在信息量不等混淆，必须在更强主张之前被控制。高尾假设，即人类品味可能增加罕见突破概率、即使平均分下降，在概念上重要，但尚未被统计操作化。
 
 这些局限也是未来研究方向。更强的研究应把可复用 co-pilot scientist skill 部署给大量科研人员，在知情同意和隐私保护下收集门控元数据，跨任务运行 matched autonomous 与 human-gated 轨迹，并把成对输出交给盲审专家评估。目前，这种实时多研究者数据更可能由主流 agent 公司或大模型公司完成，而不是小型独立项目。IGRE 因此使用 OpenReview 作为可扩展离线代理，并明确标记这一缺口。
 

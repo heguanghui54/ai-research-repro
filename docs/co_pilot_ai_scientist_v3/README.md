@@ -52,6 +52,10 @@ claim calibration.
 - `focused_submission_rewrite_plan.md`: conference-style rewrite plan that
   separates the current lab-record manuscript from the focused main paper
   needed for a strong venue.
+- `audits/focused_paper_quality_review_summary.md`: Monica-routed focused
+  manuscript review showing the rewrite improves structure but still needs
+  independent human review, equal-context OpenReview ablations, and broader
+  matched experiments.
 - `audits/clean_clone_reproducibility_audit.md`: fresh GitHub-clone check that
   rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
 - `audits/skill_reuse_smoke_audit.md`: local smoke test that instantiates the
