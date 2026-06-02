@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create vector-graph metrics for frontier alignment.
+"""Create Frontier Alignment Vector Graph metrics.
 
 Each original paper and regenerated artifact is embedded into the same
 six-dimensional frontier space as the award-paper seed taxonomy. The resulting
@@ -235,6 +235,8 @@ def main() -> None:
     cosine_deltas = [item["metrics"]["six_minus_raw_cosine_gain"] for item in per_case]
     summary = {
         "created_at": _utc_now(),
+        "method_name": "Frontier Alignment Vector Graph",
+        "method_abbreviation": "FAVG",
         "status": "pass" if not errors else "fail",
         "dimension_order": list(DIMENSIONS.keys()),
         "frontier_centroid_vector": frontier,
@@ -258,10 +260,11 @@ def main() -> None:
     readme_path = OUT_DIR / "README.md"
     summary_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     lines = [
-        "# Frontier Vector Graph",
+        "# Frontier Alignment Vector Graph",
         "",
-        "This artifact represents current frontier breakthroughs, original papers, and regenerated artifacts as vectors in the same six-dimensional frontier space.",
+        "This artifact implements Frontier Alignment Vector Graph (FAVG): current frontier breakthroughs, original papers, and regenerated artifacts are represented as vectors in the same six-dimensional frontier space.",
         "",
+        "- Method abbreviation: `FAVG`",
         f"- Mean six-gate minus raw projection gain: `{summary['mean_six_minus_raw_projection_gain']}`",
         f"- Mean six-gate minus raw cosine gain: `{summary['mean_six_minus_raw_cosine_gain']}`",
         "",

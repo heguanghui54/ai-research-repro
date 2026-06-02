@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T13:28:02Z",
+  "audit_date": "2026-06-02T13:34:25Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "357c725f0367ffe95c3f9def3bd4e7c293cd5fdb",
+  "head": "7d807ce470bbdfbc2df95d405925d2a24eddb898",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -20,6 +20,7 @@
     "deep_regeneration_cases_audit_pass": true,
     "frontier_alignment_taxonomy_pass": true,
     "frontier_vector_graph_pass": true,
+    "frontier_alignment_vector_graph_audit_pass": true,
     "frontier_metric_disagreement_pass": true,
     "end_to_end_paired_trajectory_smoke_pass": true,
     "main_paper_figure_exists": true,
@@ -43,19 +44,19 @@
     "focused_english_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
       "exists": true,
-      "bytes": 188978,
+      "bytes": 189153,
       "ok": true
     },
     "focused_chinese_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf",
       "exists": true,
-      "bytes": 225395,
+      "bytes": 225739,
       "ok": true
     },
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 9952,
+      "bytes": 10206,
       "ok": true
     },
     "english_submission_card": {
@@ -121,7 +122,19 @@
     "frontier_vector_graph_summary": {
       "path": "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json",
       "exists": true,
-      "bytes": 6376,
+      "bytes": 6461,
+      "ok": true
+    },
+    "frontier_alignment_vector_graph_protocol": {
+      "path": "docs/co_pilot_ai_scientist_v3/frontier_alignment_vector_graph_protocol.md",
+      "exists": true,
+      "bytes": 4282,
+      "ok": true
+    },
+    "frontier_alignment_vector_graph_audit": {
+      "path": "docs/co_pilot_ai_scientist_v3/audits/frontier_alignment_vector_graph_audit.json",
+      "exists": true,
+      "bytes": 2885,
       "ok": true
     },
     "frontier_metric_disagreement_summary": {
@@ -169,7 +182,7 @@
     "reusable_skill": {
       "path": "skills/co-pilot-ai-scientist-v3/SKILL.md",
       "exists": true,
-      "bytes": 21774,
+      "bytes": 22127,
       "ok": true
     },
     "task_template": {
@@ -218,6 +231,7 @@
       "deep_case_internal_review_20260602_224500": true,
       "frontier_alignment_taxonomy_20260602_233000": true,
       "frontier_vector_graph_20260602_234500": true,
+      "frontier_alignment_vector_graph_protocol.md": true,
       "frontier_metric_disagreement_20260603_003000": true,
       "figures/igre_frontier_main_figure.png": true,
       "External Verification Entry Point": true,
@@ -230,6 +244,7 @@
       "build_deep_case_pdfs.py": true,
       "build_frontier_alignment_taxonomy.py": true,
       "build_frontier_vector_graph.py": true,
+      "audit_frontier_alignment_vector_graph.py": true,
       "build_frontier_metric_disagreement.py": true,
       "build_copilot_v3_main_figure.py": true,
       "pass_artifact_delivery_with_empirical_gaps": true,
@@ -276,9 +291,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 692,
+  "manifest_artifacts": 696,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "692/692",
+  "manifest_coverage_ratio": "696/696",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",

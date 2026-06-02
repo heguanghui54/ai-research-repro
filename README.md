@@ -31,6 +31,8 @@ Start here:
   [docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/README.md](docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/README.md)
 - Frontier vector graph:
   [docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/README.md](docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/README.md)
+- Frontier Alignment Vector Graph protocol:
+  [docs/co_pilot_ai_scientist_v3/frontier_alignment_vector_graph_protocol.md](docs/co_pilot_ai_scientist_v3/frontier_alignment_vector_graph_protocol.md)
 - Frontier metric disagreement:
   [docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/README.md](docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/README.md)
 - Main paper figure:
@@ -67,6 +69,7 @@ python3 scripts/build_deep_case_pdfs.py
 python3 scripts/run_deep_case_internal_review.py
 python3 scripts/build_frontier_alignment_taxonomy.py
 python3 scripts/build_frontier_vector_graph.py
+python3 scripts/audit_frontier_alignment_vector_graph.py
 python3 scripts/build_frontier_metric_disagreement.py
 python3 scripts/build_copilot_v3_main_figure.py
 python3 scripts/audit_goal_completion_matrix.py

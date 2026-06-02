@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T13:28:02Z`
+- Audit date: `2026-06-02T13:34:25Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `357c725f0367ffe95c3f9def3bd4e7c293cd5fdb`
+- HEAD: `7d807ce470bbdfbc2df95d405925d2a24eddb898`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `692`
+- Manifest artifacts: `696`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `692/692`
+- Manifest coverage: `696/696`
 
 ## Explicit Requirements
 
@@ -26,6 +26,7 @@
 - `deep_regeneration_cases_audit_pass`: `pass`
 - `frontier_alignment_taxonomy_pass`: `pass`
 - `frontier_vector_graph_pass`: `pass`
+- `frontier_alignment_vector_graph_audit_pass`: `pass`
 - `frontier_metric_disagreement_pass`: `pass`
 - `end_to_end_paired_trajectory_smoke_pass`: `pass`
 - `main_paper_figure_exists`: `pass`
@@ -37,9 +38,9 @@
 
 - `english_pdf`: `pass` (51757 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
 - `chinese_pdf`: `pass` (114561 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
-- `focused_english_pdf`: `pass` (188978 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
-- `focused_chinese_pdf`: `pass` (225395 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
-- `root_readme`: `pass` (9952 bytes) - `README.md`
+- `focused_english_pdf`: `pass` (189153 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `focused_chinese_pdf`: `pass` (225739 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
+- `root_readme`: `pass` (10206 bytes) - `README.md`
 - `english_submission_card`: `pass` (5177 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `chinese_submission_card`: `pass` (5055 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_zh.md`
 - `top_conference_evidence_roadmap`: `pass` (8859 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
@@ -50,7 +51,9 @@
 - `deep_case_pdf_summary`: `pass` (3048 bytes) - `docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json`
 - `deep_case_internal_review_summary`: `pass` (7494 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500/summary.json`
 - `frontier_alignment_taxonomy_summary`: `pass` (20036 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/summary.json`
-- `frontier_vector_graph_summary`: `pass` (6376 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json`
+- `frontier_vector_graph_summary`: `pass` (6461 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json`
+- `frontier_alignment_vector_graph_protocol`: `pass` (4282 bytes) - `docs/co_pilot_ai_scientist_v3/frontier_alignment_vector_graph_protocol.md`
+- `frontier_alignment_vector_graph_audit`: `pass` (2885 bytes) - `docs/co_pilot_ai_scientist_v3/audits/frontier_alignment_vector_graph_audit.json`
 - `frontier_metric_disagreement_summary`: `pass` (2776 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/summary.json`
 - `end_to_end_paired_trajectory_audit`: `pass` (4011 bytes) - `docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.json`
 - `main_paper_figure`: `pass` (146516 bytes) - `docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png`
@@ -58,7 +61,7 @@
 - `chinese_usage`: `pass` (19890 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
 - `english_runbook`: `pass` (13724 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
 - `chinese_runbook`: `pass` (12498 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
-- `reusable_skill`: `pass` (21774 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
+- `reusable_skill`: `pass` (22127 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
 - `task_template`: `pass` (2899 bytes) - `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`
 - `gate_template`: `pass` (1789 bytes) - `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`
 

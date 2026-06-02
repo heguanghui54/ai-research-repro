@@ -65,6 +65,11 @@ structured feedback, and claim calibration.
   artifact, and the current frontier centroid. Mean six-gate projection gain is
   `+0.1668`, while mean cosine gain is `-0.0641`, showing that frontier
   alignment needs vector diagnostics rather than a single scalar.
+- `frontier_alignment_vector_graph_protocol.md`: named Frontier Alignment
+  Vector Graph (FAVG) protocol that explains how to represent original papers,
+  regenerated artifacts, and later or current frontier evidence in one
+  interpretable vector space, and why projection, cosine, and orthogonal
+  novelty must be reported separately.
 - `experiments/frontier_metric_disagreement_20260603_003000/`: disagreement
   matrix comparing internal review, lexical frontier, vector projection, and
   frontier cosine metrics. It finds disagreement in `2/3` deep cases, showing
@@ -238,6 +243,10 @@ python3 scripts/build_deep_regeneration_cases.py
 python3 scripts/build_six_gate_hybrid_review_cases.py
 python3 scripts/build_deep_case_pdfs.py
 python3 scripts/audit_deep_regeneration_cases.py
+python3 scripts/build_frontier_alignment_taxonomy.py
+python3 scripts/build_frontier_vector_graph.py
+python3 scripts/audit_frontier_alignment_vector_graph.py
+python3 scripts/build_frontier_metric_disagreement.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py

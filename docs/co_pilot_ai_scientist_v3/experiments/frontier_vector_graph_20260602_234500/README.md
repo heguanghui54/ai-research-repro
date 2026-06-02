@@ -1,7 +1,8 @@
-# Frontier Vector Graph
+# Frontier Alignment Vector Graph
 
-This artifact represents current frontier breakthroughs, original papers, and regenerated artifacts as vectors in the same six-dimensional frontier space.
+This artifact implements Frontier Alignment Vector Graph (FAVG): current frontier breakthroughs, original papers, and regenerated artifacts are represented as vectors in the same six-dimensional frontier space.
 
+- Method abbreviation: `FAVG`
 - Mean six-gate minus raw projection gain: `0.1668`
 - Mean six-gate minus raw cosine gain: `-0.0641`
 

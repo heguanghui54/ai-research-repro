@@ -148,6 +148,11 @@ matched evidence and clear boundary conditions.
    - Trigger `frontier_steering` at fixed budget checkpoints.
    - Permit a human scientist to keep a branch that is not metric-best when it
      has stronger novelty, failure-analysis value, or high-tail upside.
+   - When later-field or current-frontier evidence exists, use
+     Frontier Alignment Vector Graph (FAVG) to compare `original`,
+     `candidate`, and `frontier` vectors. Report direct cosine gain, original-to-frontier
+     projection, and orthogonal novelty separately. Do not collapse FAVG into a
+     single reward or use it as proof of SOTA value.
 
 5. **Run Verifiable Micro-Evolution**
    - When a subproblem is machine-gradeable, launch OpenEvolve as the

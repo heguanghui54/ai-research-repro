@@ -1,5 +1,7 @@
 {
-  "created_at": "2026-06-02T12:44:23Z",
+  "created_at": "2026-06-02T13:33:14Z",
+  "method_name": "Frontier Alignment Vector Graph",
+  "method_abbreviation": "FAVG",
   "status": "pass",
   "dimension_order": [
     "alignment_safety_reliability",

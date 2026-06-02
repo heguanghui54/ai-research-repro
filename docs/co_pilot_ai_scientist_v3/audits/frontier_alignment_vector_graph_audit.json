@@ -1,0 +1,82 @@
+{
+  "audit_date": "2026-06-02T13:33:43Z",
+  "status": "pass",
+  "method": "Frontier Alignment Vector Graph",
+  "abbreviation": "FAVG",
+  "summary": "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json",
+  "case_count": 3,
+  "mean_six_minus_raw_projection_gain": 0.1668,
+  "mean_six_minus_raw_cosine_gain": -0.0641,
+  "file_status": {
+    "docs/co_pilot_ai_scientist_v3/frontier_alignment_vector_graph_protocol.md": {
+      "exists": true,
+      "bytes": 4282,
+      "ok": true
+    },
+    "scripts/build_frontier_vector_graph.py": {
+      "exists": true,
+      "bytes": 12656,
+      "ok": true
+    },
+    "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json": {
+      "exists": true,
+      "bytes": 6461,
+      "ok": true
+    },
+    "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/README.md": {
+      "exists": true,
+      "bytes": 1453,
+      "ok": true
+    },
+    "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/openreview_sample_1_vector_graph.svg": {
+      "exists": true,
+      "bytes": 3558,
+      "ok": true
+    },
+    "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/openreview_sample_2_vector_graph.svg": {
+      "exists": true,
+      "bytes": 3559,
+      "ok": true
+    },
+    "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/openreview_sample_17_vector_graph.svg": {
+      "exists": true,
+      "bytes": 3557,
+      "ok": true
+    }
+  },
+  "term_status": {
+    "docs/co_pilot_ai_scientist_v3/frontier_alignment_vector_graph_protocol.md": {
+      "Frontier Alignment Vector Graph": true,
+      "FAVG": true,
+      "delayed-value": true,
+      "orthogonal novelty": true,
+      "Claim Boundary": true
+    },
+    "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/README.md": {
+      "Frontier Alignment Vector Graph": true,
+      "FAVG": true,
+      "frontier_projection_gain": true,
+      "orthogonal_novelty_norm": true
+    },
+    "skills/co-pilot-ai-scientist-v3/SKILL.md": {
+      "Frontier Alignment Vector Graph": true,
+      "FAVG": true,
+      "frontier_steering": true
+    },
+    "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
+      "Frontier Alignment Vector Graph": true,
+      "FAVG": true,
+      "frontier-vector graph": true
+    },
+    "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md": {
+      "前沿对齐向量图": true,
+      "FAVG": true,
+      "前沿向量图": true
+    }
+  },
+  "errors": [],
+  "warnings": [
+    "FAVG detects mixed directionality: positive projection gain with negative direct cosine gain."
+  ],
+  "claim_boundary": "This audit verifies that FAVG is documented, runnable, and bounded. It does not convert the pilot vector metrics into a proof of top-conference-level superiority."
+}

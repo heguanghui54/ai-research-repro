@@ -148,8 +148,9 @@ Local paper-quality scores are not enough for the central claim of this paper.
 A human review may lower short-term benchmark or writing scores while still
 moving a research trajectory toward a later important direction. Conversely, a
 review may improve reviewer satisfaction while moving the artifact away from
-the field's current frontier. To make this distinction measurable, we add a
-frontier-vector graph.
+the field's current frontier. To make this distinction measurable, we add
+Frontier Alignment Vector Graph (FAVG), a frontier-vector graph protocol for
+comparing trajectory movement rather than only artifact scores.
 
 We seed a small current-frontier taxonomy from official ICLR, ICML, and ACL
 2025 award-paper pages, then define a six-dimensional frontier space:
@@ -168,7 +169,7 @@ current frontier seeds. We report three complementary quantities:
 3. the norm of the component of `a - o` orthogonal to `f - o`, which measures
    sideways novelty rather than direct frontier convergence.
 
-This vector view makes the evaluation less brittle than a single scalar. In the
+FAVG makes the evaluation less brittle than a single scalar. In the
 three deep cases, the lexical frontier-alignment score favors six-gate hybrid
 artifacts in all three cases, with mean delta +3.467. The vector graph is more
 diagnostic: mean six-gate projection gain is +0.1668, but mean cosine gain is
@@ -186,7 +187,9 @@ frontier cosine favors it in only one. The disagreement rate is 0.6667. This is
 not a failure of the vector graph; it is the measurement point. It prevents the
 paper from collapsing scientific taste into a single score and makes visible
 when a human-guided artifact improves local quality while changing the research
-direction in a more ambiguous way.
+direction in a more ambiguous way. FAVG is therefore not a reward model; it is
+a diagnostic layer for deciding which human-guided directions deserve deeper
+replay, expert review, or prospective matched-budget runs.
 
 ### 4.4 Do short-budget human gates beat autonomous baselines?
 

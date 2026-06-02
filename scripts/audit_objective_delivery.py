@@ -89,6 +89,7 @@ def main() -> None:
     prospective_gate_instrumentation_audit_path = AUDIT_DIR / "prospective_gate_instrumentation_audit.json"
     frontier_taxonomy_path = DOC_DIR / "experiments" / "frontier_alignment_taxonomy_20260602_233000" / "summary.json"
     frontier_vector_path = DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "summary.json"
+    favg_audit_path = AUDIT_DIR / "frontier_alignment_vector_graph_audit.json"
     frontier_disagreement_path = DOC_DIR / "experiments" / "frontier_metric_disagreement_20260603_003000" / "summary.json"
     end_to_end_paired_trajectory_audit_path = AUDIT_DIR / "end_to_end_paired_trajectory_audit.json"
 
@@ -106,6 +107,7 @@ def main() -> None:
     prospective_gate_instrumentation_audit = _load_json(prospective_gate_instrumentation_audit_path)
     frontier_taxonomy = _load_json(frontier_taxonomy_path)
     frontier_vector = _load_json(frontier_vector_path)
+    favg_audit = _load_json(favg_audit_path)
     frontier_disagreement = _load_json(frontier_disagreement_path)
     end_to_end_paired_trajectory = _load_json(end_to_end_paired_trajectory_audit_path)
 
@@ -131,6 +133,8 @@ def main() -> None:
         "deep_case_internal_review_summary": DOC_DIR / "experiments" / "deep_case_internal_review_20260602_224500" / "summary.json",
         "frontier_alignment_taxonomy_summary": frontier_taxonomy_path,
         "frontier_vector_graph_summary": frontier_vector_path,
+        "frontier_alignment_vector_graph_protocol": DOC_DIR / "frontier_alignment_vector_graph_protocol.md",
+        "frontier_alignment_vector_graph_audit": favg_audit_path,
         "frontier_metric_disagreement_summary": frontier_disagreement_path,
         "end_to_end_paired_trajectory_audit": end_to_end_paired_trajectory_audit_path,
         "main_paper_figure": DOC_DIR / "figures" / "igre_frontier_main_figure.png",
@@ -185,6 +189,7 @@ def main() -> None:
                 "deep_case_internal_review_20260602_224500",
                 "frontier_alignment_taxonomy_20260602_233000",
                 "frontier_vector_graph_20260602_234500",
+                "frontier_alignment_vector_graph_protocol.md",
                 "frontier_metric_disagreement_20260603_003000",
                 "figures/igre_frontier_main_figure.png",
                 "External Verification Entry Point",
@@ -197,6 +202,7 @@ def main() -> None:
                 "build_deep_case_pdfs.py",
                 "build_frontier_alignment_taxonomy.py",
                 "build_frontier_vector_graph.py",
+                "audit_frontier_alignment_vector_graph.py",
                 "build_frontier_metric_disagreement.py",
                 "build_copilot_v3_main_figure.py",
                 "pass_artifact_delivery_with_empirical_gaps",
@@ -278,6 +284,7 @@ def main() -> None:
         and frontier_taxonomy.get("mean_delta_six_gate_minus_raw") == 3.467,
         "frontier_vector_graph_pass": frontier_vector.get("status") == "pass"
         and frontier_vector.get("mean_six_minus_raw_projection_gain") == 0.1668,
+        "frontier_alignment_vector_graph_audit_pass": favg_audit.get("status") == "pass",
         "frontier_metric_disagreement_pass": frontier_disagreement.get("status") == "pass"
         and frontier_disagreement.get("disagreement_rate") == 0.6667,
         "end_to_end_paired_trajectory_smoke_pass": end_to_end_paired_trajectory.get("status")
@@ -415,6 +422,7 @@ def main() -> None:
         ROOT / "scripts" / "run_deep_case_internal_review.py",
         ROOT / "scripts" / "build_frontier_alignment_taxonomy.py",
         ROOT / "scripts" / "build_frontier_vector_graph.py",
+        ROOT / "scripts" / "audit_frontier_alignment_vector_graph.py",
         ROOT / "scripts" / "build_frontier_metric_disagreement.py",
         ROOT / "scripts" / "build_copilot_v3_main_figure.py",
         ROOT / "scripts" / "audit_end_to_end_paired_trajectory.py",
@@ -455,6 +463,9 @@ def main() -> None:
         DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "openreview_sample_1_vector_graph.svg",
         DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "openreview_sample_2_vector_graph.svg",
         DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "openreview_sample_17_vector_graph.svg",
+        DOC_DIR / "frontier_alignment_vector_graph_protocol.md",
+        AUDIT_DIR / "frontier_alignment_vector_graph_audit.json",
+        AUDIT_DIR / "frontier_alignment_vector_graph_audit.md",
         DOC_DIR / "experiments" / "frontier_metric_disagreement_20260603_003000" / "README.md",
         DOC_DIR / "experiments" / "frontier_metric_disagreement_20260603_003000" / "summary.json",
         DOC_DIR / "figures" / "igre_frontier_main_figure.png",
