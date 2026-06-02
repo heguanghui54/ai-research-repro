@@ -86,6 +86,8 @@ def main() -> None:
     human_review_packet_audit_path = AUDIT_DIR / "human_expert_blind_review_packet_audit.json"
     benchmark_coverage_audit_path = AUDIT_DIR / "benchmark_coverage_audit.json"
     deep_regeneration_cases_audit_path = AUDIT_DIR / "deep_regeneration_cases_audit.json"
+    frontier_taxonomy_path = DOC_DIR / "experiments" / "frontier_alignment_taxonomy_20260602_233000" / "summary.json"
+    frontier_vector_path = DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "summary.json"
 
     manifest = _load_json(manifest_path)
     readiness = _load_json(readiness_path)
@@ -98,6 +100,8 @@ def main() -> None:
     human_review_packet_audit = _load_json(human_review_packet_audit_path)
     benchmark_coverage_audit = _load_json(benchmark_coverage_audit_path)
     deep_regeneration_cases_audit = _load_json(deep_regeneration_cases_audit_path)
+    frontier_taxonomy = _load_json(frontier_taxonomy_path)
+    frontier_vector = _load_json(frontier_vector_path)
 
     current_artifacts = manifest.get("current_artifacts", [])
     missing_manifest = [path for path in current_artifacts if not (ROOT / path).exists()]
@@ -118,6 +122,8 @@ def main() -> None:
         "human_expert_blind_review_protocol": DOC_DIR / "human_expert_blind_review_protocol.md",
         "deep_case_pdf_summary": DOC_DIR / "build" / "deep_regeneration_cases" / "summary.json",
         "deep_case_internal_review_summary": DOC_DIR / "experiments" / "deep_case_internal_review_20260602_224500" / "summary.json",
+        "frontier_alignment_taxonomy_summary": frontier_taxonomy_path,
+        "frontier_vector_graph_summary": frontier_vector_path,
         "english_usage": DOC_DIR / "usage_en.md",
         "chinese_usage": DOC_DIR / "usage_zh.md",
         "english_runbook": DOC_DIR / "RUNBOOK_EN.md",
@@ -167,12 +173,16 @@ def main() -> None:
                 "deep_regeneration_casebook.md",
                 "human_expert_blind_review_protocol.md",
                 "deep_case_internal_review_20260602_224500",
+                "frontier_alignment_taxonomy_20260602_233000",
+                "frontier_vector_graph_20260602_234500",
                 "External Verification Entry Point",
                 "audit_top_conference_evidence_roadmap.py",
                 "audit_human_expert_blind_review_packet.py",
                 "audit_benchmark_coverage.py",
                 "audit_deep_regeneration_cases.py",
                 "build_deep_case_pdfs.py",
+                "build_frontier_alignment_taxonomy.py",
+                "build_frontier_vector_graph.py",
                 "pass_artifact_delivery_with_empirical_gaps",
                 "top-conference empirical target is not yet satisfied",
             ],
@@ -246,6 +256,10 @@ def main() -> None:
         == "pass_prepared_no_human_ratings",
         "benchmark_coverage_audit_pass": benchmark_coverage_audit.get("status") == "pass",
         "deep_regeneration_cases_audit_pass": deep_regeneration_cases_audit.get("status") == "pass",
+        "frontier_alignment_taxonomy_pass": frontier_taxonomy.get("status") == "pass"
+        and frontier_taxonomy.get("mean_delta_six_gate_minus_raw") == 3.467,
+        "frontier_vector_graph_pass": frontier_vector.get("status") == "pass"
+        and frontier_vector.get("mean_six_minus_raw_projection_gain") == 0.1668,
         "lhtg_operationalized": lhtg.get("status") == "pass_with_no_positive_dvrs"
         and lhtg.get("reusable_workflow_terms_present") is True,
         "top_conference_boundary_kept": readiness.get("top_conference_empirical_support", {}).get("status")
@@ -359,6 +373,9 @@ def main() -> None:
         ROOT / "scripts" / "build_deep_case_pdfs.py",
         ROOT / "scripts" / "build_school_expert_blind_review_ready_packet.py",
         ROOT / "scripts" / "run_deep_case_internal_review.py",
+        ROOT / "scripts" / "build_frontier_alignment_taxonomy.py",
+        ROOT / "scripts" / "build_frontier_vector_graph.py",
+        ROOT / "scripts" / "audit_goal_completion_matrix.py",
         ROOT / "scripts" / "audit_deep_regeneration_cases.py",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.json",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.md",
@@ -374,6 +391,15 @@ def main() -> None:
         DOC_DIR / "experiments" / "six_gate_hybrid_review_cases_20260602_211500" / "summary.json",
         DOC_DIR / "experiments" / "deep_case_internal_review_20260602_224500" / "README.md",
         DOC_DIR / "experiments" / "deep_case_internal_review_20260602_224500" / "summary.json",
+        DOC_DIR / "experiments" / "frontier_alignment_taxonomy_20260602_233000" / "README.md",
+        DOC_DIR / "experiments" / "frontier_alignment_taxonomy_20260602_233000" / "summary.json",
+        DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "README.md",
+        DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "summary.json",
+        DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "openreview_sample_1_vector_graph.svg",
+        DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "openreview_sample_2_vector_graph.svg",
+        DOC_DIR / "experiments" / "frontier_vector_graph_20260602_234500" / "openreview_sample_17_vector_graph.svg",
+        AUDIT_DIR / "goal_completion_matrix.json",
+        AUDIT_DIR / "goal_completion_matrix.md",
         DOC_DIR / "experiments" / "human_expert_blind_review_packet_20260602_143000" / "school_expert_ready_summary.json",
         DOC_DIR / "experiments" / "human_expert_blind_review_packet_20260602_143000" / "deep_pdf_reviewer_index.md",
         DOC_DIR / "experiments" / "human_expert_blind_review_packet_20260602_143000" / "deep_pdf_condition_key.json",

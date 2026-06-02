@@ -1,0 +1,206 @@
+{
+  "audit_date": "2026-06-02T12:45:48Z",
+  "status": "pass_with_top_conference_gap",
+  "head": "230c847f170b847c8941edfc6746a27f77272408",
+  "branch": "codex/co-pilot-ai-scientist-v3",
+  "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
+  "remote_branch_pushed": true,
+  "manifest_artifacts": 676,
+  "missing_manifest_artifacts": 0,
+  "requirement_count": 15,
+  "status_counts": {
+    "achieved": 11,
+    "partial": 3,
+    "incomplete": 1
+  },
+  "requirements": [
+    {
+      "key": "paper_method_synthesis",
+      "requirement": "Write a paper that adapts AI Co-Scientist, AI Scientist-v2, AlphaEvolve/OpenEvolve into a distinct Co-Pilot AI Scientist v3 method.",
+      "status": "achieved",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+        "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md",
+        "docs/co_pilot_ai_scientist_v3/architecture.md"
+      ],
+      "gap": "The method synthesis is documented, but the paper remains a pilot/evidence-package draft rather than a final top-conference submission.",
+      "next_action": "Keep method naming centered on IGRE and remove any residual wording that sounds like a pasted combination of prior papers."
+    },
+    {
+      "key": "human_creative_gates",
+      "requirement": "Design human participation nodes at creative and key decision points.",
+      "status": "achieved",
+      "evidence": [
+        "skills/co-pilot-ai-scientist-v3/SKILL.md",
+        "docs/co_pilot_ai_scientist_v3/experiment_protocol.md",
+        "docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.md"
+      ],
+      "gap": "The gates are specified and logged, but large-scale live human-user traces are not available.",
+      "next_action": "Collect multi-researcher co-pilot traces only after ethics/privacy review and real deployment."
+    },
+    {
+      "key": "ai_scientist_v2_experiment_loop",
+      "requirement": "Use AI Scientist-v2-style hypothesis-to-experiment-to-paper production.",
+      "status": "partial",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/fml_matched_budget_comparison.md"
+      ],
+      "gap": "There are runnable smoke and matched-budget traces, but not enough full-scale matched tasks/seeds for a broad superiority claim.",
+      "next_action": "Run at least 5 matched-budget pairs per task across at least 3 tasks before claiming performance improvement."
+    },
+    {
+      "key": "alphaevolve_openevolve_search",
+      "requirement": "Use AlphaEvolve/OpenEvolve-style deep search on automatically evaluable subproblems.",
+      "status": "achieved",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/openevolve_5iter/README.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_openevolve_3iter_seed0/run/logs/openevolve_20260601_211855.log",
+        "docs/co_pilot_ai_scientist_v3/experiments/maxcut_program_search_comparison.md"
+      ],
+      "gap": "The evidence is micro-scale and demonstrates integration, not broad algorithm-discovery superiority.",
+      "next_action": "Extend OpenEvolve-style search to more machine-gradeable subproblems with matched baselines."
+    },
+    {
+      "key": "benchmark_selection",
+      "requirement": "Choose benchmarks based on the paper claim rather than limiting to FML-bench.",
+      "status": "partial",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/benchmark_selection.md",
+        "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md",
+        "docs/co_pilot_ai_scientist_v3/audits/benchmark_coverage_audit.md"
+      ],
+      "gap": "The package considers FML-bench, MLAgentBench, OpenReview, OpenEvolve-style probes, and TFR, but at least one non-FML official benchmark still lacks a complete scored matched comparison.",
+      "next_action": "Complete one official non-FML benchmark comparison when data access and setup permit."
+    },
+    {
+      "key": "human_taste_and_insight_theory",
+      "requirement": "Emphasize that human participation can be harmful on average but may raise high-tail breakthrough probability through taste and insight.",
+      "status": "achieved",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/high_tail_power_analysis_20260602_233000/protocol.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/README.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/README.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/README.md",
+        "docs/co_pilot_ai_scientist_v3/paper_en_focused.md"
+      ],
+      "gap": "The high-tail theory is operationalized, but no positive delayed-value/high-tail case has been demonstrated yet.",
+      "next_action": "Prioritize delayed-value replay cases where historical review signals align with later frontier evidence."
+    },
+    {
+      "key": "deep_regeneration_cases",
+      "requirement": "Show concrete regenerated papers and data for several meaningful OpenReview cases.",
+      "status": "achieved",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md",
+        "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json"
+      ],
+      "gap": "Internal review is positive (3/3 six-gate wins, mean delta 1.133), but it is deterministic internal review rather than human expert review.",
+      "next_action": "Use the prepared blind packet for future expert validation; keep current result labeled as internal evidence."
+    },
+    {
+      "key": "bilingual_paper_pdfs",
+      "requirement": "Produce English and Chinese paper PDFs.",
+      "status": "achieved",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
+        "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf"
+      ],
+      "gap": "PDFs exist and are audited; final camera-ready paper still depends on stronger evidence.",
+      "next_action": "Rebuild PDFs after any substantive manuscript revision."
+    },
+    {
+      "key": "bilingual_usage",
+      "requirement": "Produce English and Chinese usage/runbook documentation.",
+      "status": "achieved",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/usage_en.md",
+        "docs/co_pilot_ai_scientist_v3/usage_zh.md",
+        "docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md",
+        "docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md"
+      ],
+      "gap": "Usage is complete for the current package shape.",
+      "next_action": "Keep commands synchronized with new experiment scripts."
+    },
+    {
+      "key": "reusable_codex_skill",
+      "requirement": "Generate a reusable Codex skill for Co-Pilot AI Scientist v3.",
+      "status": "achieved",
+      "evidence": [
+        "skills/co-pilot-ai-scientist-v3/SKILL.md",
+        "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
+        "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json"
+      ],
+      "gap": "Skill is packaged and smoke-audited, but broader external reuse is not yet observed.",
+      "next_action": "Run the skill on a fresh topic outside this repository when evaluating generality."
+    },
+    {
+      "key": "github_push",
+      "requirement": "Push the project to the user's GitHub.",
+      "status": "achieved",
+      "evidence": [
+        "https://github.com/heguanghui54/ai-research-repro.git",
+        "codex/co-pilot-ai-scientist-v3",
+        "230c847f170b847c8941edfc6746a27f77272408"
+      ],
+      "gap": "Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate.",
+      "next_action": "Create a release or PR only when the user wants a public submission package."
+    },
+    {
+      "key": "ssh_ubuntu_experiments",
+      "requirement": "Run experiments on the SSH-controlled Ubuntu computer where relevant.",
+      "status": "partial",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/README.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/co_pilot_trajectory.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_house_price_setup_probe/README.md"
+      ],
+      "gap": "Several Ubuntu traces exist, but some official benchmark attempts hit data/auth/setup blockers.",
+      "next_action": "Pre-cache datasets or choose official tasks with open data to complete non-FML scored comparisons."
+    },
+    {
+      "key": "model_selection_monica",
+      "requirement": "Use Monica-routed GPT/Gemini/Anthropic models when useful for paper quality.",
+      "status": "achieved",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/summary.json",
+        "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md",
+        "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md",
+        "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+      ],
+      "gap": "Model reviews help audit quality but do not count as independent human expert review.",
+      "next_action": "Use model reviews for iteration; use human experts only as future supplementary validation."
+    },
+    {
+      "key": "author_record",
+      "requirement": "Record author as He Shi, NUS School of Computing undergraduate.",
+      "status": "achieved",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+        "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md"
+      ],
+      "gap": "Author metadata is recorded in the paper package.",
+      "next_action": "Keep author information synchronized in any final submission template."
+    },
+    {
+      "key": "top_conference_quality",
+      "requirement": "Reach top-conference paper quality.",
+      "status": "incomplete",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
+        "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
+        "docs/co_pilot_ai_scientist_v3/audits/top_conference_evidence_roadmap_audit.md"
+      ],
+      "gap": "Current evidence is a strong pilot/reproducibility package, but top-conference empirical sufficiency remains unproven: no independent human expert ratings, limited matched tasks/seeds, and limited full end-to-end trajectories.",
+      "next_action": "Treat the next research phase as evidence collection: matched multi-task runs, complete non-FML benchmark, and independent review when feasible."
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "largest_current_gap": "Top-conference empirical sufficiency remains incomplete: the package has auditable artifacts, internal/model reviews, and pilot experiments, but not independent expert ratings, large matched benchmark evidence, or broad multi-researcher online traces.",
+  "next_best_action": "Run a compact but complete non-FML matched benchmark or a multi-case delayed-value replay before polishing the manuscript further.",
+  "claim_boundary": "This audit maps objective completion. It does not mark the active goal complete because the original top-conference empirical target is not yet proven."
+}

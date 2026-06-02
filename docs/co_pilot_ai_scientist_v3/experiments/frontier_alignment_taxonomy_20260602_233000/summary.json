@@ -1,0 +1,921 @@
+{
+  "created_at": "2026-06-02T12:44:23Z",
+  "status": "pass",
+  "purpose": "Quantify alignment between regenerated artifacts and current frontier research directions, so review-guided replay is not judged only by local experiment metrics.",
+  "sources": [
+    {
+      "venue": "ICLR 2025",
+      "source_url": "https://blog.iclr.cc/2025/04/22/announcing-the-outstanding-paper-awards-at-iclr-2025/",
+      "source_note": "Official ICLR blog outstanding-paper announcement.",
+      "item_count": 6
+    },
+    {
+      "venue": "ICML 2025",
+      "source_url": "https://icml.cc/virtual/2025/awards_detail",
+      "source_note": "Official ICML 2025 awards page.",
+      "item_count": 6
+    },
+    {
+      "venue": "ACL 2025",
+      "source_url": "https://2025.aclweb.org/program/awards/",
+      "source_note": "Official ACL 2025 awards page.",
+      "item_count": 6
+    }
+  ],
+  "taxonomy": {
+    "seed_count": 18,
+    "source_count": 3,
+    "top_tags": [
+      [
+        "alignment",
+        2
+      ],
+      [
+        "safety",
+        1
+      ],
+      [
+        "mechanistic robustness",
+        1
+      ],
+      [
+        "long-context behavior",
+        1
+      ],
+      [
+        "training dynamics",
+        1
+      ],
+      [
+        "LLM finetuning",
+        1
+      ],
+      [
+        "mechanistic understanding",
+        1
+      ],
+      [
+        "model editing",
+        1
+      ],
+      [
+        "controllability",
+        1
+      ],
+      [
+        "representation geometry",
+        1
+      ],
+      [
+        "data valuation",
+        1
+      ],
+      [
+        "efficient attribution",
+        1
+      ],
+      [
+        "training efficiency",
+        1
+      ],
+      [
+        "foundation models",
+        1
+      ],
+      [
+        "video segmentation",
+        1
+      ],
+      [
+        "scalable perception",
+        1
+      ],
+      [
+        "inference efficiency",
+        1
+      ],
+      [
+        "speculative decoding",
+        1
+      ],
+      [
+        "systems",
+        1
+      ],
+      [
+        "welfare",
+        1
+      ],
+      [
+        "equity",
+        1
+      ],
+      [
+        "high-stakes ML",
+        1
+      ],
+      [
+        "decision theory",
+        1
+      ],
+      [
+        "creative reasoning",
+        1
+      ],
+      [
+        "stochastic planning",
+        1
+      ],
+      [
+        "LLM limits",
+        1
+      ],
+      [
+        "long-horizon search",
+        1
+      ],
+      [
+        "masked diffusion",
+        1
+      ],
+      [
+        "adaptive inference",
+        1
+      ],
+      [
+        "planning",
+        1
+      ],
+      [
+        "discrete generation",
+        1
+      ],
+      [
+        "human-AI collaboration",
+        1
+      ],
+      [
+        "multiturn rewards",
+        1
+      ],
+      [
+        "active assistance",
+        1
+      ],
+      [
+        "score matching",
+        1
+      ],
+      [
+        "missing data",
+        1
+      ],
+      [
+        "statistical robustness",
+        1
+      ],
+      [
+        "uncertainty quantification",
+        1
+      ],
+      [
+        "Bayesian methods",
+        1
+      ],
+      [
+        "deployment guarantees",
+        1
+      ],
+      [
+        "LLM sampling",
+        1
+      ],
+      [
+        "theory",
+        1
+      ],
+      [
+        "generation control",
+        1
+      ],
+      [
+        "fairness",
+        1
+      ],
+      [
+        "measurement",
+        1
+      ],
+      [
+        "LLM evaluation",
+        1
+      ],
+      [
+        "data compression",
+        1
+      ],
+      [
+        "model behavior",
+        1
+      ],
+      [
+        "sparse attention",
+        1
+      ],
+      [
+        "hardware alignment",
+        1
+      ],
+      [
+        "efficient inference",
+        1
+      ],
+      [
+        "benchmark",
+        1
+      ],
+      [
+        "medical QA",
+        1
+      ],
+      [
+        "global inclusion",
+        1
+      ],
+      [
+        "dataset",
+        1
+      ],
+      [
+        "traceability",
+        1
+      ],
+      [
+        "training data",
+        1
+      ],
+      [
+        "interpretability",
+        1
+      ],
+      [
+        "open models",
+        1
+      ]
+    ],
+    "venue_tags": {
+      "ICLR 2025": [
+        [
+          "alignment",
+          1
+        ],
+        [
+          "safety",
+          1
+        ],
+        [
+          "mechanistic robustness",
+          1
+        ],
+        [
+          "long-context behavior",
+          1
+        ],
+        [
+          "training dynamics",
+          1
+        ],
+        [
+          "LLM finetuning",
+          1
+        ],
+        [
+          "mechanistic understanding",
+          1
+        ],
+        [
+          "model editing",
+          1
+        ],
+        [
+          "controllability",
+          1
+        ],
+        [
+          "representation geometry",
+          1
+        ],
+        [
+          "data valuation",
+          1
+        ],
+        [
+          "efficient attribution",
+          1
+        ],
+        [
+          "training efficiency",
+          1
+        ],
+        [
+          "foundation models",
+          1
+        ],
+        [
+          "video segmentation",
+          1
+        ],
+        [
+          "scalable perception",
+          1
+        ],
+        [
+          "inference efficiency",
+          1
+        ],
+        [
+          "speculative decoding",
+          1
+        ],
+        [
+          "systems",
+          1
+        ]
+      ],
+      "ICML 2025": [
+        [
+          "welfare",
+          1
+        ],
+        [
+          "equity",
+          1
+        ],
+        [
+          "high-stakes ML",
+          1
+        ],
+        [
+          "decision theory",
+          1
+        ],
+        [
+          "creative reasoning",
+          1
+        ],
+        [
+          "stochastic planning",
+          1
+        ],
+        [
+          "LLM limits",
+          1
+        ],
+        [
+          "long-horizon search",
+          1
+        ],
+        [
+          "masked diffusion",
+          1
+        ],
+        [
+          "adaptive inference",
+          1
+        ],
+        [
+          "planning",
+          1
+        ],
+        [
+          "discrete generation",
+          1
+        ],
+        [
+          "human-AI collaboration",
+          1
+        ],
+        [
+          "multiturn rewards",
+          1
+        ],
+        [
+          "active assistance",
+          1
+        ],
+        [
+          "score matching",
+          1
+        ],
+        [
+          "missing data",
+          1
+        ],
+        [
+          "statistical robustness",
+          1
+        ],
+        [
+          "uncertainty quantification",
+          1
+        ],
+        [
+          "Bayesian methods",
+          1
+        ],
+        [
+          "deployment guarantees",
+          1
+        ]
+      ],
+      "ACL 2025": [
+        [
+          "LLM sampling",
+          1
+        ],
+        [
+          "theory",
+          1
+        ],
+        [
+          "generation control",
+          1
+        ],
+        [
+          "fairness",
+          1
+        ],
+        [
+          "measurement",
+          1
+        ],
+        [
+          "LLM evaluation",
+          1
+        ],
+        [
+          "alignment",
+          1
+        ],
+        [
+          "data compression",
+          1
+        ],
+        [
+          "model behavior",
+          1
+        ],
+        [
+          "sparse attention",
+          1
+        ],
+        [
+          "hardware alignment",
+          1
+        ],
+        [
+          "efficient inference",
+          1
+        ],
+        [
+          "benchmark",
+          1
+        ],
+        [
+          "medical QA",
+          1
+        ],
+        [
+          "global inclusion",
+          1
+        ],
+        [
+          "dataset",
+          1
+        ],
+        [
+          "traceability",
+          1
+        ],
+        [
+          "training data",
+          1
+        ],
+        [
+          "interpretability",
+          1
+        ],
+        [
+          "open models",
+          1
+        ]
+      ]
+    },
+    "dimensions": {
+      "alignment_safety_reliability": {
+        "weight": 1.15,
+        "keywords": [
+          "alignment",
+          "safety",
+          "refusal",
+          "reliability",
+          "robust",
+          "compression",
+          "privacy",
+          "unlearning"
+        ]
+      },
+      "mechanistic_theoretical_insight": {
+        "weight": 1.1,
+        "keywords": [
+          "theory",
+          "mechanistic",
+          "dynamics",
+          "representation",
+          "geometry",
+          "proof",
+          "causal",
+          "understanding"
+        ]
+      },
+      "efficient_systems_and_inference": {
+        "weight": 1.0,
+        "keywords": [
+          "efficient",
+          "efficiency",
+          "inference",
+          "sparse",
+          "hardware",
+          "speculative",
+          "latency",
+          "training run"
+        ]
+      },
+      "adaptive_long_horizon_search": {
+        "weight": 1.2,
+        "keywords": [
+          "planning",
+          "adaptive",
+          "long-horizon",
+          "creative",
+          "frontier",
+          "search",
+          "hypothesis",
+          "collaboration"
+        ]
+      },
+      "evaluation_benchmark_shift": {
+        "weight": 1.05,
+        "keywords": [
+          "benchmark",
+          "evaluation",
+          "measurement",
+          "metric",
+          "dataset",
+          "stress",
+          "audit",
+          "traceability"
+        ]
+      },
+      "deployment_and_social_value": {
+        "weight": 0.9,
+        "keywords": [
+          "welfare",
+          "fairness",
+          "medical",
+          "equity",
+          "deployment",
+          "global",
+          "human-centered",
+          "policy"
+        ]
+      }
+    }
+  },
+  "artifact_count": 6,
+  "case_count": 3,
+  "six_gate_hybrid_wins": 3,
+  "raw_review_guided_wins": 0,
+  "ties": 0,
+  "mean_delta_six_gate_minus_raw": 3.467,
+  "comparisons": [
+    {
+      "case_id": "openreview_sample_1",
+      "raw_score": 12.45,
+      "six_gate_score": 17.1,
+      "delta_six_minus_raw": 4.65,
+      "winner": "six_gate_hybrid"
+    },
+    {
+      "case_id": "openreview_sample_17",
+      "raw_score": 12.6,
+      "six_gate_score": 16.05,
+      "delta_six_minus_raw": 3.45,
+      "winner": "six_gate_hybrid"
+    },
+    {
+      "case_id": "openreview_sample_2",
+      "raw_score": 6.85,
+      "six_gate_score": 9.15,
+      "delta_six_minus_raw": 2.3,
+      "winner": "six_gate_hybrid"
+    }
+  ],
+  "scored_artifacts": [
+    {
+      "case_id": "openreview_sample_1",
+      "condition": "raw_review_guided",
+      "path": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_1_llm_refusal_and_reliability_review_guided.md",
+      "frontier_alignment_score": 12.45,
+      "dimension_scores": {
+        "alignment_safety_reliability": {
+          "raw_keyword_hits_capped": 4,
+          "weighted_score": 4.6
+        },
+        "mechanistic_theoretical_insight": {
+          "raw_keyword_hits_capped": 1,
+          "weighted_score": 1.1
+        },
+        "efficient_systems_and_inference": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "adaptive_long_horizon_search": {
+          "raw_keyword_hits_capped": 3,
+          "weighted_score": 3.6
+        },
+        "evaluation_benchmark_shift": {
+          "raw_keyword_hits_capped": 3,
+          "weighted_score": 3.15
+        },
+        "deployment_and_social_value": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        }
+      },
+      "matched_terms": {
+        "alignment_safety_reliability": {
+          "refusal": 1,
+          "reliability": 7
+        },
+        "mechanistic_theoretical_insight": {
+          "understanding": 1
+        },
+        "efficient_systems_and_inference": {},
+        "adaptive_long_horizon_search": {
+          "frontier": 4
+        },
+        "evaluation_benchmark_shift": {
+          "benchmark": 1,
+          "evaluation": 2
+        },
+        "deployment_and_social_value": {}
+      }
+    },
+    {
+      "case_id": "openreview_sample_1",
+      "condition": "six_gate_hybrid",
+      "path": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_1_llm_refusal_and_reliability_six_gate_hybrid.md",
+      "frontier_alignment_score": 17.1,
+      "dimension_scores": {
+        "alignment_safety_reliability": {
+          "raw_keyword_hits_capped": 6,
+          "weighted_score": 6.9
+        },
+        "mechanistic_theoretical_insight": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "efficient_systems_and_inference": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "adaptive_long_horizon_search": {
+          "raw_keyword_hits_capped": 5,
+          "weighted_score": 6.0
+        },
+        "evaluation_benchmark_shift": {
+          "raw_keyword_hits_capped": 4,
+          "weighted_score": 4.2
+        },
+        "deployment_and_social_value": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        }
+      },
+      "matched_terms": {
+        "alignment_safety_reliability": {
+          "safety": 1,
+          "refusal": 2,
+          "reliability": 4
+        },
+        "mechanistic_theoretical_insight": {},
+        "efficient_systems_and_inference": {},
+        "adaptive_long_horizon_search": {
+          "long-horizon": 1,
+          "frontier": 3,
+          "search": 1
+        },
+        "evaluation_benchmark_shift": {
+          "benchmark": 1,
+          "evaluation": 1,
+          "stress": 2
+        },
+        "deployment_and_social_value": {}
+      }
+    },
+    {
+      "case_id": "openreview_sample_2",
+      "condition": "raw_review_guided",
+      "path": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_2_conditional_graph_generation_and_molecular_design_review_guided.md",
+      "frontier_alignment_score": 6.85,
+      "dimension_scores": {
+        "alignment_safety_reliability": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "mechanistic_theoretical_insight": {
+          "raw_keyword_hits_capped": 2,
+          "weighted_score": 2.2
+        },
+        "efficient_systems_and_inference": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "adaptive_long_horizon_search": {
+          "raw_keyword_hits_capped": 3,
+          "weighted_score": 3.6
+        },
+        "evaluation_benchmark_shift": {
+          "raw_keyword_hits_capped": 1,
+          "weighted_score": 1.05
+        },
+        "deployment_and_social_value": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        }
+      },
+      "matched_terms": {
+        "alignment_safety_reliability": {},
+        "mechanistic_theoretical_insight": {
+          "understanding": 2
+        },
+        "efficient_systems_and_inference": {},
+        "adaptive_long_horizon_search": {
+          "frontier": 4
+        },
+        "evaluation_benchmark_shift": {
+          "benchmark": 1
+        },
+        "deployment_and_social_value": {}
+      }
+    },
+    {
+      "case_id": "openreview_sample_2",
+      "condition": "six_gate_hybrid",
+      "path": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_2_conditional_graph_generation_and_molecular_design_six_gate_hybrid.md",
+      "frontier_alignment_score": 9.15,
+      "dimension_scores": {
+        "alignment_safety_reliability": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "mechanistic_theoretical_insight": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "efficient_systems_and_inference": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "adaptive_long_horizon_search": {
+          "raw_keyword_hits_capped": 5,
+          "weighted_score": 6.0
+        },
+        "evaluation_benchmark_shift": {
+          "raw_keyword_hits_capped": 3,
+          "weighted_score": 3.15
+        },
+        "deployment_and_social_value": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        }
+      },
+      "matched_terms": {
+        "alignment_safety_reliability": {},
+        "mechanistic_theoretical_insight": {},
+        "efficient_systems_and_inference": {},
+        "adaptive_long_horizon_search": {
+          "long-horizon": 1,
+          "frontier": 3,
+          "search": 1
+        },
+        "evaluation_benchmark_shift": {
+          "benchmark": 1,
+          "stress": 2
+        },
+        "deployment_and_social_value": {}
+      }
+    },
+    {
+      "case_id": "openreview_sample_17",
+      "condition": "raw_review_guided",
+      "path": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_17_knowledge_unlearning_and_privacy_risk_review_guided.md",
+      "frontier_alignment_score": 12.6,
+      "dimension_scores": {
+        "alignment_safety_reliability": {
+          "raw_keyword_hits_capped": 6,
+          "weighted_score": 6.9
+        },
+        "mechanistic_theoretical_insight": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "efficient_systems_and_inference": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "adaptive_long_horizon_search": {
+          "raw_keyword_hits_capped": 3,
+          "weighted_score": 3.6
+        },
+        "evaluation_benchmark_shift": {
+          "raw_keyword_hits_capped": 2,
+          "weighted_score": 2.1
+        },
+        "deployment_and_social_value": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        }
+      },
+      "matched_terms": {
+        "alignment_safety_reliability": {
+          "privacy": 12,
+          "unlearning": 16
+        },
+        "mechanistic_theoretical_insight": {},
+        "efficient_systems_and_inference": {},
+        "adaptive_long_horizon_search": {
+          "frontier": 4
+        },
+        "evaluation_benchmark_shift": {
+          "benchmark": 1,
+          "dataset": 1
+        },
+        "deployment_and_social_value": {}
+      }
+    },
+    {
+      "case_id": "openreview_sample_17",
+      "condition": "six_gate_hybrid",
+      "path": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_17_knowledge_unlearning_and_privacy_risk_six_gate_hybrid.md",
+      "frontier_alignment_score": 16.05,
+      "dimension_scores": {
+        "alignment_safety_reliability": {
+          "raw_keyword_hits_capped": 6,
+          "weighted_score": 6.9
+        },
+        "mechanistic_theoretical_insight": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "efficient_systems_and_inference": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        },
+        "adaptive_long_horizon_search": {
+          "raw_keyword_hits_capped": 5,
+          "weighted_score": 6.0
+        },
+        "evaluation_benchmark_shift": {
+          "raw_keyword_hits_capped": 3,
+          "weighted_score": 3.15
+        },
+        "deployment_and_social_value": {
+          "raw_keyword_hits_capped": 0,
+          "weighted_score": 0.0
+        }
+      },
+      "matched_terms": {
+        "alignment_safety_reliability": {
+          "privacy": 5,
+          "unlearning": 6
+        },
+        "mechanistic_theoretical_insight": {},
+        "efficient_systems_and_inference": {},
+        "adaptive_long_horizon_search": {
+          "long-horizon": 1,
+          "frontier": 3,
+          "search": 1
+        },
+        "evaluation_benchmark_shift": {
+          "benchmark": 1,
+          "stress": 2
+        },
+        "deployment_and_social_value": {}
+      }
+    }
+  ],
+  "errors": [],
+  "claim_boundary": "This is a deterministic lexical frontier-alignment proxy seeded from a small official award-paper sample. It is useful for measurement design, not a substitute for citation-based frontier modeling or expert judgement."
+}

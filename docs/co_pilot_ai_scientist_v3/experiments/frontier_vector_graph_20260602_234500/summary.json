@@ -1,0 +1,252 @@
+{
+  "created_at": "2026-06-02T12:44:23Z",
+  "status": "pass",
+  "dimension_order": [
+    "alignment_safety_reliability",
+    "mechanistic_theoretical_insight",
+    "efficient_systems_and_inference",
+    "adaptive_long_horizon_search",
+    "evaluation_benchmark_shift",
+    "deployment_and_social_value"
+  ],
+  "frontier_centroid_vector": [
+    0.575,
+    0.6722,
+    0.8333,
+    0.5333,
+    0.4083,
+    0.4
+  ],
+  "case_count": 3,
+  "mean_six_minus_raw_projection_gain": 0.1668,
+  "mean_six_minus_raw_cosine_gain": -0.0641,
+  "per_case": [
+    {
+      "case_id": "openreview_sample_1",
+      "title": "LLM refusal and reliability",
+      "vectors": {
+        "frontier_centroid": [
+          0.575,
+          0.6722,
+          0.8333,
+          0.5333,
+          0.4083,
+          0.4
+        ],
+        "original": [
+          5.75,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "raw_review_guided": [
+          4.6,
+          1.1,
+          0.0,
+          3.6,
+          3.15,
+          0.0
+        ],
+        "six_gate_hybrid": [
+          6.9,
+          0.0,
+          0.0,
+          6.0,
+          4.2,
+          0.0
+        ]
+      },
+      "metrics": {
+        "raw_review_guided": {
+          "candidate_cosine_to_frontier": 0.678,
+          "original_cosine_to_frontier": 0.3979,
+          "cosine_gain": 0.2801,
+          "movement_cosine_to_frontier_direction": 0.3675,
+          "frontier_projection_gain": 1.8526,
+          "orthogonal_novelty_norm": 4.6886,
+          "movement_vector": [
+            -1.15,
+            1.1,
+            0.0,
+            3.6,
+            3.15,
+            0.0
+          ]
+        },
+        "six_gate_hybrid": {
+          "candidate_cosine_to_frontier": 0.6109,
+          "original_cosine_to_frontier": 0.3979,
+          "cosine_gain": 0.213,
+          "movement_cosine_to_frontier_direction": -0.0262,
+          "frontier_projection_gain": -0.194,
+          "orthogonal_novelty_norm": 7.4111,
+          "movement_vector": [
+            1.15,
+            0.0,
+            0.0,
+            6.0,
+            4.2,
+            0.0
+          ]
+        },
+        "six_minus_raw_projection_gain": -2.0466,
+        "six_minus_raw_cosine_gain": -0.0671
+      },
+      "svg": "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/openreview_sample_1_vector_graph.svg"
+    },
+    {
+      "case_id": "openreview_sample_2",
+      "title": "Conditional graph generation and molecular design",
+      "vectors": {
+        "frontier_centroid": [
+          0.575,
+          0.6722,
+          0.8333,
+          0.5333,
+          0.4083,
+          0.4
+        ],
+        "original": [
+          0.0,
+          1.1,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "raw_review_guided": [
+          0.0,
+          2.2,
+          0.0,
+          3.6,
+          1.05,
+          0.0
+        ],
+        "six_gate_hybrid": [
+          0.0,
+          0.0,
+          0.0,
+          6.0,
+          3.15,
+          0.0
+        ]
+      },
+      "metrics": {
+        "raw_review_guided": {
+          "candidate_cosine_to_frontier": 0.6092,
+          "original_cosine_to_frontier": 0.4652,
+          "cosine_gain": 0.144,
+          "movement_cosine_to_frontier_direction": 0.3563,
+          "frontier_projection_gain": 1.3924,
+          "orthogonal_novelty_norm": 3.6515,
+          "movement_vector": [
+            0.0,
+            1.1,
+            0.0,
+            3.6,
+            1.05,
+            0.0
+          ]
+        },
+        "six_gate_hybrid": {
+          "candidate_cosine_to_frontier": 0.4581,
+          "original_cosine_to_frontier": 0.4652,
+          "cosine_gain": -0.0071,
+          "movement_cosine_to_frontier_direction": 0.5353,
+          "frontier_projection_gain": 3.6749,
+          "orthogonal_novelty_norm": 5.7989,
+          "movement_vector": [
+            0.0,
+            -1.1,
+            0.0,
+            6.0,
+            3.15,
+            0.0
+          ]
+        },
+        "six_minus_raw_projection_gain": 2.2825,
+        "six_minus_raw_cosine_gain": -0.1511
+      },
+      "svg": "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/openreview_sample_2_vector_graph.svg"
+    },
+    {
+      "case_id": "openreview_sample_17",
+      "title": "Knowledge unlearning and privacy risk",
+      "vectors": {
+        "frontier_centroid": [
+          0.575,
+          0.6722,
+          0.8333,
+          0.5333,
+          0.4083,
+          0.4
+        ],
+        "original": [
+          6.9,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "raw_review_guided": [
+          6.9,
+          0.0,
+          0.0,
+          3.6,
+          2.1,
+          0.0
+        ],
+        "six_gate_hybrid": [
+          6.9,
+          0.0,
+          0.0,
+          6.0,
+          3.15,
+          0.0
+        ]
+      },
+      "metrics": {
+        "raw_review_guided": {
+          "candidate_cosine_to_frontier": 0.5791,
+          "original_cosine_to_frontier": 0.3979,
+          "cosine_gain": 0.1812,
+          "movement_cosine_to_frontier_direction": 0.1031,
+          "frontier_projection_gain": 0.4298,
+          "orthogonal_novelty_norm": 4.1455,
+          "movement_vector": [
+            0.0,
+            0.0,
+            0.0,
+            3.6,
+            2.1,
+            0.0
+          ]
+        },
+        "six_gate_hybrid": {
+          "candidate_cosine_to_frontier": 0.6049,
+          "original_cosine_to_frontier": 0.3979,
+          "cosine_gain": 0.207,
+          "movement_cosine_to_frontier_direction": 0.1024,
+          "frontier_projection_gain": 0.6942,
+          "orthogonal_novelty_norm": 6.741,
+          "movement_vector": [
+            0.0,
+            0.0,
+            0.0,
+            6.0,
+            3.15,
+            0.0
+          ]
+        },
+        "six_minus_raw_projection_gain": 0.2644,
+        "six_minus_raw_cosine_gain": 0.0258
+      },
+      "svg": "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/openreview_sample_17_vector_graph.svg"
+    }
+  ],
+  "errors": [],
+  "claim_boundary": "Vector graphs quantify movement in a small, hand-specified frontier space. They support comparative alignment analysis, not a claim that the regenerated work has achieved the same scientific value as current frontier papers."
+}

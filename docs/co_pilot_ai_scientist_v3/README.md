@@ -55,6 +55,16 @@ structured feedback, and claim calibration.
   artifacts on the three deep cases. Six-gate wins `3/3` with mean internal
   delta `+1.133`; this closes the current non-human review loop but is not
   independent expert evidence.
+- `experiments/frontier_alignment_taxonomy_20260602_233000/`: current-frontier
+  taxonomy and lexical alignment metric seeded from official ICLR/ICML/ACL
+  2025 award-paper pages. Six-gate hybrid wins `3/3` deep cases with mean
+  frontier-alignment delta `+3.467`; this measures alignment to frontier themes,
+  not local experimental superiority.
+- `experiments/frontier_vector_graph_20260602_234500/`: six-dimensional vector
+  graphs connecting each original paper, raw review-guided artifact, six-gate
+  artifact, and the current frontier centroid. Mean six-gate projection gain is
+  `+0.1668`, while mean cosine gain is `-0.0641`, showing that frontier
+  alignment needs vector diagnostics rather than a single scalar.
 - `build/deep_regeneration_cases/`: viewable PDFs for each selected case,
   including raw human-review-guided and six-gate hybrid-review-guided
   mini-paper artifacts.

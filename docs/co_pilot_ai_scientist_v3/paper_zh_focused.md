@@ -68,6 +68,8 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | OpenReview 再生成，Claude 复审 | review-guided 胜 3 次 | baseline 胜 1 次，平 2 次 | mean overall +0.1667 | 有温和正向信号，但不是自动提升。 |
 | OpenReview 等上下文消融 | review-guided 票数 8 | context-control 票数 1，平 3 | 跨模型 mean delta +0.5 | 真实相关评审优于等量无关评审上下文，但 Claude 显示效果较温和。 |
 | 深度案例内部六门控评议 | six-gate hybrid 胜 3/3 | raw review-guided 胜 0/3 | 内部平均增量 +1.133 | 闭合当前 3 个具体案例的可复现内部评议流程；这是确定性 rubric proxy，不是人类专家证据。 |
+| 前沿对齐 taxonomy | six-gate hybrid 胜 3/3 | raw review-guided 胜 0/3 | 词汇式前沿对齐平均增量 +3.467 | 使用 ICLR/ICML/ACL 2025 官方获奖论文作为 seed，比较再生成产物与当前前沿主题的对齐，而不只用局部实验分数判断好坏。 |
+| 前沿向量图 | six-gate 平均投影增益 +0.1668 | six-gate 平均 cosine 增益 -0.0641 | 2 个投影正向案例，1 个负向案例 | 将原论文、再生成产物和当前前沿中心表示为 6 维向量；显示词汇前沿增益仍可能包含方向漂移。 |
 | 预注册盲评专家评审包 | 已准备 6 对匿名 A/B 产物 | 已完成人类评分 0 行 | 计划 3-5 名评审者 | 仅表示评估就绪，不声称已有人工证据。 |
 | Live skill invocation smoke | 生成 3 个候选方向和一个归档的一版 IGRE gate plan | template-only skill smoke | 2 次真实模型调用，audit recommendation pass | 说明 Codex skill 可在新任务上复用；不是 benchmark 证据。 |
 | Metric-gaming evaluator-stress smoke | evaluator-stress gate 选择 `guardrailed_utility_model` | primary-only 公平性指标选择 `metric_gaming_all_negative` | 减少 1 个合成 metric-gaming 事件 | 将 live skill 任务连接到真实 evaluator；这是受控 toy 证据，不是 FML-bench 结果。 |

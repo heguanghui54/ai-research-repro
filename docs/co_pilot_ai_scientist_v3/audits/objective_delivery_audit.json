@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T12:32:39Z",
+  "audit_date": "2026-06-02T12:45:22Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "683b2f816ad22e42544671d6293d84b20a9f940f",
+  "head": "230c847f170b847c8941edfc6746a27f77272408",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -17,6 +17,8 @@
     "human_expert_blind_review_packet_audit_pass": true,
     "benchmark_coverage_audit_pass": true,
     "deep_regeneration_cases_audit_pass": true,
+    "frontier_alignment_taxonomy_pass": true,
+    "frontier_vector_graph_pass": true,
     "lhtg_operationalized": true,
     "top_conference_boundary_kept": true,
     "unsupported_superiority_claims_kept_unsupported": true
@@ -49,7 +51,7 @@
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 8663,
+      "bytes": 9249,
       "ok": true
     },
     "english_submission_card": {
@@ -98,6 +100,18 @@
       "path": "docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500/summary.json",
       "exists": true,
       "bytes": 7494,
+      "ok": true
+    },
+    "frontier_alignment_taxonomy_summary": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/summary.json",
+      "exists": true,
+      "bytes": 20036,
+      "ok": true
+    },
+    "frontier_vector_graph_summary": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json",
+      "exists": true,
+      "bytes": 6376,
       "ok": true
     },
     "english_usage": {
@@ -174,12 +188,16 @@
       "deep_regeneration_casebook.md": true,
       "human_expert_blind_review_protocol.md": true,
       "deep_case_internal_review_20260602_224500": true,
+      "frontier_alignment_taxonomy_20260602_233000": true,
+      "frontier_vector_graph_20260602_234500": true,
       "External Verification Entry Point": true,
       "audit_top_conference_evidence_roadmap.py": true,
       "audit_human_expert_blind_review_packet.py": true,
       "audit_benchmark_coverage.py": true,
       "audit_deep_regeneration_cases.py": true,
       "build_deep_case_pdfs.py": true,
+      "build_frontier_alignment_taxonomy.py": true,
+      "build_frontier_vector_graph.py": true,
       "pass_artifact_delivery_with_empirical_gaps": true,
       "top-conference empirical target is not yet satisfied": true
     },
@@ -224,9 +242,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 664,
+  "manifest_artifacts": 676,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "664/664",
+  "manifest_coverage_ratio": "676/676",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",

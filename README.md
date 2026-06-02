@@ -27,6 +27,10 @@ Start here:
   [docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json](docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json)
 - Deep-case internal review summary:
   [docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500/summary.json](docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500/summary.json)
+- Frontier-alignment taxonomy:
+  [docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/README.md](docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/README.md)
+- Frontier vector graph:
+  [docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/README.md](docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/README.md)
 - Focused English paper:
   [docs/co_pilot_ai_scientist_v3/paper_en_focused.md](docs/co_pilot_ai_scientist_v3/paper_en_focused.md)
 - Focused Chinese paper:
@@ -55,6 +59,9 @@ python3 scripts/build_deep_regeneration_cases.py
 python3 scripts/build_six_gate_hybrid_review_cases.py
 python3 scripts/build_deep_case_pdfs.py
 python3 scripts/run_deep_case_internal_review.py
+python3 scripts/build_frontier_alignment_taxonomy.py
+python3 scripts/build_frontier_vector_graph.py
+python3 scripts/audit_goal_completion_matrix.py
 python3 scripts/audit_deep_regeneration_cases.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 python3 scripts/audit_objective_delivery.py
