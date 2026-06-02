@@ -1,4 +1,61 @@
-# FML-bench minimal reproduction
+# Co-Pilot AI Scientist v3 Research Package
+
+This repository now hosts the **Co-Pilot AI Scientist v3** research package:
+a reproducible pilot paper and Codex skill for turning AI Scientist-v2-style
+automation into a human-guided research co-pilot. The method is **Insight-Gated
+Research Evolution (IGRE)**: AI systems generate hypotheses, run experiments,
+search machine-gradeable subproblems with OpenEvolve-style loops, and write
+papers, while human scientists intervene at explicit gates for scientific
+taste, evaluator stress testing, frontier steering, verifiable micro-evolution,
+and claim calibration.
+
+Start here:
+
+- Research package README:
+  [docs/co_pilot_ai_scientist_v3/README.md](docs/co_pilot_ai_scientist_v3/README.md)
+- Focused English paper:
+  [docs/co_pilot_ai_scientist_v3/paper_en_focused.md](docs/co_pilot_ai_scientist_v3/paper_en_focused.md)
+- Focused Chinese paper:
+  [docs/co_pilot_ai_scientist_v3/paper_zh_focused.md](docs/co_pilot_ai_scientist_v3/paper_zh_focused.md)
+- English focused PDF:
+  [docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf](docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf)
+- Chinese focused PDF:
+  [docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf](docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf)
+- Reusable Codex skill:
+  [skills/co-pilot-ai-scientist-v3/SKILL.md](skills/co-pilot-ai-scientist-v3/SKILL.md)
+- English usage guide:
+  [docs/co_pilot_ai_scientist_v3/usage_en.md](docs/co_pilot_ai_scientist_v3/usage_en.md)
+- Chinese usage guide:
+  [docs/co_pilot_ai_scientist_v3/usage_zh.md](docs/co_pilot_ai_scientist_v3/usage_zh.md)
+
+## External Verification Entry Point
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 scripts/audit_long_horizon_taste_gate.py
+python3 scripts/audit_temporal_frontier_replay.py
+python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
+python3 scripts/audit_objective_delivery.py
+python3 scripts/audit_package_consistency.py
+```
+
+Current objective-delivery status:
+
+- artifact pipeline: `pass_artifact_delivery_with_empirical_gaps`
+- manifest coverage: `622/622`
+- LHTG/DVRS audit: `pass_with_no_positive_dvrs`
+- TFR audit: `pass_with_negative_delayed_value_evidence`
+- package consistency: `pass`
+
+Important boundary: this package delivers the requested bilingual papers,
+usage guides, reusable skill, pushed GitHub branch, and reproducibility audits.
+The top-conference empirical target is not yet satisfied: this package does
+**not** prove empirical superiority over autonomous AI Scientist-v2. The
+remaining evidence gap is independent human expert ratings, larger matched
+autonomous versus human-gated benchmark runs, and broader end-to-end research
+trajectories.
+
+## Legacy FML-bench Minimal Reproduction
 
 This repository is a **low-cost, minimal reproduction scaffold** for the
 `FML-bench` paper and GitHub workflow.

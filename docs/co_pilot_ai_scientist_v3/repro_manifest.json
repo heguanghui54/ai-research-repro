@@ -636,7 +636,8 @@
     "scripts/audit_long_horizon_taste_gate.py",
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "scripts/audit_objective_delivery.py"
+    "scripts/audit_objective_delivery.py",
+    "README.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1647,9 +1648,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "6342704667e48d28d7d647d2caddfefa280acb15",
+    "head": "d6e6537f432eee5b150f25b9e63c96f4ebc12b5a",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 621,
+    "manifest_artifacts": 622,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   }

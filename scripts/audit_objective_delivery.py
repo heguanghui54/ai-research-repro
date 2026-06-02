@@ -101,6 +101,7 @@ def main() -> None:
         "focused_chinese_pdf": DOC_DIR / "build" / "co_pilot_ai_scientist_v3_focused_zh.pdf",
     }
     docs = {
+        "root_readme": ROOT / "README.md",
         "english_usage": DOC_DIR / "usage_en.md",
         "chinese_usage": DOC_DIR / "usage_zh.md",
         "english_runbook": DOC_DIR / "RUNBOOK_EN.md",
@@ -136,6 +137,15 @@ def main() -> None:
     }
 
     skill_checks = {
+        _rel(docs["root_readme"]): _contains(
+            docs["root_readme"],
+            [
+                "Co-Pilot AI Scientist v3",
+                "External Verification Entry Point",
+                "pass_artifact_delivery_with_empirical_gaps",
+                "top-conference empirical target is not yet satisfied",
+            ],
+        ),
         _rel(docs["reusable_skill"]): _contains(
             docs["reusable_skill"],
             [
@@ -258,7 +268,7 @@ def main() -> None:
         "missing_manifest_artifacts": len(missing_manifest),
         "claim_boundary": audit["claim_boundary"],
     }
-    for path in [json_path, md_path, Path(__file__)]:
+    for path in [json_path, md_path, Path(__file__), docs["root_readme"]]:
         rel = _rel(path)
         if rel not in manifest["current_artifacts"]:
             manifest["current_artifacts"].append(rel)
