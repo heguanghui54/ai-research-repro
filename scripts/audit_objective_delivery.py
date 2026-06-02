@@ -85,6 +85,7 @@ def main() -> None:
     roadmap_audit_path = AUDIT_DIR / "top_conference_evidence_roadmap_audit.json"
     human_review_packet_audit_path = AUDIT_DIR / "human_expert_blind_review_packet_audit.json"
     benchmark_coverage_audit_path = AUDIT_DIR / "benchmark_coverage_audit.json"
+    second_non_fml_priority_audit_path = AUDIT_DIR / "second_non_fml_priority_package_audit.json"
     deep_regeneration_cases_audit_path = AUDIT_DIR / "deep_regeneration_cases_audit.json"
     prospective_gate_instrumentation_audit_path = AUDIT_DIR / "prospective_gate_instrumentation_audit.json"
     frontier_taxonomy_path = DOC_DIR / "experiments" / "frontier_alignment_taxonomy_20260602_233000" / "summary.json"
@@ -109,6 +110,7 @@ def main() -> None:
     roadmap_audit = _load_json(roadmap_audit_path)
     human_review_packet_audit = _load_json(human_review_packet_audit_path)
     benchmark_coverage_audit = _load_json(benchmark_coverage_audit_path)
+    second_non_fml_priority_audit = _load_json(second_non_fml_priority_audit_path)
     deep_regeneration_cases_audit = _load_json(deep_regeneration_cases_audit_path)
     prospective_gate_instrumentation_audit = _load_json(prospective_gate_instrumentation_audit_path)
     frontier_taxonomy = _load_json(frontier_taxonomy_path)
@@ -269,6 +271,10 @@ def main() -> None:
         "human_expert_blind_review_packet_audit_pass": human_review_packet_audit.get("status")
         == "pass_prepared_no_human_ratings",
         "benchmark_coverage_audit_pass": benchmark_coverage_audit.get("status") == "pass",
+        "second_non_fml_priority_package_audit_pass": second_non_fml_priority_audit.get("status")
+        == "pass"
+        and second_non_fml_priority_audit.get("evidence_class")
+        == "scored_official_like_non_fml_matched_package_not_official_benchmark",
         "prospective_gate_instrumentation_audit_pass": prospective_gate_instrumentation_audit.get("status")
         == "pass_with_known_historical_gaps",
         "deep_regeneration_cases_audit_pass": deep_regeneration_cases_audit.get("status") == "pass",
@@ -327,6 +333,16 @@ def main() -> None:
             1,
             "Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.",
         )
+    if explicit_requirements["second_non_fml_priority_package_audit_pass"]:
+        next_required_evidence = [
+            (
+                "Pursue a true second scored official non-FML benchmark task when data access permits; the current open-data matched package is official-like boundary evidence, not an official MLAgentBench/ScienceAgentBench result."
+                if "Extend non-FML evidence beyond the scored MLAgentBench vectorization comparison"
+                in item
+                else item
+            )
+            for item in next_required_evidence
+        ]
 
     audit = {
         "audit_date": _utc_now(),
@@ -398,6 +414,7 @@ def main() -> None:
         "missing_manifest_artifacts": len(missing_manifest),
         "claim_boundary": audit["claim_boundary"],
     }
+    manifest["next_required_evidence"] = next_required_evidence
     for path in [
         json_path,
         md_path,
@@ -441,6 +458,9 @@ def main() -> None:
         / "summary.md",
         AUDIT_DIR / "benchmark_coverage_audit.json",
         AUDIT_DIR / "benchmark_coverage_audit.md",
+        AUDIT_DIR / "second_non_fml_priority_package_audit.json",
+        AUDIT_DIR / "second_non_fml_priority_package_audit.md",
+        ROOT / "scripts" / "audit_second_non_fml_priority_package.py",
         AUDIT_DIR / "prospective_gate_instrumentation_audit.json",
         AUDIT_DIR / "prospective_gate_instrumentation_audit.md",
         AUDIT_DIR / "deep_regeneration_cases_audit.json",

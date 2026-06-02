@@ -949,10 +949,9 @@
   ],
   "next_required_evidence": [
     "Run at least 5 matched-budget pairs per task across at least 3 tasks, with means, variance, and paired tests before making superiority claims.",
-    "Run matched mini-manuscript scoring on complete end-to-end co-pilot and autonomous manuscripts, not only package mini-manuscripts.",
-    "Demonstrate one continuous end-to-end trajectory from new hypothesis generation to experiments, claim audit, and final manuscript, plus a matched autonomous manuscript baseline.",
+    "Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.",
     "Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.",
-    "Extend non-FML evidence beyond the scored MLAgentBench vectorization comparison to another official benchmark task when data access permits.",
+    "Pursue a true second scored official non-FML benchmark task when data access permits; the current open-data matched package is official-like boundary evidence, not an official MLAgentBench/ScienceAgentBench result.",
     "Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package."
   ],
   "model_routing_policy": {
@@ -2025,7 +2024,7 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "b14b4ee59bcfbff3bc0b897d92966c3f8107a72c",
+    "head": "a22fd6951a536b765cdbb16084433dc717db8e56",
     "branch": "codex/co-pilot-ai-scientist-v3",
     "manifest_artifacts": 926,
     "missing_manifest_artifacts": 0,

@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T20:03:59Z",
+  "audit_date": "2026-06-02T20:07:32Z",
   "status": "pass_with_top_conference_gap",
-  "head": "b14b4ee59bcfbff3bc0b897d92966c3f8107a72c",
+  "head": "a22fd6951a536b765cdbb16084433dc717db8e56",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "remote_branch_pushed": true,
@@ -71,10 +71,11 @@
       "evidence": [
         "docs/co_pilot_ai_scientist_v3/benchmark_selection.md",
         "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md",
-        "docs/co_pilot_ai_scientist_v3/audits/benchmark_coverage_audit.md"
+        "docs/co_pilot_ai_scientist_v3/audits/benchmark_coverage_audit.md",
+        "docs/co_pilot_ai_scientist_v3/audits/second_non_fml_priority_package_audit.md"
       ],
-      "gap": "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, all faster than the starter, and a failed direct-rewrite correctness baseline. This supports benchmark-portfolio coverage, but it remains a narrow program-search subproblem rather than broad top-conference empirical sufficiency.",
-      "next_action": "Extend non-FML evidence beyond vectorization to another official benchmark task when data access and setup permit."
+      "gap": "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, all faster than the starter, and a failed direct-rewrite correctness baseline. It also has a scored official-like open-data matched package across 5 sklearn tasks, 5 split seeds, and 25 paired selections, with held-out trigger-policy transfer. This supports benchmark-portfolio coverage, but the official-like package is not a second scored official MLAgentBench or ScienceAgentBench result and neither result proves broad top-conference empirical sufficiency.",
+      "next_action": "Pursue a true second scored official non-FML task when data access and setup permit; keep the open-data package labeled as official-like boundary evidence."
     },
     {
       "key": "human_taste_and_insight_theory",
@@ -148,7 +149,7 @@
       "evidence": [
         "https://github.com/heguanghui54/ai-research-repro.git",
         "codex/co-pilot-ai-scientist-v3",
-        "b14b4ee59bcfbff3bc0b897d92966c3f8107a72c"
+        "a22fd6951a536b765cdbb16084433dc717db8e56"
       ],
       "gap": "Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate.",
       "next_action": "Create a release or PR only when the user wants a public submission package."

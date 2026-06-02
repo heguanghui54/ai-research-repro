@@ -105,12 +105,23 @@ def main() -> None:
     deep_summary = _load_json(deep_internal)
     remote_branch_pushed = _remote_contains_branch(remote_url, branch)
     benchmark_vector = benchmark_coverage.get("evidence_summary", {}).get("mlagentbench_vectorization", {})
+    second_non_fml = benchmark_coverage.get("checks", {}).get("second_non_fml_priority_package_audited")
+    second_non_fml_summary = benchmark_coverage.get("evidence_summary", {}).get(
+        "open_data_multitask_evaluator_stress", {}
+    )
+    second_non_fml_audit_path = DOC_DIR / "audits" / "second_non_fml_priority_package_audit.md"
     non_fml_scored_complete = (
         benchmark_coverage.get("status") == "pass"
         and benchmark_vector.get("num_seeds") == 8
         and benchmark_vector.get("num_correct_best_programs") == 8
         and benchmark_vector.get("num_seeds_faster_than_starter") == 8
         and benchmark_vector.get("direct_rewrite_correct") is False
+    )
+    second_non_fml_official_like_complete = (
+        second_non_fml is True
+        and second_non_fml_summary.get("dataset_count") == 5
+        and second_non_fml_summary.get("split_count") == 5
+        and second_non_fml_summary.get("total_dataset_split_evaluations") == 25
     )
 
     requirements = [
@@ -172,15 +183,24 @@ def main() -> None:
                 _rel(DOC_DIR / "benchmark_selection.md"),
                 _rel(DOC_DIR / "benchmark_claim_matrix.md"),
                 _rel(DOC_DIR / "audits" / "benchmark_coverage_audit.md"),
+                _rel(second_non_fml_audit_path),
             ],
             (
+                "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, "
+                "all faster than the starter, and a failed direct-rewrite correctness baseline. It also has a scored official-like open-data "
+                "matched package across 5 sklearn tasks, 5 split seeds, and 25 paired selections, with held-out trigger-policy transfer. "
+                "This supports benchmark-portfolio coverage, but the official-like package is not a second scored official MLAgentBench or "
+                "ScienceAgentBench result and neither result proves broad top-conference empirical sufficiency."
+            )
+            if non_fml_scored_complete and second_non_fml_official_like_complete
+            else (
                 "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, "
                 "all faster than the starter, and a failed direct-rewrite correctness baseline. This supports benchmark-portfolio coverage, "
                 "but it remains a narrow program-search subproblem rather than broad top-conference empirical sufficiency."
             )
             if non_fml_scored_complete
             else "The package considers FML-bench, MLAgentBench, OpenReview, OpenEvolve-style probes, and TFR, but a complete scored non-FML comparison is not yet proven.",
-            "Extend non-FML evidence beyond vectorization to another official benchmark task when data access and setup permit.",
+            "Pursue a true second scored official non-FML task when data access and setup permit; keep the open-data package labeled as official-like boundary evidence.",
         ),
         _requirement(
             "human_taste_and_insight_theory",

@@ -1,8 +1,8 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T20:03:57Z`
+- Audit date: `2026-06-02T20:07:31Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `b14b4ee59bcfbff3bc0b897d92966c3f8107a72c`
+- HEAD: `a22fd6951a536b765cdbb16084433dc717db8e56`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
 - Manifest artifacts: `926`
@@ -26,6 +26,7 @@
 - `top_conference_roadmap_audit_pass`: `pass`
 - `human_expert_blind_review_packet_audit_pass`: `pass`
 - `benchmark_coverage_audit_pass`: `pass`
+- `second_non_fml_priority_package_audit_pass`: `pass`
 - `prospective_gate_instrumentation_audit_pass`: `pass`
 - `deep_regeneration_cases_audit_pass`: `pass`
 - `frontier_alignment_taxonomy_pass`: `pass`
@@ -75,7 +76,7 @@
 - Run at least 5 matched-budget pairs per task across at least 3 tasks, with means, variance, and paired tests before making superiority claims.
 - Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.
 - Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.
-- Extend non-FML evidence beyond the scored MLAgentBench vectorization comparison to another official benchmark task when data access permits.
+- Pursue a true second scored official non-FML benchmark task when data access permits; the current open-data matched package is official-like boundary evidence, not an official MLAgentBench/ScienceAgentBench result.
 - Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package.
 
 ## Errors
