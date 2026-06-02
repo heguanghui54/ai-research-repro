@@ -1,12 +1,12 @@
 {
-  "audit_date": "2026-06-02T19:16:14Z",
+  "audit_date": "2026-06-02T19:21:46Z",
   "status": "pass",
-  "head": "872d8f2c0d786c16596ef7fab17354a532d2cb10",
+  "head": "775120b605d4504882461e1d56d78ad79149951f",
   "clean_clone_audited_commit": "872d8f2c0d786c16596ef7fab17354a532d2cb10",
-  "clean_clone_commit_is_head": true,
+  "clean_clone_commit_is_head": false,
   "clean_clone_commit_is_head_ancestor": true,
   "git_repository_is_shallow": false,
-  "manifest_artifacts": 913,
+  "manifest_artifacts": 915,
   "missing_manifest_artifacts": 0,
   "duplicate_manifest_artifacts": 0,
   "candidate_frontier_validation": {
@@ -34,13 +34,16 @@
       "candidate-frontier validation": true
     },
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md": {
-      "913/913": true,
+      "915/915": true,
       "top-conference empirical target remains incomplete": true,
-      "872d8f2c0_or_parent": true
+      "775120b60_or_parent": true
     }
   },
   "stale_token_hits": {},
   "errors": [],
-  "warnings": [],
+  "warnings": [
+    "clean-clone manifest_artifacts_checked does not match manifest current_artifacts length because clean-clone audit targets an ancestor commit",
+    "readiness clean-clone manifest count is stale because clean-clone audit targets an ancestor commit"
+  ],
   "claim_boundary": "This audit checks package consistency, not scientific correctness or top-conference sufficiency. A pass means the artifact metadata agree."
 }

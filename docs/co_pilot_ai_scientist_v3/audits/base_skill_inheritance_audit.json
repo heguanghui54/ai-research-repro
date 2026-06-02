@@ -1,0 +1,182 @@
+{
+  "audit_date": "2026-06-02T19:19:55Z",
+  "status": "pass",
+  "base_skill": "/Users/hgh54913/.codex/skills/ai-scientist-v2/SKILL.md",
+  "repo_skill": "skills/co-pilot-ai-scientist-v3/SKILL.md",
+  "release_skill": "release/co-pilot-ai-scientist-v3-skill/SKILL.md",
+  "global_skill": "/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3/SKILL.md",
+  "file_checks": {
+    "/Users/hgh54913/.codex/skills/ai-scientist-v2/SKILL.md": true,
+    "/Users/hgh54913/.codex/worktrees/1b29/research/skills/co-pilot-ai-scientist-v3/SKILL.md": true,
+    "/Users/hgh54913/.codex/worktrees/1b29/research/release/co-pilot-ai-scientist-v3-skill/SKILL.md": true,
+    "/Users/hgh54913/.codex/worktrees/1b29/research/release/co-pilot-ai-scientist-v3-skill/MIGRATION.md": true,
+    "/Users/hgh54913/.codex/worktrees/1b29/research/release/co-pilot-ai-scientist-v3-skill/README.md": true,
+    "/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3/SKILL.md": true
+  },
+  "base_loop_checks": {
+    "frame_problem": {
+      "Frame The Research Problem": true,
+      "concrete question": true
+    },
+    "generate_candidates": {
+      "Generate Multiple Candidate Ideas": true,
+      "candidate": true
+    },
+    "literature_novelty": {
+      "Search Literature": true,
+      "Remove Duplicates": true
+    },
+    "benchmark_discovery": {
+      "Discover Benchmarks": true,
+      "Evaluation Targets": true
+    },
+    "experiment_design": {
+      "Design The Experiments": true,
+      "baseline": true,
+      "ablation": true
+    },
+    "run_score_candidates": {
+      "Run And Score Candidates": true,
+      "Track logs": true
+    },
+    "write_paper": {
+      "Write The Paper": true,
+      "standard paper": true
+    },
+    "review_revise": {
+      "Review And Revise": true,
+      "claims": true
+    }
+  },
+  "migration_mapping_checks": {
+    "frame_problem": {
+      "base_step_label": true,
+      "extension_column": true,
+      "log_column": true
+    },
+    "generate_candidates": {
+      "base_step_label": true,
+      "extension_column": true,
+      "log_column": true
+    },
+    "literature_novelty": {
+      "base_step_label": true,
+      "extension_column": true,
+      "log_column": true
+    },
+    "benchmark_discovery": {
+      "base_step_label": true,
+      "extension_column": true,
+      "log_column": true
+    },
+    "experiment_design": {
+      "base_step_label": true,
+      "extension_column": true,
+      "log_column": true
+    },
+    "run_score_candidates": {
+      "base_step_label": true,
+      "extension_column": true,
+      "log_column": true
+    },
+    "write_paper": {
+      "base_step_label": true,
+      "extension_column": true,
+      "log_column": true
+    },
+    "review_revise": {
+      "base_step_label": true,
+      "extension_column": true,
+      "log_column": true
+    }
+  },
+  "skill_lineage_checks": {
+    "repo_skill": {
+      "Base Skill Relationship": true,
+      "ai-scientist-v2": true,
+      "Preserve the base AI Scientist-v2 loop": true
+    },
+    "release_skill": {
+      "Base Skill Relationship": true,
+      "ai-scientist-v2": true,
+      "Preserve the base AI Scientist-v2 loop": true
+    },
+    "global_skill": {
+      "Base Skill Relationship": true,
+      "ai-scientist-v2": true,
+      "Preserve the base AI Scientist-v2 loop": true
+    },
+    "release_readme": {
+      "Base Skill Lineage": true,
+      "AI Scientist-v2-style research loop": true,
+      "MIGRATION.md": true
+    }
+  },
+  "gate_checks": {
+    "repo_skill": {
+      "scientific_taste_prior": true,
+      "evaluator_stress_test": true,
+      "frontier_steering": true,
+      "verifiable_micro_evolution": true,
+      "structured_feedback": true,
+      "claim_calibration": true
+    },
+    "release_skill": {
+      "scientific_taste_prior": true,
+      "evaluator_stress_test": true,
+      "frontier_steering": true,
+      "verifiable_micro_evolution": true,
+      "structured_feedback": true,
+      "claim_calibration": true
+    },
+    "global_skill": {
+      "scientific_taste_prior": true,
+      "evaluator_stress_test": true,
+      "frontier_steering": true,
+      "verifiable_micro_evolution": true,
+      "structured_feedback": true,
+      "claim_calibration": true
+    },
+    "release_migration": {
+      "scientific_taste_prior": true,
+      "evaluator_stress_test": true,
+      "frontier_steering": true,
+      "verifiable_micro_evolution": true,
+      "structured_feedback": true,
+      "claim_calibration": true
+    }
+  },
+  "nonnegotiable_checks": {
+    "base_skill": {
+      "Do not invent results": true,
+      "Prefer narrow, defensible claims": true,
+      "Run multiple candidate directions": true,
+      "Make the final paper match the experiment log": true
+    },
+    "release_migration": {
+      "do not invent results": true,
+      "prefer narrow": true,
+      "make the final paper match": true
+    },
+    "repo_skill": {
+      "Do not skip": true,
+      "do not invent results": true,
+      "make the final paper match": true
+    },
+    "global_skill": {
+      "Do not skip": true,
+      "do not invent results": true,
+      "make the final paper match": true
+    }
+  },
+  "global_migration_checks": {
+    "Migrating From `ai-scientist-v2`": true,
+    "Base Loop Mapping": true,
+    "scientific_taste_prior": true
+  },
+  "base_loop_steps_preserved": true,
+  "igre_gates_present": true,
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "This audit proves inheritance and packaging alignment: Co-Pilot AI Scientist v3 preserves the user's AI Scientist-v2 research-production loop and adds IGRE gates. It does not prove that the resulting workflow improves paper quality or benchmark performance."
+}

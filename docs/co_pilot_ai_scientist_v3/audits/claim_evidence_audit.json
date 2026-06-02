@@ -4,6 +4,18 @@
   "global_claim_boundary": "IGRE and TFR are reproducible participation-mode design methods. Current evidence does not prove that human-gated automated science outperforms autonomous AI Scientist-v2 on average.",
   "claims": [
     {
+      "claim_id": "base_skill_inheritance",
+      "claim": "Co-Pilot AI Scientist v3 is an auditable IGRE extension of the user's ai-scientist-v2 Codex skill rather than an unrelated replacement.",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/audits/base_skill_inheritance_audit.json",
+        "docs/co_pilot_ai_scientist_v3/audits/base_skill_inheritance_audit.md",
+        "release/co-pilot-ai-scientist-v3-skill/MIGRATION.md",
+        "release/co-pilot-ai-scientist-v3-skill/SKILL.md"
+      ],
+      "status": "supported_as_skill_lineage_evidence",
+      "boundary": "Inheritance and packaging evidence only; not proof of paper-quality or benchmark superiority."
+    },
+    {
       "claim": "IGRE is a distinct algorithmic pattern for inserting human scientific taste into automated research loops.",
       "status": "supported_method_contribution",
       "evidence": [

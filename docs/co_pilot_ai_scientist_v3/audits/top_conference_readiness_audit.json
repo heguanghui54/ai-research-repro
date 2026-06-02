@@ -1426,5 +1426,13 @@
     "best_policy": "class_imbalance_trigger_0_94",
     "best_policy_delta_vs_autonomous_mean": 0.003076923076923066,
     "claim_boundary": "post-hoc design evidence"
+  },
+  "base_skill_inheritance_audit": {
+    "status": "pass",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/base_skill_inheritance_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/base_skill_inheritance_audit.md",
+    "base_loop_steps_preserved": true,
+    "igre_gates_present": true,
+    "claim_boundary": "Skill-lineage evidence only; not performance evidence."
   }
 }
