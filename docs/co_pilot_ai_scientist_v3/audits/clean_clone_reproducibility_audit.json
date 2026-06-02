@@ -1,34 +1,40 @@
 {
-  "audit_date": "2026-06-02",
+  "audit_date": "2026-06-02T11:16:23Z",
   "repository_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "branch": "codex/co-pilot-ai-scientist-v3",
-  "commit": "38dc8c8f7baecf85b47de3f1f45b14836b3d9ec4",
-  "clean_clone_path": "/tmp/copilot-v3-clean-clone-38dc8c8f",
+  "commit": "aaa8127cae1c39e3a062eb2e04997ab95f80dfaf",
+  "clean_clone_path": "/tmp/copilot-v3-clean-clone-latest",
   "clone_mode": "shallow_depth_1_single_branch",
   "commands_reran": [
+    "git clone --depth 1 --single-branch --branch codex/co-pilot-ai-scientist-v3 https://github.com/heguanghui54/ai-research-repro.git /tmp/copilot-v3-clean-clone-latest",
     "python3 -m pip install -q -r requirements.txt",
     "python3 scripts/audit_long_horizon_taste_gate.py",
     "python3 scripts/run_delayed_value_candidate_frontier_validation.py --per-label 4 --citation-limit 15 --frontier-terms 20",
+    "python3 scripts/audit_long_horizon_taste_gate.py",
     "python3 scripts/audit_temporal_frontier_replay.py",
     "python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused",
+    "python3 scripts/audit_objective_delivery.py",
     "python3 scripts/audit_package_consistency.py",
-    "python3 - <<'PY' # manifest, LHTG, validation, TFR, PDF, and package assertions"
+    "python3 scripts/audit_objective_delivery.py",
+    "python3 - <<'PY' # manifest, LHTG, TFR, package, objective, and PDF assertions"
   ],
   "checks": {
-    "status": "pass_for_current_pushed_lhtg_dvrs_rebuild",
-    "commit": "38dc8c8f7baecf85b47de3f1f45b14836b3d9ec4",
-    "clean_clone_path": "/tmp/copilot-v3-clean-clone-38dc8c8f",
+    "status": "pass_for_latest_pushed_objective_delivery_rebuild",
+    "commit": "aaa8127cae1c39e3a062eb2e04997ab95f80dfaf",
+    "clean_clone_path": "/tmp/copilot-v3-clean-clone-latest",
     "clone_mode": "shallow_depth_1_single_branch",
-    "manifest_artifacts_checked": 618,
+    "manifest_artifacts_checked": 621,
     "missing_manifest_artifacts": 0,
     "requirements_installed": "pass",
     "lhtg_dvrs_audit_reran": "pass",
     "lhtg_dvrs_audit_status": "pass_with_no_positive_dvrs",
     "lhtg_delayed_value_positive_cases": 0,
+    "lhtg_reusable_workflow_terms_present": true,
     "candidate_frontier_validation_reran": "pass",
     "temporal_frontier_replay_audit_reran": "pass",
     "focused_bilingual_pdfs_rebuilt": "pass",
     "package_consistency_audit_reran": "pass",
+    "objective_delivery_audit_reran": "pass",
     "focused_english_pdf_bytes": 32998,
     "focused_chinese_pdf_bytes": 61838,
     "candidate_frontier_attempted_reviews": 16,
@@ -39,11 +45,11 @@
     "delayed_minus_control_mean_score": 0.064,
     "temporal_frontier_replay_audit_status": "pass_with_negative_delayed_value_evidence",
     "package_consistency_audit_status": "pass",
+    "objective_delivery_audit_status": "pass_artifact_delivery_with_empirical_gaps",
     "audited_pushed_commit": true,
     "remote_ubuntu_experiments_rerun": false,
     "full_pdfs_rebuilt_in_this_audit": false,
-    "claim_boundary": "LHTG/DVRS is operationalized and clean-clone reproducible, but current evidence still has 0 positive delayed-value cases and supports only replay prioritization plus negative/weak TFR boundaries.",
-    "note": "Verifies the pushed LHTG/DVRS audit package at 38dc8c8f with a shallow clean clone. The clone reran LHTG/DVRS audit, candidate-frontier validation, TFR audit, focused PDF builds, and package consistency."
+    "claim_boundary": "Latest pushed objective-delivery package is clean-clone reproducible for local artifact, LHTG/DVRS, TFR, candidate-frontier, focused-PDF, package-consistency, and objective-delivery checks. This still does not rerun remote Ubuntu experiments or provide independent human expert evidence."
   },
-  "interpretation": "A fresh shallow clone of the pushed branch at 38dc8c8f reran the LHTG/DVRS audit, OpenAlex-backed candidate-frontier validation, Temporal Frontier Replay audit, focused bilingual PDF build, and package consistency audit, finding all 618 manifest artifacts. LHTG/DVRS is operationalized with 0 positive delayed-value cases; the candidate queue still has a weak +0.064 lexical frontier-prioritization delta."
+  "interpretation": "A fresh shallow clone of the pushed branch at commit aaa8127ca reproduced the latest objective-delivery artifact package with 621/621 manifest artifacts present. It reran LHTG/DVRS, candidate-frontier validation, TFR, focused bilingual PDF builds, package consistency, and objective delivery audits. The result supports artifact reproducibility and workflow auditability, not top-conference empirical sufficiency."
 }
