@@ -111,6 +111,23 @@
       "paper_treatment": "Present as a falsifiable replay protocol for long-horizon human taste."
     },
     {
+      "claim": "Delayed-value candidate mining can prioritize which historical reviews deserve expensive replay.",
+      "status": "supported_screening_evidence",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/tfr_replay_queue.json"
+      ],
+      "metrics": {
+        "reviews_screened": 473,
+        "papers_screened": 160,
+        "delayed_value_replay_candidates": 120,
+        "candidate_rate": 0.2537,
+        "long_horizon_positive_candidates": 84,
+        "short_term_repair_signals": 90
+      },
+      "paper_treatment": "Use as a replay-prioritization mechanism, not as positive delayed-value evidence."
+    },
+    {
       "claim": "Historical reviews in the current sample provide positive delayed-value evidence.",
       "status": "not_supported_negative_current_evidence",
       "evidence": [

@@ -70,6 +70,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | Citation-backed frontier pilot | review-guided wins 1 | paper-only wins 3; shuffled-control wins 1; 1 case not scored | 6 papers, 80 relevance-filtered later citations, mean delta vs. paper-only -0.02 | Relevance filtering and match-drift guards are implemented; no delayed-value cases are found, and 3 cases are short-term-positive/long-term-negative. |
 | Review-frontier signal mining | best review snippets scored 0.1431 mean | paper context 0.2369; review-guided artifact 0.1906 | 0 review-beats-paper cases; 0 latent delayed-value candidates | Historical reviews contain routeable gates, but this lexical future-frontier test finds that the original paper context carries more citation-frontier terms than the review snippets. |
 | Semantic frontier judge | review-guided artifact wins 1 | paper context wins 4 | 5 model-judged cases; 0 delayed-value candidates | A model judge using citation metadata also favors original paper context; one review-guided artifact is short-and-semantic positive, not delayed-value. |
+| Delayed-value candidate mining | 120 replay candidates | 90 short-term repair signals; 176 generic/unrouted | 473 reviews screened; candidate rate 0.2537 | A pre-replay screen finds comments worth expensive TFR validation, but these are candidates, not positive delayed-value evidence. |
 | Prospective matched packages | 1 co-pilot or human-selected win | 3 autonomous/tie/invalid outcomes | 4 packages | Short-budget average benchmark superiority is not supported. |
 | Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
@@ -82,7 +83,7 @@ The resulting claim-to-evidence map is deliberately conservative.
 | IGRE is this paper's five-gate method for treating human taste as a logged research-control signal. | Supported as a method and artifact contribution. | Not a claim that every human intervention improves outcomes. |
 | OpenReview-style expert reviews can proxy human taste/insight for offline workflow design. | Supported for routeability: 398 actionable snippets and strong multi-gate utility capture. | Offline peer review is not the same as live co-pilot data. |
 | Targeted gate routing can be more useful than giving the agent all human context. | Supported narrowly by the single-gate artifact ablation. | Model-reviewed mini-artifacts only; needs human expert validation. |
-| TFR can test whether past reviews would have moved automated science toward later frontiers. | Supported as an operationalized replay protocol. | Current small sample finds 0 delayed-value cases, so the long-horizon hypothesis remains unproven. |
+| TFR can test whether past reviews would have moved automated science toward later frontiers. | Supported as an operationalized replay protocol; candidate mining screens 120 comments for future replay. | Current validated probes find 0 delayed-value cases, so the long-horizon hypothesis remains unproven. |
 | Human-gated short-budget FML runs outperform autonomous runs. | Not supported. | Current evidence is mixed or negative and should be treated as a failure-mode lesson. |
 | OpenEvolve-style micro-evolution improves some machine-gradeable subproblems. | Supported narrowly. | Trigger selectively; direct editing is competitive on simple tasks. |
 
@@ -211,6 +212,21 @@ still finds 0 delayed-value candidates. This narrows the claim further: the
 delayed-value design is conceptually important and now measurable, but the
 current small OpenReview sample does not yet provide positive evidence for it.
 
+Because expensive replay should not be run on arbitrary reviews, we add a
+delayed-value candidate-mining screen over the larger review-utility map. The
+screen separates comments into delayed-value replay candidates, long-horizon
+positive candidates, short-term repair signals, generic/unrouted comments, and
+low-routeability noise. It looks for the temporal asymmetry that matters here:
+long-horizon directionality, such as mechanism, theory, generalization,
+scaling, novelty repositioning, or future impact, combined with short-term
+friction such as low scores, rejection, missing evaluation, unclear claims, or
+weak immediate evidence. Over 473 OpenReview snippets from 160 papers, the
+screen finds 120 delayed-value replay candidates, 84 long-horizon positive
+candidates, and 90 short-term repair signals. This does not overturn the
+negative TFR result. It instead creates a reproducible replay queue: future TFR
+experiments should validate these candidates against paper-only and
+shuffled-review controls using later frontier evidence.
+
 This makes the paper's application value concrete. The goal is not merely to prove that humans improve paper quality. The goal is to design the best modes of human participation, compare them empirically, and build a workflow in which human taste is used where it has the highest chance of changing the research trajectory.
 
 We therefore add a high-tail power-analysis artifact rather than treating the
@@ -228,7 +244,7 @@ reports protocol readiness rather than breakthrough-probability evidence.
 
 ## 6. Limitations
 
-The current evidence is a pilot package. It does not include independent human expert review of the final IGRE paper or of the paired regenerated artifacts. The live co-pilot trace is a single-author derived metadata corpus, not a population-level dataset of many scientists using the system. OpenReview is offline asynchronous review data, not real-time human intervention inside an AI Scientist-v2 run. The matched-budget FML evidence is underpowered and currently negative or mixed for benchmark performance. The equal-context OpenReview ablation reduces, but does not eliminate, concerns about context confounds because it still relies on model-routed scoring and regenerated mini-artifacts rather than blind expert review. The high-tail hypothesis is now statistically operationalized as a power-analysis protocol, but no high-tail or delayed-value positive case has been demonstrated in the current evidence package.
+The current evidence is a pilot package. It does not include independent human expert review of the final IGRE paper or of the paired regenerated artifacts. The live co-pilot trace is a single-author derived metadata corpus, not a population-level dataset of many scientists using the system. OpenReview is offline asynchronous review data, not real-time human intervention inside an AI Scientist-v2 run. The matched-budget FML evidence is underpowered and currently negative or mixed for benchmark performance. The equal-context OpenReview ablation reduces, but does not eliminate, concerns about context confounds because it still relies on model-routed scoring and regenerated mini-artifacts rather than blind expert review. The delayed-value candidate-mining screen prioritizes future replay cases, but it is heuristic and does not itself validate later-frontier alignment. The high-tail hypothesis is now statistically operationalized as a power-analysis protocol, but no high-tail or delayed-value positive case has been demonstrated in the current evidence package.
 
 These limitations are also future research directions. To make the next step concrete, the repository includes a prepared and preregistered blind-review packet for the six OpenReview regeneration pairs: reviewers see anonymized A/B artifacts, a fixed rubric, and a score-sheet template, while the condition key and analysis plan are held by the coordinator until ratings are complete. The plan defines useful human taste and insight as review signals that can change research-control decisions, not as generic approval. This packet is not evidence yet because no independent human ratings have been collected. A stronger study would deploy a reusable co-pilot scientist skill to many researchers, collect privacy-preserving gate metadata with consent, run matched autonomous and human-gated trajectories across tasks, and submit paired outputs to blind expert review. At present, such live multi-researcher data is more feasible for major agent or model companies than for a small independent project. IGRE therefore uses OpenReview as a scalable offline proxy and clearly marks the gap.
 

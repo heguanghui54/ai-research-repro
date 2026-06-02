@@ -63,11 +63,17 @@ def main() -> None:
     citation_path = DOC_DIR / "experiments" / "retrospective_frontier_citation_probe_20260602_213000" / "summary.json"
     review_signal_path = DOC_DIR / "experiments" / "review_frontier_signal_probe_20260602_214500" / "summary.json"
     semantic_path = DOC_DIR / "experiments" / "semantic_frontier_judge_probe_20260602_223000" / "summary.json"
+    candidate_path = (
+        DOC_DIR
+        / "experiments"
+        / "delayed_value_review_candidate_mining_20260603_001500"
+        / "summary.json"
+    )
 
     errors: list[str] = []
     warnings: list[str] = []
 
-    required_paths = [spec_path, protocol_path, smoke_path, citation_path, review_signal_path, semantic_path]
+    required_paths = [spec_path, protocol_path, smoke_path, citation_path, review_signal_path, semantic_path, candidate_path]
     for path in required_paths:
         if not path.exists():
             errors.append(f"missing required artifact: {_rel(path)}")
@@ -86,6 +92,7 @@ def main() -> None:
         citation = _load_json(citation_path)
         review_signal = _load_json(review_signal_path)
         semantic = _load_json(semantic_path)
+        candidate_mining = _load_json(candidate_path)
 
         for condition in ["paper_only", "review_guided", "shuffled_review_control"]:
             if condition not in spec.get("required_conditions", []):
@@ -140,6 +147,7 @@ def main() -> None:
                 "citation_backed_probe": _rel(citation_path),
                 "review_frontier_signal_probe": _rel(review_signal_path),
                 "semantic_frontier_judge_probe": _rel(semantic_path),
+                "delayed_value_candidate_mining": _rel(candidate_path),
             },
             "required_conditions_present": not errors,
             "delayed_value_definition_complete": not any(
@@ -188,10 +196,27 @@ def main() -> None:
                 "latent_delayed_value_candidate_count": semantic_delayed_cases,
                 "mean_scores": semantic_agg.get("mean_scores"),
             },
+            "delayed_value_candidate_mining": {
+                "review_count": candidate_mining.get("aggregate", {}).get("review_count"),
+                "paper_count": candidate_mining.get("aggregate", {}).get("paper_count"),
+                "delayed_value_replay_candidate_count": candidate_mining.get("aggregate", {}).get(
+                    "delayed_value_replay_candidate_count"
+                ),
+                "candidate_rate": candidate_mining.get("aggregate", {}).get("candidate_rate"),
+                "long_horizon_positive_candidate_count": candidate_mining.get("aggregate", {}).get(
+                    "long_horizon_positive_candidate_count"
+                ),
+                "short_term_repair_signal_count": candidate_mining.get("aggregate", {}).get(
+                    "short_term_repair_signal_count"
+                ),
+                "claim_boundary": candidate_mining.get("claim_boundary"),
+            },
             "claim_boundary": (
                 "TFR is operationalized and auditable, but the archived probes are negative for "
-                "delayed-value human-review evidence. This supports a falsifiable protocol and "
-                "a measurement boundary, not a positive long-horizon superiority claim."
+                "delayed-value human-review evidence. Candidate mining can prioritize which "
+                "historical comments should enter expensive replay, but these candidates are "
+                "not positive delayed-value cases until paper-only, review-guided, and shuffled "
+                "controls are judged against later frontier evidence."
             ),
             "errors": errors,
             "warnings": warnings,
@@ -219,6 +244,7 @@ def main() -> None:
         citation = audit["citation_backed_probe"]
         semantic = audit["semantic_frontier_judge_probe"]
         review = audit["review_frontier_signal_probe"]
+        candidates = audit["delayed_value_candidate_mining"]
         lines.extend(
             [
                 "",
@@ -233,6 +259,15 @@ def main() -> None:
                 f"- Semantic successful judgements: `{semantic['successful_judgements']}`",
                 f"- Semantic winner counts: `{semantic['winner_counts']}`",
                 f"- Semantic delayed-value candidates: `{semantic['latent_delayed_value_candidate_count']}`",
+                "",
+                "## Candidate Mining",
+                "",
+                f"- Reviews screened: `{candidates['review_count']}`",
+                f"- Papers screened: `{candidates['paper_count']}`",
+                f"- Delayed-value replay candidates: `{candidates['delayed_value_replay_candidate_count']}`",
+                f"- Candidate rate: `{candidates['candidate_rate']}`",
+                f"- Long-horizon positive candidates: `{candidates['long_horizon_positive_candidate_count']}`",
+                f"- Short-term repair signals: `{candidates['short_term_repair_signal_count']}`",
                 "",
                 "## Claim Boundary",
                 "",

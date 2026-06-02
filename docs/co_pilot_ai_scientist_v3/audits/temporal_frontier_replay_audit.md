@@ -1,6 +1,6 @@
 # Temporal Frontier Replay Audit
 
-Audit date: `2026-06-02T09:59:09Z`
+Audit date: `2026-06-02T10:10:56Z`
 
 Status: `pass_with_negative_delayed_value_evidence`
 
@@ -23,9 +23,18 @@ Status: `pass_with_negative_delayed_value_evidence`
 - Semantic winner counts: `{'paper_context': 4, 'review_guided_artifact': 1}`
 - Semantic delayed-value candidates: `0`
 
+## Candidate Mining
+
+- Reviews screened: `473`
+- Papers screened: `160`
+- Delayed-value replay candidates: `120`
+- Candidate rate: `0.2537`
+- Long-horizon positive candidates: `84`
+- Short-term repair signals: `90`
+
 ## Claim Boundary
 
-TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. This supports a falsifiable protocol and a measurement boundary, not a positive long-horizon superiority claim.
+TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, but these candidates are not positive delayed-value cases until paper-only, review-guided, and shuffled controls are judged against later frontier evidence.
 
 ## Warnings
 

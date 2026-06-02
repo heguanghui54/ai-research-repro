@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_human_review_recruitment_and_validation_tooling",
+  "status": "pilot_package_with_delayed_value_candidate_mining",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -618,7 +618,12 @@
     "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.json",
     "scripts/audit_temporal_frontier_replay.py",
     "docs/co_pilot_ai_scientist_v3/audits/temporal_frontier_replay_audit.md",
-    "docs/co_pilot_ai_scientist_v3/audits/temporal_frontier_replay_audit.json"
+    "docs/co_pilot_ai_scientist_v3/audits/temporal_frontier_replay_audit.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/candidate_reviews.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/tfr_replay_queue.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/README.md",
+    "scripts/run_delayed_value_review_candidate_mining.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1620,5 +1625,12 @@
     "best_single_gate_utility_capture_rate": 0.3741,
     "random_category_mean_utility_capture_rate": 0.7059,
     "claim_boundary": "Held-out validation supports stability of deterministic OpenReview-to-gate routing under a paper-level split. It does not provide independent human labels, does not prove downstream paper-quality improvement, and should be treated as an offline bias-reduction check for the review-derived gate policy."
+  },
+  "delayed_value_review_candidate_mining": {
+    "run_id": "delayed_value_review_candidate_mining_20260603_001500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/summary.json",
+    "candidate_count": 120,
+    "candidate_rate": 0.2537,
+    "claim_boundary": "Candidate screening for TFR replay, not positive delayed-value evidence."
   }
 }

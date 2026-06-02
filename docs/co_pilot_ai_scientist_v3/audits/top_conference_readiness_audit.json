@@ -20,7 +20,8 @@
     "Human scientific taste as a distinct logged prior",
     "Benchmark coverage beyond FML-Bench",
     "High-tail hypothesis statistical operationalization",
-    "Held-out OpenReview gate-routing stability"
+    "Held-out OpenReview gate-routing stability",
+    "Delayed-value review candidate mining for TFR replay prioritization"
   ],
   "unsupported_performance_requirements": [
     "Human collaboration improves paper quality beyond archived manuscript probes",
@@ -149,7 +150,14 @@
     "heldout_review_gate_validation_heldout_papers": 32,
     "heldout_review_gate_validation_full_utility_capture_rate": 1.0,
     "heldout_review_gate_validation_best_single_utility_capture_rate": 0.3741,
-    "heldout_review_gate_validation_random_mean_utility_capture_rate": 0.7059
+    "heldout_review_gate_validation_random_mean_utility_capture_rate": 0.7059,
+    "delayed_value_candidate_mining_runs": 1,
+    "delayed_value_candidate_mining_reviews": 473,
+    "delayed_value_candidate_mining_papers": 160,
+    "delayed_value_candidate_mining_replay_candidates": 120,
+    "delayed_value_candidate_mining_candidate_rate": 0.2537,
+    "delayed_value_candidate_mining_long_horizon_positive_candidates": 84,
+    "delayed_value_candidate_mining_short_term_repair_signals": 90
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -218,7 +226,7 @@
     "audited_pushed_commit": true,
     "generated_files_byte_identical_after_rebuild": false,
     "generated_file_drift_note": "Rebuilding in the clean clone refreshed derived trace-dataset audit files and four PDFs; scripts completed successfully and all manifest artifacts exist, so this is a source-rebuild pass rather than a byte-for-byte generated-artifact immutability claim.",
-    "note": "Verifies the current pushed paper/skill/TFR package at dc8f35be with a shallow clean clone; shallow clone explains the one-entry commit index. Latest TFR probes remain negative for delayed-value evidence but are present, operationalized, and internally consistent.",
+    "note": "Verifies the pushed paper/skill/TFR package at dc8f35be with a shallow clean clone; shallow clone explains the one-entry commit index. Needs refresh after the delayed-value candidate-mining addition. Latest validated TFR probes remain negative for delayed-value evidence, while candidate mining only prioritizes future replay.",
     "tfr_method_text_present": "pass",
     "tfr_skill_instructions_present": "pass",
     "temporal_frontier_replay_audit_present": true,

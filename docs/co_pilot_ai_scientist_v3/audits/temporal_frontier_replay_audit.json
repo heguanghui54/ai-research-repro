@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T09:59:09Z",
+  "audit_date": "2026-06-02T10:10:56Z",
   "status": "pass_with_negative_delayed_value_evidence",
   "spec": "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.json",
   "protocol": "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.json",
@@ -7,7 +7,8 @@
     "deterministic_smoke": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_alignment_smoke_20260602_160000/summary.json",
     "citation_backed_probe": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_213000/summary.json",
     "review_frontier_signal_probe": "docs/co_pilot_ai_scientist_v3/experiments/review_frontier_signal_probe_20260602_214500/summary.json",
-    "semantic_frontier_judge_probe": "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/summary.json"
+    "semantic_frontier_judge_probe": "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/summary.json",
+    "delayed_value_candidate_mining": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/summary.json"
   },
   "required_conditions_present": true,
   "delayed_value_definition_complete": true,
@@ -68,7 +69,16 @@
       }
     }
   },
-  "claim_boundary": "TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. This supports a falsifiable protocol and a measurement boundary, not a positive long-horizon superiority claim.",
+  "delayed_value_candidate_mining": {
+    "review_count": 473,
+    "paper_count": 160,
+    "delayed_value_replay_candidate_count": 120,
+    "candidate_rate": 0.2537,
+    "long_horizon_positive_candidate_count": 84,
+    "short_term_repair_signal_count": 90,
+    "claim_boundary": "This is candidate mining, not delayed-value evidence. A true delayed-value case still requires replaying the historical paper under paper-only, review-guided, and shuffled-review-control conditions and judging the outputs against later frontier evidence."
+  },
+  "claim_boundary": "TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, but these candidates are not positive delayed-value cases until paper-only, review-guided, and shuffled controls are judged against later frontier evidence.",
   "errors": [],
   "warnings": [
     "No delayed-value review signal is found in the current archived TFR probes."
