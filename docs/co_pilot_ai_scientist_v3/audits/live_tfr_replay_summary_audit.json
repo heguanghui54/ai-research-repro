@@ -1,23 +1,23 @@
 {
-  "audit_date": "2026-06-02T15:56:03Z",
+  "audit_date": "2026-06-02T16:04:19Z",
   "status": "pass",
   "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/live_tfr_replay_aggregate_20260603_003500",
   "summary": "docs/co_pilot_ai_scientist_v3/experiments/live_tfr_replay_aggregate_20260603_003500/summary.json",
   "observed": {
-    "executed_case_count": 2,
-    "same_model_raw_positive_count": 2,
+    "executed_case_count": 3,
+    "same_model_raw_positive_count": 3,
     "strict_positive_count": 0,
-    "cross_model_successful_judge_count": 2,
+    "cross_model_successful_judge_count": 3,
     "cross_model_strict_positive_count": 0
   },
   "expected": {
-    "executed_case_count": 2,
-    "same_model_raw_positive_count": 2,
+    "executed_case_count": 3,
+    "same_model_raw_positive_count": 3,
     "strict_positive_count": 0,
-    "cross_model_successful_judge_count": 2,
+    "cross_model_successful_judge_count": 3,
     "cross_model_strict_positive_count": 0
   },
   "errors": [],
   "warnings": [],
-  "claim_boundary": "A pass means the aggregate live TFR replay summary is internally consistent with the archived two-case replay evidence. It does not mean delayed-value evidence, benchmark reruns, or human ratings exist."
+  "claim_boundary": "A pass means the aggregate live TFR replay summary is internally consistent with the archived three-case replay evidence. It does not mean delayed-value evidence, benchmark reruns, or human ratings exist."
 }

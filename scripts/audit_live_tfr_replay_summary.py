@@ -46,10 +46,10 @@ def main() -> None:
         errors.append(f"missing README: {_rel(readme_path)}")
 
     expected = {
-        "executed_case_count": 2,
-        "same_model_raw_positive_count": 2,
+        "executed_case_count": 3,
+        "same_model_raw_positive_count": 3,
         "strict_positive_count": 0,
-        "cross_model_successful_judge_count": 2,
+        "cross_model_successful_judge_count": 3,
         "cross_model_strict_positive_count": 0,
     }
     observed = {key: summary.get(key) for key in expected}
@@ -59,10 +59,10 @@ def main() -> None:
 
     case_rows = summary.get("case_rows", [])
     cross_rows = summary.get("cross_model_rows", [])
-    if len(case_rows) != 2:
-        errors.append("case_rows does not contain two executed cases")
-    if len(cross_rows) != 2:
-        errors.append("cross_model_rows does not contain two cross-model runs")
+    if len(case_rows) != 3:
+        errors.append("case_rows does not contain three executed cases")
+    if len(cross_rows) != 3:
+        errors.append("cross_model_rows does not contain three cross-model runs")
     if any(row.get("strict_label") == "positive" for row in case_rows):
         warnings.append("at least one same-model strict positive case appears in aggregate")
     if any(
@@ -84,7 +84,7 @@ def main() -> None:
         "warnings": warnings,
         "claim_boundary": (
             "A pass means the aggregate live TFR replay summary is internally "
-            "consistent with the archived two-case replay evidence. It does not "
+            "consistent with the archived three-case replay evidence. It does not "
             "mean delayed-value evidence, benchmark reruns, or human ratings exist."
         ),
     }

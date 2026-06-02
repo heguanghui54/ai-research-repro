@@ -1,0 +1,48 @@
+{
+  "case_id": "paper_37_review_1",
+  "per_condition": {
+    "paper_only": {
+      "short_term_score": 4,
+      "frontier_alignment_score": 3,
+      "actionability_score": 4,
+      "specificity_score": 4,
+      "claim_calibration_score": 4,
+      "overall": 4,
+      "rationale": "The plan is clear and actionable, with a strong hypothesis and method. However, it lacks some frontier alignment."
+    },
+    "raw_review_guided": {
+      "short_term_score": 4,
+      "frontier_alignment_score": 4,
+      "actionability_score": 4,
+      "specificity_score": 4,
+      "claim_calibration_score": 4,
+      "overall": 4,
+      "rationale": "This artifact aligns well with frontier themes and provides actionable insights, making it a strong candidate."
+    },
+    "six_gate_hybrid_guided": {
+      "short_term_score": 3,
+      "frontier_alignment_score": 5,
+      "actionability_score": 3,
+      "specificity_score": 3,
+      "claim_calibration_score": 4,
+      "overall": 4,
+      "rationale": "While it has excellent frontier alignment, the actionability and specificity could be improved."
+    },
+    "shuffled_review_control": {
+      "short_term_score": 3,
+      "frontier_alignment_score": 3,
+      "actionability_score": 3,
+      "specificity_score": 3,
+      "claim_calibration_score": 3,
+      "overall": 3,
+      "rationale": "This artifact is less aligned with frontier themes and lacks clarity in its actionability."
+    }
+  },
+  "winner_short_term": "paper_only|raw_review_guided|six_gate_hybrid_guided|shuffled_review_control|tie",
+  "winner_frontier": "six_gate_hybrid_guided|raw_review_guided|paper_only|shuffled_review_control|tie",
+  "delayed_value_label": "positive",
+  "delayed_value_rationale": "The artifacts demonstrate strong potential for advancing causal inference methods, particularly in handling design shifts.",
+  "best_review_signal": "raw_review_guided|six_gate_hybrid_guided|none",
+  "failure_modes_observed": ["Confusing correlation with causation", "Neglecting unobserved confounders"],
+  "claim_boundary": "No completed benchmark result is claimed."
+}

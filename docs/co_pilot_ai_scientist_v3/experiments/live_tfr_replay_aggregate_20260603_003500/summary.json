@@ -1,11 +1,11 @@
 {
   "run_id": "live_tfr_replay_aggregate_20260603_003500",
-  "timestamp_utc": "2026-06-02T15:50:05Z",
+  "timestamp_utc": "2026-06-02T16:00:34Z",
   "status": "live_tfr_replay_aggregate",
-  "executed_case_count": 2,
-  "same_model_raw_positive_count": 2,
+  "executed_case_count": 3,
+  "same_model_raw_positive_count": 3,
   "strict_positive_count": 0,
-  "cross_model_successful_judge_count": 2,
+  "cross_model_successful_judge_count": 3,
   "cross_model_strict_positive_count": 0,
   "case_rows": [
     {
@@ -39,6 +39,23 @@
       "failure_modes": [
         "Generic praise without actionable insights",
         "Overclaiming generalization capabilities without empirical support"
+      ],
+      "strict_note": "strict preregistered delayed-value rule not satisfied; guided conditions did not have lower short-term score than paper_only while beating paper_only and shuffled_control on frontier alignment"
+    },
+    {
+      "case_id": "paper_37_review_1",
+      "title": "Learning Weighted Representations for Generalization Across Designs",
+      "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000",
+      "status": "executed_delayed_value_replay_case",
+      "judge_model": "gpt-4o-mini",
+      "model_label": "positive",
+      "strict_label": "mixed_or_inconclusive",
+      "winner_short_term": "tie",
+      "winner_frontier": "six_gate_hybrid_guided",
+      "best_review_signal": "none",
+      "failure_modes": [
+        "Confusing correlation with causation",
+        "Neglecting unobserved confounders"
       ],
       "strict_note": "strict preregistered delayed-value rule not satisfied; guided conditions did not have lower short-term score than paper_only while beating paper_only and shuffled_control on frontier alignment"
     }
@@ -130,9 +147,51 @@
           ]
         }
       }
+    },
+    {
+      "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500",
+      "source_case_run": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000",
+      "models_attempted": [
+        "claude-3-7-sonnet-latest"
+      ],
+      "models_succeeded": [
+        "claude-3-7-sonnet-latest"
+      ],
+      "errors": {},
+      "aggregate": {
+        "judge_count": 1,
+        "strict_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "model_label_counts": {
+          "negative": 1
+        },
+        "frontier_winner_counts": {
+          "six_gate_hybrid_guided": 1
+        },
+        "short_term_winner_counts": {
+          "tie": 1
+        },
+        "all_strict_positive": false,
+        "any_model_strict_disagreement": true
+      },
+      "judgement_digest": {
+        "claude-3-7-sonnet-latest": {
+          "model_label": "negative",
+          "strict_label": "mixed_or_inconclusive",
+          "winner_short_term": "tie",
+          "winner_frontier": "six_gate_hybrid_guided",
+          "failure_modes_observed": [
+            "All conditions produce nearly identical, generic content—review signals fail to differentiate guided from unguided conditions",
+            "No condition achieves specificity in benchmark design (no concrete dataset parameters, sample sizes, or formal identification conditions)",
+            "Identification clarity is consistently poor—all conditions conflate prediction accuracy with causal identification",
+            "Failure mode analysis is superficial across all conditions—listed as labels without mechanistic depth"
+          ]
+        }
+      }
     }
   ],
-  "interpretation": "Across two live four-condition TFR cases, the same-model GPT judge labels both cases positive before deterministic rule repair, but the strict preregistered delayed-value rule finds zero positive cases. Claude cross-model review also finds zero strict positive cases while often selecting the six-gate artifact as the frontier winner. This supports TFR as a model-optimism guard and failure-mode diagnostic, not as evidence that delayed-value review signals have already been found.",
+  "interpretation": "Across three live four-condition TFR cases, the same-model GPT judge labels all three cases positive before deterministic rule repair, but the strict preregistered delayed-value rule finds zero positive cases. Claude cross-model review also finds zero strict positive cases while often selecting the six-gate artifact as the frontier winner. In the third case, Claude's model label is negative because the review signals are too generic and the generated artifacts remain poorly differentiated. This supports TFR as a model-optimism guard and failure-mode diagnostic, not as evidence that delayed-value review signals have already been found.",
   "claim_boundary": "This aggregate summarizes model-generated mini-paper replay artifacts and model judges. It does not include benchmark reruns, human expert ratings, or proof that human reviews improve long-horizon scientific outcomes.",
   "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/live_tfr_replay_aggregate_20260603_003500/summary.json"
 }

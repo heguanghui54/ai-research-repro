@@ -1,0 +1,144 @@
+{
+  "run_id": "delayed_value_replay_case_paper_37_review_1_20260603_004000",
+  "timestamp_utc": "2026-06-02T15:59:09Z",
+  "status": "executed_delayed_value_replay_case",
+  "case_id": "paper_37_review_1",
+  "title": "Learning Weighted Representations for Generalization Across Designs",
+  "source_spec": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/replay_spec.json",
+  "generation_model": "gpt-4o-mini",
+  "judge_model": "gpt-4o-mini",
+  "live_model_calls": 2,
+  "generation_latency_seconds": 17.901,
+  "scoring_latency_seconds": 7.934,
+  "generated": {
+    "case_id": "paper_37_review_1",
+    "artifacts": {
+      "paper_only": {
+        "hypothesis": "Weighted representations can effectively generalize treatment effects across varying designs, even under covariate shifts.",
+        "method": "Utilize a synthetic dataset with varying treatment policies and covariate distributions to evaluate the robustness of weighted representations.",
+        "experiment_plan": "Conduct a train/test split where the training set has a specific design and the test set has a shifted design. Measure treatment effects using weighted representations.",
+        "ablation_or_stress_test": "Remove certain covariates from the model to assess the impact on treatment effect estimation.",
+        "expected_evidence": "The model should maintain accuracy in treatment effect estimation despite changes in covariate distribution.",
+        "failure_modes": "Confusing correlation with causation; failing to account for unobserved confounders.",
+        "claim_boundary": "This study does not claim that weighted representations are the only method for causal inference.",
+        "mini_paper": "This research aims to explore the efficacy of weighted representations in causal inference across different designs. The hypothesis posits that these representations can generalize treatment effects effectively, even when faced with covariate shifts. To test this, we will create a synthetic dataset that simulates varying treatment policies and covariate distributions. The experiment will involve a train/test design shift, where the training data is generated under one design and the testing data under another. We will measure the treatment effects using weighted representations and expect to find that the model retains accuracy despite changes in the covariate distribution. An ablation test will be conducted by removing specific covariates to evaluate the robustness of the treatment effect estimation. Potential failure modes include confusing correlation with causation and neglecting unobserved confounders. Importantly, this study does not claim that weighted representations are the sole method for causal inference, allowing for a nuanced understanding of their applicability."
+      },
+      "raw_review_guided": {
+        "hypothesis": "The proposed method can accurately infer treatment effects in the presence of covariate shifts.",
+        "review_signal_used": [
+          "The paper proposes a novel way of causal inference.",
+          "The goal is to infer the treatment effect E(Y|T=1,X=x) - E(Y|T=0,X=x)."
+        ],
+        "method": "Implement a causal inference framework that incorporates covariate shifts and evaluates treatment effects.",
+        "experiment_plan": "Create a dataset with binary treatments and varying covariates. Train the model on one design and test on another to assess treatment effect estimation.",
+        "ablation_or_stress_test": "Test the model's performance when certain covariates are omitted.",
+        "expected_evidence": "The model should provide reliable treatment effect estimates across different designs.",
+        "failure_modes": "Confusing prediction generalization with causal identification; neglecting treatment-effect metrics.",
+        "claim_boundary": "This research does not assert that the proposed method is universally applicable to all causal inference scenarios.",
+        "mini_paper": "This study investigates a novel approach to causal inference, focusing on the ability to accurately infer treatment effects in the presence of covariate shifts. The hypothesis suggests that the proposed method can effectively estimate treatment effects, even when the underlying distribution of covariates changes. To validate this hypothesis, we will create a dataset featuring binary treatments and varying covariates. The model will be trained on one design and tested on another to evaluate its performance in estimating treatment effects. An ablation test will be conducted by omitting specific covariates to assess the robustness of the model. We anticipate that the model will yield reliable treatment effect estimates across different designs. However, potential failure modes include confusing prediction generalization with causal identification and neglecting treatment-effect metrics. Importantly, this research does not claim that the proposed method is universally applicable to all causal inference scenarios."
+      },
+      "six_gate_hybrid_guided": {
+        "hypothesis": "Human insights can refine automated methods for causal inference, enhancing treatment effect generalization.",
+        "gate_actions": {
+          "scientific_taste_prior": "Identify the importance of accurately inferring treatment effects under design shifts.",
+          "evaluator_stress_test": "Evaluate the model's performance under extreme covariate shifts to expose weaknesses.",
+          "frontier_steering": "Align the follow-up with emerging trends in causal representation learning.",
+          "verifiable_micro_evolution": "Develop a bounded code that automates the evaluation of treatment effects under design shifts.",
+          "structured_feedback": "Provide specific recommendations for improving the model's treatment effect estimation.",
+          "claim_calibration": "The follow-up must not claim that human insights alone can solve all causal inference challenges."
+        },
+        "method": "Integrate human feedback into the automated causal inference framework to enhance treatment effect estimation.",
+        "experiment_plan": "Conduct experiments with varying designs and covariate distributions, incorporating human insights to guide model adjustments.",
+        "ablation_or_stress_test": "Assess the model's robustness by varying the amount of human feedback provided.",
+        "expected_evidence": "The model should show improved treatment effect estimation accuracy when human insights are integrated.",
+        "failure_modes": "Confusing prediction generalization with causal identification; relying too heavily on human feedback without empirical validation.",
+        "claim_boundary": "This study does not claim that human insights can replace automated methods entirely.",
+        "mini_paper": "This research explores the intersection of human insights and automated causal inference methods, positing that human feedback can refine automated approaches to enhance treatment effect generalization. The hypothesis suggests that integrating human insights can improve the accuracy of treatment effect estimation across varying designs. To test this, we will conduct experiments that incorporate human feedback into the automated causal inference framework, evaluating its impact on treatment effect estimation under different covariate distributions. An ablation test will vary the amount of human feedback provided to assess its influence on model performance. We expect that the model will demonstrate improved accuracy in treatment effect estimation when human insights are integrated. However, potential failure modes include confusing prediction generalization with causal identification and over-reliance on human feedback without empirical validation. Importantly, this study does not claim that human insights can replace automated methods entirely, allowing for a balanced approach to causal inference."
+      },
+      "shuffled_review_control": {
+        "hypothesis": "A novel approach to causal inference can maintain treatment effect estimation accuracy despite design shifts.",
+        "control_signal_used": [
+          "The proposed method aims to improve causal inference.",
+          "The focus is on treatment effect estimation."
+        ],
+        "method": "Develop a framework for causal inference that adapts to varying designs and covariate distributions.",
+        "experiment_plan": "Simulate a dataset with varying treatment policies and covariate distributions, testing the model's performance across different designs.",
+        "ablation_or_stress_test": "Evaluate the model's performance when specific covariates are excluded.",
+        "expected_evidence": "The model should demonstrate resilience in treatment effect estimation across design shifts.",
+        "failure_modes": "Confusing correlation with causation; neglecting the impact of unobserved confounders.",
+        "claim_boundary": "This research does not claim that the proposed method is the definitive solution for all causal inference challenges.",
+        "mini_paper": "This study investigates a novel approach to causal inference, aiming to maintain treatment effect estimation accuracy despite design shifts. The hypothesis posits that the proposed method can effectively estimate treatment effects across varying designs and covariate distributions. To validate this, we will simulate a dataset with different treatment policies and covariate distributions, testing the model's performance across these designs. An ablation test will assess the model's robustness by excluding specific covariates. We expect the model to demonstrate resilience in treatment effect estimation across design shifts. However, potential failure modes include confusing correlation with causation and neglecting the impact of unobserved confounders. Importantly, this research does not claim that the proposed method is the definitive solution for all causal inference challenges."
+      }
+    },
+    "generation_claim_boundary": "No completed benchmark result is claimed."
+  },
+  "scoring": {
+    "case_id": "paper_37_review_1",
+    "per_condition": {
+      "paper_only": {
+        "short_term_score": 4.0,
+        "frontier_alignment_score": 3.0,
+        "actionability_score": 4.0,
+        "specificity_score": 4.0,
+        "claim_calibration_score": 4.0,
+        "overall": 4.0,
+        "rationale": "The plan is clear and actionable, with a strong hypothesis and method. However, it lacks some frontier alignment."
+      },
+      "raw_review_guided": {
+        "short_term_score": 4.0,
+        "frontier_alignment_score": 4.0,
+        "actionability_score": 4.0,
+        "specificity_score": 4.0,
+        "claim_calibration_score": 4.0,
+        "overall": 4.0,
+        "rationale": "This artifact aligns well with frontier themes and provides actionable insights, making it a strong candidate."
+      },
+      "six_gate_hybrid_guided": {
+        "short_term_score": 3.0,
+        "frontier_alignment_score": 5.0,
+        "actionability_score": 3.0,
+        "specificity_score": 3.0,
+        "claim_calibration_score": 4.0,
+        "overall": 4.0,
+        "rationale": "While it has excellent frontier alignment, the actionability and specificity could be improved."
+      },
+      "shuffled_review_control": {
+        "short_term_score": 3.0,
+        "frontier_alignment_score": 3.0,
+        "actionability_score": 3.0,
+        "specificity_score": 3.0,
+        "claim_calibration_score": 3.0,
+        "overall": 3.0,
+        "rationale": "This artifact is less aligned with frontier themes and lacks clarity in its actionability."
+      }
+    },
+    "winner_short_term": "tie",
+    "winner_frontier": "six_gate_hybrid_guided",
+    "delayed_value_label": "mixed_or_inconclusive",
+    "delayed_value_rationale": "The artifacts demonstrate strong potential for advancing causal inference methods, particularly in handling design shifts.",
+    "best_review_signal": "none",
+    "failure_modes_observed": [
+      "Confusing correlation with causation",
+      "Neglecting unobserved confounders"
+    ],
+    "claim_boundary": "No completed benchmark result is claimed.",
+    "model_delayed_value_label": "positive",
+    "deterministic_label_note": "strict preregistered delayed-value rule not satisfied; guided conditions did not have lower short-term score than paper_only while beating paper_only and shuffled_control on frontier alignment"
+  },
+  "claim_boundary": "This is one live model-generated four-condition mini-paper replay. It scores research-plan artifacts only; it does not rerun the original paper benchmarks, collect human expert ratings, or prove delayed-value review efficacy.",
+  "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/summary.json",
+  "artifacts_written": [
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/generation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/generated_artifacts.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/scoring_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/scoring_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/condition_scores.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/paper_only_artifact.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/raw_review_guided_artifact.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/six_gate_hybrid_guided_artifact.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000/shuffled_review_control_artifact.md"
+  ]
+}

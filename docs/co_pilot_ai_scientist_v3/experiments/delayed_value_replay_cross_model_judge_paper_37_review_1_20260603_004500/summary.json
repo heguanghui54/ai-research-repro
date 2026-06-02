@@ -1,0 +1,101 @@
+{
+  "run_id": "delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500",
+  "timestamp_utc": "2026-06-02T15:59:53Z",
+  "status": "delayed_value_replay_cross_model_judge",
+  "source_case_run": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000",
+  "models_attempted": [
+    "claude-3-7-sonnet-latest"
+  ],
+  "models_succeeded": [
+    "claude-3-7-sonnet-latest"
+  ],
+  "judgements": {
+    "claude-3-7-sonnet-latest": {
+      "per_condition": {
+        "paper_only": {
+          "short_term_score": 2.0,
+          "frontier_alignment_score": 2.0,
+          "actionability_score": 2.0,
+          "specificity_score": 2.0,
+          "claim_calibration_score": 3.0,
+          "overall": 2.0,
+          "rationale": "The paper_only condition produces a generic, vague plan. The hypothesis is reasonable but lacks specificity about what 'weighted representations' means mechanically. The experiment plan mentions a train/test design shift but gives no concrete dataset parameters, no metrics beyond 'accuracy', and no connection to causal identification theory. Failure modes are listed but superficially. Frontier alignment is weak—no mention of causal representation learning, domain generalization literature, or policy shift formalism. Identification clarity is poor; the method conflates prediction accuracy with causal identification."
+        },
+        "raw_review_guided": {
+          "short_term_score": 2.0,
+          "frontier_alignment_score": 2.0,
+          "actionability_score": 2.0,
+          "specificity_score": 2.0,
+          "claim_calibration_score": 3.0,
+          "overall": 2.0,
+          "rationale": "The raw_review_guided condition uses minimal review signals—two generic sentences that add little beyond what paper_only already contains. The hypothesis and method are nearly identical to paper_only with minor rewording. The review signals cited ('novel way of causal inference', 'infer treatment effect') are too generic to constitute actionable guidance. No improvement in specificity of benchmark design, no deeper engagement with design shift formalism, and no meaningful differentiation from paper_only. Failure modes are slightly better (mentions prediction vs. causal identification confusion) but still shallow."
+        },
+        "six_gate_hybrid_guided": {
+          "short_term_score": 2.0,
+          "frontier_alignment_score": 3.0,
+          "actionability_score": 2.0,
+          "specificity_score": 2.0,
+          "claim_calibration_score": 3.0,
+          "overall": 2.0,
+          "rationale": "The six_gate_hybrid_guided condition introduces a gate structure that nominally addresses frontier steering and evaluator stress testing, which gives a marginal improvement in frontier alignment score. However, the actual content of the mini_paper and experiment plan is still generic and vague. The 'human insights' framing is a distraction from the core causal inference problem and is not grounded in the paper's actual methodology. The gate actions are listed as labels without substantive content. Specificity remains low—no concrete dataset, no formal identification conditions, no quantitative metrics. The frontier steering gate mentions 'causal representation learning' which is a positive signal, but it is not operationalized."
+        },
+        "shuffled_review_control": {
+          "short_term_score": 2.0,
+          "frontier_alignment_score": 2.0,
+          "actionability_score": 2.0,
+          "specificity_score": 2.0,
+          "claim_calibration_score": 3.0,
+          "overall": 2.0,
+          "rationale": "The shuffled_review_control is nearly indistinguishable from paper_only in content and quality. The control signals used are generic placeholders. The experiment plan, failure modes, and claim boundary are essentially the same as paper_only. No differentiation is observable. This is consistent with a shuffled/irrelevant signal providing no useful guidance, but it also means the control performs at the same low baseline as the other conditions."
+        }
+      },
+      "winner_short_term": "tie",
+      "winner_frontier": "six_gate_hybrid_guided",
+      "model_delayed_value_label": "negative",
+      "delayed_value_rationale": "The preregistered positive delayed-value rule requires that a guided condition (raw_review_guided or six_gate_hybrid_guided) achieves lower short_term_score than paper_only AND higher frontier_alignment_score than paper_only, AND beats shuffled_review_control on frontier_alignment_score, AND the responsible review signal is specific and actionable. None of these conditions are met. All four artifacts score at approximately the same low level across all dimensions. The guided conditions do not demonstrate meaningful improvement over paper_only or shuffled_review_control. The review signals used in raw_review_guided are too generic to be considered specific and actionable. The six_gate_hybrid_guided shows a marginal frontier alignment advantage but does not achieve lower short_term_score than paper_only (they are tied), and the gate content is not substantively operationalized. The overall quality of all artifacts is poor, with no condition demonstrating the differentiated performance required for a positive delayed-value label.",
+      "failure_modes_observed": [
+        "All conditions produce nearly identical, generic content—review signals fail to differentiate guided from unguided conditions",
+        "No condition achieves specificity in benchmark design (no concrete dataset parameters, sample sizes, or formal identification conditions)",
+        "Identification clarity is consistently poor—all conditions conflate prediction accuracy with causal identification",
+        "Failure mode analysis is superficial across all conditions—listed as labels without mechanistic depth",
+        "six_gate_hybrid_guided introduces an irrelevant 'human insights' framing that distracts from the core causal inference problem",
+        "raw_review_guided uses review signals that are too generic to constitute actionable guidance",
+        "No condition engages with the formal literature on domain generalization, covariate shift, or causal representation learning beyond surface-level mentions",
+        "Frontier steering in six_gate_hybrid_guided mentions causal representation learning but fails to operationalize it in the experiment plan"
+      ],
+      "claim_boundary": "No completed benchmark result is claimed. All scores reflect assessment of the quality and specificity of the generated research plans, not empirical outcomes.",
+      "strict_delayed_value_label": "mixed_or_inconclusive",
+      "strict_best_review_signal": "none",
+      "strict_label_note": "strict preregistered delayed-value rule not satisfied under this judge",
+      "_latency_seconds": 25.932,
+      "_attempts": 1
+    }
+  },
+  "errors": {},
+  "aggregate": {
+    "judge_count": 1,
+    "strict_label_counts": {
+      "mixed_or_inconclusive": 1
+    },
+    "model_label_counts": {
+      "negative": 1
+    },
+    "frontier_winner_counts": {
+      "six_gate_hybrid_guided": 1
+    },
+    "short_term_winner_counts": {
+      "tie": 1
+    },
+    "all_strict_positive": false,
+    "any_model_strict_disagreement": true
+  },
+  "claim_boundary": "This cross-model judge scores already generated four-condition mini-paper artifacts. It reduces same-model scoring bias but is still model evaluation, not human expert review or benchmark execution.",
+  "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/summary.json",
+  "artifacts_written": [
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/judge_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/claude-3-7-sonnet-latest_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/claude-3-7-sonnet-latest_judgement.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/README.md"
+  ]
+}

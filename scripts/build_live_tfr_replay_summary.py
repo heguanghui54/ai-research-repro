@@ -16,11 +16,13 @@ EXP_DIR = DOC_DIR / "experiments"
 CASE_RUNS = [
     EXP_DIR / "delayed_value_replay_case_paper_105_review_1_20260602_235500",
     EXP_DIR / "delayed_value_replay_case_paper_132_review_2_20260603_002500",
+    EXP_DIR / "delayed_value_replay_case_paper_37_review_1_20260603_004000",
 ]
 
 CROSS_MODEL_RUNS = [
     EXP_DIR / "delayed_value_replay_cross_model_judge_20260603_001500",
     EXP_DIR / "delayed_value_replay_cross_model_judge_paper_132_review_2_20260603_003000",
+    EXP_DIR / "delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500",
 ]
 
 
@@ -164,11 +166,13 @@ def main() -> None:
         "case_rows": case_rows,
         "cross_model_rows": cross_rows,
         "interpretation": (
-            "Across two live four-condition TFR cases, the same-model GPT judge "
-            "labels both cases positive before deterministic rule repair, but the "
+            "Across three live four-condition TFR cases, the same-model GPT judge "
+            "labels all three cases positive before deterministic rule repair, but the "
             "strict preregistered delayed-value rule finds zero positive cases. "
             "Claude cross-model review also finds zero strict positive cases while "
-            "often selecting the six-gate artifact as the frontier winner. This "
+            "often selecting the six-gate artifact as the frontier winner. In the "
+            "third case, Claude's model label is negative because the review signals "
+            "are too generic and the generated artifacts remain poorly differentiated. This "
             "supports TFR as a model-optimism guard and failure-mode diagnostic, not "
             "as evidence that delayed-value review signals have already been found."
         ),

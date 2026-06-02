@@ -2,7 +2,7 @@
 
 ## 摘要
 
-自动科研智能体已经可以提出假设、运行实验、撰写论文并优化代码，但它们仍缺少一种原则化方式来利用人类科研品味：也就是人类判断哪些问题、失败、机制或主张边界更值得追求的非指标化能力。普通 co-pilot 工作流往往把人类当作审批者或编辑者；完全自动化系统则可能移除科学研究中最关键的判断。本论文提出洞察门控科研演化（Insight-Gated Research Evolution, IGRE），把人类科研品味与专家评审洞察转化为 AI Scientist-v2 式科研循环中的显式控制信号。IGRE 包含六类门控：科研品味先验、评估器压力测试、前沿方向调度、可验证微演化、结构化反馈、主张校准。本文进一步提出时间前沿回放（Temporal Frontier Replay, TFR），用离线回放协议检验历史同行评审是否本可以把自动科研引向后来的学科轨迹。IGRE 与 TFR 共同使人类参与不再被默认视为正向影响，而是可以被测量和审计：门控记录证据、注意力成本和主张边界，历史评审信号则根据未来前沿证据接受回放检验。我们基于 FML-bench 式运行、OpenEvolve 式微演化实验、OpenReview 专家评审信号、成对论文生成探针、TFR 审计和 clean-clone 可复现性检查构建证据包。当前证据支持一个保守结论：专家评审文本可以映射为可行动的工作流门控；评审引导的再生成在跨模型复审下能改善部分科研产物；两条真实四条件 TFR 回放在严格预注册规则下仍是混合结果；短预算人类门控 FML 运行则是混合或负向结果，而不是自动优于全自动基线。因此本文不是“人类总能提升自动科研”的证明，而是一种用于设计、比较和审计人类洞察如何改变科研搜索过程的可复现方法。
+自动科研智能体已经可以提出假设、运行实验、撰写论文并优化代码，但它们仍缺少一种原则化方式来利用人类科研品味：也就是人类判断哪些问题、失败、机制或主张边界更值得追求的非指标化能力。普通 co-pilot 工作流往往把人类当作审批者或编辑者；完全自动化系统则可能移除科学研究中最关键的判断。本论文提出洞察门控科研演化（Insight-Gated Research Evolution, IGRE），把人类科研品味与专家评审洞察转化为 AI Scientist-v2 式科研循环中的显式控制信号。IGRE 包含六类门控：科研品味先验、评估器压力测试、前沿方向调度、可验证微演化、结构化反馈、主张校准。本文进一步提出时间前沿回放（Temporal Frontier Replay, TFR），用离线回放协议检验历史同行评审是否本可以把自动科研引向后来的学科轨迹。IGRE 与 TFR 共同使人类参与不再被默认视为正向影响，而是可以被测量和审计：门控记录证据、注意力成本和主张边界，历史评审信号则根据未来前沿证据接受回放检验。我们基于 FML-bench 式运行、OpenEvolve 式微演化实验、OpenReview 专家评审信号、成对论文生成探针、TFR 审计和 clean-clone 可复现性检查构建证据包。当前证据支持一个保守结论：专家评审文本可以映射为可行动的工作流门控；评审引导的再生成在跨模型复审下能改善部分科研产物；三条真实四条件 TFR 回放在严格预注册规则下仍是混合结果；短预算人类门控 FML 运行则是混合或负向结果，而不是自动优于全自动基线。因此本文不是“人类总能提升自动科研”的证明，而是一种用于设计、比较和审计人类洞察如何改变科研搜索过程的可复现方法。
 
 ## 1. 引言
 
@@ -53,7 +53,7 @@ Gate, LHTG）。LHTG 用来操作化本文最核心的直觉：一条人类评�
 
 IGRE 还包含一个离线学习与评估模式：时间前沿回放（Temporal Frontier Replay, TFR）。TFR 的作用，是把回顾性的同行评审数据转化为科研品味测试，而不只是又一个论文质量 rubric。给定时间 `t` 的历史论文、它收到的评审意见，以及时间 `t + delta` 的后续学科证据，TFR 构造三个回放条件：paper-only、review-guided 和 shuffled-review-control。然后它检验 review-guided 回放究竟只是改善了局部产物质量，还是也把生成的研究计划推向了后来的主流或 SOTA 方向。delayed-value signal 指的是时间不对称情形：评审引导可能让短期产物在即时评分上更差，但却更接近后来的学科演化方向。这正是 IGRE 试图保留的人类科研品味。
 
-TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方法调整。普通 benchmark 比较的是一个分支现在是否获胜；TFR 比较的是一条人类评论是否改变了 agent 未来应该搜索什么。当前证据包通过确定性 smoke、引用驱动前沿 probe、评审-前沿信号挖掘、语义前沿 judge 和两条真实四条件回放实现 TFR。这些 probe 规模仍小，而且尚未建立正向 delayed-value 证据；但它们使高尾部假设变得可证伪：有用的人类洞察必须被路由、回放，并根据未来前沿接受检验，而不能因为它来自人类评审就被默认视为有价值。
+TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方法调整。普通 benchmark 比较的是一个分支现在是否获胜；TFR 比较的是一条人类评论是否改变了 agent 未来应该搜索什么。当前证据包通过确定性 smoke、引用驱动前沿 probe、评审-前沿信号挖掘、语义前沿 judge 和三条真实四条件回放实现 TFR。这些 probe 规模仍小，而且尚未建立正向 delayed-value 证据；但它们使高尾部假设变得可证伪：有用的人类洞察必须被路由、回放，并根据未来前沿接受检验，而不能因为它来自人类评审就被默认视为有价值。
 
 ## 4. 实验
 
@@ -85,8 +85,8 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | 语义前沿 judge | review-guided artifact 胜 1 次 | paper context 胜 4 次 | 5 个模型评判案例；0 个 delayed-value candidate | 使用引用元数据的模型 judge 仍偏好原论文上下文；唯一 review-guided 胜例是短期和语义都正向，不是 delayed-value。 |
 | Delayed-value 候选挖掘 | 120 条 replay candidates | 90 条 short-term repair signals；176 条 generic/unrouted | 筛选 473 条 reviews；candidate rate 0.2537 | 先筛出值得昂贵 TFR 验证的评论；这些是候选，不是 positive delayed-value 证据。 |
 | 候选-前沿验证 | delayed candidates 均值 0.24 | controls 均值 0.176 | 16 条尝试中 13 条可评分；delayed-control +0.064 | 弱 OpenAlex 词汇证据显示 replay queue 优于任意控制评论；不是 delayed-value 证明。 |
-| 真实四条件 TFR 回放 | 原始模型 judge 将 2/2 case 标为 positive | 严格预注册规则将 2/2 修正为 mixed | 2 个 case；4 次 same-model 真实调用；strict positives 0 | 说明 TFR 需要确定性规则校验：当短期惩罚条件不成立时，模型乐观判断会被纠正。 |
-| 跨模型 TFR 复评 | Claude 在 2/2 case 中选择 six-gate hybrid 为 frontier winner | 2/2 strict label 仍是 mixed；其中一次 Gemini 返回 malformed JSON | 2 个成功 Claude judge | 降低同模型偏差，并指出 gate actions 经常改善前沿 framing，但没有充分传导到数据集、指标或机制。 |
+| 真实四条件 TFR 回放 | 原始模型 judge 将 3/3 case 标为 positive | 严格预注册规则将 3/3 修正为 mixed | 3 个 case；6 次 same-model 真实调用；strict positives 0 | 说明 TFR 需要确定性规则校验：当短期惩罚条件不成立时，模型乐观判断会被纠正。 |
+| 跨模型 TFR 复评 | Claude 在 3/3 case 中选择 six-gate hybrid 为 frontier winner | 3/3 strict label 仍是 mixed；其中一个 Claude model label 为 negative；一次 Gemini 返回 malformed JSON | 3 个成功 Claude judge | 降低同模型偏差，并指出 gate actions 经常改善前沿 framing，但没有充分传导到数据集、指标、机制或形式化识别条件。 |
 | Prospective matched packages | co-pilot 或人类选分支胜 1 次 | autonomous / tie / invalid 3 次 | 4 个 package | 不支持短预算平均 benchmark 优越性。 |
 | Same-run online FML smokes | co-pilot benchmark 胜 0 次 | autonomous 胜 1 次，平 1 次，未知 1 次 | 3 个 paired smoke | 当前有效 benchmark 证据偏向 autonomous 或平局。 |
 | 端到端配对轨迹稿件 | co-pilot 稿件内部得分 4.64；模型复审 2/2 偏好 co-pilot | autonomous 稿件内部得分 3.48；autonomous benchmark 指标 0.640451 优于 0.862015 | 一个 same-run smoke pair | 证明连续轨迹到稿件的可比较性和指标/质量分歧，不证明 co-pilot 优越性。 |
@@ -100,7 +100,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | IGRE 是本文提出的六门控方法，把人类科研品味视为可记录的科研控制信号。 | 作为方法和 artifact 贡献已支持。 | 不等于每一次人类介入都会改善结果。 |
 | OpenReview 式专家评审可作为离线工作流设计中的人类 taste/insight 代理。 | routeability 已支持：398 条可行动片段，多门控 utility capture 明显优于单门控。 | 离线同行评审不等于实时 co-pilot 数据。 |
 | 有针对性的门控路由可能比把全部人类上下文都喂给 agent 更有用。 | 单门控产物消融给出窄范围支持。 | 目前只是模型评审 mini-artifact，需要人类专家验证。 |
-| TFR 可以检验历史评审是否本可以把自动科研推向后来的学科前沿。 | 作为可运行回放协议已操作化；候选挖掘筛出 120 条评论，小型 OpenAlex 验证显示 delayed candidates 相对 controls 有 +0.064 词汇前沿优势，并已执行两条真实四条件 replay。 | 当前已验证 probe 发现 0 个严格 delayed-value case；两条真实 replay 经预注册规则修正后均为 mixed，因此长期高尾假设尚未被证明。 |
+| TFR 可以检验历史评审是否本可以把自动科研推向后来的学科前沿。 | 作为可运行回放协议已操作化；候选挖掘筛出 120 条评论，小型 OpenAlex 验证显示 delayed candidates 相对 controls 有 +0.064 词汇前沿优势，并已执行三条真实四条件 replay。 | 当前已验证 probe 发现 0 个严格 delayed-value case；三条真实 replay 经预注册规则修正后均为 mixed，因此长期高尾假设尚未被证明。 |
 | 短预算人类门控 FML 运行优于全自动运行。 | 不支持。 | 当前证据混合或负向，应作为失败模式经验而非优越性证据。 |
 | OpenEvolve 式微演化能改善部分可机器评分子问题。 | 窄范围支持。 | 应选择性触发；简单任务中直接编辑仍有竞争力。 |
 
@@ -180,7 +180,7 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 随后我们对这个队列做一个小型 OpenAlex 验证。每个标签类各取 4 个样本，探针检索后续引用论文，抽取 citation-frontier terms，并用标题重合度 guard 排除元数据漂移。16 条尝试中有 13 条通过 guard 并可评分。delayed-value replay candidates 的 mean review signal 为 0.24，combined controls 为 0.176，差值为 +0.064。long-horizon positive candidates 得分 0.28，short-term repair signals 得分 0.09，generic/unrouted comments 得分 0.1867。这说明 replay queue 不是任意评论集合，但也显示最强词汇式未来前沿类别并不完全等于严格 delayed-value candidate。该结果支持 replay 优先级排序，不支持已经发现 delayed-value 正例。
 
-随后我们实际执行两条预注册四条件回放。第一条是 `paper_105_review_1`，即 E2ENet 医学分割案例；第二条是 `paper_132_review_2`，即 NTK regime 下 averaged SGD 的理论案例。每条 replay 都生成 paper-only、raw-review-guided、six-gate-hybrid-guided 和 shuffled-review-control 四个条件。两条 case 中，Monica 路由的 `gpt-4o-mini` judge 最初都标为 positive，但确定性的预注册规则都将其修正为 `mixed_or_inconclusive`：guided artifacts 并没有比 paper-only 更低的短期分数，因此不满足 delayed-value 的短期惩罚条件。跨模型 Claude 复评也把两条 case 都保持为 mixed，同时在两条 case 中都选择 six-gate artifact 作为 frontier winner。诊断很有用：在 E2ENet 中，gate actions 提到了部署约束和稀疏表示，但没有传导到具名数据集、量化效率指标或 DSFF 机制消融；在 NTK 案例中，gate actions 改善了关于 finite-width generalization 的前沿 framing，但仍没有具体指定宽度范围、数据集、量化指标，或 feature learning、kernel approximation error 等 later-frontier NTK 机制。这些不是 delayed-value 成功案例，而是执行证据：TFR 能纠正模型 judge 的乐观判断，并定位门控路由没有真正改变实验设计的位置。
+随后我们实际执行三条预注册四条件回放。第一条是 `paper_105_review_1`，即 E2ENet 医学分割案例；第二条是 `paper_132_review_2`，即 NTK regime 下 averaged SGD 的理论案例；第三条是 `paper_37_review_1`，即跨设计泛化的因果表示案例。每条 replay 都生成 paper-only、raw-review-guided、six-gate-hybrid-guided 和 shuffled-review-control 四个条件。三条 case 中，Monica 路由的 `gpt-4o-mini` judge 最初都标为 positive，但确定性的预注册规则都将其修正为 `mixed_or_inconclusive`：guided artifacts 并没有比 paper-only 更低的短期分数，因此不满足 delayed-value 的短期惩罚条件。跨模型 Claude 复评也把三条 case 都保持为 mixed，同时在三条 case 中都选择 six-gate artifact 作为 frontier winner。诊断很有用：在 E2ENet 中，gate actions 提到了部署约束和稀疏表示，但没有传导到具名数据集、量化效率指标或 DSFF 机制消融；在 NTK 案例中，gate actions 改善了关于 finite-width generalization 的前沿 framing，但仍没有具体指定宽度范围、数据集、量化指标，或 feature learning、kernel approximation error 等 later-frontier NTK 机制；在因果泛化案例中，Claude 更严格地把 model label 判为 negative，因为 review 信号过于泛化，四个条件产物区分度很低，而且计划把预测准确率和因果识别混在一起，没有给出形式化识别条件、数据集参数或 treatment-effect metrics。这些不是 delayed-value 成功案例，而是执行证据：TFR 能纠正模型 judge 的乐观判断，并定位门控路由没有真正改变实验设计的位置。
 
 这也让本文的应用意义更具体。目标不是简单证明人类能提高论文质量，而是设计更优的人类参与模式，用实验数据比较这些模式，并构建一种工作流，使人类科研品味在最可能改变科研轨迹的位置发挥作用。
 
@@ -188,7 +188,7 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 ## 6. 局限性
 
-当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文或成对再生成产物的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。等上下文 OpenReview 消融降低了额外上下文混淆，但尚未完全消除，因为评分仍来自模型路由评审，产物也只是再生成 mini-artifact，而不是盲审专家评分或真实实验重跑。delayed-value 候选挖掘和 OpenAlex 验证只能排序未来 replay 个案，两条 live TFR replay 显示的是模型乐观判断被规则纠正，而不是正向 delayed-value 证据；它们不能替代 benchmark 重跑、人类专家判断或更大规模 replay 样本。高尾假设现在已经被统计操作化为功效分析协议，但当前证据包仍没有证明任何 high-tail 或 delayed-value 正例。
+当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文或成对再生成产物的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。等上下文 OpenReview 消融降低了额外上下文混淆，但尚未完全消除，因为评分仍来自模型路由评审，产物也只是再生成 mini-artifact，而不是盲审专家评分或真实实验重跑。delayed-value 候选挖掘和 OpenAlex 验证只能排序未来 replay 个案，三条 live TFR replay 显示的是模型乐观判断被规则纠正，而不是正向 delayed-value 证据；它们不能替代 benchmark 重跑、人类专家判断或更大规模 replay 样本。高尾假设现在已经被统计操作化为功效分析协议，但当前证据包仍没有证明任何 high-tail 或 delayed-value 正例。
 
 这些局限也是未来研究方向。为了把下一步做实，仓库已经准备并预注册了 6 对 OpenReview 再生成产物的盲评包：评审者只看到匿名 A/B 产物、固定 rubric 和评分表模板，condition key 与分析计划在评分完成前由协调者隐藏保存。该计划把有用的人类 taste 与 insight 定义为能够改变科研控制决策的评审信号，而不是泛泛认可。这还不是实验证据，因为尚未收集独立人类专家评分。更强的研究应把可复用 co-pilot scientist skill 部署给大量科研人员，在知情同意和隐私保护下收集门控元数据，跨任务运行 matched autonomous 与 human-gated 轨迹，并把成对输出交给盲审专家评估。目前，这种实时多研究者数据更可能由主流 agent 公司或大模型公司完成，而不是小型独立项目。IGRE 因此使用 OpenReview 作为可扩展离线代理，并明确标记这一缺口。
 

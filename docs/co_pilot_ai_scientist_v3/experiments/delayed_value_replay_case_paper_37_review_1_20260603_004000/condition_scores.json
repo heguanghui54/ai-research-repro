@@ -1,0 +1,53 @@
+{
+  "case_id": "paper_37_review_1",
+  "per_condition": {
+    "paper_only": {
+      "short_term_score": 4.0,
+      "frontier_alignment_score": 3.0,
+      "actionability_score": 4.0,
+      "specificity_score": 4.0,
+      "claim_calibration_score": 4.0,
+      "overall": 4.0,
+      "rationale": "The plan is clear and actionable, with a strong hypothesis and method. However, it lacks some frontier alignment."
+    },
+    "raw_review_guided": {
+      "short_term_score": 4.0,
+      "frontier_alignment_score": 4.0,
+      "actionability_score": 4.0,
+      "specificity_score": 4.0,
+      "claim_calibration_score": 4.0,
+      "overall": 4.0,
+      "rationale": "This artifact aligns well with frontier themes and provides actionable insights, making it a strong candidate."
+    },
+    "six_gate_hybrid_guided": {
+      "short_term_score": 3.0,
+      "frontier_alignment_score": 5.0,
+      "actionability_score": 3.0,
+      "specificity_score": 3.0,
+      "claim_calibration_score": 4.0,
+      "overall": 4.0,
+      "rationale": "While it has excellent frontier alignment, the actionability and specificity could be improved."
+    },
+    "shuffled_review_control": {
+      "short_term_score": 3.0,
+      "frontier_alignment_score": 3.0,
+      "actionability_score": 3.0,
+      "specificity_score": 3.0,
+      "claim_calibration_score": 3.0,
+      "overall": 3.0,
+      "rationale": "This artifact is less aligned with frontier themes and lacks clarity in its actionability."
+    }
+  },
+  "winner_short_term": "tie",
+  "winner_frontier": "six_gate_hybrid_guided",
+  "delayed_value_label": "mixed_or_inconclusive",
+  "delayed_value_rationale": "The artifacts demonstrate strong potential for advancing causal inference methods, particularly in handling design shifts.",
+  "best_review_signal": "none",
+  "failure_modes_observed": [
+    "Confusing correlation with causation",
+    "Neglecting unobserved confounders"
+  ],
+  "claim_boundary": "No completed benchmark result is claimed.",
+  "model_delayed_value_label": "positive",
+  "deterministic_label_note": "strict preregistered delayed-value rule not satisfied; guided conditions did not have lower short-term score than paper_only while beating paper_only and shuffled_control on frontier alignment"
+}

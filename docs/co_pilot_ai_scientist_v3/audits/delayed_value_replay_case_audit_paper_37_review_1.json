@@ -1,0 +1,23 @@
+{
+  "audit_date": "2026-06-02T15:59:19Z",
+  "status": "pass",
+  "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000",
+  "case_id": "paper_37_review_1",
+  "live_model_calls": 2,
+  "generation_model": "gpt-4o-mini",
+  "judge_model": "gpt-4o-mini",
+  "model_delayed_value_label": "positive",
+  "strict_delayed_value_label": "mixed_or_inconclusive",
+  "reported_delayed_value_label": "mixed_or_inconclusive",
+  "winner_short_term": "tie",
+  "winner_frontier": "six_gate_hybrid_guided",
+  "strict_rule_reasons": [
+    "raw_review_guided: short_ok=False, frontier_ok=True, control_ok=True, action_ok=True, specific_ok=True",
+    "six_gate_hybrid_guided: short_ok=True, frontier_ok=True, control_ok=True, action_ok=False, specific_ok=False"
+  ],
+  "errors": [],
+  "warnings": [
+    "raw model judge labeled the case positive, but strict preregistered rule does not"
+  ],
+  "claim_boundary": "A pass means one live four-condition replay case was generated and scored, with the delayed-value label checked against the preregistered rule. It does not mean benchmark experiments or human expert ratings were run."
+}
