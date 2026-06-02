@@ -6,18 +6,18 @@ Repository source:
 
 - URL: `https://github.com/heguanghui54/ai-research-repro.git`
 - Branch: `codex/co-pilot-ai-scientist-v3`
-- Commit: `1a03da1e987270c5a04c3c9695888d27bd94e624`
-- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone-1a03da1e98`
+- Commit: `3a48d462cc0c8619937ec9cfdf43d4ce580bc57f`
+- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone-3a48d462`
 - Clone mode: shallow depth-1 single-branch clone
 
 ## Commands Run
 
 ```bash
-rm -rf /tmp/copilot-v3-clean-clone-1a03da1e98
+rm -rf /tmp/copilot-v3-clean-clone-3a48d462
 git clone --depth 1 --single-branch --branch codex/co-pilot-ai-scientist-v3 \
   https://github.com/heguanghui54/ai-research-repro.git \
-  /tmp/copilot-v3-clean-clone-1a03da1e98
-cd /tmp/copilot-v3-clean-clone-1a03da1e98
+  /tmp/copilot-v3-clean-clone-3a48d462
+cd /tmp/copilot-v3-clean-clone-3a48d462
 git rev-parse HEAD
 git status --short
 python3 -m pip install -q -r requirements.txt
@@ -40,7 +40,7 @@ PY
 | Check | Result |
 | --- | --- |
 | GitHub branch shallow-cloned from scratch | Pass |
-| Checked-out commit | `1a03da1e987270c5a04c3c9695888d27bd94e624` |
+| Checked-out commit | `3a48d462cc0c8619937ec9cfdf43d4ce580bc57f` |
 | Python dependencies installed from `requirements.txt` | Pass |
 | Taste/insight coverage audit reran | Pass |
 | Attention-cost audit reran | Pass |
@@ -53,6 +53,7 @@ PY
 | Expanded citation-backed frontier probe artifact present | Pass |
 | Review-frontier signal probe artifact present | Pass |
 | Semantic frontier judge probe artifact present | Pass |
+| Temporal Frontier Replay method text present in focused manuscripts and skill | Pass |
 | Metric-gaming evaluator-stress smoke present | Pass |
 | Live skill invocation smoke present | Pass |
 | Manifest artifacts found | Pass: 589/589 |
@@ -89,22 +90,24 @@ PY
 | Live skill logged gate type | `scientific_taste_prior` |
 | English PDF bytes | 51757 |
 | Chinese PDF bytes | 114561 |
-| Focused English PDF bytes | 25108 |
-| Focused Chinese PDF bytes | 45640 |
+| Focused English PDF bytes | 26729 |
+| Focused Chinese PDF bytes | 48496 |
 | Generated files byte-identical after rebuild | No: derived trace-dataset audit files and PDFs were refreshed by rebuild scripts |
 
 ## Interpretation
 
 This clean-clone audit verifies that the pushed GitHub branch at commit
-`1a03da1e987270c5a04c3c9695888d27bd94e624` contains a self-contained reproducibility package for the current
+`3a48d462cc0c8619937ec9cfdf43d4ce580bc57f` contains a self-contained reproducibility package for the current
 pilot artifacts. A fresh shallow clone can rebuild the bilingual PDFs and the
 focused bilingual PDFs, rerun the gate-coverage audits, rebuild and audit the
 derived Human Co-Pilot Trace Dataset, validate the reusable Codex skill, and
 find all 589 artifacts listed in the reproducibility manifest. It also verifies
-that the structured-feedback probe, single-gate artifact ablation, expanded
-six-paper citation-backed frontier probe, review-frontier signal probe, and
-semantic frontier judge probe are present and internally consistent. The
-refreshed audit also verifies the live skill invocation smoke and the controlled
+that the focused bilingual manuscripts and reusable skill contain the Temporal
+Frontier Replay method text, and that the structured-feedback probe,
+single-gate artifact ablation, expanded six-paper citation-backed frontier
+probe, review-frontier signal probe, and semantic frontier judge probe are
+present and internally consistent. The refreshed audit also verifies the live
+skill invocation smoke and the controlled
 metric-gaming evaluator-stress smoke in which a primary-only fairness metric
 selects `metric_gaming_all_negative`, while the evaluator-stress guardrail
 selects `guardrailed_utility_model` and reduces one synthetic metric-gaming
@@ -127,7 +130,7 @@ Because this run uses `--depth 1`, the trace dataset's commit index contains
 only the checked-out commit. That is expected for this audit mode and does not
 affect artifact presence or PDF rebuild reproducibility. The earlier full-history
 audit checked a larger commit index; this updated audit prioritizes current
-pushed-artifact reproducibility at `1a03da1e98`.
+pushed-artifact reproducibility at `3a48d462`.
 
 This audit does not rerun the remote Ubuntu experiments or prove the central
 performance claims. It strengthens the artifact-delivery and reproducibility

@@ -2,8 +2,8 @@
   "audit_date": "2026-06-02",
   "repository_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "branch": "codex/co-pilot-ai-scientist-v3",
-  "commit": "1a03da1e987270c5a04c3c9695888d27bd94e624",
-  "clean_clone_path": "/tmp/copilot-v3-clean-clone-1a03da1e98",
+  "commit": "3a48d462cc0c8619937ec9cfdf43d4ce580bc57f",
+  "clean_clone_path": "/tmp/copilot-v3-clean-clone-3a48d462",
   "clone_mode": "shallow_depth_1_single_branch",
   "commands_reran": [
     "python3 -m pip install -q -r requirements.txt",
@@ -17,16 +17,16 @@
   ],
   "checks": {
     "status": "pass_for_current_pushed_artifact_rebuild",
-    "commit": "1a03da1e987270c5a04c3c9695888d27bd94e624",
-    "clean_clone_path": "/tmp/copilot-v3-clean-clone-1a03da1e98",
+    "commit": "3a48d462cc0c8619937ec9cfdf43d4ce580bc57f",
+    "clean_clone_path": "/tmp/copilot-v3-clean-clone-3a48d462",
     "clone_mode": "shallow_depth_1_single_branch",
     "manifest_artifacts_checked": 589,
     "missing_manifest_artifacts": 0,
     "pdfs_rebuilt": 4,
     "english_pdf_bytes": 51757,
     "chinese_pdf_bytes": 114561,
-    "focused_english_pdf_bytes": 25108,
-    "focused_chinese_pdf_bytes": 45640,
+    "focused_english_pdf_bytes": 26729,
+    "focused_chinese_pdf_bytes": 48496,
     "taste_gate_records_audited": 39,
     "complete_taste_insight_records": 2,
     "attention_gate_records_audited": 39,
@@ -71,7 +71,7 @@
     "audited_pushed_commit": true,
     "generated_files_byte_identical_after_rebuild": false,
     "generated_file_drift_note": "Rebuilding in the clean clone refreshed derived trace-dataset audit files and four PDFs; scripts completed successfully and all manifest artifacts exist, so this is a source-rebuild pass rather than a byte-for-byte generated-artifact immutability claim.",
-    "note": "Verifies the current pushed package at 1a03da1e98 with a shallow clean clone; shallow clone explains the one-entry commit index. Latest retrospective frontier probes remain negative for delayed-value evidence but are present and internally consistent.",
+    "note": "Verifies the current pushed paper/skill package at 3a48d462 with a shallow clean clone; shallow clone explains the one-entry commit index. Latest retrospective frontier probes remain negative for delayed-value evidence but are present and internally consistent.",
     "github_branch_shallow_cloned": "pass",
     "requirements_installed": "pass",
     "taste_insight_audit_reran": "pass",
@@ -79,7 +79,9 @@
     "human_copilot_trace_dataset_rebuilt": "pass",
     "bilingual_pdfs_rebuilt": "pass",
     "focused_bilingual_pdfs_rebuilt": "pass",
-    "manifest_status": "pilot_package_with_retrospective_frontier_and_semantic_judge_probes"
+    "manifest_status": "pilot_package_with_retrospective_frontier_and_semantic_judge_probes",
+    "tfr_method_text_present": "pass",
+    "tfr_skill_instructions_present": "pass"
   },
-  "interpretation": "The pushed GitHub branch at 1a03da1e98 is self-contained for rebuilding the bilingual and focused bilingual PDFs, rerunning gate-coverage audits, rebuilding and auditing the derived trace dataset, validating the reusable skill, finding all 589 manifest artifacts, and verifying the structured-feedback, single-gate, expanded citation-frontier, review-frontier-signal, semantic-frontier-judge, live-skill, and metric-gaming evaluator-stress artifacts. The latest retrospective probes support protocol readiness and a negative boundary: they found no delayed-value review cases, while the semantic judge found one review-guided artifact win out of five. This audit uses a shallow depth-1 clone and does not rerun remote Ubuntu experiments or prove top-conference performance claims."
+  "interpretation": "The pushed GitHub branch at 3a48d462 is self-contained for rebuilding the bilingual and focused bilingual PDFs, rerunning gate-coverage audits, rebuilding and auditing the derived trace dataset, validating the reusable skill, finding all 589 manifest artifacts, confirming the Temporal Frontier Replay method text in the focused bilingual manuscripts and reusable skill, and verifying the structured-feedback, single-gate, expanded citation-frontier, review-frontier-signal, semantic-frontier-judge, live-skill, and metric-gaming evaluator-stress artifacts. The latest retrospective probes support protocol readiness and a negative boundary: they found no delayed-value review cases, while the semantic judge found one review-guided artifact win out of five. This audit uses a shallow depth-1 clone and does not rerun remote Ubuntu experiments or prove top-conference performance claims."
 }
