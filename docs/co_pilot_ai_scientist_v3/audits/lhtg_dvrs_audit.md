@@ -1,6 +1,6 @@
 # Long-Horizon Taste Gate / DVRS Audit
 
-- Audit date: `2026-06-02T11:06:13Z`
+- Audit date: `2026-06-02T19:08:06Z`
 - Status: `pass_with_no_positive_dvrs`
 - Method terms present: `True`
 - Reusable workflow terms present: `True`
@@ -42,6 +42,15 @@
 - Semantic latent delayed-value candidates: `0`
 - Semantic winner counts: `{'paper_context': 4, 'review_guided_artifact': 1}`
 
+## Executed Multicase Replay
+
+- Replay audit status: `pass_with_no_strict_positive_dvrs`
+- Replay cases: `3`
+- Same-model positive labels: `3`
+- Strict positive DVRS cases: `0`
+- Cross-model strict positive labels: `0`
+- Cross-model frontier winner counts: `{'six_gate_hybrid_guided': 3}`
+
 ## Errors
 
 - None
@@ -49,6 +58,7 @@
 ## Warnings
 
 - No positive delayed-value review signal has been validated yet
+- Multicase live replay found no strict positive DVRS case
 
 ## Claim Boundary
 

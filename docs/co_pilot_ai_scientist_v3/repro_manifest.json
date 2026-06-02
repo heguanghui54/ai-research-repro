@@ -923,7 +923,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/human_gate_logs/evaluator_gate_001.json",
     "docs/co_pilot_ai_scientist_v3/experiments/evaluator_trigger_policy_transfer_20260603/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/evaluator_trigger_policy_transfer_20260603/README.md",
-    "scripts/validate_evaluator_stress_trigger_policy_transfer.py"
+    "scripts/validate_evaluator_stress_trigger_policy_transfer.py",
+    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_multicase_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_multicase_audit.md",
+    "scripts/audit_delayed_value_replay_multicase.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1868,7 +1871,11 @@
     "lhtg_dvrs_audit_runs": 1,
     "lhtg_delayed_value_positive_cases": 0,
     "lhtg_candidate_queue_size": 120,
-    "lhtg_candidate_frontier_delta": 0.064
+    "lhtg_candidate_frontier_delta": 0.064,
+    "delayed_value_replay_multicase_count": 3,
+    "delayed_value_replay_multicase_strict_positive_cases": 0,
+    "lhtg_executed_multicase_replay_cases": 3,
+    "lhtg_executed_multicase_strict_positive_cases": 0
   },
   "review_frontier_signal_probe": {
     "status": "completed_negative_lexical_review_signal_probe",
@@ -1997,15 +2004,17 @@
     "delayed_value_positive_cases": 0,
     "candidate_queue_size": 120,
     "candidate_frontier_delta": 0.064,
+    "executed_multicase_replay_cases": 3,
+    "executed_multicase_strict_positive_cases": 0,
     "claim_boundary": "LHTG/DVRS is operationalized as a routing and replay policy, but the current archived evidence validates only candidate prioritization and negative/weak TFR boundaries. It does not prove that human reviews improve long-horizon discovery."
   },
   "objective_delivery_audit": {
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "f016dc6b6e3f404ec14541a7c5b82d7883bdf38f",
+    "head": "c923c1672907b11d262f91306da1fbaa789c6a65",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 910,
+    "manifest_artifacts": 913,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2311,5 +2320,15 @@
     "heldout_delta_vs_autonomous_mean": 0.003639444256184343,
     "heldout_losses_vs_autonomous": 0,
     "claim_boundary": "This is a discovery-to-held-out split validation inside one open-data task family. It supports trigger-conditioned evaluator-stress design, not broad co-pilot superiority or a universally optimal threshold."
+  },
+  "delayed_value_replay_multicase_audit": {
+    "status": "pass_with_no_strict_positive_dvrs",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_multicase_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_multicase_audit.md",
+    "case_count": 3,
+    "strict_positive_cases": 0,
+    "same_model_positive_cases": 3,
+    "cross_model_strict_positive_cases": 0,
+    "claim_boundary": "A pass means multiple four-condition replay cases and cross-model judges were aggregated under the strict delayed-value rule. It is model-scored replay evidence, not benchmark execution or human expert validation."
   }
 }

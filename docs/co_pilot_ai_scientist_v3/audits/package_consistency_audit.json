@@ -1,12 +1,12 @@
 {
-  "audit_date": "2026-06-02T19:03:14Z",
+  "audit_date": "2026-06-02T19:08:09Z",
   "status": "pass",
-  "head": "f016dc6b6e3f404ec14541a7c5b82d7883bdf38f",
+  "head": "c923c1672907b11d262f91306da1fbaa789c6a65",
   "clean_clone_audited_commit": "0bc6b479c63f6cb68e4d241969c7acfb2b57ff0a",
   "clean_clone_commit_is_head": false,
   "clean_clone_commit_is_head_ancestor": true,
   "git_repository_is_shallow": false,
-  "manifest_artifacts": 910,
+  "manifest_artifacts": 913,
   "missing_manifest_artifacts": 0,
   "duplicate_manifest_artifacts": 0,
   "candidate_frontier_validation": {
@@ -17,7 +17,7 @@
   "tfr_status": "pass_with_negative_delayed_value_evidence",
   "objective_delivery_status": "pass_artifact_delivery_with_empirical_gaps",
   "pdf_bytes": {
-    "focused_en": 210896
+    "focused_en": 210986
   },
   "text_checks": {
     "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
@@ -34,9 +34,9 @@
       "candidate-frontier validation": true
     },
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md": {
-      "910/910": true,
+      "913/913": true,
       "top-conference empirical target remains incomplete": true,
-      "f016dc6b6_or_parent": true
+      "c923c1672_or_parent": true
     }
   },
   "stale_token_hits": {},

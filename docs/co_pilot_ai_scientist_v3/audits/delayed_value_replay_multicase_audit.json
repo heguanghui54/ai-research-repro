@@ -1,0 +1,163 @@
+{
+  "audit_date": "2026-06-02T19:08:06Z",
+  "status": "pass_with_no_strict_positive_dvrs",
+  "case_count": 3,
+  "case_rows": [
+    {
+      "case_id": "paper_105_review_1",
+      "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500",
+      "same_model_label": "positive",
+      "strict_label": "mixed_or_inconclusive",
+      "strict_positive_condition": null,
+      "winner_short_term": "tie",
+      "winner_frontier": "tie",
+      "strict_reasons": [
+        {
+          "condition": "raw_review_guided",
+          "short_term_penalty": false,
+          "beats_paper_frontier": true,
+          "beats_shuffled_frontier": true,
+          "actionable": true,
+          "specific": true
+        },
+        {
+          "condition": "six_gate_hybrid_guided",
+          "short_term_penalty": false,
+          "beats_paper_frontier": true,
+          "beats_shuffled_frontier": true,
+          "actionable": true,
+          "specific": true
+        }
+      ],
+      "cross_model": {
+        "summary_paths": [
+          "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500/summary.json"
+        ],
+        "models_attempted": [
+          "claude-3-7-sonnet-latest",
+          "gemini-2.5-flash"
+        ],
+        "models_succeeded": [
+          "claude-3-7-sonnet-latest"
+        ],
+        "strict_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "model_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "frontier_winner_counts": {
+          "six_gate_hybrid_guided": 1
+        }
+      }
+    },
+    {
+      "case_id": "paper_132_review_2",
+      "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_132_review_2_20260603_002500",
+      "same_model_label": "positive",
+      "strict_label": "mixed_or_inconclusive",
+      "strict_positive_condition": null,
+      "winner_short_term": "tie",
+      "winner_frontier": "six_gate_hybrid_guided",
+      "strict_reasons": [
+        {
+          "condition": "raw_review_guided",
+          "short_term_penalty": false,
+          "beats_paper_frontier": true,
+          "beats_shuffled_frontier": true,
+          "actionable": true,
+          "specific": true
+        },
+        {
+          "condition": "six_gate_hybrid_guided",
+          "short_term_penalty": false,
+          "beats_paper_frontier": true,
+          "beats_shuffled_frontier": true,
+          "actionable": true,
+          "specific": true
+        }
+      ],
+      "cross_model": {
+        "summary_paths": [
+          "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_132_review_2_20260603_003000/summary.json"
+        ],
+        "models_attempted": [
+          "claude-3-7-sonnet-latest"
+        ],
+        "models_succeeded": [
+          "claude-3-7-sonnet-latest"
+        ],
+        "strict_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "model_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "frontier_winner_counts": {
+          "six_gate_hybrid_guided": 1
+        }
+      }
+    },
+    {
+      "case_id": "paper_37_review_1",
+      "run_dir": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_37_review_1_20260603_004000",
+      "same_model_label": "positive",
+      "strict_label": "mixed_or_inconclusive",
+      "strict_positive_condition": null,
+      "winner_short_term": "tie",
+      "winner_frontier": "six_gate_hybrid_guided",
+      "strict_reasons": [
+        {
+          "condition": "raw_review_guided",
+          "short_term_penalty": false,
+          "beats_paper_frontier": true,
+          "beats_shuffled_frontier": true,
+          "actionable": true,
+          "specific": true
+        },
+        {
+          "condition": "six_gate_hybrid_guided",
+          "short_term_penalty": true,
+          "beats_paper_frontier": true,
+          "beats_shuffled_frontier": true,
+          "actionable": false,
+          "specific": false
+        }
+      ],
+      "cross_model": {
+        "summary_paths": [
+          "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_paper_37_review_1_20260603_004500/summary.json"
+        ],
+        "models_attempted": [
+          "claude-3-7-sonnet-latest"
+        ],
+        "models_succeeded": [
+          "claude-3-7-sonnet-latest"
+        ],
+        "strict_label_counts": {
+          "mixed_or_inconclusive": 1
+        },
+        "model_label_counts": {
+          "negative": 1
+        },
+        "frontier_winner_counts": {
+          "six_gate_hybrid_guided": 1
+        }
+      }
+    }
+  ],
+  "same_model_positive_cases": 3,
+  "strict_positive_cases": 0,
+  "cross_model_strict_positive_cases": 0,
+  "cross_model_frontier_winner_counts": {
+    "six_gate_hybrid_guided": 3
+  },
+  "errors": [],
+  "warnings": [
+    "paper_105_review_1 same-model judge positive but strict rule is mixed_or_inconclusive",
+    "paper_132_review_2 same-model judge positive but strict rule is mixed_or_inconclusive",
+    "paper_37_review_1 same-model judge positive but strict rule is mixed_or_inconclusive"
+  ],
+  "interpretation": "The replay cases show useful frontier-routing diagnostics, especially six-gate frontier wins under Claude judges, but the strict preregistered DVRS rule finds no positive delayed-value case because the required short-term penalty/actionability/specificity pattern is not satisfied.",
+  "claim_boundary": "A pass means multiple four-condition replay cases and cross-model judges were aggregated under the strict delayed-value rule. It is model-scored replay evidence, not benchmark execution or human expert validation."
+}

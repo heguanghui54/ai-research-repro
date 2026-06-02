@@ -53,6 +53,10 @@ def _add_manifest_artifacts(paths: list[Path], audit: dict[str, Any]) -> None:
         "delayed_value_positive_cases": audit["delayed_value_positive_cases"],
         "candidate_queue_size": audit["candidate_queue"]["delayed_value_replay_candidates"],
         "candidate_frontier_delta": audit["candidate_frontier_validation"]["delayed_minus_control_mean_score"],
+        "executed_multicase_replay_cases": audit["executed_multicase_replay"]["case_count"],
+        "executed_multicase_strict_positive_cases": audit["executed_multicase_replay"][
+            "strict_positive_cases"
+        ],
         "claim_boundary": audit["claim_boundary"],
     }
     current_counts = manifest.setdefault("current_counts", {})
@@ -61,6 +65,10 @@ def _add_manifest_artifacts(paths: list[Path], audit: dict[str, Any]) -> None:
     current_counts["lhtg_candidate_queue_size"] = audit["candidate_queue"]["delayed_value_replay_candidates"]
     current_counts["lhtg_candidate_frontier_delta"] = audit["candidate_frontier_validation"][
         "delayed_minus_control_mean_score"
+    ]
+    current_counts["lhtg_executed_multicase_replay_cases"] = audit["executed_multicase_replay"]["case_count"]
+    current_counts["lhtg_executed_multicase_strict_positive_cases"] = audit["executed_multicase_replay"][
+        "strict_positive_cases"
     ]
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -87,6 +95,7 @@ def main() -> None:
     citation_path = DOC_DIR / "experiments" / "retrospective_frontier_citation_probe_20260602_213000" / "summary.json"
     review_signal_path = DOC_DIR / "experiments" / "review_frontier_signal_probe_20260602_214500" / "summary.json"
     semantic_path = DOC_DIR / "experiments" / "semantic_frontier_judge_probe_20260602_223000" / "summary.json"
+    multicase_replay_path = AUDIT_DIR / "delayed_value_replay_multicase_audit.json"
 
     tfr_spec = _load_json(tfr_spec_json)
     tfr_audit = _load_json(tfr_audit_path)
@@ -95,6 +104,7 @@ def main() -> None:
     citation = _load_json(citation_path)
     review_signal = _load_json(review_signal_path)
     semantic = _load_json(semantic_path)
+    multicase_replay = _load_json(multicase_replay_path)
 
     method_checks = {
         _rel(architecture): _contains_all(architecture, ["Long-Horizon Taste Gate", "LHTG", "DVRS"]),
@@ -173,6 +183,8 @@ def main() -> None:
         warnings.append("No positive delayed-value review signal has been validated yet")
     if validation_agg.get("delayed_minus_control_mean_score", 0) <= 0:
         warnings.append("Candidate-frontier validation does not show a positive replay-prioritization delta")
+    if multicase_replay.get("strict_positive_cases", 0) == 0:
+        warnings.append("Multicase live replay found no strict positive DVRS case")
 
     audit = {
         "audit_date": _utc_now(),
@@ -207,6 +219,19 @@ def main() -> None:
             "review_frontier_latent_delayed_value_candidates": latent_review_cases,
             "semantic_latent_delayed_value_candidates": latent_semantic_cases,
             "semantic_winner_counts": semantic_agg.get("winner_counts"),
+        },
+        "executed_multicase_replay": {
+            "status": multicase_replay.get("status"),
+            "case_count": multicase_replay.get("case_count"),
+            "same_model_positive_cases": multicase_replay.get("same_model_positive_cases"),
+            "strict_positive_cases": multicase_replay.get("strict_positive_cases"),
+            "cross_model_strict_positive_cases": multicase_replay.get(
+                "cross_model_strict_positive_cases"
+            ),
+            "cross_model_frontier_winner_counts": multicase_replay.get(
+                "cross_model_frontier_winner_counts"
+            ),
+            "path": _rel(multicase_replay_path),
         },
         "delayed_value_positive_cases": total_positive_cases,
         "errors": errors,
@@ -271,6 +296,17 @@ def main() -> None:
         f"`{audit['validated_negative_evidence']['semantic_latent_delayed_value_candidates']}`",
         f"- Semantic winner counts: `{audit['validated_negative_evidence']['semantic_winner_counts']}`",
         "",
+        "## Executed Multicase Replay",
+        "",
+        f"- Replay audit status: `{audit['executed_multicase_replay']['status']}`",
+        f"- Replay cases: `{audit['executed_multicase_replay']['case_count']}`",
+        f"- Same-model positive labels: `{audit['executed_multicase_replay']['same_model_positive_cases']}`",
+        f"- Strict positive DVRS cases: `{audit['executed_multicase_replay']['strict_positive_cases']}`",
+        "- Cross-model strict positive labels: "
+        f"`{audit['executed_multicase_replay']['cross_model_strict_positive_cases']}`",
+        "- Cross-model frontier winner counts: "
+        f"`{audit['executed_multicase_replay']['cross_model_frontier_winner_counts']}`",
+        "",
         "## Errors",
         "",
     ])
@@ -292,6 +328,7 @@ def main() -> None:
             usage_zh,
             runbook_en,
             runbook_zh,
+            multicase_replay_path,
         ],
         audit,
     )

@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T11:06:13Z",
+  "audit_date": "2026-06-02T19:08:06Z",
   "status": "pass_with_no_positive_dvrs",
   "method_terms_present": true,
   "reusable_workflow_terms_present": true,
@@ -86,10 +86,22 @@
       "review_guided_artifact": 1
     }
   },
+  "executed_multicase_replay": {
+    "status": "pass_with_no_strict_positive_dvrs",
+    "case_count": 3,
+    "same_model_positive_cases": 3,
+    "strict_positive_cases": 0,
+    "cross_model_strict_positive_cases": 0,
+    "cross_model_frontier_winner_counts": {
+      "six_gate_hybrid_guided": 3
+    },
+    "path": "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_multicase_audit.json"
+  },
   "delayed_value_positive_cases": 0,
   "errors": [],
   "warnings": [
-    "No positive delayed-value review signal has been validated yet"
+    "No positive delayed-value review signal has been validated yet",
+    "Multicase live replay found no strict positive DVRS case"
   ],
   "claim_boundary": "LHTG/DVRS is operationalized as a routing and replay policy, but the current archived evidence validates only candidate prioritization and negative/weak TFR boundaries. It does not prove that human reviews improve long-horizon discovery."
 }
