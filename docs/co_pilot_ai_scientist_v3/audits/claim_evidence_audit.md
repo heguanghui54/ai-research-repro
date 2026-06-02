@@ -68,3 +68,5 @@ science outperforms autonomous AI Scientist-v2 on average.
   design, frontier selection, or claim calibration.
 
 | Trigger-policy analysis | Clean-clone verified `e9defdde0` with `898/898` manifest artifacts. The evaluator-stress trigger policy `class_imbalance_trigger_0_94` improves mean balanced accuracy to `0.927934` with delta `+0.003077` and no losses versus autonomous in the archived 25-selection pilot. Candidate-frontier validation remains `13` scored reviews with delayed-control delta `+0.064`. | Supported as post-hoc participation-mode design evidence. | Not a prospective causal benchmark result or broad superiority claim. |
+
+| Held-out trigger-policy clean clone | Clean-clone held-out trigger-policy refresh `0bc6b479c` with `907/907` manifest artifacts. Candidate-frontier validation remains `13` scored reviews with delayed-control delta `+0.064`. | Supported as artifact reproducibility. | Not independent human evidence or broad superiority. |

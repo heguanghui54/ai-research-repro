@@ -221,5 +221,10 @@
     "best_policy": "class_imbalance_trigger_0_94",
     "best_policy_delta_vs_autonomous_mean": 0.003076923076923066,
     "claim_boundary": "post-hoc design evidence"
+  },
+  "clean_clone_reproducibility_latest": {
+    "commit": "0bc6b479c63f6cb68e4d241969c7acfb2b57ff0a",
+    "manifest_artifacts_checked": 907,
+    "claim_boundary": "artifact reproducibility only"
   }
 }

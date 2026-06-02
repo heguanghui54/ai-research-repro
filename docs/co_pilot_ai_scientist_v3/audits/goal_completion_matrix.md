@@ -1,8 +1,8 @@
 # Goal Completion Matrix
 
-- Audit date: `2026-06-02T18:53:22Z`
+- Audit date: `2026-06-02T18:54:38Z`
 - Status: `pass_with_top_conference_gap`
-- HEAD: `42f6be52a9d714760c0e711b55cdb4833aef3528`
+- HEAD: `0bc6b479c63f6cb68e4d241969c7acfb2b57ff0a`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote branch pushed: `True`
 - Manifest artifacts: `907`
@@ -28,7 +28,7 @@ Top-conference empirical sufficiency remains incomplete: the package has auditab
 | english_paper_pdfs | achieved | `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf` | The English PDF exists and is audited; final camera-ready paper still depends on stronger evidence. | Rebuild PDFs after any substantive manuscript revision. |
 | bilingual_usage | achieved | `docs/co_pilot_ai_scientist_v3/usage_en.md`<br>`docs/co_pilot_ai_scientist_v3/usage_zh.md`<br>`docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`<br>`docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md` | Usage is complete for the current package shape. | Keep commands synchronized with new experiment scripts. |
 | reusable_codex_skill | achieved | `skills/co-pilot-ai-scientist-v3/SKILL.md`<br>`skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`<br>`skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`<br>`docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/summary.json` | Skill is packaged, globally installed, smoke-audited, and copied into a clean external temporary environment on a fresh scientific-visualization topic; real external researcher or community reuse is not yet observed. | Collect an independently run external example or community issue/PR before claiming community transfer. |
-| github_push | achieved | `https://github.com/heguanghui54/ai-research-repro.git`<br>`codex/co-pilot-ai-scientist-v3`<br>`42f6be52a9d714760c0e711b55cdb4833aef3528` | Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate. | Create a release or PR only when the user wants a public submission package. |
+| github_push | achieved | `https://github.com/heguanghui54/ai-research-repro.git`<br>`codex/co-pilot-ai-scientist-v3`<br>`0bc6b479c63f6cb68e4d241969c7acfb2b57ff0a` | Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate. | Create a release or PR only when the user wants a public submission package. |
 | ssh_ubuntu_experiments | partial | `docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/README.md`<br>`docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/co_pilot_trajectory.json`<br>`docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_house_price_setup_probe/README.md` | Several Ubuntu traces exist, but some official benchmark attempts hit data/auth/setup blockers. | Pre-cache datasets or choose official tasks with open data to complete non-FML scored comparisons. |
 | model_selection_monica | achieved | `docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/summary.json`<br>`docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md`<br>`docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md`<br>`docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md` | Model reviews help audit quality but do not count as independent human expert review. | Use model reviews for iteration; use human experts only as future supplementary validation. |
 | author_record | achieved | `docs/co_pilot_ai_scientist_v3/paper_en_focused.md` | Author metadata is recorded in the paper package. | Keep author information synchronized in any final submission template. |

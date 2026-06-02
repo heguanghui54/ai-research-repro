@@ -102,3 +102,7 @@ AI Scientist-v2.
 ## Trigger-Policy Clean-Clone Refresh
 
 Latest audited pushed commit `e9defdde0` has clean-clone verification for the evaluator-stress trigger-policy analysis with `898/898` manifest artifacts. The best policy is `class_imbalance_trigger_0_94` with mean balanced accuracy `0.927934`, delta `+0.003077`, and wins/losses/ties `2`/`0`/`23`. Candidate-frontier validation remains `13` scored reviews with delayed-control delta `+0.064`; TFR remains `pass_with_negative_delayed_value_evidence`.
+
+## Held-Out Trigger-Policy Clean-Clone Refresh
+
+Latest held-out trigger-policy clean clone: commit `0bc6b479c`, manifest `907/907`. The clean clone verifies 7 prospective packages, the held-out trigger policy `class_imbalance_trigger_0_94` with delta `+0.003639`, candidate-frontier validation `13` scored reviews with delayed-control delta `+0.064`, and objective status `pass_artifact_delivery_with_empirical_gaps`.
