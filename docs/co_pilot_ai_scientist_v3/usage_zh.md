@@ -153,6 +153,7 @@ delayed-value replay 的规则：这些评议短期可能让 artifact 分数变�
 python3 scripts/run_delayed_value_review_candidate_mining.py
 python3 scripts/run_delayed_value_candidate_frontier_validation.py
 python3 scripts/audit_long_horizon_taste_gate.py
+python3 scripts/audit_top_conference_evidence_roadmap.py
 ```
 
 这个 audit 必须保守解释。当前归档包找到 `120` 条 delayed-value replay
@@ -163,6 +164,9 @@ prioritization 和可证伪协议，不支持“人类评议已经证明能提�
 TFR 必须保守解释。正向 delayed-value case 要求 review guidance 降低短期质量，
 但提高后续前沿对齐，并且超过 paper-only 与 shuffled-review-control 条件。当前
 归档 audit 对 delayed-value 证据是负向的，这表示测量边界，而不是协议失败。
+
+roadmap audit 检查当前顶会 blocker 是否已经被转换为具体的下一步实验。它通过
+只表示路线图可执行，不表示独立人类评审或 matched benchmark 里程碑已经完成。
 
 如果要挖掘哪些评审意见最适合作为 IGRE gate 的科研品味/insight 控制信号，运行：
 

@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T11:34:03Z",
+  "audit_date": "2026-06-02T11:36:32Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "c27e8b9dc3a53c638fab82b03d6fe422f63fc458",
+  "head": "36b90bdb01d8c7c7d83ea752481ba23daab0aca9",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -46,7 +46,7 @@
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 7233,
+      "bytes": 7314,
       "ok": true
     },
     "english_submission_card": {
@@ -76,25 +76,25 @@
     "english_usage": {
       "path": "docs/co_pilot_ai_scientist_v3/usage_en.md",
       "exists": true,
-      "bytes": 18808,
+      "bytes": 19129,
       "ok": true
     },
     "chinese_usage": {
       "path": "docs/co_pilot_ai_scientist_v3/usage_zh.md",
       "exists": true,
-      "bytes": 19330,
+      "bytes": 19594,
       "ok": true
     },
     "english_runbook": {
       "path": "docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md",
       "exists": true,
-      "bytes": 13411,
+      "bytes": 13563,
       "ok": true
     },
     "chinese_runbook": {
       "path": "docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md",
       "exists": true,
-      "bytes": 12189,
+      "bytes": 12340,
       "ok": true
     },
     "reusable_skill": {
@@ -141,6 +141,7 @@
       "submission_card_zh.md": true,
       "top_conference_evidence_roadmap.md": true,
       "External Verification Entry Point": true,
+      "audit_top_conference_evidence_roadmap.py": true,
       "pass_artifact_delivery_with_empirical_gaps": true,
       "top-conference empirical target is not yet satisfied": true
     },

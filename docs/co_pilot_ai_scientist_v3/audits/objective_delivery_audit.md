@@ -1,8 +1,8 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T11:34:03Z`
+- Audit date: `2026-06-02T11:36:32Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `c27e8b9dc3a53c638fab82b03d6fe422f63fc458`
+- HEAD: `36b90bdb01d8c7c7d83ea752481ba23daab0aca9`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
 - Manifest artifacts: `629`
@@ -30,15 +30,15 @@
 - `chinese_pdf`: `pass` (114561 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
 - `focused_english_pdf`: `pass` (32998 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `focused_chinese_pdf`: `pass` (61838 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
-- `root_readme`: `pass` (7233 bytes) - `README.md`
+- `root_readme`: `pass` (7314 bytes) - `README.md`
 - `english_submission_card`: `pass` (4088 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `chinese_submission_card`: `pass` (4033 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_zh.md`
 - `top_conference_evidence_roadmap`: `pass` (6603 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
 - `top_conference_evidence_roadmap_json`: `pass` (3762 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
-- `english_usage`: `pass` (18808 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
-- `chinese_usage`: `pass` (19330 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
-- `english_runbook`: `pass` (13411 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
-- `chinese_runbook`: `pass` (12189 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
+- `english_usage`: `pass` (19129 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
+- `chinese_usage`: `pass` (19594 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
+- `english_runbook`: `pass` (13563 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
+- `chinese_runbook`: `pass` (12340 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
 - `reusable_skill`: `pass` (21753 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
 - `task_template`: `pass` (2140 bytes) - `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`
 - `gate_template`: `pass` (1789 bytes) - `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`

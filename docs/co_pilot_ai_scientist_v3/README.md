@@ -181,16 +181,20 @@ For a quick external check after cloning the pushed GitHub branch, run:
 python3 -m pip install -r requirements.txt
 python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_temporal_frontier_replay.py
+python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py
 ```
 
-The current completed clean-clone audit verifies commit `aaa8127ca` from the
-pushed branch and reports `621/621` manifest artifacts present, LHTG/DVRS status
-`pass_with_no_positive_dvrs`, TFR status
-`pass_with_negative_delayed_value_evidence`, package consistency `pass`, and
-objective delivery `pass_artifact_delivery_with_empirical_gaps`.
+The current local external-check path reports `629/629` manifest artifacts,
+LHTG/DVRS status `pass_with_no_positive_dvrs`, TFR status
+`pass_with_negative_delayed_value_evidence`, roadmap audit `pass`, package
+consistency `pass`, and objective delivery
+`pass_artifact_delivery_with_empirical_gaps`. The latest completed clean-clone
+audit targets an ancestor commit and should be read as an independent
+reproducibility check for that pushed artifact set, not as proof that every
+newer roadmap artifact has been clean-cloned again.
 
 The last status phrase is intentional. It means the requested artifact pipeline
 is delivered and auditable, but the original top-conference empirical target is

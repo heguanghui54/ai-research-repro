@@ -151,6 +151,7 @@ def main() -> None:
                 "submission_card_zh.md",
                 "top_conference_evidence_roadmap.md",
                 "External Verification Entry Point",
+                "audit_top_conference_evidence_roadmap.py",
                 "pass_artifact_delivery_with_empirical_gaps",
                 "top-conference empirical target is not yet satisfied",
             ],

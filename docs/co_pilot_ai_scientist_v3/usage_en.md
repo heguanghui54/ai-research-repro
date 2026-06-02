@@ -162,6 +162,7 @@ To screen and validate delayed-value review candidates, run:
 python3 scripts/run_delayed_value_review_candidate_mining.py
 python3 scripts/run_delayed_value_candidate_frontier_validation.py
 python3 scripts/audit_long_horizon_taste_gate.py
+python3 scripts/audit_top_conference_evidence_roadmap.py
 ```
 
 Interpret this audit conservatively. The current archived package finds `120`
@@ -175,6 +176,11 @@ review guidance to reduce short-term quality while increasing later-frontier
 alignment beyond both paper-only and shuffled-review-control conditions. The
 current archived audit is negative for delayed-value evidence, which is a
 measurement boundary rather than a failure of the protocol.
+
+The roadmap audit checks that the current top-conference blockers are converted
+into concrete next experiments. Passing it means the roadmap is actionable; it
+does not mean the independent human-review or matched-benchmark milestones have
+already been completed.
 
 To mine which review comments are actionable as scientific taste/insight for
 IGRE gates, run:
