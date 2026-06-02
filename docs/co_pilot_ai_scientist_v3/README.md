@@ -145,12 +145,12 @@ significance, and risk asymmetry. This keeps IGRE distinct from generic
 co-pilot approval workflows. The rubric does not prove performance improvement
 by itself; it lets future matched runs test whether human taste changes the
 upper tail of research trajectories. The derived Human Co-Pilot Trace Dataset
-protocol now indexes 29 gate records from the real Codex project workflow, with
-12 records containing attention-cost fields and 7 containing taste/insight
-fields. The earlier coverage audit remains useful as a historical baseline, but
-the derived trace snapshot is now the preferred process dataset for the paper.
-It is still a single-author longitudinal case study, not population-level human
-subjects evidence.
+protocol now indexes 52 gate records from the real Codex project workflow, with
+35 records containing attention-cost fields and 10 containing taste/insight
+fields. The strict gate audits are narrower: they currently cover 39 gate
+records and find 1 complete attention-cost record plus 2 complete taste/insight
+records. It is still a single-author longitudinal case study, not
+population-level human-subjects evidence.
 
 The latest benchmark-expansion probes are deliberately recorded as setup
 evidence rather than inflated results. A second official MLAgentBench
@@ -172,11 +172,12 @@ gate types, but it is not yet a single online end-to-end co-pilot run.
 Following the latest paper-quality review, the schema and template now include
 an `attention_cost` block for active review minutes, wall-clock latency, options
 reviewed, artifacts reviewed, and decision count. The current attention-cost
-audit covers 18 gate records: 8 standalone archived gate logs and 10 embedded
-trajectory gates across 2 trajectory artifacts. It finds zero complete measured
-attention-cost records. This is treated as a measurement-readiness gap: the
-logs support decision provenance, but not yet any claim that gates improve
-research quality per unit of human effort.
+audit covers 39 gate records: 9 standalone archived gate logs and 30 embedded
+trajectory gates across 6 trajectory artifacts. It finds 1 complete
+operator-recorded attention-cost event and 38 incomplete records. This is
+treated as measurement-readiness evidence: the logs support decision provenance
+and the complete logging path now works, but they do not yet support any claim
+that gates improve research quality per unit of human effort.
 
 The latest addition is an executable full-gate trace runner:
 `scripts/run_full_gate_trajectory.py`. The runner reads the current archived

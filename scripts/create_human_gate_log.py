@@ -144,13 +144,11 @@ def _validate(
 
 def _markdown(summary: dict[str, Any]) -> str:
     lines = [
-        "# Human Gate Logging Smoke Audit",
+        f"# {summary['audit_title']}",
         "",
         f"Audit date: {summary['audit_date']}",
         "",
-        "This smoke test verifies that future human gates can be logged with",
-        "complete measurable attention-cost fields. The generated gate is synthetic",
-        "tooling evidence and is not counted as a real experiment-performance gate.",
+        summary["interpretation"],
         "",
         "## Result",
         "",
@@ -176,11 +174,7 @@ def _markdown(summary: dict[str, Any]) -> str:
             "",
             "## Interpretation",
             "",
-            "The current archived human-gate logs still lack measured attention cost,",
-            "but the package now includes a runnable path for prospective gates to",
-            "record active review minutes, wall-clock latency, options reviewed,",
-            "artifacts reviewed, decision count, and optional scientific",
-            "taste/insight fields required by prospective matched-budget runs.",
+            summary["follow_up_interpretation"],
         ]
     )
     return "\n".join(lines) + "\n"
@@ -206,6 +200,25 @@ def main() -> None:
     parser.add_argument("--decision-count", type=int, default=1)
     parser.add_argument("--notes", default="")
     parser.add_argument("--follow-up-check", action="append", default=[])
+    parser.add_argument("--audit-title", default="Human Gate Logging Smoke Audit")
+    parser.add_argument(
+        "--interpretation",
+        default=(
+            "This smoke test verifies that future human gates can be logged with "
+            "complete measurable attention-cost fields. The generated gate is synthetic "
+            "tooling evidence and is not counted as a real experiment-performance gate."
+        ),
+    )
+    parser.add_argument(
+        "--follow-up-interpretation",
+        default=(
+            "The current archived human-gate logs still lack measured attention cost, "
+            "but the package now includes a runnable path for prospective gates to "
+            "record active review minutes, wall-clock latency, options reviewed, "
+            "artifacts reviewed, decision count, and optional scientific "
+            "taste/insight fields required by prospective matched-budget runs."
+        ),
+    )
     parser.add_argument("--taste-score", action="append", type=_parse_taste_score, default=[])
     parser.add_argument("--taste-insight-score", type=float)
     parser.add_argument("--taste-rationale")
@@ -287,7 +300,9 @@ def main() -> None:
         "validation_errors": validation_errors,
         "attention_cost": gate["attention_cost"],
         "taste_insight": gate.get("taste_insight"),
-        "interpretation": "Synthetic tooling smoke; not counted as real human-gated experiment evidence.",
+        "audit_title": args.audit_title,
+        "interpretation": args.interpretation,
+        "follow_up_interpretation": args.follow_up_interpretation,
     }
     if args.audit_json:
         audit_json = ROOT / args.audit_json

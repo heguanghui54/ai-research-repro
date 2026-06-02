@@ -28,11 +28,11 @@
   ],
   "primary_dataset_positioning": "single_author_longitudinal_codex_copilot_trace_corpus",
   "current_snapshot": {
-    "gate_record_count": 31,
-    "attention_cost_records": 14,
-    "taste_insight_records": 9,
+    "gate_record_count": 52,
+    "attention_cost_records": 35,
+    "taste_insight_records": 10,
     "prospective_package_count": 4,
-    "commit_count": 48
+    "commit_count": 57
   },
   "gate_records": [
     {
@@ -104,6 +104,16 @@
       "has_attention_cost": false,
       "has_taste_insight": false,
       "human_decision": "openevolve_smoke"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/scientific_taste_prior_attention_measurement_001.json",
+      "gate_id": "scientific_taste_prior_attention_measurement_001",
+      "gate_type": "scientific_taste_prior",
+      "research_task_id": "copilot_v3_attention_taste_measurement_priority",
+      "option_count": 3,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "measure_attention_taste"
     },
     {
       "source": "docs/co_pilot_ai_scientist_v3/human_gate_logs/scientific_taste_prior_benchmark_portfolio_001.json",
@@ -306,6 +316,206 @@
       "human_decision": "claim_online_orchestration_feasible"
     },
     {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json#gates[0]",
+      "gate_id": "idea_gate_online_smoke_001",
+      "gate_type": "idea_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 4,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "hitl-gated-tree-search"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json#gates[1]",
+      "gate_id": "evaluator_gate_online_smoke_001",
+      "gate_type": "evaluator_approval",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "causality_mae_plus_guardrails"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json#gates[2]",
+      "gate_id": "branch_gate_online_smoke_001",
+      "gate_type": "branch_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "step_0001"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json#gates[3]",
+      "gate_id": "program_search_gate_online_smoke_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "run_tiny_openevolve_knapsack"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json#gates[4]",
+      "gate_id": "claim_gate_online_smoke_001",
+      "gate_type": "claim_audit",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "claim_online_orchestration_feasible"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json#gates[0]",
+      "gate_id": "idea_gate_online_smoke_001",
+      "gate_type": "idea_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 4,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "hitl-gated-tree-search"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json#gates[1]",
+      "gate_id": "evaluator_gate_online_smoke_001",
+      "gate_type": "evaluator_approval",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "causality_mae_plus_guardrails"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json#gates[2]",
+      "gate_id": "branch_gate_online_smoke_001",
+      "gate_type": "branch_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "step_0001"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json#gates[3]",
+      "gate_id": "program_search_gate_online_smoke_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "run_tiny_openevolve_knapsack"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json#gates[4]",
+      "gate_id": "claim_gate_online_smoke_001",
+      "gate_type": "claim_audit",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "claim_online_orchestration_feasible"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/trajectory.json#gates[0]",
+      "gate_id": "idea_gate_online_smoke_001",
+      "gate_type": "idea_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 4,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "hitl-gated-tree-search"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/trajectory.json#gates[1]",
+      "gate_id": "evaluator_gate_online_smoke_001",
+      "gate_type": "evaluator_approval",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "causality_mae_plus_guardrails"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/trajectory.json#gates[2]",
+      "gate_id": "branch_gate_online_smoke_001",
+      "gate_type": "branch_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "step_0001"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/trajectory.json#gates[3]",
+      "gate_id": "program_search_gate_online_smoke_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "run_tiny_openevolve_knapsack"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/trajectory.json#gates[4]",
+      "gate_id": "claim_gate_online_smoke_001",
+      "gate_type": "claim_audit",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "claim_online_orchestration_feasible"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/trajectory.json#gates[0]",
+      "gate_id": "idea_gate_online_smoke_001",
+      "gate_type": "idea_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 4,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "hitl-gated-tree-search"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/trajectory.json#gates[1]",
+      "gate_id": "evaluator_gate_online_smoke_001",
+      "gate_type": "evaluator_approval",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "fml_metric_plus_guardrails"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/trajectory.json#gates[2]",
+      "gate_id": "branch_gate_online_smoke_001",
+      "gate_type": "branch_selection",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "abort_no_valid_branch"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/trajectory.json#gates[3]",
+      "gate_id": "program_search_gate_online_smoke_001",
+      "gate_type": "program_search_escalation",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 1,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "run_tiny_openevolve_knapsack"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/trajectory.json#gates[4]",
+      "gate_id": "claim_gate_online_smoke_001",
+      "gate_type": "claim_audit",
+      "research_task_id": "copilot_v3_online_full_gate_smoke",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": false,
+      "human_decision": "claim_online_orchestration_feasible"
+    },
+    {
       "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/co_pilot_trajectory.json#gates[0]",
       "gate_id": "prospective_matched_fml_causality_20260602_000001_frontier_gate_001",
       "gate_type": "frontier_steering",
@@ -385,6 +595,51 @@
     }
   ],
   "commit_index": [
+    {
+      "commit": "3a7671340501230b0f87c3d0e57e9d2e03526864",
+      "date": "2026-06-02",
+      "subject": "Refresh clean clone reproducibility audit"
+    },
+    {
+      "commit": "af00a57d74ea7ce35b3b26cc2072aae15709bb90",
+      "date": "2026-06-02",
+      "subject": "Add cross-task online failure-mode smoke"
+    },
+    {
+      "commit": "ee2caee01db8f27fd454c36fa61711fa0dfc221d",
+      "date": "2026-06-02",
+      "subject": "Add repeated same-run online smoke summary"
+    },
+    {
+      "commit": "aaae6af0de1d239b1644b18a36770887c4749230",
+      "date": "2026-06-02",
+      "subject": "Add same-run manuscript model review"
+    },
+    {
+      "commit": "246ecef63d36cc539fc2eb82180854292c3c6676",
+      "date": "2026-06-02",
+      "subject": "Add same-run online manuscript comparator"
+    },
+    {
+      "commit": "482abc50b6d68455066364a9527fdbc162df98a6",
+      "date": "2026-06-02",
+      "subject": "Add online matched manuscript comparator"
+    },
+    {
+      "commit": "b7b305b89fc55275482ff93792df63135aa97c07",
+      "date": "2026-06-02",
+      "subject": "Add online trajectory manuscript smoke"
+    },
+    {
+      "commit": "0ea65e52283e1d0afdb21f855aa76d9da4aebf76",
+      "date": "2026-06-02",
+      "subject": "Add fairness full manuscript probe"
+    },
+    {
+      "commit": "78f73378d7cdff56990369edcef3d74286e44b6e",
+      "date": "2026-06-02",
+      "subject": "Add fairness FML prospective package"
+    },
     {
       "commit": "85ceb3c6d047f3005305a88de224e4ee3b594d93",
       "date": "2026-06-02",

@@ -261,12 +261,14 @@ performance and high-tail signals: whether a human-selected branch that an
 autonomous policy would have pruned later produces a stronger claim, better
 evaluator, or more informative negative result.
 
-We also add a taste/insight coverage audit over 18 gate records. It finds 1
-complete `taste_insight` record: a scientific-taste prior encoding the author's
-decision to move from an FML-centric benchmark story to a claim-matched
-benchmark portfolio and high-tail evaluation. The other 17 records predate the
-rubric and lack taste/insight fields. This is not a performance result. It
-does, however, make the paper's distinctive human-taste claim operational:
+We also add a taste/insight coverage audit over 39 gate records. It finds 2
+complete `taste_insight` records: one scientific-taste prior encoding the
+author's decision to move from an FML-centric benchmark story to a
+claim-matched benchmark portfolio and high-tail evaluation, and one
+operator-recorded priority gate choosing to measure attention/taste before
+making stronger human-efficiency or taste-effect claims. The other 37 records
+lack complete taste/insight fields. This is not a performance result. It does,
+however, make the paper's distinctive human-taste claim operational:
 prospective matched-budget runs must fill both `taste_insight` and
 `attention_cost` before IGRE can test its high-tail hypothesis.
 
@@ -283,15 +285,15 @@ primary dataset for this paper is therefore a single-author longitudinal Codex
 co-pilot trace corpus derived from this project: gate records, artifact paths,
 commit IDs, benchmark metrics, manuscript revisions, and claim-audit outcomes,
 without releasing raw chat logs or credentials. The current derived snapshot
-indexes 31 gate records, 14 records with attention-cost fields, 9 records with
-taste/insight fields, 4 prospective matched packages, and 48 relevant commits.
+indexes 52 gate records, 35 records with attention-cost fields, 10 records with
+taste/insight fields, 4 prospective matched packages, and 57 relevant commits.
 This supports ecological and process claims, but not population-level claims
 about all scientists.
 
 We add a release-readiness audit for this dataset. The audit verifies required
 top-level fields, gate schema coverage, explicit claim boundaries, and scans for
 secret-like strings and raw-log markers. The current audit passes with 4
-public-dataset survey entries, 31 gate records, 4 prospective packages, 48
+public-dataset survey entries, 52 gate records, 4 prospective packages, 57
 commit-index entries, 0 secret-pattern hits, and 0 raw-log marker hits. This
 permits release as a derived metadata case-study artifact, not as raw chat logs
 or human-subject population data.
@@ -300,15 +302,16 @@ Following the latest paper-quality review, we made attention cost an explicit
 auditable artifact rather than an informal metric. The human-gate schema now
 contains an optional `attention_cost` object with active review minutes,
 wall-clock latency, number of options reviewed, artifacts reviewed, and decision
-count. We also added a coverage audit over 18 existing gate records: 8
-standalone human-gate logs and 10 embedded trajectory gates across 2 trajectory
-artifacts. The audit finds zero complete attention-cost records; the 5
-regenerated executable-trace gates now explicitly mark missing timing, while
-the older records were created before this field existed. This is an important negative
-measurement-readiness result: the archived gates show decision provenance, but
-they cannot yet support any efficiency claim about human attention. Future
-prospective matched runs must fill this field before comparing co-pilot and
-autonomous variants.
+count. We also added a strict coverage audit over 39 gate records: 9 standalone
+human-gate logs and 30 embedded gates across 6 trajectory artifacts. The audit
+finds 1 complete attention-cost record: an operator-recorded
+measurement-readiness gate with 8.5 active review minutes, 9.67 wall-clock
+minutes, 3 options reviewed, 4 artifacts reviewed, and 1 decision. The other 38
+records still lack one or more required fields. This is an important
+measurement-readiness result: the archived gates show decision provenance and
+the logging path now works, but the package still cannot support any efficiency
+claim about human attention. Future prospective matched runs must fill this
+field before comparing co-pilot and autonomous variants.
 
 We further add a prospective matched-budget package audit. This audit is a hard
 evidence-shape gate rather than a result. A package passes only if it contains a
@@ -639,11 +642,12 @@ The current contributions are:
    reproducibility.
 13. A Monica-routed paper-quality review artifact that records external model
    criticism before the next revision.
-14. A human-gate attention-cost audit showing that current logs lack measured
-   active review time and latency, and that future prospective runs must record
-   these fields before making attention-efficiency claims.
-15. A taste/insight coverage audit showing one complete scientific-taste prior
-   record and 17 older gates that still lack taste/insight fields.
+14. A human-gate attention-cost audit over 39 gates showing 1 complete
+   operator-recorded attention-cost event and 38 incomplete records; future
+   prospective experiment gates must record these fields before making
+   attention-efficiency claims.
+15. A taste/insight coverage audit showing 2 complete scientific-taste prior
+   records and 37 gates that still lack complete taste/insight fields.
 16. A prospective matched-budget package validator that defines the minimum
    non-synthetic evidence shape required before claiming paper-quality gains,
    human-attention efficiency, or superiority over autonomous AI Scientist-v2.
@@ -750,11 +754,13 @@ scientific taste logging, and high-tail research search rather than average
 short-budget benchmark superiority.
 
 The taste/insight evidence is also only at the logging-readiness stage. The
-archive now contains one complete scientific-taste prior record, grounded in
-the author's instruction to broaden benchmarks and foreground high-tail
-research taste, but it does not yet show that this decision improved downstream
-research outcomes. Future runs must log taste rationales prospectively rather
-than reconstructing them from successful outcomes.
+archive now contains two complete scientific-taste prior records: one grounded
+in the author's instruction to broaden benchmarks and foreground high-tail
+research taste, and one operator-recorded decision to prioritize attention/taste
+measurement over more weak benchmark runs. Neither record shows that the
+decision improved downstream research outcomes. Future runs must log taste
+rationales prospectively rather than reconstructing them from successful
+outcomes.
 
 The current implementation now has smoke-level repeated same-continuous-
 trajectory paper-generating comparisons, but it is still too small for a

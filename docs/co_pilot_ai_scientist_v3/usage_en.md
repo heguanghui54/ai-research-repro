@@ -148,10 +148,12 @@ run:
 python3 scripts/audit_taste_insight_coverage.py
 ```
 
-The current archive has 1 complete taste/insight record, from the author's
-benchmark-portfolio and high-tail framing decision, and 17 older records without
-the field. Treat this as initial logging coverage, not as a performance result
-about human scientific taste.
+The current strict archive audit has 2 complete taste/insight records: the
+author's benchmark-portfolio/high-tail framing decision and an operator-recorded
+decision to prioritize attention/taste measurement before stronger human
+efficiency claims. It also has 1 complete attention-cost record. Treat these as
+logging and measurement-readiness evidence, not as performance evidence about
+human scientific taste.
 
 To check whether the repository contains a qualifying prospective matched-budget
 package, run:

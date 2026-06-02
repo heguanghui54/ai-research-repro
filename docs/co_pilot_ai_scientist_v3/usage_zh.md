@@ -138,7 +138,7 @@ docs/co_pilot_ai_scientist_v3/taste_insight_rubric.md
 python3 scripts/audit_taste_insight_coverage.py
 ```
 
-当前归档中已有 1 条完整 taste/insight 记录，来自作者关于 benchmark portfolio 和高尾部科研框架的决策；另外 17 条较早记录仍缺少该字段。应把它视为初始 logging coverage，而不是“人类科研品味有效或无效”的性能结果。
+当前严格归档审计中已有 2 条完整 taste/insight 记录：一条来自作者关于 benchmark portfolio 和高尾部科研框架的决策，另一条来自本轮 operator-recorded 的“先补 attention/taste 测量、再谈更强人类效率主张”的决策。同时已有 1 条完整 attention-cost 记录。应把它视为 logging 和 measurement-readiness 证据，而不是“人类科研品味有效或无效”的性能结果。
 
 如果要检查当前仓库是否已经包含合格的 prospective matched-budget package，
 运行：

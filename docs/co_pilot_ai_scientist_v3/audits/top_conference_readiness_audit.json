@@ -21,19 +21,19 @@
   "unsupported_performance_requirements": [
     "Human collaboration improves paper quality beyond archived manuscript probes",
     "Full Co-Pilot v3 outperforms autonomous AI Scientist-v2",
-    "Human attention cost is measured for real gates",
+    "Independent human attention cost is measured for prospective experiment gates",
     "Top-conference-level empirical support"
   ],
   "current_counts": {
-    "human_gate_records_audited": 38,
-    "standalone_human_gate_logs": 8,
+    "human_gate_records_audited": 39,
+    "standalone_human_gate_logs": 9,
     "embedded_trajectory_gates": 30,
-    "complete_taste_insight_records": 1,
-    "complete_attention_cost_records": 0,
-    "derived_trace_gate_records": 29,
-    "derived_trace_attention_cost_records": 12,
-    "derived_trace_taste_insight_records": 7,
-    "prospective_matched_packages": 3,
+    "complete_taste_insight_records": 2,
+    "complete_attention_cost_records": 1,
+    "derived_trace_gate_records": 52,
+    "derived_trace_attention_cost_records": 35,
+    "derived_trace_taste_insight_records": 10,
+    "prospective_matched_packages": 4,
     "same_run_online_paired_smokes": 3,
     "same_run_online_no_valid_branch_smokes": 1
   },
@@ -63,12 +63,14 @@
     "live_llm_research_run": false
   },
   "attention_cost_logging_tooling": {
-    "status": "pass_for_synthetic_smoke",
+    "status": "operator_recorded_measurement_readiness",
     "generated_complete_attention_cost_record": true,
-    "real_gate_complete_attention_cost_records": 0,
+    "complete_attention_cost_records": 1,
+    "operator_recorded_gate": "docs/co_pilot_ai_scientist_v3/human_gate_logs/scientific_taste_prior_attention_measurement_001.json",
+    "independent_human_subject_timing": false,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Scale beyond repeated tiny-budget same-run online smokes: more FML/non-FML tasks, seeds, budgets, independent human paper-quality scoring, measured human timing, and ideally multiple human researchers.",
+  "next_evidence_milestone": "Use the complete attention/taste logging protocol during future prospective experiment gates, then scale beyond repeated tiny-budget same-run online smokes with more FML/non-FML tasks, seeds, budgets, independent human paper-quality scoring, measured human timing, and ideally multiple human researchers.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -98,9 +100,12 @@
     }
   },
   "attention_taste_logging_tooling": {
-    "status": "pass_for_synthetic_smoke",
+    "status": "operator_recorded_measurement_readiness",
     "generated_complete_attention_cost_record": true,
     "generated_complete_taste_insight_record": true,
+    "operator_recorded_gate": "docs/co_pilot_ai_scientist_v3/human_gate_logs/scientific_taste_prior_attention_measurement_001.json",
+    "audit": "docs/co_pilot_ai_scientist_v3/audits/attention_taste_priority_gate_audit.md",
+    "independent_human_subject_timing": false,
     "real_performance_evidence": false
   },
   "paper_quality_review": {

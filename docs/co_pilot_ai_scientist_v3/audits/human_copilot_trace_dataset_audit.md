@@ -2,9 +2,9 @@
 
 - Status: `pass`
 - Dataset: `docs/co_pilot_ai_scientist_v3/human_copilot_trace_dataset.json`
-- Gate records: 31
+- Gate records: 52
 - Prospective packages: 4
-- Commit index entries: 48
+- Commit index entries: 57
 - Secret-pattern hits: 0
 - Raw-log marker hits: 0
 

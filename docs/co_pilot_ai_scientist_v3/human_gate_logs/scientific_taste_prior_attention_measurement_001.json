@@ -1,0 +1,81 @@
+{
+  "gate_id": "scientific_taste_prior_attention_measurement_001",
+  "gate_type": "scientific_taste_prior",
+  "timestamp_utc": "2026-06-02T01:51:40Z",
+  "research_task_id": "copilot_v3_attention_taste_measurement_priority",
+  "options": [
+    {
+      "option_id": "run_more_causality_smokes",
+      "summary": "Run more same-task Causality paired online smokes before changing the logging protocol.",
+      "score": null,
+      "evidence": [],
+      "risks": []
+    },
+    {
+      "option_id": "broaden_failure_tasks",
+      "summary": "Broaden cross-task failure-mode coverage with additional no-valid or evaluator-stress trajectories.",
+      "score": null,
+      "evidence": [],
+      "risks": []
+    },
+    {
+      "option_id": "measure_attention_taste",
+      "summary": "Prioritize complete prospective attention/taste gate logging before stronger human-efficiency or taste-effect claims.",
+      "score": null,
+      "evidence": [],
+      "risks": []
+    }
+  ],
+  "human_decision": "measure_attention_taste",
+  "rationale": "The package already contains executable traces, repeated smoke evidence, and a clean-clone audit, but the top-conference readiness audit still blocks human-efficiency and taste-effect claims because archived real gates lack complete attention-cost records and most lack structured taste/insight fields. The scientifically stronger next move is to make the human gate observable before adding more weak performance runs.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/taste_insight_coverage_audit.md",
+    "docs/co_pilot_ai_scientist_v3/human_copilot_trace_dataset.md"
+  ],
+  "downstream_budget": {
+    "next_evidence_milestone": "complete prospective attention+taste logging on future live gates before attention-efficiency or taste-effect claims",
+    "blocks": [
+      "attention_efficiency_claim",
+      "taste_causal_effect_claim"
+    ],
+    "current_clean_clone_commit": "3a7671340",
+    "interpretation": "operator-recorded measurement-readiness gate, not a performance result"
+  },
+  "attention_cost": {
+    "human_actor": "author_operator",
+    "interaction_mode": "codex_thread_review",
+    "prompted_at_utc": "2026-06-02T01:42:00Z",
+    "decision_at_utc": "2026-06-02T01:51:40Z",
+    "active_review_minutes": 8.5,
+    "wall_clock_latency_minutes": 9.666667,
+    "options_reviewed": 3,
+    "artifacts_reviewed_count": 4,
+    "decision_count": 1,
+    "notes": "Operator-recorded gate from the live Codex paper-development thread. Use as measurement-readiness evidence only; do not treat as independent human-subject timing or downstream performance evidence."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-02",
+    "scores": {
+      "problem_depth": 5.0,
+      "novelty_potential": 4.0,
+      "mechanistic_value": 4.0,
+      "failure_informativeness": 5.0,
+      "benchmark_taste": 5.0,
+      "claim_significance": 4.0,
+      "risk_asymmetry": 5.0
+    },
+    "taste_insight_score": 4.6,
+    "qualitative_rationale": "This decision favors an evidence structure that can reveal whether human scientific taste acts as a high-variance search prior, even if it delays additional benchmark wins. It is valuable because it makes the paper’s distinctive human-in-the-loop claim auditable rather than decorative.",
+    "non_metric_factors": [
+      "top-conference-blocker-removal",
+      "measurement-readiness-before-performance-claims",
+      "human-taste-as-high-variance-search-prior"
+    ]
+  },
+  "follow_up_checks": [
+    "Rerun attention-cost and taste/insight audits after writing this gate.",
+    "Update the manuscript to distinguish measurement-readiness evidence from performance evidence."
+  ]
+}
