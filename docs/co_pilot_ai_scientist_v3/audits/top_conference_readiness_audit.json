@@ -164,7 +164,11 @@
     "delayed_value_candidate_frontier_validation_not_scored_match_drift": 3,
     "delayed_value_candidate_frontier_validation_delayed_mean_score": 0.24,
     "delayed_value_candidate_frontier_validation_control_mean_score": 0.176,
-    "delayed_value_candidate_frontier_validation_delayed_minus_control": 0.064
+    "delayed_value_candidate_frontier_validation_delayed_minus_control": 0.064,
+    "lhtg_dvrs_audit_runs": 1,
+    "lhtg_delayed_value_positive_cases": 0,
+    "lhtg_candidate_queue_size": 120,
+    "lhtg_candidate_frontier_delta": 0.064
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -1252,5 +1256,15 @@
     "best_single_gate_utility_capture_rate": 0.3741,
     "random_category_mean_utility_capture_rate": 0.7059,
     "claim_boundary": "Held-out validation reduces same-sample routing bias, but it is not independent human labeling and does not prove downstream quality gains."
+  },
+  "lhtg_dvrs_audit": {
+    "status": "pass_with_no_positive_dvrs",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.md",
+    "method_terms_present": true,
+    "delayed_value_positive_cases": 0,
+    "candidate_queue_size": 120,
+    "candidate_frontier_delta": 0.064,
+    "claim_boundary": "LHTG/DVRS is operationalized as a routing and replay policy, but the current archived evidence validates only candidate prioritization and negative/weak TFR boundaries. It does not prove that human reviews improve long-horizon discovery."
   }
 }

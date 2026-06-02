@@ -630,7 +630,10 @@
     "scripts/run_delayed_value_candidate_frontier_validation.py",
     "scripts/audit_package_consistency.py",
     "docs/co_pilot_ai_scientist_v3/audits/package_consistency_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/package_consistency_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/package_consistency_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.md",
+    "scripts/audit_long_horizon_taste_gate.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1496,7 +1499,11 @@
     "high_tail_power_analysis_current_delayed_value_cases": 0,
     "heldout_review_gate_validation_runs": 1,
     "heldout_review_gate_validation_heldout_reviews": 94,
-    "heldout_review_gate_validation_full_utility_capture_rate": 1.0
+    "heldout_review_gate_validation_full_utility_capture_rate": 1.0,
+    "lhtg_dvrs_audit_runs": 1,
+    "lhtg_delayed_value_positive_cases": 0,
+    "lhtg_candidate_queue_size": 120,
+    "lhtg_candidate_frontier_delta": 0.064
   },
   "review_frontier_signal_probe": {
     "status": "completed_negative_lexical_review_signal_probe",
@@ -1615,5 +1622,15 @@
       "clean-clone manifest_artifacts_checked does not match manifest current_artifacts length because clean-clone audit targets an ancestor commit",
       "readiness clean-clone manifest count is stale because clean-clone audit targets an ancestor commit"
     ]
+  },
+  "lhtg_dvrs_audit": {
+    "status": "pass_with_no_positive_dvrs",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.md",
+    "method_terms_present": true,
+    "delayed_value_positive_cases": 0,
+    "candidate_queue_size": 120,
+    "candidate_frontier_delta": 0.064,
+    "claim_boundary": "LHTG/DVRS is operationalized as a routing and replay policy, but the current archived evidence validates only candidate prioritization and negative/weak TFR boundaries. It does not prove that human reviews improve long-horizon discovery."
   }
 }

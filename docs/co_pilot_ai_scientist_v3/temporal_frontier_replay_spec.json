@@ -22,6 +22,28 @@
     "actionability_score",
     "specificity_score"
   ],
+  "lhtg_meta_policy": {
+    "name": "Long-Horizon Taste Gate",
+    "abbreviation": "LHTG",
+    "role": "cross_gate_routing_policy",
+    "not_a_sixth_approval_gate": true,
+    "target_signal": "Delayed-Value Review Signal",
+    "target_signal_abbreviation": "DVRS",
+    "routing_fields": [
+      "short_term_friction",
+      "long_horizon_directionality",
+      "gate_route",
+      "validation_status"
+    ],
+    "priority_rule": "Prioritize expensive TFR replay for candidate reviews with both short-term friction and long-horizon directionality; downweight generic praise, generic criticism, and comments that only improve local reviewer satisfaction."
+  },
+  "delayed_value_label_conditions": [
+    "review_guided.short_term_score < paper_only.short_term_score",
+    "review_guided.frontier_alignment_score > paper_only.frontier_alignment_score",
+    "review_guided.frontier_alignment_score > shuffled_review_control.frontier_alignment_score",
+    "responsible_review_snippet_is_actionable_and_specific",
+    "later_frontier_evidence_passes_match_drift_guard"
+  ],
   "delayed_value_review_signal": {
     "short_term_condition": "review_guided.short_term_score < paper_only.short_term_score",
     "frontier_condition": "review_guided.frontier_alignment_score > paper_only.frontier_alignment_score",

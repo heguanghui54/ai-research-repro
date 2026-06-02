@@ -1,0 +1,59 @@
+{
+  "audit_date": "2026-06-02T10:52:20Z",
+  "status": "pass_with_no_positive_dvrs",
+  "method_terms_present": true,
+  "method_checks": {
+    "docs/co_pilot_ai_scientist_v3/architecture.md": {
+      "Long-Horizon Taste Gate": true,
+      "LHTG": true,
+      "DVRS": true
+    },
+    "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
+      "Long-Horizon Taste Gate": true,
+      "LHTG": true,
+      "DVRS": true
+    },
+    "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md": {
+      "长期科研品味门控": true,
+      "LHTG": true,
+      "DVRS": true
+    },
+    "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.md": {
+      "Long-Horizon Taste Gate": true,
+      "LHTG Routing Rule": true,
+      "DVRS": true
+    }
+  },
+  "tfr_status": "pass_with_negative_delayed_value_evidence",
+  "candidate_queue": {
+    "reviews_screened": 473,
+    "papers_screened": 160,
+    "delayed_value_replay_candidates": 120,
+    "candidate_rate": 0.2537,
+    "long_horizon_positive_candidates": 84,
+    "short_term_repair_signals": 90
+  },
+  "candidate_frontier_validation": {
+    "attempted_count": 16,
+    "scored_count": 13,
+    "delayed_candidate_mean_review_signal_score": 0.24,
+    "control_mean_review_signal_score": 0.176,
+    "delayed_minus_control_mean_score": 0.064
+  },
+  "validated_negative_evidence": {
+    "citation_delayed_value_cases": 0,
+    "citation_short_term_positive_long_term_negative_cases": 3,
+    "review_frontier_latent_delayed_value_candidates": 0,
+    "semantic_latent_delayed_value_candidates": 0,
+    "semantic_winner_counts": {
+      "paper_context": 4,
+      "review_guided_artifact": 1
+    }
+  },
+  "delayed_value_positive_cases": 0,
+  "errors": [],
+  "warnings": [
+    "No positive delayed-value review signal has been validated yet"
+  ],
+  "claim_boundary": "LHTG/DVRS is operationalized as a routing and replay policy, but the current archived evidence validates only candidate prioritization and negative/weak TFR boundaries. It does not prove that human reviews improve long-horizon discovery."
+}
