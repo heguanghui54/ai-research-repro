@@ -74,6 +74,17 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
 | Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | no search advantage | Direct editing can be enough on simple modeling tasks. |
 
+The resulting claim-to-evidence map is deliberately conservative.
+
+| Paper claim | Evidence status | Claim boundary |
+| --- | --- | --- |
+| IGRE is this paper's five-gate method for treating human taste as a logged research-control signal. | Supported as a method and artifact contribution. | Not a claim that every human intervention improves outcomes. |
+| OpenReview-style expert reviews can proxy human taste/insight for offline workflow design. | Supported for routeability: 398 actionable snippets and strong multi-gate utility capture. | Offline peer review is not the same as live co-pilot data. |
+| Targeted gate routing can be more useful than giving the agent all human context. | Supported narrowly by the single-gate artifact ablation. | Model-reviewed mini-artifacts only; needs human expert validation. |
+| TFR can test whether past reviews would have moved automated science toward later frontiers. | Supported as an operationalized replay protocol. | Current small sample finds 0 delayed-value cases, so the long-horizon hypothesis remains unproven. |
+| Human-gated short-budget FML runs outperform autonomous runs. | Not supported. | Current evidence is mixed or negative and should be treated as a failure-mode lesson. |
+| OpenEvolve-style micro-evolution improves some machine-gradeable subproblems. | Supported narrowly. | Trigger selectively; direct editing is competitive on simple tasks. |
+
 ### 4.1 Can expert review text be mapped into useful workflow gates?
 
 We use the Hugging Face `nhop/OpenReview` dataset through streaming access, avoiding a full local download. The probe verifies 34,638 dataset rows and samples 160 rows. From these rows, a deterministic review-utility map extracts 473 review snippets. It marks 398 snippets as actionable and 64 as noisy or low-actionability.

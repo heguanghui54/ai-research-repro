@@ -189,6 +189,7 @@
     "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_setup_probe/README.md",
     "docs/co_pilot_ai_scientist_v3/audits/claim_audit_monica_gpt4o_mini.md",
     "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",

@@ -1,0 +1,152 @@
+{
+  "audit_date": "2026-06-02",
+  "purpose": "Keep the Co-Pilot AI Scientist v3 manuscript aligned with the archived evidence package.",
+  "global_claim_boundary": "IGRE and TFR are reproducible participation-mode design methods. Current evidence does not prove that human-gated automated science outperforms autonomous AI Scientist-v2 on average.",
+  "claims": [
+    {
+      "claim": "IGRE is a distinct algorithmic pattern for inserting human scientific taste into automated research loops.",
+      "status": "supported_method_contribution",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+        "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md",
+        "docs/co_pilot_ai_scientist_v3/human_gate_schema.json",
+        "skills/co-pilot-ai-scientist-v3/SKILL.md"
+      ],
+      "paper_treatment": "Present as this paper's five-gate method, inspired by prior systems but adapted around human taste, attention cost, and claim calibration."
+    },
+    {
+      "claim": "Expert peer reviews contain routeable taste and insight signals.",
+      "status": "supported_offline_proxy",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/summary.json"
+      ],
+      "metrics": {
+        "review_snippets": 473,
+        "actionable_snippets": 398,
+        "noisy_or_low_actionability_snippets": 64,
+        "evaluator_stress_triggers": 245,
+        "structured_feedback_triggers": 210,
+        "claim_calibration_triggers": 140,
+        "scientific_taste_prior_triggers": 111
+      },
+      "paper_treatment": "Treat OpenReview as a scalable offline proxy, not as real-time co-pilot data."
+    },
+    {
+      "claim": "Multi-gate routing preserves more review utility than single-gate or no-gate policies.",
+      "status": "supported_routing_evidence",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/gate_structure_ablation_probe_20260602_183000/summary.json"
+      ],
+      "metrics": {
+        "full_igre_utility_capture": 1.0,
+        "best_single_gate_utility_capture": 0.369,
+        "random_gate_mean_utility_capture": 0.199,
+        "no_gate_utility_capture": 0.0
+      },
+      "paper_treatment": "Use as structural support for gate separation, not as downstream quality proof."
+    },
+    {
+      "claim": "Targeted review-derived gates can improve model-reviewed mini-artifacts.",
+      "status": "supported_narrow_model_reviewed_proxy",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/gate_outcome_attribution_probe_20260602_191500/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/single_gate_artifact_ablation_20260602_203000/summary.json"
+      ],
+      "metrics": {
+        "full_igre_aligned_score": 75.17,
+        "best_single_gate_aligned_score": 37.25,
+        "single_gate_best_mean_overall": 3.6667,
+        "full_review_guided_mean_overall": 3.5,
+        "baseline_mean_overall": 2.9166
+      },
+      "paper_treatment": "Say targeted evaluator-stress routing can beat full review context in this small proxy."
+    },
+    {
+      "claim": "Review-guided regeneration can improve some research artifacts.",
+      "status": "moderately_supported_model_reviewed_proxy",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json"
+      ],
+      "metrics": {
+        "same_scorer_review_guided_wins": 5,
+        "same_scorer_baseline_wins": 1,
+        "claude_review_guided_wins": 3,
+        "claude_baseline_wins": 1,
+        "claude_ties": 2,
+        "equal_context_review_guided_votes": 8,
+        "equal_context_control_votes": 1,
+        "equal_context_ties": 3
+      },
+      "paper_treatment": "Use 'can improve some artifacts'; do not claim independent human validation or real experiment improvement."
+    },
+    {
+      "claim": "TFR operationalizes delayed-value human insight.",
+      "status": "supported_protocol_operationalization",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.md",
+        "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.json",
+        "docs/co_pilot_ai_scientist_v3/audits/temporal_frontier_replay_audit.json"
+      ],
+      "paper_treatment": "Present as a falsifiable replay protocol for long-horizon human taste."
+    },
+    {
+      "claim": "Historical reviews in the current sample provide positive delayed-value evidence.",
+      "status": "not_supported_negative_current_evidence",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_213000/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/review_frontier_signal_probe_20260602_214500/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/summary.json"
+      ],
+      "metrics": {
+        "citation_delayed_value_cases": 0,
+        "citation_short_term_positive_long_term_negative_cases": 3,
+        "review_frontier_latent_delayed_value_candidates": 0,
+        "semantic_delayed_value_candidates": 0
+      },
+      "paper_treatment": "Report as negative evidence. The delayed-value hypothesis is important and measurable but unproven."
+    },
+    {
+      "claim": "Short-budget human-gated FML-style runs beat autonomous baselines.",
+      "status": "not_supported_mixed_or_negative",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.json",
+        "docs/co_pilot_ai_scientist_v3/audits/fml_matched_comparison_summary.json"
+      ],
+      "metrics": {
+        "prospective_copilot_or_human_selected_wins": 1,
+        "prospective_autonomous_tie_or_invalid": 3,
+        "online_fml_copilot_wins": 0,
+        "online_fml_autonomous_wins": 1,
+        "online_fml_ties": 1
+      },
+      "paper_treatment": "Use as failure-mode evidence motivating gate selection, not as superiority evidence."
+    },
+    {
+      "claim": "OpenEvolve-style micro-evolution should be triggered selectively.",
+      "status": "supported_narrow_boundary_condition",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_multiseed_summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/maxcut_program_search_comparison.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/sklearn_diabetes_tabular_summary.json"
+      ],
+      "metrics": {
+        "mlagentbench_vectorization_correct_seeds": "8/8",
+        "mlagentbench_vectorization_median_seconds": 0.024581,
+        "mlagentbench_vectorization_starter_seconds": 3.261186,
+        "sklearn_diabetes_search_advantage": "none_against_direct_rewrite"
+      },
+      "paper_treatment": "State that micro-evolution is useful on some machine-gradeable subproblems but not universal."
+    },
+    {
+      "claim": "The package proves top-conference-level co-pilot superiority.",
+      "status": "not_supported",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md",
+        "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md"
+      ],
+      "paper_treatment": "Present as a strong pilot and reproducibility package with explicit next evidence requirements."
+    }
+  ]
+}

@@ -74,6 +74,17 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | MLAgentBench vectorization | 8/8 seeds 保持正确，median 0.024581 s | starter 3.261186 s；direct rewrite 未通过正确性 | 显著运行时间收益 | 可验证微演化适合 correctness-gated 代码子问题。 |
 | Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | 无搜索优势 | 简单建模任务中直接编辑可能足够。 |
 
+由此得到的主张-证据映射被有意保持保守。
+
+| 论文主张 | 证据状态 | 主张边界 |
+| --- | --- | --- |
+| IGRE 是本文提出的五门控方法，把人类科研品味视为可记录的科研控制信号。 | 作为方法和 artifact 贡献已支持。 | 不等于每一次人类介入都会改善结果。 |
+| OpenReview 式专家评审可作为离线工作流设计中的人类 taste/insight 代理。 | routeability 已支持：398 条可行动片段，多门控 utility capture 明显优于单门控。 | 离线同行评审不等于实时 co-pilot 数据。 |
+| 有针对性的门控路由可能比把全部人类上下文都喂给 agent 更有用。 | 单门控产物消融给出窄范围支持。 | 目前只是模型评审 mini-artifact，需要人类专家验证。 |
+| TFR 可以检验历史评审是否本可以把自动科研推向后来的学科前沿。 | 作为可运行回放协议已操作化。 | 当前小样本发现 0 个 delayed-value case，因此长期高尾假设尚未被证明。 |
+| 短预算人类门控 FML 运行优于全自动运行。 | 不支持。 | 当前证据混合或负向，应作为失败模式经验而非优越性证据。 |
+| OpenEvolve 式微演化能改善部分可机器评分子问题。 | 窄范围支持。 | 应选择性触发；简单任务中直接编辑仍有竞争力。 |
+
 ### 4.1 专家评审文本能否映射为有用的工作流门控？
 
 我们通过流式访问 Hugging Face 上的 `nhop/OpenReview` 数据集，避免完整下载。探针确认数据集包含 34,638 行，并抽样 160 行。从这些样本中，确定性 review-utility map 提取 473 条评审片段，其中 398 条被标记为可行动信号，64 条被标记为噪声或低行动性信号。
