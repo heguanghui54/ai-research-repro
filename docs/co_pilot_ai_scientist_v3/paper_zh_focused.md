@@ -83,6 +83,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | 模型-only 盲评包 dry run | review-guided 胜 0 次 | context-control 胜 7 次，平 1 次 | review-guided 减 control 均值 -1.1458 | 验证盲评包和统计流程，同时暴露负结果：未经过合适门控路由的评审文本可能在盲评中明显变差；这不是人类证据。 |
 | Live skill invocation smoke | 生成 3 个候选方向和一个归档的一版 IGRE gate plan | template-only skill smoke | 2 次真实模型调用，audit recommendation pass | 说明 Codex skill 可在新任务上复用；不是 benchmark 证据。 |
 | Standalone skill install smoke | public release scaffold 安装到隔离 `CODEX_SKILLS_DIR` 并通过 installed validator | release files without install execution | 检查 14 个 required files；install smoke pass | 工程迁移性证据，说明 IGRE skill 包可安装和自验证；不是科学优越性证据。 |
+| External clean skill reuse smoke | release skill 被复制到 `/tmp` 外部 skills 目录，并用于新的 scientific-visualization 主题 | 无外部研究者、无 benchmark、无人类评分 | 实例化 6/6 个 IGRE gates；engineering-chain audit 6/6 | 证明 public skill package 的 clean-environment transfer；不是社区采用或科学优越性证据。 |
 | Metric-gaming evaluator-stress smoke | evaluator-stress gate 选择 `guardrailed_utility_model` | primary-only 公平性指标选择 `metric_gaming_all_negative` | 减少 1 个合成 metric-gaming 事件 | 将 live skill 任务连接到真实 evaluator；这是受控 toy 证据，不是 FML-bench 结果。 |
 | FML Fairness evaluator-stress replay | gate 拒绝 metric-gaming 并中止无有效 continuation | primary-only FML 指标选择 `metric_gaming_all_negative` | 减少 1 个归档 FML metric-gaming 事件 | 真实 FML-Bench artifact replay；支持 gate 设计，不支持公平性提升。 |
 | 回溯式前沿对齐 smoke | review-guided 胜 1 次 | shuffled-control 胜 5 次 | 相对 control 平均增量 -0.0855；delayed-value 0 例；短期正向/长期负向 3 例 | 未来前沿对齐比局部论文改进更难；当前仅为启发式 descriptor。 |

@@ -1,0 +1,41 @@
+{
+  "run_id": "external_clean_skill_reuse_smoke_20260603",
+  "created_at": "2026-06-02T18:07:42Z",
+  "status": "pass",
+  "external_root": "/private/tmp/copilot_v3_external_skill_reuse_smoke",
+  "external_workspace": "/private/tmp/copilot_v3_external_skill_reuse_smoke/workspace",
+  "external_skill_dir": "/private/tmp/copilot_v3_external_skill_reuse_smoke/codex_skills/co-pilot-ai-scientist-v3",
+  "release_source": "release/co-pilot-ai-scientist-v3-skill",
+  "generated_from_release_copy": true,
+  "generated_from_global_install": false,
+  "clean_external_environment": true,
+  "fresh_topic": "scientific_visualization_replication",
+  "required_files_checked": [
+    "SKILL.md",
+    "MIGRATION.md",
+    "README.md",
+    "QUICKSTART.md",
+    "templates/task_spec_template.md",
+    "templates/human_gate_log_template.json",
+    "templates/claim_audit_template.md",
+    "scripts/validate_release.py"
+  ],
+  "lineage_present": {
+    "ai-scientist-v2": true,
+    "Insight-Gated Research Evolution": true,
+    "scientific_taste_prior": true,
+    "evaluator_stress_test": true,
+    "frontier_steering": true,
+    "verifiable_micro_evolution": true,
+    "structured_feedback": true,
+    "claim_calibration": true
+  },
+  "six_gate_count": 6,
+  "all_six_gates_present": true,
+  "task_spec": "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/task_spec.md",
+  "gate_log": "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/six_gate_log.json",
+  "claim_audit": "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/claim_audit.md",
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "This smoke verifies clean external-environment reuse of the release skill on a fresh topic. It is engineering transfer evidence, not external-researcher evidence, human-review evidence, benchmark evidence, or scientific-superiority evidence."
+}

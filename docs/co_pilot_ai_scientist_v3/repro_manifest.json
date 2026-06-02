@@ -895,7 +895,13 @@
     "docs/co_pilot_ai_scientist_v3/README.md",
     "scripts/audit_focused_accessibility_revision.py",
     "docs/co_pilot_ai_scientist_v3/audits/focused_accessibility_revision_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/focused_accessibility_revision_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/focused_accessibility_revision_audit.md",
+    "scripts/run_external_clean_skill_reuse_smoke.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/task_spec.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/six_gate_log.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/claim_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/README.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1958,9 +1964,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "68512c144fa70b1d04c792127bc354dbffb50c5b",
+    "head": "87131f48725fabb3c7ae6c2c733e16d6cf62d712",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 882,
+    "manifest_artifacts": 888,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2129,9 +2135,9 @@
     "status": "pass",
     "json": "docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.md",
-    "steps_passed": 5,
-    "steps_checked": 5,
-    "claim_boundary": "This audit verifies the engineering chain from standalone release scaffold through isolated install, global install, fresh global-skill reuse, and one toy evaluator-stress smoke. It is usability and reproducibility evidence, not independent human evidence, not an official benchmark result, and not proof that Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2."
+    "steps_passed": 6,
+    "steps_checked": 6,
+    "claim_boundary": "This audit verifies the engineering chain from standalone release scaffold through isolated install, global install, fresh global-skill reuse, clean external temporary reuse, and one toy evaluator-stress smoke. It is usability and reproducibility evidence, not independent human evidence, not an official benchmark result, and not proof that Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2."
   },
   "prospective_matched_micro_pilot_ssh_maxcut": {
     "status": "pass",
@@ -2170,5 +2176,15 @@
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/focused_accessibility_revision_audit.md",
     "purpose": "Checks focused paper revisions for running example, ethics, governance, and cross-domain scalability terms.",
     "claim_boundary": "Presentation/scalability revision audit only; not empirical strength evidence."
+  },
+  "external_clean_skill_reuse_smoke": {
+    "status": "pass",
+    "output_dir": "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603",
+    "external_root": "/private/tmp/copilot_v3_external_skill_reuse_smoke",
+    "task_spec": "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/task_spec.md",
+    "gate_log": "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/six_gate_log.json",
+    "claim_audit": "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/claim_audit.md",
+    "clean_external_environment": true,
+    "claim_boundary": "This smoke verifies clean external-environment reuse of the release skill on a fresh topic. It is engineering transfer evidence, not external-researcher evidence, human-review evidence, benchmark evidence, or scientific-superiority evidence."
   }
 }

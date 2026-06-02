@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T18:02:44Z`
+- Audit date: `2026-06-02T18:09:37Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `68512c144fa70b1d04c792127bc354dbffb50c5b`
+- HEAD: `87131f48725fabb3c7ae6c2c733e16d6cf62d712`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `882`
+- Manifest artifacts: `888`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `882/882`
+- Manifest coverage: `888/888`
 
 ## Explicit Requirements
 
@@ -41,10 +41,10 @@
 ## Artifact Status
 
 - `english_pdf`: `pass` (53210 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
-- `focused_english_pdf`: `pass` (207810 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `focused_english_pdf`: `pass` (208679 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `root_readme`: `pass` (10931 bytes) - `README.md`
 - `english_submission_card`: `pass` (5476 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
-- `top_conference_evidence_roadmap`: `pass` (11388 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
+- `top_conference_evidence_roadmap`: `pass` (11753 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
 - `top_conference_evidence_roadmap_json`: `pass` (5396 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - `deep_regeneration_casebook`: `pass` (13397 bytes) - `docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md`
 - `human_expert_blind_review_protocol`: `pass` (3755 bytes) - `docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md`
@@ -66,7 +66,7 @@
 - `global_skill_install_audit`: `pass` (2722 bytes) - `docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.json`
 - `global_skill_reuse_smoke`: `pass` (1187 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/summary.json`
 - `global_skill_metric_evaluator`: `pass` (2733 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/global_skill_metric_gaming_evaluator_20260603/summary.json`
-- `global_skill_engineering_chain_audit`: `pass` (4029 bytes) - `docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.json`
+- `global_skill_engineering_chain_audit`: `pass` (4469 bytes) - `docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.json`
 - `task_template`: `pass` (2899 bytes) - `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`
 - `gate_template`: `pass` (1789 bytes) - `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`
 

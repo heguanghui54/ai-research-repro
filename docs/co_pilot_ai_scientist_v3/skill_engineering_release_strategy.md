@@ -119,9 +119,9 @@ should optimize for:
 | Milestone | Deliverable | Evidence |
 | --- | --- | --- |
 | R0 internal skill | Current Codex skill in this repository | `skills/co-pilot-ai-scientist-v3/SKILL.md` and smoke audit |
-| R1 reproducible package | README, quickstart, templates, validator, example trajectory | clean clone and skill reuse smoke |
+| R1 reproducible package | README, quickstart, templates, validator, example trajectory | clean clone, global skill reuse smoke, and external clean-environment reuse smoke |
 | R2 public GitHub skill repo | Standalone repo with install instructions and examples | pushed release branch or public repo |
-| R3 community validation | external users run the skill on new topics | issue/PR/example logs, with privacy protection |
+| R3 community validation | external users run the skill on new topics | issue/PR/example logs, with privacy protection; scripted clean-environment reuse is not enough |
 | R4 paper-grade engineering evidence | multiple researchers' anonymized gate traces | consented multi-user trace dataset |
 
 ## First Public README Outline
@@ -141,6 +141,7 @@ should optimize for:
 
 GitHub stars or community adoption would be engineering-impact evidence, not
 scientific proof of co-pilot superiority. The paper should treat a successful
-public skill release as evidence that IGRE is usable and transferable, while
-matched benchmark runs and blind expert review remain necessary for scientific
-performance claims.
+public skill release, global install smoke, and clean external-environment
+reuse smoke as evidence that IGRE is usable and transferable at the package
+level, while matched benchmark runs and blind expert review remain necessary
+for scientific performance claims.

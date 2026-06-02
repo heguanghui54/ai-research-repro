@@ -1,15 +1,16 @@
 {
-  "audit_date": "2026-06-02T17:04:16Z",
+  "audit_date": "2026-06-02T18:09:05Z",
   "status": "pass",
   "steps": {
     "standalone_release_scaffold": true,
     "isolated_install_smoke": true,
     "global_install_audit": true,
     "global_reuse_smoke": true,
+    "external_clean_reuse_smoke": true,
     "toy_evaluator_stress_link": true
   },
-  "steps_checked": 5,
-  "steps_passed": 5,
+  "steps_checked": 6,
+  "steps_passed": 6,
   "release_required_files": [
     "README.md",
     "QUICKSTART.md",
@@ -91,7 +92,14 @@
     "isolated_install_smoke": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/summary.json",
     "global_install_audit": "docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.json",
     "global_reuse_smoke": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/summary.json",
+    "external_clean_reuse_smoke": "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/summary.json",
     "toy_evaluator_stress": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_metric_gaming_evaluator_20260603/summary.json"
+  },
+  "external_clean_reuse_summary": {
+    "external_root": "/private/tmp/copilot_v3_external_skill_reuse_smoke",
+    "fresh_topic": "scientific_visualization_replication",
+    "six_gate_count": 6,
+    "all_six_gates_present": true
   },
   "toy_evaluator_summary": {
     "primary_only_winner": "metric_gaming_all_negative",
@@ -100,5 +108,5 @@
   },
   "errors": [],
   "warnings": [],
-  "claim_boundary": "This audit verifies the engineering chain from standalone release scaffold through isolated install, global install, fresh global-skill reuse, and one toy evaluator-stress smoke. It is usability and reproducibility evidence, not independent human evidence, not an official benchmark result, and not proof that Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2."
+  "claim_boundary": "This audit verifies the engineering chain from standalone release scaffold through isolated install, global install, fresh global-skill reuse, clean external temporary reuse, and one toy evaluator-stress smoke. It is usability and reproducibility evidence, not independent human evidence, not an official benchmark result, and not proof that Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2."
 }

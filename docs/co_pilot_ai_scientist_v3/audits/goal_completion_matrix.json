@@ -1,11 +1,11 @@
 {
-  "audit_date": "2026-06-02T18:02:45Z",
+  "audit_date": "2026-06-02T18:09:38Z",
   "status": "pass_with_top_conference_gap",
-  "head": "68512c144fa70b1d04c792127bc354dbffb50c5b",
+  "head": "87131f48725fabb3c7ae6c2c733e16d6cf62d712",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "remote_branch_pushed": true,
-  "manifest_artifacts": 882,
+  "manifest_artifacts": 888,
   "missing_manifest_artifacts": 0,
   "requirement_count": 15,
   "status_counts": {
@@ -135,10 +135,11 @@
       "evidence": [
         "skills/co-pilot-ai-scientist-v3/SKILL.md",
         "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
-        "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json"
+        "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/summary.json"
       ],
-      "gap": "Skill is packaged and smoke-audited, but broader external reuse is not yet observed.",
-      "next_action": "Run the skill on a fresh topic outside this repository when evaluating generality."
+      "gap": "Skill is packaged, globally installed, smoke-audited, and copied into a clean external temporary environment on a fresh scientific-visualization topic; real external researcher or community reuse is not yet observed.",
+      "next_action": "Collect an independently run external example or community issue/PR before claiming community transfer."
     },
     {
       "key": "github_push",
@@ -147,7 +148,7 @@
       "evidence": [
         "https://github.com/heguanghui54/ai-research-repro.git",
         "codex/co-pilot-ai-scientist-v3",
-        "68512c144fa70b1d04c792127bc354dbffb50c5b"
+        "87131f48725fabb3c7ae6c2c733e16d6cf62d712"
       ],
       "gap": "Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate.",
       "next_action": "Create a release or PR only when the user wants a public submission package."

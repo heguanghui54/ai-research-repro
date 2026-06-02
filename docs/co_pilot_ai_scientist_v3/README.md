@@ -146,6 +146,11 @@ does not replace the paper's empirical evidence requirements.
   globally installed skill files and templates on a fresh evaluator-stress
   research task, generating a task spec, gate log, and claim audit. This proves
   installed-skill artifact reuse, not benchmark or human-evaluation success.
+- `experiments/external_clean_skill_reuse_smoke_20260603/`: smoke test that
+  copies the standalone release skill into a clean `/tmp` Codex skills
+  directory outside the repository and instantiates all six IGRE gates on a
+  fresh scientific-visualization topic. This is clean-environment transfer
+  evidence, not external-user, benchmark, or human-evaluation evidence.
 - `experiments/global_skill_metric_gaming_evaluator_20260603/`: executable toy
   evaluator linked to the global-skill reuse task. The primary-only metric
   selects a synthetic degenerate candidate, while the evaluator-stress gate's
@@ -153,8 +158,8 @@ does not replace the paper's empirical evidence requirements.
   not an official benchmark result.
 - `audits/global_skill_engineering_chain_audit.md`: chain-level audit linking
   the standalone release scaffold, isolated install smoke, real global install,
-  fresh global-skill reuse smoke, and toy evaluator-stress smoke. This is
-  engineering reuse evidence only, not independent human evidence or
+  fresh global-skill reuse smoke, clean external-environment reuse smoke, and
+  toy evaluator-stress smoke. This is engineering reuse evidence only, not independent human evidence or
   scientific-superiority evidence.
 - `experiments/prospective_matched_micro_pilot_20260603_ssh_maxcut/`: SSH
   Ubuntu prospective matched-budget micro-pilot on a controlled weighted

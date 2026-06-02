@@ -259,7 +259,7 @@ def main() -> None:
         and global_skill_metric_evaluator.get("metric_gaming_incidents_reduced") == 1,
         "global_codex_skill_engineering_chain_audit": global_skill_engineering_chain.get("status") == "pass"
         and global_skill_engineering_chain.get("steps_passed") == global_skill_engineering_chain.get("steps_checked")
-        and global_skill_engineering_chain.get("steps_checked") == 5,
+        and global_skill_engineering_chain.get("steps_checked", 0) >= 5,
         "github_branch_pushed": _remote_contains_branch("origin", branch),
         "author_recorded": manifest.get("author") == "He Shi, School of Computing, National University of Singapore",
         "manifest_complete": len(current_artifacts) > 0 and not missing_manifest,

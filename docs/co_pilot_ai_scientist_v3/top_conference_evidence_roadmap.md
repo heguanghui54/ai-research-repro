@@ -167,13 +167,17 @@ as empirical proof that co-pilot science outperforms autonomous science.
   example task, gate-log template, claim-audit template, local validator, and
   at least one reproducible smoke test. The current package satisfies the
   internal install-smoke part by installing into an isolated `CODEX_SKILLS_DIR`
-  and validating the installed copy; it still needs an external researcher or
-  clean external environment to demonstrate community transfer.
+  and validating the installed copy; it also has a global-install reuse smoke
+  and a clean external temporary reuse smoke that copies the release skill into
+  `/tmp` and instantiates all six gates on a fresh scientific-visualization
+  topic. It still needs an actual external researcher or community run to
+  demonstrate social transfer beyond scripted clean-environment reuse.
 - Metrics: install success, quickstart completion, external issue/PR activity,
   example reuse count, and eventually stars or forks.
-- Upgrade condition: at least one external researcher or clean external
-  environment successfully runs the skill on a new topic and produces a valid
-  gate log.
+- Upgrade condition: at least one external researcher or independently prepared
+  external environment successfully runs the skill on a new topic and produces
+  a valid gate log. The current scripted clean-environment smoke satisfies only
+  the environment-transfer half of this condition.
 - If it fails: keep the skill as an internal artifact and do not claim
   engineering transferability.
 

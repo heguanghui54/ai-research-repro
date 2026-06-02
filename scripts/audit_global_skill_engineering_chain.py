@@ -3,9 +3,10 @@
 
 This audit intentionally separates engineering reuse evidence from scientific
 validity evidence. A pass means the standalone release can be validated,
-installed in isolation, installed globally, reused on a fresh task, and tied to
-one executable toy evaluator-stress smoke. It does not imply that the method
-improves paper quality or outperforms autonomous AI Scientist-v2.
+installed in isolation, installed globally, reused on a fresh task, copied into
+a clean external temporary workspace, and tied to one executable toy
+evaluator-stress smoke. It does not imply that the method improves paper
+quality or outperforms autonomous AI Scientist-v2.
 """
 
 from __future__ import annotations
@@ -79,6 +80,9 @@ def main() -> None:
     isolated_install_path = DOC_DIR / "experiments" / "igre_skill_install_smoke_20260603" / "summary.json"
     global_install_path = AUDIT_DIR / "global_copilot_skill_install_audit.json"
     global_reuse_path = DOC_DIR / "experiments" / "global_skill_reuse_smoke_20260603" / "summary.json"
+    external_clean_reuse_path = (
+        DOC_DIR / "experiments" / "external_clean_skill_reuse_smoke_20260603" / "summary.json"
+    )
     evaluator_path = DOC_DIR / "experiments" / "global_skill_metric_gaming_evaluator_20260603" / "summary.json"
 
     errors: list[str] = []
@@ -89,6 +93,7 @@ def main() -> None:
         isolated_install_path,
         global_install_path,
         global_reuse_path,
+        external_clean_reuse_path,
         evaluator_path,
         RELEASE_DIR / "MIGRATION.md",
         RELEASE_DIR / "SKILL.md",
@@ -105,6 +110,7 @@ def main() -> None:
     isolated_install = _load_json(isolated_install_path) if isolated_install_path.exists() else {}
     global_install = _load_json(global_install_path) if global_install_path.exists() else {}
     global_reuse = _load_json(global_reuse_path) if global_reuse_path.exists() else {}
+    external_clean_reuse = _load_json(external_clean_reuse_path) if external_clean_reuse_path.exists() else {}
     evaluator = _load_json(evaluator_path) if evaluator_path.exists() else {}
 
     release_required_files = release_manifest.get("required_files", [])
@@ -160,6 +166,12 @@ def main() -> None:
         "global_reuse_smoke": global_reuse.get("status") == "pass"
         and global_reuse.get("generated_from_global_install") is True
         and global_reuse.get("base_skill_lineage_checked") is True,
+        "external_clean_reuse_smoke": external_clean_reuse.get("status") == "pass"
+        and external_clean_reuse.get("generated_from_release_copy") is True
+        and external_clean_reuse.get("generated_from_global_install") is False
+        and external_clean_reuse.get("clean_external_environment") is True
+        and external_clean_reuse.get("all_six_gates_present") is True
+        and external_clean_reuse.get("six_gate_count") == 6,
         "toy_evaluator_stress_link": evaluator.get("status") == "pass"
         and evaluator.get("source_global_skill_reuse_smoke") == _rel(global_reuse_path)
         and evaluator.get("source_generated_from_global_install") is True
@@ -177,10 +189,11 @@ def main() -> None:
 
     claim_boundary = (
         "This audit verifies the engineering chain from standalone release scaffold "
-        "through isolated install, global install, fresh global-skill reuse, and one "
-        "toy evaluator-stress smoke. It is usability and reproducibility evidence, "
-        "not independent human evidence, not an official benchmark result, and not "
-        "proof that Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2."
+        "through isolated install, global install, fresh global-skill reuse, clean "
+        "external temporary reuse, and one toy evaluator-stress smoke. It is "
+        "usability and reproducibility evidence, not independent human evidence, "
+        "not an official benchmark result, and not proof that Co-Pilot AI Scientist "
+        "v3 outperforms autonomous AI Scientist-v2."
     )
     audit = {
         "audit_date": _utc_now(),
@@ -198,7 +211,14 @@ def main() -> None:
             "isolated_install_smoke": _rel(isolated_install_path),
             "global_install_audit": _rel(global_install_path),
             "global_reuse_smoke": _rel(global_reuse_path),
+            "external_clean_reuse_smoke": _rel(external_clean_reuse_path),
             "toy_evaluator_stress": _rel(evaluator_path),
+        },
+        "external_clean_reuse_summary": {
+            "external_root": external_clean_reuse.get("external_root"),
+            "fresh_topic": external_clean_reuse.get("fresh_topic"),
+            "six_gate_count": external_clean_reuse.get("six_gate_count"),
+            "all_six_gates_present": external_clean_reuse.get("all_six_gates_present"),
         },
         "toy_evaluator_summary": {
             "primary_only_winner": evaluator.get("primary_only_winner"),
@@ -234,6 +254,12 @@ def main() -> None:
             f"- Primary-only winner: `{audit['toy_evaluator_summary']['primary_only_winner']}`",
             f"- Evaluator-stress winner: `{audit['toy_evaluator_summary']['evaluator_stress_winner']}`",
             f"- Metric-gaming incidents reduced: `{audit['toy_evaluator_summary']['metric_gaming_incidents_reduced']}`",
+            "",
+            "## External Clean Reuse",
+            "",
+            f"- External root: `{audit['external_clean_reuse_summary']['external_root']}`",
+            f"- Fresh topic: `{audit['external_clean_reuse_summary']['fresh_topic']}`",
+            f"- Six gates present: `{audit['external_clean_reuse_summary']['all_six_gates_present']}`",
             "",
             "## Source Artifacts",
             "",

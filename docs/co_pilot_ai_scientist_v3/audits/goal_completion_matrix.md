@@ -1,11 +1,11 @@
 # Goal Completion Matrix
 
-- Audit date: `2026-06-02T18:02:45Z`
+- Audit date: `2026-06-02T18:09:38Z`
 - Status: `pass_with_top_conference_gap`
-- HEAD: `68512c144fa70b1d04c792127bc354dbffb50c5b`
+- HEAD: `87131f48725fabb3c7ae6c2c733e16d6cf62d712`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote branch pushed: `True`
-- Manifest artifacts: `882`
+- Manifest artifacts: `888`
 - Missing manifest artifacts: `0`
 - Requirement count: `15`
 - Status counts: `{"achieved": 12, "partial": 2, "incomplete": 1}`
@@ -27,8 +27,8 @@ Top-conference empirical sufficiency remains incomplete: the package has auditab
 | deep_regeneration_cases | achieved | `docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md`<br>`docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json`<br>`docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500/summary.json`<br>`docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json`<br>`docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/summary.json` | Internal review is positive (3/3 six-gate wins, mean delta 1.133), but it is deterministic internal review rather than human expert review. | Use the prepared blind packet for future expert validation; keep current result labeled as internal evidence. |
 | english_paper_pdfs | achieved | `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf` | The English PDF exists and is audited; final camera-ready paper still depends on stronger evidence. | Rebuild PDFs after any substantive manuscript revision. |
 | bilingual_usage | achieved | `docs/co_pilot_ai_scientist_v3/usage_en.md`<br>`docs/co_pilot_ai_scientist_v3/usage_zh.md`<br>`docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`<br>`docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md` | Usage is complete for the current package shape. | Keep commands synchronized with new experiment scripts. |
-| reusable_codex_skill | achieved | `skills/co-pilot-ai-scientist-v3/SKILL.md`<br>`skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`<br>`skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json` | Skill is packaged and smoke-audited, but broader external reuse is not yet observed. | Run the skill on a fresh topic outside this repository when evaluating generality. |
-| github_push | achieved | `https://github.com/heguanghui54/ai-research-repro.git`<br>`codex/co-pilot-ai-scientist-v3`<br>`68512c144fa70b1d04c792127bc354dbffb50c5b` | Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate. | Create a release or PR only when the user wants a public submission package. |
+| reusable_codex_skill | achieved | `skills/co-pilot-ai-scientist-v3/SKILL.md`<br>`skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`<br>`skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`<br>`docs/co_pilot_ai_scientist_v3/experiments/external_clean_skill_reuse_smoke_20260603/summary.json` | Skill is packaged, globally installed, smoke-audited, and copied into a clean external temporary environment on a fresh scientific-visualization topic; real external researcher or community reuse is not yet observed. | Collect an independently run external example or community issue/PR before claiming community transfer. |
+| github_push | achieved | `https://github.com/heguanghui54/ai-research-repro.git`<br>`codex/co-pilot-ai-scientist-v3`<br>`87131f48725fabb3c7ae6c2c733e16d6cf62d712` | Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate. | Create a release or PR only when the user wants a public submission package. |
 | ssh_ubuntu_experiments | partial | `docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/README.md`<br>`docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/co_pilot_trajectory.json`<br>`docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_house_price_setup_probe/README.md` | Several Ubuntu traces exist, but some official benchmark attempts hit data/auth/setup blockers. | Pre-cache datasets or choose official tasks with open data to complete non-FML scored comparisons. |
 | model_selection_monica | achieved | `docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/summary.json`<br>`docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md`<br>`docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md`<br>`docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md` | Model reviews help audit quality but do not count as independent human expert review. | Use model reviews for iteration; use human experts only as future supplementary validation. |
 | author_record | achieved | `docs/co_pilot_ai_scientist_v3/paper_en_focused.md` | Author metadata is recorded in the paper package. | Keep author information synchronized in any final submission template. |

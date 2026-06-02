@@ -242,9 +242,10 @@ def main() -> None:
                 _rel(skill),
                 _rel(ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "task_spec_template.md"),
                 _rel(ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "human_gate_log_template.json"),
+                _rel(DOC_DIR / "experiments" / "external_clean_skill_reuse_smoke_20260603" / "summary.json"),
             ],
-            "Skill is packaged and smoke-audited, but broader external reuse is not yet observed.",
-            "Run the skill on a fresh topic outside this repository when evaluating generality.",
+            "Skill is packaged, globally installed, smoke-audited, and copied into a clean external temporary environment on a fresh scientific-visualization topic; real external researcher or community reuse is not yet observed.",
+            "Collect an independently run external example or community issue/PR before claiming community transfer.",
         ),
         _requirement(
             "github_push",

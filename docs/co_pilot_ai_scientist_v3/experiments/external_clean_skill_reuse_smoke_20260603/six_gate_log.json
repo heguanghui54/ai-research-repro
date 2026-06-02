@@ -1,0 +1,77 @@
+{
+  "created_at": "2026-06-02T18:07:42Z",
+  "gates": [
+    {
+      "gate_id": "external_clean_scientific_taste_prior_001",
+      "gate_type": "scientific_taste_prior",
+      "decision": "prioritize_figure_claim_consistency",
+      "rationale": "Human taste favors a diagnostically valuable failure mode over an easy visual-copying task.",
+      "attention_cost": {
+        "active_review_minutes": 0.0,
+        "decision_count": 1,
+        "human_actor": "scripted_engineering_smoke_not_human_evidence"
+      },
+      "claim_boundary": "Engineering reuse signal only."
+    },
+    {
+      "gate_id": "external_clean_evaluator_stress_001",
+      "gate_type": "evaluator_stress_test",
+      "decision": "require_claim_correctness_guardrail",
+      "rationale": "Visual similarity alone can reward misleading reproductions.",
+      "attention_cost": {
+        "active_review_minutes": 0.0,
+        "decision_count": 1,
+        "human_actor": "scripted_engineering_smoke_not_human_evidence"
+      },
+      "claim_boundary": "No executable benchmark score is reported."
+    },
+    {
+      "gate_id": "external_clean_frontier_steering_001",
+      "gate_type": "frontier_steering",
+      "decision": "select_diagnostic_failure_branch",
+      "rationale": "The branch is valuable because it can reveal mismatch between figure appearance and scientific claim.",
+      "attention_cost": {
+        "active_review_minutes": 0.0,
+        "decision_count": 1,
+        "human_actor": "scripted_engineering_smoke_not_human_evidence"
+      },
+      "claim_boundary": "No performance comparison is claimed."
+    },
+    {
+      "gate_id": "external_clean_micro_evolution_001",
+      "gate_type": "verifiable_micro_evolution",
+      "decision": "defer_until_parser_or_plotter_is_machine_gradeable",
+      "rationale": "OpenEvolve-style search should not be triggered before an automatic evaluator exists.",
+      "attention_cost": {
+        "active_review_minutes": 0.0,
+        "decision_count": 1,
+        "human_actor": "scripted_engineering_smoke_not_human_evidence"
+      },
+      "claim_boundary": "Selective escalation rule only."
+    },
+    {
+      "gate_id": "external_clean_structured_feedback_001",
+      "gate_type": "structured_feedback",
+      "decision": "separate_figure_data_claim_feedback",
+      "rationale": "Different feedback types should change different artifacts.",
+      "attention_cost": {
+        "active_review_minutes": 0.0,
+        "decision_count": 1,
+        "human_actor": "scripted_engineering_smoke_not_human_evidence"
+      },
+      "claim_boundary": "Template routing evidence only."
+    },
+    {
+      "gate_id": "external_clean_claim_calibration_001",
+      "gate_type": "claim_calibration",
+      "decision": "label_as_external_clean_environment_reuse",
+      "rationale": "The smoke proves package transfer, not scientific performance.",
+      "attention_cost": {
+        "active_review_minutes": 0.0,
+        "decision_count": 1,
+        "human_actor": "scripted_engineering_smoke_not_human_evidence"
+      },
+      "claim_boundary": "No human, benchmark, or top-conference evidence."
+    }
+  ]
+}
