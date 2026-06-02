@@ -234,6 +234,20 @@ package now has a logged generate-critique-rank hypothesis front end. It does
 not show that the selected candidate improves downstream benchmarks or paper
 quality, and it is not a human-selection result.
 
+We therefore ran a small downstream structured-feedback probe for
+`frontier_004`. Starting from the same archived co-pilot manuscript, the script
+`run_structured_feedback_probe.py` made five Monica-routed `gpt-4o-mini` calls:
+free-form informal feedback, IGRE-structured feedback, one revision conditioned
+on each feedback mode, and a fixed-rubric model score over the two revisions.
+The scorer preferred the structured-feedback revision (`overall 5` versus `4`),
+with higher scores for clarity, reproducibility, claim calibration, evidence
+grounding, method distinctness, limitation honesty, and novelty preservation.
+This result should be read narrowly. It shows that the IGRE feedback format can
+be operationalized and can induce a measurable revision difference under a
+model-routed evaluator. It is not independent human peer review, not a
+multi-task result, and not evidence that human feedback improves benchmark
+performance.
+
 ## 4. Benchmark Selection and Evaluation Plan
 
 We evaluate six variants: autonomous baseline, idea gate only, branch gate only,
@@ -633,73 +647,78 @@ The current contributions are:
 3. A live Monica-routed hypothesis-frontier smoke that generates four new
    research-frontier candidates, critiques/ranks them, and selects
    `frontier_004` for possible next-budget evaluation.
-4. A retrospective full-gate trajectory showing idea, evaluator, branch,
+4. A same-manuscript structured-feedback probe that operationalizes
+   `frontier_004` and compares informal feedback with IGRE-structured feedback
+   through two revisions and a fixed-rubric model score.
+5. A retrospective full-gate trajectory showing idea, evaluator, branch,
    program-search, and claim-audit gates serialized under the shared schema.
-5. A rerunnable full-gate trace script that recomputes the gate chain from
+6. A rerunnable full-gate trace script that recomputes the gate chain from
    archived experiment summaries while marking the output as artifact replay.
-6. A first online full-gate smoke trajectory that exercises idea, evaluator,
+7. A first online full-gate smoke trajectory that exercises idea, evaluator,
    branch, program-search, and claim gates in one remote run, while producing a
    negative continuation outcome.
-7. An evaluation protocol for measuring both mean benchmark performance and
+8. An evaluation protocol for measuring both mean benchmark performance and
    high-tail scientific upside under human intervention.
-8. Initial remote OpenEvolve and FML-bench probes showing that the
+9. Initial remote OpenEvolve and FML-bench probes showing that the
    verifiable micro-evolution and frontier-steering operators can run on the
    Ubuntu host.
-9. Two matched-budget FML-bench Causality comparisons between a human-gated
+10. Two matched-budget FML-bench Causality comparisons between a human-gated
    branch continuation and a four-step autonomous AI Scientist-v2 baseline,
    with mixed outcomes.
-10. A same-FML-step autonomous baseline for the first online full-gate smoke,
+11. A same-FML-step autonomous baseline for the first online full-gate smoke,
    showing a negative performance result for the human-gated continuation.
-11. Non-FML program-search probes for runtime optimization and tabular
+12. Non-FML program-search probes for runtime optimization and tabular
    regression, broadening benchmark coverage beyond FML-bench.
-12. A reusable Codex skill for running the workflow.
-13. Bilingual paper, usage artifacts, and claim-audit artifacts for
+13. A reusable Codex skill for running the workflow.
+14. Bilingual paper, usage artifacts, and claim-audit artifacts for
    reproducibility.
-14. A Monica-routed paper-quality review artifact that records external model
+15. A Monica-routed paper-quality review artifact that records external model
    criticism before the next revision.
-15. A human-gate attention-cost audit over 39 gates showing 1 complete
+16. A human-gate attention-cost audit over 39 gates showing 1 complete
    operator-recorded attention-cost event and 38 incomplete records; future
    prospective experiment gates must record these fields before making
    attention-efficiency claims.
-16. A taste/insight coverage audit showing 2 complete scientific-taste prior
+17. A taste/insight coverage audit showing 2 complete scientific-taste prior
    records and 37 gates that still lack complete taste/insight fields.
-17. A prospective matched-budget package validator that defines the minimum
+18. A prospective matched-budget package validator that defines the minimum
    non-synthetic evidence shape required before claiming paper-quality gains,
    human-attention efficiency, or superiority over autonomous AI Scientist-v2.
-18. A controlled prospective Max-Cut micro-pilot package that passes this
+19. A controlled prospective Max-Cut micro-pilot package that passes this
    validator, with complete attention/taste logging, matched baseline metrics,
    claim audit, and same-run manuscript artifact.
-19. Two prospective FML-bench Causality packages with complete attention/taste
+20. Two prospective FML-bench Causality packages with complete attention/taste
    logging and matched autonomous baselines, both yielding negative co-pilot
    performance results in the small two-step setting.
-20. A prospective package metric summary that separates passing audit packages
+21. A prospective package metric summary that separates passing audit packages
    by task, metric direction, co-pilot score, autonomous score, and claim
    implication; the current result is one positive controlled micro-task, two
    negative Causality FML-bench packages, and one Fairness_fairlearn invalid
    continuation package.
-21. A matched mini-manuscript quality probe for the FML package, where
+22. A matched mini-manuscript quality probe for the FML package, where
    Monica-routed `gpt-4o-mini` and `claude-3-7-sonnet-latest` both prefer the
    co-pilot package mini-manuscript over a generated autonomous
    mini-manuscript, with overall scores of 4 versus 3.
-22. A matched full-manuscript generation probe that renders the same archived
+23. A matched full-manuscript generation probe that renders the same archived
    FML evidence into two complete paper-shaped manuscripts and scores them
    with a deterministic internal rubric; the co-pilot manuscript scores 4.18
    overall for structure, grounding, calibration, and method distinctness,
    while the autonomous manuscript scores 4.11 and is the only variant with a
    valid scalar FML test metric in the Fairness package.
-23. A repeated same-continuous-trajectory paired online full-gate
+24. A repeated same-continuous-trajectory paired online full-gate
    manuscript-production summary over three smoke runs, including one
    `Fairness_fairlearn` no-valid-branch failure trajectory; the valid
    Causality benchmark aggregate has `0` co-pilot wins, `1` autonomous win,
    and `1` tie, while Monica-routed model-review probes prefer the co-pilot
    manuscript in `6/6` reviewer calls.
-24. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
+25. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
    real Codex sessions as a single-author longitudinal process corpus after
    privacy-preserving metadata extraction.
 
 The current evidence does not yet prove that human gates improve paper quality
-or that the full co-pilot system outperforms autonomous AI Scientist-v2. Those
-remain target claims for the next benchmark stage.
+or that the full co-pilot system outperforms autonomous AI Scientist-v2. The
+structured-feedback probe is a measurement artifact for one manuscript, not a
+replacement for independent expert review. Those stronger claims remain targets
+for the next benchmark stage.
 
 ## 6. Limitations
 

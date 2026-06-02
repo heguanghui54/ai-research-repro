@@ -1,0 +1,149 @@
+Revise the manuscript using the supplied informal feedback.
+
+Constraints:
+- Do not invent experiments, citations, metrics, or user studies.
+- Preserve the same evidence base.
+- Tighten unsupported claims.
+- Keep the revised manuscript concise but complete.
+- Make limitations explicit.
+
+Feedback:
+```markdown
+Thank you for sharing your manuscript draft! Here are some suggestions to improve clarity, coherence, and overall impact before submission:
+
+1. **Abstract Clarity**: The abstract is quite dense and could benefit from clearer language. Consider simplifying the explanation of the IGRE loop and the significance of the results. It might help to explicitly state the main findings and their implications in a more straightforward manner.
+
+2. **Introduction Context**: While you introduce IGRE well, it might be helpful to provide more context about why this approach is necessary. What specific gaps in current AI Scientist systems does IGRE address? A brief comparison or example could strengthen your argument.
+
+3. **Method Section Detail**: The method section is informative, but it could be enhanced by providing more detail on how the gates function in practice. For instance, what criteria are used for decision-making at each gate? Including a brief example of how a specific gate operates could clarify the process for readers unfamiliar with the terminology.
+
+4. **Results Interpretation**: The results section presents data, but it lacks a deeper interpretation of what these results mean in the context of your claims. Consider discussing the implications of the "n/a" values for validation and continuation test MAE. What does this indicate about the methodology or the trajectory itself?
+
+5. **Claim Audit Expansion**: The claim audit section is crucial, but it could be more explicit about the implications of the unsupported claims. For instance, how does the lack of empirical strength affect the credibility of your findings? Discussing the potential impact of these limitations on future research could provide a more comprehensive view.
+
+6. **Limitations Section**: While you mention several limitations, it might be beneficial to prioritize them or categorize them (e.g., methodological, empirical, etc.). This could help readers quickly grasp the most significant challenges and areas for future work.
+
+7. **Conclusion Strengthening**: The conclusion reiterates the main points but could be more impactful. Consider summarizing the broader implications of your findings for the field of AI-assisted research. What future directions do you envision for IGRE or similar methodologies?
+
+8. **Formatting Consistency**: Ensure that the formatting is consistent throughout the manuscript. For example, the use of italics, bold, and code formatting should be uniform to enhance readability.
+
+9. **References and Citations**: If you haven't already, ensure that you include relevant citations to support your claims, especially in the introduction and discussion of limitations. This will strengthen the manuscript's credibility.
+
+10. **Proofreading for Language**: Finally, a thorough proofreading for grammar, punctuation, and clarity will help polish the manuscript. Some sentences are quite complex and could be simplified for better readability.
+
+Overall, your manuscript presents an interesting approach to integrating human oversight in AI research processes. With some refinements, it can effectively communicate its contributions to the field. Looking forward to seeing the revisions!
+```
+
+Original manuscript:
+```markdown
+# Online Insight-Gated Research Evolution: A Full-Gate Smoke Manuscript
+
+## Abstract
+
+This manuscript is generated from the online trajectory
+`online_full_gate_smoke_20260602_013612`. The trajectory exercises the proposed
+Insight-Gated Research Evolution (IGRE) loop: idea selection, evaluator
+approval, branch selection, verifiable program-search escalation, and claim
+calibration. It runs remote FML-bench work and a small OpenEvolve-style
+knapsack search on `ubuntu-heshi`. The selected branch has
+validation MAE `n/a`, the continuation
+test MAE is `n/a`, and the program
+search best score is `0.994177`. The
+claim supported by this trajectory is online orchestration and manuscript
+production from logged evidence, not superiority over autonomous AI
+Scientist-v2.
+
+## 1. Introduction
+
+AI Scientist-v2 style systems can move from hypotheses to experiments and paper
+drafts, but they usually treat human scientists as outside operators rather
+than explicit search participants. IGRE instead represents human scientific
+taste as an auditable search intervention. This matters most when a scalar
+metric is insufficient: deciding which problem is worth pursuing, whether a
+failed branch is informative, whether an evaluator can be gamed, and how far a
+claim may be carried.
+
+This manuscript is not a polished conference submission. It is a trace-bound
+paper artifact that tests whether a fresh online gate chain contains enough
+structured evidence to support a complete, claim-calibrated manuscript.
+
+## 2. Method
+
+IGRE decomposes co-pilot automated science into gates. Automated components
+propose branches, run evaluators, and generate code changes. Human gates can
+change the search frontier, but every intervention must record options,
+rationale, affected artifacts, downstream budget, attention cost when measured,
+and follow-up checks. The same schema is used for idea gates, evaluator gates,
+branch gates, program-search escalation gates, and claim gates.
+
+The trajectory's gate decisions are:
+
+| Gate | Type | Decision | Attention minutes | Evidence role |
+| --- | --- | --- | ---: | --- |
+| `idea_gate_online_smoke_001` | `idea_selection` | `hitl-gated-tree-search` | n/a | 1 artifacts |
+| `evaluator_gate_online_smoke_001` | `evaluator_approval` | `fml_metric_plus_guardrails` | n/a | 2 artifacts |
+| `branch_gate_online_smoke_001` | `branch_selection` | `abort_no_valid_branch` | n/a | 1 artifacts |
+| `program_search_gate_online_smoke_001` | `program_search_escalation` | `run_tiny_openevolve_knapsack` | n/a | 1 artifacts |
+| `claim_gate_online_smoke_001` | `claim_audit` | `claim_online_orchestration_feasible` | n/a | 4 artifacts |
+
+## 3. Experimental Setup
+
+The online run uses remote root `/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502`. The FML
+branch frontier summary is `/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502/branch_frontier/ai_scientist_v2/Fairness_fairlearn/20260602_093507_8b36a1f7/summary.json`; the
+selected continuation summary is `None`;
+and the program-search summary is `/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_013502/program_search/knapsack_openevolve_1iter/summary.json`.
+The branch gate selects `abort_no_valid_branch` from the online
+frontier. The program-search gate runs a small OpenEvolve-style knapsack search
+as the AlphaEvolve-inspired verifiable micro-evolution module.
+
+## 4. Results
+
+| Quantity | Value |
+| --- | ---: |
+| Selected branch validation MAE | n/a |
+| Continuation test MAE | n/a |
+| Program-search best score | 0.994177 |
+
+These results are smoke-test evidence. They show that the online gate chain can
+drive real remote experiments and produce a manuscript from the resulting
+evidence. They do not show that the human-gated continuation beats a matched
+autonomous baseline.
+
+## 5. Claim Audit
+
+Supported:
+
+- The trajectory exercises all five IGRE gate types in a single online run.
+- The trajectory links gate decisions to remote FML and program-search
+  artifacts.
+- The logged evidence is sufficient to generate a complete manuscript-shaped
+  artifact with explicit limitations.
+
+Unsupported:
+
+- Full Co-Pilot AI Scientist v3 superiority over autonomous AI Scientist-v2.
+- Human-attention efficiency, because measured active review time is missing
+  for this online smoke run unless filled prospectively.
+- Top-conference empirical strength, because this is one tiny-budget smoke
+  trajectory without a matched autonomous manuscript baseline.
+
+## 6. Limitations
+
+The run is intentionally small. It mixes a Causality FML branch task with a
+knapsack program-search subproblem, uses a tiny search budget, and records
+missing attention-cost fields for the online gates. The manuscript is generated
+deterministically from artifacts, so it tests evidence packaging rather than
+LLM writing quality. A stronger study still needs matched autonomous
+trajectories, multiple tasks and seeds, independent paper-quality evaluation,
+and prospective attention-cost timing.
+
+## 7. Conclusion
+
+This online trajectory manuscript narrows the gap between a gate-schema demo and
+an AI Scientist-v2-style paper-production loop. It shows that IGRE can produce a
+trace-bound manuscript from online evidence, while preserving the central
+negative result: human scientific taste must be evaluated, not assumed to help.
+
+```
+
+Return only the revised manuscript in Markdown.

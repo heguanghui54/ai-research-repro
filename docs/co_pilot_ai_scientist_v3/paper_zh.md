@@ -87,6 +87,8 @@ Co-Pilot AI Scientist v3 实现的是洞察门控科研演化。IGRE 包含四�
 
 我们现在还补了一条 live AI Co-Scientist-style hypothesis-frontier smoke。该前端通过 Monica 路由的 `gpt-4o-mini` 做了两次真实模型调用：第一次为 IGRE 下一阶段证据里程碑生成 4 个候选 research frontiers，第二次按 AI Scientist-v2 的保守证据纪律对它们进行 critique 和 ranking。模型选择的下一预算候选是 `frontier_004`，即 structured human feedback mechanism，用来比较 rubric-guided feedback 和 informal feedback 对 reproducibility 与 clarity 的影响。这个 artifact 缩小了 AI Co-Scientist 部分的编排缺口：系统现在有了可记录的 generate-critique-rank 假设前端。但它还不能证明该候选会改善下游 benchmark 或论文质量，也不是一次人类选择结果。
 
+因此，我们继续为 `frontier_004` 跑了一个小型 downstream structured-feedback probe。脚本 `run_structured_feedback_probe.py` 从同一份已归档 co-pilot manuscript 出发，通过 Monica 路由的 `gpt-4o-mini` 做了 5 次真实调用：生成 free-form informal feedback、生成 IGRE-structured feedback、分别基于两种 feedback 修订同一份稿件，并用固定 rubric 对两版修订进行模型评分。评分器偏好 structured-feedback revision（overall `5` vs. `4`），并在 clarity、reproducibility、claim calibration、evidence grounding、method distinctness、limitation honesty 和 novelty preservation 上给出更高分。这个结果只能被理解为 measurement-readiness evidence：它说明 IGRE feedback 格式可以被操作化，并能在模型路由评估中造成可测的稿件修订差异；它不是独立人类专家评审，也不是多任务结果，更不能证明人类反馈提升 benchmark performance。
+
 ## 4. Benchmark 选择与评估计划
 
 我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化、0/1 knapsack 启发式搜索和加权 Max-Cut。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力，并进一步记录了 MLAgentBench CIFAR10/debug、MLAgentBench IMDB 与 ScienceAgentBench 的 setup probes。当前证据还没有第二个已打分的官方非 FML benchmark：CIFAR10/debug 被慢速数据下载阻塞，IMDB 在补齐 `datasets` 依赖后仍因 Ubuntu 主机无法访问 HuggingFace 而失败，ScienceAgentBench 的元数据和 verified artifacts 也暂时不可达。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
@@ -168,29 +170,30 @@ taste/insight gate record。这扩展了 benchmark 形态，但让平均性能�
 1. 一个面向协作式自动科研的模块化架构。
 2. 一个用于科研 agent 的人类参与节点形式化 schema。
 3. 一条 live Monica-routed hypothesis-frontier smoke，生成 4 个新 research-frontier candidates，进行 critique/ranking，并选择 `frontier_004` 作为可能的下一预算评估方向。
-4. 一条 retrospective full-gate trajectory，展示 idea、evaluator、branch、program-search 和 claim-audit gate 都可以用同一 schema 记录。
-5. 一个可重新运行的 full-gate trace 脚本，可以从已归档实验摘要中重新计算 gate chain，并明确把输出标记为 artifact replay。
-6. 第一条 online full-gate smoke trajectory，在一次远端运行中覆盖 idea、evaluator、branch、program-search 和 claim gate，同时记录了负向 continuation 结果。
-7. 一个同时评估平均 benchmark 表现和人类参与下高尾部科研上限的实验协议。
-8. 远程 OpenEvolve 与 FML-bench 小实验，证明可验证微演化和前沿转向两个 IGRE 算子可以在 Ubuntu 主机上运行。
-9. 两组同预算 FML-bench Causality 对照：human-gated branch continuation 与四步 autonomous AI Scientist-v2 baseline，结果呈混合状态。
-10. 第一条 online full-gate smoke 的同 FML step autonomous baseline，显示 human-gated continuation 在该 smoke 对照中表现更差。
-11. 两个非 FML 程序搜索小实验，分别覆盖 runtime optimization 和 tabular regression，用于扩展 FML-bench 之外的 benchmark 覆盖面。
-12. 一个可在 Codex 中复用的 workflow skill。
-13. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
-14. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。
-15. human-gate attention-cost audit，显示 39 条被审计 gate 中已有 1 条完整 operator-recorded attention-cost 记录，另外 38 条仍不完整；未来 prospective experiment gate 必须补齐这些字段后，才能提出 attention-efficiency claim。
-16. taste/insight coverage audit，显示当前已有 2 条完整 scientific-taste prior 记录，另有 37 条 gate 仍缺少完整 taste/insight 字段。
-17. prospective matched-budget package validator，用来定义在声称论文质量提升、人类注意力效率提升或优于 autonomous AI Scientist-v2 之前，最低限度需要具备的非 synthetic 证据形状。
-18. 一个 controlled prospective Max-Cut micro-pilot package，已经通过该 validator，并包含完整 attention/taste logging、matched baseline metrics、claim audit 和同次运行生成的 manuscript artifact。
-19. 一个 prospective FML-bench Causality package，包含完整 attention/taste logging 和 matched autonomous baseline；在这个两步小预算设置中，co-pilot test MAE 为 0.646224，autonomous baseline 为 0.624703，因此是负向 co-pilot performance 结果。
-20. 一个 prospective package 指标汇总表，把通过 audit 的 package 按任务、指标方向、co-pilot 分数、autonomous 分数和 claim implication 汇总；当前结果是 1 个 controlled micro-task 正向结果、2 个 Causality FML-bench 负向结果，以及 1 个 Fairness_fairlearn 无有效 continuation 的失败案例。
-21. 一个 matched mini-manuscript quality probe：为同一个 FML package 生成 autonomous mini-manuscript，并让 Monica 路由的 `gpt-4o-mini` 和 `claude-3-7-sonnet-latest` 对匿名 A/B manuscript 评分；两个模型都偏好 co-pilot package mini-manuscript，overall 为 4 对 3。
-22. 一个 matched full-manuscript generation probe：把同一个已归档 FML evidence package 渲染成两篇完整论文形态的 manuscript，并用确定性内部 rubric 评分；最新 Fairness package 中，co-pilot manuscript 因结构完整、证据绑定、主张校准和方法区分度得到 4.18 overall，autonomous manuscript 得到 4.11 overall，但 autonomous 是唯一拥有有效 FML 标量测试指标的路径。
-23. 一个 repeated same-continuous-trajectory paired online full-gate manuscript-production 汇总，覆盖三条 smoke run，其中包括一条 `Fairness_fairlearn` no-valid-branch failure trajectory；有效 Causality benchmark 汇总为 `0` 次 co-pilot 胜、`1` 次 autonomous 胜、`1` 次打平，而 Monica 路由模型评审在 `6/6` 次 reviewer call 中偏好 co-pilot manuscript。
-24. 一个 Human Co-Pilot Trace Dataset protocol，把本文实际 Codex 使用记录转化为脱敏派生数据集，而不是依赖不匹配的通用 human-AI interaction 数据集。
+4. 一个 same-manuscript structured-feedback probe，将 `frontier_004` 操作化，并通过两版修订与固定 rubric 模型评分比较 informal feedback 和 IGRE-structured feedback。
+5. 一条 retrospective full-gate trajectory，展示 idea、evaluator、branch、program-search 和 claim-audit gate 都可以用同一 schema 记录。
+6. 一个可重新运行的 full-gate trace 脚本，可以从已归档实验摘要中重新计算 gate chain，并明确把输出标记为 artifact replay。
+7. 第一条 online full-gate smoke trajectory，在一次远端运行中覆盖 idea、evaluator、branch、program-search 和 claim gate，同时记录了负向 continuation 结果。
+8. 一个同时评估平均 benchmark 表现和人类参与下高尾部科研上限的实验协议。
+9. 远程 OpenEvolve 与 FML-bench 小实验，证明可验证微演化和前沿转向两个 IGRE 算子可以在 Ubuntu 主机上运行。
+10. 两组同预算 FML-bench Causality 对照：human-gated branch continuation 与四步 autonomous AI Scientist-v2 baseline，结果呈混合状态。
+11. 第一条 online full-gate smoke 的同 FML step autonomous baseline，显示 human-gated continuation 在该 smoke 对照中表现更差。
+12. 两个非 FML 程序搜索小实验，分别覆盖 runtime optimization 和 tabular regression，用于扩展 FML-bench 之外的 benchmark 覆盖面。
+13. 一个可在 Codex 中复用的 workflow skill。
+14. 中英文论文、使用文档和主张审计 artifact，便于复现和传播。
+15. Monica 路由的 paper-quality review artifact，用于记录下一轮修改前的外部模型批评。
+16. human-gate attention-cost audit，显示 39 条被审计 gate 中已有 1 条完整 operator-recorded attention-cost 记录，另外 38 条仍不完整；未来 prospective experiment gate 必须补齐这些字段后，才能提出 attention-efficiency claim。
+17. taste/insight coverage audit，显示当前已有 2 条完整 scientific-taste prior 记录，另有 37 条 gate 仍缺少完整 taste/insight 字段。
+18. prospective matched-budget package validator，用来定义在声称论文质量提升、人类注意力效率提升或优于 autonomous AI Scientist-v2 之前，最低限度需要具备的非 synthetic 证据形状。
+19. 一个 controlled prospective Max-Cut micro-pilot package，已经通过该 validator，并包含完整 attention/taste logging、matched baseline metrics、claim audit 和同次运行生成的 manuscript artifact。
+20. 一个 prospective FML-bench Causality package，包含完整 attention/taste logging 和 matched autonomous baseline；在这个两步小预算设置中，co-pilot test MAE 为 0.646224，autonomous baseline 为 0.624703，因此是负向 co-pilot performance 结果。
+21. 一个 prospective package 指标汇总表，把通过 audit 的 package 按任务、指标方向、co-pilot 分数、autonomous 分数和 claim implication 汇总；当前结果是 1 个 controlled micro-task 正向结果、2 个 Causality FML-bench 负向结果，以及 1 个 Fairness_fairlearn 无有效 continuation 的失败案例。
+22. 一个 matched mini-manuscript quality probe：为同一个 FML package 生成 autonomous mini-manuscript，并让 Monica 路由的 `gpt-4o-mini` 和 `claude-3-7-sonnet-latest` 对匿名 A/B manuscript 评分；两个模型都偏好 co-pilot package mini-manuscript，overall 为 4 对 3。
+23. 一个 matched full-manuscript generation probe：把同一个已归档 FML evidence package 渲染成两篇完整论文形态的 manuscript，并用确定性内部 rubric 评分；最新 Fairness package 中，co-pilot manuscript 因结构完整、证据绑定、主张校准和方法区分度得到 4.18 overall，autonomous manuscript 得到 4.11 overall，但 autonomous 是唯一拥有有效 FML 标量测试指标的路径。
+24. 一个 repeated same-continuous-trajectory paired online full-gate manuscript-production 汇总，覆盖三条 smoke run，其中包括一条 `Fairness_fairlearn` no-valid-branch failure trajectory；有效 Causality benchmark 汇总为 `0` 次 co-pilot 胜、`1` 次 autonomous 胜、`1` 次打平，而 Monica 路由模型评审在 `6/6` 次 reviewer call 中偏好 co-pilot manuscript。
+25. 一个 Human Co-Pilot Trace Dataset protocol，把本文实际 Codex 使用记录转化为脱敏派生数据集，而不是依赖不匹配的通用 human-AI interaction 数据集。
 
-当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
+当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。structured-feedback probe 只是单篇稿件上的 measurement artifact，不能替代独立专家评审。这些更强主张仍是下一阶段 benchmark 要验证的目标。
 
 ## 6. 局限性
 

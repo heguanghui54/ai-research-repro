@@ -118,8 +118,28 @@ Monica-routed AI Co-Scientist-style front-end smoke. Two `gpt-4o-mini` calls
 generate four candidate research frontiers and critique/rank them, selecting
 `frontier_004` for possible next-budget evaluation. This improves the upstream
 hypothesis-organization evidence, but it is still front-end orchestration only:
-it does not connect the selected hypothesis to a prospective experiment,
-claim-audited manuscript, or autonomous hypothesis-front-end baseline.
+by itself it does not connect the selected hypothesis to a prospective
+experiment, claim-audited manuscript, or autonomous hypothesis-front-end
+baseline.
+
+## Structured Feedback Probe
+
+The selected `frontier_004` has now been connected to a small downstream
+measurement probe in
+`experiments/structured_feedback_probe_20260602_022900/`. Starting from the
+same archived co-pilot manuscript, five Monica-routed `gpt-4o-mini` calls
+generate informal feedback, IGRE-structured feedback, one revision under each
+feedback mode, and a fixed-rubric model score. The scorer prefers the
+structured revision (`overall 5` vs. `4`) and assigns higher scores on clarity,
+reproducibility, claim calibration, evidence grounding, method distinctness,
+limitation honesty, and novelty preservation.
+
+This is useful evidence that the feedback protocol is operational and can
+produce a measurable manuscript-revision difference. It is not independent
+human expert review. The score output also contains an internally awkward note
+that structured feedback "hurt" limitation honesty despite assigning a higher
+limitation-honesty score to the structured revision, so the result should be
+treated as a measurement-readiness probe rather than a stable quality finding.
 
 ## Second Prospective FML Package
 

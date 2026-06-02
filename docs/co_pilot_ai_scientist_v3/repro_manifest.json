@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_live_hypothesis_frontier_smoke",
+  "status": "pilot_package_with_structured_feedback_probe",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -429,7 +429,22 @@
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/gpt-4o-mini.json",
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/gpt-4o-mini.md",
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/claude-3-7-sonnet-latest.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/claude-3-7-sonnet-latest.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/paper_quality/claude-3-7-sonnet-latest.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/base_manuscript_excerpt.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/informal_feedback_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/structured_feedback_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/informal_feedback.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/structured_feedback.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/informal_revision_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/structured_revision_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/informal_revision.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/structured_revision.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/scoring_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/scoring_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/model_responses.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/README.md",
+    "scripts/run_structured_feedback_probe.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -717,5 +732,12 @@
     "autonomous_wins": 0,
     "ties": 0,
     "limitation": "Monica-routed model review over one tiny-budget same-continuous smoke; not independent human expert review."
+  },
+  "structured_feedback_probe": {
+    "run_id": "structured_feedback_probe_20260602_022900",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/summary.json",
+    "base_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+    "recommendation": "structured",
+    "scope_note": "Same-base-manuscript, same-model probe comparing informal feedback against IGRE-structured feedback. This is measurement-readiness evidence only, not independent human expert review."
   }
 }

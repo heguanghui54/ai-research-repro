@@ -1,0 +1,29 @@
+{
+  "recommendation": "structured",
+  "scores": {
+    "informal": {
+      "clarity": 4,
+      "reproducibility": 3,
+      "claim_calibration": 4,
+      "evidence_grounding": 4,
+      "method_distinctness": 4,
+      "limitation_honesty": 3,
+      "novelty_preservation": 4,
+      "overall": 4
+    },
+    "structured": {
+      "clarity": 5,
+      "reproducibility": 4,
+      "claim_calibration": 5,
+      "evidence_grounding": 5,
+      "method_distinctness": 5,
+      "limitation_honesty": 4,
+      "novelty_preservation": 5,
+      "overall": 5
+    }
+  },
+  "rationale": "The structured-feedback revision demonstrates improved clarity, better organization, and a more precise articulation of claims and limitations. It effectively enhances the manuscript's overall quality by providing a clearer framework for understanding the research process and findings.",
+  "structured_feedback_helped": ["clarity", "claim_calibration", "evidence_grounding"],
+  "structured_feedback_hurt": ["limitation_honesty"],
+  "required_next_evidence": ["matched autonomous trajectories", "multiple tasks and seeds", "independent evaluations of paper quality"]
+}

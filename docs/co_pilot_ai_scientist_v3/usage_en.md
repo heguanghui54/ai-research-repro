@@ -68,6 +68,19 @@ This generates candidate research frontiers and a critique/ranking artifact.
 Treat it as front-end orchestration evidence, not as benchmark or paper-quality
 evidence.
 
+To connect the selected structured-feedback frontier to a downstream
+same-manuscript measurement probe, run:
+
+```bash
+source ~/.codex/env
+python3 scripts/run_structured_feedback_probe.py \
+  --model gpt-4o-mini
+```
+
+This generates informal feedback, IGRE-structured feedback, two revisions of
+the same base manuscript, and a fixed-rubric model score. Treat the output as
+measurement-readiness evidence only; it is not independent human peer review.
+
 For a Monica-routed paper-quality review, source the global environment and run:
 
 ```bash

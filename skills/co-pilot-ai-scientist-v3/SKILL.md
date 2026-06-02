@@ -36,6 +36,10 @@ and claim responsibility can reshape the trajectory.
      `scripts/run_hypothesis_frontier_smoke.py` after sourcing the private model
      environment. Treat the generated frontier and critique/ranking as
      orchestration evidence, not as a downstream performance result.
+   - If the selected frontier concerns structured human feedback, run
+     `scripts/run_structured_feedback_probe.py` to compare informal feedback
+     with IGRE-structured feedback on the same base manuscript. Treat the score
+     as measurement-readiness evidence, not as independent peer review.
    - Attach evidence, missing evidence, feasibility notes, and risks.
    - Ask the human scientist to select, merge, or rewrite directions using
      field taste, upside asymmetry, and failure value, not only early scores.

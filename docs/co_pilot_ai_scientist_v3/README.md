@@ -99,7 +99,15 @@ evidence. It now includes a live AI Co-Scientist-style hypothesis-frontier
 smoke: two Monica-routed `gpt-4o-mini` calls generated four candidate research
 frontiers, critiqued/ranked them, and selected `frontier_004` (structured human
 feedback mechanisms) as the next-budget candidate. This supports front-end
-orchestration only; it is not a downstream benchmark or paper-quality result.
+orchestration only. The selected frontier is now connected to a same-manuscript
+structured-feedback probe in
+`experiments/structured_feedback_probe_20260602_022900/`: five Monica-routed
+`gpt-4o-mini` calls generated informal feedback, IGRE-structured feedback, two
+revisions of the same base manuscript, and a fixed-rubric model score. The
+scorer preferred the structured revision (`overall 5` vs. `4`) on clarity,
+claim calibration, evidence grounding, and method distinctness. This is
+measurement-readiness evidence, not independent human expert review or a
+general paper-quality result.
 The package also includes OpenEvolve-based program search, direct LLM rewrite
 baselines, richer knapsack and Max-Cut heuristic tasks, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes live

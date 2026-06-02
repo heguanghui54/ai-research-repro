@@ -22,7 +22,8 @@
     "Human collaboration improves paper quality beyond archived manuscript probes",
     "Full Co-Pilot v3 outperforms autonomous AI Scientist-v2",
     "Independent human attention cost is measured for prospective experiment gates",
-    "Top-conference-level empirical support"
+    "Top-conference-level empirical support",
+    "Independent expert validation that structured feedback improves paper quality"
   ],
   "current_counts": {
     "human_gate_records_audited": 39,
@@ -36,7 +37,8 @@
     "prospective_matched_packages": 4,
     "same_run_online_paired_smokes": 3,
     "same_run_online_no_valid_branch_smokes": 1,
-    "live_hypothesis_frontier_smokes": 1
+    "live_hypothesis_frontier_smokes": 1,
+    "live_structured_feedback_probes": 1
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -47,7 +49,7 @@
     "live_model_calls": 2,
     "candidate_count": 4,
     "selected_for_next_budget": "frontier_004",
-    "interpretation": "AI Co-Scientist-style generate-critique-rank front-end evidence only; not downstream benchmark, paper-quality, or human-selection evidence."
+    "interpretation": "AI Co-Scientist-style generate-critique-rank front-end evidence, now followed by one same-manuscript structured-feedback measurement probe; still not benchmark or independent human peer-review evidence."
   },
   "clean_clone_reproducibility": {
     "status": "pass",
@@ -275,5 +277,18 @@
     "model_review_autonomous_wins": 0,
     "model_review_ties": 0,
     "limitation": "three tiny-budget same-continuous smokes; valid benchmark aggregate favors autonomous or tie; Fairness row is no-valid; model review is not independent expert review"
+  },
+  "structured_feedback_probe": {
+    "status": "live_downstream_measurement_probe_completed",
+    "run_id": "structured_feedback_probe_20260602_022900",
+    "path": "docs/co_pilot_ai_scientist_v3/experiments/structured_feedback_probe_20260602_022900/README.md",
+    "provider": "Monica OpenAI-compatible API",
+    "model": "gpt-4o-mini",
+    "live_model_calls": 5,
+    "base_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_013612/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+    "recommendation": "structured",
+    "informal_overall": 4,
+    "structured_overall": 5,
+    "interpretation": "Same-base-manuscript probe comparing informal feedback to IGRE-structured feedback. Measurement-readiness evidence only; not independent expert review or multi-task paper-quality evidence."
   }
 }

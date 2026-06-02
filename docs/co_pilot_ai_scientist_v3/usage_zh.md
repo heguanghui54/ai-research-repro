@@ -63,6 +63,19 @@ python3 scripts/run_hypothesis_frontier_smoke.py \
 这个脚本会生成候选 research frontiers，并输出 critique/ranking artifact。
 它只能作为前端编排证据，不能作为 benchmark 或论文质量提升证据。
 
+如果要把被选中的 structured-feedback frontier 接到下游同稿件测量探针，
+运行：
+
+```bash
+source ~/.codex/env
+python3 scripts/run_structured_feedback_probe.py \
+  --model gpt-4o-mini
+```
+
+该脚本会生成 informal feedback、IGRE-structured feedback、同一份基础稿件的
+两版修订，以及固定 rubric 的模型评分。它只能作为 measurement-readiness
+evidence，不能替代独立人类同行评审。
+
 如果要通过 Monica 做论文质量评审，先加载全局环境变量，然后运行：
 
 ```bash
