@@ -329,6 +329,16 @@ def _write_matched_autonomous_outputs(
     autonomous_score["overall"] = round(
         sum(autonomous_score.values()) / len(autonomous_score), 2
     )
+    trajectory_summary = trajectory.get("summary", {})
+    same_run_remote = trajectory_summary.get("autonomous_summary_remote")
+    matched_continuous = bool(trajectory_summary.get("same_run_autonomous_enabled"))
+    if not matched_continuous and same_run_remote:
+        matched_continuous = autonomous_summary_path.name == "autonomous_baseline_summary.json"
+    comparison_type = (
+        "same-continuous-trajectory autonomous baseline"
+        if matched_continuous
+        else "matched-budget comparator from archived autonomous summary"
+    )
     autonomous_path = out_dir / "autonomous_online_comparator_manuscript.md"
     comparison_json_path = out_dir / "matched_budget_comparison_summary.json"
     comparison_md_path = out_dir / "matched_budget_comparison_summary.md"
@@ -345,8 +355,8 @@ def _write_matched_autonomous_outputs(
         "co_pilot_manuscript": _rel(out_dir / "co_pilot_online_full_gate_manuscript.md"),
         "autonomous_summary": _rel(autonomous_summary_path),
         "autonomous_manuscript": _rel(autonomous_path),
-        "matched_continuous_trajectory": False,
-        "comparison_type": "matched-budget comparator from archived autonomous summary",
+        "matched_continuous_trajectory": matched_continuous,
+        "comparison_type": comparison_type,
         "co_pilot_metric": co_metric,
         "autonomous_metric": auto_metric,
         "lower_is_better": True,
@@ -355,6 +365,12 @@ def _write_matched_autonomous_outputs(
         "autonomous_scores": autonomous_score,
         "interpretation": (
             "This adds an autonomous manuscript comparator to the online "
+            "trajectory manuscript probe. It is a same-continuous-trajectory "
+            "baseline when generated from the same online run; it still needs "
+            "more tasks, seeds, and independent paper-quality review before "
+            "supporting final paper-quality claims."
+            if matched_continuous
+            else "This adds an autonomous manuscript comparator to the online "
             "trajectory manuscript probe, but it is not a same-continuous-"
             "trajectory autonomous run and should not be reported as final "
             "paper-quality evidence."
@@ -469,11 +485,19 @@ def main() -> int:
         summary["autonomous_manuscript"] = comparison["autonomous_manuscript"]
         summary["comparison_summary"] = comparison["json"]
         summary["comparison_markdown"] = comparison["markdown"]
-        summary["interpretation"] = (
-            "This narrows the fresh online manuscript-production gap and adds "
-            "a matched-budget autonomous manuscript comparator, but it is not "
-            "a same-continuous-trajectory autonomous baseline."
-        )
+        if comparison["matched_continuous_trajectory"]:
+            summary["interpretation"] = (
+                "This narrows the fresh online manuscript-production gap and "
+                "adds a same-continuous-trajectory autonomous manuscript "
+                "comparator; it remains a tiny-budget smoke without "
+                "independent paper-quality review."
+            )
+        else:
+            summary["interpretation"] = (
+                "This narrows the fresh online manuscript-production gap and "
+                "adds a matched-budget autonomous manuscript comparator, but "
+                "it is not a same-continuous-trajectory autonomous baseline."
+            )
         summary_path.write_text(
             json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
             encoding="utf-8",
@@ -520,7 +544,11 @@ def main() -> int:
                 if path not in artifacts:
                     artifacts.append(path)
             manifest["online_matched_budget_manuscript_comparator"] = comparison
-            manifest["status"] = "pilot_package_with_online_matched_budget_manuscript_comparator"
+            manifest["status"] = (
+                "pilot_package_with_same_continuous_online_manuscript_comparator"
+                if comparison["matched_continuous_trajectory"]
+                else "pilot_package_with_online_matched_budget_manuscript_comparator"
+            )
         else:
             manifest["status"] = "pilot_package_with_online_trajectory_manuscript_probe"
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

@@ -95,8 +95,10 @@ and claim responsibility can reshape the trajectory.
      artifact replay of the gate chain. Treat this as a reproducibility check,
      not as a substitute for a fresh online trajectory.
    - For a small fresh online smoke trajectory on the configured Ubuntu host,
-     run `scripts/run_online_full_gate_smoke.py`. Treat a successful smoke run
-     as orchestration evidence only until a matched autonomous baseline exists.
+     run `scripts/run_online_full_gate_smoke.py`, preferably with
+     `--run-autonomous-baseline` and an explicit `--autonomous-steps` value.
+     Treat a successful paired smoke run as orchestration evidence and a
+     tiny-budget comparison, not as general superiority evidence.
    - After every online smoke or full trajectory, run or archive a matched
      autonomous baseline under the same task/model/step budget before making
      performance claims. Report negative comparisons directly.

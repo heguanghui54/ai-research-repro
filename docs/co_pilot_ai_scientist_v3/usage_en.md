@@ -41,12 +41,15 @@ run:
 python3 scripts/run_online_full_gate_smoke.py \
   --branch-steps 2 \
   --continuation-steps 1 \
-  --program-iterations 1
+  --program-iterations 1 \
+  --run-autonomous-baseline \
+  --autonomous-steps 3
 ```
 
-This runs FML-bench and OpenEvolve remotely. It is intended to prove
-orchestration feasibility; it still needs a matched autonomous baseline before
-any performance claim.
+This runs FML-bench, OpenEvolve, and a same-run autonomous AI Scientist-v2
+baseline remotely. It is intended to prove orchestration feasibility and create
+a paired smoke comparison; it is still too small for any general performance
+claim.
 
 The archived smoke has a matched autonomous comparison in
 `experiments/online_smoke_matched_autonomous_comparison.md`. The autonomous
@@ -213,16 +216,16 @@ To generate a manuscript from an online full-gate trajectory, run:
 
 ```bash
 python3 scripts/generate_online_trajectory_manuscript.py \
-  --trajectory-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json \
-  --autonomous-summary-json docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/autonomous_baseline_summary.json \
+  --trajectory-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json \
+  --autonomous-summary-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/autonomous_baseline_summary.json \
   --update-manifest
 ```
 
-The archived `online_full_gate_smoke_20260602_004933` run is a fresh online
-smoke trajectory with manuscript production. Passing `--autonomous-summary-json`
-also writes `online_manuscript/autonomous_online_comparator_manuscript.md` and
-`online_manuscript/matched_budget_comparison_summary.md`. This is a
-matched-budget comparator, not a same-continuous-trajectory autonomous run.
+The archived `online_full_gate_smoke_20260602_010521` run is a fresh online
+smoke trajectory with a same-run autonomous baseline. Passing
+`--autonomous-summary-json` writes
+`online_manuscript/autonomous_online_comparator_manuscript.md` and
+`online_manuscript/matched_budget_comparison_summary.md`.
 
 To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
 

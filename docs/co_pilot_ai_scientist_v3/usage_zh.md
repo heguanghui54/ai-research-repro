@@ -38,11 +38,14 @@ trajectory，运行：
 python3 scripts/run_online_full_gate_smoke.py \
   --branch-steps 2 \
   --continuation-steps 1 \
-  --program-iterations 1
+  --program-iterations 1 \
+  --run-autonomous-baseline \
+  --autonomous-steps 3
 ```
 
-这会远端运行 FML-bench 和 OpenEvolve。它用于证明编排可行性；在任何性能
-主张之前，仍需要同预算 autonomous baseline。
+这会在远端运行 FML-bench、OpenEvolve 和同次 autonomous AI Scientist-v2
+baseline。它用于证明编排可行性并生成 paired smoke comparison；但规模仍太小，
+不能支持一般性能优越性主张。
 
 当前已归档 smoke 的同预算 autonomous comparison 位于
 `experiments/online_smoke_matched_autonomous_comparison.md`。autonomous
@@ -198,16 +201,15 @@ trajectory，也不是独立专家评审。
 
 ```bash
 python3 scripts/generate_online_trajectory_manuscript.py \
-  --trajectory-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json \
-  --autonomous-summary-json docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/autonomous_baseline_summary.json \
+  --trajectory-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json \
+  --autonomous-summary-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/autonomous_baseline_summary.json \
   --update-manifest
 ```
 
-归档的 `online_full_gate_smoke_20260602_004933` 是 fresh online smoke
-trajectory，并且已经生成 manuscript。传入 `--autonomous-summary-json` 后还会写出
+归档的 `online_full_gate_smoke_20260602_010521` 是 fresh online smoke
+trajectory，并且包含同次运行的 autonomous baseline。传入 `--autonomous-summary-json` 后会写出
 `online_manuscript/autonomous_online_comparator_manuscript.md` 和
-`online_manuscript/matched_budget_comparison_summary.md`。这只是
-matched-budget comparator，不是同一连续轨迹中的 autonomous run。
+`online_manuscript/matched_budget_comparison_summary.md`。
 
 如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
 

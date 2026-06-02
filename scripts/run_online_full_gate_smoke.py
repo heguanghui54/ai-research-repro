@@ -9,7 +9,9 @@ The script orchestrates a real remote sequence on the Ubuntu host:
    validation branch;
 4. continuation: run AI Scientist-v2 from the selected code snapshot;
 5. program-search gate: run a tiny OpenEvolve knapsack search on the same host;
-6. claim gate: mark the trajectory as online smoke evidence, not superiority.
+6. optional same-run autonomous baseline: run AI Scientist-v2 on the same task,
+   model, and provider without human gates;
+7. claim gate: mark the trajectory as online smoke evidence, not superiority.
 
 It is intentionally small-budget. The output is a reproducibility artifact for
 the online orchestration path, not top-conference-level evidence by itself.
@@ -222,6 +224,33 @@ python run_openevolve_program_search.py \\
     return f"{remote_root}/program_search/knapsack_openevolve_{iterations}iter/summary.json"
 
 
+def run_autonomous_baseline(
+    host: str,
+    remote_root: str,
+    max_steps: int,
+    model: str,
+    provider: str,
+) -> str:
+    output_dir = f"{remote_root}/autonomous_baseline"
+    script = f"""
+set -euo pipefail
+source ~/.codex/env
+cd /home/heshi/work/FML-bench
+{build_agent_config_patch(num_ideas=1, num_parallel=1, stage_budgets='[1.0, 0.0, 0.0, 0.0]')}
+/home/heshi/miniconda3/bin/conda run -n fmlbench python run_agent_benchmark.py \\
+  --agent-config "$TMP" \\
+  --task-config configs/tasks/causality_causalml.yaml \\
+  --model {shlex.quote(model)} \\
+  --provider {shlex.quote(provider)} \\
+  --output-dir {shlex.quote(output_dir)} \\
+  agent.ai_scientist_v2.max_steps={max_steps}
+rm -f "$TMP"
+find {shlex.quote(output_dir)} -name summary.json -type f | sort | tail -n 1
+"""
+    out = ssh(host, script, timeout=3600)
+    return out.strip().splitlines()[-1]
+
+
 def write_readme(path: Path, trajectory: dict[str, Any]) -> None:
     summary = trajectory["summary"]
     lines = [
@@ -273,6 +302,8 @@ def main() -> int:
     parser.add_argument("--branch-steps", type=int, default=2)
     parser.add_argument("--continuation-steps", type=int, default=1)
     parser.add_argument("--program-iterations", type=int, default=1)
+    parser.add_argument("--run-autonomous-baseline", action="store_true")
+    parser.add_argument("--autonomous-steps", type=int, default=None)
     args = parser.parse_args()
 
     timestamp = datetime.now(timezone.utc).replace(microsecond=0)
@@ -339,9 +370,29 @@ def main() -> int:
     scp_from(args.host, program_summary_remote, program_summary_local)
     program_summary = read_json(program_summary_local)
 
+    autonomous_summary_remote = None
+    autonomous_summary_local = None
+    autonomous_summary = None
+    if args.run_autonomous_baseline:
+        autonomous_steps = args.autonomous_steps
+        if autonomous_steps is None:
+            autonomous_steps = args.branch_steps + args.continuation_steps
+        autonomous_summary_remote = run_autonomous_baseline(
+            args.host, remote_root, autonomous_steps, args.model, args.provider
+        )
+        autonomous_summary_local = out_dir / "autonomous_baseline_summary.json"
+        scp_from(args.host, autonomous_summary_remote, autonomous_summary_local)
+        autonomous_summary = read_json(autonomous_summary_local)
+
     generated_at = timestamp.isoformat().replace("+00:00", "Z")
     continuation_test = primary_metric(continuation_summary)
     program_score = float(program_summary["best_score"])
+    autonomous_test = primary_metric(autonomous_summary) if autonomous_summary else None
+    autonomous_steps = (
+        autonomous_summary.get("total_steps")
+        if autonomous_summary
+        else None
+    )
 
     gates = [
         {
@@ -443,6 +494,11 @@ def main() -> int:
                         f"branch_summary={branch_summary_remote}",
                         f"continuation_summary={continuation_summary_remote}",
                         f"program_summary={program_summary_remote}",
+                        *(
+                            [f"autonomous_summary={autonomous_summary_remote}"]
+                            if autonomous_summary_remote
+                            else []
+                        ),
                     ],
                     "risks": ["Single smoke trajectory is not top-conference-level evidence."],
                 },
@@ -451,14 +507,34 @@ def main() -> int:
                     "summary": "Claim full co-pilot superiority over autonomous AI Scientist-v2.",
                     "score": 0.0,
                     "evidence": [],
-                    "risks": ["No matched autonomous baseline in this smoke run."],
+                    "risks": [
+                        (
+                            "Same-run autonomous baseline is present but still one tiny-budget "
+                            "trajectory."
+                            if autonomous_summary_remote
+                            else "No matched autonomous baseline in this smoke run."
+                        )
+                    ],
                 },
             ],
             "human_decision": "claim_online_orchestration_feasible",
             "rationale": "The trajectory proves online orchestration feasibility only; superiority remains unproven.",
-            "affected_artifacts": ["paper_en.md", "paper_zh.md", str(out_dir / "trajectory.json")],
-            "downstream_budget": {"next_required_run": "matched autonomous baseline for this exact online trajectory"},
-            "follow_up_checks": ["Run matched autonomous baseline and repeat across tasks/seeds."],
+            "affected_artifacts": [
+                "paper_en.md",
+                "paper_zh.md",
+                str(out_dir / "trajectory.json"),
+                *([str(autonomous_summary_local)] if autonomous_summary_local else []),
+            ],
+            "downstream_budget": {
+                "next_required_run": (
+                    "repeat same-run paired trajectories across tasks/seeds"
+                    if autonomous_summary_remote
+                    else "matched autonomous baseline for this exact online trajectory"
+                )
+            },
+            "follow_up_checks": [
+                "Repeat paired online trajectories across tasks/seeds before superiority claims."
+            ],
         },
     ]
     mark_attention_cost_missing(gates)
@@ -482,11 +558,23 @@ def main() -> int:
             "selected_branch_val_mae": selected_branch["score"],
             "continuation_test_mae": continuation_test,
             "program_search_best_score": program_score,
+            "same_run_autonomous_enabled": bool(autonomous_summary),
+            "same_run_autonomous_steps": autonomous_steps,
+            "same_run_autonomous_test_mae": autonomous_test,
             "branch_summary_remote": branch_summary_remote,
             "continuation_summary_remote": continuation_summary_remote,
             "program_summary_remote": program_summary_remote,
+            **(
+                {"autonomous_summary_remote": autonomous_summary_remote}
+                if autonomous_summary_remote
+                else {}
+            ),
         },
-        "remaining_gap": "Run a matched autonomous baseline for the same budget, then repeat across more tasks and seeds.",
+        "remaining_gap": (
+            "Repeat same-run paired trajectories across more tasks and seeds."
+            if autonomous_summary
+            else "Run a matched autonomous baseline for the same budget, then repeat across more tasks and seeds."
+        ),
     }
 
     write_json(out_dir / "trajectory.json", trajectory)

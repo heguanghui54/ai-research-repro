@@ -1,0 +1,23 @@
+{
+  "status": "online_trajectory_manuscript_probe",
+  "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
+  "manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+  "fresh_online_smoke": true,
+  "matched_autonomous_manuscript": true,
+  "scores": {
+    "section_completeness": 5.0,
+    "gate_coverage": 5.0,
+    "evidence_grounding": 4.2,
+    "claim_calibration": 5.0,
+    "freshness": 4.0,
+    "overall": 4.64
+  },
+  "interpretation": "This narrows the fresh online manuscript-production gap and adds a same-continuous-trajectory autonomous manuscript comparator; it remains a tiny-budget smoke without independent paper-quality review.",
+  "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/summary.md",
+  "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/summary.json",
+  "matched_autonomous_manuscript_scope": "same-continuous-trajectory autonomous baseline",
+  "matched_continuous_trajectory": true,
+  "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/autonomous_online_comparator_manuscript.md",
+  "comparison_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.json",
+  "comparison_markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.md"
+}

@@ -281,16 +281,15 @@ metric. This narrows the manuscript-generation gap but is still not a fresh
 online end-to-end trajectory or independent expert paper-quality result.
 
 The newest online manuscript-production smoke is archived under
-`experiments/online_full_gate_smoke_20260602_004933/`. It reruns a fresh online
-five-gate trajectory on `ubuntu-heshi`, then renders the logged trajectory into
-`online_manuscript/co_pilot_online_full_gate_manuscript.md`. The run selected
-branch `step_0001` with validation MAE `0.627837`, reached continuation test MAE
-`0.646224`, and produced a one-iteration knapsack program-search score
-`0.995619`. The generated online manuscript scores `4.64` on the internal
-trace-bound rubric. The same command can now also generate a matched-budget
-autonomous manuscript comparator from an archived autonomous AI Scientist-v2
-summary; the comparator manuscript scores `3.48`, while the autonomous test MAE
-is better than the co-pilot trajectory (`0.624703` vs. `0.646224`, lower is
-better). This narrows the fresh manuscript-production gap, but it is still not a
-same-continuous-trajectory autonomous baseline or independent paper-quality
+`experiments/online_full_gate_smoke_20260602_010521/`. It reruns a fresh online
+five-gate trajectory on `ubuntu-heshi`, launches a same-run autonomous
+AI Scientist-v2 baseline, and renders the logged trajectory into paired
+manuscripts under `online_manuscript/`. The co-pilot path selected branch
+`step_0001` with validation MAE `0.621461`, reached continuation test MAE
+`0.862015`, and produced a one-iteration knapsack program-search score
+`0.994177`. The same-run autonomous baseline reached test MAE `0.640451`.
+The generated co-pilot manuscript scores `4.64` on the internal trace-bound
+rubric, while the autonomous comparator manuscript scores `3.48`. This closes
+the narrow same-continuous-trajectory manuscript-comparator gap, but it remains
+a tiny-budget negative performance smoke without independent paper-quality
 review.

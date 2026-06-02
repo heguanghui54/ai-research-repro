@@ -1,0 +1,32 @@
+{
+  "status": "online_matched_budget_manuscript_comparator",
+  "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
+  "co_pilot_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/co_pilot_online_full_gate_manuscript.md",
+  "autonomous_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/autonomous_baseline_summary.json",
+  "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/autonomous_online_comparator_manuscript.md",
+  "matched_continuous_trajectory": true,
+  "comparison_type": "same-continuous-trajectory autonomous baseline",
+  "co_pilot_metric": 0.8620153718142042,
+  "autonomous_metric": 0.6404510911628365,
+  "lower_is_better": true,
+  "autonomous_minus_copilot_metric_delta": -0.22156428065136768,
+  "co_pilot_scores": {
+    "section_completeness": 5.0,
+    "gate_coverage": 5.0,
+    "evidence_grounding": 4.2,
+    "claim_calibration": 5.0,
+    "freshness": 4.0,
+    "overall": 4.64
+  },
+  "autonomous_scores": {
+    "section_completeness": 5.0,
+    "gate_coverage": 0.0,
+    "evidence_grounding": 4.4,
+    "claim_calibration": 5.0,
+    "freshness": 3.0,
+    "overall": 3.48
+  },
+  "interpretation": "This adds an autonomous manuscript comparator to the online trajectory manuscript probe. It is a same-continuous-trajectory baseline when generated from the same online run; it still needs more tasks, seeds, and independent paper-quality review before supporting final paper-quality claims.",
+  "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.md",
+  "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.json"
+}
