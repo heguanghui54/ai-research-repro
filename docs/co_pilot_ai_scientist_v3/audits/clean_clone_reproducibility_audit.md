@@ -1,9 +1,9 @@
 # Clean Clone Reproducibility Audit
 
-- Audit date: `2026-06-02T19:50:39Z`
+- Audit date: `2026-06-02T20:09:21Z`
 - Repository: `https://github.com/heguanghui54/ai-research-repro.git`
 - Branch: `codex/co-pilot-ai-scientist-v3`
-- Commit: `2d37a34ab3ead441edb105e29888bb68e6d821af`
+- Commit: `9fd36420203fdd43baa0b431397ae617e35bfe7c`
 - Clone path: `/tmp/copilot-v3-clean-clone-latest`
 
 ## Commands Rerun
@@ -20,6 +20,7 @@ python3 scripts/audit_prospective_attention_taste_cost.py
 python3 scripts/validate_evaluator_stress_trigger_policy_transfer.py
 python3 scripts/audit_delayed_value_replay_multicase.py
 python3 scripts/audit_long_horizon_taste_gate.py
+python3 scripts/audit_second_non_fml_priority_package.py
 python3 scripts/audit_benchmark_coverage.py
 python3 scripts/audit_prospective_matched_budget_package.py
 python3 scripts/summarize_prospective_matched_packages.py
@@ -36,8 +37,8 @@ python3 scripts/audit_package_consistency.py
 
 | Check | Result |
 | --- | --- |
-| Checked-out commit | `2d37a34ab3ead441edb105e29888bb68e6d821af` |
-| Manifest artifacts | `923/923 present` |
+| Checked-out commit | `9fd36420203fdd43baa0b431397ae617e35bfe7c` |
+| Manifest artifacts | `926/926 present` |
 | Release skill trigger-policy guidance | `release audit pass; trigger-policy clean clone pass` |
 | Base skill inheritance | `pass; base loop preserved True; IGRE gates present True` |
 | Prospective attention/taste cost | `pass; gates 7; complete attention 7/7; complete taste 7/7; active review minutes 21.00` |
@@ -45,7 +46,8 @@ python3 scripts/audit_package_consistency.py
 | Held-out trigger-policy transfer | `pass, selected class_imbalance_trigger_0_94` |
 | Held-out frozen trigger policy | `mean 0.924320, delta +0.003639, wins/losses/ties 2/0/23, triggered 5` |
 | Multicase delayed-value replay | `pass_with_no_strict_positive_dvrs; cases 3; strict positive DVRS 0; cross-model strict positive 0` |
-| Benchmark coverage audit | `pass` |
+| Second non-FML priority package | `pass; evidence class scored_official_like_non_fml_matched_package_not_official_benchmark; train delta +0.001569 with wins/losses/ties 2/2/21; held-out frozen delta +0.003639 with wins/losses/ties 2/0/23` |
+| Benchmark coverage audit | `pass; FML entries 2; non-FML entries 11` |
 | Prospective packages | `7 passing packages` |
 | Candidate-frontier validation | `13 scored reviews; delayed-control delta +0.064` |
 | Focused English PDF bytes after clean rebuild | `211266` |
@@ -56,8 +58,8 @@ python3 scripts/audit_package_consistency.py
 
 ## Interpretation
 
-Clean clone at commit 2d37a34ab reproduced the latest pushed verification package with 923/923 manifest artifacts. It reran the standalone release audit and verified release trigger-policy guidance, then reran base-skill inheritance, prospective attention/taste cost, focused figure/table readiness, held-out trigger-policy transfer, multicase delayed-value replay, LHTG/DVRS, benchmark coverage, prospective matched packages, focused bilingual PDF builds, roadmap, objective, goal, and package-consistency audits.
+Clean clone at commit 9fd364202 reproduced the latest pushed verification package with 926/926 manifest artifacts. It reran the standalone release audit and verified release trigger-policy guidance, then reran base-skill inheritance, prospective attention/taste cost, focused figure/table readiness, held-out trigger-policy transfer, multicase delayed-value replay, LHTG/DVRS, the second non-FML priority package audit, benchmark coverage, prospective matched packages, focused bilingual PDF builds, roadmap, objective, goal, and package-consistency audits.
 
 ## Claim Boundary
 
-Latest pushed verification package is clean-clone reproducible for local artifact checks, including release skill trigger-policy guidance, base-skill inheritance, focused figure/table readiness, and prospective attention/taste cost measurement. This is not a fresh remote Ubuntu rerun, independent human expert evidence, or broad co-pilot superiority proof.
+Latest pushed verification package is clean-clone reproducible for local artifact checks, including release skill trigger-policy guidance, base-skill inheritance, focused figure/table readiness, prospective attention/taste cost measurement, and the scored official-like non-FML matched package. This is not a fresh remote Ubuntu rerun, independent human expert evidence, a second scored official MLAgentBench/ScienceAgentBench result, or broad co-pilot superiority proof.

@@ -41,6 +41,17 @@ def _git(args: list[str]) -> str:
     return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
 
 
+def _dedupe_preserve_order(items: list[str]) -> list[str]:
+    seen: set[str] = set()
+    deduped: list[str] = []
+    for item in items:
+        if item in seen:
+            continue
+        seen.add(item)
+        deduped.append(item)
+    return deduped
+
+
 def _remote_contains_branch(remote: str, branch: str) -> bool:
     result = subprocess.run(
         ["git", "ls-remote", "--heads", remote, branch],
@@ -321,7 +332,7 @@ def main() -> None:
 
     artifact_status = {name: _file_status(path, min_bytes=1_000 if name.endswith("pdf") else 100) for name, path in {**pdfs, **docs}.items()}
 
-    next_required_evidence = list(manifest.get("next_required_evidence", []))
+    next_required_evidence = _dedupe_preserve_order(list(manifest.get("next_required_evidence", [])))
     if explicit_requirements["end_to_end_paired_trajectory_smoke_pass"]:
         next_required_evidence = [
             item
@@ -329,10 +340,11 @@ def main() -> None:
             if "Demonstrate one continuous end-to-end trajectory" not in item
             and "Run matched mini-manuscript scoring on complete end-to-end" not in item
         ]
-        next_required_evidence.insert(
-            1,
-            "Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.",
+        end_to_end_scale_item = (
+            "Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers."
         )
+        if end_to_end_scale_item not in next_required_evidence:
+            next_required_evidence.insert(1, end_to_end_scale_item)
     if explicit_requirements["second_non_fml_priority_package_audit_pass"]:
         next_required_evidence = [
             (
@@ -343,6 +355,7 @@ def main() -> None:
             )
             for item in next_required_evidence
         ]
+    next_required_evidence = _dedupe_preserve_order(next_required_evidence)
 
     audit = {
         "audit_date": _utc_now(),
