@@ -341,3 +341,13 @@ These limitations are also future research directions. To make the next step con
 ## 7. Conclusion
 
 Co-Pilot AI Scientist v3 proposes IGRE, a six-gate architecture for inserting human scientific taste and expert-review insight into automated research loops. The evidence does not show that human participation automatically improves automated science. It shows something more specific and more useful: expert review contains actionable signals, these signals can be routed into workflow gates, review guidance can improve some regenerated artifacts, and short-budget human gates must be audited because they can fail. IGRE turns this into a reproducible method for designing and comparing human-AI scientific collaboration.
+
+## References
+
+- Juraj Gottweis, Wei-Hung Weng, Alexander Daryin, and others. *Towards an AI Co-Scientist*. arXiv:2502.18864, 2025.
+- Yutaro Yamada, Robert Tjarko Lange, Cong Lu, Shengran Hu, Chris Lu, Jakob Foerster, Jeff Clune, and David Ha. *The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search*. arXiv:2504.08066, 2025.
+- Alexander Novikov, Ngan Vu, Marvin Eisenberger, and others. *AlphaEvolve: A Coding Agent for Scientific and Algorithmic Discovery*. arXiv:2506.13131, 2025.
+- Bernardino Romera-Paredes, Mohammadamin Barekatain, Alexander Novikov, and others. *Mathematical Discoveries from Program Search with Large Language Models*. Nature, 2023.
+- Asankhaya Sharma. *OpenEvolve: An Open-Source Evolutionary Coding Agent*. GitHub software repository, 2025.
+- `nhop/OpenReview`. *OpenReview Dataset*. Hugging Face Datasets, accessed 2026-06-02.
+- *FML-bench: A Controlled Study of AI Research Agent Strategies from the Perspective of Search Dynamics*. arXiv:2605.17373, 2026.

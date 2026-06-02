@@ -1,0 +1,44 @@
+{
+  "audit_date": "2026-06-02T13:08:53Z",
+  "status": "pass",
+  "checks": {
+    "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
+      "has_references_heading": true,
+      "has_key_terms": {
+        "AI Co-Scientist": true,
+        "AI Scientist-v2": true,
+        "AlphaEvolve": true,
+        "OpenEvolve": true,
+        "OpenReview": true,
+        "FML-bench": true
+      },
+      "has_no_placeholder_citations": true
+    },
+    "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md": {
+      "has_references_heading": true,
+      "has_key_terms": {
+        "AI Co-Scientist": true,
+        "AI Scientist-v2": true,
+        "AlphaEvolve": true,
+        "OpenEvolve": true,
+        "OpenReview": true,
+        "FML-bench": true
+      },
+      "has_no_placeholder_citations": true
+    },
+    "docs/co_pilot_ai_scientist_v3/references.bib": {
+      "has_key_terms": {
+        "aicoscientist": true,
+        "aiscientistv2": true,
+        "alphaevolve": true,
+        "funsearch": true,
+        "openevolve": true,
+        "OpenReview": true,
+        "FML-bench": true
+      },
+      "has_no_placeholder_citations": true
+    }
+  },
+  "errors": [],
+  "claim_boundary": "This audit checks visible reference coverage for the focused paper. It does not validate every bibliographic field or scientific claim."
+}

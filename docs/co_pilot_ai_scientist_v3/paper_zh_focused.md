@@ -186,3 +186,13 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 ## 7. 结论
 
 Co-Pilot AI Scientist v3 提出 IGRE：一种把人类科研品味和专家评审洞察插入自动科研循环的六门控架构。当前证据并不表明人类参与会自动改善自动科研。它证明的是更具体也更有用的事情：专家评审包含可行动信号；这些信号可以路由到工作流门控；评审引导可以改善部分再生成产物；短预算人类门控必须被审计，因为它们可能失败。IGRE 将这一点转化为一种可复现的方法，用于设计和比较人机协作科研模式。
+
+## 参考文献
+
+- Juraj Gottweis, Wei-Hung Weng, Alexander Daryin 等。*Towards an AI Co-Scientist*。arXiv:2502.18864，2025。
+- Yutaro Yamada, Robert Tjarko Lange, Cong Lu, Shengran Hu, Chris Lu, Jakob Foerster, Jeff Clune, David Ha。*The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search*。arXiv:2504.08066，2025。
+- Alexander Novikov, Ngan Vu, Marvin Eisenberger 等。*AlphaEvolve: A Coding Agent for Scientific and Algorithmic Discovery*。arXiv:2506.13131，2025。
+- Bernardino Romera-Paredes, Mohammadamin Barekatain, Alexander Novikov 等。*Mathematical Discoveries from Program Search with Large Language Models*。Nature，2023。
+- Asankhaya Sharma。*OpenEvolve: An Open-Source Evolutionary Coding Agent*。GitHub software repository，2025。
+- `nhop/OpenReview`。*OpenReview Dataset*。Hugging Face Datasets，访问日期 2026-06-02。
+- *FML-bench: A Controlled Study of AI Research Agent Strategies from the Perspective of Search Dynamics*。arXiv:2605.17373，2026。
