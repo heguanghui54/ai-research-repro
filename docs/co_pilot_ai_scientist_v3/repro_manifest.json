@@ -722,7 +722,7 @@
     "Run matched mini-manuscript scoring on complete end-to-end co-pilot and autonomous manuscripts, not only package mini-manuscripts.",
     "Demonstrate one continuous end-to-end trajectory from new hypothesis generation to experiments, claim audit, and final manuscript, plus a matched autonomous manuscript baseline.",
     "Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.",
-    "Obtain at least one scored official non-FML benchmark with a complete matched comparison when data access permits.",
+    "Extend non-FML evidence beyond the scored MLAgentBench vectorization comparison to another official benchmark task when data access permits.",
     "Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package."
   ],
   "model_routing_policy": {
@@ -1734,7 +1734,7 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "d1e6d38d468e0ef32b2d02c115f38ad740bf3568",
+    "head": "af5c2d1b823acee2bf5dac756418d48df01ffc54",
     "branch": "codex/co-pilot-ai-scientist-v3",
     "manifest_artifacts": 696,
     "missing_manifest_artifacts": 0,

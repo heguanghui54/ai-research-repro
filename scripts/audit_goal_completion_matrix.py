@@ -104,6 +104,14 @@ def main() -> None:
 
     deep_summary = _load_json(deep_internal)
     remote_branch_pushed = _remote_contains_branch(remote_url, branch)
+    benchmark_vector = benchmark_coverage.get("evidence_summary", {}).get("mlagentbench_vectorization", {})
+    non_fml_scored_complete = (
+        benchmark_coverage.get("status") == "pass"
+        and benchmark_vector.get("num_seeds") == 8
+        and benchmark_vector.get("num_correct_best_programs") == 8
+        and benchmark_vector.get("num_seeds_faster_than_starter") == 8
+        and benchmark_vector.get("direct_rewrite_correct") is False
+    )
 
     requirements = [
         _requirement(
@@ -159,14 +167,20 @@ def main() -> None:
         _requirement(
             "benchmark_selection",
             "Choose benchmarks based on the paper claim rather than limiting to FML-bench.",
-            "partial",
+            "achieved" if non_fml_scored_complete else "partial",
             [
                 _rel(DOC_DIR / "benchmark_selection.md"),
                 _rel(DOC_DIR / "benchmark_claim_matrix.md"),
                 _rel(DOC_DIR / "audits" / "benchmark_coverage_audit.md"),
             ],
-            "The package considers FML-bench, MLAgentBench, OpenReview, OpenEvolve-style probes, and TFR, but at least one non-FML official benchmark still lacks a complete scored matched comparison.",
-            "Complete one official non-FML benchmark comparison when data access and setup permit.",
+            (
+                "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, "
+                "all faster than the starter, and a failed direct-rewrite correctness baseline. This supports benchmark-portfolio coverage, "
+                "but it remains a narrow program-search subproblem rather than broad top-conference empirical sufficiency."
+            )
+            if non_fml_scored_complete
+            else "The package considers FML-bench, MLAgentBench, OpenReview, OpenEvolve-style probes, and TFR, but a complete scored non-FML comparison is not yet proven.",
+            "Extend non-FML evidence beyond vectorization to another official benchmark task when data access and setup permit.",
         ),
         _requirement(
             "human_taste_and_insight_theory",

@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T13:55:02Z",
+  "audit_date": "2026-06-02T13:59:00Z",
   "status": "pass_with_top_conference_gap",
-  "head": "d1e6d38d468e0ef32b2d02c115f38ad740bf3568",
+  "head": "af5c2d1b823acee2bf5dac756418d48df01ffc54",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "remote_branch_pushed": true,
@@ -9,8 +9,8 @@
   "missing_manifest_artifacts": 0,
   "requirement_count": 15,
   "status_counts": {
-    "achieved": 11,
-    "partial": 3,
+    "achieved": 12,
+    "partial": 2,
     "incomplete": 1
   },
   "requirements": [
@@ -67,14 +67,14 @@
     {
       "key": "benchmark_selection",
       "requirement": "Choose benchmarks based on the paper claim rather than limiting to FML-bench.",
-      "status": "partial",
+      "status": "achieved",
       "evidence": [
         "docs/co_pilot_ai_scientist_v3/benchmark_selection.md",
         "docs/co_pilot_ai_scientist_v3/benchmark_claim_matrix.md",
         "docs/co_pilot_ai_scientist_v3/audits/benchmark_coverage_audit.md"
       ],
-      "gap": "The package considers FML-bench, MLAgentBench, OpenReview, OpenEvolve-style probes, and TFR, but at least one non-FML official benchmark still lacks a complete scored matched comparison.",
-      "next_action": "Complete one official non-FML benchmark comparison when data access and setup permit."
+      "gap": "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, all faster than the starter, and a failed direct-rewrite correctness baseline. This supports benchmark-portfolio coverage, but it remains a narrow program-search subproblem rather than broad top-conference empirical sufficiency.",
+      "next_action": "Extend non-FML evidence beyond vectorization to another official benchmark task when data access and setup permit."
     },
     {
       "key": "human_taste_and_insight_theory",
@@ -147,7 +147,7 @@
       "evidence": [
         "https://github.com/heguanghui54/ai-research-repro.git",
         "codex/co-pilot-ai-scientist-v3",
-        "d1e6d38d468e0ef32b2d02c115f38ad740bf3568"
+        "af5c2d1b823acee2bf5dac756418d48df01ffc54"
       ],
       "gap": "Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate.",
       "next_action": "Create a release or PR only when the user wants a public submission package."
