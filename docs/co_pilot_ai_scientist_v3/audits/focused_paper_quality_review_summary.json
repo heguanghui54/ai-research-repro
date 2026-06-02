@@ -1,17 +1,11 @@
 {
+  "status": "refreshed_after_ssh_maxcut_integration",
   "review_date": "2026-06-03",
   "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
-  "evidence_context": [
-    "three-case live TFR aggregate and deterministic TFR audit",
-    "focused reference coverage audit including Schmidhuber, OOPS, Godel Machine, POWERPLAY, Darwin Godel Machine, and Huxley-Godel Machine",
-    "research-skill and manuscript-copilot related-work line treating PaperOrchestra as a multi-agent paper-writing theory source for academic-research-skills and related skill bundles",
-    "goal-completion matrix with benchmark-selection status and top-conference gap",
-    "controlled metric-gaming evaluator-stress smoke",
-    "OpenReview equal-context ablation",
-    "gate-structure ablation probe",
-    "gate-outcome attribution probe",
-    "single-gate artifact ablation",
-    "top-conference readiness audit"
+  "review_context_updates": [
+    "Focused paper now includes prospective_matched_micro_pilot_20260603_ssh_maxcut.",
+    "Prospective matched package summary now covers 5 packages, 2 co-pilot or human-selected wins, 3 autonomous/tie/invalid outcomes, and 5/5 complete attention/taste gates.",
+    "SSH Max-Cut micro-pilot reports autonomous mean normalized score 0.596214, co-pilot selected local-search score 0.984419, delta +0.388205."
   ],
   "successful_reviews": {
     "gpt-4o-mini": {
@@ -24,46 +18,44 @@
         "reproducibility": 4,
         "significance": 3
       },
-      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md"
+      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md",
+      "status_code": 200,
+      "completion_status": "complete_markdown_review"
     },
     "gemini-2.5-flash": {
       "recommendation": "Weak accept",
       "scores": {
         "novelty": 4,
         "rigor": 5,
-        "clarity": 5,
-        "evidence": 4,
+        "clarity": 4,
+        "evidence": 3,
         "reproducibility": 5,
         "significance": 4
       },
-      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md"
+      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md",
+      "status_code": 200,
+      "completion_status": "partial_markdown_review_finish_reason_length_but_verdict_and_scores_present"
     }
   },
-  "failed_review_routes": {
+  "failed_or_archived_reviews": {
     "claude-3-7-sonnet-latest": {
       "status_code": 504,
-      "error": "Gateway Time-out",
-      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md"
+      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md",
+      "reason": "Gateway timeout from archived route; retained but not counted as current successful review."
     },
     "gemini-2.0-flash": {
       "status_code": 412,
-      "error": "unsupported model route",
-      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md"
+      "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md",
+      "reason": "Unsupported model route from archived attempt; retained but not counted as current successful review."
     }
   },
-  "aggregate_conclusion": "Both successful model reviewers recommend weak accept under conservative framing. They support IGRE as a systems-method and measurement paper, not as proof of broad human-gated superiority. The new related-work line positions PaperOrchestra as a multi-agent paper-writing theory source for academic-research-skills and related manuscript-copilot skill bundles while preserving IGRE's distinct contribution: human scientific taste is represented as an auditable gate that can change research priors, evaluators, frontiers, micro-evolution tasks, feedback structures, and claim boundaries.",
-  "remaining_blocking_issues": [
-    "mixed or negative empirical evidence for broad human-gated superiority",
-    "zero strict delayed-value positives in three live TFR replays",
-    "no completed independent blind human expert rows",
-    "OpenReview taste/insight classifier not validated against expert labels",
-    "benchmark coverage and matched-budget sample size remain narrow"
+  "aggregate_verdict": "Both successful current reviewers recommend Weak accept under conservative framing, while emphasizing that the paper remains a pilot/method-and-measurement contribution rather than top-conference empirical proof of co-pilot superiority.",
+  "blocking_issues": [
+    "No independent human expert ratings have been collected.",
+    "System-level empirical superiority over autonomous AI Scientist-v2 remains unproven.",
+    "Prospective evidence is still small and includes mixed or negative FML outcomes despite the positive SSH Max-Cut micro-pilot.",
+    "Many results remain probes, smoke tests, model-routed reviews, or controlled micro-tasks.",
+    "Scientific taste operationalization needs larger live human or expert-validated data."
   ],
-  "next_required_evidence": [
-    "blind human expert ratings with inter-rater agreement",
-    "larger matched autonomous versus human-gated trajectories across tasks/seeds/domains",
-    "OpenReview taste/insight classifier validation against expert labels",
-    "scaled TFR with semantic frontier metrics and human expert assessment",
-    "real benchmark reruns where gate choices alter downstream experimental outcomes"
-  ]
+  "claim_boundary": "Model reviews are iteration evidence only. They do not replace independent human expert review, larger matched benchmark runs, or broad multi-researcher traces."
 }

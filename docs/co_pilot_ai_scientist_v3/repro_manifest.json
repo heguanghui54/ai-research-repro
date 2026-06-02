@@ -1913,7 +1913,7 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "98fcccce7f0f686980fe418efc325eb2569c87c9",
+    "head": "62375f5352a680c49bae7343a1bcc2eb5120a23f",
     "branch": "codex/co-pilot-ai-scientist-v3",
     "manifest_artifacts": 875,
     "missing_manifest_artifacts": 0,
@@ -2106,5 +2106,17 @@
     "chinese_pdf": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf",
     "integrated_evidence": "prospective_matched_micro_pilot_20260603_ssh_maxcut",
     "claim_boundary": "The focused manuscript includes the SSH Max-Cut micro-pilot as prospective package-shape and machine-gradeable frontier-steering evidence, not top-conference superiority evidence."
+  },
+  "focused_paper_quality_review_refresh_ssh_maxcut": {
+    "status": "refreshed_after_ssh_maxcut_integration",
+    "paper": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+    "summary": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_review_summary.md",
+    "successful_current_reviews": [
+      "gpt-4o-mini",
+      "gemini-2.5-flash"
+    ],
+    "gpt_recommendation": "Weak accept",
+    "gemini_recommendation": "Weak accept",
+    "claim_boundary": "Model reviews are iteration evidence only and do not replace independent human expert review or larger matched benchmark runs."
   }
 }

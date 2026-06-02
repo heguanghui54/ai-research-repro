@@ -6,82 +6,40 @@ Manuscript reviewed:
 
 - `docs/co_pilot_ai_scientist_v3/paper_en_focused.md`
 
-Reviewer routes:
+## Current Review Context
 
-- Monica OpenAI-compatible `gpt-4o-mini`
-- Monica OpenAI-compatible `gemini-2.5-flash`
-- Monica OpenAI-compatible `claude-3-7-sonnet-latest` attempted but returned
-  `504 Gateway Time-out`; logged but not counted as a successful review.
-- Monica OpenAI-compatible `gemini-2.0-flash` attempted earlier but returned an
-  unsupported-model `412`; logged but not counted as a successful review.
+This refresh reviews the focused paper after integrating the SSH Ubuntu `prospective_matched_micro_pilot_20260603_ssh_maxcut` result. The prospective matched package summary now covers 5 packages: 2 co-pilot or human-selected wins and 3 autonomous/tie/invalid outcomes. The SSH Max-Cut package reports autonomous mean normalized score `0.596214`, co-pilot selected local-search mean normalized score `0.984419`, and delta `+0.388205`.
+
+## Reviewer Routes
+
+- Monica OpenAI-compatible `gpt-4o-mini`: successful current review.
+- Monica OpenAI-compatible `gemini-2.5-flash`: successful current route with verdict and rubric present; output ended by `finish_reason=length` during required revisions, so it is counted as partial-successful rather than a full long-form review.
+- Monica OpenAI-compatible `claude-3-7-sonnet-latest`: archived `504 Gateway Time-out`; logged but not counted as current successful review.
+- Monica OpenAI-compatible `gemini-2.0-flash`: archived unsupported-model `412`; logged but not counted as current successful review.
 
 ## Aggregate Verdict
 
-The refreshed focused review includes the three-case live Temporal Frontier
-Replay aggregate, the deterministic TFR audit, the focused reference audit with
-the Schmidhuber/OOPS/Godel Machine/POWERPLAY self-improvement lineage, and the
-new research-skill/manuscript-copilot related-work line that treats
-PaperOrchestra as a multi-agent paper-writing theory source for skill bundles
-such as `academic-research-skills`, alongside
-`Claude-Code-Skills-for-Academics`.
-
-Both successful model reviewers recommend weak accept under conservative
-framing. They agree that IGRE is most defensible as a systems-method and
-measurement paper: it operationalizes human scientific taste as auditable
-control signals, releases a reproducible artifact package, and reports mixed
-or negative evidence rather than claiming broad superiority. The remaining
-top-conference gap is still empirical, not cosmetic: independent human expert
-ratings, larger matched trajectories, broader benchmarks, and stronger
-delayed-value evidence are still missing.
+Both successful current reviewers recommend `Weak accept` under conservative framing. They agree that IGRE is strongest as a systems-method and measurement paper: it operationalizes human scientific taste as auditable control signals, releases a reusable and reproducible artifact package, and keeps mixed or negative evidence visible rather than claiming broad superiority. The SSH Max-Cut micro-pilot improves the evidence shape because it is a real SSH matched-budget machine-gradeable run, but it does not close the top-conference empirical gap.
 
 | Reviewer | Recommendation | Novelty | Rigor | Clarity | Evidence | Reproducibility | Significance |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 4 | 3 |
-| `gemini-2.5-flash` | Weak accept | 4 | 5 | 5 | 4 | 5 | 4 |
+| `gemini-2.5-flash` | Weak accept | 4 | 5 | 4 | 3 | 5 | 4 |
 
 ## What Improved
 
-- The related-work section now separates manuscript-copilot skill bundles from
-  autonomous discovery systems, identifies PaperOrchestra as a theory source
-  for `academic-research-skills`, and positions IGRE as a gate-control theory
-  rather than another writing pipeline.
-- The paper explicitly includes the Schmidhuber self-referential learning and
-  code self-improvement lineage, including OOPS, Godel Machine, POWERPLAY,
-  Darwin Godel Machine, and Huxley-Godel Machine.
-- Three live four-condition TFR cases are now included. They do not provide
-  strict delayed-value positives, but they demonstrate that preregistered rules
-  can correct optimistic model-judge labels and expose weak gate propagation.
-- The main contribution is now clearer: useful human participation is not more
-  review context, but targeted routing of human taste and insight into research
-  priors, evaluators, frontiers, micro-evolution tasks, feedback structures, and
-  claim boundaries.
-- The manuscript is more honest about high variance: human participation can
-  hurt short-budget benchmark outcomes while still being worth studying for
-  high-tail or long-horizon scientific-search effects.
+- The latest manuscript now connects the SSH Max-Cut micro-pilot to the prospective matched-budget evidence table and Section 4.4.
+- The paper distinguishes the positive controlled micro-task result from the still mixed or negative FML evidence.
+- The reviewer routes continue to recognize the reproducibility package, six-gate IGRE architecture, and explicit claim bounding as major strengths.
 
 ## Remaining Blocking Issues
 
-- The primary empirical evidence remains mixed or negative for broad
-  human-gated superiority.
-- The three live TFR replays produce zero strict delayed-value positives under
-  preregistered deterministic rules.
-- Regenerated artifact comparisons still rely mainly on model-routed scoring;
-  the preregistered blind human expert packet has zero completed human rows.
-- The OpenReview-derived taste/insight classifier is not yet validated against
-  independent expert labels.
-- Benchmark coverage and matched-budget sample size remain too narrow for a
-  strong systems claim.
-- The paper is now better positioned, but still needs one larger decisive
-  empirical block to move from strong pilot to top-conference-ready evidence.
+- Independent human expert ratings are still missing.
+- System-level superiority over autonomous AI Scientist-v2 remains unproven.
+- The positive SSH Max-Cut result is a small controlled subproblem, not a paper-quality benchmark.
+- Prospective evidence remains underpowered and mixed across FML-style tasks.
+- Scientific taste routing still needs expert-labeled or live multi-researcher validation.
 
-## Next Required Evidence
+## Claim Boundary
 
-1. Collect blind human expert ratings for the prepared paired artifacts and
-   report inter-rater agreement.
-2. Run larger matched autonomous versus human-gated trajectories across tasks,
-   seeds, and domains.
-3. Validate OpenReview taste/insight routing against independent expert labels.
-4. Scale TFR beyond three cases and use semantic frontier metrics plus human
-   expert assessment to find or falsify delayed-value review signals.
-5. Add real benchmark reruns where gate choices alter downstream experimental
-   outcomes, not only regenerated text artifacts.
+Model reviews are iteration evidence only. They do not replace independent human expert review, larger matched benchmark runs, or broad multi-researcher traces.
