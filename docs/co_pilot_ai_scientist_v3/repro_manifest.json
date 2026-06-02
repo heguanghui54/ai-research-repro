@@ -713,7 +713,8 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/prepare_relative_python.log",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/prepare_abs_python.log"
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/prepare_abs_python.log",
+    "docs/co_pilot_ai_scientist_v3/related_work_coverage_map.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1738,9 +1739,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "338367b95f50f27b3bbbf53e08b39da9cdcf8a47",
+    "head": "8ec651826d87e484449f4af3ee9cf115dc343800",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 700,
+    "manifest_artifacts": 701,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1774,5 +1775,9 @@
     "official_score_reported": false,
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/summary.json",
     "claim_boundary": "Setup evidence only; no second scored official non-FML benchmark result is reported."
+  },
+  "related_work_coverage_map": {
+    "markdown": "docs/co_pilot_ai_scientist_v3/related_work_coverage_map.md",
+    "claim_boundary": "Coverage map for related-work positioning, not empirical evidence."
   }
 }

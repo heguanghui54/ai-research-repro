@@ -1,6 +1,6 @@
 # Focused References Audit
 
-- Audit date: `2026-06-02T14:22:57Z`
+- Audit date: `2026-06-02T14:27:48Z`
 - Status: `pass`
 
 ## Key Terms
@@ -29,6 +29,11 @@
 - `AutoGen`
 - `MLAgentBench`
 - `MLE-bench`
+- `PaperBench`
+- `AIRS-Bench`
+- `RExBench`
+- `ReplicationBench`
+- `SciVisAgentBench`
 - `OpenReview`
 - `FML-bench`
 

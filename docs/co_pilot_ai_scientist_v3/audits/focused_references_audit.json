@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T14:22:57Z",
+  "audit_date": "2026-06-02T14:27:48Z",
   "status": "pass",
   "checks": {
     "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
@@ -29,6 +29,11 @@
         "AutoGen": true,
         "MLAgentBench": true,
         "MLE-bench": true,
+        "PaperBench": true,
+        "AIRS-Bench": true,
+        "RExBench": true,
+        "ReplicationBench": true,
+        "SciVisAgentBench": true,
         "OpenReview": true,
         "FML-bench": true
       },
@@ -59,6 +64,11 @@
         "autogen": true,
         "mlagentbench": true,
         "mlebench": true,
+        "paperbench": true,
+        "airsbench": true,
+        "rexbench": true,
+        "replicationbench": true,
+        "scivisagentbench": true,
         "OpenReview": true,
         "FML-bench": true
       },

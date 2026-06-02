@@ -42,6 +42,11 @@ FOCUSED_PAPER_TERMS = [
     "AutoGen",
     "MLAgentBench",
     "MLE-bench",
+    "PaperBench",
+    "AIRS-Bench",
+    "RExBench",
+    "ReplicationBench",
+    "SciVisAgentBench",
     "OpenReview",
     "FML-bench",
 ]
@@ -70,6 +75,11 @@ BIB_KEY_TERMS = [
     "autogen",
     "mlagentbench",
     "mlebench",
+    "paperbench",
+    "airsbench",
+    "rexbench",
+    "replicationbench",
+    "scivisagentbench",
     "OpenReview",
     "FML-bench",
 ]

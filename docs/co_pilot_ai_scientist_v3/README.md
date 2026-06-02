@@ -24,6 +24,10 @@ structured feedback, and claim calibration.
   evidence status, external verification commands, and unsupported claims.
 - `literature_matrix.md`: how AI Co-Scientist, AI Scientist-v2, AlphaEvolve,
   Coscientist, and related systems map into this proposal.
+- `related_work_coverage_map.md`: broader related-work map covering automated
+  scientists, scientific discovery agents, algorithm discovery, the Schmidhuber
+  self-improvement line, LLM-guided evolution, research-agent benchmarks, and
+  peer-review data.
 - `architecture.md`: IGRE data-flow view of the four loops and six gates.
 - `human_expert_blind_review_protocol.md`: protocol for recruiting
   NUS-affiliated or school-affiliated ML/AI experts to blindly evaluate the
