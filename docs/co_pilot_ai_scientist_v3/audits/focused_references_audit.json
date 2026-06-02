@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T15:38:03Z",
+  "audit_date": "2026-06-02T15:41:31Z",
   "status": "pass",
   "checks": {
     "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
@@ -37,7 +37,92 @@
         "OpenReview": true,
         "FML-bench": true
       },
+      "has_self_improvement_line": {
+        "Schmidhuber": true,
+        "self-referential learning": true,
+        "OOPS": true,
+        "Gödel Machine": true,
+        "POWERPLAY": true,
+        "Darwin Gödel Machine": true,
+        "Huxley-Gödel Machine": true,
+        "self-improvement": true,
+        "human-insight gates": true
+      },
+      "distinguishes_igre_from_whole_agent_self_rewrite": true,
       "has_no_placeholder_citations": true
+    },
+    "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md": {
+      "has_references_heading": true,
+      "has_self_improvement_line": {
+        "Schmidhuber": true,
+        "自指学习": true,
+        "代码自我改进": true,
+        "OOPS": true,
+        "Gödel Machine": true,
+        "POWERPLAY": true,
+        "Darwin Gödel Machine": true,
+        "Huxley-Gödel Machine": true,
+        "人类 insight gate": true
+      },
+      "distinguishes_igre_from_whole_agent_self_rewrite": true,
+      "has_no_placeholder_citations": true
+    },
+    "docs/co_pilot_ai_scientist_v3/paper_en.md": {
+      "has_self_improvement_line": {
+        "Schmidhuber": true,
+        "self-referential learning": true,
+        "OOPS": true,
+        "Gödel Machine": true,
+        "POWERPLAY": true,
+        "Darwin Gödel Machine": true,
+        "Huxley-Gödel Machine": true,
+        "self-improvement": true,
+        "human-insight gates": true
+      },
+      "distinguishes_igre_from_recursive_self_improvement_claim": true
+    },
+    "docs/co_pilot_ai_scientist_v3/paper_zh.md": {
+      "has_self_improvement_line": {
+        "Schmidhuber": true,
+        "自指学习": true,
+        "代码自我改进": true,
+        "OOPS": true,
+        "Gödel Machine": true,
+        "POWERPLAY": true,
+        "Darwin Gödel Machine": true,
+        "Huxley-Gödel Machine": true,
+        "人类 insight gate": true
+      },
+      "distinguishes_igre_from_recursive_self_improvement_claim": true
+    },
+    "docs/co_pilot_ai_scientist_v3/literature_matrix.md": {
+      "has_self_improvement_line": {
+        "Schmidhuber": true,
+        "self-referential learning": true,
+        "OOPS": true,
+        "Gödel Machine": true,
+        "POWERPLAY": true,
+        "Darwin Gödel Machine": true,
+        "Huxley-Gödel Machine": true,
+        "self-improvement": true,
+        "human-insight gates": true
+      },
+      "has_bounded_auditable_boundary": true
+    },
+    "docs/co_pilot_ai_scientist_v3/related_work_coverage_map.md": {
+      "has_self_improvement_line": {
+        "Schmidhuber": true,
+        "self-referential learning": true,
+        "OOPS": true,
+        "Gödel Machine": true,
+        "POWERPLAY": true,
+        "Darwin Gödel Machine": true,
+        "Huxley-Gödel Machine": true,
+        "self-improvement": true,
+        "human-insight gates": true
+      },
+      "has_distinction_column": true,
+      "has_seed_links": true
     },
     "docs/co_pilot_ai_scientist_v3/references.bib": {
       "has_key_terms": {
@@ -76,5 +161,5 @@
     }
   },
   "errors": [],
-  "claim_boundary": "This audit checks visible reference coverage for the focused English paper. It does not validate every bibliographic field or scientific claim."
+  "claim_boundary": "This audit checks visible related-work coverage across the focused papers, full papers, literature matrix, coverage map, and BibTeX. It does not validate every bibliographic field or scientific claim."
 }

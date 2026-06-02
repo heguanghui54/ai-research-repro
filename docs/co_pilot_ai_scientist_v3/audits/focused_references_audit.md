@@ -1,9 +1,9 @@
-# Focused References Audit
+# Related-Work References Audit
 
-- Audit date: `2026-06-02T15:38:03Z`
+- Audit date: `2026-06-02T15:41:31Z`
 - Status: `pass`
 
-## Key Terms
+## Focused English Key Terms
 
 - `AI Co-Scientist`
 - `The AI Scientist`
@@ -37,10 +37,34 @@
 - `OpenReview`
 - `FML-bench`
 
+## Self-Improvement Line Terms
+
+- `Schmidhuber`
+- `self-referential learning`
+- `OOPS`
+- `Gödel Machine`
+- `POWERPLAY`
+- `Darwin Gödel Machine`
+- `Huxley-Gödel Machine`
+- `self-improvement`
+- `human-insight gates`
+
+## Chinese Self-Improvement Terms
+
+- `Schmidhuber`
+- `自指学习`
+- `代码自我改进`
+- `OOPS`
+- `Gödel Machine`
+- `POWERPLAY`
+- `Darwin Gödel Machine`
+- `Huxley-Gödel Machine`
+- `人类 insight gate`
+
 ## Errors
 
 - None
 
 ## Claim Boundary
 
-This audit checks visible reference coverage for the focused English paper. It does not validate every bibliographic field or scientific claim.
+This audit checks visible related-work coverage across the focused papers, full papers, literature matrix, coverage map, and BibTeX. It does not validate every bibliographic field or scientific claim.

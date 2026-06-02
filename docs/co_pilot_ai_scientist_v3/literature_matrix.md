@@ -80,7 +80,9 @@
   benchmark, archive, or metaproductivity signals.
 - Human node: IGRE relocates self-improvement pressure away from autonomous
   full-agent self-rewrite and into human-insight-gated evolution of research
-  artifacts, evaluators, subproblem programs, and claim boundaries.
+  artifacts, evaluators, subproblem programs, and claim boundaries. These
+  human-insight gates make the self-improvement pressure accountable rather
+  than fully autonomous.
 - Limitation addressed here: full recursive self-improvement is too broad and
   unsafe as a claim for this paper. IGRE uses the discipline of this lineage
   only inside bounded, auditable micro-evolution and trajectory-steering gates.
