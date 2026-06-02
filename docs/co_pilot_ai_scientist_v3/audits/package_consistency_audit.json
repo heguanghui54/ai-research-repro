@@ -1,9 +1,9 @@
 {
-  "audit_date": "2026-06-02T18:34:49Z",
+  "audit_date": "2026-06-02T18:38:06Z",
   "status": "pass",
-  "head": "b0b4ec2c00e7bd8093ccaa76c2eb90d1976f1b72",
-  "clean_clone_audited_commit": "42cf5897d45bb5cac3d5532c7391e97d2506251f",
-  "clean_clone_commit_is_head": false,
+  "head": "4180584845efcc1bcc5ddc6bebc8b18dad222699",
+  "clean_clone_audited_commit": "4180584845efcc1bcc5ddc6bebc8b18dad222699",
+  "clean_clone_commit_is_head": true,
   "clean_clone_commit_is_head_ancestor": true,
   "git_repository_is_shallow": false,
   "manifest_artifacts": 895,
@@ -25,7 +25,7 @@
       "Candidate-frontier validation": true
     },
     "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md": {
-      "42cf5897d": true,
+      "418058484": true,
       "895/895": true,
       "+0.064": true
     },
@@ -36,7 +36,7 @@
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md": {
       "895/895": true,
       "top-conference empirical target remains incomplete": true,
-      "b0b4ec2c0_or_parent": true
+      "418058484_or_parent": true
     }
   },
   "stale_token_hits": {},
