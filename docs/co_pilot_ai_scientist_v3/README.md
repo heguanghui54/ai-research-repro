@@ -22,8 +22,6 @@ structured feedback, and claim calibration.
 - `problem_statement.md`: precise research framing, success criteria, and risks.
 - `submission_card_en.md`: compact reviewer-facing summary of the method,
   evidence status, external verification commands, and unsupported claims.
-- `submission_card_zh.md`: Chinese reviewer-facing summary of the same
-  submission boundary and evidence status.
 - `literature_matrix.md`: how AI Co-Scientist, AI Scientist-v2, AlphaEvolve,
   Coscientist, and related systems map into this proposal.
 - `architecture.md`: IGRE data-flow view of the four loops and six gates.
@@ -98,9 +96,7 @@ structured feedback, and claim calibration.
   required before strong top-conference claims about co-pilot superiority,
   human attention efficiency, or paper-quality gains.
 - `paper_en.md`: English manuscript draft.
-- `paper_zh.md`: Chinese manuscript draft.
 - `paper_en_focused.md`: focused conference-style English main-paper draft.
-- `paper_zh_focused.md`: focused conference-style Chinese main-paper draft.
 - `references.bib`: citation seed file for later LaTeX/PDF generation.
 - `RUNBOOK_EN.md`: English reproduction and continuation runbook.
 - `RUNBOOK_ZH.md`: Chinese reproduction and continuation runbook.

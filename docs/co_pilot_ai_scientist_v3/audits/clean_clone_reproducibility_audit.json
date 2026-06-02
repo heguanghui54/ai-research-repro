@@ -59,5 +59,5 @@
     "full_pdfs_rebuilt_in_this_audit": false,
     "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact, LHTG/DVRS, TFR, roadmap, human-expert packet readiness, focused-PDF, package-consistency, and objective-delivery checks. This still does not rerun remote Ubuntu experiments or provide independent human expert evidence."
   },
-  "interpretation": "A fresh shallow clone of the pushed branch at commit fb3e666b6 reproduced the current verification package with 632/632 manifest artifacts present. It reran LHTG/DVRS, TFR, roadmap, human-expert packet readiness, focused bilingual PDF builds, package consistency, and objective delivery audits. The result supports artifact reproducibility and workflow auditability, not top-conference empirical sufficiency."
+  "interpretation": "A fresh shallow clone of the pushed branch at commit fb3e666b6 reproduced the current verification package with 632/632 manifest artifacts present. It reran LHTG/DVRS, TFR, roadmap, human-expert packet readiness, focused PDF builds, package consistency, and objective delivery audits. The result supports artifact reproducibility and workflow auditability, not top-conference empirical sufficiency."
 }

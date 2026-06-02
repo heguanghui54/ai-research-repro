@@ -1,8 +1,8 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T13:34:25Z`
+- Audit date: `2026-06-02T13:41:17Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `7d807ce470bbdfbc2df95d405925d2a24eddb898`
+- HEAD: `664f1137573db1cfe495d9958cc1a97e5ed0f648`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
 - Manifest artifacts: `696`
@@ -11,8 +11,8 @@
 
 ## Explicit Requirements
 
-- `bilingual_pdfs`: `pass`
-- `bilingual_usage`: `pass`
+- `english_paper_pdfs`: `pass`
+- `documentation_and_guides`: `pass`
 - `reusable_codex_skill`: `pass`
 - `github_branch_pushed`: `pass`
 - `author_recorded`: `pass`
@@ -37,12 +37,9 @@
 ## Artifact Status
 
 - `english_pdf`: `pass` (51757 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
-- `chinese_pdf`: `pass` (114561 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
-- `focused_english_pdf`: `pass` (189153 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
-- `focused_chinese_pdf`: `pass` (225739 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
-- `root_readme`: `pass` (10206 bytes) - `README.md`
+- `focused_english_pdf`: `pass` (188856 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `root_readme`: `pass` (9792 bytes) - `README.md`
 - `english_submission_card`: `pass` (5177 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
-- `chinese_submission_card`: `pass` (5055 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_zh.md`
 - `top_conference_evidence_roadmap`: `pass` (8859 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
 - `top_conference_evidence_roadmap_json`: `pass` (5396 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - `deep_regeneration_casebook`: `pass` (13397 bytes) - `docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md`
@@ -53,15 +50,15 @@
 - `frontier_alignment_taxonomy_summary`: `pass` (20036 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/summary.json`
 - `frontier_vector_graph_summary`: `pass` (6461 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json`
 - `frontier_alignment_vector_graph_protocol`: `pass` (4282 bytes) - `docs/co_pilot_ai_scientist_v3/frontier_alignment_vector_graph_protocol.md`
-- `frontier_alignment_vector_graph_audit`: `pass` (2885 bytes) - `docs/co_pilot_ai_scientist_v3/audits/frontier_alignment_vector_graph_audit.json`
+- `frontier_alignment_vector_graph_audit`: `pass` (2732 bytes) - `docs/co_pilot_ai_scientist_v3/audits/frontier_alignment_vector_graph_audit.json`
 - `frontier_metric_disagreement_summary`: `pass` (2776 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/summary.json`
 - `end_to_end_paired_trajectory_audit`: `pass` (4011 bytes) - `docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.json`
-- `main_paper_figure`: `pass` (146516 bytes) - `docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png`
+- `main_paper_figure`: `pass` (146654 bytes) - `docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png`
 - `english_usage`: `pass` (19460 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
 - `chinese_usage`: `pass` (19890 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
 - `english_runbook`: `pass` (13724 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`
 - `chinese_runbook`: `pass` (12498 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_ZH.md`
-- `reusable_skill`: `pass` (22127 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
+- `reusable_skill`: `pass` (22104 bytes) - `skills/co-pilot-ai-scientist-v3/SKILL.md`
 - `task_template`: `pass` (2899 bytes) - `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`
 - `gate_template`: `pass` (1789 bytes) - `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`
 

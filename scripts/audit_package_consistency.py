@@ -140,7 +140,6 @@ def main() -> None:
         errors.append("claim-evidence audit does not reference candidate-frontier validation")
 
     focused_en = DOC_DIR / "paper_en_focused.md"
-    focused_zh = DOC_DIR / "paper_zh_focused.md"
     readiness_md = AUDIT_DIR / "top_conference_readiness_audit.md"
     claim_md = AUDIT_DIR / "claim_evidence_audit.md"
     objective_md = AUDIT_DIR / "objective_delivery_audit.md"
@@ -165,7 +164,6 @@ def main() -> None:
 
     text_checks = {
         _rel(focused_en): _contains(focused_en, ["+0.064", "Candidate-frontier validation"]),
-        _rel(focused_zh): _contains(focused_zh, ["+0.064", "候选-前沿验证"]),
         _rel(readiness_md): _contains(readiness_md, [clean_short, clean_ratio, "+0.064"]),
         _rel(claim_md): _contains(claim_md, [clean_ratio, "candidate-frontier validation"]),
         _rel(objective_md): _contains(objective_md, [head[:9], manifest_ratio, "top-conference empirical target remains incomplete"]),
@@ -177,7 +175,6 @@ def main() -> None:
 
     pdfs = {
         "focused_en": DOC_DIR / "build" / "co_pilot_ai_scientist_v3_focused_en.pdf",
-        "focused_zh": DOC_DIR / "build" / "co_pilot_ai_scientist_v3_focused_zh.pdf",
     }
     pdf_bytes = {}
     for name, path in pdfs.items():

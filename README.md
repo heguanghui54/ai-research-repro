@@ -15,8 +15,6 @@ Start here:
   [docs/co_pilot_ai_scientist_v3/README.md](docs/co_pilot_ai_scientist_v3/README.md)
 - English submission card:
   [docs/co_pilot_ai_scientist_v3/submission_card_en.md](docs/co_pilot_ai_scientist_v3/submission_card_en.md)
-- Chinese submission card:
-  [docs/co_pilot_ai_scientist_v3/submission_card_zh.md](docs/co_pilot_ai_scientist_v3/submission_card_zh.md)
 - Top-conference evidence roadmap:
   [docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md](docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md)
 - Deep regeneration casebook:
@@ -39,12 +37,8 @@ Start here:
   [docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png](docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png)
 - Focused English paper:
   [docs/co_pilot_ai_scientist_v3/paper_en_focused.md](docs/co_pilot_ai_scientist_v3/paper_en_focused.md)
-- Focused Chinese paper:
-  [docs/co_pilot_ai_scientist_v3/paper_zh_focused.md](docs/co_pilot_ai_scientist_v3/paper_zh_focused.md)
 - English focused PDF:
   [docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf](docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf)
-- Chinese focused PDF:
-  [docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf](docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf)
 - Reusable Codex skill:
   [skills/co-pilot-ai-scientist-v3/SKILL.md](skills/co-pilot-ai-scientist-v3/SKILL.md)
 - English usage guide:
@@ -92,8 +86,9 @@ Current objective-delivery status:
 - prospective gate instrumentation audit: `pass_with_known_historical_gaps`
 - package consistency: `pass`
 
-Important boundary: this package delivers the requested bilingual papers,
-usage guides, reusable skill, pushed GitHub branch, and reproducibility audits.
+Important boundary: the formal paper outcome is the English manuscript/PDF.
+The package also delivers usage guides, a reusable skill, a pushed GitHub
+branch, and reproducibility audits.
 The top-conference empirical target is not yet satisfied: this package does
 **not** prove empirical superiority over autonomous AI Scientist-v2. The
 remaining evidence gap is independent human expert ratings, larger matched

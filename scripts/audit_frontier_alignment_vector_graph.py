@@ -44,7 +44,6 @@ def main() -> None:
     script_path = ROOT / "scripts" / "build_frontier_vector_graph.py"
     skill_path = ROOT / "skills" / "co-pilot-ai-scientist-v3" / "SKILL.md"
     paper_en_path = DOC_DIR / "paper_en_focused.md"
-    paper_zh_path = DOC_DIR / "paper_zh_focused.md"
 
     summary = _load_json(summary_path)
     errors: list[str] = []
@@ -104,11 +103,6 @@ def main() -> None:
             "Frontier Alignment Vector Graph",
             "FAVG",
             "frontier-vector graph",
-        ],
-        _rel(paper_zh_path): [
-            "前沿对齐向量图",
-            "FAVG",
-            "前沿向量图",
         ],
     }
     term_status = {

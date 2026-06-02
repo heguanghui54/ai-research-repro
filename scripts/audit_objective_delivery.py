@@ -116,14 +116,11 @@ def main() -> None:
 
     pdfs = {
         "english_pdf": DOC_DIR / "build" / "co_pilot_ai_scientist_v3_en.pdf",
-        "chinese_pdf": DOC_DIR / "build" / "co_pilot_ai_scientist_v3_zh.pdf",
         "focused_english_pdf": DOC_DIR / "build" / "co_pilot_ai_scientist_v3_focused_en.pdf",
-        "focused_chinese_pdf": DOC_DIR / "build" / "co_pilot_ai_scientist_v3_focused_zh.pdf",
     }
     docs = {
         "root_readme": ROOT / "README.md",
         "english_submission_card": DOC_DIR / "submission_card_en.md",
-        "chinese_submission_card": DOC_DIR / "submission_card_zh.md",
         "top_conference_evidence_roadmap": DOC_DIR / "top_conference_evidence_roadmap.md",
         "top_conference_evidence_roadmap_json": DOC_DIR / "top_conference_evidence_roadmap.json",
         "deep_regeneration_casebook": DOC_DIR / "deep_regeneration_casebook.md",
@@ -161,19 +158,6 @@ def main() -> None:
                 "We do not claim",
             ],
         ),
-        _rel(DOC_DIR / "paper_zh_focused.md"): _contains(
-            DOC_DIR / "paper_zh_focused.md",
-            [
-                "Insight-Gated Research Evolution",
-                "AI Scientist-v2",
-                "AI Co-Scientist",
-                "OpenEvolve",
-                "长期科研品味门控",
-                "六类门控",
-                "结构化反馈",
-                "不能",
-            ],
-        ),
     }
 
     skill_checks = {
@@ -182,7 +166,6 @@ def main() -> None:
             [
                 "Co-Pilot AI Scientist v3",
                 "submission_card_en.md",
-                "submission_card_zh.md",
                 "top_conference_evidence_roadmap.md",
                 "deep_regeneration_casebook.md",
                 "human_expert_blind_review_protocol.md",
@@ -224,21 +207,6 @@ def main() -> None:
                 "six explicit gates",
             ],
         ),
-        _rel(docs["chinese_submission_card"]): _contains(
-            docs["chinese_submission_card"],
-            [
-                "Insight-Gated Research Evolution",
-                "长期科研品味门控",
-                "延迟价值评议信号",
-                "AI Scientist-v2",
-                "AI Co-Scientist",
-                "OpenEvolve",
-                "不能声称",
-                "外部复现入口",
-                "盲评专家",
-                "六个明确门控点",
-            ],
-        ),
         _rel(docs["top_conference_evidence_roadmap"]): _contains(
             docs["top_conference_evidence_roadmap"],
             [
@@ -265,8 +233,8 @@ def main() -> None:
     }
 
     explicit_requirements = {
-        "bilingual_pdfs": all(_file_status(path, min_bytes=1_000)["ok"] for path in pdfs.values()),
-        "bilingual_usage": all(_file_status(path, min_bytes=100)["ok"] for path in docs.values()),
+        "english_paper_pdfs": all(_file_status(path, min_bytes=1_000)["ok"] for path in pdfs.values()),
+        "documentation_and_guides": all(_file_status(path, min_bytes=100)["ok"] for path in docs.values()),
         "reusable_codex_skill": _file_status(docs["reusable_skill"], min_bytes=100)["ok"],
         "github_branch_pushed": _remote_contains_branch("origin", branch),
         "author_recorded": manifest.get("author") == "He Shi, School of Computing, National University of Singapore",
@@ -487,7 +455,6 @@ def main() -> None:
         docs["human_expert_blind_review_protocol"],
         docs["root_readme"],
         docs["english_submission_card"],
-        docs["chinese_submission_card"],
         docs["top_conference_evidence_roadmap"],
         docs["top_conference_evidence_roadmap_json"],
         docs["deep_regeneration_casebook"],

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build simple bilingual PDFs for the Co-Pilot AI Scientist v3 manuscript.
+"""Build paper PDFs for the Co-Pilot AI Scientist v3 manuscript.
 
 This intentionally avoids a LaTeX dependency so the research package can render
 on a fresh machine with only Python and reportlab installed.

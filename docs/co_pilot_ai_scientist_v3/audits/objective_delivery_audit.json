@@ -1,12 +1,12 @@
 {
-  "audit_date": "2026-06-02T13:34:25Z",
+  "audit_date": "2026-06-02T13:41:17Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "7d807ce470bbdfbc2df95d405925d2a24eddb898",
+  "head": "664f1137573db1cfe495d9958cc1a97e5ed0f648",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
-    "bilingual_pdfs": true,
-    "bilingual_usage": true,
+    "english_paper_pdfs": true,
+    "documentation_and_guides": true,
     "reusable_codex_skill": true,
     "github_branch_pushed": true,
     "author_recorded": true,
@@ -35,40 +35,22 @@
       "bytes": 51757,
       "ok": true
     },
-    "chinese_pdf": {
-      "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf",
-      "exists": true,
-      "bytes": 114561,
-      "ok": true
-    },
     "focused_english_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
       "exists": true,
-      "bytes": 189153,
-      "ok": true
-    },
-    "focused_chinese_pdf": {
-      "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf",
-      "exists": true,
-      "bytes": 225739,
+      "bytes": 188856,
       "ok": true
     },
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 10206,
+      "bytes": 9792,
       "ok": true
     },
     "english_submission_card": {
       "path": "docs/co_pilot_ai_scientist_v3/submission_card_en.md",
       "exists": true,
       "bytes": 5177,
-      "ok": true
-    },
-    "chinese_submission_card": {
-      "path": "docs/co_pilot_ai_scientist_v3/submission_card_zh.md",
-      "exists": true,
-      "bytes": 5055,
       "ok": true
     },
     "top_conference_evidence_roadmap": {
@@ -134,7 +116,7 @@
     "frontier_alignment_vector_graph_audit": {
       "path": "docs/co_pilot_ai_scientist_v3/audits/frontier_alignment_vector_graph_audit.json",
       "exists": true,
-      "bytes": 2885,
+      "bytes": 2732,
       "ok": true
     },
     "frontier_metric_disagreement_summary": {
@@ -152,7 +134,7 @@
     "main_paper_figure": {
       "path": "docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png",
       "exists": true,
-      "bytes": 146516,
+      "bytes": 146654,
       "ok": true
     },
     "english_usage": {
@@ -182,7 +164,7 @@
     "reusable_skill": {
       "path": "skills/co-pilot-ai-scientist-v3/SKILL.md",
       "exists": true,
-      "bytes": 22127,
+      "bytes": 22104,
       "ok": true
     },
     "task_template": {
@@ -208,23 +190,12 @@
       "six gates": true,
       "structured feedback": true,
       "We do not claim": true
-    },
-    "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md": {
-      "Insight-Gated Research Evolution": true,
-      "AI Scientist-v2": true,
-      "AI Co-Scientist": true,
-      "OpenEvolve": true,
-      "长期科研品味门控": true,
-      "六类门控": true,
-      "结构化反馈": true,
-      "不能": true
     }
   },
   "skill_checks": {
     "README.md": {
       "Co-Pilot AI Scientist v3": true,
       "submission_card_en.md": true,
-      "submission_card_zh.md": true,
       "top_conference_evidence_roadmap.md": true,
       "deep_regeneration_casebook.md": true,
       "human_expert_blind_review_protocol.md": true,
@@ -261,18 +232,6 @@
       "External Verification": true,
       "blind expert": true,
       "six explicit gates": true
-    },
-    "docs/co_pilot_ai_scientist_v3/submission_card_zh.md": {
-      "Insight-Gated Research Evolution": true,
-      "长期科研品味门控": true,
-      "延迟价值评议信号": true,
-      "AI Scientist-v2": true,
-      "AI Co-Scientist": true,
-      "OpenEvolve": true,
-      "不能声称": true,
-      "外部复现入口": true,
-      "盲评专家": true,
-      "六个明确门控点": true
     },
     "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md": {
       "Blind Human Expert Review": true,

@@ -91,7 +91,7 @@ def main() -> None:
         ((80, 180, 405, 370), "AI Co-Scientist", "Generate hypotheses, debate directions, organize evidence.", "#e0f2fe", "#0284c7"),
         ((475, 180, 800, 370), "AI Scientist-v2", "Turn hypotheses into experiments, benchmarks, and manuscripts.", "#ecfdf5", "#059669"),
         ((870, 180, 1195, 370), "OpenEvolve Loop", "Search machine-gradeable code subproblems under evaluators.", "#fff7ed", "#ea580c"),
-        ((1265, 180, 1700, 370), "Audited Paper", "Claim-calibrated bilingual paper, runbooks, reusable Codex skill.", "#f5f3ff", "#7c3aed"),
+        ((1265, 180, 1700, 370), "Audited Paper", "Claim-calibrated English paper, runbooks, reusable Codex skill.", "#f5f3ff", "#7c3aed"),
     ]
     for box in boxes:
         _box(draw, *box)

@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T13:33:43Z",
+  "audit_date": "2026-06-02T13:40:18Z",
   "status": "pass",
   "method": "Frontier Alignment Vector Graph",
   "abbreviation": "FAVG",
@@ -67,11 +67,6 @@
       "Frontier Alignment Vector Graph": true,
       "FAVG": true,
       "frontier-vector graph": true
-    },
-    "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md": {
-      "前沿对齐向量图": true,
-      "FAVG": true,
-      "前沿向量图": true
     }
   },
   "errors": [],

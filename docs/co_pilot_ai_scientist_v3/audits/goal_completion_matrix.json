@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T13:34:27Z",
+  "audit_date": "2026-06-02T13:41:18Z",
   "status": "pass_with_top_conference_gap",
-  "head": "7d807ce470bbdfbc2df95d405925d2a24eddb898",
+  "head": "664f1137573db1cfe495d9958cc1a97e5ed0f648",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "remote_branch_pushed": true,
@@ -20,7 +20,6 @@
       "status": "achieved",
       "evidence": [
         "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
-        "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md",
         "docs/co_pilot_ai_scientist_v3/architecture.md"
       ],
       "gap": "The method synthesis is documented, but the paper remains a pilot/evidence-package draft rather than a final top-conference submission.",
@@ -107,14 +106,13 @@
       "next_action": "Use the prepared blind packet for future expert validation; keep current result labeled as internal evidence."
     },
     {
-      "key": "bilingual_paper_pdfs",
-      "requirement": "Produce English and Chinese paper PDFs.",
+      "key": "english_paper_pdfs",
+      "requirement": "Produce the English paper PDF.",
       "status": "achieved",
       "evidence": [
-        "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
-        "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf"
+        "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf"
       ],
-      "gap": "PDFs exist and are audited; final camera-ready paper still depends on stronger evidence.",
+      "gap": "The English PDF exists and is audited; final camera-ready paper still depends on stronger evidence.",
       "next_action": "Rebuild PDFs after any substantive manuscript revision."
     },
     {
@@ -149,7 +147,7 @@
       "evidence": [
         "https://github.com/heguanghui54/ai-research-repro.git",
         "codex/co-pilot-ai-scientist-v3",
-        "7d807ce470bbdfbc2df95d405925d2a24eddb898"
+        "664f1137573db1cfe495d9958cc1a97e5ed0f648"
       ],
       "gap": "Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate.",
       "next_action": "Create a release or PR only when the user wants a public submission package."
@@ -184,8 +182,7 @@
       "requirement": "Record author as He Shi, NUS School of Computing undergraduate.",
       "status": "achieved",
       "evidence": [
-        "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
-        "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md"
+        "docs/co_pilot_ai_scientist_v3/paper_en_focused.md"
       ],
       "gap": "Author metadata is recorded in the paper package.",
       "next_action": "Keep author information synchronized in any final submission template."

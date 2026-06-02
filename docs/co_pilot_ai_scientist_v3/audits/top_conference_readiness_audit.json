@@ -3,14 +3,12 @@
   "overall_status": "focused_pilot_package_not_yet_top_conference_ready",
   "satisfied_artifact_requirements": [
     "English PDF paper",
-    "Chinese PDF paper",
-    "English and Chinese usage documents",
+    "Usage documents",
     "Reusable Codex skill artifact",
     "Reusable skill template/schema smoke test",
     "GitHub branch pushed",
     "Clean-clone artifact reproducibility",
-    "Focused English conference-style PDF paper",
-    "Focused Chinese conference-style PDF paper"
+    "Focused English conference-style PDF paper"
   ],
   "partially_supported_method_requirements": [
     "AI Co-Scientist-style hypothesis organization",

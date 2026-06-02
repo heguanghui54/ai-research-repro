@@ -71,7 +71,7 @@ PY
 A fresh shallow clone of the pushed branch at commit `fb3e666b6` reproduced
 the current verification package with `632/632` manifest artifacts present. It
 reran LHTG/DVRS, TFR, the top-conference evidence roadmap audit, the human
-expert blind-review packet readiness audit, focused bilingual PDF builds,
+expert blind-review packet readiness audit, focused PDF builds,
 package consistency, and objective delivery audits. The result supports
 artifact reproducibility and workflow auditability, not top-conference
 empirical sufficiency.

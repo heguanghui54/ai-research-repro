@@ -166,7 +166,7 @@ matched evidence and clear boundary conditions.
    - Generate the paper from actual logs, metrics, and citations.
    - Trigger `claim_calibration` to weaken, remove, or reframe unsupported
      claims before final polishing.
-   - Produce bilingual usage notes when requested.
+   - Produce the formal manuscript in English.
 
 7. **Assemble Gate Trajectory**
    - Link scientific-taste, evaluator-stress, frontier-steering,
@@ -384,7 +384,7 @@ Reusable templates are stored next to this skill:
 - derived Human Co-Pilot Trace Dataset when human usage evidence is discussed;
 - experiment logs and metrics;
 - program-search traces;
-- English and Chinese manuscript drafts;
+- English manuscript;
 - usage instructions;
 - final reproducibility manifest.
 

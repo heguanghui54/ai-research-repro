@@ -99,7 +99,6 @@ def main() -> None:
     missing_manifest = [path for path in current_artifacts if not (ROOT / path).exists()]
 
     paper_en = DOC_DIR / "paper_en_focused.md"
-    paper_zh = DOC_DIR / "paper_zh_focused.md"
     skill = ROOT / "skills" / "co-pilot-ai-scientist-v3" / "SKILL.md"
     deep_internal = DOC_DIR / "experiments" / "deep_case_internal_review_20260602_224500" / "summary.json"
 
@@ -113,7 +112,6 @@ def main() -> None:
             "achieved",
             [
                 _rel(paper_en),
-                _rel(paper_zh),
                 _rel(DOC_DIR / "architecture.md"),
             ],
             "The method synthesis is documented, but the paper remains a pilot/evidence-package draft rather than a final top-conference submission.",
@@ -200,14 +198,13 @@ def main() -> None:
             "Use the prepared blind packet for future expert validation; keep current result labeled as internal evidence.",
         ),
         _requirement(
-            "bilingual_paper_pdfs",
-            "Produce English and Chinese paper PDFs.",
+            "english_paper_pdfs",
+            "Produce the English paper PDF.",
             "achieved",
             [
                 _rel(DOC_DIR / "build" / "co_pilot_ai_scientist_v3_focused_en.pdf"),
-                _rel(DOC_DIR / "build" / "co_pilot_ai_scientist_v3_focused_zh.pdf"),
             ],
-            "PDFs exist and are audited; final camera-ready paper still depends on stronger evidence.",
+            "The English PDF exists and is audited; final camera-ready paper still depends on stronger evidence.",
             "Rebuild PDFs after any substantive manuscript revision.",
         ),
         _requirement(
@@ -272,7 +269,7 @@ def main() -> None:
             "author_record",
             "Record author as He Shi, NUS School of Computing undergraduate.",
             "achieved",
-            [_rel(DOC_DIR / "paper_en_focused.md"), _rel(DOC_DIR / "paper_zh_focused.md")],
+            [_rel(DOC_DIR / "paper_en_focused.md")],
             "Author metadata is recorded in the paper package.",
             "Keep author information synchronized in any final submission template.",
         ),
@@ -314,8 +311,6 @@ def main() -> None:
         errors.append("deep internal review summary is missing")
     if not _contains(paper_en, ["We do not claim", "top-conference-level proof of co-pilot superiority"]):
         errors.append("English paper is missing conservative top-conference boundary wording")
-    if not _contains(paper_zh, ["不能", "顶会"]):
-        errors.append("Chinese paper is missing conservative boundary wording")
     if not _contains(skill, ["Co-Pilot AI Scientist v3", "Insight-Gated Research Evolution", "Monica-routed"]):
         errors.append("Reusable skill is missing core method terms")
     if not remote_branch_pushed:
