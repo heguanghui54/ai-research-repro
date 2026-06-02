@@ -576,7 +576,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/gpt-4o-mini_audit_raw_response.txt",
     "docs/co_pilot_ai_scientist_v3/experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/README.md",
-    "scripts/run_metric_gaming_evaluator_stress_smoke.py"
+    "scripts/run_metric_gaming_evaluator_stress_smoke.py",
+    "scripts/run_fml_fairness_evaluator_stress_replay.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/README.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1268,5 +1271,65 @@
       }
     },
     "claim_boundary": "This is a deterministic evaluator-stress smoke linked to the live skill invocation. It demonstrates that a multi-metric guardrail can reject one synthetic metric-gaming candidate. It is not an FML-bench result, not a human-subject study, and not evidence that IGRE improves average benchmark performance."
+  },
+  "fml_fairness_evaluator_stress_replay": {
+    "status": "pass",
+    "run_id": "fml_fairness_evaluator_stress_replay_20260602_180000",
+    "script": "scripts/run_fml_fairness_evaluator_stress_replay.py",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/summary.json",
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_evaluator_stress_replay_20260602_180000/README.md",
+    "benchmark": "FML-Bench Fairness_fairlearn",
+    "metric": "abs_demographic_parity_diff_mean",
+    "metric_direction": "lower",
+    "linked_live_skill_invocation": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/summary.json",
+    "source_artifacts": {
+      "baseline_reference": "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_baseline_eval/test_info.json",
+      "api_repaired_candidate": "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_repair_eval/test_info.json",
+      "metric_gaming_all_negative": "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/test_info.json"
+    },
+    "primary_only_winner": "metric_gaming_all_negative",
+    "evaluator_stress_decision": "abort_no_valid_non_degenerate_improvement",
+    "metric_gaming_incidents_reduced": 1,
+    "primary_only_metric_gaming_incidents": 1,
+    "evaluator_stress_metric_gaming_incidents": 0,
+    "scores": {
+      "baseline_reference": {
+        "abs_demographic_parity_diff_mean": 0.17303,
+        "balanced_accuracy_mean": 0.763862,
+        "accuracy_mean": 0.852588,
+        "equalized_odds_diff_mean": 0.0862,
+        "primary_only_score": -0.17303,
+        "utility_floor": 0.65,
+        "utility_guardrail_pass": true,
+        "fairness_improves_baseline": false,
+        "accepted_for_continuation": false,
+        "evaluator_stress_score": -999.0
+      },
+      "api_repaired_candidate": {
+        "abs_demographic_parity_diff_mean": 0.317603,
+        "balanced_accuracy_mean": 0.818491,
+        "accuracy_mean": 0.807351,
+        "equalized_odds_diff_mean": 0.211878,
+        "primary_only_score": -0.317603,
+        "utility_floor": 0.65,
+        "utility_guardrail_pass": true,
+        "fairness_improves_baseline": false,
+        "accepted_for_continuation": false,
+        "evaluator_stress_score": -999.0
+      },
+      "metric_gaming_all_negative": {
+        "abs_demographic_parity_diff_mean": 0.0,
+        "balanced_accuracy_mean": 0.5,
+        "accuracy_mean": 0.760749,
+        "equalized_odds_diff_mean": 0.0,
+        "primary_only_score": -0.0,
+        "utility_floor": 0.65,
+        "utility_guardrail_pass": false,
+        "fairness_improves_baseline": true,
+        "accepted_for_continuation": false,
+        "evaluator_stress_score": -999.0
+      }
+    },
+    "claim_boundary": "This is a replay over archived real FML-Bench Fairness_fairlearn evaluation artifacts. It supports evaluator-gate design against metric gaming, but it does not show a Fairness improvement, does not rerun the remote benchmark, and does not prove that IGRE improves average benchmark performance."
   }
 }

@@ -11,8 +11,8 @@
     },
     {
       "claim_family": "Evaluator-gate necessity",
-      "benchmark_or_probe": "FML-bench Fairness_fairlearn plus controlled metric-gaming evaluator-stress smoke",
-      "current_evidence": "Failed two-draft extension plus repair and degenerate-predictor analysis; metric_gaming_evaluator_stress_smoke_20260602_171500 shows a primary-only fairness metric selects an all-negative predictor while a utility guardrail selects a useful candidate.",
+      "benchmark_or_probe": "FML-bench Fairness_fairlearn plus controlled and archived-FML evaluator-stress replays",
+      "current_evidence": "Failed two-draft extension plus repair and degenerate-predictor analysis; metric_gaming_evaluator_stress_smoke_20260602_171500 shows the controlled form, and fml_fairness_evaluator_stress_replay_20260602_180000 shows that the real archived FML primary metric selects an all-negative predictor while the evaluator-stress gate rejects it and aborts no-valid continuation.",
       "supports": "Gates must reject non-executable branches and metric-gaming fairness solutions before continuation.",
       "does_not_prove": "A successful fairness-task improvement or full benchmark superiority."
     },

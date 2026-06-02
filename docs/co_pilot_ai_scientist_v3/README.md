@@ -103,6 +103,12 @@ claim calibration.
   primary-only fairness metric selects a degenerate all-negative predictor, while
   the IGRE utility guardrail rejects it and selects a higher-utility candidate.
   This is controlled evaluator evidence, not an FML-bench result.
+- `experiments/fml_fairness_evaluator_stress_replay_20260602_180000/`:
+  replay over archived real FML-Bench `Fairness_fairlearn` outputs. The
+  primary-only FML metric selects the all-negative predictor, while the
+  evaluator-stress gate rejects metric gaming and aborts because no
+  non-degenerate candidate improves the baseline fairness metric. This supports
+  gate design, not a Fairness improvement claim.
 - `audits/attention_cost_logging_smoke_audit.md`: synthetic tooling smoke test
   for creating future human gate logs with complete attention-cost fields.
 - `audits/attention_taste_logging_smoke_audit.md`: synthetic tooling smoke test

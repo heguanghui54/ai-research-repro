@@ -1,0 +1,59 @@
+{
+  "run_id": "fml_fairness_evaluator_stress_replay_20260602_180000",
+  "timestamp_utc": "2026-06-02T07:59:20Z",
+  "status": "pass",
+  "benchmark": "FML-Bench Fairness_fairlearn",
+  "metric": "abs_demographic_parity_diff_mean",
+  "metric_direction": "lower",
+  "linked_live_skill_invocation": "docs/co_pilot_ai_scientist_v3/experiments/live_skill_invocation_smoke_20260602_170000/summary.json",
+  "source_artifacts": {
+    "baseline_reference": "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_baseline_eval/test_info.json",
+    "api_repaired_candidate": "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_repair_eval/test_info.json",
+    "metric_gaming_all_negative": "docs/co_pilot_ai_scientist_v3/experiments/fml_fairness_degenerate_eval/test_info.json"
+  },
+  "scores": {
+    "baseline_reference": {
+      "abs_demographic_parity_diff_mean": 0.17303,
+      "balanced_accuracy_mean": 0.763862,
+      "accuracy_mean": 0.852588,
+      "equalized_odds_diff_mean": 0.0862,
+      "primary_only_score": -0.17303,
+      "utility_floor": 0.65,
+      "utility_guardrail_pass": true,
+      "fairness_improves_baseline": false,
+      "accepted_for_continuation": false,
+      "evaluator_stress_score": -999.0
+    },
+    "api_repaired_candidate": {
+      "abs_demographic_parity_diff_mean": 0.317603,
+      "balanced_accuracy_mean": 0.818491,
+      "accuracy_mean": 0.807351,
+      "equalized_odds_diff_mean": 0.211878,
+      "primary_only_score": -0.317603,
+      "utility_floor": 0.65,
+      "utility_guardrail_pass": true,
+      "fairness_improves_baseline": false,
+      "accepted_for_continuation": false,
+      "evaluator_stress_score": -999.0
+    },
+    "metric_gaming_all_negative": {
+      "abs_demographic_parity_diff_mean": 0.0,
+      "balanced_accuracy_mean": 0.5,
+      "accuracy_mean": 0.760749,
+      "equalized_odds_diff_mean": 0.0,
+      "primary_only_score": -0.0,
+      "utility_floor": 0.65,
+      "utility_guardrail_pass": false,
+      "fairness_improves_baseline": true,
+      "accepted_for_continuation": false,
+      "evaluator_stress_score": -999.0
+    }
+  },
+  "primary_only_winner": "metric_gaming_all_negative",
+  "evaluator_stress_decision": "abort_no_valid_non_degenerate_improvement",
+  "primary_only_metric_gaming_incidents": 1,
+  "evaluator_stress_metric_gaming_incidents": 0,
+  "metric_gaming_incidents_reduced": 1,
+  "interpretation": "On archived FML-Bench Fairness_fairlearn outputs, the primary fairness metric alone selects the degenerate all-negative predictor because it achieves zero demographic parity difference. The evaluator-stress gate rejects that branch with a balanced-accuracy utility floor and also refuses to continue the API-repaired candidate because it worsens the baseline fairness metric. The correct gate action is therefore to abort the Fairness continuation until a non-degenerate candidate improves both fairness and utility constraints.",
+  "claim_boundary": "This is a replay over archived real FML-Bench Fairness_fairlearn evaluation artifacts. It supports evaluator-gate design against metric gaming, but it does not show a Fairness improvement, does not rerun the remote benchmark, and does not prove that IGRE improves average benchmark performance."
+}
