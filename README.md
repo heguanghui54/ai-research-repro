@@ -60,6 +60,7 @@ python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/summarize_human_expert_blind_reviews.py --update-manifest
 python3 scripts/audit_human_expert_blind_review_packet.py
 python3 scripts/run_igre_skill_install_smoke.py --update-manifest
+python3 scripts/install_and_audit_global_copilot_skill.py --update-manifest
 python3 scripts/audit_igre_skill_release_package.py
 python3 scripts/audit_benchmark_coverage.py
 python3 scripts/audit_prospective_gate_instrumentation.py
@@ -88,6 +89,7 @@ Current objective-delivery status:
 - TFR audit: `pass_with_negative_delayed_value_evidence`
 - roadmap audit: `pass`
 - human expert blind-review packet audit: `pass_prepared_no_human_ratings`
+- global Codex skill install audit: `pass`
 - benchmark coverage audit: `pass`
 - prospective gate instrumentation audit: `pass_with_known_historical_gaps`
 - package consistency: `pass`

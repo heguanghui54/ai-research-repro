@@ -864,7 +864,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/README.md",
     "release/co-pilot-ai-scientist-v3-skill/MIGRATION.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills/co-pilot-ai-scientist-v3/MIGRATION.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/codex_skills/co-pilot-ai-scientist-v3/MIGRATION.md",
+    "docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.md",
+    "scripts/install_and_audit_global_copilot_skill.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1889,9 +1892,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "aa1c0231f13f713416a62b47050a400e459f03ae",
+    "head": "6873372c3de37150fe5ddd8240e57fc4ca83760f",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 851,
+    "manifest_artifacts": 854,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2030,5 +2033,13 @@
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/summary.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/README.md",
     "claim_boundary": "This smoke test verifies isolated local installability and release self-validation for the IGRE skill. It is engineering evidence, not scientific evidence that IGRE improves automated research outcomes."
+  },
+  "global_copilot_skill_install": {
+    "status": "pass",
+    "skill_dir": "/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.md",
+    "base_skill_lineage_checked": true,
+    "claim_boundary": "This audit verifies that Co-Pilot AI Scientist v3 is installed as a global reusable Codex skill derived from the release package. It is engineering reuse evidence, not scientific superiority evidence."
   }
 }

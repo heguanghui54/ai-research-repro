@@ -137,6 +137,11 @@ does not replace the paper's empirical evidence requirements.
   `CODEX_SKILLS_DIR`, checks all manifest-required files, and runs the
   installed copy's validator. This is engineering evidence only, not scientific
   superiority evidence.
+- `audits/global_copilot_skill_install_audit.md`: audit that installs the
+  standalone release into the real global Codex skills directory
+  `~/.codex/skills/co-pilot-ai-scientist-v3`, verifies the installed copy,
+  checks the `ai-scientist-v2` migration lineage, and records the engineering
+  reuse boundary.
 - `release/co-pilot-ai-scientist-v3-skill/`: standalone release scaffold for a
   public GitHub skill. It packages `SKILL.md`, templates, examples, quickstart,
   manifest, and a local validator so the engineering track can progress

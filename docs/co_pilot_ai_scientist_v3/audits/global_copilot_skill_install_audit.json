@@ -1,0 +1,65 @@
+{
+  "audit_date": "2026-06-02T16:48:52Z",
+  "status": "pass",
+  "skills_dir": "/Users/hgh54913/.codex/skills",
+  "installed_dir": "/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3",
+  "release_dir": "release/co-pilot-ai-scientist-v3-skill",
+  "required_files_checked": 15,
+  "checked_files": [
+    "README.md",
+    "QUICKSTART.md",
+    "MIGRATION.md",
+    "POSITIONING.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "RELEASE_NOTES.md",
+    "SKILL.md",
+    "templates/task_spec_template.md",
+    "templates/human_gate_log_template.json",
+    "templates/claim_audit_template.md",
+    "examples/toy_task_spec.md",
+    "examples/example_gate_log.json",
+    "scripts/validate_release.py",
+    "scripts/install_local.sh"
+  ],
+  "install_result": {
+    "cmd": [
+      "bash",
+      "scripts/install_local.sh"
+    ],
+    "cwd": "release/co-pilot-ai-scientist-v3-skill",
+    "returncode": 0,
+    "stdout": "Installed Co-Pilot AI Scientist v3 skill to: /Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3\nStart a new Codex session and ask to use the co-pilot-ai-scientist-v3 skill.\n",
+    "stderr": ""
+  },
+  "validator_result": {
+    "status": "pass",
+    "release_root": "/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3",
+    "required_files_checked": 15,
+    "gates_checked": [
+      "scientific_taste_prior",
+      "evaluator_stress_test",
+      "frontier_steering",
+      "verifiable_micro_evolution",
+      "structured_feedback",
+      "claim_calibration"
+    ],
+    "errors": [],
+    "warnings": [],
+    "claim_boundary": "This release scaffold validates skill packaging and usability, not scientific superiority."
+  },
+  "validator_run": {
+    "cmd": [
+      "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "scripts/validate_release.py"
+    ],
+    "cwd": "/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3",
+    "returncode": 0,
+    "stdout": "{\n  \"status\": \"pass\",\n  \"release_root\": \"/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3\",\n  \"required_files_checked\": 15,\n  \"gates_checked\": [\n    \"scientific_taste_prior\",\n    \"evaluator_stress_test\",\n    \"frontier_steering\",\n    \"verifiable_micro_evolution\",\n    \"structured_feedback\",\n    \"claim_calibration\"\n  ],\n  \"errors\": [],\n  \"warnings\": [],\n  \"claim_boundary\": \"This release scaffold validates skill packaging and usability, not scientific superiority.\"\n}\n",
+    "stderr": ""
+  },
+  "base_skill_lineage_checked": true,
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "This audit verifies that Co-Pilot AI Scientist v3 is installed as a global reusable Codex skill derived from the release package. It is engineering reuse evidence, not scientific superiority evidence."
+}

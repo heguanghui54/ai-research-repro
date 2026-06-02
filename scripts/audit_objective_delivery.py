@@ -92,6 +92,7 @@ def main() -> None:
     favg_audit_path = AUDIT_DIR / "frontier_alignment_vector_graph_audit.json"
     frontier_disagreement_path = DOC_DIR / "experiments" / "frontier_metric_disagreement_20260603_003000" / "summary.json"
     end_to_end_paired_trajectory_audit_path = AUDIT_DIR / "end_to_end_paired_trajectory_audit.json"
+    global_skill_install_audit_path = AUDIT_DIR / "global_copilot_skill_install_audit.json"
 
     manifest = _load_json(manifest_path)
     readiness = _load_json(readiness_path)
@@ -110,6 +111,7 @@ def main() -> None:
     favg_audit = _load_json(favg_audit_path)
     frontier_disagreement = _load_json(frontier_disagreement_path)
     end_to_end_paired_trajectory = _load_json(end_to_end_paired_trajectory_audit_path)
+    global_skill_install_audit = _load_json(global_skill_install_audit_path)
 
     current_artifacts = manifest.get("current_artifacts", [])
     missing_manifest = [path for path in current_artifacts if not (ROOT / path).exists()]
@@ -140,6 +142,7 @@ def main() -> None:
         "english_runbook": DOC_DIR / "RUNBOOK_EN.md",
         "chinese_runbook": DOC_DIR / "RUNBOOK_ZH.md",
         "reusable_skill": ROOT / "skills" / "co-pilot-ai-scientist-v3" / "SKILL.md",
+        "global_skill_install_audit": global_skill_install_audit_path,
         "task_template": ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "task_spec_template.md",
         "gate_template": ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "human_gate_log_template.json",
     }
@@ -236,6 +239,8 @@ def main() -> None:
         "english_paper_pdfs": all(_file_status(path, min_bytes=1_000)["ok"] for path in pdfs.values()),
         "documentation_and_guides": all(_file_status(path, min_bytes=100)["ok"] for path in docs.values()),
         "reusable_codex_skill": _file_status(docs["reusable_skill"], min_bytes=100)["ok"],
+        "global_codex_skill_installed": global_skill_install_audit.get("status") == "pass"
+        and global_skill_install_audit.get("base_skill_lineage_checked") is True,
         "github_branch_pushed": _remote_contains_branch("origin", branch),
         "author_recorded": manifest.get("author") == "He Shi, School of Computing, National University of Singapore",
         "manifest_complete": len(current_artifacts) > 0 and not missing_manifest,
