@@ -1,0 +1,15 @@
+run_root=/home/heshi/work/copilotv3-mlagentbench-clrs-baseline-smoke-20260602b
+started_at=2026-06-02T22:35:13+08:00
+mlagentbench_head=5d71205cc20a8e95d43aa7cb7120e89ca3323e31
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780410914.488928  226449 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1780410915.980619  226449 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+clrs==2.0.3
+jax==0.6.2
+tensorflow==2.21.0
+absl==2.4.0
+haiku==0.0.16
+optax==0.2.8
+chex==0.1.90
+tensorflow_datasets==4.9.9+nightly

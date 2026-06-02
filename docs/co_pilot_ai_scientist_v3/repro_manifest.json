@@ -714,7 +714,14 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/prepare_relative_python.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/prepare_abs_python.log",
-    "docs/co_pilot_ai_scientist_v3/related_work_coverage_map.md"
+    "docs/co_pilot_ai_scientist_v3/related_work_coverage_map.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/env_check.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/run.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/eval.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/eval.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/runner_exit_code.txt"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1739,9 +1746,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "8ec651826d87e484449f4af3ee9cf115dc343800",
+    "head": "28df91c83ad7b00603e0a66dfa4cb1a74447e10d",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 701,
+    "manifest_artifacts": 708,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1779,5 +1786,11 @@
   "related_work_coverage_map": {
     "markdown": "docs/co_pilot_ai_scientist_v3/related_work_coverage_map.md",
     "claim_boundary": "Coverage map for related-work positioning, not empirical evidence."
+  },
+  "mlagentbench_clrs_baseline_smoke": {
+    "status": "blocked_cpu_timeout_no_checkpoint",
+    "official_score_reported": false,
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/summary.json",
+    "claim_boundary": "Setup and runtime-cost evidence only; no second scored official non-FML benchmark result is reported."
   }
 }

@@ -1,6 +1,6 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T14:17:56Z`
+- Audit date: `2026-06-02T14:52:41Z`
 - Status: `pass`
 - FML entries: `2`
 - Non-FML entries: `9`
@@ -16,6 +16,7 @@
 - `mlagentbench_cifar10`: `setup_blocked_by_slow_dataset_download`; no official score reported.
 - `mlagentbench_cifar10_refresh`: `blocked_slow_data_download`; no official score reported.
 - `mlagentbench_imdb`: `setup_blocked_by_huggingface_network`; no official score reported.
+- `mlagentbench_clrs`: `blocked_cpu_timeout_no_checkpoint`; no official score reported.
 - `scienceagentbench`: `metadata_and_verified_artifacts_not_yet_accessible`; no official score reported.
 
 ## Checks
@@ -35,6 +36,7 @@
 - `sklearn_boundary_direct_matches_or_beats_openevolve`: `pass`
 - `blocked_official_tasks_logged`: `pass`
 - `blocked_tasks_do_not_report_scores`: `pass`
+- `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`
 - `stretch_targets_kept_future`: `pass`
 
 ## Errors

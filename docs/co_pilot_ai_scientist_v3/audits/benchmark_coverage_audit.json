@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T14:17:56Z",
+  "audit_date": "2026-06-02T14:52:41Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -17,6 +17,7 @@
     "sklearn_boundary_direct_matches_or_beats_openevolve": true,
     "blocked_official_tasks_logged": true,
     "blocked_tasks_do_not_report_scores": true,
+    "mlagentbench_clrs_dependency_repaired_but_unscored": true,
     "stretch_targets_kept_future": true
   },
   "evidence_summary": {
@@ -85,6 +86,20 @@
           "reason_to_stop": "official task data could not be loaded from the Ubuntu host"
         },
         "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/summary.json"
+      },
+      "mlagentbench_clrs": {
+        "status": "blocked_cpu_timeout_no_checkpoint",
+        "official_score_reported": false,
+        "dependency_status": "repaired",
+        "runner_reached_task_prompt": true,
+        "train_py_launched": true,
+        "runner_exit_code": 124,
+        "checkpoint_produced": false,
+        "blocker": {
+          "type": "runtime_budget",
+          "description": "The official MLAgentBench CLRS baseline launched train.py but did not produce checkpoints/best.pkl within the 900-second runner timeout on the CPU-only Ubuntu host."
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/summary.json"
       },
       "scienceagentbench": {
         "status": "metadata_and_verified_artifacts_not_yet_accessible",

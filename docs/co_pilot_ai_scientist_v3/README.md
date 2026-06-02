@@ -177,6 +177,10 @@ structured feedback, and claim calibration.
   primary-only fairness metric selects a degenerate all-negative predictor, while
   the IGRE utility guardrail rejects it and selects a higher-utility candidate.
   This is controlled evaluator evidence, not an FML-bench result.
+- `experiments/mlagentbench_clrs_baseline_smoke_20260602/`: official
+  MLAgentBench CLRS setup/cost probe. The correct `dm-clrs` dependency stack was
+  installed and the runner reached CLRS `train.py`, but the CPU-only baseline
+  timed out at 900 seconds without a checkpoint or official score.
 - `experiments/fml_fairness_evaluator_stress_replay_20260602_180000/`:
   replay over archived real FML-Bench `Fairness_fairlearn` outputs. The
   primary-only FML metric selects the all-negative predictor, while the

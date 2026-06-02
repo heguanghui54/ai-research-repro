@@ -53,6 +53,7 @@ def main() -> None:
     cifar_path = EXP_DIR / "mlagentbench_cifar10_debug_setup_probe" / "summary.json"
     cifar_refresh_path = EXP_DIR / "mlagentbench_cifar10_debug_refresh_probe_20260602" / "summary.json"
     imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
+    clrs_path = EXP_DIR / "mlagentbench_clrs_baseline_smoke_20260602" / "summary.json"
     science_path = EXP_DIR / "scienceagentbench_metadata_setup_probe" / "summary.json"
 
     matrix = _load_json(matrix_path)
@@ -68,6 +69,7 @@ def main() -> None:
     cifar = _load_json(cifar_path)
     cifar_refresh = _load_json(cifar_refresh_path)
     imdb = _load_json(imdb_path)
+    clrs = _load_json(clrs_path)
     science = _load_json(science_path)
 
     vector_agg = vector.get("aggregate", {})
@@ -113,6 +115,17 @@ def main() -> None:
             "blocker": imdb.get("blocker", {}),
             "path": _rel(imdb_path),
         },
+        "mlagentbench_clrs": {
+            "status": clrs.get("status"),
+            "official_score_reported": clrs.get("official_score_reported"),
+            "dependency_status": clrs.get("dependency_status"),
+            "runner_reached_task_prompt": clrs.get("runner_reached_task_prompt"),
+            "train_py_launched": clrs.get("train_py_launched"),
+            "runner_exit_code": clrs.get("runner_exit_code"),
+            "checkpoint_produced": clrs.get("checkpoint_produced"),
+            "blocker": clrs.get("blocker", {}),
+            "path": _rel(clrs_path),
+        },
         "scienceagentbench": {
             "status": science.get("status"),
             "score_reported": science.get("score_reported"),
@@ -148,7 +161,14 @@ def main() -> None:
         ),
         "blocked_tasks_do_not_report_scores": cifar.get("official_score_reported") is False
         and imdb.get("official_score_reported") is False
+        and clrs.get("official_score_reported") is False
         and science.get("score_reported") is False,
+        "mlagentbench_clrs_dependency_repaired_but_unscored": clrs.get("dependency_status") == "repaired"
+        and clrs.get("runner_reached_task_prompt") is True
+        and clrs.get("train_py_launched") is True
+        and clrs.get("runner_exit_code") == 124
+        and clrs.get("checkpoint_produced") is False
+        and clrs.get("official_score_reported") is False,
         "stretch_targets_kept_future": _contains_any(matrix_text, ["MLE-bench Lite", "PaperBench", "AIRS-Bench"])
         and "Not run in the current budget" in matrix_text,
     }
