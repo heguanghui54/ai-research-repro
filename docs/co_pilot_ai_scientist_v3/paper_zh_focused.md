@@ -2,7 +2,7 @@
 
 ## 摘要
 
-自动科研智能体已经可以提出假设、运行实验、撰写论文并优化代码，但它们仍缺少一种原则化方式来利用人类科研品味：也就是人类判断哪些问题、失败、机制或主张边界更值得追求的非指标化能力。普通 co-pilot 工作流往往把人类当作审批者或编辑者；完全自动化系统则可能移除科学研究中最关键的判断。本论文提出洞察门控科研演化（Insight-Gated Research Evolution, IGRE），把人类科研品味与专家评审洞察转化为 AI Scientist-v2 式科研循环中的显式控制信号。IGRE 包含六类门控：科研品味先验、评估器压力测试、前沿方向调度、可验证微演化、结构化反馈、主张校准。本文进一步提出时间前沿回放（Temporal Frontier Replay, TFR），用离线回放协议检验历史同行评审是否本可以把自动科研引向后来的学科轨迹。IGRE 与 TFR 共同使人类参与不再被默认视为正向影响，而是可以被测量和审计：门控记录证据、注意力成本和主张边界，历史评审信号则根据未来前沿证据接受回放检验。我们基于 FML-bench 式运行、OpenEvolve 式微演化实验、OpenReview 专家评审信号、成对论文生成探针、TFR 审计和 clean-clone 可复现性检查构建证据包。当前证据支持一个保守结论：专家评审文本可以映射为可行动的工作流门控；评审引导的再生成在跨模型复审下能改善部分科研产物；三条真实四条件 TFR 回放在严格预注册规则下仍是混合结果；短预算人类门控 FML 运行则是混合或负向结果，而不是自动优于全自动基线。因此本文不是“人类总能提升自动科研”的证明，而是一种用于设计、比较和审计人类洞察如何改变科研搜索过程的可复现方法。
+自动科研智能体已经可以提出假设、运行实验、撰写论文并优化代码，但它们仍缺少一种原则化方式来利用人类科研品味：也就是人类判断哪些问题、失败、机制或主张边界更值得追求的非指标化能力。普通 co-pilot 工作流往往把人类当作审批者或编辑者；完全自动化系统则可能移除科学研究中最关键的判断。本论文提出洞察门控科研演化（Insight-Gated Research Evolution, IGRE），把人类科研品味与专家评审洞察转化为 AI Scientist-v2 式科研循环中的显式控制信号。IGRE 包含六类门控：科研品味先验、评估器压力测试、前沿方向调度、可验证微演化、结构化反馈、主张校准。本文进一步提出时间前沿回放（Temporal Frontier Replay, TFR），用离线回放协议检验历史同行评审是否本可以把自动科研引向后来的学科轨迹。IGRE 与 TFR 共同使人类参与不再被默认视为正向影响，而是可以被测量和审计：门控记录证据、注意力成本和主张边界，历史评审信号则根据未来前沿证据接受回放检验。我们基于 FML-bench 式运行、SSH Ubuntu 上的 prospective matched-budget Max-Cut 微型实验、OpenEvolve 式微演化实验、OpenReview 专家评审信号、成对论文生成探针、TFR 审计和 clean-clone 可复现性检查构建证据包。当前证据支持一个保守结论：专家评审文本可以映射为可行动的工作流门控；评审引导的再生成在跨模型复审下能改善部分科研产物；三条真实四条件 TFR 回放在严格预注册规则下仍是混合结果；SSH Max-Cut 微型实验显示机器可评分的 frontier-steering gate 可以被前瞻性审计；短预算人类门控 FML 运行则是混合或负向结果，而不是自动优于全自动基线。因此本文不是“人类总能提升自动科研”的证明，而是一种用于设计、比较和审计人类洞察如何改变科研搜索过程的可复现方法。
 
 ## 1. 引言
 
@@ -90,7 +90,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | 候选-前沿验证 | delayed candidates 均值 0.24 | controls 均值 0.176 | 16 条尝试中 13 条可评分；delayed-control +0.064 | 弱 OpenAlex 词汇证据显示 replay queue 优于任意控制评论；不是 delayed-value 证明。 |
 | 真实四条件 TFR 回放 | 原始模型 judge 将 3/3 case 标为 positive | 严格预注册规则将 3/3 修正为 mixed | 3 个 case；6 次 same-model 真实调用；strict positives 0 | 说明 TFR 需要确定性规则校验：当短期惩罚条件不成立时，模型乐观判断会被纠正。 |
 | 跨模型 TFR 复评 | Claude 在 3/3 case 中选择 six-gate hybrid 为 frontier winner | 3/3 strict label 仍是 mixed；其中一个 Claude model label 为 negative；一次 Gemini 返回 malformed JSON | 3 个成功 Claude judge | 降低同模型偏差，并指出 gate actions 经常改善前沿 framing，但没有充分传导到数据集、指标、机制或形式化识别条件。 |
-| Prospective matched packages | co-pilot 或人类选分支胜 1 次 | autonomous / tie / invalid 3 次 | 4 个 package | 不支持短预算平均 benchmark 优越性。 |
+| Prospective matched packages | co-pilot 或人类选分支胜 2 次，其中 SSH Max-Cut mean normalized score 为 0.984419 | autonomous / tie / invalid 3 次；SSH Max-Cut autonomous mean 为 0.596214 | 5 个 package；SSH Max-Cut delta +0.388205 | prospective package 形状和机器可评分 frontier steering 已能在远程机器上审计，但仍不支持短预算平均 benchmark 优越性。 |
 | Same-run online FML smokes | co-pilot benchmark 胜 0 次 | autonomous 胜 1 次，平 1 次，未知 1 次 | 3 个 paired smoke | 当前有效 benchmark 证据偏向 autonomous 或平局。 |
 | 端到端配对轨迹稿件 | co-pilot 稿件内部得分 4.64；模型复审 2/2 偏好 co-pilot | autonomous 稿件内部得分 3.48；autonomous benchmark 指标 0.640451 优于 0.862015 | 一个 same-run smoke pair | 证明连续轨迹到稿件的可比较性和指标/质量分歧，不证明 co-pilot 优越性。 |
 | MLAgentBench vectorization | 8/8 seeds 保持正确，median 0.024581 s | starter 3.261186 s；direct rewrite 未通过正确性 | 显著运行时间收益 | 可验证微演化适合 correctness-gated 代码子问题。 |
@@ -147,7 +147,7 @@ FAVG 这个向量视角比单一标量更稳健。在 3 个深度案例中，词
 
 ### 4.4 短预算人类门控是否优于全自动基线？
 
-当前 FML-bench 式 prospective matched packages 被有意报告为混合或负向结果。在已通过审计的包中，有一个受控 Max-Cut 微任务显示人类选择分支有用；但 3 个 FML-bench 案例中，co-pilot 分支出现失败、平局、中止或无法产生有效 continuation。在重复在线 paired smoke 中，有效 Causality 运行得到 0 次 co-pilot benchmark 胜出、1 次 autonomous 胜出、1 次平局；Fairness 运行是 no-valid-branch 失败案例。
+当前 prospective matched packages 被有意报告为混合结果，而不是包装成清晰的优越性证明。在已通过审计的包中，现在有两个受控案例显示 co-pilot 或人类选择分支有用；但 3 个 FML-bench 案例中，co-pilot 分支出现失败、平局、中止或无法产生有效 continuation。最新的 prospective package 是 SSH Ubuntu 上的 weighted Max-Cut 微型实验：它在同一组 12 个确定性的 8 节点 graph instances 上比较 autonomous alternating baseline 与 co-pilot 选择的 local-search branch，并用 brute-force optimum 计算 normalized score。autonomous baseline 的 mean normalized score 为 0.596214，minimum score 为 0.290323；co-pilot 选择分支的 mean normalized score 为 0.984419，minimum score 为 0.904762，mean delta 为 +0.388205。这是一个真实远程 matched-budget run，包含完整 gate logs 和 package audit，但它仍只是小型机器可评分子问题，不是 AI Scientist-v2 论文质量 benchmark。在重复在线 paired FML smoke 中，有效 Causality 运行仍然得到 0 次 co-pilot benchmark 胜出、1 次 autonomous 胜出、1 次平局；Fairness 运行是 no-valid-branch 失败案例。
 
 这个结果很重要。它阻止论文声称人类参与在短预算平均 benchmark 表现上已经有优势。相反，它强化了本文真正的问题：人类门控必须具体、预算敏感，并且被路由到科研品味和洞察确实能改变轨迹的位置。
 

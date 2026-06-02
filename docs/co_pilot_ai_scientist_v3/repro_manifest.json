@@ -1913,7 +1913,7 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "504088c4a4287e35f3df2d573f035d82c1e72e8e",
+    "head": "98fcccce7f0f686980fe418efc325eb2569c87c9",
     "branch": "codex/co-pilot-ai-scientist-v3",
     "manifest_artifacts": 875,
     "missing_manifest_artifacts": 0,
@@ -2099,5 +2099,12 @@
     "delta_mean_normalized_score": 0.38820549052371045,
     "audit": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.md",
     "claim_boundary": "Controlled SSH Ubuntu micro-task; validates prospective matched-budget package shape and a machine-gradeable frontier-steering gate, not AI Scientist-v2 paper-quality superiority."
+  },
+  "focused_paper_pdf_update_ssh_maxcut": {
+    "status": "rebuilt",
+    "english_pdf": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
+    "chinese_pdf": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf",
+    "integrated_evidence": "prospective_matched_micro_pilot_20260603_ssh_maxcut",
+    "claim_boundary": "The focused manuscript includes the SSH Max-Cut micro-pilot as prospective package-shape and machine-gradeable frontier-steering evidence, not top-conference superiority evidence."
   }
 }
