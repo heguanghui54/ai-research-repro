@@ -1,10 +1,10 @@
 {
-  "audit_date": "2026-06-02T17:38:18Z",
+  "audit_date": "2026-06-02T19:03:11Z",
   "status": "pass",
   "roadmap_json": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
   "roadmap_markdown": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
-  "milestone_count": 6,
-  "required_milestone_count": 6,
+  "milestone_count": 7,
+  "required_milestone_count": 7,
   "milestone_checks": {
     "blind_human_expert_review": {
       "exists": true,
@@ -97,6 +97,21 @@
         "evaluator-safety": true
       },
       "ok": true
+    },
+    "public_skill_engineering_and_community_adoption": {
+      "exists": true,
+      "field_presence": {
+        "claim_tested": true,
+        "minimum_design": true,
+        "upgrade_condition": true,
+        "fallback_if_failed": true
+      },
+      "term_presence": {
+        "standalone skill README": true,
+        "external researcher": true,
+        "engineering transfer": true
+      },
+      "ok": true
     }
   },
   "submission_decision_rule_present": true,
@@ -107,6 +122,7 @@
     "Milestone 4: Three Deep Regeneration Case Studies": true,
     "Milestone 5: Live Multi-Researcher Co-Pilot Trace Data": true,
     "Milestone 6: Non-FML Official Benchmark Check": true,
+    "Milestone 7: Public Skill Engineering And Community Adoption": true,
     "Decision Rule For The Paper": true,
     "not empirical superiority over autonomous AI Scientist-v2": true
   },

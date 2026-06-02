@@ -52,6 +52,11 @@ REQUIRED_MILESTONES = {
         "matched package",
         "evaluator-safety",
     ],
+    "public_skill_engineering_and_community_adoption": [
+        "standalone skill README",
+        "external researcher",
+        "engineering transfer",
+    ],
 }
 
 
@@ -121,6 +126,7 @@ def main() -> None:
         "Milestone 4: Three Deep Regeneration Case Studies",
         "Milestone 5: Live Multi-Researcher Co-Pilot Trace Data",
         "Milestone 6: Non-FML Official Benchmark Check",
+        "Milestone 7: Public Skill Engineering And Community Adoption",
         "Decision Rule For The Paper",
         "not empirical superiority over autonomous AI Scientist-v2",
     ]

@@ -1,10 +1,10 @@
 # Top-Conference Evidence Roadmap Audit
 
-- Audit date: `2026-06-02T17:38:18Z`
+- Audit date: `2026-06-02T19:03:11Z`
 - Status: `pass`
 - Roadmap JSON: `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - Roadmap Markdown: `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
-- Milestones: `6/6`
+- Milestones: `7/7`
 
 ## Milestone Checks
 
@@ -14,6 +14,7 @@
 - `three_deep_regeneration_case_studies`: `pass`
 - `live_multi_researcher_copilot_trace_data`: `pass`
 - `non_fml_official_benchmark_check`: `pass`
+- `public_skill_engineering_and_community_adoption`: `pass`
 
 ## Errors
 

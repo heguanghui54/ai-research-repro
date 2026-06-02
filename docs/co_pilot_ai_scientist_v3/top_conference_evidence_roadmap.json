@@ -46,6 +46,15 @@
       "minimum_design": "At least one scored official non-FML matched package with autonomous and human-gated trajectories.",
       "upgrade_condition": "A non-FML benchmark shows workflow benefit or evaluator-safety benefit.",
       "fallback_if_failed": "Limit benchmark claims to current pilot tasks and program-search subproblems."
+    },
+    {
+      "id": "public_skill_engineering_and_community_adoption",
+      "claim_tested": "IGRE can be packaged as a reusable research skill that other researchers can install, run, and adapt without confusing engineering adoption with scientific superiority.",
+      "minimum_design": "Publish a standalone skill README, install instructions, quickstart, templates, validation script, example gate trajectory, isolated install smoke test, global install smoke, clean external temporary reuse smoke, and at least one external researcher or independently prepared environment that produces a valid gate log.",
+      "current_progress": "The package has a release scaffold, isolated install smoke, global install audit, global reuse smoke, metric-gaming evaluator smoke, and clean external temporary reuse smoke. These support engineering transfer, not external community adoption or scientific performance.",
+      "metrics": "Install success, quickstart completion, valid gate-log generation, external issue or PR activity, example reuse count, and eventually stars or forks.",
+      "upgrade_condition": "At least one external researcher or independently prepared external environment successfully runs the skill on a new topic and produces a valid gate log; broader community claims require observed external reuse such as issues, PRs, forks, or stars.",
+      "fallback_if_failed": "Keep the skill as an internal artifact and do not claim engineering transferability or community adoption."
     }
   ],
   "submission_decision_rule": {
