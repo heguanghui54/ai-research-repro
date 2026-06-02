@@ -1,0 +1,34 @@
+# Regenerated Artifacts: Forked Diffusion for Conditional Graph Generation
+
+## Paper-Only / Baseline Artifact
+
+**Core contribution:** This paper introduces a novel score-based diffusion framework that employs forking for conditional graph generation.
+
+**Method sketch:** The framework consists of a parent diffusion process for a primary variable and multiple child processes for dependent variables, enabling effective management of conditional information flow.
+
+**Experiment plan:** We will evaluate the proposed method on various graph generation tasks, comparing its performance against contemporary baselines to assess its effectiveness.
+
+**Limitations:** The clarity of the problem formulation and the assumptions made may impact the understanding and applicability of the proposed method.
+
+**Claim boundary:** The claims are limited to the context of conditional graph generation and may not apply to other domains or types of generative models.
+
+In this paper, we present a novel score-based diffusion framework that incorporates forking for conditional graph generation. Our approach utilizes a parent diffusion process associated with a primary variable, while multiple child processes are dedicated to dependent variables. This structure allows for effective management of conditional information flow and uncovers intricate interactions. We plan to evaluate our method across various graph generation tasks, comparing its performance against contemporary baselines. However, we acknowledge that the clarity of our problem formulation and underlying assumptions may affect the understanding of our approach. The claims made are specifically relevant to conditional graph generation and may not extend to other domains.
+
+## Review-Guided Artifact
+
+Review insights used:
+
+- The proposed method introduces forking as a new technique for conditional generation.
+- The paper demonstrates versatility through evaluations on multiple graph generation tasks.
+
+**Core contribution:** This work proposes a forked diffusion model that enhances conditional graph generation by introducing parent and child processes to learn and generate graphs with desired properties.
+
+**Method sketch:** The forked diffusion model uses a parent process for the primary variable and child processes for dependent variables, leveraging a rigorous mathematical framework based on stochastic differential equations.
+
+**Experiment plan:** We will conduct experiments on diverse graph generation tasks, including molecular datasets, to validate the effectiveness of the forked diffusion model against existing methods.
+
+**Limitations:** The motivation and comparison to related works are not clearly articulated, which may hinder the understanding of the proposed method's advantages.
+
+**Claim boundary:** The findings are primarily relevant to conditional graph generation and may not generalize to other types of generative models.
+
+In this work, we introduce a forked diffusion model for conditional graph generation, which enhances the learning and generation of graphs with desired properties. Our approach employs a parent diffusion process for the primary variable and multiple child processes for dependent variables, providing a rigorous mathematical framework based on stochastic differential equations. We plan to validate our method through experiments on diverse graph generation tasks, including molecular datasets, comparing its performance against existing methods. However, we recognize that the motivation and comparison to related works could be articulated more clearly. The claims made in this paper are primarily relevant to conditional graph generation and may not extend to other generative modeling contexts.

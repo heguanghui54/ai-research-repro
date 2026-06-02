@@ -651,7 +651,19 @@
     "scripts/audit_benchmark_coverage.py",
     "docs/co_pilot_ai_scientist_v3/audits/benchmark_coverage_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/benchmark_coverage_audit.md",
-    "docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md"
+    "docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md",
+    "scripts/build_deep_regeneration_cases.py",
+    "scripts/build_six_gate_hybrid_review_cases.py",
+    "scripts/build_deep_case_pdfs.py",
+    "scripts/audit_deep_regeneration_cases.py",
+    "docs/co_pilot_ai_scientist_v3/audits/deep_regeneration_cases_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/deep_regeneration_cases_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json",
+    "docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1676,9 +1688,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "7672c30b51d846371b6c968f6054ef312d398a12",
+    "head": "4cff6e00038a615aee7d59b44019d485a6cd6cdb",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 636,
+    "manifest_artifacts": 648,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   }

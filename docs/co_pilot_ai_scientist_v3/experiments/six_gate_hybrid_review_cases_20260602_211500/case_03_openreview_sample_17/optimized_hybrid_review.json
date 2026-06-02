@@ -1,0 +1,140 @@
+{
+  "paper_id": "openreview_sample_17",
+  "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+  "six_gate_review": [
+    {
+      "gate": "scientific_taste_prior",
+      "label": "Scientific taste prior",
+      "action": "Reweight the research direction toward the most scientifically meaningful problem framing.",
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "matched_keywords": "contribution, impact, novel",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: While there may not be a lot of novelty in the methods designed in this work, I do believe that it has a significant contribution to the field of machine unlearning in large LMs. The quality of writing is good, and the authors provide code for reproducibility.\", \"paper_summary\": \"paper_summary: This work performs knowledge unlearning in large language models by attempting to fine-tune a converged model for a few epochs with a negative loss corresponding to the examples to the forgotten. As",
+          "gate_action": "Reweight the research direction toward the most scientifically meaningful problem framing."
+        },
+        {
+          "matched_keywords": "impact, novel",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for",
+          "gate_action": "Reweight the research direction toward the most scientifically meaningful problem framing."
+        },
+        {
+          "matched_keywords": "impact, novel",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The work appears novel, the writing is clear and is easy to read, and the approach is simple and straightforward enough that reproducing the results is likely feasible.\", \"paper_summary\": \"paper_summary: The authors propose a simple approach for unlearning specific token sequences in large pretrained language models (LMs). To unlearn a specific sequence of tokens x, the proposed approach simply negates the original training objective of minimizing the negative log-likelihood of x; this p",
+          "gate_action": "Reweight the research direction toward the most scientifically meaningful problem framing."
+        }
+      ]
+    },
+    {
+      "gate": "evaluator_stress_test",
+      "label": "Evaluator stress test",
+      "action": "Add or repair benchmarks, baselines, metrics, and ablations before trusting a result.",
+      "evidence_count": 1,
+      "evidence": [
+        {
+          "matched_keywords": "baseline, metric",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for",
+          "gate_action": "Add or repair benchmarks, baselines, metrics, and ablations before trusting a result."
+        }
+      ]
+    },
+    {
+      "gate": "frontier_steering",
+      "label": "Frontier steering",
+      "action": "Move the follow-up trajectory toward later-relevant concepts and higher-upside branches.",
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "matched_keywords": "unlearning",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: While there may not be a lot of novelty in the methods designed in this work, I do believe that it has a significant contribution to the field of machine unlearning in large LMs. The quality of writing is good, and the authors provide code for reproducibility.\", \"paper_summary\": \"paper_summary: This work performs knowledge unlearning in large language models by attempting to fine-tune a converged model for a few epochs with a negative loss corresponding to the examples to the forgotten. As",
+          "gate_action": "Move the follow-up trajectory toward later-relevant concepts and higher-upside branches."
+        },
+        {
+          "matched_keywords": "privacy, unlearning",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for",
+          "gate_action": "Move the follow-up trajectory toward later-relevant concepts and higher-upside branches."
+        },
+        {
+          "matched_keywords": "unlearning",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The work appears novel, the writing is clear and is easy to read, and the approach is simple and straightforward enough that reproducing the results is likely feasible.\", \"paper_summary\": \"paper_summary: The authors propose a simple approach for unlearning specific token sequences in large pretrained language models (LMs). To unlearn a specific sequence of tokens x, the proposed approach simply negates the original training objective of minimizing the negative log-likelihood of x; this p",
+          "gate_action": "Move the follow-up trajectory toward later-relevant concepts and higher-upside branches."
+        }
+      ]
+    },
+    {
+      "gate": "verifiable_micro_evolution",
+      "label": "Verifiable micro-evolution",
+      "action": "Identify a machine-gradeable subproblem where OpenEvolve-style search or controlled code improvement is justified.",
+      "evidence_count": 2,
+      "evidence": [
+        {
+          "matched_keywords": "training",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for",
+          "gate_action": "Identify a machine-gradeable subproblem where OpenEvolve-style search or controlled code improvement is justified."
+        },
+        {
+          "matched_keywords": "training",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The work appears novel, the writing is clear and is easy to read, and the approach is simple and straightforward enough that reproducing the results is likely feasible.\", \"paper_summary\": \"paper_summary: The authors propose a simple approach for unlearning specific token sequences in large pretrained language models (LMs). To unlearn a specific sequence of tokens x, the proposed approach simply negates the original training objective of minimizing the negative log-likelihood of x; this p",
+          "gate_action": "Identify a machine-gradeable subproblem where OpenEvolve-style search or controlled code improvement is justified."
+        }
+      ]
+    },
+    {
+      "gate": "structured_feedback",
+      "label": "Structured feedback",
+      "action": "Transform vague feedback into concrete sections, claims, missing definitions, and reader-facing explanations.",
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "matched_keywords": "clarity, writing",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: While there may not be a lot of novelty in the methods designed in this work, I do believe that it has a significant contribution to the field of machine unlearning in large LMs. The quality of writing is good, and the authors provide code for reproducibility.\", \"paper_summary\": \"paper_summary: This work performs knowledge unlearning in large language models by attempting to fine-tune a converged model for a few epochs with a negative loss corresponding to the examples to the forgotten. As",
+          "gate_action": "Transform vague feedback into concrete sections, claims, missing definitions, and reader-facing explanations."
+        },
+        {
+          "matched_keywords": "clarity, structure",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for",
+          "gate_action": "Transform vague feedback into concrete sections, claims, missing definitions, and reader-facing explanations."
+        },
+        {
+          "matched_keywords": "clarity, writing",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The work appears novel, the writing is clear and is easy to read, and the approach is simple and straightforward enough that reproducing the results is likely feasible.\", \"paper_summary\": \"paper_summary: The authors propose a simple approach for unlearning specific token sequences in large pretrained language models (LMs). To unlearn a specific sequence of tokens x, the proposed approach simply negates the original training objective of minimizing the negative log-likelihood of x; this p",
+          "gate_action": "Transform vague feedback into concrete sections, claims, missing definitions, and reader-facing explanations."
+        }
+      ]
+    },
+    {
+      "gate": "claim_calibration",
+      "label": "Claim calibration",
+      "action": "Narrow unsupported conclusions and state exactly what the current evidence can and cannot prove.",
+      "evidence_count": 3,
+      "evidence": [
+        {
+          "matched_keywords": "limitation",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: While there may not be a lot of novelty in the methods designed in this work, I do believe that it has a significant contribution to the field of machine unlearning in large LMs. The quality of writing is good, and the authors provide code for reproducibility.\", \"paper_summary\": \"paper_summary: This work performs knowledge unlearning in large language models by attempting to fine-tune a converged model for a few epochs with a negative loss corresponding to the examples to the forgotten. As",
+          "gate_action": "Narrow unsupported conclusions and state exactly what the current evidence can and cannot prove."
+        },
+        {
+          "matched_keywords": "limitation",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for",
+          "gate_action": "Narrow unsupported conclusions and state exactly what the current evidence can and cannot prove."
+        },
+        {
+          "matched_keywords": "limitation",
+          "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The work appears novel, the writing is clear and is easy to read, and the approach is simple and straightforward enough that reproducing the results is likely feasible.\", \"paper_summary\": \"paper_summary: The authors propose a simple approach for unlearning specific token sequences in large pretrained language models (LMs). To unlearn a specific sequence of tokens x, the proposed approach simply negates the original training objective of minimizing the negative log-likelihood of x; this p",
+          "gate_action": "Narrow unsupported conclusions and state exactly what the current evidence can and cannot prove."
+        }
+      ]
+    }
+  ],
+  "optimized_guidance": {
+    "research_question": "This work presents a simple yet effective approach for unlearning specific token sequences in large pretrained language models, providing empirical privacy guarantees.",
+    "method_change": "We employ gradient ascent on the unlikelihood training objective to unlearn specific sequences, aiming for minimal degradation in performance.",
+    "experiment_change": "We will conduct experiments to assess the impact of unlearning on model performance, particularly focusing on the trade-off between privacy and accuracy.",
+    "frontier_targets": [
+      "unlearning-set scaling curve",
+      "privacy leakage versus retained utility",
+      "breaking point of simple unlearning"
+    ],
+    "claim_boundary": "The findings are primarily relevant to large language models and may not generalize to other machine learning contexts."
+  }
+}

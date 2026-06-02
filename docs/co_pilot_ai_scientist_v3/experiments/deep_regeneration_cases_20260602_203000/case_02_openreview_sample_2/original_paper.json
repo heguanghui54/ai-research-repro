@@ -1,0 +1,14 @@
+{
+  "paper_id": "openreview_sample_2",
+  "title": "Forked Diffusion for Conditional Graph Generation",
+  "venue": "ICLR_cc_2024_Conference",
+  "arxiv_id": null,
+  "decision": false,
+  "mean_score": 0.3,
+  "mean_novelty": null,
+  "mean_correctness": 0.41666666666666663,
+  "mean_clarity": 0.3333333333333333,
+  "mean_impact": 0.25,
+  "abstract_excerpt": "We introduce a novel score-based diffusion framework that incorporates forking for conditional generation. In this framework, a single  parent diffusion process is associated with a primary variable (e.g., structure), while multiple child diffusion processes are employed, each dedicated to a dependent variable (e.g., property). The parent process guides the co-evolution of its child processes towards segregated representation spaces. This approach allows our models to manage conditional information flow effectively, uncover intricate interactions and dependencies, and ultimately unlock new generative capabilities. Our experimental results demonstrate the significant superiority of our method over contemporary baselines in the context of conditional graph generation, highlighting the potential of forking diffusion for enhancing conditional generation tasks and inverse molecular design tas",
+  "decision_text_excerpt": "The paper proposes a conditional generative model with a parent diffusion process for the graph structure and child processes for propertis. The intention is allowing better control over conditional generation. The method is evaluated on tasks like molecular graph generation and the paper shows improved performance over baselines.\n\nStrengths:\n- A rigorous matematical framework based on stochastic differential equations.\n- It demonstrates versatility through evaluations on multiple graph generation tasks.\n\nWeaknesses:\n- In problem formulation the motivation, assumptions,  and comparison to related works are a little unclear. It does not clearly highlight shortcomings of existing methods to co"
+}

@@ -1,0 +1,32 @@
+{
+  "paper_id": "openreview_sample_17",
+  "case_label": "Knowledge unlearning and privacy risk",
+  "case_type": "strong_frontier_route_candidate",
+  "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+  "short_term_scores": {
+    "gpt-4o-mini": {
+      "winner": "review_guided",
+      "context_control_overall": 3,
+      "review_guided_overall": 4,
+      "specific_review_value": "The review-guided version provides empirical privacy guarantees and a clearer methodology, enhancing the overall quality.",
+      "remaining_confounds": "The context control lacks the depth of empirical validation and clarity found in the review-guided version."
+    },
+    "claude-3-7-sonnet-latest": {
+      "winner": "tie",
+      "context_control_overall": 3,
+      "review_guided_overall": 3,
+      "specific_review_value": "The review insights ('straightforward and reproducible', 'empirical privacy guarantees') are positive but shallow. The limitation about baseline justification is useful but generic. Neither version substantially outperforms the other in any dimension.",
+      "remaining_confounds": "The context_control's generic pressures are irrelevant (BN/DReLU), so they don't help, but the review_guided insights are also thin. Both outputs converge to similar quality."
+    }
+  },
+  "citation_frontier_winner": "paper_only",
+  "citation_temporal_pattern": "short_term_positive_long_term_negative",
+  "semantic_frontier_winner": "review_guided_artifact",
+  "latent_delayed_value_candidate": false,
+  "why_selected": "Review guidance surfaces baselines, metrics, and the breaking-point question for scaling unlearning, which is a concrete later-field route.",
+  "deep_rerun_focus": [
+    "Run a small unlearning setup with increasing unlearning-set sizes.",
+    "Measure forget quality, privacy leakage, retained utility, and baseline gaps.",
+    "Compare the generated experiment design with later machine-unlearning and LLM-unlearning benchmarks."
+  ]
+}

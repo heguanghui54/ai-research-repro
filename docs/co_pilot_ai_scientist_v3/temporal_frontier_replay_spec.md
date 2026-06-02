@@ -16,7 +16,7 @@ TFR is executed under IGRE's Long-Horizon Taste Gate (LHTG). LHTG is a
 cross-gate routing policy, not a sixth approval gate. It looks for
 Delayed-Value Review Signals (DVRS): review or human-gate interventions that
 combine short-term friction with long-horizon directionality. LHTG routes the
-actionable part of a candidate signal into one of the five IGRE gates and then
+actionable part of a candidate signal into one of the six IGRE gates and then
 uses TFR to test whether that routing would have improved later-frontier
 alignment.
 

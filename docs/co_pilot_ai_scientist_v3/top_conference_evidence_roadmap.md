@@ -26,8 +26,15 @@ before the generated manuscripts are scored.
   artifacts in ways recognized by qualified human reviewers.
 - Required data: the prepared blind A/B packet in
   `experiments/human_expert_blind_review_packet_20260602_143000/`.
-- Minimum design: 3-5 qualified reviewers; all reviewers score the same six
-  anonymized pairs when feasible.
+- Minimum design: 3-5 qualified reviewers with ML/AI expertise; the preferred first cohort is
+  NUS-affiliated or school-affiliated faculty, postdocs, PhD students, or
+  advanced research students. All reviewers score the same six anonymized pairs
+  when feasible.
+- Ethics and recruitment boundary: because the scores would be used for a
+  research paper, recruitment should proceed only after institutional ethics
+  review, departmental review, or exemption determination. Generic Prolific or
+  crowd-worker evaluation can be used only as supplementary researcher-level
+  evidence unless participants' ML/AI expertise is verified.
 - Metrics: condition win rate, mean delta on novelty, rigor, clarity,
   significance, evidence grounding, and useful taste/insight comments.
 - Required analysis: exact binomial win test excluding ties, bootstrap

@@ -14,8 +14,8 @@ Automated research systems should be evaluated not only by average short-budget
 benchmark score, but also by whether human scientific taste can reshape the
 search frontier toward rarer, higher-novelty, higher-impact outcomes. IGRE
 turns human participation into explicit, logged gates for scientific taste,
-evaluator stress-testing, frontier steering, verifiable micro-evolution, and
-claim calibration.
+evaluator stress-testing, frontier steering, verifiable micro-evolution,
+structured feedback, and claim calibration.
 
 ## Artifact Map
 
@@ -26,7 +26,11 @@ claim calibration.
   submission boundary and evidence status.
 - `literature_matrix.md`: how AI Co-Scientist, AI Scientist-v2, AlphaEvolve,
   Coscientist, and related systems map into this proposal.
-- `architecture.md`: IGRE data-flow view of the four loops and five gates.
+- `architecture.md`: IGRE data-flow view of the four loops and six gates.
+- `human_expert_blind_review_protocol.md`: protocol for recruiting
+  NUS-affiliated or school-affiliated ML/AI experts to blindly evaluate the
+  prepared regeneration packet, subject to institutional ethics review or
+  exemption determination.
 - `benchmark_selection.md`: tiered benchmark strategy beyond FML-bench.
 - `benchmark_claim_matrix.md`: claim-to-benchmark matrix recording what each
   benchmark can and cannot prove.
@@ -38,6 +42,17 @@ claim calibration.
   that expose the original paper, review guidance, regenerated artifacts,
   short-term and frontier-alignment data, and the exact deep reruns needed to
   make the experiment section more persuasive under budget constraints.
+- `experiments/deep_regeneration_cases_20260602_203000/`: structured
+  paper-level case folders with original paper summaries, human reviews,
+  regenerated artifacts, short-term scores, and future-frontier evidence.
+- `experiments/six_gate_hybrid_review_cases_20260602_211500/`: six-gate
+  optimized hybrid-review cases that transform raw peer reviews into
+  scientific-taste, evaluator-stress, frontier-steering, micro-evolution,
+  structured-feedback, and claim-calibration actions before regenerating
+  mini-paper artifacts.
+- `build/deep_regeneration_cases/`: viewable PDFs for each selected case,
+  including raw human-review-guided and six-gate hybrid-review-guided
+  mini-paper artifacts.
 - `top_conference_evidence_roadmap.md/json`: strict next-evidence roadmap
   converting the remaining top-conference blockers into preregistered
   experiments and decision rules.
@@ -126,7 +141,7 @@ claim calibration.
 - `experiments/live_skill_invocation_smoke_20260602_170000/`: live model-call
   reuse test for the Codex skill. Monica-routed `gpt-4o-mini` applied the skill
   to a fresh evaluator-stress research task, generated 3 candidate directions,
-  selected `direction_1`, produced a five-gate IGRE plan, and passed a second
+  selected `direction_1`, produced an archived first-version IGRE plan, and passed a second
   model audit. This is reusable-workflow evidence, not benchmark or paper-quality
   evidence.
 - `experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/`:
@@ -195,6 +210,10 @@ python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/audit_human_expert_blind_review_packet.py
 python3 scripts/audit_benchmark_coverage.py
+python3 scripts/build_deep_regeneration_cases.py
+python3 scripts/build_six_gate_hybrid_review_cases.py
+python3 scripts/build_deep_case_pdfs.py
+python3 scripts/audit_deep_regeneration_cases.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py
@@ -292,7 +311,7 @@ IGRE gate structure against no-gate, single-gate, and random-gate policies on
 that same OpenReview-derived utility map. Full IGRE captures all routed utility
 (`1.000`), while the best single gate captures `0.369`, the 128-seed random
 baseline averages `0.199`, and no-gate captures `0.000`. This is routing-level
-evidence for the five-gate architecture, not a downstream paper-quality claim.
+evidence for the six-gate architecture, not a downstream paper-quality claim.
 The `gate_outcome_attribution_probe_20260602_191500/` artifact adds a first
 downstream attribution analysis by combining the review-derived gate utilities
 with observed GPT/Claude score deltas from the equal-context regeneration
@@ -509,7 +528,7 @@ online end-to-end trajectory or independent expert paper-quality result.
 
 The newest online manuscript-production smoke is archived under
 `experiments/online_full_gate_smoke_20260602_010521/`. It reruns a fresh online
-five-gate trajectory on `ubuntu-heshi`, launches a same-run autonomous
+archived first-version gate trajectory on `ubuntu-heshi`, launches a same-run autonomous
 AI Scientist-v2 baseline, and renders the logged trajectory into paired
 manuscripts under `online_manuscript/`. The co-pilot path selected branch
 `step_0001` with validation MAE `0.621461`, reached continuation test MAE

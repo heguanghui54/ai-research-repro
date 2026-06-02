@@ -1,0 +1,59 @@
+{
+  "paper_id": "openreview_sample_17",
+  "reviews": [
+    {
+      "model": "gpt-4o-mini",
+      "paper_id": "openreview_sample_17",
+      "winner": "review_guided",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "specific_review_value": "The review-guided version provides empirical privacy guarantees and a clearer methodology, enhancing the overall quality.",
+      "remaining_confounds": "The context control lacks the depth of empirical validation and clarity found in the review-guided version."
+    },
+    {
+      "model": "claude-3-7-sonnet-latest",
+      "paper_id": "openreview_sample_17",
+      "winner": "tie",
+      "scores": {
+        "context_control": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "specific_review_value": "The review insights ('straightforward and reproducible', 'empirical privacy guarantees') are positive but shallow. The limitation about baseline justification is useful but generic. Neither version substantially outperforms the other in any dimension.",
+      "remaining_confounds": "The context_control's generic pressures are irrelevant (BN/DReLU), so they don't help, but the review_guided insights are also thin. Both outputs converge to similar quality."
+    }
+  ]
+}

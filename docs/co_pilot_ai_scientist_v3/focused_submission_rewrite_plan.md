@@ -19,7 +19,7 @@ autonomous AI Scientist-v2.
 1. **Abstract**
    - State the problem: automated research agents lack a principled way to use
      human scientific taste at creative and claim-responsibility points.
-   - State the method: five IGRE gates.
+   - State the method: six IGRE gates.
    - State evidence honestly: OpenReview utility maps and regeneration probes
      show which review signals are actionable; FML matched-budget evidence is
      mixed or negative for short-budget average performance.
@@ -41,7 +41,7 @@ autonomous AI Scientist-v2.
    - Human-AI co-pilot systems and review-feedback datasets.
 
 4. **Method: Insight-Gated Research Evolution**
-   - Present only the five gates and the data schema.
+   - Present only the six gates and the data schema.
    - Explain how each gate changes search pressure.
    - State which prior system each loop is inspired by, but keep the algorithm
      named and adapted as IGRE rather than a collage of prior papers.

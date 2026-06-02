@@ -2,7 +2,7 @@
 
 ## 摘要
 
-自动科研智能体已经可以提出假设、运行实验、撰写论文并优化代码，但它们仍缺少一种原则化方式来利用人类科研品味：也就是人类判断哪些问题、失败、机制或主张边界更值得追求的非指标化能力。普通 co-pilot 工作流往往把人类当作审批者或编辑者；完全自动化系统则可能移除科学研究中最关键的判断。本论文提出洞察门控科研演化（Insight-Gated Research Evolution, IGRE），把人类科研品味与专家评审洞察转化为 AI Scientist-v2 式科研循环中的显式控制信号。IGRE 包含五类门控：科研品味先验、评估器压力测试、前沿方向调度、可验证微演化、主张校准。本文进一步提出时间前沿回放（Temporal Frontier Replay, TFR），用离线回放协议检验历史同行评审是否本可以把自动科研引向后来的学科轨迹。IGRE 与 TFR 共同使人类参与不再被默认视为正向影响，而是可以被测量和审计：门控记录证据、注意力成本和主张边界，历史评审信号则根据未来前沿证据接受回放检验。我们基于 FML-bench 式运行、OpenEvolve 式微演化实验、OpenReview 专家评审信号、成对论文生成探针、TFR 审计和 clean-clone 可复现性检查构建证据包。当前证据支持一个保守结论：专家评审文本可以映射为可行动的工作流门控；评审引导的再生成在跨模型复审下能改善部分科研产物；TFR 已经被操作化但当前对 delayed-value 证据为负向；短预算人类门控 FML 运行则是混合或负向结果，而不是自动优于全自动基线。因此本文不是“人类总能提升自动科研”的证明，而是一种用于设计、比较和审计人类洞察如何改变科研搜索过程的可复现方法。
+自动科研智能体已经可以提出假设、运行实验、撰写论文并优化代码，但它们仍缺少一种原则化方式来利用人类科研品味：也就是人类判断哪些问题、失败、机制或主张边界更值得追求的非指标化能力。普通 co-pilot 工作流往往把人类当作审批者或编辑者；完全自动化系统则可能移除科学研究中最关键的判断。本论文提出洞察门控科研演化（Insight-Gated Research Evolution, IGRE），把人类科研品味与专家评审洞察转化为 AI Scientist-v2 式科研循环中的显式控制信号。IGRE 包含六类门控：科研品味先验、评估器压力测试、前沿方向调度、可验证微演化、结构化反馈、主张校准。本文进一步提出时间前沿回放（Temporal Frontier Replay, TFR），用离线回放协议检验历史同行评审是否本可以把自动科研引向后来的学科轨迹。IGRE 与 TFR 共同使人类参与不再被默认视为正向影响，而是可以被测量和审计：门控记录证据、注意力成本和主张边界，历史评审信号则根据未来前沿证据接受回放检验。我们基于 FML-bench 式运行、OpenEvolve 式微演化实验、OpenReview 专家评审信号、成对论文生成探针、TFR 审计和 clean-clone 可复现性检查构建证据包。当前证据支持一个保守结论：专家评审文本可以映射为可行动的工作流门控；评审引导的再生成在跨模型复审下能改善部分科研产物；TFR 已经被操作化但当前对 delayed-value 证据为负向；短预算人类门控 FML 运行则是混合或负向结果，而不是自动优于全自动基线。因此本文不是“人类总能提升自动科研”的证明，而是一种用于设计、比较和审计人类洞察如何改变科研搜索过程的可复现方法。
 
 ## 1. 引言
 
@@ -12,9 +12,9 @@
 
 因此本文不问“人类参与是否总是优于全自动科研”这个过于粗糙的问题。本文的问题是：哪些人类参与形式可以转化为工作流控制信号，从而改善自动科研的搜索过程或责任边界？这个问题更重要，因为人类参与本身具有高方差。一个人类门控可能把系统引向罕见的高价值方向，也可能拖慢运行、引入偏见、过拟合个人品味，或者选择比全自动策略更差的分支。可信的 co-pilot 方法必须同时测量正面和负面影响。
 
-我们提出 IGRE，这是 Co-Pilot AI Scientist v3 的核心算法模式。IGRE 受已有自动科研系统启发，但不是把几篇论文的方法拼接在一起。它围绕一个不同对象重新组织这些思想：不是单纯追求全自动发现，而是在自动科研循环中识别人类科研品味适合介入的位置，并把这种介入变成可记录、可比较、可审计的搜索算子。IGRE 可以改变研究方向先验，压力测试评估器，调度假设前沿，触发小规模可验证程序搜索，或校准最终论文主张。
+我们提出 IGRE，这是 Co-Pilot AI Scientist v3 的核心算法模式。IGRE 受已有自动科研系统启发，但不是把几篇论文的方法拼接在一起。它围绕一个不同对象重新组织这些思想：不是单纯追求全自动发现，而是在自动科研循环中识别人类科研品味适合介入的位置，并把这种介入变成可记录、可比较、可审计的搜索算子。IGRE 可以改变研究方向先验，压力测试评估器，调度假设前沿，触发小规模可验证程序搜索，结构化稿件反馈，或校准最终论文主张。
 
-因此本文的主张被有意收窄：专家评审与人类科研判断可以被操作化为可审计的工作流控制信号，而这些信号的有效性可以通过实验比较。我们不声称当前 co-pilot 系统已经优于全自动 AI Scientist-v2。本文贡献包括四点。第一，定义 IGRE 作为人类引导自动科研的五门控架构。第二，发布包含双语论文、脚本、日志、门控 schema、审计文件和可复用 Codex skill 的可复现证据包。第三，提出时间前沿回放（Temporal Frontier Replay, TFR），用历史同行评审检验人类洞察是否本可以把自动科研引向后来的学科轨迹。第四，在报告正向工作流探针的同时，也报告混合和负向短预算结果，明确主张边界：当前 IGRE 支持的是工作流设计和测量就绪性，而不是顶会级别的 co-pilot 优越性证明。
+因此本文的主张被有意收窄：专家评审与人类科研判断可以被操作化为可审计的工作流控制信号，而这些信号的有效性可以通过实验比较。我们不声称当前 co-pilot 系统已经优于全自动 AI Scientist-v2。本文贡献包括四点。第一，定义 IGRE 作为人类引导自动科研的六门控架构。第二，发布包含双语论文、脚本、日志、门控 schema、审计文件和可复用 Codex skill 的可复现证据包。第三，提出时间前沿回放（Temporal Frontier Replay, TFR），用历史同行评审检验人类洞察是否本可以把自动科研引向后来的学科轨迹。第四，在报告正向工作流探针的同时，也报告混合和负向短预算结果，明确主张边界：当前 IGRE 支持的是工作流设计和测量就绪性，而不是顶会级别的 co-pilot 优越性证明。
 
 ## 2. 相关工作
 
@@ -38,7 +38,9 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 
 第四类门控是可验证微演化。它把 OpenEvolve 式程序搜索用于狭窄、可机器评分的子问题，例如启发式设计、向量化、表格建模或小型组合优化目标。IGRE 把它视作升级算子：当任务简单、评估昂贵或搜索相对强 baseline 没有明显边际价值时，直接编辑仍然更合适。
 
-第五类门控是主张校准。它编辑的是论文层面的证据解释，而不只是语言润色。它决定一个结果究竟支持优越性、可行性、测量就绪性、负结果，还是只能作为未来工作。许多专家评审真正有用之处，正是迫使作者收缩主张边界。
+第五类门控是结构化反馈。它把关于清晰度、可复现性、定义缺失、组织结构和读者理解成本的评审意见转化为明确修订计划。这个门控重要，是因为许多有价值的评审并不直接改变算法或 benchmark，却会决定科研产物是否能被理解、复现和比较。
+
+第六类门控是主张校准。它编辑的是论文层面的证据解释，而不只是语言润色。它决定一个结果究竟支持优越性、可行性、测量就绪性、负结果，还是只能作为未来工作。许多专家评审真正有用之处，正是迫使作者收缩主张边界。
 
 这些门控形成如下算法循环：系统提出研究前沿，评估早期产物，把人类或评审派生信号映射为门控动作，更新前沿或 evaluator，必要时执行微演化，最后生成经过主张审计的论文。每个门控记录门控类型、被审查产物、候选选项、决策、理由、预期收益、潜在伤害、注意力成本和下游证据。这一结构使 IGRE 区别于非正式 co-pilot 互动。
 
@@ -66,7 +68,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | OpenReview 再生成，Claude 复审 | review-guided 胜 3 次 | baseline 胜 1 次，平 2 次 | mean overall +0.1667 | 有温和正向信号，但不是自动提升。 |
 | OpenReview 等上下文消融 | review-guided 票数 8 | context-control 票数 1，平 3 | 跨模型 mean delta +0.5 | 真实相关评审优于等量无关评审上下文，但 Claude 显示效果较温和。 |
 | 预注册盲评专家评审包 | 已准备 6 对匿名 A/B 产物 | 已完成人类评分 0 行 | 计划 3-5 名评审者 | 仅表示评估就绪，不声称已有人工证据。 |
-| Live skill invocation smoke | 生成 3 个候选方向和 5 个 IGRE gates | template-only skill smoke | 2 次真实模型调用，audit recommendation pass | 说明 Codex skill 可在新任务上复用；不是 benchmark 证据。 |
+| Live skill invocation smoke | 生成 3 个候选方向和一个归档的一版 IGRE gate plan | template-only skill smoke | 2 次真实模型调用，audit recommendation pass | 说明 Codex skill 可在新任务上复用；不是 benchmark 证据。 |
 | Metric-gaming evaluator-stress smoke | evaluator-stress gate 选择 `guardrailed_utility_model` | primary-only 公平性指标选择 `metric_gaming_all_negative` | 减少 1 个合成 metric-gaming 事件 | 将 live skill 任务连接到真实 evaluator；这是受控 toy 证据，不是 FML-bench 结果。 |
 | FML Fairness evaluator-stress replay | gate 拒绝 metric-gaming 并中止无有效 continuation | primary-only FML 指标选择 `metric_gaming_all_negative` | 减少 1 个归档 FML metric-gaming 事件 | 真实 FML-Bench artifact replay；支持 gate 设计，不支持公平性提升。 |
 | 回溯式前沿对齐 smoke | review-guided 胜 1 次 | shuffled-control 胜 5 次 | 相对 control 平均增量 -0.0855；delayed-value 0 例；短期正向/长期负向 3 例 | 未来前沿对齐比局部论文改进更难；当前仅为启发式 descriptor。 |
@@ -84,7 +86,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 
 | 论文主张 | 证据状态 | 主张边界 |
 | --- | --- | --- |
-| IGRE 是本文提出的五门控方法，把人类科研品味视为可记录的科研控制信号。 | 作为方法和 artifact 贡献已支持。 | 不等于每一次人类介入都会改善结果。 |
+| IGRE 是本文提出的六门控方法，把人类科研品味视为可记录的科研控制信号。 | 作为方法和 artifact 贡献已支持。 | 不等于每一次人类介入都会改善结果。 |
 | OpenReview 式专家评审可作为离线工作流设计中的人类 taste/insight 代理。 | routeability 已支持：398 条可行动片段，多门控 utility capture 明显优于单门控。 | 离线同行评审不等于实时 co-pilot 数据。 |
 | 有针对性的门控路由可能比把全部人类上下文都喂给 agent 更有用。 | 单门控产物消融给出窄范围支持。 | 目前只是模型评审 mini-artifact，需要人类专家验证。 |
 | TFR 可以检验历史评审是否本可以把自动科研推向后来的学科前沿。 | 作为可运行回放协议已操作化；候选挖掘筛出 120 条评论，小型 OpenAlex 验证显示 delayed candidates 相对 controls 有 +0.064 词汇前沿优势。 | 当前已验证 probe 发现 0 个 delayed-value case，因此长期高尾假设尚未被证明。 |
@@ -97,11 +99,11 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 
 最常见的可行动路由是评估器压力测试，共 245 次触发。结构化反馈有 210 次触发，主张校准 140 次，科研品味先验 111 次。从类别看，评价和指标问题出现 205 次，局限性和主张边界问题 140 次，新颖性和定位问题 111 次，可复现性问题 79 次，方法正确性问题 71 次。
 
-随后我们在同一 review-utility map 上运行门控结构消融。no-gate 策略捕获不到可行动路由 utility。最佳单门控是 evaluator stress testing，只能捕获 0.369 的可用 utility；structured feedback 捕获 0.295；claim calibration 捕获 0.187；scientific-taste prior 捕获 0.148。128 个 seed 的随机门控基线平均捕获 0.199。完整 IGRE 保留五类显式门控，因此捕获 1.000。这个消融不证明最终论文一定更好，但它说明 IGRE 的结构动机：人类评审洞察不是一个泛泛审批信号，如果压缩为单一 gate，就会系统性丢失科研品味、评估设计和主张边界信息。
+随后我们在同一 review-utility map 上运行门控结构消融。no-gate 策略捕获不到可行动路由 utility。最佳单门控是 evaluator stress testing，只能捕获 0.369 的可用 utility；structured feedback 捕获 0.295；claim calibration 捕获 0.187；scientific-taste prior 捕获 0.148。128 个 seed 的随机门控基线平均捕获 0.199。完整 IGRE 保留六类显式门控，因此捕获 1.000。这个消融不证明最终论文一定更好，但它说明 IGRE 的结构动机：人类评审洞察不是一个泛泛审批信号，如果压缩为单一 gate，就会系统性丢失科研品味、评估设计和主张边界信息。
 
 为了降低样本复用偏差，我们进一步运行论文级 held-out validation。系统只在 379 条 train reviews 上选择可行动类别，然后在来自 32 篇论文的 94 条 held-out reviews 上评估所得 gate policy。full selected policy 在 held-out 上捕获 1.000 的确定性 utility，并路由 0.798 的评审，noisy-only routes 为 0。最佳单门控 evaluator stress testing 捕获 0.374 utility；512 个 seed 的随机类别 baseline 平均捕获 0.706。这个实验仍是离线规则式 proxy，不是独立人类标签；但它说明 review-to-gate 映射并不只是同一样本上的拟合产物。
 
-最后，我们使用 6 个等上下文 OpenReview 再生成 pair 运行下游门控-结果归因探针。该探针把每篇论文的 review-derived gate utility 与 GPT 和 Claude 评分器观察到的 review-guided 减 context-control 分数增量相连。完整 IGRE 的 aligned-outcome score 为 75.17；最佳单门控 evaluator stress testing 为 37.25；512 个 seed 的随机单门控基线均值为 15.26。观察到的最强下游对齐来自 evaluator stress testing、structured feedback 和 scientific-taste prior。frontier steering 与 claim calibration 在这个 6 篇子集中没有非零信号，因此这只是事后归因信号，不是五类门控的因果下游证明。
+最后，我们使用 6 个等上下文 OpenReview 再生成 pair 运行下游门控-结果归因探针。该探针把每篇论文的 review-derived gate utility 与 GPT 和 Claude 评分器观察到的 review-guided 减 context-control 分数增量相连。完整 IGRE 的 aligned-outcome score 为 75.17；最佳单门控 evaluator stress testing 为 37.25；512 个 seed 的随机单门控基线均值为 15.26。观察到的最强下游对齐来自 evaluator stress testing、structured feedback 和 scientific-taste prior。frontier steering 与 claim calibration 在这个 6 篇子集中没有非零信号，因此这只是事后归因信号，不是六类门控的因果下游证明。
 
 随后我们运行因果风格的单门控产物消融。对于每篇选中论文，我们分别只给 title/abstract 加上一类 gate-specific 评审片段，生成新的 mini-paper artifact，并与 title/abstract baseline 和 full review-guided artifact 在 GPT 与 Claude 评分器下比较。最佳单门控条件是 evaluator stress testing，mean overall 为 3.6667；full review-guided 为 3.5；baseline 为 2.9166。winner votes 分别为 baseline 3、full review-guided 2、evaluator stress testing 6、structured feedback 1。这个结果重要之处在于它并不是简单支持“人类越多越好”。它说明 targeted evaluator-stress review 在小规模 proxy 中可能比输入全部评审更有用，而对信息充分的摘要，baseline 仍可能有竞争力。因此 IGRE 需要的是门控选择，而不是最大化人类上下文。
 
@@ -163,4 +165,4 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 ## 7. 结论
 
-Co-Pilot AI Scientist v3 提出 IGRE：一种把人类科研品味和专家评审洞察插入自动科研循环的五门控架构。当前证据并不表明人类参与会自动改善自动科研。它证明的是更具体也更有用的事情：专家评审包含可行动信号；这些信号可以路由到工作流门控；评审引导可以改善部分再生成产物；短预算人类门控必须被审计，因为它们可能失败。IGRE 将这一点转化为一种可复现的方法，用于设计和比较人机协作科研模式。
+Co-Pilot AI Scientist v3 提出 IGRE：一种把人类科研品味和专家评审洞察插入自动科研循环的六门控架构。当前证据并不表明人类参与会自动改善自动科研。它证明的是更具体也更有用的事情：专家评审包含可行动信号；这些信号可以路由到工作流门控；评审引导可以改善部分再生成产物；短预算人类门控必须被审计，因为它们可能失败。IGRE 将这一点转化为一种可复现的方法，用于设计和比较人机协作科研模式。

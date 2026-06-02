@@ -1,0 +1,28 @@
+{
+  "paper_id": "openreview_sample_1",
+  "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+  "generation_mode": "deterministic_six_gate_hybrid_review_proxy",
+  "core_contribution": "This paper presents a new RL-based fine-tuning method that trains LLMs to recognize when they cannot provide accurate answers, thereby improving their reliability.",
+  "six_gate_method_plan": {
+    "scientific_taste_prior": "Focus the follow-up on the highest-upside scientific question rather than only polishing the original claim.",
+    "evaluator_stress_test": "We will conduct experiments on various datasets, particularly focusing on arithmetic and other knowledge-intensive tasks, to measure the model's ability to reject inappropriate questions and its overall accuracy.",
+    "frontier_steering": [
+      "non-arithmetic refusal benchmarks",
+      "over-refusal and calibration metrics",
+      "user-facing safety or reliability evaluation"
+    ],
+    "verifiable_micro_evolution": "Escalate only if the subproblem has an automatic evaluator and a narrow code or heuristic search space.",
+    "structured_feedback": "Rewrite the artifact around problem, method, experiment, limitation, and claim-boundary sections.",
+    "claim_calibration": "The findings are primarily relevant to LLMs and may not generalize to other AI models or broader contexts."
+  },
+  "mini_paper_artifact": "This six-gate hybrid-review rerun revisits `Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback`. The human review is not used as raw extra context; it is routed through scientific taste, evaluator stress testing, frontier steering, verifiable micro-evolution, structured feedback, and claim calibration. The resulting research plan keeps the original contribution `This paper presents a new RL-based fine-tuning method that trains LLMs to recognize when they cannot provide accurate answers, thereby improving their reliability.` but makes the follow-up test stricter: We will conduct experiments on various datasets, particularly focusing on arithmetic and other knowledge-intensive tasks, to measure the model's ability to reject inappropriate questions and its overall accuracy. The long-horizon branch is steered toward non-arithmetic refusal benchmarks, over-refusal and calibration metrics, user-facing safety or reliability evaluation. The claim boundary is: The findings are primarily relevant to LLMs and may not generalize to other AI models or broader contexts.",
+  "proxy_metrics": {
+    "raw_review_guided_insight_count": 2,
+    "six_gate_action_count": 5,
+    "total_routed_evidence_count": 11,
+    "short_term_gate_support_count": 7,
+    "long_horizon_gate_support_count": 4,
+    "frontier_target_count": 3
+  },
+  "claim_boundary": "This artifact tests whether six-gate optimization makes review guidance more actionable. It is not yet a model-generated or benchmark-executed deep rerun."
+}

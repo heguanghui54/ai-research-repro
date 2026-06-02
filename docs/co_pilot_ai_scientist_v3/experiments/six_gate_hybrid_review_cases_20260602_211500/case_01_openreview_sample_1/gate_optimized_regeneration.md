@@ -1,0 +1,20 @@
+# Gate-Optimized Regeneration: Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback
+
+- Generation mode: `deterministic_six_gate_hybrid_review_proxy`
+
+## Mini-Paper Artifact
+
+This six-gate hybrid-review rerun revisits `Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback`. The human review is not used as raw extra context; it is routed through scientific taste, evaluator stress testing, frontier steering, verifiable micro-evolution, structured feedback, and claim calibration. The resulting research plan keeps the original contribution `This paper presents a new RL-based fine-tuning method that trains LLMs to recognize when they cannot provide accurate answers, thereby improving their reliability.` but makes the follow-up test stricter: We will conduct experiments on various datasets, particularly focusing on arithmetic and other knowledge-intensive tasks, to measure the model's ability to reject inappropriate questions and its overall accuracy. The long-horizon branch is steered toward non-arithmetic refusal benchmarks, over-refusal and calibration metrics, user-facing safety or reliability evaluation. The claim boundary is: The findings are primarily relevant to LLMs and may not generalize to other AI models or broader contexts.
+
+## Proxy Metrics
+
+- `raw_review_guided_insight_count`: `2`
+- `six_gate_action_count`: `5`
+- `total_routed_evidence_count`: `11`
+- `short_term_gate_support_count`: `7`
+- `long_horizon_gate_support_count`: `4`
+- `frontier_target_count`: `3`
+
+## Claim Boundary
+
+This artifact tests whether six-gate optimization makes review guidance more actionable. It is not yet a model-generated or benchmark-executed deep rerun.

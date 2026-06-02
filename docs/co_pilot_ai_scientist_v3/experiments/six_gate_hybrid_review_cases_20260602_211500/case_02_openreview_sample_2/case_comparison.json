@@ -1,0 +1,123 @@
+{
+  "paper_id": "openreview_sample_2",
+  "source_case_summary": {
+    "paper_id": "openreview_sample_2",
+    "case_label": "Conditional graph generation and molecular design",
+    "case_type": "frontier_reconstruction_boundary",
+    "title": "Forked Diffusion for Conditional Graph Generation",
+    "short_term_scores": {
+      "gpt-4o-mini": {
+        "winner": "review_guided",
+        "context_control_overall": 3,
+        "review_guided_overall": 4,
+        "specific_review_value": "The review-guided version introduces a novel technique and emphasizes the versatility of the method across multiple tasks, improving the framing.",
+        "remaining_confounds": "The context control lacks the specific insights that enhance the understanding of the method's contributions."
+      },
+      "claude-3-7-sonnet-latest": {
+        "winner": "review_guided",
+        "context_control_overall": 3,
+        "review_guided_overall": 3,
+        "specific_review_value": "The review insight about unclear motivation and comparison to related works surfaces a genuine limitation that the context_control misses entirely. This improves limitation honesty marginally. The SDE mathematical framework mention adds some methodological specificity.",
+        "remaining_confounds": "The improvement is small. Both versions are similarly generic in experiment planning and novelty framing. The SDE detail could be inferred from the abstract's 'score-based' language."
+      }
+    },
+    "citation_frontier_winner": "not_scored_no_frontier_terms",
+    "citation_temporal_pattern": "mixed_or_tie",
+    "semantic_frontier_winner": null,
+    "latent_delayed_value_candidate": null,
+    "why_selected": "Review guidance improves motivation and comparison framing, while the current citation-frontier probe fails to recover a reliable later frontier.",
+    "deep_rerun_focus": [
+      "Use a low-cost molecular graph benchmark with public evaluators.",
+      "Require the review-guided condition to test assumptions and baselines.",
+      "Report validity, uniqueness, novelty, property satisfaction, and baseline comparisons."
+    ]
+  },
+  "citation_frontier": {
+    "paper_id": "openreview_sample_2",
+    "title": "Forked Diffusion for Conditional Graph Generation",
+    "semantic_scholar_match": null,
+    "openalex_match": null,
+    "rejected_openalex_match": {
+      "id": "https://openalex.org/W4221069327",
+      "doi": "https://doi.org/10.1093/genetics/iyab229",
+      "title": "Efficient ancestry and mutation simulation with msprime 1.0",
+      "publication_year": 2021,
+      "cited_by_count": 498,
+      "topics": [
+        {
+          "display_name": "Gene expression and cancer classification",
+          "score": 0.9948999881744385,
+          "subfield": "Molecular Biology"
+        },
+        {
+          "display_name": "Evolution and Genetic Dynamics",
+          "score": 0.9905999898910522,
+          "subfield": "Genetics"
+        },
+        {
+          "display_name": "Cancer Genomics and Diagnostics",
+          "score": 0.9865999817848206,
+          "subfield": "Cancer Research"
+        }
+      ]
+    },
+    "metadata_source": "Semantic Scholar Graph API",
+    "search_error": "OpenAlex top match rejected by title-overlap guard: overlap=0.000",
+    "citation_error": null,
+    "match_title_overlap": {
+      "semantic_scholar": null,
+      "openalex": null,
+      "rejected_openalex": 0.0
+    },
+    "citation_count_retrieved": 0,
+    "citation_count_after_year_filter": 0,
+    "citation_count_used": 0,
+    "possible_match_drift": true,
+    "frontier_quality": "possible_match_drift_rejected",
+    "citation_relevance_filter": {
+      "min_relevance_terms": 1,
+      "diagnostics": []
+    },
+    "frontier_terms": [],
+    "scores": {
+      "paper_only": {
+        "score": 0.0,
+        "frontier_alignment": 0.0,
+        "actionability": 0.0,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": []
+      },
+      "review_guided": {
+        "score": 0.0,
+        "frontier_alignment": 0.0,
+        "actionability": 0.0,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": []
+      },
+      "shuffled_review_control": {
+        "score": 0.0,
+        "frontier_alignment": 0.0,
+        "actionability": 0.0,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": []
+      }
+    },
+    "winner": "not_scored_no_frontier_terms",
+    "temporal_diagnostic": {
+      "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+      "short_term_review_guided_minus_paper_only": 1,
+      "long_term_frontier_review_guided_minus_paper_only": 0.0,
+      "pattern": "mixed_or_tie"
+    }
+  },
+  "semantic_frontier": null,
+  "gate_optimized_proxy_metrics": {
+    "raw_review_guided_insight_count": 2,
+    "six_gate_action_count": 6,
+    "total_routed_evidence_count": 15,
+    "short_term_gate_support_count": 8,
+    "long_horizon_gate_support_count": 7,
+    "frontier_target_count": 3
+  },
+  "claim_boundary": "This artifact tests whether six-gate optimization makes review guidance more actionable. It is not yet a model-generated or benchmark-executed deep rerun."
+}

@@ -7,7 +7,7 @@ Research Evolution (IGRE)**: AI systems generate hypotheses, run experiments,
 search machine-gradeable subproblems with OpenEvolve-style loops, and write
 papers, while human scientists intervene at explicit gates for scientific
 taste, evaluator stress testing, frontier steering, verifiable micro-evolution,
-and claim calibration.
+structured feedback, and claim calibration.
 
 Start here:
 
@@ -21,6 +21,10 @@ Start here:
   [docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md](docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md)
 - Deep regeneration casebook:
   [docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md](docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md)
+- Human expert blind-review protocol:
+  [docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md](docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md)
+- Deep case PDF summary:
+  [docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json](docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json)
 - Focused English paper:
   [docs/co_pilot_ai_scientist_v3/paper_en_focused.md](docs/co_pilot_ai_scientist_v3/paper_en_focused.md)
 - Focused Chinese paper:
@@ -45,6 +49,10 @@ python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/audit_human_expert_blind_review_packet.py
 python3 scripts/audit_benchmark_coverage.py
+python3 scripts/build_deep_regeneration_cases.py
+python3 scripts/build_six_gate_hybrid_review_cases.py
+python3 scripts/build_deep_case_pdfs.py
+python3 scripts/audit_deep_regeneration_cases.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py
@@ -53,7 +61,8 @@ python3 scripts/audit_package_consistency.py
 Current objective-delivery status:
 
 - artifact pipeline: `pass_artifact_delivery_with_empirical_gaps`
-- manifest coverage: `635/635`
+- manifest coverage: see
+  [docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md](docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md)
 - LHTG/DVRS audit: `pass_with_no_positive_dvrs`
 - TFR audit: `pass_with_negative_delayed_value_evidence`
 - roadmap audit: `pass`

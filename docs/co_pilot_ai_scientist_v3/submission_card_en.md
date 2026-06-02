@@ -5,6 +5,7 @@
 - Title: Co-Pilot AI Scientist v3: Insight-Gated Research Evolution for Collaborative Automated Science
 - Author record: He Shi, School of Computing, National University of Singapore
 - Package status: reproducible artifact pipeline delivered; top-conference empirical sufficiency not yet reached
+- Human-evaluation status: blind expert-review packet and protocol prepared; no independent human ratings collected yet
 - Primary method: Insight-Gated Research Evolution (IGRE)
 - Long-horizon extension: Long-Horizon Taste Gate (LHTG) with Delayed-Value Review Signal (DVRS)
 
@@ -14,15 +15,18 @@ Co-Pilot AI Scientist v3 turns human participation in automated science into log
 
 ## What Is New Here
 
-This package is not a direct combination of prior co-scientist, autonomous-paper, or program-search systems. IGRE names and evaluates a participation pattern designed for this paper: human scientists do not simply approve or edit outputs, but intervene at five explicit gates.
+This package is not a direct combination of prior co-scientist, autonomous-paper, or program-search systems. IGRE names and evaluates a participation pattern designed for this paper: human scientists do not simply approve or edit outputs, but intervene at six explicit gates.
 
 1. Scientific taste prior: decide which research directions deserve scarce compute even when short-term metrics are uncertain.
 2. Evaluator stress gate: test whether a benchmark or reward can be gamed before trusting it.
 3. Frontier steering gate: redirect search toward later-field relevance and neglected high-upside questions.
 4. Verifiable micro-evolution gate: use OpenEvolve-style loops only on machine-gradeable subproblems.
-5. Claim calibration gate: prevent the paper from claiming more than the evidence supports.
+5. Structured feedback gate: turn clarity, reproducibility, missing-definition, and organization comments into a concrete revision plan.
+6. Claim calibration gate: prevent the paper from claiming more than the evidence supports.
 
 LHTG/DVRS adds a retrospective version of this idea: some review comments may look weak under short-term paper scores but become valuable if they align old research trajectories with later frontier developments.
+
+The next human-evaluation step is a minimal-risk blind expert study with 3-5 NUS-affiliated or school-affiliated ML/AI researchers, subject to institutional ethics review or exemption determination. The study uses anonymized A/B regenerated mini-paper PDFs and asks reviewers to score novelty, methodological soundness, experiment specificity, reproducibility, claim calibration, future-frontier potential, and overall preference.
 
 ## Evidence Snapshot
 
@@ -32,6 +36,7 @@ LHTG/DVRS adds a retrospective version of this idea: some review comments may lo
 - Gate-outcome attribution: full 75.17 versus best single gate 37.25.
 - OpenReview regeneration: review-guided artifacts win 5/6 under one model scorer; cross-model review gives 3/6 wins, 1/6 baseline win, and 2 ties.
 - Equal-context ablation: review-specific context wins 8 pairs versus 1 unrelated-review win and 3 ties.
+- Deep regeneration case PDFs: three selected OpenReview papers now have viewable raw-review-guided and six-gate-hybrid mini-paper PDFs.
 - Candidate-frontier validation: 13/16 delayed-value candidates scored; delayed-control mean delta is +0.064.
 - Boundary evidence: LHTG/DVRS has 0 positive delayed-value cases in the current small sample, and FML short-budget evidence remains mixed or negative.
 
@@ -53,6 +58,10 @@ python3 -m pip install -r requirements.txt
 python3 scripts/audit_long_horizon_taste_gate.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
+python3 scripts/build_deep_regeneration_cases.py
+python3 scripts/build_six_gate_hybrid_review_cases.py
+python3 scripts/build_deep_case_pdfs.py
+python3 scripts/audit_deep_regeneration_cases.py
 python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py
 ```
@@ -64,4 +73,4 @@ python3 scripts/audit_package_consistency.py
 3. `docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md`
 4. `docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.md`
 5. `skills/co-pilot-ai-scientist-v3/SKILL.md`
-
+6. `docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md`

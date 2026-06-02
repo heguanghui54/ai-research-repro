@@ -1,0 +1,37 @@
+{
+  "status": "deep_case_pdfs_built",
+  "pdf_count": 6,
+  "cases": [
+    {
+      "paper_id": "openreview_sample_1",
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "review_guided_markdown": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_1_llm_refusal_and_reliability_review_guided.md",
+      "review_guided_pdf": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_1_llm_refusal_and_reliability_review_guided.pdf",
+      "six_gate_hybrid_markdown": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_1_llm_refusal_and_reliability_six_gate_hybrid.md",
+      "six_gate_hybrid_pdf": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_1_llm_refusal_and_reliability_six_gate_hybrid.pdf",
+      "review_guided_pdf_bytes": 7141,
+      "six_gate_hybrid_pdf_bytes": 4525
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "title": "Forked Diffusion for Conditional Graph Generation",
+      "review_guided_markdown": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_2_conditional_graph_generation_and_molecular_design_review_guided.md",
+      "review_guided_pdf": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_2_conditional_graph_generation_and_molecular_design_review_guided.pdf",
+      "six_gate_hybrid_markdown": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_2_conditional_graph_generation_and_molecular_design_six_gate_hybrid.md",
+      "six_gate_hybrid_pdf": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_2_conditional_graph_generation_and_molecular_design_six_gate_hybrid.pdf",
+      "review_guided_pdf_bytes": 6595,
+      "six_gate_hybrid_pdf_bytes": 4277
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "review_guided_markdown": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_17_knowledge_unlearning_and_privacy_risk_review_guided.md",
+      "review_guided_pdf": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_17_knowledge_unlearning_and_privacy_risk_review_guided.pdf",
+      "six_gate_hybrid_markdown": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_17_knowledge_unlearning_and_privacy_risk_six_gate_hybrid.md",
+      "six_gate_hybrid_pdf": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/openreview_sample_17_knowledge_unlearning_and_privacy_risk_six_gate_hybrid.pdf",
+      "review_guided_pdf_bytes": 6754,
+      "six_gate_hybrid_pdf_bytes": 4427
+    }
+  ],
+  "claim_boundary": "These PDFs display pilot mini-paper artifacts generated from raw human-review guidance and six-gate optimized hybrid-review guidance. They are concrete viewable artifacts, not completed full experimental reproductions."
+}

@@ -1,0 +1,101 @@
+{
+  "audit_date": "2026-06-02T12:22:46Z",
+  "status": "pass",
+  "casebook": "docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md",
+  "deep_run": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000",
+  "hybrid_run": "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500",
+  "deep_case_count": 3,
+  "hybrid_case_count": 3,
+  "pdf_count": 6,
+  "required_gates": [
+    "claim_calibration",
+    "evaluator_stress_test",
+    "frontier_steering",
+    "scientific_taste_prior",
+    "structured_feedback",
+    "verifiable_micro_evolution"
+  ],
+  "hybrid_gates": [
+    "scientific_taste_prior",
+    "evaluator_stress_test",
+    "frontier_steering",
+    "verifiable_micro_evolution",
+    "structured_feedback",
+    "claim_calibration"
+  ],
+  "case_checks": [
+    {
+      "paper_id": "openreview_sample_1",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_01_openreview_sample_1",
+      "missing_files": []
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_02_openreview_sample_2",
+      "missing_files": []
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_03_openreview_sample_17",
+      "missing_files": []
+    }
+  ],
+  "hybrid_checks": [
+    {
+      "paper_id": "openreview_sample_1",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500/case_01_openreview_sample_1",
+      "missing_files": [],
+      "proxy_metrics": {
+        "raw_review_guided_insight_count": 2,
+        "six_gate_action_count": 5,
+        "total_routed_evidence_count": 11,
+        "short_term_gate_support_count": 7,
+        "long_horizon_gate_support_count": 4,
+        "frontier_target_count": 3
+      }
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500/case_02_openreview_sample_2",
+      "missing_files": [],
+      "proxy_metrics": {
+        "raw_review_guided_insight_count": 2,
+        "six_gate_action_count": 6,
+        "total_routed_evidence_count": 15,
+        "short_term_gate_support_count": 8,
+        "long_horizon_gate_support_count": 7,
+        "frontier_target_count": 3
+      }
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/six_gate_hybrid_review_cases_20260602_211500/case_03_openreview_sample_17",
+      "missing_files": [],
+      "proxy_metrics": {
+        "raw_review_guided_insight_count": 2,
+        "six_gate_action_count": 6,
+        "total_routed_evidence_count": 15,
+        "short_term_gate_support_count": 7,
+        "long_horizon_gate_support_count": 8,
+        "frontier_target_count": 3
+      }
+    }
+  ],
+  "pdf_checks": [
+    {
+      "paper_id": "openreview_sample_1",
+      "missing_pdfs": []
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "missing_pdfs": []
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "missing_pdfs": []
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "A pass means the package exposes concrete paper-level replay cases and six-gate optimized hybrid-review proxies. It does not mean the deep benchmark reruns or long-horizon innovation claims are completed."
+}

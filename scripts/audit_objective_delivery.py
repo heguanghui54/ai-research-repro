@@ -85,6 +85,7 @@ def main() -> None:
     roadmap_audit_path = AUDIT_DIR / "top_conference_evidence_roadmap_audit.json"
     human_review_packet_audit_path = AUDIT_DIR / "human_expert_blind_review_packet_audit.json"
     benchmark_coverage_audit_path = AUDIT_DIR / "benchmark_coverage_audit.json"
+    deep_regeneration_cases_audit_path = AUDIT_DIR / "deep_regeneration_cases_audit.json"
 
     manifest = _load_json(manifest_path)
     readiness = _load_json(readiness_path)
@@ -96,6 +97,7 @@ def main() -> None:
     roadmap_audit = _load_json(roadmap_audit_path)
     human_review_packet_audit = _load_json(human_review_packet_audit_path)
     benchmark_coverage_audit = _load_json(benchmark_coverage_audit_path)
+    deep_regeneration_cases_audit = _load_json(deep_regeneration_cases_audit_path)
 
     current_artifacts = manifest.get("current_artifacts", [])
     missing_manifest = [path for path in current_artifacts if not (ROOT / path).exists()]
@@ -113,6 +115,8 @@ def main() -> None:
         "top_conference_evidence_roadmap": DOC_DIR / "top_conference_evidence_roadmap.md",
         "top_conference_evidence_roadmap_json": DOC_DIR / "top_conference_evidence_roadmap.json",
         "deep_regeneration_casebook": DOC_DIR / "deep_regeneration_casebook.md",
+        "human_expert_blind_review_protocol": DOC_DIR / "human_expert_blind_review_protocol.md",
+        "deep_case_pdf_summary": DOC_DIR / "build" / "deep_regeneration_cases" / "summary.json",
         "english_usage": DOC_DIR / "usage_en.md",
         "chinese_usage": DOC_DIR / "usage_zh.md",
         "english_runbook": DOC_DIR / "RUNBOOK_EN.md",
@@ -131,6 +135,8 @@ def main() -> None:
                 "AI Co-Scientist",
                 "OpenEvolve",
                 "Long-Horizon Taste Gate",
+                "six gates",
+                "structured feedback",
                 "We do not claim",
             ],
         ),
@@ -142,6 +148,8 @@ def main() -> None:
                 "AI Co-Scientist",
                 "OpenEvolve",
                 "长期科研品味门控",
+                "六类门控",
+                "结构化反馈",
                 "不能",
             ],
         ),
@@ -156,10 +164,13 @@ def main() -> None:
                 "submission_card_zh.md",
                 "top_conference_evidence_roadmap.md",
                 "deep_regeneration_casebook.md",
+                "human_expert_blind_review_protocol.md",
                 "External Verification Entry Point",
                 "audit_top_conference_evidence_roadmap.py",
                 "audit_human_expert_blind_review_packet.py",
                 "audit_benchmark_coverage.py",
+                "audit_deep_regeneration_cases.py",
+                "build_deep_case_pdfs.py",
                 "pass_artifact_delivery_with_empirical_gaps",
                 "top-conference empirical target is not yet satisfied",
             ],
@@ -175,6 +186,8 @@ def main() -> None:
                 "OpenEvolve",
                 "Do not claim",
                 "External Verification",
+                "blind expert",
+                "six explicit gates",
             ],
         ),
         _rel(docs["chinese_submission_card"]): _contains(
@@ -188,6 +201,8 @@ def main() -> None:
                 "OpenEvolve",
                 "不能声称",
                 "外部复现入口",
+                "盲评专家",
+                "六个明确门控点",
             ],
         ),
         _rel(docs["top_conference_evidence_roadmap"]): _contains(
@@ -197,6 +212,7 @@ def main() -> None:
                 "Matched Autonomous Versus Human-Gated Runs",
                 "Long-Horizon Taste Gate",
                 "Three Deep Regeneration Case Studies",
+                "Blind Human Expert Review",
                 "Live Multi-Researcher Co-Pilot Trace Data",
                 "Non-FML Official Benchmark Check",
                 "not empirical superiority over autonomous AI Scientist-v2",
@@ -227,6 +243,7 @@ def main() -> None:
         "human_expert_blind_review_packet_audit_pass": human_review_packet_audit.get("status")
         == "pass_prepared_no_human_ratings",
         "benchmark_coverage_audit_pass": benchmark_coverage_audit.get("status") == "pass",
+        "deep_regeneration_cases_audit_pass": deep_regeneration_cases_audit.get("status") == "pass",
         "lhtg_operationalized": lhtg.get("status") == "pass_with_no_positive_dvrs"
         and lhtg.get("reusable_workflow_terms_present") is True,
         "top_conference_boundary_kept": readiness.get("top_conference_empirical_support", {}).get("status")
@@ -335,12 +352,24 @@ def main() -> None:
         ROOT / "scripts" / "audit_top_conference_evidence_roadmap.py",
         ROOT / "scripts" / "audit_human_expert_blind_review_packet.py",
         ROOT / "scripts" / "audit_benchmark_coverage.py",
+        ROOT / "scripts" / "build_deep_regeneration_cases.py",
+        ROOT / "scripts" / "build_six_gate_hybrid_review_cases.py",
+        ROOT / "scripts" / "build_deep_case_pdfs.py",
+        ROOT / "scripts" / "audit_deep_regeneration_cases.py",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.json",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.md",
         AUDIT_DIR / "human_expert_blind_review_packet_audit.json",
         AUDIT_DIR / "human_expert_blind_review_packet_audit.md",
         AUDIT_DIR / "benchmark_coverage_audit.json",
         AUDIT_DIR / "benchmark_coverage_audit.md",
+        AUDIT_DIR / "deep_regeneration_cases_audit.json",
+        AUDIT_DIR / "deep_regeneration_cases_audit.md",
+        DOC_DIR / "experiments" / "deep_regeneration_cases_20260602_203000" / "README.md",
+        DOC_DIR / "experiments" / "deep_regeneration_cases_20260602_203000" / "summary.json",
+        DOC_DIR / "experiments" / "six_gate_hybrid_review_cases_20260602_211500" / "README.md",
+        DOC_DIR / "experiments" / "six_gate_hybrid_review_cases_20260602_211500" / "summary.json",
+        DOC_DIR / "build" / "deep_regeneration_cases" / "summary.json",
+        docs["human_expert_blind_review_protocol"],
         docs["root_readme"],
         docs["english_submission_card"],
         docs["chinese_submission_card"],

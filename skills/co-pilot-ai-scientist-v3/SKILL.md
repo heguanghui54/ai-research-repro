@@ -1,6 +1,6 @@
 ---
 name: co-pilot-ai-scientist-v3
-description: Insight-Gated Research Evolution workflow for collaborative automated science, using human scientific taste, evaluator stress tests, frontier steering, verifiable micro-evolution, and claim calibration.
+description: Insight-Gated Research Evolution workflow for collaborative automated science, using human scientific taste, evaluator stress tests, frontier steering, verifiable micro-evolution, structured feedback, and claim calibration.
 ---
 
 # Co-Pilot AI Scientist v3

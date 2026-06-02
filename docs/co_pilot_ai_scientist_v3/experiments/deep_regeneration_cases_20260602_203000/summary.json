@@ -1,0 +1,115 @@
+{
+  "run_id": "deep_regeneration_cases_20260602_203000",
+  "created_at": "2026-06-02T12:22:00Z",
+  "status": "pilot_deep_case_package_built_from_existing_openreview_probes",
+  "case_count": 3,
+  "cases": [
+    {
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_01_openreview_sample_1",
+      "paper_id": "openreview_sample_1",
+      "case_label": "LLM refusal and reliability",
+      "case_type": "mixed_short_term_positive_long_term_negative",
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "short_term_scores": {
+        "gpt-4o-mini": {
+          "winner": "review_guided",
+          "context_control_overall": 3,
+          "review_guided_overall": 4,
+          "specific_review_value": "The review-guided version provides clearer insights into the empirical validation of the proposed method, enhancing the overall framing and experimental design.",
+          "remaining_confounds": "The context control still presents a solid foundation but lacks the depth of specific insights provided by the reviews."
+        },
+        "claude-3-7-sonnet-latest": {
+          "winner": "review_guided",
+          "context_control_overall": 3,
+          "review_guided_overall": 4,
+          "specific_review_value": "The review insight about constructing preference data with (correct, refuse), (refuse, incorrect), (correct, incorrect) triples is a concrete methodological detail that meaningfully sharpens the method sketch beyond generic RL framing. The focus on arithmetic/math datasets as a specific evaluation domain also grounds the experiment plan.",
+          "remaining_confounds": "Both outputs are fairly generic; the review_guided version's advantage is modest. The preference-data construction detail could have been inferred from the abstract's RL framing."
+        }
+      },
+      "citation_frontier_winner": "shuffled_review_control",
+      "citation_temporal_pattern": "short_term_positive_long_term_negative",
+      "semantic_frontier_winner": "paper_context",
+      "latent_delayed_value_candidate": false,
+      "why_selected": "Review guidance sharpens the refusal-training mechanism and broadens evaluation, but current frontier evidence does not show later alignment.",
+      "deep_rerun_focus": [
+        "Add non-arithmetic refusal benchmarks.",
+        "Measure accuracy, rejection precision, rejection recall, calibration, and over-refusal.",
+        "Compare with later refusal-policy and user-facing safety evaluation work."
+      ]
+    },
+    {
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_02_openreview_sample_2",
+      "paper_id": "openreview_sample_2",
+      "case_label": "Conditional graph generation and molecular design",
+      "case_type": "frontier_reconstruction_boundary",
+      "title": "Forked Diffusion for Conditional Graph Generation",
+      "short_term_scores": {
+        "gpt-4o-mini": {
+          "winner": "review_guided",
+          "context_control_overall": 3,
+          "review_guided_overall": 4,
+          "specific_review_value": "The review-guided version introduces a novel technique and emphasizes the versatility of the method across multiple tasks, improving the framing.",
+          "remaining_confounds": "The context control lacks the specific insights that enhance the understanding of the method's contributions."
+        },
+        "claude-3-7-sonnet-latest": {
+          "winner": "review_guided",
+          "context_control_overall": 3,
+          "review_guided_overall": 3,
+          "specific_review_value": "The review insight about unclear motivation and comparison to related works surfaces a genuine limitation that the context_control misses entirely. This improves limitation honesty marginally. The SDE mathematical framework mention adds some methodological specificity.",
+          "remaining_confounds": "The improvement is small. Both versions are similarly generic in experiment planning and novelty framing. The SDE detail could be inferred from the abstract's 'score-based' language."
+        }
+      },
+      "citation_frontier_winner": "not_scored_no_frontier_terms",
+      "citation_temporal_pattern": "mixed_or_tie",
+      "semantic_frontier_winner": null,
+      "latent_delayed_value_candidate": null,
+      "why_selected": "Review guidance improves motivation and comparison framing, while the current citation-frontier probe fails to recover a reliable later frontier.",
+      "deep_rerun_focus": [
+        "Use a low-cost molecular graph benchmark with public evaluators.",
+        "Require the review-guided condition to test assumptions and baselines.",
+        "Report validity, uniqueness, novelty, property satisfaction, and baseline comparisons."
+      ]
+    },
+    {
+      "case_dir": "docs/co_pilot_ai_scientist_v3/experiments/deep_regeneration_cases_20260602_203000/case_03_openreview_sample_17",
+      "paper_id": "openreview_sample_17",
+      "case_label": "Knowledge unlearning and privacy risk",
+      "case_type": "strong_frontier_route_candidate",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "short_term_scores": {
+        "gpt-4o-mini": {
+          "winner": "review_guided",
+          "context_control_overall": 3,
+          "review_guided_overall": 4,
+          "specific_review_value": "The review-guided version provides empirical privacy guarantees and a clearer methodology, enhancing the overall quality.",
+          "remaining_confounds": "The context control lacks the depth of empirical validation and clarity found in the review-guided version."
+        },
+        "claude-3-7-sonnet-latest": {
+          "winner": "tie",
+          "context_control_overall": 3,
+          "review_guided_overall": 3,
+          "specific_review_value": "The review insights ('straightforward and reproducible', 'empirical privacy guarantees') are positive but shallow. The limitation about baseline justification is useful but generic. Neither version substantially outperforms the other in any dimension.",
+          "remaining_confounds": "The context_control's generic pressures are irrelevant (BN/DReLU), so they don't help, but the review_guided insights are also thin. Both outputs converge to similar quality."
+        }
+      },
+      "citation_frontier_winner": "paper_only",
+      "citation_temporal_pattern": "short_term_positive_long_term_negative",
+      "semantic_frontier_winner": "review_guided_artifact",
+      "latent_delayed_value_candidate": false,
+      "why_selected": "Review guidance surfaces baselines, metrics, and the breaking-point question for scaling unlearning, which is a concrete later-field route.",
+      "deep_rerun_focus": [
+        "Run a small unlearning setup with increasing unlearning-set sizes.",
+        "Measure forget quality, privacy leakage, retained utility, and baseline gaps.",
+        "Compare the generated experiment design with later machine-unlearning and LLM-unlearning benchmarks."
+      ]
+    }
+  ],
+  "source_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/selected_papers.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/regenerated_artifacts.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_213000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/summary.json"
+  ],
+  "claim_boundary": "The package exposes three concrete replay candidates with original papers, review guidance, regenerated artifacts, short-term scores, and frontier evidence. It is a deep-case scaffold, not completed large-scale historical reproduction."
+}

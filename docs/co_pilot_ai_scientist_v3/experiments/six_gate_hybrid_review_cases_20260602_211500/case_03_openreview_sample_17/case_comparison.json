@@ -1,0 +1,757 @@
+{
+  "paper_id": "openreview_sample_17",
+  "source_case_summary": {
+    "paper_id": "openreview_sample_17",
+    "case_label": "Knowledge unlearning and privacy risk",
+    "case_type": "strong_frontier_route_candidate",
+    "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+    "short_term_scores": {
+      "gpt-4o-mini": {
+        "winner": "review_guided",
+        "context_control_overall": 3,
+        "review_guided_overall": 4,
+        "specific_review_value": "The review-guided version provides empirical privacy guarantees and a clearer methodology, enhancing the overall quality.",
+        "remaining_confounds": "The context control lacks the depth of empirical validation and clarity found in the review-guided version."
+      },
+      "claude-3-7-sonnet-latest": {
+        "winner": "tie",
+        "context_control_overall": 3,
+        "review_guided_overall": 3,
+        "specific_review_value": "The review insights ('straightforward and reproducible', 'empirical privacy guarantees') are positive but shallow. The limitation about baseline justification is useful but generic. Neither version substantially outperforms the other in any dimension.",
+        "remaining_confounds": "The context_control's generic pressures are irrelevant (BN/DReLU), so they don't help, but the review_guided insights are also thin. Both outputs converge to similar quality."
+      }
+    },
+    "citation_frontier_winner": "paper_only",
+    "citation_temporal_pattern": "short_term_positive_long_term_negative",
+    "semantic_frontier_winner": "review_guided_artifact",
+    "latent_delayed_value_candidate": false,
+    "why_selected": "Review guidance surfaces baselines, metrics, and the breaking-point question for scaling unlearning, which is a concrete later-field route.",
+    "deep_rerun_focus": [
+      "Run a small unlearning setup with increasing unlearning-set sizes.",
+      "Measure forget quality, privacy leakage, retained utility, and baseline gaps.",
+      "Compare the generated experiment design with later machine-unlearning and LLM-unlearning benchmarks."
+    ]
+  },
+  "citation_frontier": {
+    "paper_id": "openreview_sample_17",
+    "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+    "semantic_scholar_match": null,
+    "openalex_match": {
+      "id": "https://openalex.org/W4385572399",
+      "doi": "https://doi.org/10.18653/v1/2023.acl-long.805",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "publication_year": 2023,
+      "cited_by_count": 55,
+      "topics": [
+        {
+          "display_name": "Interpreting and Communication in Healthcare",
+          "score": 0.4481000006198883,
+          "subfield": "General Health Professions"
+        }
+      ]
+    },
+    "rejected_openalex_match": null,
+    "metadata_source": "OpenAlex fallback",
+    "search_error": null,
+    "citation_error": null,
+    "match_title_overlap": {
+      "semantic_scholar": null,
+      "openalex": 1.0,
+      "rejected_openalex": null
+    },
+    "citation_count_retrieved": 40,
+    "citation_count_after_year_filter": 40,
+    "citation_count_used": 38,
+    "possible_match_drift": false,
+    "frontier_quality": "usable_relevance_filtered_citation_graph",
+    "citation_relevance_filter": {
+      "min_relevance_terms": 1,
+      "diagnostics": [
+        {
+          "paperId": "https://openalex.org/W2148437670",
+          "title": "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+          "year": 2023,
+          "citationCount": 354,
+          "overlap_terms": [
+            "all",
+            "data",
+            "focused",
+            "issue",
+            "mostly",
+            "previou",
+            "reduce",
+            "target",
+            "than",
+            "them"
+          ],
+          "overlap_count": 10,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4412130408",
+          "title": "On Protecting the Data Privacy of Large Language Models (LLMs): A Survey",
+          "year": 2024,
+          "citationCount": 76,
+          "overlap_terms": [
+            "amount",
+            "both",
+            "data",
+            "may",
+            "privacy",
+            "risk",
+            "them"
+          ],
+          "overlap_count": 7,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4407661798",
+          "title": "Rethinking machine unlearning for large language models",
+          "year": 2025,
+          "citationCount": 66,
+          "overlap_terms": [
+            "unlearning"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4408051337",
+          "title": "On protecting the data privacy of Large Language Models (LLMs) and LLM agents: A literature review",
+          "year": 2025,
+          "citationCount": 45,
+          "overlap_terms": [
+            "amount",
+            "data",
+            "during",
+            "issue",
+            "privacy",
+            "risk",
+            "them"
+          ],
+          "overlap_count": 7,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4389519496",
+          "title": "Unlearn What You Want to Forget: Efficient Unlearning for LLMs",
+          "year": 2023,
+          "citationCount": 42,
+          "overlap_terms": [
+            "data",
+            "forgetting",
+            "issue",
+            "objective",
+            "privacy",
+            "sequence",
+            "unlearn",
+            "unlearning"
+          ],
+          "overlap_count": 8,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4386576626",
+          "title": "Language Generation Models Can Cause Harm: So What Can We Do About It? An Actionable Survey",
+          "year": 2023,
+          "citationCount": 37,
+          "overlap_terms": [],
+          "overlap_count": 0,
+          "kept": false
+        },
+        {
+          "paperId": "https://openalex.org/W4406163678",
+          "title": "The Frontier of Data Erasure: A Survey on Machine Unlearning for Large Language Models",
+          "year": 2025,
+          "citationCount": 17,
+          "overlap_terms": [
+            "data",
+            "forgetting",
+            "mitigating",
+            "privacy",
+            "risk",
+            "unlearning"
+          ],
+          "overlap_count": 6,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4411446757",
+          "title": "Privacy in Fine-Tuning Large Language Models: Attacks, Defenses, and Future Directions",
+          "year": 2025,
+          "citationCount": 14,
+          "overlap_terms": [
+            "privacy"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4411337316",
+          "title": "Understanding Users' Security and Privacy Concerns and Attitudes Towards Conversational AI Platforms",
+          "year": 2025,
+          "citationCount": 13,
+          "overlap_terms": [
+            "data",
+            "find",
+            "has",
+            "post",
+            "privacy",
+            "risk"
+          ],
+          "overlap_count": 6,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4408140916",
+          "title": "A survey on machine unlearning: Techniques and new emerged privacy risks",
+          "year": 2025,
+          "citationCount": 13,
+          "overlap_terms": [
+            "privacy",
+            "risk",
+            "unlearning"
+          ],
+          "overlap_count": 3,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4389523936",
+          "title": "Preserving Privacy Through Dememorization: An Unlearning Technique For Mitigating Memorization Risks In Language Models",
+          "year": 2023,
+          "citationCount": 10,
+          "overlap_terms": [
+            "mitigating",
+            "privacy",
+            "risk",
+            "unlearning"
+          ],
+          "overlap_count": 4,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4409746047",
+          "title": "Creative Writers' Attitudes on Writing as Training Data for Large Language Models",
+          "year": 2025,
+          "citationCount": 10,
+          "overlap_terms": [
+            "data"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4410609060",
+          "title": "Verifiable and Provably Secure Machine Unlearning",
+          "year": 2025,
+          "citationCount": 10,
+          "overlap_terms": [
+            "data",
+            "has",
+            "than",
+            "them",
+            "unlearning"
+          ],
+          "overlap_count": 5,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4406457934",
+          "title": "SoK: Prompt Hacking of Large Language Models",
+          "year": 2024,
+          "citationCount": 9,
+          "overlap_terms": [
+            "addressing",
+            "them"
+          ],
+          "overlap_count": 2,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4389523877",
+          "title": "MoPe: Model Perturbation based Privacy Attacks on Language Models",
+          "year": 2023,
+          "citationCount": 8,
+          "overlap_terms": [
+            "data",
+            "effective",
+            "has",
+            "privacy",
+            "than",
+            "unlearning"
+          ],
+          "overlap_count": 6,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4402716159",
+          "title": "Continual Forgetting for Pre-Trained Vision Models",
+          "year": 2024,
+          "citationCount": 8,
+          "overlap_terms": [
+            "both",
+            "effective",
+            "forgetting",
+            "knowledge",
+            "privacy",
+            "sequence",
+            "them"
+          ],
+          "overlap_count": 7,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4410609250",
+          "title": "Inexact Unlearning Needs More Careful Evaluations to Avoid a False Sense of Privacy",
+          "year": 2025,
+          "citationCount": 6,
+          "overlap_terms": [
+            "all",
+            "both",
+            "find",
+            "has",
+            "issue",
+            "may",
+            "once",
+            "privacy",
+            "unlearn",
+            "unlearning"
+          ],
+          "overlap_count": 10,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4404439856",
+          "title": "MultiDelete for Multimodal Machine Unlearning",
+          "year": 2024,
+          "citationCount": 4,
+          "overlap_terms": [
+            "unlearning"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4406884898",
+          "title": "Privacy dilemmas and opportunities in large language models: a brief review",
+          "year": 2025,
+          "citationCount": 4,
+          "overlap_terms": [
+            "privacy"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4386566852",
+          "title": "CoTEVer: Chain of Thought Prompting Annotation Toolkit for Explanation Verification",
+          "year": 2023,
+          "citationCount": 4,
+          "overlap_terms": [],
+          "overlap_count": 0,
+          "kept": false
+        },
+        {
+          "paperId": "https://openalex.org/W4406171827",
+          "title": "Unlearning in Large Language Models: We Are Not There Yet",
+          "year": 2025,
+          "citationCount": 3,
+          "overlap_terms": [
+            "forgetting",
+            "has",
+            "knowledge",
+            "them",
+            "unlearning"
+          ],
+          "overlap_count": 5,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W7117540895",
+          "title": "LLM Unlearning on Noisy Forget Sets: A Study of Incomplete, Rewritten, and Watermarked Data",
+          "year": 2025,
+          "citationCount": 1,
+          "overlap_terms": [
+            "data",
+            "find",
+            "forgetting",
+            "knowledge",
+            "risk",
+            "than",
+            "unlearning"
+          ],
+          "overlap_count": 7,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4391093127",
+          "title": "IDMU: Impact Driven Machine Unlearning",
+          "year": 2023,
+          "citationCount": 1,
+          "overlap_terms": [
+            "amount",
+            "data",
+            "may",
+            "underlying",
+            "unlearning"
+          ],
+          "overlap_count": 5,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W7117252310",
+          "title": "A survey on privacy issues and mitigation strategies for LLMs in healthcare",
+          "year": 2025,
+          "citationCount": 1,
+          "overlap_terms": [
+            "issue",
+            "privacy"
+          ],
+          "overlap_count": 2,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4415376904",
+          "title": "Machine Unlearning for Trustworthy AI: A Systematic Review of Techniques, Challenges, and Applications",
+          "year": 2025,
+          "citationCount": 1,
+          "overlap_terms": [
+            "unlearning"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4392902780",
+          "title": "Forgetting Private Textual Sequences in Language Models Via Leave-One-Out Ensemble",
+          "year": 2024,
+          "citationCount": 1,
+          "overlap_terms": [
+            "during",
+            "forgetting",
+            "has",
+            "memorize",
+            "personal",
+            "re-training",
+            "sequence",
+            "than",
+            "token",
+            "underlying",
+            "unlearn"
+          ],
+          "overlap_count": 11,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4411249849",
+          "title": "Machine Unlearning for Foundation Models",
+          "year": 2025,
+          "citationCount": 1,
+          "overlap_terms": [
+            "unlearning"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W7160045152",
+          "title": "SAUCE: Selective Concept Unlearning in Vision-Language Models with Sparse Autoencoders",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "unlearning"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4407237154",
+          "title": "The Dual-use Dilemma in LLMs: Do Empowering Ethical Capacities Make a Degraded Utility?",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "addressing",
+            "both",
+            "data"
+          ],
+          "overlap_count": 3,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4416250755",
+          "title": "GRAIL: Gradient-Based Adaptive Unlearning for Privacy and Copyright in LLMs",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "both",
+            "issue",
+            "knowledge",
+            "pretrained",
+            "previou",
+            "privacy",
+            "unlearning"
+          ],
+          "overlap_count": 7,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W7130593194",
+          "title": "Fine-Tuning Large Language Models for Vocabulary-Constrained Language Learning",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "both"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4416017686",
+          "title": "Pseudo-Inverse Prefix Tuning for Effective Unlearning in LLMs",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "both",
+            "data",
+            "during",
+            "effective",
+            "even",
+            "forgetting",
+            "privacy",
+            "requiring",
+            "unlearn",
+            "unlearning"
+          ],
+          "overlap_count": 10,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4414133917",
+          "title": "Technological Evolution and Research Trends of Intelligent Question-Answering Systems in Healthcare",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "knowledge",
+            "objective",
+            "privacy"
+          ],
+          "overlap_count": 3,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W7160295231",
+          "title": "Federated Model Synchronization for Diagnostic Redefinition through a Novel Selective Parameter Unlearning",
+          "year": 2026,
+          "citationCount": 0,
+          "overlap_terms": [
+            "data",
+            "knowledge",
+            "may",
+            "previou",
+            "privacy",
+            "requiring",
+            "than",
+            "unlearning"
+          ],
+          "overlap_count": 8,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4411379362",
+          "title": "Few-Shot Unlearning for Large Language Models Through Pretrained Soft Prompts",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "pretrained",
+            "unlearning"
+          ],
+          "overlap_count": 2,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4413025263",
+          "title": "Defenses Against Membership Inference Attacks on Unlearned Data",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "data"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4414170698",
+          "title": "EMMU: Efficient Information-Level Multimodal Machine Unlearning with High Model Fidelity",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "data",
+            "forgetting",
+            "has",
+            "highly",
+            "may",
+            "unlearning"
+          ],
+          "overlap_count": 6,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4402538217",
+          "title": "Introduction of a Paper: Unlearning Traces the Influential Training Data of Language Models",
+          "year": 2024,
+          "citationCount": 0,
+          "overlap_terms": [
+            "data",
+            "unlearning"
+          ],
+          "overlap_count": 2,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4416798363",
+          "title": "Copyright Protection of General Information via Simulation Task Supervision",
+          "year": 2025,
+          "citationCount": 0,
+          "overlap_terms": [
+            "data",
+            "during",
+            "forgetting",
+            "general",
+            "knowledge",
+            "may",
+            "than",
+            "unlearning"
+          ],
+          "overlap_count": 8,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W7161487658",
+          "title": "Unlearning Faithfulness: Unlearning Isn’t Deletion",
+          "year": 2026,
+          "citationCount": 0,
+          "overlap_terms": [
+            "unlearning"
+          ],
+          "overlap_count": 1,
+          "kept": true
+        }
+      ]
+    },
+    "frontier_terms": [
+      "unlearning",
+      "data",
+      "privacy",
+      "llms",
+      "machine",
+      "user",
+      "concern",
+      "parameter",
+      "knowledge",
+      "forget",
+      "forgetting",
+      "technique",
+      "dataset",
+      "request",
+      "existing",
+      "llm"
+    ],
+    "scores": {
+      "paper_only": {
+        "score": 0.39,
+        "frontier_alignment": 0.4375,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "unlearning",
+          "data",
+          "privacy",
+          "machine",
+          "knowledge",
+          "forget",
+          "forgetting"
+        ],
+        "matched_actionability_terms": [
+          "privacy"
+        ]
+      },
+      "review_guided": {
+        "score": 0.32,
+        "frontier_alignment": 0.25,
+        "actionability": 0.6,
+        "matched_frontier_terms": [
+          "unlearning",
+          "privacy",
+          "machine",
+          "knowledge"
+        ],
+        "matched_actionability_terms": [
+          "baseline",
+          "robustness",
+          "privacy"
+        ]
+      },
+      "shuffled_review_control": {
+        "score": 0.29,
+        "frontier_alignment": 0.3125,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "unlearning",
+          "data",
+          "privacy",
+          "knowledge",
+          "forget"
+        ],
+        "matched_actionability_terms": [
+          "privacy"
+        ]
+      }
+    },
+    "winner": "paper_only",
+    "temporal_diagnostic": {
+      "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+      "short_term_review_guided_minus_paper_only": 1,
+      "long_term_frontier_review_guided_minus_paper_only": -0.07,
+      "pattern": "short_term_positive_long_term_negative"
+    }
+  },
+  "semantic_frontier": {
+    "paper_id": "openreview_sample_17",
+    "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+    "frontier_quality": "usable_relevance_filtered_citation_graph",
+    "citation_count_used": 38,
+    "status": "success",
+    "judgement": {
+      "scores": {
+        "paper_context": {
+          "semantic_frontier_alignment": 4,
+          "actionable_research_control": 4,
+          "novelty_taste_signal": 4
+        },
+        "review_guided_artifact": {
+          "semantic_frontier_alignment": 5,
+          "actionable_research_control": 5,
+          "novelty_taste_signal": 4
+        },
+        "best_review_snippet": {
+          "semantic_frontier_alignment": 4,
+          "actionable_research_control": 4,
+          "novelty_taste_signal": 4
+        }
+      },
+      "winner": "review_guided_artifact",
+      "latent_delayed_value_candidate": false,
+      "reason": "It explicitly outlines a method for unlearning specific sequences which could significantly steer future research directions."
+    },
+    "local_short_term_delta_review_guided_minus_paper_only": 1,
+    "derived_temporal_pattern": "short_and_semantic_positive"
+  },
+  "gate_optimized_proxy_metrics": {
+    "raw_review_guided_insight_count": 2,
+    "six_gate_action_count": 6,
+    "total_routed_evidence_count": 15,
+    "short_term_gate_support_count": 7,
+    "long_horizon_gate_support_count": 8,
+    "frontier_target_count": 3
+  },
+  "claim_boundary": "This artifact tests whether six-gate optimization makes review guidance more actionable. It is not yet a model-generated or benchmark-executed deep rerun."
+}

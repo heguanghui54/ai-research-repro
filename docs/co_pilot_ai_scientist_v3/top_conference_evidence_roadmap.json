@@ -6,7 +6,8 @@
     {
       "id": "blind_human_expert_review",
       "claim_tested": "Review-derived and IGRE-gated feedback improves research artifacts under qualified human review.",
-      "minimum_design": "3-5 qualified reviewers score the same six anonymized pairs when feasible.",
+      "minimum_design": "3-5 qualified reviewers with ML/AI expertise, preferably NUS-affiliated or school-affiliated faculty, postdocs, PhD students, or advanced research students, score the same six anonymized pairs when feasible.",
+      "ethics_and_recruitment_boundary": "Recruitment should proceed only after institutional ethics review, departmental review, or exemption determination. Generic Prolific or crowd-worker evaluation is supplementary unless ML/AI expertise is verified.",
       "upgrade_condition": "Gate-routed or review-guided artifacts win a majority of non-tied comparisons with positive novelty or rigor deltas.",
       "fallback_if_failed": "Keep the claim at offline review signals are routeable; remove paper-quality improvement claims."
     },

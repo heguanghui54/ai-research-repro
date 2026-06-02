@@ -1,0 +1,32 @@
+{
+  "paper_id": "openreview_sample_1",
+  "case_label": "LLM refusal and reliability",
+  "case_type": "mixed_short_term_positive_long_term_negative",
+  "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+  "short_term_scores": {
+    "gpt-4o-mini": {
+      "winner": "review_guided",
+      "context_control_overall": 3,
+      "review_guided_overall": 4,
+      "specific_review_value": "The review-guided version provides clearer insights into the empirical validation of the proposed method, enhancing the overall framing and experimental design.",
+      "remaining_confounds": "The context control still presents a solid foundation but lacks the depth of specific insights provided by the reviews."
+    },
+    "claude-3-7-sonnet-latest": {
+      "winner": "review_guided",
+      "context_control_overall": 3,
+      "review_guided_overall": 4,
+      "specific_review_value": "The review insight about constructing preference data with (correct, refuse), (refuse, incorrect), (correct, incorrect) triples is a concrete methodological detail that meaningfully sharpens the method sketch beyond generic RL framing. The focus on arithmetic/math datasets as a specific evaluation domain also grounds the experiment plan.",
+      "remaining_confounds": "Both outputs are fairly generic; the review_guided version's advantage is modest. The preference-data construction detail could have been inferred from the abstract's RL framing."
+    }
+  },
+  "citation_frontier_winner": "shuffled_review_control",
+  "citation_temporal_pattern": "short_term_positive_long_term_negative",
+  "semantic_frontier_winner": "paper_context",
+  "latent_delayed_value_candidate": false,
+  "why_selected": "Review guidance sharpens the refusal-training mechanism and broadens evaluation, but current frontier evidence does not show later alignment.",
+  "deep_rerun_focus": [
+    "Add non-arithmetic refusal benchmarks.",
+    "Measure accuracy, rejection precision, rejection recall, calibration, and over-refusal.",
+    "Compare with later refusal-policy and user-facing safety evaluation work."
+  ]
+}

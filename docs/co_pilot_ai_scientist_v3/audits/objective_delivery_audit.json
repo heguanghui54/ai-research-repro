@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T12:01:22Z",
+  "audit_date": "2026-06-02T12:22:49Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "7672c30b51d846371b6c968f6054ef312d398a12",
+  "head": "4cff6e00038a615aee7d59b44019d485a6cd6cdb",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -16,6 +16,7 @@
     "top_conference_roadmap_audit_pass": true,
     "human_expert_blind_review_packet_audit_pass": true,
     "benchmark_coverage_audit_pass": true,
+    "deep_regeneration_cases_audit_pass": true,
     "lhtg_operationalized": true,
     "top_conference_boundary_kept": true,
     "unsupported_superiority_claims_kept_unsupported": true
@@ -36,49 +37,61 @@
     "focused_english_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
       "exists": true,
-      "bytes": 32998,
+      "bytes": 33354,
       "ok": true
     },
     "focused_chinese_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf",
       "exists": true,
-      "bytes": 61838,
+      "bytes": 62826,
       "ok": true
     },
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 7681,
+      "bytes": 8378,
       "ok": true
     },
     "english_submission_card": {
       "path": "docs/co_pilot_ai_scientist_v3/submission_card_en.md",
       "exists": true,
-      "bytes": 4088,
+      "bytes": 5177,
       "ok": true
     },
     "chinese_submission_card": {
       "path": "docs/co_pilot_ai_scientist_v3/submission_card_zh.md",
       "exists": true,
-      "bytes": 4033,
+      "bytes": 5055,
       "ok": true
     },
     "top_conference_evidence_roadmap": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
       "exists": true,
-      "bytes": 8336,
+      "bytes": 8859,
       "ok": true
     },
     "top_conference_evidence_roadmap_json": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
       "exists": true,
-      "bytes": 5006,
+      "bytes": 5396,
       "ok": true
     },
     "deep_regeneration_casebook": {
       "path": "docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md",
       "exists": true,
       "bytes": 13397,
+      "ok": true
+    },
+    "human_expert_blind_review_protocol": {
+      "path": "docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md",
+      "exists": true,
+      "bytes": 3182,
+      "ok": true
+    },
+    "deep_case_pdf_summary": {
+      "path": "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json",
+      "exists": true,
+      "bytes": 3048,
       "ok": true
     },
     "english_usage": {
@@ -108,7 +121,7 @@
     "reusable_skill": {
       "path": "skills/co-pilot-ai-scientist-v3/SKILL.md",
       "exists": true,
-      "bytes": 21753,
+      "bytes": 21774,
       "ok": true
     },
     "task_template": {
@@ -131,6 +144,8 @@
       "AI Co-Scientist": true,
       "OpenEvolve": true,
       "Long-Horizon Taste Gate": true,
+      "six gates": true,
+      "structured feedback": true,
       "We do not claim": true
     },
     "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md": {
@@ -139,6 +154,8 @@
       "AI Co-Scientist": true,
       "OpenEvolve": true,
       "长期科研品味门控": true,
+      "六类门控": true,
+      "结构化反馈": true,
       "不能": true
     }
   },
@@ -149,10 +166,13 @@
       "submission_card_zh.md": true,
       "top_conference_evidence_roadmap.md": true,
       "deep_regeneration_casebook.md": true,
+      "human_expert_blind_review_protocol.md": true,
       "External Verification Entry Point": true,
       "audit_top_conference_evidence_roadmap.py": true,
       "audit_human_expert_blind_review_packet.py": true,
       "audit_benchmark_coverage.py": true,
+      "audit_deep_regeneration_cases.py": true,
+      "build_deep_case_pdfs.py": true,
       "pass_artifact_delivery_with_empirical_gaps": true,
       "top-conference empirical target is not yet satisfied": true
     },
@@ -164,7 +184,9 @@
       "AI Co-Scientist": true,
       "OpenEvolve": true,
       "Do not claim": true,
-      "External Verification": true
+      "External Verification": true,
+      "blind expert": true,
+      "six explicit gates": true
     },
     "docs/co_pilot_ai_scientist_v3/submission_card_zh.md": {
       "Insight-Gated Research Evolution": true,
@@ -174,7 +196,9 @@
       "AI Co-Scientist": true,
       "OpenEvolve": true,
       "不能声称": true,
-      "外部复现入口": true
+      "外部复现入口": true,
+      "盲评专家": true,
+      "六个明确门控点": true
     },
     "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md": {
       "Blind Human Expert Review": true,
@@ -193,9 +217,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 636,
+  "manifest_artifacts": 648,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "636/636",
+  "manifest_coverage_ratio": "648/648",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",

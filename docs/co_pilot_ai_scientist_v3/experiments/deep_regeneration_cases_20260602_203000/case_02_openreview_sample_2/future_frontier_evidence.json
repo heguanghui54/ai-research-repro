@@ -1,0 +1,82 @@
+{
+  "paper_id": "openreview_sample_2",
+  "citation_frontier": {
+    "paper_id": "openreview_sample_2",
+    "title": "Forked Diffusion for Conditional Graph Generation",
+    "semantic_scholar_match": null,
+    "openalex_match": null,
+    "rejected_openalex_match": {
+      "id": "https://openalex.org/W4221069327",
+      "doi": "https://doi.org/10.1093/genetics/iyab229",
+      "title": "Efficient ancestry and mutation simulation with msprime 1.0",
+      "publication_year": 2021,
+      "cited_by_count": 498,
+      "topics": [
+        {
+          "display_name": "Gene expression and cancer classification",
+          "score": 0.9948999881744385,
+          "subfield": "Molecular Biology"
+        },
+        {
+          "display_name": "Evolution and Genetic Dynamics",
+          "score": 0.9905999898910522,
+          "subfield": "Genetics"
+        },
+        {
+          "display_name": "Cancer Genomics and Diagnostics",
+          "score": 0.9865999817848206,
+          "subfield": "Cancer Research"
+        }
+      ]
+    },
+    "metadata_source": "Semantic Scholar Graph API",
+    "search_error": "OpenAlex top match rejected by title-overlap guard: overlap=0.000",
+    "citation_error": null,
+    "match_title_overlap": {
+      "semantic_scholar": null,
+      "openalex": null,
+      "rejected_openalex": 0.0
+    },
+    "citation_count_retrieved": 0,
+    "citation_count_after_year_filter": 0,
+    "citation_count_used": 0,
+    "possible_match_drift": true,
+    "frontier_quality": "possible_match_drift_rejected",
+    "citation_relevance_filter": {
+      "min_relevance_terms": 1,
+      "diagnostics": []
+    },
+    "frontier_terms": [],
+    "scores": {
+      "paper_only": {
+        "score": 0.0,
+        "frontier_alignment": 0.0,
+        "actionability": 0.0,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": []
+      },
+      "review_guided": {
+        "score": 0.0,
+        "frontier_alignment": 0.0,
+        "actionability": 0.0,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": []
+      },
+      "shuffled_review_control": {
+        "score": 0.0,
+        "frontier_alignment": 0.0,
+        "actionability": 0.0,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": []
+      }
+    },
+    "winner": "not_scored_no_frontier_terms",
+    "temporal_diagnostic": {
+      "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+      "short_term_review_guided_minus_paper_only": 1,
+      "long_term_frontier_review_guided_minus_paper_only": 0.0,
+      "pattern": "mixed_or_tie"
+    }
+  },
+  "semantic_frontier": null
+}

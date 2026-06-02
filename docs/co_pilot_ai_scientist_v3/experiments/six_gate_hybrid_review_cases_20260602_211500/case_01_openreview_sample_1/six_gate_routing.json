@@ -1,0 +1,68 @@
+{
+  "scientific_taste_prior": [
+    {
+      "matched_keywords": "impact, novel",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new approach for creating preference data for training reward models, which they call **Reinforcement Learning from Knowledge Feedback** (RLKF). Whereas existing preference data consists of (preferred, non-preferred) pairs where the non-preferred pair might be either incorrect or not helpful, RLKF creates three types of pairs: (correct, refuse-to-answer), (refuse-to-answer, incorrect), and (correct, incorrect). This way, the reward model explicitly learns",
+      "gate_action": "Reweight the research direction toward the most scientifically meaningful problem framing."
+    },
+    {
+      "matched_keywords": "impact, novel, problem",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: One of the big problems with LMs is that they constantly hallucinate. They do this a lot when given questions that they don't know the answer to. Some of these questions that are particularly hard for LMs are arithmetic questions where the inputs are more than just a digit or two long. \\n\\nThe authors here propose an RL framework to remedy this issue. This framework trains the model to prefer saying \\\"I don't know\\\" versus outputting an incorrect answer. \\n\\nThey have experime",
+      "gate_action": "Reweight the research direction toward the most scientifically meaningful problem framing."
+    },
+    {
+      "matched_keywords": "impact, novel",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new RLHF framework to address LLM hallucinations by defining a new reward model for model reliability. It trains LLMs to generate \\\"I don't know\\\" answers to questions outside the model's knowledge boundary. It conducts empirical experiments on two math question datasets to validate the effectiveness of the proposed method in enhancing LLM reliability. \\n\\nThe proposed method is simple and easy to follow and the evaluation is comprehensive, but the result",
+      "gate_action": "Reweight the research direction toward the most scientifically meaningful problem framing."
+    }
+  ],
+  "evaluator_stress_test": [
+    {
+      "matched_keywords": "dataset, evaluation, experiment",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new RLHF framework to address LLM hallucinations by defining a new reward model for model reliability. It trains LLMs to generate \\\"I don't know\\\" answers to questions outside the model's knowledge boundary. It conducts empirical experiments on two math question datasets to validate the effectiveness of the proposed method in enhancing LLM reliability. \\n\\nThe proposed method is simple and easy to follow and the evaluation is comprehensive, but the result",
+      "gate_action": "Add or repair benchmarks, baselines, metrics, and ablations before trusting a result."
+    }
+  ],
+  "frontier_steering": [],
+  "verifiable_micro_evolution": [
+    {
+      "matched_keywords": "training",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new approach for creating preference data for training reward models, which they call **Reinforcement Learning from Knowledge Feedback** (RLKF). Whereas existing preference data consists of (preferred, non-preferred) pairs where the non-preferred pair might be either incorrect or not helpful, RLKF creates three types of pairs: (correct, refuse-to-answer), (refuse-to-answer, incorrect), and (correct, incorrect). This way, the reward model explicitly learns",
+      "gate_action": "Identify a machine-gradeable subproblem where OpenEvolve-style search or controlled code improvement is justified."
+    }
+  ],
+  "structured_feedback": [
+    {
+      "matched_keywords": "clarity",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new approach for creating preference data for training reward models, which they call **Reinforcement Learning from Knowledge Feedback** (RLKF). Whereas existing preference data consists of (preferred, non-preferred) pairs where the non-preferred pair might be either incorrect or not helpful, RLKF creates three types of pairs: (correct, refuse-to-answer), (refuse-to-answer, incorrect), and (correct, incorrect). This way, the reward model explicitly learns",
+      "gate_action": "Transform vague feedback into concrete sections, claims, missing definitions, and reader-facing explanations."
+    },
+    {
+      "matched_keywords": "clarity",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: One of the big problems with LMs is that they constantly hallucinate. They do this a lot when given questions that they don't know the answer to. Some of these questions that are particularly hard for LMs are arithmetic questions where the inputs are more than just a digit or two long. \\n\\nThe authors here propose an RL framework to remedy this issue. This framework trains the model to prefer saying \\\"I don't know\\\" versus outputting an incorrect answer. \\n\\nThey have experime",
+      "gate_action": "Transform vague feedback into concrete sections, claims, missing definitions, and reader-facing explanations."
+    },
+    {
+      "matched_keywords": "clarity",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new RLHF framework to address LLM hallucinations by defining a new reward model for model reliability. It trains LLMs to generate \\\"I don't know\\\" answers to questions outside the model's knowledge boundary. It conducts empirical experiments on two math question datasets to validate the effectiveness of the proposed method in enhancing LLM reliability. \\n\\nThe proposed method is simple and easy to follow and the evaluation is comprehensive, but the result",
+      "gate_action": "Transform vague feedback into concrete sections, claims, missing definitions, and reader-facing explanations."
+    }
+  ],
+  "claim_calibration": [
+    {
+      "matched_keywords": "limitation",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new approach for creating preference data for training reward models, which they call **Reinforcement Learning from Knowledge Feedback** (RLKF). Whereas existing preference data consists of (preferred, non-preferred) pairs where the non-preferred pair might be either incorrect or not helpful, RLKF creates three types of pairs: (correct, refuse-to-answer), (refuse-to-answer, incorrect), and (correct, incorrect). This way, the reward model explicitly learns",
+      "gate_action": "Narrow unsupported conclusions and state exactly what the current evidence can and cannot prove."
+    },
+    {
+      "matched_keywords": "limitation",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: One of the big problems with LMs is that they constantly hallucinate. They do this a lot when given questions that they don't know the answer to. Some of these questions that are particularly hard for LMs are arithmetic questions where the inputs are more than just a digit or two long. \\n\\nThe authors here propose an RL framework to remedy this issue. This framework trains the model to prefer saying \\\"I don't know\\\" versus outputting an incorrect answer. \\n\\nThey have experime",
+      "gate_action": "Narrow unsupported conclusions and state exactly what the current evidence can and cannot prove."
+    },
+    {
+      "matched_keywords": "boundary, limitation",
+      "evidence_excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new RLHF framework to address LLM hallucinations by defining a new reward model for model reliability. It trains LLMs to generate \\\"I don't know\\\" answers to questions outside the model's knowledge boundary. It conducts empirical experiments on two math question datasets to validate the effectiveness of the proposed method in enhancing LLM reliability. \\n\\nThe proposed method is simple and easy to follow and the evaluation is comprehensive, but the result",
+      "gate_action": "Narrow unsupported conclusions and state exactly what the current evidence can and cannot prove."
+    }
+  ]
+}
