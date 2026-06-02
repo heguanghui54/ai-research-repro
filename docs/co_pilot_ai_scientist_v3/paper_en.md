@@ -589,6 +589,20 @@ The current contributions are:
 18. A prospective FML-bench Causality package with complete attention/taste
    logging and matched autonomous baseline, yielding a negative co-pilot
    performance result in the small two-step setting.
+19. A prospective package metric summary that separates passing audit packages
+   by task, metric direction, co-pilot score, autonomous score, and claim
+   implication; the current result is one positive controlled micro-task and
+   one negative FML-bench package.
+20. A matched mini-manuscript quality probe for the FML package, where
+   Monica-routed `gpt-4o-mini` and `claude-3-7-sonnet-latest` both prefer the
+   co-pilot package mini-manuscript over a generated autonomous
+   mini-manuscript, with overall scores of 4 versus 3.
+21. A matched full-manuscript generation probe that renders the same archived
+   FML evidence into two complete paper-shaped manuscripts and scores them
+   with a deterministic internal rubric; the co-pilot manuscript scores 4.18
+   overall for structure, grounding, calibration, and method distinctness,
+   while the autonomous manuscript scores 4.00 and remains stronger on the
+   scalar FML metric.
 
 The current evidence does not yet prove that human gates improve paper quality
 or that the full co-pilot system outperforms autonomous AI Scientist-v2. Those
@@ -632,6 +646,17 @@ shape, not in final empirical strength. The FML pilot is negative for co-pilot
 performance at this budget, and neither package evaluates paper quality. The
 paper therefore remains at pilot-system evidence until larger prospective
 experiments exist.
+
+The full-manuscript probe reduces one specific gap but does not close the
+top-conference evidence gap. It shows that the archived FML package contains
+enough structured evidence to generate two complete, claim-calibrated
+manuscripts under a matched prompt-free template. It does not show that a fresh
+online system can run from hypothesis generation through final manuscript
+without intervention, and it does not replace independent expert paper-quality
+review. The autonomous manuscript still wins on the scalar FML test metric,
+which is exactly why the co-pilot claim must remain about method distinctness,
+scientific taste logging, and high-tail research search rather than average
+short-budget benchmark superiority.
 
 The taste/insight evidence is also only at the logging-readiness stage. The
 archive now contains one complete scientific-taste prior record, grounded in

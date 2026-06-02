@@ -172,6 +172,17 @@ This generates an autonomous mini-manuscript for the package and writes
 `experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.md`.
 Treat this as a narrow manuscript-quality probe, not a full paper-quality claim.
 
+To regenerate the deterministic full-manuscript generation probe, run:
+
+```bash
+python3 scripts/generate_full_manuscript_probe.py --update-manifest
+```
+
+This writes two complete paper-shaped manuscripts and
+`experiments/prospective_matched_fml_causality_20260602_000001/full_manuscript_probe/summary.md`.
+It is an archived-evidence manuscript probe, not a fresh end-to-end research
+trajectory or independent expert review.
+
 To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
 
 ```bash

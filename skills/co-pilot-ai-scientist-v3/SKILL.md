@@ -115,6 +115,11 @@ and claim responsibility can reshape the trajectory.
      `scripts/score_matched_manuscripts.py` to create a matched autonomous
      mini-manuscript and score anonymized A/B manuscript quality. Treat this as
      measurement-readiness unless full end-to-end manuscripts are scored.
+   - To check whether one archived matched package contains enough evidence for
+     complete paper-shaped outputs, run
+     `scripts/generate_full_manuscript_probe.py --update-manifest`. Treat this
+     as archived-evidence manuscript generation, not as a fresh end-to-end
+     research trajectory or independent paper-quality proof.
    - To check the package shape on a controlled remote computation, run
      `scripts/run_prospective_matched_budget_micro_pilot.py`; treat it only as
      evidence-shape validation, not as AI Scientist-v2 superiority evidence.
@@ -243,6 +248,8 @@ Reusable templates are stored next to this skill:
 - online full-gate smoke trajectory logs when remote execution is available;
 - prospective matched-budget micro-pilot package when remote execution is
   available;
+- matched mini- and full-manuscript generation probes when manuscript evidence
+  is being audited;
 - experiment logs and metrics;
 - program-search traces;
 - English and Chinese manuscript drafts;

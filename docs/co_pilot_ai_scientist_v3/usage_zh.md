@@ -158,6 +158,17 @@ python3 scripts/score_matched_manuscripts.py
 `experiments/prospective_matched_fml_causality_20260602_000001/paper_quality/summary.md`。
 这只是窄范围 manuscript-quality probe，不能当作完整 paper-quality 证明。
 
+如果要重新生成确定性的 full-manuscript generation probe，运行：
+
+```bash
+python3 scripts/generate_full_manuscript_probe.py --update-manifest
+```
+
+它会写出两篇完整论文形态 manuscript，并生成
+`experiments/prospective_matched_fml_causality_20260602_000001/full_manuscript_probe/summary.md`。
+这只是基于已归档证据的 manuscript probe，不是 fresh end-to-end research
+trajectory，也不是独立专家评审。
+
 如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
 
 ```bash

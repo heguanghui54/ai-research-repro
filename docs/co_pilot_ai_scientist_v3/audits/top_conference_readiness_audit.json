@@ -19,7 +19,7 @@
     "Benchmark coverage beyond FML-Bench"
   ],
   "unsupported_performance_requirements": [
-    "Human collaboration improves paper quality",
+    "Human collaboration improves paper quality beyond archived manuscript probes",
     "Full Co-Pilot v3 outperforms autonomous AI Scientist-v2",
     "Human attention cost is measured for real gates",
     "Top-conference-level empirical support"
@@ -53,7 +53,7 @@
     "real_gate_complete_attention_cost_records": 0,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Scale beyond the current mixed prospective summary: more FML and non-FML tasks, seeds, budgets, paper-quality scoring, and independent human timing.",
+  "next_evidence_milestone": "Scale beyond the current mixed prospective summary: fresh end-to-end matched trajectories, more FML and non-FML tasks, seeds, budgets, paper-quality scoring, and independent human timing.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mixed_metric_outcomes",
     "manifest_files_checked": 2,
@@ -107,7 +107,8 @@
       "more matched tasks/seeds/budgets",
       "complete end-to-end paper-generating trajectory",
       "human attention/taste measurement in prospective gates",
-      "independent paper-quality comparison"
+      "independent paper-quality comparison",
+      "fresh end-to-end matched manuscript trajectories"
     ],
     "matched_mini_manuscript_probe": {
       "status": "weak_positive_single_package_probe",
@@ -116,6 +117,15 @@
       "autonomous_wins": 0,
       "ties": 0,
       "limitation": "single FML package mini-manuscripts only; not full end-to-end paper quality evidence"
+    },
+    "matched_full_manuscript_generation_probe": {
+      "status": "archived_evidence_probe_not_fresh_end_to_end",
+      "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/full_manuscript_probe/summary.md",
+      "json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/full_manuscript_probe/summary.json",
+      "co_pilot_overall": 4.18,
+      "autonomous_overall": 4.0,
+      "metric_winner": "autonomous",
+      "limitation": "generated from archived evidence; not a fresh full end-to-end paper-quality comparison"
     }
   },
   "fml_matched_comparison_summary": {

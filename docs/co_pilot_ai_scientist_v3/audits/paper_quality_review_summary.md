@@ -63,6 +63,19 @@ signal, but it should not be read as evidence that the full co-pilot system
 writes better papers: it covers one short package manuscript, not a complete
 end-to-end manuscript generated under matched conditions.
 
+## Full-Manuscript Generation Probe
+
+We also added a deterministic matched full-manuscript generation probe for the
+same FML package. It renders the archived co-pilot evidence and matched
+autonomous baseline into two complete paper-shaped manuscripts with the same
+major sections, then scores them with an internal rubric for section
+completeness, evidence grounding, claim calibration, method distinctness, and
+metric result strength. The co-pilot manuscript scores `4.18` overall and the
+autonomous manuscript scores `4.00`, but the autonomous manuscript remains
+stronger on the scalar FML test metric. This narrows the manuscript-generation
+gap but does not satisfy the reviewer request for a fresh end-to-end
+paper-generating trajectory or independent expert paper-quality scoring.
+
 ## Paper Treatment
 
 The manuscript should present Co-Pilot AI Scientist v3 as an architecture,

@@ -245,3 +245,12 @@ because it is better calibrated and more explicit about limitations. This is
 useful measurement-readiness evidence, but it is not a full paper-quality
 result: the artifacts are short package manuscripts from one FML task, not
 complete end-to-end generated papers.
+
+The latest manuscript-readiness probe is archived under
+`experiments/prospective_matched_fml_causality_20260602_000001/full_manuscript_probe/`.
+It deterministically renders the same archived FML evidence into two complete
+paper-shaped manuscripts and scores them with an internal rubric. The co-pilot
+manuscript scores `4.18` overall and the autonomous manuscript scores `4.00`,
+while the autonomous baseline remains better on the scalar FML test metric. This
+narrows the manuscript-generation gap but is still not a fresh online
+end-to-end trajectory or independent expert paper-quality result.
