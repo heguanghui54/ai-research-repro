@@ -1,0 +1,29 @@
+{
+  "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+  "status": "prospective_pilot",
+  "co_pilot_trajectory": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/co_pilot_trajectory.json",
+  "autonomous_baseline": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/autonomous_baseline_summary.json",
+  "human_gate_logs": [
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/human_gate_logs/frontier_gate_001.json"
+  ],
+  "claim_audit": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/claim_audit.md",
+  "manuscript": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/manuscript.md",
+  "matched_budget": {
+    "same_task": true,
+    "same_model_family": true,
+    "same_step_budget": true,
+    "same_tool_access": true,
+    "task_config": "configs/tasks/fairness_fairlearn.yaml",
+    "benchmark_slug": "fairness-fairlearn",
+    "metric_name": "primary_metric",
+    "metric_direction": "lower_is_better",
+    "notes": "Both runs used configs/tasks/fairness_fairlearn.yaml, deepseek-chat, DeepSeek, and max_steps=2."
+  },
+  "co_pilot_branch_summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/co_pilot_branch_summary.json",
+  "limitations": [
+    "Single FML task and single budget.",
+    "No independent human-subject timing.",
+    "Does not evaluate final paper quality.",
+    "Does not include OpenEvolve subproblem escalation."
+  ]
+}

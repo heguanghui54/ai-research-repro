@@ -134,7 +134,11 @@ and claim responsibility can reshape the trajectory.
      evidence-shape validation, not as AI Scientist-v2 superiority evidence.
    - To create a small AI Scientist-v2-style prospective package, run
      `scripts/run_prospective_fml_matched_package.py` on the configured Ubuntu
-     host, then audit it. Report negative matched results directly.
+     host, optionally passing `--task-config` and `--benchmark-slug` for the
+     runnable FML workspace, then audit it. If no co-pilot branch produces a
+     valid score, record `abort_no_valid_branch` and report the package as an
+     invalid-continuation failure case rather than a performance win. Report
+     negative matched results directly.
 
 ## Human Gate Schema
 

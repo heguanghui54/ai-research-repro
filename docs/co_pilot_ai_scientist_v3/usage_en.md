@@ -219,12 +219,17 @@ To run the smallest current FML-bench prospective matched package, use:
 ```bash
 python3 scripts/run_prospective_fml_matched_package.py \
   --host ubuntu-heshi \
+  --task-config configs/tasks/causality_causalml.yaml \
+  --benchmark-slug causality-causalml \
   --max-steps 2
 python3 scripts/audit_prospective_matched_budget_package.py
 ```
 
-The archived FML package is a negative result for co-pilot performance at this
-budget, so treat it as pilot evidence and a template for larger runs.
+Use `--task-config configs/tasks/fairness_fairlearn.yaml --benchmark-slug
+fairness-fairlearn` for the currently available Fairness workspace. The archived
+FML packages are negative results or invalid-continuation cases for co-pilot
+performance at this budget, so treat them as pilot evidence and templates for
+larger runs.
 
 ## Human Gate Types
 

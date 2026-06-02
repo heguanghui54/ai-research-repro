@@ -1,0 +1,98 @@
+{
+  "trajectory_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+  "generated_at_utc": "2026-06-02T00:32:08Z",
+  "remote_host": "ubuntu-heshi",
+  "remote_root": "/home/heshi/work/prospective_matched_fml_fairness-fairlearn_20260602_002821",
+  "status": "prospective_fml_pilot",
+  "claim_scope": "Small FML-bench matched package; not top-conference superiority evidence.",
+  "task_config": "configs/tasks/fairness_fairlearn.yaml",
+  "benchmark_slug": "fairness-fairlearn",
+  "metric_name": "primary_metric",
+  "metric_direction": "lower_is_better",
+  "gates": [
+    {
+      "gate_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "timestamp_utc": "2026-06-02T00:35:08Z",
+      "research_task_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+      "options": [
+        {
+          "option_id": "step_0001",
+          "summary": "Validation failed for branch draft_48d5be0778b7 after draft",
+          "score": null,
+          "evidence": [
+            "validation_success=False",
+            "task_config=configs/tasks/fairness_fairlearn.yaml",
+            "Traceback (most recent call last):\n  File \"/home/heshi/work/FML-bench/workspace/Fairness_fairlearn__20260602_082825_d1d927a5/fairlearn/train_eval_baseline.py\", line 213, in <module>\n    main()\n  File \"/home/heshi/work/FML-bench/workspace/Fairness_fairlearn__20260602_082825_d1d927a5/fairlearn/train_eval_baseline.py\", line 147, in main\n    model.fit(X_train, y_train, sensitive_features=s_train)\n  File \"/home/heshi/work/FML-bench/workspace/Fairness_fairlearn__20260602_082825_d1d927a5/fairlearn/algo"
+          ],
+          "risks": [
+            "No valid scored continuation was available."
+          ]
+        },
+        {
+          "option_id": "step_0002",
+          "summary": "Validation failed for branch draft_d968bbe52113 after draft",
+          "score": null,
+          "evidence": [
+            "validation_success=False",
+            "task_config=configs/tasks/fairness_fairlearn.yaml",
+            "Traceback (most recent call last):\n  File \"/home/heshi/work/FML-bench/workspace/Fairness_fairlearn__20260602_082825_d1d927a5/fairlearn/algorithm.py\", line 55, in fit\n    self.model.fit(X, y, sensitive_features=sensitive_features)\n  File \"/home/heshi/miniconda3/envs/fairlearn/lib/python3.10/site-packages/fairlearn/reductions/_exponentiated_gradient/exponentiated_gradient.py\", line 177, in fit\n    h, h_idx = lagrangian.best_h(lambda_vec)\n  File \"/home/heshi/miniconda3/envs/fairlearn/lib/python3.10"
+          ],
+          "risks": [
+            "No valid scored continuation was available."
+          ]
+        }
+      ],
+      "human_decision": "abort_no_valid_branch",
+      "rationale": "Abort the co-pilot branch frontier because no candidate produced a valid validation primary_metric.",
+      "affected_artifacts": [
+        "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/co_pilot_branch_summary.json"
+      ],
+      "downstream_budget": {
+        "selected_validation_primary_metric": null,
+        "same_task_as_autonomous": true,
+        "task_config": "configs/tasks/fairness_fairlearn.yaml",
+        "fml_max_steps": 2,
+        "no_valid_branch": true
+      },
+      "attention_cost": {
+        "human_actor": "codex_operator_for_author",
+        "interaction_mode": "async_review",
+        "prompted_at_utc": "2026-06-02T00:32:08Z",
+        "decision_at_utc": "2026-06-02T00:35:08Z",
+        "active_review_minutes": 3.0,
+        "wall_clock_latency_minutes": 3.0,
+        "options_reviewed": 2,
+        "artifacts_reviewed_count": 1,
+        "decision_count": 1,
+        "notes": "Prospective operator-recorded FML package gate; not an independent human-subject measurement."
+      },
+      "taste_insight": {
+        "rubric_version": "2026-06-02",
+        "scores": {
+          "problem_depth": 4,
+          "novelty_potential": 3,
+          "mechanistic_value": 4,
+          "failure_informativeness": 4,
+          "benchmark_taste": 4,
+          "claim_significance": 3,
+          "risk_asymmetry": 3
+        },
+        "taste_insight_score": 3.57,
+        "qualitative_rationale": "The branch choice is scientifically modest but claim-relevant: configs/tasks/fairness_fairlearn.yaml directly tests whether frontier steering can be inserted into an AI Scientist-v2 benchmark trajectory.",
+        "non_metric_factors": [
+          "ai-scientist-v2-trajectory-relevance",
+          "negative-results-still-informative"
+        ]
+      },
+      "follow_up_checks": [
+        "Compare against the matched autonomous FML run.",
+        "Do not generalize from one configs/tasks/fairness_fairlearn.yaml run."
+      ]
+    }
+  ],
+  "co_pilot_branch_summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/co_pilot_branch_summary.json",
+  "autonomous_baseline_summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/autonomous_baseline_summary.json",
+  "co_pilot_test_metric": null,
+  "autonomous_test_metric": 0.17215212582754802
+}

@@ -205,11 +205,16 @@ prospective matched-budget 实验。
 ```bash
 python3 scripts/run_prospective_fml_matched_package.py \
   --host ubuntu-heshi \
+  --task-config configs/tasks/causality_causalml.yaml \
+  --benchmark-slug causality-causalml \
   --max-steps 2
 python3 scripts/audit_prospective_matched_budget_package.py
 ```
 
-当前归档的 FML package 在这个预算下是 co-pilot performance 负结果，因此应把它作为 pilot evidence 和后续更大运行的模板。
+如果要跑当前可用的 Fairness workspace，使用 `--task-config
+configs/tasks/fairness_fairlearn.yaml --benchmark-slug fairness-fairlearn`。
+当前归档的 FML packages 在这个预算下是 co-pilot performance 负结果或无有效
+continuation 的失败案例，因此应把它们作为 pilot evidence 和后续更大运行的模板。
 
 ## 人类参与节点
 

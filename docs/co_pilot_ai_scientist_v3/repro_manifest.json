@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_audited_human_trace_dataset_and_second_fml_negative_pilot",
+  "status": "pilot_package_with_audited_human_trace_dataset_and_fairness_negative_pilot",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -343,7 +343,14 @@
     "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/prospective_manifest.json",
     "scripts/audit_human_copilot_trace_dataset.py",
     "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.md",
-    "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.json"
+    "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/prospective_manifest.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/co_pilot_trajectory.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/co_pilot_branch_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/autonomous_baseline_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/human_gate_logs/frontier_gate_001.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/claim_audit.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/manuscript.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -402,12 +409,12 @@
     "performance_evidence": false
   },
   "prospective_matched_budget_package_audit": {
-    "status": "pass_with_fml_negative_pilot",
+    "status": "pass_with_mostly_negative_fml_pilots",
     "script": "scripts/audit_prospective_matched_budget_package.py",
     "audit": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_budget_package_audit.md",
     "protocol": "docs/co_pilot_ai_scientist_v3/prospective_matched_budget_protocol.md",
-    "passing_packages": 2,
-    "manifest_files_checked": 2,
+    "passing_packages": 4,
+    "manifest_files_checked": 4,
     "strongest_package_id": "prospective_matched_fml_causality_20260602_000001",
     "fml_pilot_result": {
       "co_pilot_test_mae": 0.646223724015837,
@@ -416,7 +423,15 @@
       "lower_is_better": true,
       "interpretation": "negative_for_co_pilot_performance_in_this_small_run"
     },
-    "performance_evidence": "small_fml_pilot_negative_for_co_pilot_not_top_conference_evidence"
+    "performance_evidence": "small_fml_pilots_negative_or_invalid_for_co_pilot_not_top_conference_evidence",
+    "fairness_package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+    "fairness_pilot_result": {
+      "co_pilot_test_primary_metric": null,
+      "autonomous_test_primary_metric": 0.17215212582754802,
+      "metric": "abs_demographic_parity_diff_mean",
+      "lower_is_better": true,
+      "interpretation": "negative_invalid_continuation_for_co_pilot_frontier"
+    }
   },
   "attention_taste_logging_tooling": {
     "status": "pass_for_synthetic_smoke",
@@ -428,14 +443,16 @@
     "performance_evidence": false
   },
   "prospective_matched_package_summary": {
-    "status": "mixed_metric_outcomes",
+    "status": "mostly_negative_metric_outcomes",
     "script": "scripts/summarize_prospective_matched_packages.py",
     "summary": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.md",
     "json": "docs/co_pilot_ai_scientist_v3/audits/prospective_matched_package_summary.json",
-    "package_count": 2,
+    "package_count": 4,
     "co_pilot_wins": 1,
-    "autonomous_or_tie_wins": 1,
-    "interpretation": "evidence_shape_and_logging_supported; superiority_not_supported"
+    "autonomous_or_tie_wins": 3,
+    "interpretation": "four passing prospective packages; one micro-task co-pilot win and three FML negative_or_invalid outcomes; superiority_not_supported",
+    "complete_attention_gates": 4,
+    "complete_taste_gates": 4
   },
   "paper_quality_review": {
     "status": "gpt_weak_accept_claude_reject_after_prospective_summary",
@@ -485,9 +502,9 @@
     "script": "scripts/build_human_copilot_trace_dataset.py",
     "markdown": "docs/co_pilot_ai_scientist_v3/human_copilot_trace_dataset.md",
     "json": "docs/co_pilot_ai_scientist_v3/human_copilot_trace_dataset.json",
-    "gate_records": 29,
-    "attention_cost_records": 12,
-    "taste_insight_records": 7,
+    "gate_records": 31,
+    "attention_cost_records": 14,
+    "taste_insight_records": 9,
     "positioning": "single_author_longitudinal_case_study_not_population_level_evidence",
     "release_audit_script": "scripts/audit_human_copilot_trace_dataset.py",
     "release_audit_markdown": "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.md",
@@ -495,12 +512,21 @@
     "release_audit_status": "pass",
     "secret_pattern_hits": 0,
     "raw_log_marker_hits": 0,
-    "commit_index_entries": 47
+    "commit_index_entries": 48,
+    "prospective_packages": 4
   },
   "second_prospective_fml_package": {
     "package_id": "prospective_matched_fml_causality_20260602_010002",
     "co_pilot_test_mae": 0.6462237240158367,
     "autonomous_test_mae": 0.29639917877540584,
     "interpretation": "negative_for_co_pilot_average_performance_under_short_budget"
+  },
+  "third_prospective_fml_package": {
+    "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+    "task": "Fairness_fairlearn",
+    "co_pilot_test_primary_metric": null,
+    "autonomous_test_primary_metric": 0.17215212582754802,
+    "metric": "abs_demographic_parity_diff_mean",
+    "interpretation": "negative_invalid_continuation_for_co_pilot_frontier_under_short_budget"
   }
 }

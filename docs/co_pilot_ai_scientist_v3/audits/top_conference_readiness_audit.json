@@ -57,7 +57,7 @@
     "real_gate_complete_attention_cost_records": 0,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Scale beyond the single-author Codex trace and current negative short-budget FML evidence: fresh end-to-end matched trajectories, more FML and non-FML tasks, seeds, budgets, paper-quality scoring, independent human timing, and ideally multiple human researchers.",
+  "next_evidence_milestone": "Scale beyond the single-author Codex trace and current negative short-budget FML evidence: fresh end-to-end matched trajectories, more FML/non-FML tasks that actually have runnable workspaces, seeds, budgets, paper-quality scoring, independent human timing, and ideally multiple human researchers.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -156,19 +156,27 @@
     "prospective_two_step_mean_delta_autonomous_minus_human": -0.18567249049706372
   },
   "human_copilot_trace_dataset": {
-    "status": "single_author_longitudinal_derived_metadata_protocol",
-    "markdown": "docs/co_pilot_ai_scientist_v3/human_copilot_trace_dataset.md",
-    "json": "docs/co_pilot_ai_scientist_v3/human_copilot_trace_dataset.json",
-    "gate_records": 29,
-    "attention_cost_records": 12,
-    "taste_insight_records": 7,
-    "prospective_packages": 3,
-    "claim_scope": "supports process/ecological case-study claims, not population-level human benefit",
-    "release_audit_markdown": "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.md",
-    "release_audit_json": "docs/co_pilot_ai_scientist_v3/audits/human_copilot_trace_dataset_audit.json",
-    "release_audit_status": "pass",
+    "status": "release_audit_pass",
+    "gate_records": 31,
+    "attention_cost_records": 14,
+    "taste_insight_records": 9,
+    "prospective_packages": 4,
     "secret_pattern_hits": 0,
-    "raw_log_marker_hits": 0,
-    "commit_index_entries": 47
+    "raw_log_marker_hits": 0
+  },
+  "prospective_matched_budget_evidence": {
+    "status": "pass_with_mostly_negative_fml_metric_outcomes",
+    "passing_packages": 4,
+    "co_pilot_wins": 1,
+    "autonomous_or_tie_wins": 3,
+    "complete_attention_gates": 4,
+    "complete_taste_gates": 4,
+    "fml_negative_or_invalid_package_count": 3,
+    "fairness_package": {
+      "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+      "co_pilot_score": null,
+      "autonomous_score": 0.17215212582754802,
+      "interpretation": "co-pilot frontier had no valid scored continuation; autonomous completed"
+    }
   }
 }

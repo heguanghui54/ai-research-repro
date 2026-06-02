@@ -129,6 +129,16 @@ FML-bench Causality 支持 branch-gate 可行性主张，但还不能证明人�
 
 我们现在还用脚本生成这组 FML matched-comparison aggregate，而不只依赖手写表格。生成的 audit 显示：两组正式 pair 中，human-gated 胜 1 次，autonomous/tie 胜 1 次；autonomous-minus-human 的平均 delta 为 -0.015618，delta SEM 为 0.034921，并显式标注 statistical claim 为 `not_supported_n_too_small`。单独的 online-smoke comparison 对 co-pilot performance 也是负结果：test MAE 为 0.862015 对 0.428516。因此，这份脚本化 summary 是当前 FML performance evidence 的权威汇总。
 
+在第二个 Causality prospective package 之后，我们又把同一个 package runner 扩展到
+`ubuntu-heshi` 上另一个实际可用的 FML-bench workspace：`Fairness_fairlearn`。这个结果
+同样不是 co-pilot 的正结果，但失败方式不同：co-pilot branch frontier 的两个候选都没有通过
+validation，因此记录的 frontier gate 选择 `abort_no_valid_branch`，而不是强行继续一个无效分支。
+匹配的 autonomous run 成功完成，test primary metric 为 0.172152
+（`abs_demographic_parity_diff_mean`，越低越好）。当前 prospective package audit 因此覆盖 4 个
+通过格式审计的 package：1 个受控 micro-task 正结果、2 个 Causality FML 负结果，以及 1 个
+Fairness FML 无有效 continuation 的失败案例；四个 package 都包含完整的 attention-cost 和
+taste/insight gate record。这扩展了 benchmark 形态，但让平均性能叙事更保守，而不是更强。
+
 ### 4.4 非 FML benchmark 与程序搜索小实验
 
 根据上面的 benchmark 选择原则，我们还把 MLAgentBench 作为非 FML 评估来源。我们在 Ubuntu 主机上克隆 MLAgentBench，并先运行其轻量 `vectorization` 任务，使用内置 `Agent` baseline。该 baseline 只执行 starter `train.py` 并提交结果。官方 baseline 成功完成，final score 为 3.172504 秒，total benchmark time 为 3.365531 秒，且没有错误标记。

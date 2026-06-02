@@ -478,6 +478,19 @@ autonomous-minus-human delta is `-0.185672` with SEM `0.164152`. This result
 strengthens the negative average-performance evidence while leaving the
 high-tail taste/insight hypothesis open for future larger-budget studies.
 
+We then extended the prospective package runner beyond the repeated Causality
+workspace to the other FML-bench workspace available on `ubuntu-heshi`,
+`Fairness_fairlearn`. This package is also negative for the co-pilot path, but
+for a different reason: both co-pilot branch candidates failed validation, so
+the logged frontier gate selected `abort_no_valid_branch` rather than forcing a
+continuation. The matched autonomous run completed with test primary metric
+`0.172152` (`abs_demographic_parity_diff_mean`, lower is better). The generated
+package audit now finds four passing prospective packages, all with complete
+attention-cost and taste/insight gate records: one controlled micro-task win,
+two negative Causality FML packages, and one Fairness FML invalid-continuation
+case. This broadens the benchmark shape but makes the average-performance
+story more conservative, not stronger.
+
 ### 4.4 Non-FML Benchmark and Program-Search Probe
 
 Following the benchmark-selection principle above, we also used MLAgentBench as

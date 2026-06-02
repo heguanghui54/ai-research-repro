@@ -28,11 +28,11 @@
   ],
   "primary_dataset_positioning": "single_author_longitudinal_codex_copilot_trace_corpus",
   "current_snapshot": {
-    "gate_record_count": 29,
-    "attention_cost_records": 12,
-    "taste_insight_records": 7,
-    "prospective_package_count": 3,
-    "commit_count": 47
+    "gate_record_count": 31,
+    "attention_cost_records": 14,
+    "taste_insight_records": 9,
+    "prospective_package_count": 4,
+    "commit_count": 48
   },
   "gate_records": [
     {
@@ -134,6 +134,16 @@
       "has_attention_cost": true,
       "has_taste_insight": true,
       "human_decision": "step_0001"
+    },
+    {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/human_gate_logs/frontier_gate_001.json",
+      "gate_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "research_task_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "abort_no_valid_branch"
     },
     {
       "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/human_gate_logs/frontier_gate_001.json",
@@ -316,6 +326,16 @@
       "human_decision": "step_0001"
     },
     {
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/co_pilot_trajectory.json#gates[0]",
+      "gate_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "research_task_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+      "option_count": 2,
+      "has_attention_cost": true,
+      "has_taste_insight": true,
+      "human_decision": "abort_no_valid_branch"
+    },
+    {
       "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/co_pilot_trajectory.json#gates[0]",
       "gate_id": "prospective_matched_micro_pilot_20260602_000001_frontier_gate_001",
       "gate_type": "frontier_steering",
@@ -346,6 +366,15 @@
       "human_gate_count": 1
     },
     {
+      "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+      "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/prospective_manifest.json",
+      "status": "prospective_pilot",
+      "co_pilot_metric": null,
+      "autonomous_metric": 0.17215212582754802,
+      "benchmark": "Fairness_fairlearn",
+      "human_gate_count": 1
+    },
+    {
       "package_id": "prospective_matched_micro_pilot_20260602_000001",
       "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/prospective_manifest.json",
       "status": "prospective_pilot",
@@ -356,6 +385,11 @@
     }
   ],
   "commit_index": [
+    {
+      "commit": "85ceb3c6d047f3005305a88de224e4ee3b594d93",
+      "date": "2026-06-02",
+      "subject": "Add human trace dataset release audit"
+    },
     {
       "commit": "a6eef510c76ccf8d7fea7ce80c137614ed131322",
       "date": "2026-06-02",

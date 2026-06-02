@@ -66,21 +66,36 @@ def rel(path: Path) -> str:
 
 def primary_metric(summary: dict[str, Any]) -> float | None:
     try:
-        return float(summary["test_result"]["primary_metric"])
+        test_result = summary.get("test_result") or {}
+        value = test_result["primary_metric"]
+        if value is not None:
+            return float(value)
     except KeyError:
-        try:
-            return float(summary["test_result"]["results"]["ihdp_test"]["means"]["mae_mean"])
-        except KeyError:
-            return None
+        pass
+    test_result = summary.get("test_result") or {}
+    try:
+        return float(test_result["results"]["ihdp_test"]["means"]["mae_mean"])
+    except KeyError:
+        return None
 
 
 def step_metric(step: dict[str, Any]) -> float | None:
     if step.get("primary_metric") is not None:
         return float(step["primary_metric"])
     try:
+        value = step["val_result"]["primary_metric"]
+        if value is not None:
+            return float(value)
+    except KeyError:
+        pass
+    try:
         return float(step["val_result"]["filtered_results"]["ihdp_test"]["means"]["mae_mean"])
     except KeyError:
         return None
+
+
+def format_metric(value: float | None) -> str:
+    return "NA" if value is None else f"{value:.6f}"
 
 
 def build_agent_config_patch(num_ideas: int, num_parallel: int, stage_budgets: str) -> str:
@@ -101,10 +116,16 @@ PY
 """
 
 
+def slug_from_task_config(task_config: str) -> str:
+    name = Path(task_config).stem
+    return name.replace("_", "-")
+
+
 def run_fml_summary(
     host: str,
     *,
     remote_output_dir: str,
+    task_config: str,
     max_steps: int,
     num_ideas: int,
     num_parallel: int,
@@ -118,7 +139,7 @@ cd /home/heshi/work/FML-bench
 {build_agent_config_patch(num_ideas=num_ideas, num_parallel=num_parallel, stage_budgets='[1.0, 0.0, 0.0, 0.0]')}
 /home/heshi/miniconda3/bin/conda run -n fmlbench python run_agent_benchmark.py \\
   --agent-config "$TMP" \\
-  --task-config configs/tasks/causality_causalml.yaml \\
+  --task-config {shlex.quote(task_config)} \\
   --model {shlex.quote(model)} \\
   --provider {shlex.quote(provider)} \\
   --output-dir {shlex.quote(remote_output_dir)} \\
@@ -133,7 +154,16 @@ find {shlex.quote(remote_output_dir)} -name summary.json -type f | sort | tail -
     return path
 
 
-def build_gate(run_id: str, package_dir: Path, branch_summary: dict[str, Any], timestamp: datetime) -> dict[str, Any]:
+def build_gate(
+    run_id: str,
+    package_dir: Path,
+    branch_summary: dict[str, Any],
+    timestamp: datetime,
+    *,
+    task_config: str,
+    metric_name: str,
+    lower_is_better: bool,
+) -> dict[str, Any]:
     options: list[dict[str, Any]] = []
     for step in branch_summary.get("val_steps", []):
         metric = step_metric(step)
@@ -144,13 +174,40 @@ def build_gate(run_id: str, package_dir: Path, branch_summary: dict[str, Any], t
                 "option_id": f"step_{step['step_id']:04d}",
                 "summary": f"Continue branch {step.get('idea_id')} after {step.get('action')}",
                 "score": metric,
-                "evidence": [f"validation_mae={metric:.6f}", "lower_is_better"],
+                "evidence": [
+                    f"validation_{metric_name}={metric:.6f}",
+                    "lower_is_better" if lower_is_better else "higher_is_better",
+                    f"task_config={task_config}",
+                ],
                 "risks": ["Small FML prospective package; one task and one seed."],
             }
         )
-    if not options:
-        raise RuntimeError("No scored FML branch options found")
-    selected = min(options, key=lambda item: float(item["score"]))
+    no_valid_branch = not options
+    if no_valid_branch:
+        for step in branch_summary.get("val_steps", []):
+            val_result = step.get("val_result") or {}
+            options.append(
+                {
+                    "option_id": f"step_{step['step_id']:04d}",
+                    "summary": f"Validation failed for branch {step.get('idea_id')} after {step.get('action')}",
+                    "score": None,
+                    "evidence": [
+                        "validation_success=False",
+                        f"task_config={task_config}",
+                        str(val_result.get("error", "unknown validation error"))[:500],
+                    ],
+                    "risks": ["No valid scored continuation was available."],
+                }
+            )
+    selected = (
+        {"option_id": "abort_no_valid_branch", "score": None}
+        if no_valid_branch
+        else (
+            min(options, key=lambda item: float(item["score"]))
+            if lower_is_better
+            else max(options, key=lambda item: float(item["score"]))
+        )
+    )
     prompted = timestamp.isoformat().replace("+00:00", "Z")
     decision = (timestamp + timedelta(minutes=3)).isoformat().replace("+00:00", "Z")
     return {
@@ -161,15 +218,22 @@ def build_gate(run_id: str, package_dir: Path, branch_summary: dict[str, Any], t
         "options": options,
         "human_decision": selected["option_id"],
         "rationale": (
-            "Select the lower-validation-MAE Causality_causalml branch for this "
-            "prospective FML matched package while recording that one small task "
-            "cannot establish general co-pilot superiority."
+            "Abort the co-pilot branch frontier because no candidate produced a valid "
+            f"validation {metric_name}."
+            if no_valid_branch
+            else (
+                f"Select the {'lower' if lower_is_better else 'higher'}-validation-{metric_name} "
+                f"branch for task {task_config} in this prospective FML matched package "
+                "while recording that one small task cannot establish general co-pilot superiority."
+            )
         ),
         "affected_artifacts": [rel(package_dir / "co_pilot_branch_summary.json")],
         "downstream_budget": {
-            "selected_validation_mae": selected["score"],
+            f"selected_validation_{metric_name}": selected["score"],
             "same_task_as_autonomous": True,
+            "task_config": task_config,
             "fml_max_steps": branch_summary.get("total_steps"),
+            "no_valid_branch": no_valid_branch,
         },
         "attention_cost": {
             "human_actor": "codex_operator_for_author",
@@ -197,19 +261,27 @@ def build_gate(run_id: str, package_dir: Path, branch_summary: dict[str, Any], t
             "taste_insight_score": 3.57,
             "qualitative_rationale": (
                 "The branch choice is scientifically modest but claim-relevant: "
-                "Causality_causalml directly tests whether frontier steering can be "
+                f"{task_config} directly tests whether frontier steering can be "
                 "inserted into an AI Scientist-v2 benchmark trajectory."
             ),
             "non_metric_factors": ["ai-scientist-v2-trajectory-relevance", "negative-results-still-informative"],
         },
         "follow_up_checks": [
             "Compare against the matched autonomous FML run.",
-            "Do not generalize from one Causality_causalml run.",
+            f"Do not generalize from one {task_config} run.",
         ],
     }
 
 
-def manuscript(run_id: str, branch_summary: dict[str, Any], autonomous_summary: dict[str, Any]) -> str:
+def manuscript(
+    run_id: str,
+    branch_summary: dict[str, Any],
+    autonomous_summary: dict[str, Any],
+    *,
+    task_config: str,
+    metric_name: str,
+    lower_is_better: bool,
+) -> str:
     co_test = primary_metric(branch_summary)
     auto_test = primary_metric(autonomous_summary)
     delta = None if co_test is None or auto_test is None else auto_test - co_test
@@ -219,25 +291,26 @@ Run ID: `{run_id}`
 
 ## Question
 
-Can Co-Pilot AI Scientist v3 produce a prospective matched-budget package on an
-AI Scientist-v2-style FML-bench task, with complete human gate logs and a
-matched autonomous baseline?
+Can Co-Pilot AI Scientist v3 produce a prospective matched-budget package on
+the AI Scientist-v2-style FML-bench task `{task_config}`, with complete human
+gate logs and a matched autonomous baseline?
 
 ## Method
 
-Both runs use `Causality_causalml`, model `{branch_summary.get('model')}`, and
+Both runs use `{task_config}`, model `{branch_summary.get('model')}`, and
 provider `{branch_summary.get('provider')}`. The co-pilot package records a
 frontier-steering gate over the FML branch frontier. The autonomous baseline is
 a separate FML run with the same task and step budget but no human gate.
 
 ## Results
 
-| Variant | Validation metric | Test MAE |
+| Variant | Validation metric | Test {metric_name} |
 | --- | ---: | ---: |
-| Co-pilot branch-frontier package | {branch_summary.get('best_val_metric'):.6f} | {co_test:.6f} |
-| Autonomous matched baseline | {autonomous_summary.get('best_val_metric'):.6f} | {auto_test:.6f} |
+| Co-pilot branch-frontier package | {format_metric(branch_summary.get('best_val_metric'))} | {format_metric(co_test)} |
+| Autonomous matched baseline | {format_metric(autonomous_summary.get('best_val_metric'))} | {format_metric(auto_test)} |
 
-Lower MAE is better. Autonomous-minus-co-pilot test delta: `{delta:.6f}`.
+{"Lower" if lower_is_better else "Higher"} {metric_name} is better.
+Autonomous-minus-co-pilot test delta: `{format_metric(delta)}`.
 
 ## Claim
 
@@ -252,6 +325,15 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="ubuntu-heshi")
     parser.add_argument("--run-id")
+    parser.add_argument("--task-config", default="configs/tasks/causality_causalml.yaml")
+    parser.add_argument("--benchmark-slug")
+    parser.add_argument("--metric-name", default="primary_metric")
+    parser.add_argument("--higher-is-better", action="store_true")
+    parser.add_argument(
+        "--finalize-existing-package",
+        type=Path,
+        help="Use existing co_pilot_branch_summary.json and autonomous_baseline_summary.json instead of launching remote runs.",
+    )
     parser.add_argument("--max-steps", type=int, default=2)
     parser.add_argument("--model", default="deepseek-chat")
     parser.add_argument("--provider", default="DeepSeek")
@@ -259,38 +341,58 @@ def main() -> None:
 
     now = datetime.now(timezone.utc).replace(microsecond=0)
     stamp = now.strftime("%Y%m%d_%H%M%S")
-    run_id = args.run_id or f"prospective_matched_fml_causality_{stamp}"
-    package_dir = EXP_DIR / run_id
+    benchmark_slug = args.benchmark_slug or slug_from_task_config(args.task_config)
+    lower_is_better = not args.higher_is_better
+    if args.finalize_existing_package is not None:
+        package_dir = args.finalize_existing_package
+        if not package_dir.is_absolute():
+            package_dir = ROOT / package_dir
+        run_id = args.run_id or package_dir.name
+    else:
+        run_id = args.run_id or f"prospective_matched_fml_{benchmark_slug}_{stamp}"
+        package_dir = EXP_DIR / run_id
     package_dir.mkdir(parents=True, exist_ok=True)
     remote_root = f"/home/heshi/work/{run_id}"
 
-    branch_remote = run_fml_summary(
-        args.host,
-        remote_output_dir=f"{remote_root}/co_pilot_branch_frontier",
-        max_steps=args.max_steps,
-        num_ideas=2,
-        num_parallel=2,
-        model=args.model,
-        provider=args.provider,
-    )
     branch_local = package_dir / "co_pilot_branch_summary.json"
-    scp_from(args.host, branch_remote, branch_local)
+    if args.finalize_existing_package is None:
+        branch_remote = run_fml_summary(
+            args.host,
+            remote_output_dir=f"{remote_root}/co_pilot_branch_frontier",
+            task_config=args.task_config,
+            max_steps=args.max_steps,
+            num_ideas=2,
+            num_parallel=2,
+            model=args.model,
+            provider=args.provider,
+        )
+        scp_from(args.host, branch_remote, branch_local)
     branch_summary = json.loads(branch_local.read_text(encoding="utf-8"))
 
-    autonomous_remote = run_fml_summary(
-        args.host,
-        remote_output_dir=f"{remote_root}/autonomous_baseline",
-        max_steps=args.max_steps,
-        num_ideas=2,
-        num_parallel=2,
-        model=args.model,
-        provider=args.provider,
-    )
     autonomous_local = package_dir / "autonomous_baseline_summary.json"
-    scp_from(args.host, autonomous_remote, autonomous_local)
+    if args.finalize_existing_package is None:
+        autonomous_remote = run_fml_summary(
+            args.host,
+            remote_output_dir=f"{remote_root}/autonomous_baseline",
+            task_config=args.task_config,
+            max_steps=args.max_steps,
+            num_ideas=2,
+            num_parallel=2,
+            model=args.model,
+            provider=args.provider,
+        )
+        scp_from(args.host, autonomous_remote, autonomous_local)
     autonomous_summary = json.loads(autonomous_local.read_text(encoding="utf-8"))
 
-    gate = build_gate(run_id, package_dir, branch_summary, now)
+    gate = build_gate(
+        run_id,
+        package_dir,
+        branch_summary,
+        now,
+        task_config=args.task_config,
+        metric_name=args.metric_name,
+        lower_is_better=lower_is_better,
+    )
     gate_path = package_dir / "human_gate_logs/frontier_gate_001.json"
     write_json(gate_path, gate)
 
@@ -301,6 +403,10 @@ def main() -> None:
         "remote_root": remote_root,
         "status": "prospective_fml_pilot",
         "claim_scope": "Small FML-bench matched package; not top-conference superiority evidence.",
+        "task_config": args.task_config,
+        "benchmark_slug": benchmark_slug,
+        "metric_name": args.metric_name,
+        "metric_direction": "lower_is_better" if lower_is_better else "higher_is_better",
         "gates": [gate],
         "co_pilot_branch_summary": rel(branch_local),
         "autonomous_baseline_summary": rel(autonomous_local),
@@ -312,17 +418,32 @@ def main() -> None:
 
     co_test = primary_metric(branch_summary)
     auto_test = primary_metric(autonomous_summary)
+    copilot_beats = (
+        co_test is not None
+        and auto_test is not None
+        and ((co_test < auto_test) if lower_is_better else (co_test > auto_test))
+    )
     claim_audit = f"""# Claim Audit
 
 | Claim | Status | Evidence |
 | --- | --- | --- |
 | A prospective matched-budget package can be produced on FML-bench. | Supported | This package contains fresh co-pilot and autonomous FML summaries, a complete gate log, claim audit, manuscript, and manifest. |
 | Human gates improve paper quality. | Unsupported | This package does not evaluate final paper quality. |
-| Co-Pilot v3 outperforms autonomous AI Scientist-v2 generally. | Unsupported | One small Causality_causalml run is insufficient. |
-| Co-pilot beats the matched autonomous baseline in this run. | {'Supported' if co_test is not None and auto_test is not None and co_test < auto_test else 'Unsupported'} | Co-pilot test MAE: {co_test}; autonomous test MAE: {auto_test}. |
+| Co-Pilot v3 outperforms autonomous AI Scientist-v2 generally. | Unsupported | One small {args.task_config} run is insufficient. |
+| Co-pilot beats the matched autonomous baseline in this run. | {'Supported' if copilot_beats else 'Unsupported'} | Co-pilot test {args.metric_name}: {co_test}; autonomous test {args.metric_name}: {auto_test}; direction: {'lower is better' if lower_is_better else 'higher is better'}. |
 """
     (package_dir / "claim_audit.md").write_text(claim_audit, encoding="utf-8")
-    (package_dir / "manuscript.md").write_text(manuscript(run_id, branch_summary, autonomous_summary), encoding="utf-8")
+    (package_dir / "manuscript.md").write_text(
+        manuscript(
+            run_id,
+            branch_summary,
+            autonomous_summary,
+            task_config=args.task_config,
+            metric_name=args.metric_name,
+            lower_is_better=lower_is_better,
+        ),
+        encoding="utf-8",
+    )
 
     manifest = {
         "package_id": run_id,
@@ -337,7 +458,11 @@ def main() -> None:
             "same_model_family": True,
             "same_step_budget": True,
             "same_tool_access": True,
-            "notes": f"Both runs used Causality_causalml, {args.model}, {args.provider}, and max_steps={args.max_steps}.",
+            "task_config": args.task_config,
+            "benchmark_slug": benchmark_slug,
+            "metric_name": args.metric_name,
+            "metric_direction": "lower_is_better" if lower_is_better else "higher_is_better",
+            "notes": f"Both runs used {args.task_config}, {args.model}, {args.provider}, and max_steps={args.max_steps}.",
         },
         "co_pilot_branch_summary": rel(branch_local),
         "limitations": [

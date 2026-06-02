@@ -7,12 +7,12 @@ negative, or only a format/feasibility signal.
 
 ## Aggregate
 
-- Packages summarized: 3
+- Packages summarized: 4
 - Co-pilot wins: 1
-- Autonomous or tied wins: 2
-- Complete attention gates: 3/3
-- Complete taste/insight gates: 3/3
-- Total recorded active review minutes: 8.00
+- Autonomous or tied wins: 3
+- Complete attention gates: 4/4
+- Complete taste/insight gates: 4/4
+- Total recorded active review minutes: 11.00
 
 ## Packages
 
@@ -20,6 +20,7 @@ negative, or only a format/feasibility signal.
 | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- |
 | `prospective_matched_fml_causality_20260602_000001` | FML-bench | mae_mean | lower | 0.646224 | 0.624703 | 0.021520 | autonomous_or_tie | Negative co-pilot performance result for this small FML budget; supports prospective package feasibility, not superiority. |
 | `prospective_matched_fml_causality_20260602_010002` | FML-bench | mae_mean | lower | 0.646224 | 0.296399 | 0.349825 | autonomous_or_tie | Negative co-pilot performance result for this small FML budget; supports prospective package feasibility, not superiority. |
+| `prospective_matched_fml_fairness-fairlearn_20260602_002821` | FML-bench | abs_demographic_parity_diff_mean | lower | n/a | 0.172152 | n/a | autonomous_or_tie | Negative co-pilot performance result for this small FML budget; supports prospective package feasibility, not superiority. |
 | `prospective_matched_micro_pilot_20260602_000001` | controlled_micro_task | mean_normalized_score | higher | 0.984419 | 0.596214 | 0.388205 | co_pilot | Positive controlled micro-task result; supports evidence-shape and mechanistic feasibility, not paper-quality or general superiority. |
 
 ## Interpretation

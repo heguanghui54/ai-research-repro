@@ -1,7 +1,7 @@
 {
   "overall_status": "pass",
-  "manifest_files_checked": 3,
-  "passing_packages": 3,
+  "manifest_files_checked": 4,
+  "passing_packages": 4,
   "failing_packages": 0,
   "required_manifest_fields": [
     "package_id",
@@ -62,6 +62,27 @@
         {
           "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/human_gate_logs/frontier_gate_001.json",
           "gate_id": "prospective_matched_fml_causality_20260602_010002_frontier_gate_001",
+          "gate_type": "frontier_steering",
+          "complete_attention_cost": true,
+          "missing_attention_cost_fields": [],
+          "complete_taste_insight": true,
+          "missing_taste_insight_fields": []
+        }
+      ]
+    },
+    {
+      "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/prospective_manifest.json",
+      "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+      "overall_status": "pass",
+      "errors": [],
+      "warnings": [],
+      "gate_records_checked": 1,
+      "complete_attention_cost_gates": 1,
+      "complete_taste_insight_gates": 1,
+      "gates": [
+        {
+          "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/human_gate_logs/frontier_gate_001.json",
+          "gate_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821_frontier_gate_001",
           "gate_type": "frontier_steering",
           "complete_attention_cost": true,
           "missing_attention_cost_fields": [],

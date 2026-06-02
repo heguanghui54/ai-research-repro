@@ -231,10 +231,20 @@ same task/model/tool budget shape and is also negative for co-pilot performance:
 co-pilot test MAE is `0.646224`, while the matched autonomous baseline reaches
 `0.296399`.
 
+A third FML package is archived under
+`experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/`.
+It expands the prospective package protocol beyond Causality into the available
+Fairness workspace on `ubuntu-heshi`. In this run the co-pilot branch frontier
+produced no valid scored continuation, so the logged gate chooses
+`abort_no_valid_branch`; the matched autonomous run produced test primary metric
+`0.172152` (`abs_demographic_parity_diff_mean`, lower is better). This is a
+negative result and a useful evaluator-gate failure case, not evidence of
+co-pilot superiority.
+
 The metric-level package summary is archived as
-`audits/prospective_matched_package_summary.md`. It currently summarizes 3
-passing packages: 1 controlled micro-task win for a human-selected branch and 2
-FML-bench losses for the co-pilot branch. All three packages have complete
+`audits/prospective_matched_package_summary.md`. It currently summarizes 4
+passing packages: 1 controlled micro-task win for a human-selected branch and 3
+FML-bench losses or invalid-continuation cases for the co-pilot branch. All four packages have complete
 `attention_cost` and `taste_insight` gate records. This result is the intended
 evidence discipline for IGRE: human taste/insight is treated as a high-variance
 search intervention to be measured, not as an assumed positive effect.
