@@ -1,6 +1,6 @@
 {
   "run_id": "retrospective_frontier_citation_probe_20260602_163000",
-  "timestamp_utc": "2026-06-02T07:08:10Z",
+  "timestamp_utc": "2026-06-02T07:21:00Z",
   "status": "citation_backed_retrospective_frontier_probe",
   "citation_source": "Semantic Scholar Graph API with OpenAlex fallback",
   "citation_limit": 20,
@@ -37,12 +37,20 @@
           }
         ]
       },
+      "rejected_openalex_match": null,
       "metadata_source": "OpenAlex fallback",
       "search_error": null,
       "citation_error": null,
+      "match_title_overlap": {
+        "semantic_scholar": null,
+        "openalex": 1.0,
+        "rejected_openalex": null
+      },
       "citation_count_retrieved": 2,
       "citation_count_after_year_filter": 2,
-      "citation_count_used": 1,
+      "citation_count_used": 0,
+      "possible_match_drift": false,
+      "frontier_quality": "no_relevant_citations",
       "citation_relevance_filter": {
         "min_relevance_terms": 2,
         "diagnostics": [
@@ -52,11 +60,10 @@
             "year": 2025,
             "citationCount": 4,
             "overlap_terms": [
-              "llm",
               "refuse"
             ],
-            "overlap_count": 2,
-            "kept": true
+            "overlap_count": 1,
+            "kept": false
           },
           {
             "paperId": "https://openalex.org/W4411120548",
@@ -69,29 +76,14 @@
           }
         ]
       },
-      "frontier_terms": [
-        "chatbot",
-        "moral",
-        "refusal",
-        "llm",
-        "value",
-        "user",
-        "discourse",
-        "tenor",
-        "rhetoric",
-        "sorry",
-        "dave",
-        "afraid"
-      ],
+      "frontier_terms": [],
       "scores": {
         "paper_only": {
-          "score": 0.04,
+          "score": 0.0,
           "frontier_alignment": 0.0,
-          "actionability": 0.2,
+          "actionability": 0.0,
           "matched_frontier_terms": [],
-          "matched_actionability_terms": [
-            "baseline"
-          ]
+          "matched_actionability_terms": []
         },
         "review_guided": {
           "score": 0.0,
@@ -101,44 +93,511 @@
           "matched_actionability_terms": []
         },
         "shuffled_review_control": {
-          "score": 0.2133,
-          "frontier_alignment": 0.1667,
-          "actionability": 0.4,
-          "matched_frontier_terms": [
-            "llm",
-            "user"
-          ],
-          "matched_actionability_terms": [
-            "evaluation",
-            "dataset"
-          ]
+          "score": 0.0,
+          "frontier_alignment": 0.0,
+          "actionability": 0.0,
+          "matched_frontier_terms": [],
+          "matched_actionability_terms": []
         }
       },
-      "winner": "shuffled_review_control",
+      "winner": "not_scored_no_frontier_terms",
       "temporal_diagnostic": {
         "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
         "short_term_review_guided_minus_paper_only": 1,
-        "long_term_frontier_review_guided_minus_paper_only": -0.04,
-        "pattern": "short_term_positive_long_term_negative"
+        "long_term_frontier_review_guided_minus_paper_only": 0.0,
+        "pattern": "mixed_or_tie"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "title": "Forked Diffusion for Conditional Graph Generation",
+      "semantic_scholar_match": null,
+      "openalex_match": null,
+      "rejected_openalex_match": {
+        "id": "https://openalex.org/W4221069327",
+        "doi": "https://doi.org/10.1093/genetics/iyab229",
+        "title": "Efficient ancestry and mutation simulation with msprime 1.0",
+        "publication_year": 2021,
+        "cited_by_count": 498,
+        "topics": [
+          {
+            "display_name": "Gene expression and cancer classification",
+            "score": 0.9948999881744385,
+            "subfield": "Molecular Biology"
+          },
+          {
+            "display_name": "Evolution and Genetic Dynamics",
+            "score": 0.9905999898910522,
+            "subfield": "Genetics"
+          },
+          {
+            "display_name": "Cancer Genomics and Diagnostics",
+            "score": 0.9865999817848206,
+            "subfield": "Cancer Research"
+          }
+        ]
+      },
+      "metadata_source": "Semantic Scholar Graph API",
+      "search_error": "OpenAlex top match rejected by title-overlap guard: overlap=0.000",
+      "citation_error": null,
+      "match_title_overlap": {
+        "semantic_scholar": null,
+        "openalex": null,
+        "rejected_openalex": 0.0
+      },
+      "citation_count_retrieved": 0,
+      "citation_count_after_year_filter": 0,
+      "citation_count_used": 0,
+      "possible_match_drift": true,
+      "frontier_quality": "possible_match_drift_rejected",
+      "citation_relevance_filter": {
+        "min_relevance_terms": 2,
+        "diagnostics": []
+      },
+      "frontier_terms": [],
+      "scores": {
+        "paper_only": {
+          "score": 0.0,
+          "frontier_alignment": 0.0,
+          "actionability": 0.0,
+          "matched_frontier_terms": [],
+          "matched_actionability_terms": []
+        },
+        "review_guided": {
+          "score": 0.0,
+          "frontier_alignment": 0.0,
+          "actionability": 0.0,
+          "matched_frontier_terms": [],
+          "matched_actionability_terms": []
+        },
+        "shuffled_review_control": {
+          "score": 0.0,
+          "frontier_alignment": 0.0,
+          "actionability": 0.0,
+          "matched_frontier_terms": [],
+          "matched_actionability_terms": []
+        }
+      },
+      "winner": "not_scored_no_frontier_terms",
+      "temporal_diagnostic": {
+        "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+        "short_term_review_guided_minus_paper_only": 1,
+        "long_term_frontier_review_guided_minus_paper_only": 0.0,
+        "pattern": "mixed_or_tie"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "semantic_scholar_match": null,
+      "openalex_match": {
+        "id": "https://openalex.org/W4385572399",
+        "doi": "https://doi.org/10.18653/v1/2023.acl-long.805",
+        "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+        "publication_year": 2023,
+        "cited_by_count": 55,
+        "topics": [
+          {
+            "display_name": "Interpreting and Communication in Healthcare",
+            "score": 0.4481000006198883,
+            "subfield": "General Health Professions"
+          }
+        ]
+      },
+      "rejected_openalex_match": null,
+      "metadata_source": "OpenAlex fallback",
+      "search_error": null,
+      "citation_error": null,
+      "match_title_overlap": {
+        "semantic_scholar": null,
+        "openalex": 1.0,
+        "rejected_openalex": null
+      },
+      "citation_count_retrieved": 20,
+      "citation_count_after_year_filter": 20,
+      "citation_count_used": 13,
+      "possible_match_drift": false,
+      "frontier_quality": "usable_relevance_filtered_citation_graph",
+      "citation_relevance_filter": {
+        "min_relevance_terms": 2,
+        "diagnostics": [
+          {
+            "paperId": "https://openalex.org/W2148437670",
+            "title": "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+            "year": 2023,
+            "citationCount": 354,
+            "overlap_terms": [
+              "all",
+              "data",
+              "focused",
+              "issue",
+              "mostly",
+              "previou",
+              "reduce",
+              "target",
+              "than",
+              "them"
+            ],
+            "overlap_count": 10,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4412130408",
+            "title": "On Protecting the Data Privacy of Large Language Models (LLMs): A Survey",
+            "year": 2024,
+            "citationCount": 76,
+            "overlap_terms": [
+              "amount",
+              "both",
+              "data",
+              "may",
+              "privacy",
+              "risk",
+              "them"
+            ],
+            "overlap_count": 7,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4407661798",
+            "title": "Rethinking machine unlearning for large language models",
+            "year": 2025,
+            "citationCount": 66,
+            "overlap_terms": [
+              "unlearning"
+            ],
+            "overlap_count": 1,
+            "kept": false
+          },
+          {
+            "paperId": "https://openalex.org/W4408051337",
+            "title": "On protecting the data privacy of Large Language Models (LLMs) and LLM agents: A literature review",
+            "year": 2025,
+            "citationCount": 45,
+            "overlap_terms": [
+              "amount",
+              "data",
+              "during",
+              "issue",
+              "privacy",
+              "risk",
+              "them"
+            ],
+            "overlap_count": 7,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4389519496",
+            "title": "Unlearn What You Want to Forget: Efficient Unlearning for LLMs",
+            "year": 2023,
+            "citationCount": 42,
+            "overlap_terms": [
+              "data",
+              "forgetting",
+              "issue",
+              "objective",
+              "privacy",
+              "sequence",
+              "unlearn",
+              "unlearning"
+            ],
+            "overlap_count": 8,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4386576626",
+            "title": "Language Generation Models Can Cause Harm: So What Can We Do About It? An Actionable Survey",
+            "year": 2023,
+            "citationCount": 37,
+            "overlap_terms": [],
+            "overlap_count": 0,
+            "kept": false
+          },
+          {
+            "paperId": "https://openalex.org/W4406163678",
+            "title": "The Frontier of Data Erasure: A Survey on Machine Unlearning for Large Language Models",
+            "year": 2025,
+            "citationCount": 17,
+            "overlap_terms": [
+              "data",
+              "forgetting",
+              "mitigating",
+              "privacy",
+              "risk",
+              "unlearning"
+            ],
+            "overlap_count": 6,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4411446757",
+            "title": "Privacy in Fine-Tuning Large Language Models: Attacks, Defenses, and Future Directions",
+            "year": 2025,
+            "citationCount": 14,
+            "overlap_terms": [
+              "privacy"
+            ],
+            "overlap_count": 1,
+            "kept": false
+          },
+          {
+            "paperId": "https://openalex.org/W4411337316",
+            "title": "Understanding Users' Security and Privacy Concerns and Attitudes Towards Conversational AI Platforms",
+            "year": 2025,
+            "citationCount": 13,
+            "overlap_terms": [
+              "data",
+              "find",
+              "has",
+              "post",
+              "privacy",
+              "risk"
+            ],
+            "overlap_count": 6,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4408140916",
+            "title": "A survey on machine unlearning: Techniques and new emerged privacy risks",
+            "year": 2025,
+            "citationCount": 13,
+            "overlap_terms": [
+              "privacy",
+              "risk",
+              "unlearning"
+            ],
+            "overlap_count": 3,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4389523936",
+            "title": "Preserving Privacy Through Dememorization: An Unlearning Technique For Mitigating Memorization Risks In Language Models",
+            "year": 2023,
+            "citationCount": 10,
+            "overlap_terms": [
+              "mitigating",
+              "privacy",
+              "risk",
+              "unlearning"
+            ],
+            "overlap_count": 4,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4409746047",
+            "title": "Creative Writers' Attitudes on Writing as Training Data for Large Language Models",
+            "year": 2025,
+            "citationCount": 10,
+            "overlap_terms": [
+              "data"
+            ],
+            "overlap_count": 1,
+            "kept": false
+          },
+          {
+            "paperId": "https://openalex.org/W4410609060",
+            "title": "Verifiable and Provably Secure Machine Unlearning",
+            "year": 2025,
+            "citationCount": 10,
+            "overlap_terms": [
+              "data",
+              "has",
+              "than",
+              "them",
+              "unlearning"
+            ],
+            "overlap_count": 5,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4406457934",
+            "title": "SoK: Prompt Hacking of Large Language Models",
+            "year": 2024,
+            "citationCount": 9,
+            "overlap_terms": [
+              "addressing",
+              "them"
+            ],
+            "overlap_count": 2,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4389523877",
+            "title": "MoPe: Model Perturbation based Privacy Attacks on Language Models",
+            "year": 2023,
+            "citationCount": 8,
+            "overlap_terms": [
+              "data",
+              "effective",
+              "has",
+              "privacy",
+              "than",
+              "unlearning"
+            ],
+            "overlap_count": 6,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4402716159",
+            "title": "Continual Forgetting for Pre-Trained Vision Models",
+            "year": 2024,
+            "citationCount": 8,
+            "overlap_terms": [
+              "both",
+              "effective",
+              "forgetting",
+              "knowledge",
+              "privacy",
+              "sequence",
+              "them"
+            ],
+            "overlap_count": 7,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4410609250",
+            "title": "Inexact Unlearning Needs More Careful Evaluations to Avoid a False Sense of Privacy",
+            "year": 2025,
+            "citationCount": 6,
+            "overlap_terms": [
+              "all",
+              "both",
+              "find",
+              "has",
+              "issue",
+              "may",
+              "once",
+              "privacy",
+              "unlearn",
+              "unlearning"
+            ],
+            "overlap_count": 10,
+            "kept": true
+          },
+          {
+            "paperId": "https://openalex.org/W4404439856",
+            "title": "MultiDelete for Multimodal Machine Unlearning",
+            "year": 2024,
+            "citationCount": 4,
+            "overlap_terms": [
+              "unlearning"
+            ],
+            "overlap_count": 1,
+            "kept": false
+          },
+          {
+            "paperId": "https://openalex.org/W4406884898",
+            "title": "Privacy dilemmas and opportunities in large language models: a brief review",
+            "year": 2025,
+            "citationCount": 4,
+            "overlap_terms": [
+              "privacy"
+            ],
+            "overlap_count": 1,
+            "kept": false
+          },
+          {
+            "paperId": "https://openalex.org/W4386566852",
+            "title": "CoTEVer: Chain of Thought Prompting Annotation Toolkit for Explanation Verification",
+            "year": 2023,
+            "citationCount": 4,
+            "overlap_terms": [],
+            "overlap_count": 0,
+            "kept": false
+          }
+        ]
+      },
+      "frontier_terms": [
+        "privacy",
+        "unlearning",
+        "data",
+        "llms",
+        "user",
+        "machine",
+        "risk",
+        "attack",
+        "security",
+        "technique",
+        "concern",
+        "llm"
+      ],
+      "scores": {
+        "paper_only": {
+          "score": 0.3067,
+          "frontier_alignment": 0.3333,
+          "actionability": 0.2,
+          "matched_frontier_terms": [
+            "privacy",
+            "unlearning",
+            "data",
+            "machine"
+          ],
+          "matched_actionability_terms": [
+            "privacy"
+          ]
+        },
+        "review_guided": {
+          "score": 0.32,
+          "frontier_alignment": 0.25,
+          "actionability": 0.6,
+          "matched_frontier_terms": [
+            "privacy",
+            "unlearning",
+            "machine"
+          ],
+          "matched_actionability_terms": [
+            "baseline",
+            "robustness",
+            "privacy"
+          ]
+        },
+        "shuffled_review_control": {
+          "score": 0.24,
+          "frontier_alignment": 0.25,
+          "actionability": 0.2,
+          "matched_frontier_terms": [
+            "privacy",
+            "unlearning",
+            "data"
+          ],
+          "matched_actionability_terms": [
+            "privacy"
+          ]
+        }
+      },
+      "winner": "review_guided",
+      "temporal_diagnostic": {
+        "short_term_quality_source": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+        "short_term_review_guided_minus_paper_only": 1,
+        "long_term_frontier_review_guided_minus_paper_only": 0.0133,
+        "pattern": "short_and_long_term_positive"
       }
     }
   ],
   "aggregate": {
-    "paper_count": 1,
+    "paper_count": 3,
     "papers_with_retrieved_citations": 1,
-    "thin_citation_graph_papers": 1,
+    "thin_citation_graph_papers": 0,
+    "citation_count_after_relevance_filter": 13,
+    "possible_match_drift_papers": 1,
+    "frontier_quality_counts": {
+      "no_relevant_citations": 1,
+      "possible_match_drift_rejected": 1,
+      "usable_relevance_filtered_citation_graph": 1
+    },
     "winner_counts": {
-      "shuffled_review_control": 1
+      "not_scored_no_frontier_terms": 2,
+      "review_guided": 1
     },
     "mean_scores": {
-      "paper_only": 0.04,
-      "review_guided": 0.0,
-      "shuffled_review_control": 0.2133
+      "paper_only": 0.3067,
+      "review_guided": 0.32,
+      "shuffled_review_control": 0.24
     },
-    "mean_delta_review_guided_minus_paper_only": -0.04,
-    "mean_delta_review_guided_minus_shuffled_control": -0.2133,
+    "mean_delta_review_guided_minus_paper_only": 0.0133,
+    "mean_delta_review_guided_minus_shuffled_control": 0.08,
     "delayed_value_case_count": 0,
-    "short_term_positive_long_term_negative_count": 1
+    "short_term_positive_long_term_negative_count": 0
   },
   "claim_boundary": "This is a lightweight citation-backed pilot using retrieved Semantic Scholar metadata and simple term-overlap scoring. It is stronger than manual descriptors but still not a full citation graph reconstruction, blinded expert review, or proof of long-term SOTA alignment. It filters citations by lexical relevance, but thin or topically broad citation graphs can still produce misleading frontier terms."
 }

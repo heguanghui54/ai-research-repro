@@ -72,12 +72,14 @@ claim calibration.
   evidence rather than a literature-backed SOTA reconstruction.
 - `experiments/retrospective_frontier_citation_probe_20260602_163000/`:
   lightweight citation-backed frontier pilot using Semantic Scholar with
-  OpenAlex fallback. The first arXiv-linked sample retrieves two later citing
-  papers, filters to one lexically relevant LLM-refusal citation, and remains
-  negative for review-guided frontier alignment (`shuffled_review_control`
-  wins, review-guided minus paper-only `-0.04`). This is reported as evidence
-  that citation-backed frontier reconstruction needs stronger relevance
-  filtering and broader citation graphs, not as a rejection of the delayed-value
+  OpenAlex fallback, lexical relevance filtering, and a title-overlap guard
+  against metadata match drift. Across three arXiv-linked samples, one has no
+  relevance-filtered later citations, one likely OpenAlex match drift is
+  rejected, and one knowledge-unlearning sample yields a usable 13-citation
+  future-frontier descriptor. The usable case favors review-guided regeneration
+  (`0.32` vs. paper-only `0.3067` and shuffled-control `0.24`), while the
+  aggregate still has `0` delayed-value cases. This is reported as protocol
+  evidence for future-frontier measurement, not as proof of the delayed-value
   hypothesis.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including

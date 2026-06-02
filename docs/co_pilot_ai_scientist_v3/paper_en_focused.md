@@ -56,7 +56,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | OpenReview equal-context ablation | 8 review-guided votes | 1 context-control vote, 3 ties | mean delta across models +0.5 | Paper-specific reviews beat matched unrelated review context, but Claude shows the effect is modest. |
 | Preregistered blind expert-review packet | 6 anonymized A/B pairs prepared | 0 completed human rows | planned 3-5 raters | Evaluation readiness only; no human evidence is claimed yet. |
 | Retrospective frontier-alignment smoke | review-guided wins 1 | shuffled-control wins 5 | mean delta vs. control -0.0855; 0 delayed-value cases; 3 short-term-positive/long-term-negative cases | Future-frontier alignment is harder than local paper improvement; heuristic descriptors only. |
-| Citation-backed frontier pilot | shuffled-control wins 1 | review-guided wins 0 | 1 paper, 1 relevance-filtered later citation, mean delta vs. paper-only -0.04 | Retrieved citation graph is thin; relevance filtering is implemented but still not enough for strong claims. |
+| Citation-backed frontier pilot | review-guided wins 1 | 2 cases not scored | 3 papers, 13 relevance-filtered later citations, mean delta vs. paper-only +0.0133 | Relevance filtering and match-drift guards are implemented; only one usable citation graph remains, so this is protocol evidence rather than a strong result. |
 | Prospective matched packages | 1 co-pilot or human-selected win | 3 autonomous/tie/invalid outcomes | 4 packages | Short-budget average benchmark superiority is not supported. |
 | Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
@@ -131,17 +131,21 @@ negative result is useful because it separates local reviewer satisfaction from
 long-horizon scientific directionality, which is exactly the distinction a
 co-pilot scientist must learn.
 
-A first citation-backed version of the probe uses OpenAlex fallback metadata for
-one arXiv-linked sample after Semantic Scholar rate limiting. It retrieves two
-later citing papers, filters them by lexical relevance to the original paper,
-and keeps one citing paper about LLM refusals. It again finds no delayed-value
-case: review guidance is short-term-positive but citation-frontier negative,
-and the shuffled-review-control artifact has the highest term-overlap score.
-This is not yet evidence against the hypothesis. The citation graph is too thin,
-and even relevance-filtered citations can represent only one narrow downstream
-thread. The main lesson is methodological: future-frontier descriptors need
-both citation retrieval and relevance filtering before they can support strong
-claims.
+A citation-backed version of the probe now runs on three arXiv-linked
+OpenReview samples with OpenAlex fallback, lexical relevance filtering, and a
+title-overlap guard against match drift. The result is still a pilot, but it is
+more informative than the first one-paper version. One refusal/reliability
+paper has no relevance-filtered later citations, one graph-diffusion paper is
+rejected because the top metadata match drifts into population genetics, and one
+knowledge-unlearning paper yields a usable 13-citation frontier around privacy,
+unlearning, LLM risk, attacks, and security. On that usable case,
+review-guided regeneration has the highest citation-frontier alignment
+(`0.32`, versus `0.3067` for paper-only and `0.24` for shuffled review
+control), and is also short-term positive. The probe therefore finds one
+short-and-long-term positive case, not the delayed-value pattern. This is not
+evidence against the delayed-value hypothesis; it shows that future-frontier
+measurement must first solve citation coverage, topical relevance, and metadata
+match-drift before broader claims are possible.
 
 This makes the paper's application value concrete. The goal is not merely to prove that humans improve paper quality. The goal is to design the best modes of human participation, compare them empirically, and build a workflow in which human taste is used where it has the highest chance of changing the research trajectory.
 

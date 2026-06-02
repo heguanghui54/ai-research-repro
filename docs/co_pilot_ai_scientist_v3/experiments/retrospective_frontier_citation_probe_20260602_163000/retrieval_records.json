@@ -22,9 +22,15 @@
         }
       ]
     },
+    "rejected_openalex_match": null,
     "metadata_source": "OpenAlex fallback",
     "search_error": null,
     "citation_error": null,
+    "match_title_overlap": {
+      "semantic_scholar": null,
+      "openalex": 1.0,
+      "rejected_openalex": null
+    },
     "citations_after_year_filter": [
       {
         "paperId": "https://openalex.org/W4413607545",
@@ -50,11 +56,10 @@
           "year": 2025,
           "citationCount": 4,
           "overlap_terms": [
-            "llm",
             "refuse"
           ],
-          "overlap_count": 2,
-          "kept": true
+          "overlap_count": 1,
+          "kept": false
         },
         {
           "paperId": "https://openalex.org/W4411120548",
@@ -67,28 +72,618 @@
         }
       ]
     },
-    "citations_used": [
+    "citations_used": [],
+    "frontier_terms": []
+  },
+  {
+    "paper_id": "openreview_sample_2",
+    "query_title": "Forked Diffusion for Conditional Graph Generation",
+    "semantic_scholar_match": null,
+    "openalex_match": null,
+    "rejected_openalex_match": {
+      "id": "https://openalex.org/W4221069327",
+      "doi": "https://doi.org/10.1093/genetics/iyab229",
+      "title": "Efficient ancestry and mutation simulation with msprime 1.0",
+      "publication_year": 2021,
+      "cited_by_count": 498,
+      "topics": [
+        {
+          "display_name": "Gene expression and cancer classification",
+          "score": 0.9948999881744385,
+          "subfield": "Molecular Biology"
+        },
+        {
+          "display_name": "Evolution and Genetic Dynamics",
+          "score": 0.9905999898910522,
+          "subfield": "Genetics"
+        },
+        {
+          "display_name": "Cancer Genomics and Diagnostics",
+          "score": 0.9865999817848206,
+          "subfield": "Cancer Research"
+        }
+      ]
+    },
+    "metadata_source": "Semantic Scholar Graph API",
+    "search_error": "OpenAlex top match rejected by title-overlap guard: overlap=0.000",
+    "citation_error": null,
+    "match_title_overlap": {
+      "semantic_scholar": null,
+      "openalex": null,
+      "rejected_openalex": 0.0
+    },
+    "citations_after_year_filter": [],
+    "citation_relevance_filter": {
+      "min_relevance_terms": 2,
+      "diagnostics": []
+    },
+    "citations_used": [],
+    "frontier_terms": []
+  },
+  {
+    "paper_id": "openreview_sample_17",
+    "query_title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+    "semantic_scholar_match": null,
+    "openalex_match": {
+      "id": "https://openalex.org/W4385572399",
+      "doi": "https://doi.org/10.18653/v1/2023.acl-long.805",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "publication_year": 2023,
+      "cited_by_count": 55,
+      "topics": [
+        {
+          "display_name": "Interpreting and Communication in Healthcare",
+          "score": 0.4481000006198883,
+          "subfield": "General Health Professions"
+        }
+      ]
+    },
+    "rejected_openalex_match": null,
+    "metadata_source": "OpenAlex fallback",
+    "search_error": null,
+    "citation_error": null,
+    "match_title_overlap": {
+      "semantic_scholar": null,
+      "openalex": 1.0,
+      "rejected_openalex": null
+    },
+    "citations_after_year_filter": [
       {
-        "paperId": "https://openalex.org/W4413607545",
-        "title": "‘I’m sorry Dave, I’m afraid I can’t do that’: Moral regulation in refusals by LLM chatbots",
+        "paperId": "https://openalex.org/W2148437670",
+        "title": "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+        "year": 2023,
+        "abstract": "Message from the Program ChairsIt's hard to believe that we're actually going to be seeing the program come together in Toronto.We're really looking forward to it and to seeing you all there!Most of the work of a program chair is behind the scenes: herding reviewers and chairs, wrangling data from various sources, and answering lots and lots of email.This is a volunteer position, so the only reward we get for this is our chance to make the process of submitting and reviewing papers to our conference better.This letter will outline some of those experiments.First, we asked reviewers for two scores: soundness and excitement.Our goal was that any sound paper would be accepted to some ACL affiliated venue, but that the \"main conference\" distinction (limited by space) would be focused on the most exciting papers.Our hope was that soundness would be less noisy than a single \"overall recommendation\" score, which would help reduce the randomness of decisions.Judging by the exit surveys, this change was well received: over 80% of the chairs, reviewers and authors either expressed support or did not object to this change.Next, we developed a new process for matching papers to reviewers based on keywords for not only the subject matter of the paper, but also its type of contribution and target language(s).This allowed more fine-grained control over the paper-reviewer matches, and we were also able to provide the chairs with context for the paper-reviewer matches.To improve review quality, we also updated the reviewer guidelines, and developed a system for the authors to flag specific types of issues with reviews.Finally, we have also proposed a new initiative for recognizing outstanding reviewers and chairs (73 awards at ACL'23).Finally, we have tried to give more options for presentations.Findings papers now have an in-person presentation spotlight slot and virtual posters in addition to recording videos.Virtual posters have portals to link in-person attendees to virtual posters.We have also brought back Miniconf and RocketChat to allow for better virtual communication between papers (regardless of where the authors are).This conference is a result of the joint efforts of over ten thousand people.We deeply thank them all, and apologize for the many nagging emails we had to send out.In particular: AreasTo ensure a smooth process, the submissions to ACL 2023 were divided into 26 areas.The areas mostly followed these of previous ACL, and more broadly *ACL conferences, reflecting the typical divisions in the field.Following EMNLP 2022, we split the \"Large Language Models\" track away from \"Machine learning in NLP\", reflecting the growth of submissions in the area.We also offered two new tracks (\"Linguistic diversity\" and \"Multilingualism and Cross-Lingual NLP\").For the papers authored by SACs, the final recommendation decisions were made by a separate SAC team.The most popular areas (with over 250 submissions) were \"Dialogue and Interactive Systems\", \"Information Extraction\", \"Large Language Models\", \"Machine Learning for NLP\", and \"NLP Applications\". Best Paper AwardsACL'23 implemented the new ACL award policy, aiming to expand the pool of work that is recognized as outstanding.In total, 73 papers were nominated by the reviewers or area chairs for consideration for awards.These papers were assessed by the Best Paper Award Committee, and with their help we selected 4 best papers, 3 special awards (social impact, resource, reproduction), and several dozen outstanding papers.The best and outstanding papers will be announced in a dedicated plenary session for Best Paper Awards on July 10 2023. Presentation ModeIn ACL 2023, there is no meaningful distinction between oral and poster presentations in terms of paper quality.The composition of the oral sessions were proposed by the SACs of their respective tracks, so as to compose a thematically coherent set of papers on a shared topic or method, which would allow for an engaging discussion.The decisions were not based on the authors' virtual or on-site attendance.We hope you enjoy the program and the new elements we introduced (but let us know either way).We are looking forward to a great ACL 2023!",
+        "citationCount": 354
+      },
+      {
+        "paperId": "https://openalex.org/W4412130408",
+        "title": "On Protecting the Data Privacy of Large Language Models (LLMs): A Survey",
+        "year": 2024,
+        "abstract": "Large language models (LLMs) are complex artificial intelligence systems capable of understanding, generating and translating human language. They learn language patterns by analyzing large amounts of text data, allowing them to perform writing, conversation, summarizing and other language tasks. When LLMs process and generate large amounts of data, there is a risk of leaking sensitive information, which may threaten data privacy. This paper concentrates on elucidating the data privacy concerns associated with LLMs to foster a comprehensive understanding. Specifically, a thorough investigation is undertaken to delineate the spectrum of data privacy threats, encompassing both passive privacy leakage and active privacy attacks within LLMs. Subsequently, we conduct an assessment of the privacy protection mechanisms employed by LLMs at various stages, followed by a detailed examination of their efficacy and constraints.",
+        "citationCount": 76
+      },
+      {
+        "paperId": "https://openalex.org/W4407661798",
+        "title": "Rethinking machine unlearning for large language models",
         "year": 2025,
-        "abstract": "This article explores how Large Language Model (LLM) chatbots regulate moral values when they refuse ‘unsafe’ requests from users. It applies corpus-based discourse analysis to examine how the chatbots employ tenor resources of positioning , tuning , and orienting in the rhetoric of their refusals. This method is informed by Systemic Functional Linguistics, in particular the discourse semantic system of appraisal , which models evaluative meaning. Despite their contrite openings, chatbot refusals tend to raise stakes in terms of tenor. They deploy prosodies of propriety targeted at moral and taboo stances and behaviours. This rhetoric of oppositioning involves encapsulating key values into iconised attitudes as the chatbots advise users about what is ‘important’ and ‘not appropriate’.",
+        "abstract": null,
+        "citationCount": 66
+      },
+      {
+        "paperId": "https://openalex.org/W4408051337",
+        "title": "On protecting the data privacy of Large Language Models (LLMs) and LLM agents: A literature review",
+        "year": 2025,
+        "abstract": "Large Language Models (LLMs) are complex artificial intelligence systems, which can understand, generate, and translate human languages. By analyzing large amounts of textual data, these models learn language patterns to perform tasks such as writing, conversation, and summarization. Agents built on LLMs (LLM agents) further extend these capabilities, allowing them to process user interactions and perform complex operations in diverse task environments. However, during the processing and generation of massive data, LLMs and LLM agents pose a risk of sensitive information leakage, potentially threatening data privacy. This paper aims to demonstrate data privacy issues associated with LLMs and LLM agents to facilitate a comprehensive understanding. Specifically, we conduct an in-depth survey about privacy threats, encompassing passive privacy leakage and active privacy attacks. Subsequently, we introduce the privacy protection mechanisms employed by LLMs and LLM agents and provide a detailed analysis of their effectiveness. Finally, we explore the privacy protection challenges for LLMs and LLM agents as well as outline potential directions for future developments in this domain.",
+        "citationCount": 45
+      },
+      {
+        "paperId": "https://openalex.org/W4389519496",
+        "title": "Unlearn What You Want to Forget: Efficient Unlearning for LLMs",
+        "year": 2023,
+        "abstract": "Large language models (LLMs) have achieved significant progress from pre-training on and memorizing a wide range of textual data, however, this process might suffer from privacy issues and violations of data protection regulations. As a result, the ability to easily remove data related to individual users from such models while not deteriorating their predictive quality after the removal becomes increasingly important. To address these issues, in this work, we propose an efficient unlearning framework that could efficiently update LLMs without having to retrain the whole model after data removals, by introducing lightweight unlearning layers learned with a selective teacher-student objective into the transformers. In addition, we introduce a fusion mechanism to effectively combine different unlearning layers that learns to forget different sets of data to handle a sequence of forgetting operations. Experiments on classification and generation tasks demonstrate the effectiveness of our proposed methods compared to the state-of-the-art baselines.",
+        "citationCount": 42
+      },
+      {
+        "paperId": "https://openalex.org/W4386576626",
+        "title": "Language Generation Models Can Cause Harm: So What Can We Do About It? An Actionable Survey",
+        "year": 2023,
+        "abstract": "Sachin Kumar, Vidhisha Balachandran, Lucille Njoo, Antonios Anastasopoulos, Yulia Tsvetkov. Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics. 2023.",
+        "citationCount": 37
+      },
+      {
+        "paperId": "https://openalex.org/W4406163678",
+        "title": "The Frontier of Data Erasure: A Survey on Machine Unlearning for Large Language Models",
+        "year": 2025,
+        "abstract": "This article reviews the latest in machine unlearning for large language models (LLMs), introducing methods for the targeted forgetting of information to address privacy, ethical, and legal challenges without necessitating full-model retraining. Machine unlearning is a cutting-edge solution, mitigating risk concerns of LLMs and artificial intelligence.",
+        "citationCount": 17
+      },
+      {
+        "paperId": "https://openalex.org/W4411446757",
+        "title": "Privacy in Fine-Tuning Large Language Models: Attacks, Defenses, and Future Directions",
+        "year": 2025,
+        "abstract": null,
+        "citationCount": 14
+      },
+      {
+        "paperId": "https://openalex.org/W4411337316",
+        "title": "Understanding Users' Security and Privacy Concerns and Attitudes Towards Conversational AI Platforms",
+        "year": 2025,
+        "abstract": "The widespread adoption of conversational AI platforms has introduced new security and privacy risks. While these risks and their mitigation strategies have been extensively researched from a technical perspective, users' perceptions of these platforms' security and privacy remain largely unexplored. In this paper, we conduct a large-scale analysis of over 2.5M user posts from the r/ChatGPT Reddit community to understand users' security and privacy concerns and attitudes toward conversational AI platforms. Our qualitative analysis reveals that users are concerned about each stage of the data lifecycle (i.e., collection, usage, and retention). They seek mitigations for security vulnerabilities, compliance with privacy regulations, and greater transparency and control in data handling. We also find that users exhibit varied behaviors and preferences when interacting with these platforms. Some users proactively safeguard their data and adjust privacy settings, while others prioritize convenience over privacy risks, dismissing privacy concerns in favor of benefits, or feel resigned to inevitable data sharing. Through qualitative content and regression analysis, we discover that users' concerns evolve over time with the evolving AI landscape and are influenced by technological developments and major events. Based on our findings, we provide recommendations for users, platforms, enterprises, and policymakers to enhance transparency, improve data controls, and increase user trust and adoption.",
+        "citationCount": 13
+      },
+      {
+        "paperId": "https://openalex.org/W4408140916",
+        "title": "A survey on machine unlearning: Techniques and new emerged privacy risks",
+        "year": 2025,
+        "abstract": null,
+        "citationCount": 13
+      },
+      {
+        "paperId": "https://openalex.org/W4389523936",
+        "title": "Preserving Privacy Through Dememorization: An Unlearning Technique For Mitigating Memorization Risks In Language Models",
+        "year": 2023,
+        "abstract": "Preserving Privacy Through DeMemorization: An Unlearning Technique For Mitigating Memorization Risks In Language Models",
+        "citationCount": 10
+      },
+      {
+        "paperId": "https://openalex.org/W4409746047",
+        "title": "Creative Writers' Attitudes on Writing as Training Data for Large Language Models",
+        "year": 2025,
+        "abstract": null,
+        "citationCount": 10
+      },
+      {
+        "paperId": "https://openalex.org/W4410609060",
+        "title": "Verifiable and Provably Secure Machine Unlearning",
+        "year": 2025,
+        "abstract": "Machine unlearning aims to remove points from the training dataset of a machine learning model after training: e.g., when a user requests their data to be deleted. While many unlearning methods have been proposed, none of them enable users to audit the procedure. Furthermore, recent work shows a user is unable to verify whether their data was unlearnt from an inspection of the model parameter alone. Rather than reasoning about parameters, we propose to view verifiable unlearning as a security problem. To this end, we present the first cryptographic definition of verifiable unlearning to formally capture the guarantees of an unlearning system. In this framework, the server first computes a proof that the model was trained on a dataset <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$D$</tex>. Given a user's data point <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$d$</tex> requested to be deleted, the server updates the model using an unlearning algorithm. It then provides a proof of the correct execution of unlearning and that <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$d\\not\\in D^{\\prime}$</tex>, where <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$D^{\\prime}$</tex> is the new training dataset (i.e., <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$d$</tex> has been removed). Our framework is generally applicable to different unlearning techniques that we abstract as admissible functions. We instantiate a protocol in the framework, based on cryptographic assumptions, using SNARKs and hash chains. Finally, we implement the protocol for three different unlearning techniques and validate its feasibility for linear regression, logistic regression, and neural networks.",
+        "citationCount": 10
+      },
+      {
+        "paperId": "https://openalex.org/W4406457934",
+        "title": "SoK: Prompt Hacking of Large Language Models",
+        "year": 2024,
+        "abstract": "The safety and robustness of large language models (LLMs) based applications remain critical challenges in artificial intelligence. Among the key threats to these applications are prompt hacking attacks, which can significantly undermine the security and reliability of LLM-based systems. In this work, we offer a comprehensive and systematic overview of three distinct types of prompt hacking: jailbreaking, leaking, and injection, addressing the nuances that differentiate them despite their overlapping characteristics. To enhance the evaluation of LLM-based applications, we propose a novel framework that categorizes LLM responses into five distinct classes, moving beyond the traditional binary classification. This approach provides more granular insights into the AI’s behavior, improving diagnostic precision and enabling more targeted enhancements to the system’s safety and robustness.",
+        "citationCount": 9
+      },
+      {
+        "paperId": "https://openalex.org/W4389523877",
+        "title": "MoPe: Model Perturbation based Privacy Attacks on Language Models",
+        "year": 2023,
+        "abstract": "Recent work has shown that Large Language Models (LLMs) can unintentionally leak sensitive information present in their training data. In this paper, we present Model Perturbations (MoPe), a new method to identify with high confidence if a given text is in the training data of a pre-trained language model, given white-box access to the models parameters. MoPe adds noise to the model in parameter space and measures the drop in log-likelihood at a given point x, a statistic we show approximates the trace of the Hessian matrix with respect to model parameters. Across language models ranging from 70M to 12B parameters, we show that MoPe is more effective than existing loss-based attacks and recently proposed perturbation-based methods. We also examine the role of training point order and model size in attack success, and empirically demonstrate that MoPe accurately approximate the trace of the Hessian in practice. Our results show that the loss of a point alone is insufficient to determine extractability—there are training points we can recover using our method that have average loss. This casts some doubt on prior works that use the loss of a point as evidence of memorization or unlearning.",
+        "citationCount": 8
+      },
+      {
+        "paperId": "https://openalex.org/W4402716159",
+        "title": "Continual Forgetting for Pre-Trained Vision Models",
+        "year": 2024,
+        "abstract": "For privacy and security concerns, the need to erase un-wanted information from pre-trained vision models is becoming evident nowadays. In real-world scenar-ios, erasure requests originate at any time from both users and model owners. These requests usually form a sequence. Therefore, under such a setting, selective information is expected to be continuously removed from a pre-trained model while maintaining the rest. We define this problem as continual forgetting and identify two key challenges. (i) For unwanted knowledge, efficient and effective deleting is crucial. (ii) For remaining knowledge, the impact brought by the forgetting procedure should be minimal. To address them, we propose Group Sparse LoRA (GS-LoRA). Specifically, towards (i), we use LoRA modules to fine-tune the FFN layers in Transformer blocks for each forgetting task independently, and towards (ii), a simple group sparse regularization is adopted, enabling automatic selection of specific LoRA groups and zeroing out the others. GS-LoRA is effective, parameter-efficient, data-efficient, and easy to implement. We conduct extensive experiments on face recognition, object detection and image classification and demonstrate that GS-LoRA manages to forget specific classes with minimal impact on other classes. Codes will be released on https://github.com/bjzhb666/GS-LoRA.",
+        "citationCount": 8
+      },
+      {
+        "paperId": "https://openalex.org/W4410609250",
+        "title": "Inexact Unlearning Needs More Careful Evaluations to Avoid a False Sense of Privacy",
+        "year": 2025,
+        "abstract": "The high cost of model training makes it increasingly desirable to develop techniques for unlearning. These techniques seek to remove the influence of a training example without having to retrain the model from scratch. Intuitively, once a model has unlearned, an adversary that interacts with the model should no longer be able to tell whether the unlearned example was included in the model's training set or not. In the privacy literature, this is known as membership inference. In this work, we discuss adaptations of Membership Inference Attacks (MIAs) to the setting of unlearning (leading to their “U-MIA” counterparts). We propose a categorization of existing U-MIAs into “population U-MIAs”, where the same attacker is instantiated for all examples, and “per-example U-MIAs”, where a dedicated attacker is instantiated for each example. We show that the latter category, wherein the attacker tailors its membership prediction to each example under attack, is significantly stronger. Indeed, our results show that the commonly used U-MIAs in the unlearning literature overestimate the privacy protection afforded by existing unlearning techniques on both vision and language models. Our investigation reveals a large variance in the vulnerability of different examples to per-example U-MIAs. In fact, several unlearning algorithms lead to a reduced vulnerability for some, but not all, examples that we wish to unlearn, at the expense of increasing it for other examples. Notably, we find that the privacy protection for the remaining training examples may worsen as a consequence of unlearning. We also discuss the fundamental difficulty of equally protecting all examples using existing unlearning schemes, due to the different rates at which different examples are unlearned. We demonstrate that naive attempts at tailoring unlearning stopping criteria to different examples fail to alleviate these issues.",
+        "citationCount": 6
+      },
+      {
+        "paperId": "https://openalex.org/W4404439856",
+        "title": "MultiDelete for Multimodal Machine Unlearning",
+        "year": 2024,
+        "abstract": null,
+        "citationCount": 4
+      },
+      {
+        "paperId": "https://openalex.org/W4406884898",
+        "title": "Privacy dilemmas and opportunities in large language models: a brief review",
+        "year": 2025,
+        "abstract": null,
+        "citationCount": 4
+      },
+      {
+        "paperId": "https://openalex.org/W4386566852",
+        "title": "CoTEVer: Chain of Thought Prompting Annotation Toolkit for Explanation Verification",
+        "year": 2023,
+        "abstract": "Seungone Kim, Se June Joo, Yul Jang, Hyungjoo Chae, Jinyoung Yeo. Proceedings of the 17th Conference of the European Chapter of the Association for Computational Linguistics: System Demonstrations. 2023.",
         "citationCount": 4
       }
     ],
+    "citation_relevance_filter": {
+      "min_relevance_terms": 2,
+      "diagnostics": [
+        {
+          "paperId": "https://openalex.org/W2148437670",
+          "title": "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+          "year": 2023,
+          "citationCount": 354,
+          "overlap_terms": [
+            "all",
+            "data",
+            "focused",
+            "issue",
+            "mostly",
+            "previou",
+            "reduce",
+            "target",
+            "than",
+            "them"
+          ],
+          "overlap_count": 10,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4412130408",
+          "title": "On Protecting the Data Privacy of Large Language Models (LLMs): A Survey",
+          "year": 2024,
+          "citationCount": 76,
+          "overlap_terms": [
+            "amount",
+            "both",
+            "data",
+            "may",
+            "privacy",
+            "risk",
+            "them"
+          ],
+          "overlap_count": 7,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4407661798",
+          "title": "Rethinking machine unlearning for large language models",
+          "year": 2025,
+          "citationCount": 66,
+          "overlap_terms": [
+            "unlearning"
+          ],
+          "overlap_count": 1,
+          "kept": false
+        },
+        {
+          "paperId": "https://openalex.org/W4408051337",
+          "title": "On protecting the data privacy of Large Language Models (LLMs) and LLM agents: A literature review",
+          "year": 2025,
+          "citationCount": 45,
+          "overlap_terms": [
+            "amount",
+            "data",
+            "during",
+            "issue",
+            "privacy",
+            "risk",
+            "them"
+          ],
+          "overlap_count": 7,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4389519496",
+          "title": "Unlearn What You Want to Forget: Efficient Unlearning for LLMs",
+          "year": 2023,
+          "citationCount": 42,
+          "overlap_terms": [
+            "data",
+            "forgetting",
+            "issue",
+            "objective",
+            "privacy",
+            "sequence",
+            "unlearn",
+            "unlearning"
+          ],
+          "overlap_count": 8,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4386576626",
+          "title": "Language Generation Models Can Cause Harm: So What Can We Do About It? An Actionable Survey",
+          "year": 2023,
+          "citationCount": 37,
+          "overlap_terms": [],
+          "overlap_count": 0,
+          "kept": false
+        },
+        {
+          "paperId": "https://openalex.org/W4406163678",
+          "title": "The Frontier of Data Erasure: A Survey on Machine Unlearning for Large Language Models",
+          "year": 2025,
+          "citationCount": 17,
+          "overlap_terms": [
+            "data",
+            "forgetting",
+            "mitigating",
+            "privacy",
+            "risk",
+            "unlearning"
+          ],
+          "overlap_count": 6,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4411446757",
+          "title": "Privacy in Fine-Tuning Large Language Models: Attacks, Defenses, and Future Directions",
+          "year": 2025,
+          "citationCount": 14,
+          "overlap_terms": [
+            "privacy"
+          ],
+          "overlap_count": 1,
+          "kept": false
+        },
+        {
+          "paperId": "https://openalex.org/W4411337316",
+          "title": "Understanding Users' Security and Privacy Concerns and Attitudes Towards Conversational AI Platforms",
+          "year": 2025,
+          "citationCount": 13,
+          "overlap_terms": [
+            "data",
+            "find",
+            "has",
+            "post",
+            "privacy",
+            "risk"
+          ],
+          "overlap_count": 6,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4408140916",
+          "title": "A survey on machine unlearning: Techniques and new emerged privacy risks",
+          "year": 2025,
+          "citationCount": 13,
+          "overlap_terms": [
+            "privacy",
+            "risk",
+            "unlearning"
+          ],
+          "overlap_count": 3,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4389523936",
+          "title": "Preserving Privacy Through Dememorization: An Unlearning Technique For Mitigating Memorization Risks In Language Models",
+          "year": 2023,
+          "citationCount": 10,
+          "overlap_terms": [
+            "mitigating",
+            "privacy",
+            "risk",
+            "unlearning"
+          ],
+          "overlap_count": 4,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4409746047",
+          "title": "Creative Writers' Attitudes on Writing as Training Data for Large Language Models",
+          "year": 2025,
+          "citationCount": 10,
+          "overlap_terms": [
+            "data"
+          ],
+          "overlap_count": 1,
+          "kept": false
+        },
+        {
+          "paperId": "https://openalex.org/W4410609060",
+          "title": "Verifiable and Provably Secure Machine Unlearning",
+          "year": 2025,
+          "citationCount": 10,
+          "overlap_terms": [
+            "data",
+            "has",
+            "than",
+            "them",
+            "unlearning"
+          ],
+          "overlap_count": 5,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4406457934",
+          "title": "SoK: Prompt Hacking of Large Language Models",
+          "year": 2024,
+          "citationCount": 9,
+          "overlap_terms": [
+            "addressing",
+            "them"
+          ],
+          "overlap_count": 2,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4389523877",
+          "title": "MoPe: Model Perturbation based Privacy Attacks on Language Models",
+          "year": 2023,
+          "citationCount": 8,
+          "overlap_terms": [
+            "data",
+            "effective",
+            "has",
+            "privacy",
+            "than",
+            "unlearning"
+          ],
+          "overlap_count": 6,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4402716159",
+          "title": "Continual Forgetting for Pre-Trained Vision Models",
+          "year": 2024,
+          "citationCount": 8,
+          "overlap_terms": [
+            "both",
+            "effective",
+            "forgetting",
+            "knowledge",
+            "privacy",
+            "sequence",
+            "them"
+          ],
+          "overlap_count": 7,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4410609250",
+          "title": "Inexact Unlearning Needs More Careful Evaluations to Avoid a False Sense of Privacy",
+          "year": 2025,
+          "citationCount": 6,
+          "overlap_terms": [
+            "all",
+            "both",
+            "find",
+            "has",
+            "issue",
+            "may",
+            "once",
+            "privacy",
+            "unlearn",
+            "unlearning"
+          ],
+          "overlap_count": 10,
+          "kept": true
+        },
+        {
+          "paperId": "https://openalex.org/W4404439856",
+          "title": "MultiDelete for Multimodal Machine Unlearning",
+          "year": 2024,
+          "citationCount": 4,
+          "overlap_terms": [
+            "unlearning"
+          ],
+          "overlap_count": 1,
+          "kept": false
+        },
+        {
+          "paperId": "https://openalex.org/W4406884898",
+          "title": "Privacy dilemmas and opportunities in large language models: a brief review",
+          "year": 2025,
+          "citationCount": 4,
+          "overlap_terms": [
+            "privacy"
+          ],
+          "overlap_count": 1,
+          "kept": false
+        },
+        {
+          "paperId": "https://openalex.org/W4386566852",
+          "title": "CoTEVer: Chain of Thought Prompting Annotation Toolkit for Explanation Verification",
+          "year": 2023,
+          "citationCount": 4,
+          "overlap_terms": [],
+          "overlap_count": 0,
+          "kept": false
+        }
+      ]
+    },
+    "citations_used": [
+      {
+        "paperId": "https://openalex.org/W2148437670",
+        "title": "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
+        "year": 2023,
+        "abstract": "Message from the Program ChairsIt's hard to believe that we're actually going to be seeing the program come together in Toronto.We're really looking forward to it and to seeing you all there!Most of the work of a program chair is behind the scenes: herding reviewers and chairs, wrangling data from various sources, and answering lots and lots of email.This is a volunteer position, so the only reward we get for this is our chance to make the process of submitting and reviewing papers to our conference better.This letter will outline some of those experiments.First, we asked reviewers for two scores: soundness and excitement.Our goal was that any sound paper would be accepted to some ACL affiliated venue, but that the \"main conference\" distinction (limited by space) would be focused on the most exciting papers.Our hope was that soundness would be less noisy than a single \"overall recommendation\" score, which would help reduce the randomness of decisions.Judging by the exit surveys, this change was well received: over 80% of the chairs, reviewers and authors either expressed support or did not object to this change.Next, we developed a new process for matching papers to reviewers based on keywords for not only the subject matter of the paper, but also its type of contribution and target language(s).This allowed more fine-grained control over the paper-reviewer matches, and we were also able to provide the chairs with context for the paper-reviewer matches.To improve review quality, we also updated the reviewer guidelines, and developed a system for the authors to flag specific types of issues with reviews.Finally, we have also proposed a new initiative for recognizing outstanding reviewers and chairs (73 awards at ACL'23).Finally, we have tried to give more options for presentations.Findings papers now have an in-person presentation spotlight slot and virtual posters in addition to recording videos.Virtual posters have portals to link in-person attendees to virtual posters.We have also brought back Miniconf and RocketChat to allow for better virtual communication between papers (regardless of where the authors are).This conference is a result of the joint efforts of over ten thousand people.We deeply thank them all, and apologize for the many nagging emails we had to send out.In particular: AreasTo ensure a smooth process, the submissions to ACL 2023 were divided into 26 areas.The areas mostly followed these of previous ACL, and more broadly *ACL conferences, reflecting the typical divisions in the field.Following EMNLP 2022, we split the \"Large Language Models\" track away from \"Machine learning in NLP\", reflecting the growth of submissions in the area.We also offered two new tracks (\"Linguistic diversity\" and \"Multilingualism and Cross-Lingual NLP\").For the papers authored by SACs, the final recommendation decisions were made by a separate SAC team.The most popular areas (with over 250 submissions) were \"Dialogue and Interactive Systems\", \"Information Extraction\", \"Large Language Models\", \"Machine Learning for NLP\", and \"NLP Applications\". Best Paper AwardsACL'23 implemented the new ACL award policy, aiming to expand the pool of work that is recognized as outstanding.In total, 73 papers were nominated by the reviewers or area chairs for consideration for awards.These papers were assessed by the Best Paper Award Committee, and with their help we selected 4 best papers, 3 special awards (social impact, resource, reproduction), and several dozen outstanding papers.The best and outstanding papers will be announced in a dedicated plenary session for Best Paper Awards on July 10 2023. Presentation ModeIn ACL 2023, there is no meaningful distinction between oral and poster presentations in terms of paper quality.The composition of the oral sessions were proposed by the SACs of their respective tracks, so as to compose a thematically coherent set of papers on a shared topic or method, which would allow for an engaging discussion.The decisions were not based on the authors' virtual or on-site attendance.We hope you enjoy the program and the new elements we introduced (but let us know either way).We are looking forward to a great ACL 2023!",
+        "citationCount": 354
+      },
+      {
+        "paperId": "https://openalex.org/W4412130408",
+        "title": "On Protecting the Data Privacy of Large Language Models (LLMs): A Survey",
+        "year": 2024,
+        "abstract": "Large language models (LLMs) are complex artificial intelligence systems capable of understanding, generating and translating human language. They learn language patterns by analyzing large amounts of text data, allowing them to perform writing, conversation, summarizing and other language tasks. When LLMs process and generate large amounts of data, there is a risk of leaking sensitive information, which may threaten data privacy. This paper concentrates on elucidating the data privacy concerns associated with LLMs to foster a comprehensive understanding. Specifically, a thorough investigation is undertaken to delineate the spectrum of data privacy threats, encompassing both passive privacy leakage and active privacy attacks within LLMs. Subsequently, we conduct an assessment of the privacy protection mechanisms employed by LLMs at various stages, followed by a detailed examination of their efficacy and constraints.",
+        "citationCount": 76
+      },
+      {
+        "paperId": "https://openalex.org/W4408051337",
+        "title": "On protecting the data privacy of Large Language Models (LLMs) and LLM agents: A literature review",
+        "year": 2025,
+        "abstract": "Large Language Models (LLMs) are complex artificial intelligence systems, which can understand, generate, and translate human languages. By analyzing large amounts of textual data, these models learn language patterns to perform tasks such as writing, conversation, and summarization. Agents built on LLMs (LLM agents) further extend these capabilities, allowing them to process user interactions and perform complex operations in diverse task environments. However, during the processing and generation of massive data, LLMs and LLM agents pose a risk of sensitive information leakage, potentially threatening data privacy. This paper aims to demonstrate data privacy issues associated with LLMs and LLM agents to facilitate a comprehensive understanding. Specifically, we conduct an in-depth survey about privacy threats, encompassing passive privacy leakage and active privacy attacks. Subsequently, we introduce the privacy protection mechanisms employed by LLMs and LLM agents and provide a detailed analysis of their effectiveness. Finally, we explore the privacy protection challenges for LLMs and LLM agents as well as outline potential directions for future developments in this domain.",
+        "citationCount": 45
+      },
+      {
+        "paperId": "https://openalex.org/W4389519496",
+        "title": "Unlearn What You Want to Forget: Efficient Unlearning for LLMs",
+        "year": 2023,
+        "abstract": "Large language models (LLMs) have achieved significant progress from pre-training on and memorizing a wide range of textual data, however, this process might suffer from privacy issues and violations of data protection regulations. As a result, the ability to easily remove data related to individual users from such models while not deteriorating their predictive quality after the removal becomes increasingly important. To address these issues, in this work, we propose an efficient unlearning framework that could efficiently update LLMs without having to retrain the whole model after data removals, by introducing lightweight unlearning layers learned with a selective teacher-student objective into the transformers. In addition, we introduce a fusion mechanism to effectively combine different unlearning layers that learns to forget different sets of data to handle a sequence of forgetting operations. Experiments on classification and generation tasks demonstrate the effectiveness of our proposed methods compared to the state-of-the-art baselines.",
+        "citationCount": 42
+      },
+      {
+        "paperId": "https://openalex.org/W4406163678",
+        "title": "The Frontier of Data Erasure: A Survey on Machine Unlearning for Large Language Models",
+        "year": 2025,
+        "abstract": "This article reviews the latest in machine unlearning for large language models (LLMs), introducing methods for the targeted forgetting of information to address privacy, ethical, and legal challenges without necessitating full-model retraining. Machine unlearning is a cutting-edge solution, mitigating risk concerns of LLMs and artificial intelligence.",
+        "citationCount": 17
+      },
+      {
+        "paperId": "https://openalex.org/W4411337316",
+        "title": "Understanding Users' Security and Privacy Concerns and Attitudes Towards Conversational AI Platforms",
+        "year": 2025,
+        "abstract": "The widespread adoption of conversational AI platforms has introduced new security and privacy risks. While these risks and their mitigation strategies have been extensively researched from a technical perspective, users' perceptions of these platforms' security and privacy remain largely unexplored. In this paper, we conduct a large-scale analysis of over 2.5M user posts from the r/ChatGPT Reddit community to understand users' security and privacy concerns and attitudes toward conversational AI platforms. Our qualitative analysis reveals that users are concerned about each stage of the data lifecycle (i.e., collection, usage, and retention). They seek mitigations for security vulnerabilities, compliance with privacy regulations, and greater transparency and control in data handling. We also find that users exhibit varied behaviors and preferences when interacting with these platforms. Some users proactively safeguard their data and adjust privacy settings, while others prioritize convenience over privacy risks, dismissing privacy concerns in favor of benefits, or feel resigned to inevitable data sharing. Through qualitative content and regression analysis, we discover that users' concerns evolve over time with the evolving AI landscape and are influenced by technological developments and major events. Based on our findings, we provide recommendations for users, platforms, enterprises, and policymakers to enhance transparency, improve data controls, and increase user trust and adoption.",
+        "citationCount": 13
+      },
+      {
+        "paperId": "https://openalex.org/W4408140916",
+        "title": "A survey on machine unlearning: Techniques and new emerged privacy risks",
+        "year": 2025,
+        "abstract": null,
+        "citationCount": 13
+      },
+      {
+        "paperId": "https://openalex.org/W4389523936",
+        "title": "Preserving Privacy Through Dememorization: An Unlearning Technique For Mitigating Memorization Risks In Language Models",
+        "year": 2023,
+        "abstract": "Preserving Privacy Through DeMemorization: An Unlearning Technique For Mitigating Memorization Risks In Language Models",
+        "citationCount": 10
+      },
+      {
+        "paperId": "https://openalex.org/W4410609060",
+        "title": "Verifiable and Provably Secure Machine Unlearning",
+        "year": 2025,
+        "abstract": "Machine unlearning aims to remove points from the training dataset of a machine learning model after training: e.g., when a user requests their data to be deleted. While many unlearning methods have been proposed, none of them enable users to audit the procedure. Furthermore, recent work shows a user is unable to verify whether their data was unlearnt from an inspection of the model parameter alone. Rather than reasoning about parameters, we propose to view verifiable unlearning as a security problem. To this end, we present the first cryptographic definition of verifiable unlearning to formally capture the guarantees of an unlearning system. In this framework, the server first computes a proof that the model was trained on a dataset <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$D$</tex>. Given a user's data point <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$d$</tex> requested to be deleted, the server updates the model using an unlearning algorithm. It then provides a proof of the correct execution of unlearning and that <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$d\\not\\in D^{\\prime}$</tex>, where <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$D^{\\prime}$</tex> is the new training dataset (i.e., <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$d$</tex> has been removed). Our framework is generally applicable to different unlearning techniques that we abstract as admissible functions. We instantiate a protocol in the framework, based on cryptographic assumptions, using SNARKs and hash chains. Finally, we implement the protocol for three different unlearning techniques and validate its feasibility for linear regression, logistic regression, and neural networks.",
+        "citationCount": 10
+      },
+      {
+        "paperId": "https://openalex.org/W4406457934",
+        "title": "SoK: Prompt Hacking of Large Language Models",
+        "year": 2024,
+        "abstract": "The safety and robustness of large language models (LLMs) based applications remain critical challenges in artificial intelligence. Among the key threats to these applications are prompt hacking attacks, which can significantly undermine the security and reliability of LLM-based systems. In this work, we offer a comprehensive and systematic overview of three distinct types of prompt hacking: jailbreaking, leaking, and injection, addressing the nuances that differentiate them despite their overlapping characteristics. To enhance the evaluation of LLM-based applications, we propose a novel framework that categorizes LLM responses into five distinct classes, moving beyond the traditional binary classification. This approach provides more granular insights into the AI’s behavior, improving diagnostic precision and enabling more targeted enhancements to the system’s safety and robustness.",
+        "citationCount": 9
+      },
+      {
+        "paperId": "https://openalex.org/W4389523877",
+        "title": "MoPe: Model Perturbation based Privacy Attacks on Language Models",
+        "year": 2023,
+        "abstract": "Recent work has shown that Large Language Models (LLMs) can unintentionally leak sensitive information present in their training data. In this paper, we present Model Perturbations (MoPe), a new method to identify with high confidence if a given text is in the training data of a pre-trained language model, given white-box access to the models parameters. MoPe adds noise to the model in parameter space and measures the drop in log-likelihood at a given point x, a statistic we show approximates the trace of the Hessian matrix with respect to model parameters. Across language models ranging from 70M to 12B parameters, we show that MoPe is more effective than existing loss-based attacks and recently proposed perturbation-based methods. We also examine the role of training point order and model size in attack success, and empirically demonstrate that MoPe accurately approximate the trace of the Hessian in practice. Our results show that the loss of a point alone is insufficient to determine extractability—there are training points we can recover using our method that have average loss. This casts some doubt on prior works that use the loss of a point as evidence of memorization or unlearning.",
+        "citationCount": 8
+      },
+      {
+        "paperId": "https://openalex.org/W4402716159",
+        "title": "Continual Forgetting for Pre-Trained Vision Models",
+        "year": 2024,
+        "abstract": "For privacy and security concerns, the need to erase un-wanted information from pre-trained vision models is becoming evident nowadays. In real-world scenar-ios, erasure requests originate at any time from both users and model owners. These requests usually form a sequence. Therefore, under such a setting, selective information is expected to be continuously removed from a pre-trained model while maintaining the rest. We define this problem as continual forgetting and identify two key challenges. (i) For unwanted knowledge, efficient and effective deleting is crucial. (ii) For remaining knowledge, the impact brought by the forgetting procedure should be minimal. To address them, we propose Group Sparse LoRA (GS-LoRA). Specifically, towards (i), we use LoRA modules to fine-tune the FFN layers in Transformer blocks for each forgetting task independently, and towards (ii), a simple group sparse regularization is adopted, enabling automatic selection of specific LoRA groups and zeroing out the others. GS-LoRA is effective, parameter-efficient, data-efficient, and easy to implement. We conduct extensive experiments on face recognition, object detection and image classification and demonstrate that GS-LoRA manages to forget specific classes with minimal impact on other classes. Codes will be released on https://github.com/bjzhb666/GS-LoRA.",
+        "citationCount": 8
+      },
+      {
+        "paperId": "https://openalex.org/W4410609250",
+        "title": "Inexact Unlearning Needs More Careful Evaluations to Avoid a False Sense of Privacy",
+        "year": 2025,
+        "abstract": "The high cost of model training makes it increasingly desirable to develop techniques for unlearning. These techniques seek to remove the influence of a training example without having to retrain the model from scratch. Intuitively, once a model has unlearned, an adversary that interacts with the model should no longer be able to tell whether the unlearned example was included in the model's training set or not. In the privacy literature, this is known as membership inference. In this work, we discuss adaptations of Membership Inference Attacks (MIAs) to the setting of unlearning (leading to their “U-MIA” counterparts). We propose a categorization of existing U-MIAs into “population U-MIAs”, where the same attacker is instantiated for all examples, and “per-example U-MIAs”, where a dedicated attacker is instantiated for each example. We show that the latter category, wherein the attacker tailors its membership prediction to each example under attack, is significantly stronger. Indeed, our results show that the commonly used U-MIAs in the unlearning literature overestimate the privacy protection afforded by existing unlearning techniques on both vision and language models. Our investigation reveals a large variance in the vulnerability of different examples to per-example U-MIAs. In fact, several unlearning algorithms lead to a reduced vulnerability for some, but not all, examples that we wish to unlearn, at the expense of increasing it for other examples. Notably, we find that the privacy protection for the remaining training examples may worsen as a consequence of unlearning. We also discuss the fundamental difficulty of equally protecting all examples using existing unlearning schemes, due to the different rates at which different examples are unlearned. We demonstrate that naive attempts at tailoring unlearning stopping criteria to different examples fail to alleviate these issues.",
+        "citationCount": 6
+      }
+    ],
     "frontier_terms": [
-      "chatbot",
-      "moral",
-      "refusal",
-      "llm",
-      "value",
+      "privacy",
+      "unlearning",
+      "data",
+      "llms",
       "user",
-      "discourse",
-      "tenor",
-      "rhetoric",
-      "sorry",
-      "dave",
-      "afraid"
+      "machine",
+      "risk",
+      "attack",
+      "security",
+      "technique",
+      "concern",
+      "llm"
     ]
   }
 ]

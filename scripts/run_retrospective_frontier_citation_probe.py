@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import socket
 import time
 from collections import Counter
 from datetime import datetime, timezone
@@ -33,12 +34,17 @@ STOPWORDS = {
     "about",
     "across",
     "against",
+    "also",
     "algorithm",
     "algorithms",
+    "acl",
     "and",
     "approach",
+    "are",
     "based",
+    "better",
     "between",
+    "contribution",
     "datasets",
     "deep",
     "demonstrate",
@@ -47,33 +53,53 @@ STOPWORDS = {
     "empirical",
     "evaluate",
     "evaluation",
+    "example",
     "experiments",
     "framework",
     "for",
     "from",
     "generative",
+    "have",
+    "http",
     "how",
     "improve",
     "improved",
     "improves",
+    "including",
+    "information",
+    "its",
     "language",
     "large",
     "learn",
     "learning",
+    "many",
     "method",
     "methods",
     "model",
     "models",
+    "more",
     "neural",
+    "new",
     "not",
+    "org",
+    "our",
+    "over",
     "paper",
     "performance",
+    "proces",
+    "processe",
     "propose",
     "proposed",
     "provide",
+    "providing",
+    "quality",
+    "result",
     "results",
+    "reviewer",
     "show",
     "shows",
+    "single",
+    "space",
     "study",
     "system",
     "systems",
@@ -81,17 +107,25 @@ STOPWORDS = {
     "tasks",
     "that",
     "the",
+    "tex",
     "their",
     "they",
     "these",
     "this",
     "through",
+    "time",
     "training",
     "using",
     "when",
+    "were",
+    "while",
     "which",
     "with",
     "without",
+    "work",
+    "www",
+    "xlink",
+    "xmln",
     "zhang",
 }
 
@@ -152,7 +186,7 @@ def _api_get(url: str, *, sleep_seconds: float = 1.5, max_attempts: int = 2) -> 
                 time.sleep(sleep_seconds * (attempt + 5))
             else:
                 time.sleep(sleep_seconds * (attempt + 2))
-        except (URLError, TimeoutError) as exc:
+        except (URLError, TimeoutError, socket.timeout) as exc:
             last_error = repr(exc)
             time.sleep(sleep_seconds * (attempt + 2))
     raise RuntimeError(f"Semantic Scholar request failed: {last_error}")
@@ -301,12 +335,19 @@ def _tokens(text: str) -> list[str]:
     return tokens
 
 
+def _title_overlap(source_title: str, match_title: str | None) -> float:
+    source_tokens = set(_tokens(source_title or ""))
+    match_tokens = set(_tokens(match_title or ""))
+    if not source_tokens or not match_tokens:
+        return 0.0
+    return len(source_tokens & match_tokens) / len(source_tokens | match_tokens)
+
+
 def _source_terms(source: dict[str, Any]) -> set[str]:
     text = " ".join(
         [
             str(source.get("title") or ""),
             str(source.get("abstract_excerpt") or ""),
-            " ".join(str(item) for item in source.get("review_snippets") or []),
         ]
     )
     return set(_tokens(text))
@@ -391,6 +432,7 @@ def _winner(scores: dict[str, dict[str, Any]]) -> str:
 
 def _summarize(per_paper: list[dict[str, Any]]) -> dict[str, Any]:
     winners = Counter(item["winner"] for item in per_paper)
+    frontier_quality = Counter(item["frontier_quality"] for item in per_paper)
     conditions = ["paper_only", "review_guided", "shuffled_review_control"]
     means = {}
     for condition in conditions:
@@ -400,6 +442,9 @@ def _summarize(per_paper: list[dict[str, Any]]) -> dict[str, Any]:
         "paper_count": len(per_paper),
         "papers_with_retrieved_citations": sum(1 for item in per_paper if item["citation_count_used"] > 0),
         "thin_citation_graph_papers": sum(1 for item in per_paper if 0 < item["citation_count_used"] < 5),
+        "citation_count_after_relevance_filter": sum(item["citation_count_used"] for item in per_paper),
+        "possible_match_drift_papers": sum(1 for item in per_paper if item["possible_match_drift"]),
+        "frontier_quality_counts": dict(frontier_quality),
         "winner_counts": dict(winners),
         "mean_scores": means,
         "mean_delta_review_guided_minus_paper_only": round(means["review_guided"] - means["paper_only"], 4),
@@ -429,7 +474,10 @@ def _markdown(summary: dict[str, Any]) -> str:
     ]
     aggregate = summary["aggregate"]
     lines.append(f"- Papers with retrieved citations: `{aggregate['papers_with_retrieved_citations']}` / `{aggregate['paper_count']}`")
+    lines.append(f"- Citations after relevance filtering: `{aggregate['citation_count_after_relevance_filter']}`")
     lines.append(f"- Thin citation-graph papers: `{aggregate['thin_citation_graph_papers']}`")
+    lines.append(f"- Possible match-drift papers: `{aggregate['possible_match_drift_papers']}`")
+    lines.append(f"- Frontier quality counts: `{json.dumps(aggregate['frontier_quality_counts'], sort_keys=True)}`")
     lines.append(f"- Winner counts: `{json.dumps(aggregate['winner_counts'], sort_keys=True)}`")
     lines.append(f"- Mean scores: `{json.dumps(aggregate['mean_scores'], sort_keys=True)}`")
     lines.append(f"- Review-guided minus paper-only delta: `{aggregate['mean_delta_review_guided_minus_paper_only']}`")
@@ -446,7 +494,8 @@ def _markdown(summary: dict[str, Any]) -> str:
             f"- `{item['paper_id']}`: `{item['title']}`; winner `{item['winner']}`; "
             f"citations used `{item['citation_count_used']}`; scores "
             f"`{json.dumps(score_view, sort_keys=True)}`; temporal pattern "
-            f"`{item['temporal_diagnostic']['pattern']}`"
+            f"`{item['temporal_diagnostic']['pattern']}`; frontier quality "
+            f"`{item['frontier_quality']}`"
         )
     lines.extend(["", "## Claim Boundary", "", summary["claim_boundary"], ""])
     return "\n".join(lines)
@@ -484,6 +533,7 @@ def main() -> None:
         search_error = None
         metadata_source = "Semantic Scholar Graph API"
         openalex_match = None
+        rejected_openalex_match = None
         openalex_search_error = None
         citation_rows: list[dict[str, Any]] = []
         citation_error = None
@@ -494,13 +544,23 @@ def main() -> None:
         if not citation_rows:
             openalex_match, openalex_search_error = _openalex_search(source)
             if openalex_match and openalex_match.get("id"):
-                citation_rows, openalex_citation_error = _openalex_citations(openalex_match["id"], limit=args.citation_limit)
-                metadata_source = "OpenAlex fallback"
-                if not citation_error:
-                    citation_error = openalex_citation_error
+                overlap = _title_overlap(source["title"], openalex_match.get("title") or openalex_match.get("display_name"))
+                if overlap < 0.35:
+                    rejected_openalex_match = openalex_match
+                    openalex_search_error = (
+                        f"OpenAlex top match rejected by title-overlap guard: overlap={overlap:.3f}"
+                    )
+                    openalex_match = None
+                else:
+                    citation_rows, openalex_citation_error = _openalex_citations(openalex_match["id"], limit=args.citation_limit)
+                    metadata_source = "OpenAlex fallback"
+                    if not citation_error:
+                        citation_error = openalex_citation_error
             else:
                 if not search_error:
                     search_error = openalex_search_error
+        if rejected_openalex_match and not search_error:
+            search_error = openalex_search_error
         original_year = found.get("year") if found else None
         later_citations = [
             row for row in citation_rows
@@ -512,6 +572,14 @@ def main() -> None:
             min_relevance_terms=args.min_relevance_terms,
         )
         terms = _extract_frontier_terms(relevant_citations, max_terms=args.max_terms)
+        if rejected_openalex_match:
+            frontier_quality = "possible_match_drift_rejected"
+        elif not relevant_citations:
+            frontier_quality = "no_relevant_citations"
+        elif len(relevant_citations) < 5:
+            frontier_quality = "thin_relevance_filtered_citation_graph"
+        else:
+            frontier_quality = "usable_relevance_filtered_citation_graph"
         condition_artifacts = {
             "paper_only": regenerated[paper_id]["baseline_regeneration"],
             "review_guided": regenerated[paper_id]["review_guided_regeneration"],
@@ -546,12 +614,26 @@ def main() -> None:
                 "title": source["title"],
                 "semantic_scholar_match": _compact_match(found, source="semantic_scholar"),
                 "openalex_match": _compact_match(openalex_match, source="openalex"),
+                "rejected_openalex_match": _compact_match(rejected_openalex_match, source="openalex"),
                 "metadata_source": metadata_source,
                 "search_error": search_error,
                 "citation_error": citation_error,
+                "match_title_overlap": {
+                    "semantic_scholar": _title_overlap(source["title"], found.get("title")) if found else None,
+                    "openalex": _title_overlap(
+                        source["title"],
+                        openalex_match.get("title") or openalex_match.get("display_name"),
+                    ) if openalex_match else None,
+                    "rejected_openalex": _title_overlap(
+                        source["title"],
+                        rejected_openalex_match.get("title") or rejected_openalex_match.get("display_name"),
+                    ) if rejected_openalex_match else None,
+                },
                 "citation_count_retrieved": len(citation_rows),
                 "citation_count_after_year_filter": len(later_citations),
                 "citation_count_used": len(relevant_citations),
+                "possible_match_drift": bool(rejected_openalex_match),
+                "frontier_quality": frontier_quality,
                 "citation_relevance_filter": {
                     "min_relevance_terms": args.min_relevance_terms,
                     "diagnostics": relevance_diagnostics,
@@ -573,9 +655,21 @@ def main() -> None:
                 "query_title": source["title"],
                 "semantic_scholar_match": _compact_match(found, source="semantic_scholar"),
                 "openalex_match": _compact_match(openalex_match, source="openalex"),
+                "rejected_openalex_match": _compact_match(rejected_openalex_match, source="openalex"),
                 "metadata_source": metadata_source,
                 "search_error": search_error,
                 "citation_error": citation_error,
+                "match_title_overlap": {
+                    "semantic_scholar": _title_overlap(source["title"], found.get("title")) if found else None,
+                    "openalex": _title_overlap(
+                        source["title"],
+                        openalex_match.get("title") or openalex_match.get("display_name"),
+                    ) if openalex_match else None,
+                    "rejected_openalex": _title_overlap(
+                        source["title"],
+                        rejected_openalex_match.get("title") or rejected_openalex_match.get("display_name"),
+                    ) if rejected_openalex_match else None,
+                },
                 "citations_after_year_filter": later_citations,
                 "citation_relevance_filter": {
                     "min_relevance_terms": args.min_relevance_terms,
