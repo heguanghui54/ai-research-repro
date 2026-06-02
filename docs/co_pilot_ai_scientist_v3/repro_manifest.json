@@ -604,7 +604,12 @@
     "scripts/run_semantic_frontier_judge_probe.py",
     "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/README.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/raw_model_calls.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/raw_model_calls.json",
+    "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.md",
+    "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.json",
+    "scripts/audit_temporal_frontier_replay.py",
+    "docs/co_pilot_ai_scientist_v3/audits/temporal_frontier_replay_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/temporal_frontier_replay_audit.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -652,7 +657,7 @@
     "commit": "3a48d462cc0c8619937ec9cfdf43d4ce580bc57f",
     "clean_clone_path": "/tmp/copilot-v3-clean-clone-3a48d462",
     "clone_mode": "shallow_depth_1_single_branch",
-    "manifest_artifacts_checked": 589,
+    "manifest_artifacts_checked": 594,
     "missing_manifest_artifacts": 0,
     "pdfs_rebuilt": 4,
     "english_pdf_bytes": 51757,
@@ -703,7 +708,7 @@
     "audited_pushed_commit": true,
     "generated_files_byte_identical_after_rebuild": false,
     "generated_file_drift_note": "Rebuilding in the clean clone refreshed derived trace-dataset audit files and four PDFs; scripts completed successfully and all manifest artifacts exist, so this is a source-rebuild pass rather than a byte-for-byte generated-artifact immutability claim.",
-    "note": "Verifies the current pushed paper/skill package at 3a48d462 with a shallow clean clone; shallow clone explains the one-entry commit index. Latest retrospective frontier probes remain negative for delayed-value evidence but are present and internally consistent.",
+    "note": "Verifies the current pushed paper/skill package at 3a48d462 with a shallow clean clone; shallow clone explains the one-entry commit index. Latest retrospective frontier probes remain negative for delayed-value evidence but are present and internally consistent. New TFR spec/audit artifacts are included in the manifest; pushed-commit audit should be refreshed after this commit.",
     "tfr_method_text_present": "pass",
     "tfr_skill_instructions_present": "pass"
   },
@@ -1557,5 +1562,20 @@
       }
     },
     "claim_boundary": "Model-judged semantic matching addresses lexical limitations but still finds no delayed-value cases in the small sample; use as prioritization evidence, not proof."
+  },
+  "temporal_frontier_replay_operational_spec": {
+    "status": "operationalized_and_audited_negative_for_delayed_value",
+    "markdown": "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.md",
+    "json": "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.json",
+    "audit": "docs/co_pilot_ai_scientist_v3/audits/temporal_frontier_replay_audit.json",
+    "audit_markdown": "docs/co_pilot_ai_scientist_v3/audits/temporal_frontier_replay_audit.md",
+    "audit_status": "pass_with_negative_delayed_value_evidence",
+    "required_conditions_present": true,
+    "delayed_value_definition_complete": true,
+    "citation_backed_papers": 6,
+    "relevance_filtered_later_citations": 80,
+    "citation_delayed_value_cases": 0,
+    "semantic_delayed_value_candidates": 0,
+    "claim_boundary": "TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. This supports a falsifiable protocol and a measurement boundary, not a positive long-horizon superiority claim."
   }
 }

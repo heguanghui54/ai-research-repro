@@ -89,6 +89,9 @@ matched evidence and clear boundary conditions.
      historical review snippets themselves carry future-frontier signals, and
      `scripts/run_semantic_frontier_judge_probe.py` when lexical overlap is too
      weak and a semantic judge over citation metadata is needed.
+   - Run `scripts/audit_temporal_frontier_replay.py` after TFR probes, or when
+     using the archived TFR package, to verify the operational spec, required
+     replay conditions, delayed-value definition, and archived probe summaries.
    - Treat delayed-value review signals as the high-value but hard case:
      review guidance may reduce short-term artifact quality while improving
      alignment with later mainstream or SOTA directions. If the probe finds no

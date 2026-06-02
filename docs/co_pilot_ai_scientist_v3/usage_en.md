@@ -127,6 +127,36 @@ python3 scripts/run_openreview_guided_regeneration_probe.py \
   --indices 1,34,49
 ```
 
+To evaluate whether historical reviews would have steered the workflow toward
+later field trajectories, use Temporal Frontier Replay (TFR). The current
+archived package already contains the deterministic smoke, citation-backed
+probe, review-frontier signal probe, and semantic judge probe; to audit that
+package without new model calls, run:
+
+```bash
+python3 scripts/audit_temporal_frontier_replay.py
+```
+
+To rerun the full TFR probe chain, use:
+
+```bash
+python3 scripts/run_retrospective_frontier_alignment_smoke.py
+python3 scripts/run_retrospective_frontier_citation_probe.py
+python3 scripts/run_review_frontier_signal_probe.py
+
+source ~/.codex/env
+python3 scripts/run_semantic_frontier_judge_probe.py \
+  --model gpt-4o-mini
+
+python3 scripts/audit_temporal_frontier_replay.py
+```
+
+TFR should be interpreted strictly. A positive delayed-value case requires
+review guidance to reduce short-term quality while increasing later-frontier
+alignment beyond both paper-only and shuffled-review-control conditions. The
+current archived audit is negative for delayed-value evidence, which is a
+measurement boundary rather than a failure of the protocol.
+
 To mine which review comments are actionable as scientific taste/insight for
 IGRE gates, run:
 

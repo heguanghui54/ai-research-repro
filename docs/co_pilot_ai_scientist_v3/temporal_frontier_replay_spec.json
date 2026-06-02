@@ -1,0 +1,53 @@
+{
+  "spec_id": "temporal_frontier_replay",
+  "version": "2026-06-02",
+  "role_in_igre": "offline_learning_and_evaluation_module",
+  "purpose": "Test whether historical peer-review comments can steer an automated research workflow toward later field trajectories, not merely improve local paper quality.",
+  "required_inputs": [
+    "paper_t",
+    "reviews_t",
+    "frontier_t_plus_delta"
+  ],
+  "required_conditions": [
+    "paper_only",
+    "review_guided",
+    "shuffled_review_control"
+  ],
+  "optional_conditions": [
+    "future_oracle_upper_bound"
+  ],
+  "scores": [
+    "short_term_score",
+    "frontier_alignment_score",
+    "actionability_score",
+    "specificity_score"
+  ],
+  "delayed_value_review_signal": {
+    "short_term_condition": "review_guided.short_term_score < paper_only.short_term_score",
+    "frontier_condition": "review_guided.frontier_alignment_score > paper_only.frontier_alignment_score",
+    "control_condition": "review_guided.frontier_alignment_score > shuffled_review_control.frontier_alignment_score",
+    "review_condition": "responsible_review_snippet_is_actionable_and_specific",
+    "validity_condition": "later_frontier_evidence_passes_match_drift_guard"
+  },
+  "failure_modes": [
+    "short_term_positive_long_term_negative",
+    "generic_review_pressure_beats_real_review",
+    "paper_context_remains_stronger",
+    "metadata_match_drift",
+    "thin_citation_graph",
+    "lexical_metric_rewards_original_terminology"
+  ],
+  "required_aggregates": [
+    "paper_count",
+    "usable_frontier_paper_count",
+    "later_frontier_evidence_count",
+    "review_guided_vs_paper_only_wins",
+    "review_guided_vs_shuffled_control_wins",
+    "delayed_value_case_count",
+    "short_term_positive_long_term_negative_count",
+    "possible_match_drift_count",
+    "exact_sign_test_over_non_tie_wins",
+    "qualitative_signal_taxonomy"
+  ],
+  "claim_boundary": "TFR supports protocol readiness and delayed-value evidence only when delayed-value cases are found under guarded future-frontier evidence. Negative runs must be reported as evidence boundaries."
+}

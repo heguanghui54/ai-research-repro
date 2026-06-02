@@ -1,0 +1,76 @@
+{
+  "audit_date": "2026-06-02T09:30:18Z",
+  "status": "pass_with_negative_delayed_value_evidence",
+  "spec": "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.json",
+  "protocol": "docs/co_pilot_ai_scientist_v3/retrospective_frontier_alignment_protocol.json",
+  "inputs_present": {
+    "deterministic_smoke": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_alignment_smoke_20260602_160000/summary.json",
+    "citation_backed_probe": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_213000/summary.json",
+    "review_frontier_signal_probe": "docs/co_pilot_ai_scientist_v3/experiments/review_frontier_signal_probe_20260602_214500/summary.json",
+    "semantic_frontier_judge_probe": "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/summary.json"
+  },
+  "required_conditions_present": true,
+  "delayed_value_definition_complete": true,
+  "deterministic_smoke": {
+    "paper_count": 6,
+    "winner_counts": {
+      "review_guided": 1,
+      "shuffled_review_control": 5
+    },
+    "review_guided_wins": 1,
+    "shuffled_control_wins": 5,
+    "delayed_value_case_count": 0,
+    "short_term_positive_long_term_negative_count": 3
+  },
+  "citation_backed_probe": {
+    "paper_count": 6,
+    "papers_with_retrieved_citations": 5,
+    "relevance_filtered_citations": 80,
+    "possible_match_drift_papers": 1,
+    "winner_counts": {
+      "shuffled_review_control": 1,
+      "not_scored_no_frontier_terms": 1,
+      "paper_only": 3,
+      "review_guided": 1
+    },
+    "delayed_value_case_count": 0,
+    "short_term_positive_long_term_negative_count": 3,
+    "review_guided_vs_paper_only_exact_sign_test_p": 0.625,
+    "review_guided_vs_shuffled_control_exact_sign_test_p": 1.0
+  },
+  "review_frontier_signal_probe": {
+    "review_snippet_count": 16,
+    "review_beats_paper_context_count": 0,
+    "latent_delayed_value_candidate_count": 0
+  },
+  "semantic_frontier_judge_probe": {
+    "successful_judgements": 5,
+    "winner_counts": {
+      "paper_context": 4,
+      "review_guided_artifact": 1
+    },
+    "latent_delayed_value_candidate_count": 0,
+    "mean_scores": {
+      "paper_context": {
+        "semantic_frontier_alignment": 4.2,
+        "actionable_research_control": 4,
+        "novelty_taste_signal": 3.8
+      },
+      "review_guided_artifact": {
+        "semantic_frontier_alignment": 3.4,
+        "actionable_research_control": 4,
+        "novelty_taste_signal": 3.4
+      },
+      "best_review_snippet": {
+        "semantic_frontier_alignment": 3,
+        "actionable_research_control": 3.2,
+        "novelty_taste_signal": 2.8
+      }
+    }
+  },
+  "claim_boundary": "TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. This supports a falsifiable protocol and a measurement boundary, not a positive long-horizon superiority claim.",
+  "errors": [],
+  "warnings": [
+    "No delayed-value review signal is found in the current archived TFR probes."
+  ]
+}

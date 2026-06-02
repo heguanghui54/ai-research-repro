@@ -119,6 +119,33 @@ python3 scripts/run_openreview_guided_regeneration_probe.py \
   --indices 1,34,49
 ```
 
+如果要评估历史评审是否本可以把 workflow 引向后来的学科轨迹，使用时间前沿回放
+（Temporal Frontier Replay, TFR）。当前归档包已经包含 deterministic smoke、
+citation-backed probe、review-frontier signal probe 和 semantic judge probe；
+如果只想审计已有包、不增加新模型调用，运行：
+
+```bash
+python3 scripts/audit_temporal_frontier_replay.py
+```
+
+如果要重跑完整 TFR probe chain，运行：
+
+```bash
+python3 scripts/run_retrospective_frontier_alignment_smoke.py
+python3 scripts/run_retrospective_frontier_citation_probe.py
+python3 scripts/run_review_frontier_signal_probe.py
+
+source ~/.codex/env
+python3 scripts/run_semantic_frontier_judge_probe.py \
+  --model gpt-4o-mini
+
+python3 scripts/audit_temporal_frontier_replay.py
+```
+
+TFR 必须保守解释。正向 delayed-value case 要求 review guidance 降低短期质量，
+但提高后续前沿对齐，并且超过 paper-only 与 shuffled-review-control 条件。当前
+归档 audit 对 delayed-value 证据是负向的，这表示测量边界，而不是协议失败。
+
 如果要挖掘哪些评审意见最适合作为 IGRE gate 的科研品味/insight 控制信号，运行：
 
 ```bash
