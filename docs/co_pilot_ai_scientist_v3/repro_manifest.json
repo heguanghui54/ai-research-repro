@@ -1716,7 +1716,7 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "230c847f170b847c8941edfc6746a27f77272408",
+    "head": "2851f3af9ee42fdaf12889961cabf74b672d149a",
     "branch": "codex/co-pilot-ai-scientist-v3",
     "manifest_artifacts": 676,
     "missing_manifest_artifacts": 0,

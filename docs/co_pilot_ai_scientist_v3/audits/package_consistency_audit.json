@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T12:45:22Z",
+  "audit_date": "2026-06-02T12:47:46Z",
   "status": "pass",
-  "head": "230c847f170b847c8941edfc6746a27f77272408",
+  "head": "2851f3af9ee42fdaf12889961cabf74b672d149a",
   "clean_clone_audited_commit": "fb3e666b6f75e1342a59289aa24ee61552356bd8",
   "clean_clone_commit_is_head": false,
   "clean_clone_commit_is_head_ancestor": true,
@@ -17,8 +17,8 @@
   "tfr_status": "pass_with_negative_delayed_value_evidence",
   "objective_delivery_status": "pass_artifact_delivery_with_empirical_gaps",
   "pdf_bytes": {
-    "focused_en": 33354,
-    "focused_zh": 62826
+    "focused_en": 33876,
+    "focused_zh": 63775
   },
   "text_checks": {
     "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
@@ -39,7 +39,7 @@
       "candidate-frontier validation": true
     },
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md": {
-      "230c847f1": true,
+      "2851f3af9": true,
       "676/676": true,
       "top-conference empirical target remains incomplete": true
     }
