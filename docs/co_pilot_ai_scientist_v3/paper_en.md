@@ -327,18 +327,24 @@ unsupported claims, while upstream taste-prior selection remains promising but
 less directly evidenced in this artifact-level probe.
 
 To make the expert-review signal less abstract, we also ran an
-OpenReview-guided regeneration probe over three ML/AI papers selected from the
-sample: an LLM refusal/RLKF paper, an in-context learning paper, and a
-semi-supervised/robust learning by mixup paper. For each paper,
+OpenReview-guided regeneration probe. The initial probe selected three ML/AI
+papers from the sample: an LLM refusal/RLKF paper, an in-context learning
+paper, and a semi-supervised/robust learning by mixup paper. For each paper,
 `run_openreview_guided_regeneration_probe.py` generates a baseline mini-paper
 artifact from title and abstract only, and a review-guided artifact from title,
 abstract, and the real review snippets/decision text. A fixed model-routed
-scorer prefers the review-guided artifact in all three pairs. The mean overall
-score increases from `3.0` to `4.0`, giving a mean delta of `+1.0`. This is a
-stronger empirical use of OpenReview than the availability probe: real review
-comments act as human scientific taste/insight that improves paper-shaped
-regenerations. The claim remains bounded because the experiment does not rerun
-the original methods or obtain independent expert review.
+scorer preferred the review-guided artifact in all three initial pairs. We then
+expanded the probe to six papers spanning accepted and rejected OpenReview
+examples in LLM reliability, graph generation, unlearning/privacy, in-context
+learning, semi-supervised robustness, and safety-critical causal generation.
+In the expanded run, review-guided artifacts win `5/6` pairs, with one
+baseline win where the review text did not improve the generated artifact.
+Mean overall score increases from `3.0` to `3.8333`, giving a mean delta of
+`+0.8333`. This is a stronger empirical use of OpenReview than the availability
+probe: real review comments often act as human scientific taste/insight that
+improves paper-shaped regenerations, but not always. The claim remains bounded
+because the experiment does not rerun the original methods or obtain
+independent expert review.
 
 Finally, `run_review_insight_taxonomy_probe.py` mines 32 OpenReview review
 cases to identify which kinds of review comments are most useful as automated
@@ -780,10 +786,10 @@ The current contributions are:
    scoring to compare no-gate, taste-prior, evaluator-stress,
    structured-feedback, and claim-calibration modes, finding
    structured-feedback and claim-calibration as the current top pair.
-7. An OpenReview-guided regeneration probe over three ML/AI papers, where
-   real review comments improve review-guided mini-paper artifacts over
-   title/abstract-only baselines in `3/3` pairs, with mean overall score
-   increasing from `3.0` to `4.0`.
+7. An OpenReview-guided regeneration probe whose initial three-paper run gives
+   `3/3` review-guided wins and whose expanded six-paper run gives `5/6`
+   review-guided wins, with mean overall score increasing from `3.0` to
+   `3.8333`.
 8. A review-insight taxonomy probe over 32 OpenReview review cases and a
    deterministic review-utility map over 473 review snippets from 160 sampled
    papers; together they map novelty, evaluation, claim-boundary, clarity,

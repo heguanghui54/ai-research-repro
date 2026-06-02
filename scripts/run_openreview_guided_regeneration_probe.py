@@ -22,6 +22,7 @@ import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+from urllib.error import HTTPError, URLError
 from urllib import request
 
 
@@ -70,10 +71,18 @@ def _call_monica(
         method="POST",
     )
     started = time.time()
-    with request.urlopen(req, timeout=180) as resp:  # noqa: S310 - fixed HTTPS API endpoint.
-        payload = json.loads(resp.read().decode("utf-8"))
-    payload["_latency_seconds"] = round(time.time() - started, 3)
-    return payload
+    last_error: str | None = None
+    for attempt in range(3):
+        try:
+            with request.urlopen(req, timeout=180) as resp:  # noqa: S310 - fixed HTTPS API endpoint.
+                payload = json.loads(resp.read().decode("utf-8"))
+            payload["_latency_seconds"] = round(time.time() - started, 3)
+            payload["_attempts"] = attempt + 1
+            return payload
+        except (HTTPError, URLError) as exc:
+            last_error = repr(exc)
+            time.sleep(2.0 * (attempt + 1))
+    raise RuntimeError(f"Monica request failed after retries: {last_error}")
 
 
 def _message_text(response: dict[str, Any]) -> str:
@@ -239,6 +248,40 @@ Return strict JSON only:
 """.strip()
 
 
+def _normalize_scoring(scoring: dict[str, Any]) -> dict[str, Any]:
+    """Recompute aggregate fields from per-paper scores.
+
+    Model outputs sometimes round aggregate means too aggressively. The
+    per-paper judgments are the authoritative scored units, so keep the model's
+    design lessons and rationales but derive aggregate counts/means
+    deterministically.
+    """
+    per_paper = scoring.get("per_paper") or []
+    winners = [item.get("winner") for item in per_paper]
+    baseline_scores = []
+    guided_scores = []
+    for item in per_paper:
+        scores = item.get("scores") or {}
+        baseline = scores.get("baseline") or {}
+        guided = scores.get("review_guided") or {}
+        if isinstance(baseline.get("overall"), (int, float)):
+            baseline_scores.append(float(baseline["overall"]))
+        if isinstance(guided.get("overall"), (int, float)):
+            guided_scores.append(float(guided["overall"]))
+
+    mean_baseline = sum(baseline_scores) / len(baseline_scores) if baseline_scores else 0.0
+    mean_guided = sum(guided_scores) / len(guided_scores) if guided_scores else 0.0
+    scoring["aggregate"] = {
+        "review_guided_wins": sum(1 for winner in winners if winner == "review_guided"),
+        "baseline_wins": sum(1 for winner in winners if winner == "baseline"),
+        "ties": sum(1 for winner in winners if winner == "tie"),
+        "mean_baseline_overall": round(mean_baseline, 4),
+        "mean_review_guided_overall": round(mean_guided, 4),
+        "mean_delta_review_guided_minus_baseline": round(mean_guided - mean_baseline, 4),
+    }
+    return scoring
+
+
 def _markdown(summary: dict[str, Any]) -> str:
     aggregate = summary["scoring"].get("aggregate", {})
     lines = [
@@ -363,7 +406,7 @@ def main() -> None:
         temperature=0.1,
     )
     scoring_text = _message_text(scoring_response)
-    scoring = _extract_json_object(scoring_text)
+    scoring = _normalize_scoring(_extract_json_object(scoring_text))
 
     summary: dict[str, Any] = {
         "run_id": args.run_id,
@@ -372,7 +415,7 @@ def main() -> None:
         "model": args.model,
         "live_model_calls": 2,
         "scope_note": (
-            "Three selected ML/AI OpenReview papers are regenerated twice: "
+            f"{len(selected)} selected ML/AI OpenReview papers are regenerated twice: "
             "from title/abstract only, and from title/abstract plus real "
             "OpenReview review comments as human scientific taste/insight. "
             "The comparison scores mini-paper artifacts only."

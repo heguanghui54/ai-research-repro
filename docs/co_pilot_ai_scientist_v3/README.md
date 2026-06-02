@@ -138,10 +138,13 @@ is strongest. Four new probes now exercise that idea. The
 no-gate, taste-prior, evaluator-stress, structured-feedback, and
 claim-calibration modes under an OpenReview-conditioned model scorer; it places
 structured-feedback and claim-calibration as the current top pair. The
-`openreview_guided_regeneration_probe_20260602_062500/` artifact selects three
-ML/AI OpenReview papers and regenerates mini-paper artifacts with and without
-real review snippets; the review-guided versions win in `3/3` pairs, increasing
-mean overall score from `3.0` to `4.0`. The
+`openreview_guided_regeneration_probe_20260602_073500/` artifact expands the
+regeneration test to six ML/AI OpenReview papers and regenerates mini-paper
+artifacts with and without real review snippets; the review-guided versions win
+in `5/6` pairs, increasing mean overall score from `3.0` to `3.8333`. The one
+baseline win is retained as evidence that review text is useful only when it
+can be converted into clearer problem framing, experiments, limitations, or
+claim calibration. The
 `review_insight_taxonomy_probe_20260602_064500/` artifact mines 32 review cases
 and maps actionable review patterns to IGRE gates: novelty concerns to
 scientific taste prior, limitations/weaknesses to claim calibration, clarity

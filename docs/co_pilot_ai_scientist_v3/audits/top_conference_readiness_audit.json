@@ -44,16 +44,18 @@
     "expert_review_taste_prior_sample_rows": 160,
     "expert_review_taste_prior_dataset_rows": 34638,
     "participation_mode_selection_probes": 1,
-    "openreview_guided_regeneration_probes": 1,
+    "openreview_guided_regeneration_probes": 2,
     "review_insight_taxonomy_probes": 1,
-    "openreview_guided_regeneration_selected_papers": 3,
-    "openreview_guided_regeneration_review_guided_wins": 3,
+    "openreview_guided_regeneration_selected_papers": 6,
+    "openreview_guided_regeneration_review_guided_wins": 5,
     "review_insight_taxonomy_review_cases": 32,
     "review_utility_map_probes": 1,
     "review_utility_map_papers": 160,
     "review_utility_map_snippets": 473,
     "review_utility_map_actionable_snippets": 398,
-    "review_utility_map_noisy_snippets": 64
+    "review_utility_map_noisy_snippets": 64,
+    "openreview_guided_regeneration_baseline_wins": 1,
+    "openreview_guided_regeneration_ties": 0
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -353,17 +355,25 @@
     "claim_boundary": "Offline OpenReview-conditioned model-routed artifact scoring only."
   },
   "openreview_guided_regeneration_probe": {
-    "status": "completed_three_paper_probe",
-    "run_id": "openreview_guided_regeneration_probe_20260602_062500",
-    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/summary.json",
-    "selected_papers": 3,
-    "review_guided_wins": 3,
-    "baseline_wins": 0,
+    "status": "completed_expanded_six_paper_probe",
+    "run_id": "openreview_guided_regeneration_probe_20260602_073500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+    "selected_papers": 6,
+    "selected_indices": [
+      1,
+      2,
+      17,
+      34,
+      49,
+      64
+    ],
+    "review_guided_wins": 5,
+    "baseline_wins": 1,
     "ties": 0,
     "mean_baseline_overall": 3.0,
-    "mean_review_guided_overall": 4.0,
-    "mean_delta_review_guided_minus_baseline": 1.0,
-    "claim_boundary": "Real OpenReview comments used as human taste/insight for mini-paper regeneration; no experiment rerun or independent expert review."
+    "mean_review_guided_overall": 3.8333,
+    "mean_delta_review_guided_minus_baseline": 0.8333,
+    "claim_boundary": "Real OpenReview comments used as human taste/insight for mini-paper regeneration; no experiment rerun or independent expert review. The baseline win shows review text is not automatically beneficial."
   },
   "review_insight_taxonomy_probe": {
     "status": "completed_actionable_review_taxonomy_probe",

@@ -1,0 +1,120 @@
+[
+  {
+    "paper_id": "openreview_sample_1",
+    "sample_index": 1,
+    "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+    "venue": "colmweb_org_COLM_2024_Conference",
+    "arxiv_id": "2403.18349",
+    "decision": true,
+    "mean_score": 0.53125,
+    "mean_novelty": null,
+    "mean_correctness": null,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "abstract_excerpt": "Large Language Models (LLMs) often generate erroneous outputs, known as hallucinations, due to their limitations in discerning questions beyond their knowledge scope. While addressing hallucination has been a focal point in research, previous efforts primarily concentrate on enhancing correctness without giving due consideration to the significance of rejection mechanisms. In this paper, we conduct a comprehensive examination of the role of rejection, introducing the alignment goal of model reliability along with corresponding metrics. This goal requires the model to provide accurate responses while adeptly rejecting questions exceeding its knowledge boundaries, thereby minimizing hallucinations. To improve the inherent reliability of LLMs, we present a novel alignment framework called Reinforcement Learning from Knowledge Feedback (RLKF). RLKF leverages knowledge feedback to dynamically",
+    "decision_text_excerpt": "This paper addresses the problem of model hallucination, when models generate incorrect responses to questions. The paper proposes that a fundamental underlying problem is that models cannot recognize when they cannot produce a correct answer, and that one solution is to train models to explicitly reject questions when they are not able to answer correctly. Authors propose a RL-based fine-tuning method that uses external knowledge and/or self-consistency to create train-time preference data that incentivizes correctness and consistency of outputs. \n\nReviewers point out several limitations of the paper. Experiments are limited by the choice of benchmarks (arithmetic only, though authors add T",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new approach for creating preference data for training reward models, which they call **Reinforcement Learning from Knowledge Feedback** (RLKF). Whereas existing preference data consists of (preferred, non-preferred) pairs where the non-preferred pair might be either incorrect or not helpful, RLKF creates three types of pairs: (correct, refuse-to-answer), (refuse-to-answer, incorrect), and (correct, incorrect). This way, the reward model explicitly learns",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: One of the big problems with LMs is that they constantly hallucinate. They do this a lot when given questions that they don't know the answer to. Some of these questions that are particularly hard for LMs are arithmetic questions where the inputs are more than just a digit or two long. \\n\\nThe authors here propose an RL framework to remedy this issue. This framework trains the model to prefer saying \\\"I don't know\\\" versus outputting an incorrect answer. \\n\\nThey have experime",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new RLHF framework to address LLM hallucinations by defining a new reward model for model reliability. It trains LLMs to generate \\\"I don't know\\\" answers to questions outside the model's knowledge boundary. It conducts empirical experiments on two math question datasets to validate the effectiveness of the proposed method in enhancing LLM reliability. \\n\\nThe proposed method is simple and easy to follow and the evaluation is comprehensive, but the result"
+    ]
+  },
+  {
+    "paper_id": "openreview_sample_2",
+    "sample_index": 2,
+    "title": "Forked Diffusion for Conditional Graph Generation",
+    "venue": "ICLR_cc_2024_Conference",
+    "arxiv_id": null,
+    "decision": false,
+    "mean_score": 0.3,
+    "mean_novelty": null,
+    "mean_correctness": 0.41666666666666663,
+    "mean_clarity": 0.3333333333333333,
+    "mean_impact": 0.25,
+    "abstract_excerpt": "We introduce a novel score-based diffusion framework that incorporates forking for conditional generation. In this framework, a single  parent diffusion process is associated with a primary variable (e.g., structure), while multiple child diffusion processes are employed, each dedicated to a dependent variable (e.g., property). The parent process guides the co-evolution of its child processes towards segregated representation spaces. This approach allows our models to manage conditional information flow effectively, uncover intricate interactions and dependencies, and ultimately unlock new generative capabilities. Our experimental results demonstrate the significant superiority of our method over contemporary baselines in the context of conditional graph generation, highlighting the potential of forking diffusion for enhancing conditional generation tasks and inverse molecular design tas",
+    "decision_text_excerpt": "The paper proposes a conditional generative model with a parent diffusion process for the graph structure and child processes for propertis. The intention is allowing better control over conditional generation. The method is evaluated on tasks like molecular graph generation and the paper shows improved performance over baselines.\n\nStrengths:\n- A rigorous matematical framework based on stochastic differential equations.\n- It demonstrates versatility through evaluations on multiple graph generation tasks.\n\nWeaknesses:\n- In problem formulation the motivation, assumptions,  and comparison to related works are a little unclear. It does not clearly highlight shortcomings of existing methods to co",
+    "review_snippets": [
+      "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.0, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper works on conditional graph generation via score-based generative model. Instead of directly input conditional properties as context to model inside generation, the paper proposes to use a separate variable to model each conditional property and jointly model them inside the score-based diffusion framework. The author tested it over many real-world datasets, including molecular datasets and generic graphs. The proposed method shows better p",
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.5, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a forked diffusion model for conditional graph generation that introduces parent process and child processes to learn and generate graphs with desired properties. The contributions of this paper include introducing forking as a new technique for conditional generation, providing a rigorous mathematical framework using SDE, and demonstrating the versatility of the proposed forked diffusion with empirical evidence.\", \"",
+      "{\"clarity\": 0.3333333333333333, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This work presents conditional diffusion framework for graph generation by proposing forked diffusion processes, that models the graph diffusion process as a single parent process over a primary variable (i.e., structure) and multiple child processes over dependent variables, further including additional context. This work provide experimental results on diverse graph generation tasks showing improved generation performance over continu"
+    ]
+  },
+  {
+    "paper_id": "openreview_sample_17",
+    "sample_index": 17,
+    "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+    "venue": "ICLR_cc_2023_Conference",
+    "arxiv_id": "",
+    "decision": false,
+    "mean_score": 0.55,
+    "mean_novelty": 0.8125,
+    "mean_correctness": 0.75,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "abstract_excerpt": "Pretrained Language Models (LMs) memorize a vast amount of knowledge during initial pretraining, including information that may violate the privacy of personal lives and identities. Previous work addressing privacy issues for language models has mostly focused on data preprocessing and differential privacy methods, both requiring re-training the underlying LM. We propose knowledge unlearning as an alternative method to reduce privacy risks for LMs post hoc. We show that simply applying the unlikelihood training objective to target token sequences is effective at forgetting them with little to no degradation of general language modeling performances; it sometimes even substantially improves the underlying LM with just a few iterations. We also find that sequential unlearning is better than trying to unlearn all the data at once and that unlearning is highly dependent on which kind of data",
+    "decision_text_excerpt": "The main contribution of this work lies in proposing the use of gradient ascent on equation 1 for unlearning to provide empirical privacy guarantees for large language models.\n\nThis paper has generated considerable response to the authors' rebuttal and an active discussion from the reviewers. \n\nWhile we have found the findings interesting, two main concerns remain after reviewing the authors' responses:\n\n(A) It is unclear if the authors' claim of \"the simple approach of gradient ascent ... results in little to no degradation of general performance for LMs\" would indeed hold when larger datasets are unlearned. In particular, when would be the \"breaking point\"? Reviewers 9RUh and 4t9e have bot",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: While there may not be a lot of novelty in the methods designed in this work, I do believe that it has a significant contribution to the field of machine unlearning in large LMs. The quality of writing is good, and the authors provide code for reproducibility.\", \"paper_summary\": \"paper_summary: This work performs knowledge unlearning in large language models by attempting to fine-tune a converged model for a few epochs with a negative loss corresponding to the examples to the forgotten. As",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for ",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The work appears novel, the writing is clear and is easy to read, and the approach is simple and straightforward enough that reproducing the results is likely feasible.\", \"paper_summary\": \"paper_summary: The authors propose a simple approach for unlearning specific token sequences in large pretrained language models (LMs). To unlearn a specific sequence of tokens x, the proposed approach simply negates the original training objective of minimizing the negative log-likelihood of x; this p"
+    ]
+  },
+  {
+    "paper_id": "openreview_sample_34",
+    "sample_index": 34,
+    "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+    "venue": "ICLR_cc_2023_Conference",
+    "arxiv_id": "2211.15661",
+    "decision": true,
+    "mean_score": 0.8000000000000002,
+    "mean_novelty": 0.5,
+    "mean_correctness": 0.4444444444444444,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "abstract_excerpt": "Neural sequence models, especially transformers, exhibit a remarkable capacity for in-context learning. They can construct new predictors from sequences of labeled examples $(x, f(x))$ presented in the input without further parameter updates. We investigate the hypothesis that transformer-based in-context learners implement standard learning algorithms implicitly, by encoding context-specific parametric models in their hidden representations, and updating these implicit models as new examples appear in the context. Using linear regression as a model problem, we offer three sources of evidence for this hypothesis. First, we prove by construction that transformers can implement learning algorithms for linear models based on gradient descent and closed-form computation of regression parameters. Second, we show that trained in-context learners closely match the predictors computed by gradien",
+    "decision_text_excerpt": "This work investigates why transformers can be trained to be in-context learners (ICL) of linear functions. Specifically, the authors provide different perspectives to support the hypothesis that transformers can learn standard learning algorithms and low-lever algorithmic operations in this way. E.g., a bottom-up construction implying that optimization techniques can be \"embedded\" in their forward pass or testing how similar the outputs of transformers are to well-known algorithms.\n\nAll reviewers agreed that the paper tackles an important question, and while not providing a definite answer, brings interesting perspectives that can further boost research in the direction of understanding wha",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: **QUALITY:** This is a high-quality submission that tackles an important problem and offers interesting and nontrivial insights. \\n\\n**CLARITY:** The paper is very well-written and clear. Here are a couple additional comments (BUNCH OF REQUESTS): \\n* The first sentence of the second paragraph of the introduction imply that _all_ types of in-context learning can be understood via the framework discussed in the paper. It'd be better if the authors clarify that there exist other types of in-",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: \\nThe work in this paper is novel and of high quality. It is mostly clear but the probe technique leveraged in section 5 could use a lot more description to understand that set of experiments.\\n\\nMinor issues and typos:\\n\\nThe plots and legend in figure 3 are hard to read because there are many methods plotted in the same graph with identical colors.\\n\\nI believe there are some typos in the operator definitions of section 3.1. For instance:\\n\\n1. in the \\\"mov\\\" operator's definition, shou",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.0, \"ethics\": null, \"impact\": null, \"novelty\": 0.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-structured, clear and reads easily. The level of technical details provided in the main text is good. The supplementary material provides an extensive and very lengthy details on the derivation of different operators.  The paper has a placeholder link for the code, so I think that the results should be easily reproducible.\\n\", \"paper_summary\": \"paper_summary: The paper investigates the capability of transformer-based in-context learners (ICL) to implicitly implement learning algorithms"
+    ]
+  },
+  {
+    "paper_id": "openreview_sample_49",
+    "sample_index": 49,
+    "title": "Unifying semi-supervised and robust learning by mixup",
+    "venue": "ICLR_cc_2019_Workshop_LLD",
+    "arxiv_id": null,
+    "decision": true,
+    "mean_score": 0.875,
+    "mean_novelty": null,
+    "mean_correctness": null,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "abstract_excerpt": "Supervised deep learning methods require cleanly labeled large-scale datasets, but collecting such data is difficult and sometimes impossible. There exist two popular frameworks to alleviate this problem: semi-supervised learning and robust learning to label noise. Although these frameworks relax the restriction of supervised learning, they are studied independently. Hence, the training scheme that is suitable when only small cleanly-labeled data are available remains unknown. In this study, we consider learning from bi-quality data as a generalization of these studies, in which a small portion of data is cleanly labeled, and the rest is corrupt. Under this framework, we compare recent algorithms for semi-supervised and robust learning. The results suggest that semi-supervised learning outperforms robust learning with noisy labels. We also propose a training strategy for mixing mixup tec",
+    "decision_text_excerpt": "",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Major comments and summary: \\n\\n  Overall, I strongly recommend this paper as a workshop paper, but I think it needs more work to become a great conference paper.  The problem is well-motivated and seems very important to me.  My biggest issue is that I feel like one could go much \\\"further\\\" with this idea - and it shows empirically - the only improvement from using the noisy labels is to go from 89% -> 90%, which I would say is only a small improvement.  If this problem gets solved I think you should",
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The authors start by introducing a formal setting that includes the semi-supervised and the robust learning tasks as special cases and they then proceed by proposing a strategy based on mixup [1] for training a model in this unified setting.\\n\\nMy general impression from this work is firmly positive. The manuscript is clearly written, the experimental setup covers adequately alternative methods and the description of the experiments includes the most important details. The results presented, while in m"
+    ]
+  },
+  {
+    "paper_id": "openreview_sample_64",
+    "sample_index": 64,
+    "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+    "venue": "ICLR_cc_2022_Workshop_OSC",
+    "arxiv_id": "",
+    "decision": false,
+    "mean_score": 0.25,
+    "mean_novelty": null,
+    "mean_correctness": null,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "abstract_excerpt": "Goal-directed generation, aiming for solving downstream tasks by generating diverse data, has a potentially wide range of applications in the real world. Previous works tend to formulate goal-directed generation as a purely data-driven problem, which directly approximates the distribution of samples satisfying the goal. However, the generation ability of preexisting work is heavily restricted by inefficient sampling, especially for sparse goals that rarely show up in off-the-shelf datasets. For instance, generating safety-critical traffic scenes with the goal of increasing the risk of collision is critical to evaluate autonomous vehicles, but the rareness of such scenes is the biggest resistance. \nIn this paper, we integrate causality as a prior into the safety-critical scene generation process and propose a flow-based generative framework -- Causal Autoregressive Flow (CausalAF). Causal",
+    "decision_text_excerpt": "As highlighted by the reviewers, this is an interesting contribution with high relevance to the workshop. The work is well-motivated and presents a novel contribution. As pointed out by both reviewers, however, the work would benefit from significant improvement in terms of clarity of the presentation to make it more accessible to a wider audience and there were some open questions around technical correctness. Given that there is likely insufficient time until the camera-ready deadline to address the reviewer feedback in full, we recommend submitting this work to a later venue.",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: If I understand correctly this paper proposes a model which allows goal directed samples (goal defined by a specific behavioural graph) while constraining the model to respect a given causal graph. The method uses flows, together with masks over order or visibiliy to model the edges of the graphs and obtain a distribution which is both easy to sample from as well as respecting the causal constraints and goal.\\nThe method is demonstrated to work well producing samples of driving scenes which are consist",
+      "{\"clarity\": null, \"confidence\": 0.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Summary:\\nThis work tackles the challenge of goal-directed scene generation in the context of generating safety-critical traffic scenes with a high risk of collision. The authors use the causal graphs of three high-risk traffic scenes to condition the scene generation process. This is done by generating a “behavioural graph” BG which represents a single scene, conditioned on an underlying causal graph CG. The generation of a BG follows the causal structure of an underlying CG via the use of masking ope"
+    ]
+  }
+]

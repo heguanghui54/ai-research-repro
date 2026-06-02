@@ -177,15 +177,19 @@ not that one mode has been uniquely proven best.
 ## OpenReview-Guided Regeneration Probe
 
 The package now includes
-`experiments/openreview_guided_regeneration_probe_20260602_062500/`. It selects
-three ML/AI papers from the OpenReview sample and generates two mini-paper
-artifacts for each: one from title/abstract only and one from title/abstract
-plus real review snippets and decision text. The review-guided artifacts win
-`3/3` pairwise comparisons under the fixed model-routed scorer, raising mean
-overall score from `3.0` to `4.0`. This is the strongest current evidence that
-human review text can be operationalized as scientific taste/insight for
-artifact improvement, but it still does not rerun the original experiments or
-constitute independent expert re-review.
+`experiments/openreview_guided_regeneration_probe_20260602_073500/`, an
+expanded version of the earlier three-paper probe. It selects six ML/AI papers
+from the OpenReview sample and generates two mini-paper artifacts for each:
+one from title/abstract only and one from title/abstract plus real review
+snippets and decision text. The initial three-paper run had review-guided
+artifacts win `3/3` comparisons. The expanded six-paper run has review-guided
+artifacts win `5/6`, with one baseline win where the review text did not
+materially improve the artifact. Mean overall score increases from `3.0` to
+`3.8333`. This is the strongest current evidence that human review text can be
+operationalized as scientific taste/insight for artifact improvement, and the
+single baseline win is useful evidence that review guidance is not
+automatically beneficial. The probe still does not rerun the original
+experiments or constitute independent expert re-review.
 
 ## Review Insight Taxonomy
 

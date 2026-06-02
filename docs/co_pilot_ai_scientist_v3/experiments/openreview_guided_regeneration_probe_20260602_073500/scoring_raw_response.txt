@@ -1,0 +1,174 @@
+{
+  "per_paper": [
+    {
+      "paper_id": "openreview_sample_1",
+      "winner": "review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "review_insight_effect": "The review insights provided specific details on the empirical validation and the method's effectiveness, enhancing the overall quality.",
+      "remaining_risk": "The method's generalizability to more complex questions remains uncertain."
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "winner": "review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "review_insight_effect": "The insights clarified the motivation and versatility of the proposed method, improving clarity and depth.",
+      "remaining_risk": "The lack of clear motivation and comparison to related works could hinder understanding."
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "winner": "review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "review_insight_effect": "The review insights highlighted empirical guarantees and reproducibility, enhancing the paper's credibility.",
+      "remaining_risk": "Justification for baseline choices and metrics needs strengthening."
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "winner": "review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "review_insight_effect": "The insights provided clarity on the probe technique and the implications of the findings, enhancing overall understanding.",
+      "remaining_risk": "Minor clarity issues and the need for further description of the probe technique."
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "winner": "review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 4,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 4,
+          "limitation_honesty": 4,
+          "claim_calibration": 4,
+          "overall": 4
+        }
+      },
+      "review_insight_effect": "The review insights emphasized the importance of the problem and suggested further exploration, enhancing the paper's impact.",
+      "remaining_risk": "The observed improvements in performance may be modest."
+    },
+    {
+      "paper_id": "openreview_sample_64",
+      "winner": "baseline",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "review_insight_effect": "The review insights did not significantly enhance the clarity or depth of the baseline regeneration.",
+      "remaining_risk": "The technical correctness and clarity of presentation require significant improvement."
+    }
+  ],
+  "aggregate": {
+    "review_guided_wins": 5,
+    "baseline_wins": 1,
+    "ties": 0,
+    "mean_baseline_overall": 3.0,
+    "mean_review_guided_overall": 4.0,
+    "mean_delta_review_guided_minus_baseline": 1.0
+  },
+  "design_lessons": [
+    "Incorporating reviewer insights can significantly enhance the quality of generated artifacts.",
+    "Clarity and motivation in problem formulation are crucial for understanding.",
+    "Empirical validation and reproducibility are key factors in establishing credibility."
+  ],
+  "claim_boundary": "The findings and claims made in the review-guided regenerations are primarily relevant to their specific contexts and may not generalize to other domains or types of models."
+}

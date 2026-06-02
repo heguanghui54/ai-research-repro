@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_review_utility_map_probe",
+  "status": "pilot_package_with_expanded_openreview_guided_regeneration_probe",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -491,7 +491,15 @@
     "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/category_utility_table.json",
     "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/README.md",
-    "scripts/run_review_utility_map_probe.py"
+    "scripts/run_review_utility_map_probe.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/selected_papers.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/generation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/regenerated_artifacts.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/scoring_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/scoring_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/README.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -820,13 +828,13 @@
     "claim_boundary": "Offline OpenReview-derived model-routed workflow-selection probe only."
   },
   "openreview_guided_regeneration_probe": {
-    "run_id": "openreview_guided_regeneration_probe_20260602_062500",
-    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_062500/summary.json",
-    "selected_papers": 3,
-    "review_guided_wins": 3,
-    "baseline_wins": 0,
+    "run_id": "openreview_guided_regeneration_probe_20260602_073500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+    "selected_papers": 6,
+    "review_guided_wins": 5,
+    "baseline_wins": 1,
     "ties": 0,
-    "mean_delta_review_guided_minus_baseline": 1.0,
+    "mean_delta_review_guided_minus_baseline": 0.8333,
     "claim_boundary": "Real OpenReview text used as human taste/insight, but regenerated mini-paper artifacts only."
   },
   "review_insight_taxonomy_probe": {
