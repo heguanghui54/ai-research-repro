@@ -27,6 +27,9 @@ matched evidence and clear boundary conditions.
 - Human feedback must be logged as part of the reproducibility record.
 - The evaluation should consider both mean benchmark performance and the chance
   of rare high-novelty, high-impact research outcomes.
+- Historical peer-review data should be used as an offline proxy for human
+  scientific taste, including tests of whether a review could have steered a
+  project toward later field trajectories.
 
 ## Core Workflow
 
@@ -73,6 +76,23 @@ matched evidence and clear boundary conditions.
      tests, claim-boundary concerns route to claim calibration, novelty/
      positioning signals route to scientific taste priors, and clarity/
      reproducibility/actionable suggestions route to structured feedback.
+   - Use Temporal Frontier Replay (TFR) when the question is not immediate
+     paper quality but long-horizon scientific direction. TFR replays a
+     historical paper at time `t` under paper-only, review-guided, and
+     shuffled-review-control conditions, then compares the generated artifacts
+     with later field evidence at `t + delta`.
+   - Run `scripts/run_retrospective_frontier_alignment_smoke.py` for the first
+     deterministic TFR smoke, then run
+     `scripts/run_retrospective_frontier_citation_probe.py` to replace manual
+     future-frontier descriptors with citation-backed later-field evidence.
+   - Run `scripts/run_review_frontier_signal_probe.py` to test whether the
+     historical review snippets themselves carry future-frontier signals, and
+     `scripts/run_semantic_frontier_judge_probe.py` when lexical overlap is too
+     weak and a semantic judge over citation metadata is needed.
+   - Treat delayed-value review signals as the high-value but hard case:
+     review guidance may reduce short-term artifact quality while improving
+     alignment with later mainstream or SOTA directions. If the probe finds no
+     delayed-value cases, report that negative boundary directly.
    - Attach evidence, missing evidence, feasibility notes, and risks.
    - Ask the human scientist to select, merge, or rewrite directions using
      field taste, upside asymmetry, and failure value, not only early scores.
