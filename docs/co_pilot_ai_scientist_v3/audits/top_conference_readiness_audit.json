@@ -70,7 +70,10 @@
     "openreview_equal_context_ablation_pairs": 6,
     "openreview_equal_context_ablation_review_guided_votes": 8,
     "openreview_equal_context_ablation_context_control_votes": 1,
-    "openreview_equal_context_ablation_ties": 3
+    "openreview_equal_context_ablation_ties": 3,
+    "human_expert_blind_review_packets": 1,
+    "human_expert_blind_review_pairs_prepared": 6,
+    "human_expert_completed_rating_rows": 0
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -126,7 +129,7 @@
     "independent_human_subject_timing": false,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Obtain blind human expert ratings on regenerated pairs, report inter-rater agreement, and expand matched autonomous vs human-gated runs across tasks/seeds.",
+  "next_evidence_milestone": "Collect 3-5 blind human expert score sheets for the prepared OpenReview pair packet, summarize ratings with inter-rater agreement, then expand matched autonomous vs human-gated runs across tasks/seeds.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -510,5 +513,26 @@
     "claude_result": "3 review-guided wins, 0 context-control wins, 3 ties, mean delta +0.1667",
     "interpretation": "Real paper-specific reviews show modest value beyond matched-length unrelated review context, especially for concrete method details and claim calibration.",
     "limitation": "Model-routed scoring only; no independent human expert review and no experiment rerun."
+  },
+  "human_expert_blind_review_packet": {
+    "status": "packet_prepared_no_human_ratings_yet",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/README.md",
+    "condition": "equal_context",
+    "pair_count": 6,
+    "reviewer_visible_files": [
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/instructions.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/score_sheet_template.csv",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_01.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_02.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_03.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_04.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_05.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_06.md"
+    ],
+    "hidden_files": [
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/condition_key.json"
+    ],
+    "summarizer": "scripts/summarize_human_expert_blind_reviews.py",
+    "interpretation": "Evaluation readiness only; this does not satisfy independent human expert validation until completed score sheets are collected and summarized."
   }
 }

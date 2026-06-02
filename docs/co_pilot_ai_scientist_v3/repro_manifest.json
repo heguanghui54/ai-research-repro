@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_openreview_equal_context_ablation_and_focused_revision",
+  "status": "pilot_package_with_human_expert_blind_review_packet",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -532,7 +532,21 @@
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/claude-3-7-sonnet-latest_review.json",
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_equal_context_ablation_20260602_142000/README.md",
-    "scripts/run_openreview_equal_context_ablation.py"
+    "scripts/run_openreview_equal_context_ablation.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/instructions.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/condition_key.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/score_sheet_template.csv",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_01.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_02.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_03.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_04.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_05.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_06.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/summary.json",
+    "scripts/create_human_expert_blind_review_packet.py",
+    "scripts/summarize_human_expert_blind_reviews.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -951,5 +965,26 @@
     "claude_review_guided_wins": 3,
     "claude_ties": 3,
     "claim_boundary": "This ablation controls for extra context by comparing real paper-specific review guidance against matched-length unrelated review context. It still uses model-routed scoring rather than independent human expert review, and does not rerun the original experiments."
+  },
+  "human_expert_blind_review_packet": {
+    "packet_id": "human_expert_blind_review_packet_20260602_143000",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/README.md",
+    "condition": "equal_context",
+    "pair_count": 6,
+    "reviewer_visible_files": [
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/instructions.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/score_sheet_template.csv",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_01.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_02.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_03.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_04.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_05.md",
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/pairs/pair_06.md"
+    ],
+    "hidden_files": [
+      "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/condition_key.json"
+    ],
+    "status": "packet_prepared_no_human_ratings_yet",
+    "claim_boundary": "Prepared blind review materials only; no independent human expert results are claimed."
   }
 }

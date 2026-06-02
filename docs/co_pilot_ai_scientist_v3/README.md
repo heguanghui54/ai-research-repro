@@ -59,6 +59,10 @@ claim calibration.
 - `experiments/openreview_equal_context_ablation_20260602_142000/`: follow-up
   OpenReview regeneration ablation comparing real paper-specific review
   guidance against matched-length unrelated review context.
+- `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
+  blind expert-review packet for the regenerated OpenReview pairs, including
+  instructions, anonymized A/B pair files, score-sheet template, and hidden
+  condition key. No human expert ratings have been collected yet.
 - `audits/clean_clone_reproducibility_audit.md`: fresh GitHub-clone check that
   rebuilds PDFs, reruns gate audits, and verifies manifest artifact coverage.
 - `audits/skill_reuse_smoke_audit.md`: local smoke test that instantiates the

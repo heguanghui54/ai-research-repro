@@ -1,0 +1,42 @@
+{
+  "seed": 20260602,
+  "condition": "equal_context",
+  "mapping": {
+    "pair_01": {
+      "paper_id": "openreview_sample_1",
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "A": "review_guided",
+      "B": "context_control_unrelated_reviews"
+    },
+    "pair_02": {
+      "paper_id": "openreview_sample_17",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "A": "review_guided",
+      "B": "context_control_unrelated_reviews"
+    },
+    "pair_03": {
+      "paper_id": "openreview_sample_2",
+      "title": "Forked Diffusion for Conditional Graph Generation",
+      "A": "review_guided",
+      "B": "context_control_unrelated_reviews"
+    },
+    "pair_04": {
+      "paper_id": "openreview_sample_34",
+      "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+      "A": "context_control_unrelated_reviews",
+      "B": "review_guided"
+    },
+    "pair_05": {
+      "paper_id": "openreview_sample_49",
+      "title": "Unifying semi-supervised and robust learning by mixup",
+      "A": "review_guided",
+      "B": "context_control_unrelated_reviews"
+    },
+    "pair_06": {
+      "paper_id": "openreview_sample_64",
+      "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+      "A": "context_control_unrelated_reviews",
+      "B": "review_guided"
+    }
+  }
+}
