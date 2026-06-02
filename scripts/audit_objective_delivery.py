@@ -368,10 +368,12 @@ def main() -> None:
     if explicit_requirements["second_non_fml_priority_package_audit_pass"]:
         next_required_evidence = [
             (
-                "Extend beyond the three-seed official MLAgentBench CIFAR10/debug robustness check by adding another accessible official non-FML task or a larger multi-task/seed slice; keep the open-data package labeled as official-like boundary evidence."
+                "Extend beyond the current three-seed CIFAR10/debug and three-seed OGBN-arxiv official-evaluator paths by adding another accessible official non-FML task or scaling matched end-to-end co-pilot/autonomous trajectories; keep the open-data package labeled as official-like boundary evidence."
                 if "Extend non-FML evidence beyond the scored MLAgentBench vectorization comparison"
                 in item
                 or "Pursue a true second scored official non-FML benchmark task" in item
+                or "Extend beyond the three-seed official MLAgentBench CIFAR10/debug robustness check"
+                in item
                 else item
             )
             for item in next_required_evidence

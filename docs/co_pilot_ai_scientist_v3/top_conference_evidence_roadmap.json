@@ -45,8 +45,8 @@
       "claim_tested": "The workflow is not overfit to FML-Bench-style evidence and can be evaluated on official non-FML MLAgentBench tasks.",
       "minimum_design": "At least one scored official non-FML MLAgentBench task with documented baseline, co-pilot-selected branch, official evaluator output, multi-seed robustness when feasible, and a plan to scale beyond one task.",
       "upgrade_condition": "The official non-FML benchmark shows workflow benefit or evaluator-safety benefit and is not treated as broad coverage without scale.",
-      "fallback_if_failed": "Keep official non-FML claims limited to the three-seed scored CIFAR10/debug task and keep broader benchmark claims future-facing.",
-      "required_data": "The current three-seed scored official CIFAR10/debug run plus another accessible official task when budget permits."
+      "fallback_if_failed": "Keep official non-FML claims limited to the three-seed scored CIFAR10/debug task and the three-seed OGBN-arxiv compatibility path; keep broader benchmark claims future-facing.",
+      "required_data": "The current three-seed scored official CIFAR10/debug run plus the three-seed scored OGBN-arxiv official-evaluator compatibility run, then another accessible official task or more matched end-to-end trajectories when budget permits."
     },
     {
       "id": "public_skill_engineering_and_community_adoption",
@@ -68,11 +68,11 @@
       "priority": 1,
       "id": "official_non_fml_benchmark_scaling",
       "action": "Official non-FML benchmark scaling",
-      "proof_target": "Move from one scored official MLAgentBench task to a more robust non-FML evidence slice.",
-      "current_progress": "MLAgentBench vectorization is scored, the open-data sklearn matched package provides official-like held-out trigger-policy evidence, and MLAgentBench CIFAR10/debug is now a scored official task after pre-caching the official CIFAR10 archive: 0.5103 starter baseline versus 0.7782 co-pilot-selected branch, delta +0.2679.",
-      "best_near_term_path": "Rerun CIFAR10/debug across additional seeds or repair one more accessible MLAgentBench task with complete gate logs.",
+      "proof_target": "Move from two narrow scored official-evaluator MLAgentBench paths to broader non-FML evidence across either another official task or more end-to-end matched trajectories.",
+      "current_progress": "MLAgentBench vectorization is scored, the open-data sklearn matched package provides official-like held-out trigger-policy evidence, MLAgentBench CIFAR10/debug has a three-seed official run with mean 0.7743 versus starter 0.5103, and OGBN-arxiv has a three-seed official-evaluator compatibility path with mean 0.5415 versus compatibility starter 0.02745.",
+      "best_near_term_path": "Add another accessible official MLAgentBench task if data and credentials permit, or scale matched end-to-end co-pilot/autonomous trajectories across tasks.",
       "blocking_condition": "Data access, CPU/GPU runtime, or external account consent prevents additional official scores.",
-      "fallback_if_blocked": "Report the current official CIFAR result as one-task evidence only."
+      "fallback_if_blocked": "Report the current official CIFAR10/debug and OGBN-arxiv evidence as two narrow scored paths only; do not claim broad official benchmark coverage."
     },
     {
       "priority": 2,

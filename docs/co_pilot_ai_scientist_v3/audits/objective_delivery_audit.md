@@ -1,8 +1,8 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T22:24:29Z`
+- Audit date: `2026-06-02T22:27:21Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `32f443c85e986a3c5ff342dced15d837d9eea3d0`
+- HEAD: `aa9ebf9b3748ba8900526e2eb6c95d99c0c9cb03`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
 - Manifest artifacts: `975`
@@ -49,7 +49,7 @@
 - `root_readme`: `pass` (10931 bytes) - `README.md`
 - `english_submission_card`: `pass` (5476 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `top_conference_evidence_roadmap`: `pass` (15484 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
-- `top_conference_evidence_roadmap_json`: `pass` (11261 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
+- `top_conference_evidence_roadmap_json`: `pass` (11658 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - `deep_regeneration_casebook`: `pass` (13397 bytes) - `docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md`
 - `human_expert_blind_review_protocol`: `pass` (3755 bytes) - `docs/co_pilot_ai_scientist_v3/human_expert_blind_review_protocol.md`
 - `prospective_gate_instrumentation_audit`: `pass` (3542 bytes) - `docs/co_pilot_ai_scientist_v3/audits/prospective_gate_instrumentation_audit.json`
@@ -79,7 +79,7 @@
 - Run at least 5 matched-budget pairs per task across at least 3 tasks, with means, variance, and paired tests before making superiority claims.
 - Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.
 - Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.
-- Extend beyond the three-seed official MLAgentBench CIFAR10/debug robustness check by adding another accessible official non-FML task or a larger multi-task/seed slice; keep the open-data package labeled as official-like boundary evidence.
+- Extend beyond the current three-seed CIFAR10/debug and three-seed OGBN-arxiv official-evaluator paths by adding another accessible official non-FML task or scaling matched end-to-end co-pilot/autonomous trajectories; keep the open-data package labeled as official-like boundary evidence.
 - Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package.
 
 ## Errors
