@@ -1,0 +1,670 @@
+{
+  "run_id": "review_frontier_signal_probe_20260602_214500",
+  "timestamp_utc": "2026-06-02T09:00:41Z",
+  "status": "review_frontier_signal_probe",
+  "citation_frontier_source": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_213000/summary.json",
+  "source_regeneration_summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+  "per_paper": [
+    {
+      "paper_id": "openreview_sample_1",
+      "title": "Rejection Improves Reliability: Training LLMs to Refuse Unknown Questions Using RL from Knowledge Feedback",
+      "frontier_quality": "thin_relevance_filtered_citation_graph",
+      "frontier_terms": [
+        "chatbot",
+        "moral",
+        "refusal",
+        "llm",
+        "value",
+        "user",
+        "discourse",
+        "tenor",
+        "rhetoric",
+        "sorry",
+        "dave",
+        "afraid",
+        "can",
+        "regulation",
+        "article",
+        "explore"
+      ],
+      "paper_context_signal": {
+        "score": 0.1,
+        "frontier_alignment": 0.0,
+        "actionability": 0.4,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": [
+          "benchmark",
+          "metric"
+        ]
+      },
+      "review_guided_artifact_signal": {
+        "score": 0.05,
+        "frontier_alignment": 0.0,
+        "actionability": 0.2,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": [
+          "benchmark"
+        ]
+      },
+      "best_review_snippet": {
+        "review_index": 2,
+        "gate": "evaluator_stress_test",
+        "frontier_signal": {
+          "score": 0.0469,
+          "frontier_alignment": 0.0625,
+          "actionability": 0.0,
+          "matched_frontier_terms": [
+            "llm"
+          ],
+          "matched_actionability_terms": []
+        },
+        "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new RLHF framework to address LLM hallucinations by defining a new reward model for model reliability. It trains LLMs to generate \\\"I don't know\\\" answers to questions outside the model's knowledge boundary. It conducts empirical experiments on two math question datasets to validate the effectiveness of the proposed method in enhancing LLM reliability. \\n\\nThe proposed method is simple and easy to follow and the evaluation is comprehensive, but the result"
+      },
+      "all_review_snippets": [
+        {
+          "review_index": 0,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.0,
+            "frontier_alignment": 0.0,
+            "actionability": 0.0,
+            "matched_frontier_terms": [],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new approach for creating preference data for training reward models, which they call **Reinforcement Learning from Knowledge Feedback** (RLKF). Whereas existing preference data consists of (preferred, non-preferred) pairs where the non-preferred pair might be either incorrect or not helpful, RLKF creates three types of pairs: (correct, refuse-to-answer), (refuse-to-answer, incorrect), and (correct, incorrect). This way, the reward model explicitly learns"
+        },
+        {
+          "review_index": 1,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.0,
+            "frontier_alignment": 0.0,
+            "actionability": 0.0,
+            "matched_frontier_terms": [],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: One of the big problems with LMs is that they constantly hallucinate. They do this a lot when given questions that they don't know the answer to. Some of these questions that are particularly hard for LMs are arithmetic questions where the inputs are more than just a digit or two long. \\n\\nThe authors here propose an RL framework to remedy this issue. This framework trains the model to prefer saying \\\"I don't know\\\" versus outputting an incorrect answer. \\n\\nThey have experime"
+        },
+        {
+          "review_index": 2,
+          "gate": "evaluator_stress_test",
+          "frontier_signal": {
+            "score": 0.0469,
+            "frontier_alignment": 0.0625,
+            "actionability": 0.0,
+            "matched_frontier_terms": [
+              "llm"
+            ],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new RLHF framework to address LLM hallucinations by defining a new reward model for model reliability. It trains LLMs to generate \\\"I don't know\\\" answers to questions outside the model's knowledge boundary. It conducts empirical experiments on two math question datasets to validate the effectiveness of the proposed method in enhancing LLM reliability. \\n\\nThe proposed method is simple and easy to follow and the evaluation is comprehensive, but the result"
+        }
+      ],
+      "local_short_term_delta_review_guided_minus_paper_only": 1,
+      "interpretation": {
+        "review_beats_paper_context": false,
+        "review_beats_review_guided_artifact": false,
+        "latent_delayed_value_candidate": false,
+        "pattern": "paper_or_artifact_already_contains_signal"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "title": "Forked Diffusion for Conditional Graph Generation",
+      "frontier_quality": "possible_match_drift_rejected",
+      "frontier_terms": [],
+      "paper_context_signal": {
+        "score": 0.1,
+        "frontier_alignment": 0.0,
+        "actionability": 0.4,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": [
+          "baseline",
+          "comparison"
+        ]
+      },
+      "review_guided_artifact_signal": {
+        "score": 0.05,
+        "frontier_alignment": 0.0,
+        "actionability": 0.2,
+        "matched_frontier_terms": [],
+        "matched_actionability_terms": [
+          "comparison"
+        ]
+      },
+      "best_review_snippet": {
+        "review_index": 0,
+        "gate": "structured_feedback",
+        "frontier_signal": {
+          "score": 0.0,
+          "frontier_alignment": 0.0,
+          "actionability": 0.0,
+          "matched_frontier_terms": [],
+          "matched_actionability_terms": []
+        },
+        "excerpt": "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.0, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper works on conditional graph generation via score-based generative model. Instead of directly input conditional properties as context to model inside generation, the paper proposes to use a separate variable to model each conditional property and jointly model them inside the score-based diffusion framework. The author tested it over many real-world datasets, including molecular datasets and generic graphs. The proposed method shows better p"
+      },
+      "all_review_snippets": [
+        {
+          "review_index": 0,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.0,
+            "frontier_alignment": 0.0,
+            "actionability": 0.0,
+            "matched_frontier_terms": [],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.0, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper works on conditional graph generation via score-based generative model. Instead of directly input conditional properties as context to model inside generation, the paper proposes to use a separate variable to model each conditional property and jointly model them inside the score-based diffusion framework. The author tested it over many real-world datasets, including molecular datasets and generic graphs. The proposed method shows better p"
+        },
+        {
+          "review_index": 1,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.0,
+            "frontier_alignment": 0.0,
+            "actionability": 0.0,
+            "matched_frontier_terms": [],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": 0.3333333333333333, \"confidence\": 0.5, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a forked diffusion model for conditional graph generation that introduces parent process and child processes to learn and generate graphs with desired properties. The contributions of this paper include introducing forking as a new technique for conditional generation, providing a rigorous mathematical framework using SDE, and demonstrating the versatility of the proposed forked diffusion with empirical evidence.\", \""
+        },
+        {
+          "review_index": 2,
+          "gate": "evaluator_stress_test",
+          "frontier_signal": {
+            "score": 0.0,
+            "frontier_alignment": 0.0,
+            "actionability": 0.0,
+            "matched_frontier_terms": [],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": 0.3333333333333333, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.3333333333333333, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This work presents conditional diffusion framework for graph generation by proposing forked diffusion processes, that models the graph diffusion process as a single parent process over a primary variable (i.e., structure) and multiple child processes over dependent variables, further including additional context. This work provide experimental results on diverse graph generation tasks showing improved generation performance over continu"
+        }
+      ],
+      "local_short_term_delta_review_guided_minus_paper_only": 1,
+      "interpretation": {
+        "review_beats_paper_context": false,
+        "review_beats_review_guided_artifact": false,
+        "latent_delayed_value_candidate": false,
+        "pattern": "not_scored_no_frontier_terms"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
+      "frontier_quality": "usable_relevance_filtered_citation_graph",
+      "frontier_terms": [
+        "unlearning",
+        "data",
+        "privacy",
+        "llms",
+        "machine",
+        "user",
+        "concern",
+        "parameter",
+        "knowledge",
+        "forget",
+        "forgetting",
+        "technique",
+        "dataset",
+        "request",
+        "existing",
+        "llm"
+      ],
+      "paper_context_signal": {
+        "score": 0.3312,
+        "frontier_alignment": 0.375,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "unlearning",
+          "data",
+          "privacy",
+          "concern",
+          "knowledge",
+          "forgetting"
+        ],
+        "matched_actionability_terms": [
+          "privacy"
+        ]
+      },
+      "review_guided_artifact_signal": {
+        "score": 0.3375,
+        "frontier_alignment": 0.25,
+        "actionability": 0.6,
+        "matched_frontier_terms": [
+          "unlearning",
+          "privacy",
+          "machine",
+          "knowledge"
+        ],
+        "matched_actionability_terms": [
+          "baseline",
+          "metric",
+          "privacy"
+        ]
+      },
+      "best_review_snippet": {
+        "review_index": 1,
+        "gate": "scientific_taste_prior",
+        "frontier_signal": {
+          "score": 0.2906,
+          "frontier_alignment": 0.1875,
+          "actionability": 0.6,
+          "matched_frontier_terms": [
+            "unlearning",
+            "data",
+            "privacy"
+          ],
+          "matched_actionability_terms": [
+            "baseline",
+            "metric",
+            "privacy"
+          ]
+        },
+        "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for"
+      },
+      "all_review_snippets": [
+        {
+          "review_index": 0,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.1406,
+            "frontier_alignment": 0.1875,
+            "actionability": 0.0,
+            "matched_frontier_terms": [
+              "unlearning",
+              "machine",
+              "knowledge"
+            ],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: While there may not be a lot of novelty in the methods designed in this work, I do believe that it has a significant contribution to the field of machine unlearning in large LMs. The quality of writing is good, and the authors provide code for reproducibility.\", \"paper_summary\": \"paper_summary: This work performs knowledge unlearning in large language models by attempting to fine-tune a converged model for a few epochs with a negative loss corresponding to the examples to the forgotten. As"
+        },
+        {
+          "review_index": 1,
+          "gate": "scientific_taste_prior",
+          "frontier_signal": {
+            "score": 0.2906,
+            "frontier_alignment": 0.1875,
+            "actionability": 0.6,
+            "matched_frontier_terms": [
+              "unlearning",
+              "data",
+              "privacy"
+            ],
+            "matched_actionability_terms": [
+              "baseline",
+              "metric",
+              "privacy"
+            ]
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-written and well-structured. The proposed method seems novel to me and the paper seems reproducible. However it is lacking justification for the choice of baselines and metrics.\", \"paper_summary\": \"paper_summary: This paper proposes a simple method for unlearning training samples, to comply with GDPR (and other privacy acts') right-to-be-forgotten statement, which gives each person the right to delete their data at any time they want. The proposed unlearning method for"
+        },
+        {
+          "review_index": 2,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.0469,
+            "frontier_alignment": 0.0625,
+            "actionability": 0.0,
+            "matched_frontier_terms": [
+              "unlearning"
+            ],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The work appears novel, the writing is clear and is easy to read, and the approach is simple and straightforward enough that reproducing the results is likely feasible.\", \"paper_summary\": \"paper_summary: The authors propose a simple approach for unlearning specific token sequences in large pretrained language models (LMs). To unlearn a specific sequence of tokens x, the proposed approach simply negates the original training objective of minimizing the negative log-likelihood of x; this p"
+        }
+      ],
+      "local_short_term_delta_review_guided_minus_paper_only": 1,
+      "interpretation": {
+        "review_beats_paper_context": false,
+        "review_beats_review_guided_artifact": false,
+        "latent_delayed_value_candidate": false,
+        "pattern": "paper_or_artifact_already_contains_signal"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+      "frontier_quality": "usable_relevance_filtered_citation_graph",
+      "frontier_terms": [
+        "icl",
+        "in-context",
+        "llms",
+        "can",
+        "demonstration",
+        "label",
+        "ns3",
+        "such",
+        "transformer",
+        "instruction",
+        "ability",
+        "article",
+        "understanding",
+        "network",
+        "prompt",
+        "llm"
+      ],
+      "paper_context_signal": {
+        "score": 0.1875,
+        "frontier_alignment": 0.25,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "icl",
+          "in-context",
+          "transformer",
+          "understanding"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_guided_artifact_signal": {
+        "score": 0.2344,
+        "frontier_alignment": 0.3125,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "in-context",
+          "transformer",
+          "ability",
+          "understanding",
+          "network"
+        ],
+        "matched_actionability_terms": []
+      },
+      "best_review_snippet": {
+        "review_index": 2,
+        "gate": "structured_feedback",
+        "frontier_signal": {
+          "score": 0.0938,
+          "frontier_alignment": 0.125,
+          "actionability": 0.0,
+          "matched_frontier_terms": [
+            "icl",
+            "in-context"
+          ],
+          "matched_actionability_terms": []
+        },
+        "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.0, \"ethics\": null, \"impact\": null, \"novelty\": 0.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-structured, clear and reads easily. The level of technical details provided in the main text is good. The supplementary material provides an extensive and very lengthy details on the derivation of different operators. The paper has a placeholder link for the code, so I think that the results should be easily reproducible.\\n\", \"paper_summary\": \"paper_summary: The paper investigates the capability of transformer-based in-context learners (ICL) to implicitly implement learning algorithms"
+      },
+      "all_review_snippets": [
+        {
+          "review_index": 0,
+          "gate": "scientific_taste_prior",
+          "frontier_signal": {
+            "score": 0.0469,
+            "frontier_alignment": 0.0625,
+            "actionability": 0.0,
+            "matched_frontier_terms": [
+              "in-context"
+            ],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: **QUALITY:** This is a high-quality submission that tackles an important problem and offers interesting and nontrivial insights. \\n\\n**CLARITY:** The paper is very well-written and clear. Here are a couple additional comments (BUNCH OF REQUESTS): \\n* The first sentence of the second paragraph of the introduction imply that _all_ types of in-context learning can be understood via the framework discussed in the paper. It'd be better if the authors clarify that there exist other types of in-"
+        },
+        {
+          "review_index": 1,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.0,
+            "frontier_alignment": 0.0,
+            "actionability": 0.0,
+            "matched_frontier_terms": [],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: \\nThe work in this paper is novel and of high quality. It is mostly clear but the probe technique leveraged in section 5 could use a lot more description to understand that set of experiments.\\n\\nMinor issues and typos:\\n\\nThe plots and legend in figure 3 are hard to read because there are many methods plotted in the same graph with identical colors.\\n\\nI believe there are some typos in the operator definitions of section 3.1. For instance:\\n\\n1. in the \\\"mov\\\" operator's definition, shou"
+        },
+        {
+          "review_index": 2,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.0938,
+            "frontier_alignment": 0.125,
+            "actionability": 0.0,
+            "matched_frontier_terms": [
+              "icl",
+              "in-context"
+            ],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.0, \"ethics\": null, \"impact\": null, \"novelty\": 0.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-structured, clear and reads easily. The level of technical details provided in the main text is good. The supplementary material provides an extensive and very lengthy details on the derivation of different operators. The paper has a placeholder link for the code, so I think that the results should be easily reproducible.\\n\", \"paper_summary\": \"paper_summary: The paper investigates the capability of transformer-based in-context learners (ICL) to implicitly implement learning algorithms"
+        }
+      ],
+      "local_short_term_delta_review_guided_minus_paper_only": 1,
+      "interpretation": {
+        "review_beats_paper_context": false,
+        "review_beats_review_guided_artifact": false,
+        "latent_delayed_value_candidate": false,
+        "pattern": "paper_or_artifact_already_contains_signal"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "title": "Unifying semi-supervised and robust learning by mixup",
+      "frontier_quality": "usable_relevance_filtered_citation_graph",
+      "frontier_terms": [
+        "label",
+        "noise",
+        "data",
+        "sup",
+        "unlabeled",
+        "network",
+        "noisy",
+        "target",
+        "dataset",
+        "only",
+        "labeled",
+        "detection",
+        "supervised",
+        "existing",
+        "achieve",
+        "type"
+      ],
+      "paper_context_signal": {
+        "score": 0.3281,
+        "frontier_alignment": 0.4375,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "label",
+          "noise",
+          "data",
+          "noisy",
+          "only",
+          "labeled",
+          "supervised"
+        ],
+        "matched_actionability_terms": []
+      },
+      "review_guided_artifact_signal": {
+        "score": 0.1875,
+        "frontier_alignment": 0.25,
+        "actionability": 0.0,
+        "matched_frontier_terms": [
+          "data",
+          "noisy",
+          "labeled",
+          "existing"
+        ],
+        "matched_actionability_terms": []
+      },
+      "best_review_snippet": {
+        "review_index": 0,
+        "gate": "scientific_taste_prior",
+        "frontier_signal": {
+          "score": 0.1406,
+          "frontier_alignment": 0.1875,
+          "actionability": 0.0,
+          "matched_frontier_terms": [
+            "label",
+            "noisy",
+            "only"
+          ],
+          "matched_actionability_terms": []
+        },
+        "excerpt": "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Major comments and summary: \\n\\n Overall, I strongly recommend this paper as a workshop paper, but I think it needs more work to become a great conference paper. The problem is well-motivated and seems very important to me. My biggest issue is that I feel like one could go much \\\"further\\\" with this idea - and it shows empirically - the only improvement from using the noisy labels is to go from 89% -> 90%, which I would say is only a small improvement. If this problem gets solved I think you should"
+      },
+      "all_review_snippets": [
+        {
+          "review_index": 0,
+          "gate": "scientific_taste_prior",
+          "frontier_signal": {
+            "score": 0.1406,
+            "frontier_alignment": 0.1875,
+            "actionability": 0.0,
+            "matched_frontier_terms": [
+              "label",
+              "noisy",
+              "only"
+            ],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Major comments and summary: \\n\\n Overall, I strongly recommend this paper as a workshop paper, but I think it needs more work to become a great conference paper. The problem is well-motivated and seems very important to me. My biggest issue is that I feel like one could go much \\\"further\\\" with this idea - and it shows empirically - the only improvement from using the noisy labels is to go from 89% -> 90%, which I would say is only a small improvement. If this problem gets solved I think you should"
+        },
+        {
+          "review_index": 1,
+          "gate": "scientific_taste_prior",
+          "frontier_signal": {
+            "score": 0.0,
+            "frontier_alignment": 0.0,
+            "actionability": 0.0,
+            "matched_frontier_terms": [],
+            "matched_actionability_terms": []
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The authors start by introducing a formal setting that includes the semi-supervised and the robust learning tasks as special cases and they then proceed by proposing a strategy based on mixup [1] for training a model in this unified setting.\\n\\nMy general impression from this work is firmly positive. The manuscript is clearly written, the experimental setup covers adequately alternative methods and the description of the experiments includes the most important details. The results presented, while in m"
+        }
+      ],
+      "local_short_term_delta_review_guided_minus_paper_only": 1,
+      "interpretation": {
+        "review_beats_paper_context": false,
+        "review_beats_review_guided_artifact": false,
+        "latent_delayed_value_candidate": false,
+        "pattern": "paper_or_artifact_already_contains_signal"
+      }
+    },
+    {
+      "paper_id": "openreview_sample_64",
+      "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+      "frontier_quality": "thin_relevance_filtered_citation_graph",
+      "frontier_terms": [
+        "traffic",
+        "scenario",
+        "factor",
+        "trafficgen",
+        "event-relevant",
+        "anomaly",
+        "video",
+        "detection",
+        "realistic",
+        "driving",
+        "vehicle",
+        "event-irrelevant",
+        "causal",
+        "generate",
+        "diverse",
+        "safety"
+      ],
+      "paper_context_signal": {
+        "score": 0.2375,
+        "frontier_alignment": 0.25,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "traffic",
+          "vehicle",
+          "causal",
+          "diverse"
+        ],
+        "matched_actionability_terms": [
+          "causal"
+        ]
+      },
+      "review_guided_artifact_signal": {
+        "score": 0.1437,
+        "frontier_alignment": 0.125,
+        "actionability": 0.2,
+        "matched_frontier_terms": [
+          "realistic",
+          "causal"
+        ],
+        "matched_actionability_terms": [
+          "causal"
+        ]
+      },
+      "best_review_snippet": {
+        "review_index": 0,
+        "gate": "structured_feedback",
+        "frontier_signal": {
+          "score": 0.1437,
+          "frontier_alignment": 0.125,
+          "actionability": 0.2,
+          "matched_frontier_terms": [
+            "driving",
+            "causal"
+          ],
+          "matched_actionability_terms": [
+            "causal"
+          ]
+        },
+        "excerpt": "{\"clarity\": null, \"confidence\": 0.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: If I understand correctly this paper proposes a model which allows goal directed samples (goal defined by a specific behavioural graph) while constraining the model to respect a given causal graph. The method uses flows, together with masks over order or visibiliy to model the edges of the graphs and obtain a distribution which is both easy to sample from as well as respecting the causal constraints and goal.\\nThe method is demonstrated to work well producing samples of driving scenes which are consist"
+      },
+      "all_review_snippets": [
+        {
+          "review_index": 0,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.1437,
+            "frontier_alignment": 0.125,
+            "actionability": 0.2,
+            "matched_frontier_terms": [
+              "driving",
+              "causal"
+            ],
+            "matched_actionability_terms": [
+              "causal"
+            ]
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: If I understand correctly this paper proposes a model which allows goal directed samples (goal defined by a specific behavioural graph) while constraining the model to respect a given causal graph. The method uses flows, together with masks over order or visibiliy to model the edges of the graphs and obtain a distribution which is both easy to sample from as well as respecting the causal constraints and goal.\\nThe method is demonstrated to work well producing samples of driving scenes which are consist"
+        },
+        {
+          "review_index": 1,
+          "gate": "structured_feedback",
+          "frontier_signal": {
+            "score": 0.1437,
+            "frontier_alignment": 0.125,
+            "actionability": 0.2,
+            "matched_frontier_terms": [
+              "traffic",
+              "causal"
+            ],
+            "matched_actionability_terms": [
+              "causal"
+            ]
+          },
+          "excerpt": "{\"clarity\": null, \"confidence\": 0.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Summary:\\nThis work tackles the challenge of goal-directed scene generation in the context of generating safety-critical traffic scenes with a high risk of collision. The authors use the causal graphs of three high-risk traffic scenes to condition the scene generation process. This is done by generating a “behavioural graph” BG which represents a single scene, conditioned on an underlying causal graph CG. The generation of a BG follows the causal structure of an underlying CG via the use of masking ope"
+        }
+      ],
+      "local_short_term_delta_review_guided_minus_paper_only": 0,
+      "interpretation": {
+        "review_beats_paper_context": false,
+        "review_beats_review_guided_artifact": false,
+        "latent_delayed_value_candidate": false,
+        "pattern": "paper_or_artifact_already_contains_signal"
+      }
+    }
+  ],
+  "aggregate": {
+    "paper_count": 6,
+    "papers_with_frontier_terms": 5,
+    "review_snippet_count": 16,
+    "review_beats_paper_context_count": 0,
+    "review_beats_review_guided_artifact_count": 0,
+    "latent_delayed_value_candidate_count": 0,
+    "mean_best_review_score": 0.1431,
+    "mean_paper_context_score": 0.2369,
+    "mean_review_guided_artifact_score": 0.1906,
+    "best_review_gate_counts": {
+      "evaluator_stress_test": 1,
+      "scientific_taste_prior": 2,
+      "structured_feedback": 2
+    }
+  },
+  "claim_boundary": "This probe screens historical review snippets for lexical overlap with later citation-derived frontier terms. It identifies candidate taste/insight signals that may deserve human-in-the-loop routing, but it does not prove causality, review quality, or long-term SOTA alignment. The current sample is six papers and should be treated as design evidence for retrospective mining."
+}

@@ -19,6 +19,7 @@ runs/
 !docs/co_pilot_ai_scientist_v3/build/*.pdf
 !docs/co_pilot_ai_scientist_v3/build/**
 !docs/co_pilot_ai_scientist_v3/**/*.log
+docs/co_pilot_ai_scientist_v3/experiments/.cache/
 .pytest_cache/
 node_modules/
 .next/

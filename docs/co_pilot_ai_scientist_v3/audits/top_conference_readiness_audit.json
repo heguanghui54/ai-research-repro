@@ -83,12 +83,12 @@
     "retrospective_frontier_alignment_shuffled_control_wins": 5,
     "retrospective_frontier_alignment_delayed_value_cases": 0,
     "retrospective_frontier_alignment_short_term_positive_long_term_negative_cases": 3,
-    "retrospective_frontier_citation_probe_runs": 1,
-    "retrospective_frontier_citation_probe_papers": 3,
-    "retrospective_frontier_citation_probe_papers_with_citations": 1,
-    "retrospective_frontier_citation_probe_thin_citation_graph_papers": 0,
+    "retrospective_frontier_citation_probe_runs": 2,
+    "retrospective_frontier_citation_probe_papers": 6,
+    "retrospective_frontier_citation_probe_papers_with_citations": 5,
+    "retrospective_frontier_citation_probe_thin_citation_graph_papers": 2,
     "retrospective_frontier_citation_probe_delayed_value_cases": 0,
-    "retrospective_frontier_citation_probe_relevance_filtered_citations": 13,
+    "retrospective_frontier_citation_probe_relevance_filtered_citations": 80,
     "retrospective_frontier_citation_probe_possible_match_drift_papers": 1,
     "live_skill_invocation_smokes": 1,
     "live_skill_invocation_model_calls": 2,
@@ -125,7 +125,12 @@
     "single_gate_artifact_ablation_best_single_minus_baseline": 0.7501,
     "single_gate_artifact_ablation_full_minus_best_single": -0.1667,
     "focused_paper_quality_successful_reviews": 2,
-    "focused_paper_quality_failed_routes": 2
+    "focused_paper_quality_failed_routes": 2,
+    "retrospective_frontier_citation_probe_short_term_positive_long_term_negative_cases": 3,
+    "review_frontier_signal_probe_runs": 1,
+    "review_frontier_signal_probe_review_snippets": 16,
+    "review_frontier_signal_probe_review_beats_paper_cases": 0,
+    "review_frontier_signal_probe_latent_delayed_value_candidates": 0
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -743,54 +748,29 @@
     }
   },
   "retrospective_frontier_citation_probe": {
-    "status": "lightweight_citation_backed_three_paper_pilot_completed_with_relevance_filter_and_match_guard",
+    "status": "expanded_citation_backed_probe_negative_for_delayed_value",
     "script": "scripts/run_retrospective_frontier_citation_probe.py",
-    "run_id": "retrospective_frontier_citation_probe_20260602_163000",
-    "summary": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_163000/summary.json",
-    "readme": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_163000/README.md",
-    "retrieval_records": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_163000/retrieval_records.json",
-    "citation_source": "Semantic Scholar Graph API with OpenAlex fallback",
-    "paper_count": 3,
-    "papers_with_retrieved_citations": 1,
-    "thin_citation_graph_papers": 0,
-    "citation_count_after_relevance_filter": 13,
-    "possible_match_drift_papers": 1,
-    "frontier_quality_counts": {
-      "no_relevant_citations": 1,
-      "possible_match_drift_rejected": 1,
-      "usable_relevance_filtered_citation_graph": 1
-    },
-    "min_relevance_terms": 2,
+    "run_id": "retrospective_frontier_citation_probe_20260602_213000",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_213000/summary.json",
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_213000/README.md",
+    "retrieval_records": "docs/co_pilot_ai_scientist_v3/experiments/retrospective_frontier_citation_probe_20260602_213000/retrieval_records.json",
+    "paper_count": 6,
+    "papers_with_retrieved_citations": 5,
+    "relevance_filtered_citations": 80,
     "winner_counts": {
-      "not_scored_no_frontier_terms": 2,
+      "shuffled_review_control": 1,
+      "not_scored_no_frontier_terms": 1,
+      "paper_only": 3,
       "review_guided": 1
     },
     "mean_scores": {
-      "paper_only": 0.3067,
-      "review_guided": 0.32,
-      "shuffled_review_control": 0.24
+      "paper_only": 0.23,
+      "review_guided": 0.21,
+      "shuffled_review_control": 0.248
     },
-    "mean_delta_review_guided_minus_paper_only": 0.0133,
-    "mean_delta_review_guided_minus_shuffled_control": 0.08,
-    "delayed_value_case_count": 0,
-    "short_term_positive_long_term_negative_count": 0,
-    "usable_case": {
-      "paper_id": "openreview_sample_17",
-      "title": "Knowledge Unlearning for Mitigating Privacy Risks in Language Models",
-      "citation_count_used": 13,
-      "winner": "review_guided",
-      "temporal_pattern": "short_and_long_term_positive",
-      "frontier_terms": [
-        "privacy",
-        "unlearning",
-        "data",
-        "llms",
-        "risk",
-        "attack",
-        "security"
-      ]
-    },
-    "claim_boundary": "This is a lightweight citation-backed pilot using retrieved Semantic Scholar metadata and simple term-overlap scoring. It is stronger than manual descriptors but still not a full citation graph reconstruction, blinded expert review, or proof of long-term SOTA alignment. It filters citations by lexical relevance, but thin or topically broad citation graphs can still produce misleading frontier terms."
+    "delayed_value_cases": 0,
+    "short_term_positive_long_term_negative_cases": 3,
+    "claim_boundary": "Expanded citation-backed lexical frontier matching still finds no delayed-value review cases; this supports protocol readiness and a negative boundary, not the delayed-value hypothesis."
   },
   "clean_clone_reproducibility_audit": {
     "status": "pass_for_current_pushed_artifact_rebuild",
@@ -1179,5 +1159,21 @@
       }
     },
     "claim_boundary": "This is a six-paper, model-reviewed OpenReview proxy using generated mini-paper artifacts. It is closer to a causal gate ablation than post-hoc attribution, but it does not replace independent human expert ratings, real benchmark reruns, or multi-task AI Scientist-v2 matched experiments."
+  },
+  "review_frontier_signal_probe": {
+    "status": "completed_negative_lexical_review_signal_probe",
+    "script": "scripts/run_review_frontier_signal_probe.py",
+    "run_id": "review_frontier_signal_probe_20260602_214500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/review_frontier_signal_probe_20260602_214500/summary.json",
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/review_frontier_signal_probe_20260602_214500/README.md",
+    "paper_count": 6,
+    "papers_with_frontier_terms": 5,
+    "review_snippet_count": 16,
+    "review_beats_paper_context_count": 0,
+    "latent_delayed_value_candidate_count": 0,
+    "mean_best_review_score": 0.1431,
+    "mean_paper_context_score": 0.2369,
+    "mean_review_guided_artifact_score": 0.1906,
+    "claim_boundary": "Review snippets contain routeable gates but do not outperform paper context under lexical citation-frontier scoring; stronger semantic and human-judged measures are required."
   }
 }

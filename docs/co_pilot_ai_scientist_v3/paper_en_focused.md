@@ -62,7 +62,8 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | Metric-gaming evaluator-stress smoke | evaluator-stress gate selects `guardrailed_utility_model` | primary-only fairness metric selects `metric_gaming_all_negative` | 1 synthetic metric-gaming incident reduced | Links the live skill task to an actual evaluator; controlled toy evidence, not FML-bench. |
 | FML Fairness evaluator-stress replay | gate rejects metric-gaming and aborts no-valid continuation | primary-only FML metric selects `metric_gaming_all_negative` | 1 archived FML metric-gaming incident reduced | Real FML-Bench artifact replay; supports gate design, not Fairness improvement. |
 | Retrospective frontier-alignment smoke | review-guided wins 1 | shuffled-control wins 5 | mean delta vs. control -0.0855; 0 delayed-value cases; 3 short-term-positive/long-term-negative cases | Future-frontier alignment is harder than local paper improvement; heuristic descriptors only. |
-| Citation-backed frontier pilot | review-guided wins 1 | 2 cases not scored | 3 papers, 13 relevance-filtered later citations, mean delta vs. paper-only +0.0133 | Relevance filtering and match-drift guards are implemented; only one usable citation graph remains, so this is protocol evidence rather than a strong result. |
+| Citation-backed frontier pilot | review-guided wins 1 | paper-only wins 3; shuffled-control wins 1; 1 case not scored | 6 papers, 80 relevance-filtered later citations, mean delta vs. paper-only -0.02 | Relevance filtering and match-drift guards are implemented; no delayed-value cases are found, and 3 cases are short-term-positive/long-term-negative. |
+| Review-frontier signal mining | best review snippets scored 0.1431 mean | paper context 0.2369; review-guided artifact 0.1906 | 0 review-beats-paper cases; 0 latent delayed-value candidates | Historical reviews contain routeable gates, but this lexical future-frontier test finds that the original paper context carries more citation-frontier terms than the review snippets. |
 | Prospective matched packages | 1 co-pilot or human-selected win | 3 autonomous/tie/invalid outcomes | 4 packages | Short-budget average benchmark superiority is not supported. |
 | Same-run online FML smokes | 0 co-pilot benchmark wins | 1 autonomous win, 1 tie, 1 unknown | 3 paired smokes | Current valid benchmark evidence leans autonomous or tie. |
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
@@ -143,21 +144,32 @@ negative result is useful because it separates local reviewer satisfaction from
 long-horizon scientific directionality, which is exactly the distinction a
 co-pilot scientist must learn.
 
-A citation-backed version of the probe now runs on three arXiv-linked
-OpenReview samples with OpenAlex fallback, lexical relevance filtering, and a
-title-overlap guard against match drift. The result is still a pilot, but it is
-more informative than the first one-paper version. One refusal/reliability
-paper has no relevance-filtered later citations, one graph-diffusion paper is
-rejected because the top metadata match drifts into population genetics, and one
-knowledge-unlearning paper yields a usable 13-citation frontier around privacy,
-unlearning, LLM risk, attacks, and security. On that usable case,
-review-guided regeneration has the highest citation-frontier alignment
-(`0.32`, versus `0.3067` for paper-only and `0.24` for shuffled review
-control), and is also short-term positive. The probe therefore finds one
-short-and-long-term positive case, not the delayed-value pattern. This is not
-evidence against the delayed-value hypothesis; it shows that future-frontier
-measurement must first solve citation coverage, topical relevance, and metadata
-match-drift before broader claims are possible.
+A citation-backed version of the probe now runs on six OpenReview samples with
+OpenAlex fallback, lexical relevance filtering, and a title-overlap guard
+against match drift. It retrieves usable future-frontier terms for 5 of 6
+papers and 80 relevance-filtered later citations. The result is again
+sobering: review-guided regeneration wins only 1 case, paper-only wins 3,
+shuffled-review control wins 1, and one case is not scored because the metadata
+match drifts. The mean review-guided citation-frontier score is 0.21, below
+paper-only 0.23 and shuffled-control 0.248. The probe finds 0 delayed-value
+cases and 3 short-term-positive/long-term-negative cases. This is not evidence
+against the delayed-value hypothesis; it shows that the current lexical
+frontier metric can reward original paper terminology more than review-derived
+direction changes, and that future-frontier measurement must solve citation
+coverage, topical relevance, metadata match-drift, and semantic rather than
+lexical alignment.
+
+We therefore add a stricter review-frontier signal probe that scores the
+historical review snippets themselves against citation-derived frontier terms.
+Across 16 review snippets from the six papers, the best review snippets have
+mean future-frontier score 0.1431, while the original paper context scores
+0.2369 and the review-guided artifact scores 0.1906. No review snippet beats
+the paper context or the generated artifact, and no latent delayed-value
+candidate is found. This negative result is useful. It prevents the paper from
+treating OpenReview as a magic source of human taste. The actionable conclusion
+is narrower: peer review is a scalable offline proxy for testing participation
+modes, but useful taste/insight signals must be filtered, routed, and validated
+against stronger semantic and human-judged future-frontier measures.
 
 This makes the paper's application value concrete. The goal is not merely to prove that humans improve paper quality. The goal is to design the best modes of human participation, compare them empirically, and build a workflow in which human taste is used where it has the highest chance of changing the research trajectory.
 

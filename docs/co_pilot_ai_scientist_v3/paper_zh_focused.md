@@ -62,7 +62,8 @@ IGRE 把一次科研运行建模为一连串机器动作与显式门控的交替
 | Metric-gaming evaluator-stress smoke | evaluator-stress gate 选择 `guardrailed_utility_model` | primary-only 公平性指标选择 `metric_gaming_all_negative` | 减少 1 个合成 metric-gaming 事件 | 将 live skill 任务连接到真实 evaluator；这是受控 toy 证据，不是 FML-bench 结果。 |
 | FML Fairness evaluator-stress replay | gate 拒绝 metric-gaming 并中止无有效 continuation | primary-only FML 指标选择 `metric_gaming_all_negative` | 减少 1 个归档 FML metric-gaming 事件 | 真实 FML-Bench artifact replay；支持 gate 设计，不支持公平性提升。 |
 | 回溯式前沿对齐 smoke | review-guided 胜 1 次 | shuffled-control 胜 5 次 | 相对 control 平均增量 -0.0855；delayed-value 0 例；短期正向/长期负向 3 例 | 未来前沿对齐比局部论文改进更难；当前仅为启发式 descriptor。 |
-| 引用驱动前沿 pilot | review-guided 胜 1 次 | 2 例不可评分 | 3 篇论文，13 条相关性过滤后的后续引用，相对 paper-only 均值 +0.0133 | 已加入相关性过滤和标题重合度误配保护；但只有 1 个可用引用图，因此仍是协议证据而非强结果。 |
+| 引用驱动前沿 pilot | review-guided 胜 1 次 | paper-only 胜 3 次；shuffled-control 胜 1 次；1 例不可评分 | 6 篇论文，80 条相关性过滤后的后续引用，相对 paper-only 均值 -0.02 | 已加入相关性过滤和标题重合度误配保护；未发现 delayed-value case，并出现 3 个短期正向/长期负向案例。 |
+| 评审-前沿信号挖掘 | 最佳评审片段均值 0.1431 | paper context 0.2369；review-guided artifact 0.1906 | 0 个 review-beats-paper 案例；0 个 latent delayed-value candidate | 历史评审包含可路由 gate，但这个词汇式未来前沿测试显示，原论文上下文比评审片段携带更多 citation-frontier 术语。 |
 | Prospective matched packages | co-pilot 或人类选分支胜 1 次 | autonomous / tie / invalid 3 次 | 4 个 package | 不支持短预算平均 benchmark 优越性。 |
 | Same-run online FML smokes | co-pilot benchmark 胜 0 次 | autonomous 胜 1 次，平 1 次，未知 1 次 | 3 个 paired smoke | 当前有效 benchmark 证据偏向 autonomous 或平局。 |
 | MLAgentBench vectorization | 8/8 seeds 保持正确，median 0.024581 s | starter 3.261186 s；direct rewrite 未通过正确性 | 显著运行时间收益 | 可验证微演化适合 correctness-gated 代码子问题。 |
@@ -114,7 +115,9 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 当前 smoke 还没有找到这种 delayed-value 模式，反而在 3 个案例中发现了相反诊断：评审引导提高了短期模型评分，但降低了启发式未来前沿对齐分数。这个负结果依然有价值，因为它把“局部 reviewer 满意度”和“长期科研方向性”区分开来，而这正是 co-pilot scientist 必须学会的区分。
 
-引用驱动版本现在扩展到 3 个 arXiv-linked OpenReview 样本，并使用 OpenAlex fallback、词汇相关性过滤和标题重合度 guard 来防止元数据误配。结果仍是 pilot，但比最初单篇版本更有方法论价值：一篇 refusal/reliability 论文没有留下相关性过滤后的后续引用；一篇 graph diffusion 论文因 OpenAlex 顶部匹配漂移到 population genetics 而被拒绝；一篇 knowledge unlearning 论文留下 13 条可用后续引用，形成围绕 privacy、unlearning、LLM risk、attack 和 security 的未来前沿描述。在这个可评分案例上，review-guided 产物的 citation-frontier alignment 最高（`0.32`，paper-only 为 `0.3067`，shuffled review control 为 `0.24`），并且短期评分也为正。因此该 pilot 找到的是一个 short-and-long-term positive case，而不是 delayed-value case。这不是对 delayed-value 假设的反证，而是说明未来前沿测量必须先解决引用覆盖、主题相关性和元数据 match-drift，才能支持更强主张。
+引用驱动版本现在扩展到 6 个 OpenReview 样本，并使用 OpenAlex fallback、词汇相关性过滤和标题重合度 guard 来防止元数据误配。它为 6 篇中的 5 篇取回可用未来前沿术语，共包含 80 条相关性过滤后的后续引用。结果再次偏保守：review-guided 只赢 1 例，paper-only 赢 3 例，shuffled-review control 赢 1 例，另有 1 例因元数据匹配漂移而不可评分。review-guided 的平均 citation-frontier 分数为 0.21，低于 paper-only 的 0.23 和 shuffled-control 的 0.248。该 probe 发现 0 个 delayed-value case，并发现 3 个短期正向/长期负向案例。这不是 delayed-value 假设的反证，而是说明当前词汇式前沿指标可能更奖励原论文术语，而不是评审引导带来的方向转移；未来前沿测量必须先解决引用覆盖、主题相关性、元数据 match-drift，以及语义对齐而不只是词汇重合。
+
+因此我们进一步加入更严格的评审-前沿信号探针，直接把历史评审片段与 citation-derived frontier terms 进行比较。在 6 篇论文的 16 条评审片段中，最佳评审片段的未来前沿平均分为 0.1431，而原论文上下文为 0.2369，review-guided artifact 为 0.1906。没有任何评审片段超过原论文上下文或生成产物，也没有发现 latent delayed-value candidate。这个负结果很有用，因为它防止论文把 OpenReview 当成天然有效的人类 taste 来源。更稳妥的结论是：同行评审是一个可扩展的离线 participation-mode 测试代理，但真正有用的 taste/insight 信号必须经过筛选、路由，并用更强的语义式和人类评判式未来前沿指标验证。
 
 这也让本文的应用意义更具体。目标不是简单证明人类能提高论文质量，而是设计更优的人类参与模式，用实验数据比较这些模式，并构建一种工作流，使人类科研品味在最可能改变科研轨迹的位置发挥作用。
 

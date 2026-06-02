@@ -70,17 +70,20 @@ claim calibration.
   control `-0.0855`, `0` delayed-value cases, `3`
   short-term-positive/long-term-negative cases), and is reported as pipeline
   evidence rather than a literature-backed SOTA reconstruction.
-- `experiments/retrospective_frontier_citation_probe_20260602_163000/`:
-  lightweight citation-backed frontier pilot using Semantic Scholar with
-  OpenAlex fallback, lexical relevance filtering, and a title-overlap guard
-  against metadata match drift. Across three arXiv-linked samples, one has no
-  relevance-filtered later citations, one likely OpenAlex match drift is
-  rejected, and one knowledge-unlearning sample yields a usable 13-citation
-  future-frontier descriptor. The usable case favors review-guided regeneration
-  (`0.32` vs. paper-only `0.3067` and shuffled-control `0.24`), while the
-  aggregate still has `0` delayed-value cases. This is reported as protocol
-  evidence for future-frontier measurement, not as proof of the delayed-value
-  hypothesis.
+- `experiments/retrospective_frontier_citation_probe_20260602_213000/`:
+  expanded citation-backed frontier pilot using Semantic Scholar with OpenAlex
+  fallback, lexical relevance filtering, and a title-overlap guard against
+  metadata match drift. Across six OpenReview samples, five have usable
+  frontier terms, with 80 relevance-filtered later citations. Review-guided
+  regeneration wins 1 case, paper-only wins 3, shuffled-control wins 1, and 1
+  case is rejected for match drift; the aggregate has `0` delayed-value cases
+  and `3` short-term-positive/long-term-negative cases.
+- `experiments/review_frontier_signal_probe_20260602_214500/`: direct
+  screening of historical review snippets against the citation-derived frontier
+  terms. It scores 16 review snippets and finds `0` review-beats-paper-context
+  cases and `0` latent delayed-value candidates, supporting the boundary that
+  OpenReview is an offline proxy for participation-mode design, not a magic
+  source of automatically useful human taste.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet
