@@ -94,6 +94,9 @@ def main() -> None:
     end_to_end_paired_trajectory_audit_path = AUDIT_DIR / "end_to_end_paired_trajectory_audit.json"
     global_skill_install_audit_path = AUDIT_DIR / "global_copilot_skill_install_audit.json"
     global_skill_reuse_smoke_path = DOC_DIR / "experiments" / "global_skill_reuse_smoke_20260603" / "summary.json"
+    global_skill_metric_evaluator_path = (
+        DOC_DIR / "experiments" / "global_skill_metric_gaming_evaluator_20260603" / "summary.json"
+    )
 
     manifest = _load_json(manifest_path)
     readiness = _load_json(readiness_path)
@@ -114,6 +117,7 @@ def main() -> None:
     end_to_end_paired_trajectory = _load_json(end_to_end_paired_trajectory_audit_path)
     global_skill_install_audit = _load_json(global_skill_install_audit_path)
     global_skill_reuse_smoke = _load_json(global_skill_reuse_smoke_path)
+    global_skill_metric_evaluator = _load_json(global_skill_metric_evaluator_path)
 
     current_artifacts = manifest.get("current_artifacts", [])
     missing_manifest = [path for path in current_artifacts if not (ROOT / path).exists()]
@@ -146,6 +150,7 @@ def main() -> None:
         "reusable_skill": ROOT / "skills" / "co-pilot-ai-scientist-v3" / "SKILL.md",
         "global_skill_install_audit": global_skill_install_audit_path,
         "global_skill_reuse_smoke": global_skill_reuse_smoke_path,
+        "global_skill_metric_evaluator": global_skill_metric_evaluator_path,
         "task_template": ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "task_spec_template.md",
         "gate_template": ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "human_gate_log_template.json",
     }
@@ -246,6 +251,8 @@ def main() -> None:
         and global_skill_install_audit.get("base_skill_lineage_checked") is True,
         "global_codex_skill_reuse_smoke": global_skill_reuse_smoke.get("status") == "pass"
         and global_skill_reuse_smoke.get("generated_from_global_install") is True,
+        "global_codex_skill_metric_evaluator_smoke": global_skill_metric_evaluator.get("status") == "pass"
+        and global_skill_metric_evaluator.get("metric_gaming_incidents_reduced") == 1,
         "github_branch_pushed": _remote_contains_branch("origin", branch),
         "author_recorded": manifest.get("author") == "He Shi, School of Computing, National University of Singapore",
         "manifest_complete": len(current_artifacts) > 0 and not missing_manifest,

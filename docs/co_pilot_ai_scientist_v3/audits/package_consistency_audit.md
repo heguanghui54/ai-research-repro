@@ -1,11 +1,11 @@
 # Package Consistency Audit
 
-- Audit date: `2026-06-02T16:52:28Z`
+- Audit date: `2026-06-02T16:56:20Z`
 - Status: `pass`
-- HEAD: `e0554ede426b281162ed427f2384b754f40bbe0b`
+- HEAD: `a50612225b4ac9b2b08ff19c9523034d0ec64bc2`
 - Clean-clone audited commit: `fb3e666b6f75e1342a59289aa24ee61552356bd8`
 - Clean-clone commit is HEAD ancestor: `True`
-- Manifest artifacts: `860`
+- Manifest artifacts: `863`
 - Missing manifest artifacts: `0`
 - Candidate-frontier scored reviews: `13`
 - Candidate-frontier delayed-control delta: `0.064`

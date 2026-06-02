@@ -146,6 +146,11 @@ does not replace the paper's empirical evidence requirements.
   globally installed skill files and templates on a fresh evaluator-stress
   research task, generating a task spec, gate log, and claim audit. This proves
   installed-skill artifact reuse, not benchmark or human-evaluation success.
+- `experiments/global_skill_metric_gaming_evaluator_20260603/`: executable toy
+  evaluator linked to the global-skill reuse task. The primary-only metric
+  selects a synthetic degenerate candidate, while the evaluator-stress gate's
+  guarded evaluator rejects it. This is controlled evaluator evidence only,
+  not an official benchmark result.
 - `release/co-pilot-ai-scientist-v3-skill/`: standalone release scaffold for a
   public GitHub skill. It packages `SKILL.md`, templates, examples, quickstart,
   manifest, and a local validator so the engineering track can progress

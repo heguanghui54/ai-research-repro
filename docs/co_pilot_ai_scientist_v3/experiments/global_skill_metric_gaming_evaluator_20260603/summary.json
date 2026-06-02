@@ -1,0 +1,117 @@
+{
+  "run_id": "global_skill_metric_gaming_evaluator_20260603",
+  "timestamp_utc": "2026-06-02T16:56:16Z",
+  "status": "pass",
+  "source_global_skill_reuse_smoke": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/summary.json",
+  "source_gate_log": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/human_gate_log.json",
+  "source_gate_decision": "guarded_evaluator",
+  "source_generated_from_global_install": true,
+  "dataset": {
+    "y_true": [
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1
+    ],
+    "sensitive_group": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "candidate_predictions": {
+      "baseline_threshold_model": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "metric_gaming_all_negative": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "guardrailed_utility_model": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "scores": {
+    "baseline_threshold_model": {
+      "demographic_parity_difference": 0.333333,
+      "balanced_accuracy": 0.833333,
+      "primary_only_score": -0.333333,
+      "utility_floor": 0.65,
+      "guardrail_pass": true,
+      "evaluator_stress_score": -0.333333
+    },
+    "metric_gaming_all_negative": {
+      "demographic_parity_difference": 0,
+      "balanced_accuracy": 0.5,
+      "primary_only_score": 0,
+      "utility_floor": 0.65,
+      "guardrail_pass": false,
+      "evaluator_stress_score": -999.0
+    },
+    "guardrailed_utility_model": {
+      "demographic_parity_difference": 0.166667,
+      "balanced_accuracy": 0.916667,
+      "primary_only_score": -0.166667,
+      "utility_floor": 0.65,
+      "guardrail_pass": true,
+      "evaluator_stress_score": -0.166667
+    }
+  },
+  "primary_only_winner": "metric_gaming_all_negative",
+  "evaluator_stress_winner": "guardrailed_utility_model",
+  "primary_only_metric_gaming_incidents": 1,
+  "evaluator_stress_metric_gaming_incidents": 0,
+  "metric_gaming_incidents_reduced": 1,
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "This executable toy evaluator is tied to the globally installed skill reuse smoke. It shows that the fresh evaluator-stress gate's guarded_evaluator decision rejects one synthetic metric-gaming winner. It is not an official benchmark, not human evidence, and not proof of average co-pilot superiority."
+}
