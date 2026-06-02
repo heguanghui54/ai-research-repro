@@ -46,6 +46,25 @@
       "paper_treatment": "Use as structural support for gate separation, not as downstream quality proof."
     },
     {
+      "claim": "Review-to-gate routing is not only a same-sample artifact.",
+      "status": "supported_offline_bias_reduction_evidence",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/heldout_review_gate_validation_20260602_235000/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/heldout_review_gate_validation_20260602_235000/README.md"
+      ],
+      "metrics": {
+        "train_reviews": 379,
+        "heldout_reviews": 94,
+        "heldout_papers": 32,
+        "full_selected_policy_utility_capture_rate": 1.0,
+        "full_selected_policy_routed_review_rate": 0.7979,
+        "best_single_gate_utility_capture_rate": 0.3741,
+        "random_category_mean_utility_capture_rate": 0.7059,
+        "noisy_only_route_rate": 0.0
+      },
+      "paper_treatment": "Use as held-out stability evidence for deterministic routing, not as independent human labels or downstream paper-quality evidence."
+    },
+    {
       "claim": "Targeted review-derived gates can improve model-reviewed mini-artifacts.",
       "status": "supported_narrow_model_reviewed_proxy",
       "evidence": [

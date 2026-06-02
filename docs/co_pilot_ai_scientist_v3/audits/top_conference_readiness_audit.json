@@ -19,7 +19,8 @@
     "Human participation at creative or key decision nodes",
     "Human scientific taste as a distinct logged prior",
     "Benchmark coverage beyond FML-Bench",
-    "High-tail hypothesis statistical operationalization"
+    "High-tail hypothesis statistical operationalization",
+    "Held-out OpenReview gate-routing stability"
   ],
   "unsupported_performance_requirements": [
     "Human collaboration improves paper quality beyond archived manuscript probes",
@@ -141,7 +142,14 @@
     "high_tail_power_analysis_runs": 1,
     "high_tail_power_analysis_current_delayed_value_cases": 0,
     "high_tail_power_analysis_5_to_10_80_power_n_per_arm": 500,
-    "high_tail_power_analysis_5_to_15_80_power_n_per_arm": 150
+    "high_tail_power_analysis_5_to_15_80_power_n_per_arm": 150,
+    "heldout_review_gate_validation_runs": 1,
+    "heldout_review_gate_validation_train_reviews": 379,
+    "heldout_review_gate_validation_heldout_reviews": 94,
+    "heldout_review_gate_validation_heldout_papers": 32,
+    "heldout_review_gate_validation_full_utility_capture_rate": 1.0,
+    "heldout_review_gate_validation_best_single_utility_capture_rate": 0.3741,
+    "heldout_review_gate_validation_random_mean_utility_capture_rate": 0.7059
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -1282,5 +1290,18 @@
     "autonomous_5_to_copilot_15_first_n_per_arm_for_80_power": 150,
     "current_delayed_value_positive_cases": 0,
     "claim_boundary": "This makes the high-tail claim falsifiable and gives sample-size requirements; it is not evidence that IGRE already increases rare breakthrough probability."
+  },
+  "heldout_review_gate_validation": {
+    "status": "offline_bias_reduction_check_not_independent_human_labels",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/heldout_review_gate_validation_20260602_235000/summary.json",
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/heldout_review_gate_validation_20260602_235000/README.md",
+    "train_reviews": 379,
+    "heldout_reviews": 94,
+    "heldout_papers": 32,
+    "full_selected_policy_utility_capture_rate": 1.0,
+    "full_selected_policy_routed_review_rate": 0.7979,
+    "best_single_gate_utility_capture_rate": 0.3741,
+    "random_category_mean_utility_capture_rate": 0.7059,
+    "claim_boundary": "Held-out validation reduces same-sample routing bias, but it is not independent human labeling and does not prove downstream quality gains."
   }
 }

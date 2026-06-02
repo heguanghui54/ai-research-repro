@@ -503,6 +503,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/scored_reviews.json",
     "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/category_utility_table.json",
     "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/summary.json",
+    "scripts/run_heldout_review_gate_validation.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/heldout_review_gate_validation_20260602_235000/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/heldout_review_gate_validation_20260602_235000/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/heldout_review_gate_validation_20260602_235000/heldout_per_review.json",
     "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/README.md",
     "scripts/run_review_utility_map_probe.py",
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/selected_papers.json",
@@ -1521,7 +1525,10 @@
     "semantic_frontier_judge_probe_review_guided_artifact_wins": 1,
     "semantic_frontier_judge_probe_delayed_value_candidates": 0,
     "high_tail_power_analysis_runs": 1,
-    "high_tail_power_analysis_current_delayed_value_cases": 0
+    "high_tail_power_analysis_current_delayed_value_cases": 0,
+    "heldout_review_gate_validation_runs": 1,
+    "heldout_review_gate_validation_heldout_reviews": 94,
+    "heldout_review_gate_validation_full_utility_capture_rate": 1.0
   },
   "review_frontier_signal_probe": {
     "status": "completed_negative_lexical_review_signal_probe",
@@ -1599,5 +1606,19 @@
     "autonomous_5_to_copilot_15_first_n_per_arm_for_80_power": 150,
     "current_pilot_delayed_value_cases": 0,
     "claim_boundary": "This artifact operationalizes the high-tail hypothesis and shows that large matched samples are required. It is not evidence that IGRE has already increased breakthrough probability."
+  },
+  "heldout_review_gate_validation": {
+    "status": "completed_offline_bias_reduction_check_not_independent_human_labels",
+    "script": "scripts/run_heldout_review_gate_validation.py",
+    "run_id": "heldout_review_gate_validation_20260602_235000",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/heldout_review_gate_validation_20260602_235000/summary.json",
+    "readme": "docs/co_pilot_ai_scientist_v3/experiments/heldout_review_gate_validation_20260602_235000/README.md",
+    "train_review_count": 379,
+    "heldout_review_count": 94,
+    "heldout_paper_count": 32,
+    "full_selected_policy_utility_capture_rate": 1.0,
+    "best_single_gate_utility_capture_rate": 0.3741,
+    "random_category_mean_utility_capture_rate": 0.7059,
+    "claim_boundary": "Held-out validation supports stability of deterministic OpenReview-to-gate routing under a paper-level split. It does not provide independent human labels, does not prove downstream paper-quality improvement, and should be treated as an offline bias-reduction check for the review-derived gate policy."
   }
 }

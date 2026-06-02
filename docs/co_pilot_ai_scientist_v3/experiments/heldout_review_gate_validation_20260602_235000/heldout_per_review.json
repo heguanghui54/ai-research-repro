@@ -1,0 +1,1380 @@
+[
+  {
+    "review_id": "paper_4_review_0",
+    "paper_index": 4,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "claim_calibration",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "limitations_claim_boundary",
+      "reproducibility_detail"
+    ],
+    "decision": true,
+    "mean_score": 0.5277777777777778
+  },
+  {
+    "review_id": "paper_4_review_1",
+    "paper_index": 4,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "claim_calibration"
+    ],
+    "selected_categories": [
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.5277777777777778
+  },
+  {
+    "review_id": "paper_4_review_2",
+    "paper_index": 4,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "claim_calibration"
+    ],
+    "selected_categories": [
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.5277777777777778
+  },
+  {
+    "review_id": "paper_9_review_0",
+    "paper_index": 9,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": true,
+    "mean_score": 0.6666666666666666
+  },
+  {
+    "review_id": "paper_9_review_1",
+    "paper_index": 9,
+    "captured_utility": 4.0,
+    "available_utility": 4.0,
+    "routed_gates": [
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "reproducibility_detail"
+    ],
+    "decision": true,
+    "mean_score": 0.6666666666666666
+  },
+  {
+    "review_id": "paper_9_review_2",
+    "paper_index": 9,
+    "captured_utility": 8.0,
+    "available_utility": 8.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "method_correctness"
+    ],
+    "decision": true,
+    "mean_score": 0.6666666666666666
+  },
+  {
+    "review_id": "paper_14_review_0",
+    "paper_index": 14,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.6111111111111112
+  },
+  {
+    "review_id": "paper_14_review_1",
+    "paper_index": 14,
+    "captured_utility": 5.0,
+    "available_utility": 5.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "method_correctness"
+    ],
+    "decision": true,
+    "mean_score": 0.6111111111111112
+  },
+  {
+    "review_id": "paper_14_review_2",
+    "paper_index": 14,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.6111111111111112
+  },
+  {
+    "review_id": "paper_19_review_0",
+    "paper_index": 19,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.5555555555555555
+  },
+  {
+    "review_id": "paper_19_review_1",
+    "paper_index": 19,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": false,
+    "mean_score": 0.5555555555555555
+  },
+  {
+    "review_id": "paper_19_review_2",
+    "paper_index": 19,
+    "captured_utility": 5.0,
+    "available_utility": 5.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": false,
+    "mean_score": 0.5555555555555555
+  },
+  {
+    "review_id": "paper_24_review_0",
+    "paper_index": 24,
+    "captured_utility": 11.0,
+    "available_utility": 11.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.5277777777777778
+  },
+  {
+    "review_id": "paper_24_review_1",
+    "paper_index": 24,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "claim_calibration"
+    ],
+    "selected_categories": [
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.5277777777777778
+  },
+  {
+    "review_id": "paper_24_review_2",
+    "paper_index": 24,
+    "captured_utility": 9.0,
+    "available_utility": 9.0,
+    "routed_gates": [
+      "claim_calibration",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.5277777777777778
+  },
+  {
+    "review_id": "paper_29_review_0",
+    "paper_index": 29,
+    "captured_utility": 19.0,
+    "available_utility": 19.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "evaluation_metric",
+      "limitations_claim_boundary",
+      "reproducibility_detail"
+    ],
+    "decision": false,
+    "mean_score": 0.4
+  },
+  {
+    "review_id": "paper_29_review_1",
+    "paper_index": 29,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "claim_calibration",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "limitations_claim_boundary"
+    ],
+    "decision": false,
+    "mean_score": 0.4
+  },
+  {
+    "review_id": "paper_29_review_2",
+    "paper_index": 29,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.4
+  },
+  {
+    "review_id": "paper_34_review_0",
+    "paper_index": 34,
+    "captured_utility": 8.0,
+    "available_utility": 8.0,
+    "routed_gates": [
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "clarity_presentation"
+    ],
+    "decision": true,
+    "mean_score": 0.8000000000000002
+  },
+  {
+    "review_id": "paper_34_review_1",
+    "paper_index": 34,
+    "captured_utility": 13.0,
+    "available_utility": 13.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "evaluation_metric",
+      "novelty_positioning"
+    ],
+    "decision": true,
+    "mean_score": 0.8000000000000002
+  },
+  {
+    "review_id": "paper_34_review_2",
+    "paper_index": 34,
+    "captured_utility": 17.0,
+    "available_utility": 17.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "clarity_presentation",
+      "evaluation_metric",
+      "reproducibility_detail"
+    ],
+    "decision": true,
+    "mean_score": 0.8000000000000002
+  },
+  {
+    "review_id": "paper_39_review_0",
+    "paper_index": 39,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": true,
+    "mean_score": 0.59375
+  },
+  {
+    "review_id": "paper_39_review_1",
+    "paper_index": 39,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": true,
+    "mean_score": 0.59375
+  },
+  {
+    "review_id": "paper_39_review_2",
+    "paper_index": 39,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": true,
+    "mean_score": 0.59375
+  },
+  {
+    "review_id": "paper_44_review_0",
+    "paper_index": 44,
+    "captured_utility": 20.0,
+    "available_utility": 20.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "evaluation_metric",
+      "limitations_claim_boundary",
+      "method_correctness"
+    ],
+    "decision": true,
+    "mean_score": 0.45000000000000007
+  },
+  {
+    "review_id": "paper_44_review_1",
+    "paper_index": 44,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "evaluation_metric"
+    ],
+    "decision": true,
+    "mean_score": 0.45000000000000007
+  },
+  {
+    "review_id": "paper_44_review_2",
+    "paper_index": 44,
+    "captured_utility": 22.0,
+    "available_utility": 22.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "clarity_presentation",
+      "evaluation_metric",
+      "method_correctness",
+      "reproducibility_detail"
+    ],
+    "decision": true,
+    "mean_score": 0.45000000000000007
+  },
+  {
+    "review_id": "paper_49_review_0",
+    "paper_index": 49,
+    "captured_utility": 8.0,
+    "available_utility": 8.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "evaluation_metric"
+    ],
+    "decision": true,
+    "mean_score": 0.875
+  },
+  {
+    "review_id": "paper_49_review_1",
+    "paper_index": 49,
+    "captured_utility": 9.0,
+    "available_utility": 9.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "reproducibility_detail"
+    ],
+    "decision": true,
+    "mean_score": 0.875
+  },
+  {
+    "review_id": "paper_54_review_0",
+    "paper_index": 54,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "claim_calibration",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.5111111111111111
+  },
+  {
+    "review_id": "paper_54_review_1",
+    "paper_index": 54,
+    "captured_utility": 5.0,
+    "available_utility": 5.0,
+    "routed_gates": [
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion"
+    ],
+    "decision": true,
+    "mean_score": 0.5111111111111111
+  },
+  {
+    "review_id": "paper_54_review_2",
+    "paper_index": 54,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "claim_calibration",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.5111111111111111
+  },
+  {
+    "review_id": "paper_59_review_0",
+    "paper_index": 59,
+    "captured_utility": 11.0,
+    "available_utility": 11.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "novelty_positioning"
+    ],
+    "decision": false,
+    "mean_score": 0.3
+  },
+  {
+    "review_id": "paper_59_review_1",
+    "paper_index": 59,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.3
+  },
+  {
+    "review_id": "paper_59_review_2",
+    "paper_index": 59,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "method_correctness"
+    ],
+    "decision": false,
+    "mean_score": 0.3
+  },
+  {
+    "review_id": "paper_64_review_0",
+    "paper_index": 64,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "method_correctness"
+    ],
+    "decision": false,
+    "mean_score": 0.25
+  },
+  {
+    "review_id": "paper_64_review_1",
+    "paper_index": 64,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.25
+  },
+  {
+    "review_id": "paper_69_review_0",
+    "paper_index": 69,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "evaluation_metric"
+    ],
+    "decision": true,
+    "mean_score": 0.3888888888888889
+  },
+  {
+    "review_id": "paper_69_review_1",
+    "paper_index": 69,
+    "captured_utility": 14.0,
+    "available_utility": 14.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "evaluation_metric",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.3888888888888889
+  },
+  {
+    "review_id": "paper_69_review_2",
+    "paper_index": 69,
+    "captured_utility": 11.0,
+    "available_utility": 11.0,
+    "routed_gates": [
+      "claim_calibration",
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "limitations_claim_boundary",
+      "novelty_positioning"
+    ],
+    "decision": true,
+    "mean_score": 0.3888888888888889
+  },
+  {
+    "review_id": "paper_74_review_0",
+    "paper_index": 74,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "claim_calibration",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.48148148148148145
+  },
+  {
+    "review_id": "paper_74_review_1",
+    "paper_index": 74,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "claim_calibration"
+    ],
+    "selected_categories": [
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.48148148148148145
+  },
+  {
+    "review_id": "paper_74_review_2",
+    "paper_index": 74,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": true,
+    "mean_score": 0.48148148148148145
+  },
+  {
+    "review_id": "paper_79_review_0",
+    "paper_index": 79,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.38888888888888884
+  },
+  {
+    "review_id": "paper_79_review_1",
+    "paper_index": 79,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "evaluation_metric"
+    ],
+    "decision": false,
+    "mean_score": 0.38888888888888884
+  },
+  {
+    "review_id": "paper_79_review_2",
+    "paper_index": 79,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.38888888888888884
+  },
+  {
+    "review_id": "paper_84_review_0",
+    "paper_index": 84,
+    "captured_utility": 18.0,
+    "available_utility": 18.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "evaluation_metric",
+      "novelty_positioning",
+      "reproducibility_detail"
+    ],
+    "decision": true,
+    "mean_score": 0.65
+  },
+  {
+    "review_id": "paper_84_review_1",
+    "paper_index": 84,
+    "captured_utility": 14.0,
+    "available_utility": 14.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "evaluation_metric",
+      "novelty_positioning"
+    ],
+    "decision": true,
+    "mean_score": 0.65
+  },
+  {
+    "review_id": "paper_84_review_2",
+    "paper_index": 84,
+    "captured_utility": 13.0,
+    "available_utility": 13.0,
+    "routed_gates": [
+      "scientific_taste_prior",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "novelty_positioning",
+      "reproducibility_detail"
+    ],
+    "decision": true,
+    "mean_score": 0.65
+  },
+  {
+    "review_id": "paper_89_review_0",
+    "paper_index": 89,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "novelty_positioning"
+    ],
+    "decision": false,
+    "mean_score": 0.35000000000000003
+  },
+  {
+    "review_id": "paper_89_review_1",
+    "paper_index": 89,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.35000000000000003
+  },
+  {
+    "review_id": "paper_89_review_2",
+    "paper_index": 89,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "method_correctness"
+    ],
+    "decision": false,
+    "mean_score": 0.35000000000000003
+  },
+  {
+    "review_id": "paper_94_review_0",
+    "paper_index": 94,
+    "captured_utility": 15.0,
+    "available_utility": 15.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "evaluation_metric",
+      "limitations_claim_boundary"
+    ],
+    "decision": false,
+    "mean_score": 0.4
+  },
+  {
+    "review_id": "paper_94_review_1",
+    "paper_index": 94,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.4
+  },
+  {
+    "review_id": "paper_94_review_2",
+    "paper_index": 94,
+    "captured_utility": 9.0,
+    "available_utility": 9.0,
+    "routed_gates": [
+      "claim_calibration",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "limitations_claim_boundary"
+    ],
+    "decision": false,
+    "mean_score": 0.4
+  },
+  {
+    "review_id": "paper_99_review_0",
+    "paper_index": 99,
+    "captured_utility": 11.0,
+    "available_utility": 11.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "novelty_positioning"
+    ],
+    "decision": false,
+    "mean_score": 0.30000000000000004
+  },
+  {
+    "review_id": "paper_99_review_1",
+    "paper_index": 99,
+    "captured_utility": 11.0,
+    "available_utility": 11.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "novelty_positioning"
+    ],
+    "decision": false,
+    "mean_score": 0.30000000000000004
+  },
+  {
+    "review_id": "paper_99_review_2",
+    "paper_index": 99,
+    "captured_utility": 16.0,
+    "available_utility": 16.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test",
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "limitations_claim_boundary",
+      "novelty_positioning"
+    ],
+    "decision": false,
+    "mean_score": 0.30000000000000004
+  },
+  {
+    "review_id": "paper_104_review_0",
+    "paper_index": 104,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": false,
+    "mean_score": 0.4722222222222222
+  },
+  {
+    "review_id": "paper_104_review_1",
+    "paper_index": 104,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.4722222222222222
+  },
+  {
+    "review_id": "paper_104_review_2",
+    "paper_index": 104,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "novelty_positioning"
+    ],
+    "decision": false,
+    "mean_score": 0.4722222222222222
+  },
+  {
+    "review_id": "paper_109_review_0",
+    "paper_index": 109,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": false,
+    "mean_score": 0.41666666666666663
+  },
+  {
+    "review_id": "paper_109_review_1",
+    "paper_index": 109,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": false,
+    "mean_score": 0.41666666666666663
+  },
+  {
+    "review_id": "paper_109_review_2",
+    "paper_index": 109,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": false,
+    "mean_score": 0.41666666666666663
+  },
+  {
+    "review_id": "paper_114_review_0",
+    "paper_index": 114,
+    "captured_utility": 13.0,
+    "available_utility": 13.0,
+    "routed_gates": [
+      "scientific_taste_prior",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "clarity_presentation",
+      "novelty_positioning"
+    ],
+    "decision": true,
+    "mean_score": 0.6
+  },
+  {
+    "review_id": "paper_114_review_1",
+    "paper_index": 114,
+    "captured_utility": 12.0,
+    "available_utility": 12.0,
+    "routed_gates": [
+      "claim_calibration",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "clarity_presentation",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.6
+  },
+  {
+    "review_id": "paper_114_review_2",
+    "paper_index": 114,
+    "captured_utility": 14.0,
+    "available_utility": 14.0,
+    "routed_gates": [
+      "claim_calibration",
+      "scientific_taste_prior",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "limitations_claim_boundary",
+      "novelty_positioning"
+    ],
+    "decision": true,
+    "mean_score": 0.6
+  },
+  {
+    "review_id": "paper_119_review_0",
+    "paper_index": 119,
+    "captured_utility": 11.0,
+    "available_utility": 11.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "limitations_claim_boundary"
+    ],
+    "decision": false,
+    "mean_score": 0.45000000000000007
+  },
+  {
+    "review_id": "paper_119_review_1",
+    "paper_index": 119,
+    "captured_utility": 16.0,
+    "available_utility": 16.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "method_correctness",
+      "novelty_positioning"
+    ],
+    "decision": false,
+    "mean_score": 0.45000000000000007
+  },
+  {
+    "review_id": "paper_119_review_2",
+    "paper_index": 119,
+    "captured_utility": 19.0,
+    "available_utility": 19.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "clarity_presentation",
+      "evaluation_metric",
+      "limitations_claim_boundary"
+    ],
+    "decision": false,
+    "mean_score": 0.45000000000000007
+  },
+  {
+    "review_id": "paper_124_review_0",
+    "paper_index": 124,
+    "captured_utility": 11.0,
+    "available_utility": 11.0,
+    "routed_gates": [
+      "claim_calibration",
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "limitations_claim_boundary",
+      "novelty_positioning"
+    ],
+    "decision": true,
+    "mean_score": 0.5833333333333333
+  },
+  {
+    "review_id": "paper_124_review_1",
+    "paper_index": 124,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "claim_calibration"
+    ],
+    "selected_categories": [
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.5833333333333333
+  },
+  {
+    "review_id": "paper_124_review_2",
+    "paper_index": 124,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "claim_calibration",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.5833333333333333
+  },
+  {
+    "review_id": "paper_129_review_0",
+    "paper_index": 129,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": true,
+    "mean_score": 0.5333333333333333
+  },
+  {
+    "review_id": "paper_129_review_1",
+    "paper_index": 129,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": true,
+    "mean_score": 0.5333333333333333
+  },
+  {
+    "review_id": "paper_129_review_2",
+    "paper_index": 129,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": true,
+    "mean_score": 0.5333333333333333
+  },
+  {
+    "review_id": "paper_134_review_0",
+    "paper_index": 134,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.39999999999999997
+  },
+  {
+    "review_id": "paper_134_review_1",
+    "paper_index": 134,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "method_correctness"
+    ],
+    "decision": false,
+    "mean_score": 0.39999999999999997
+  },
+  {
+    "review_id": "paper_134_review_2",
+    "paper_index": 134,
+    "captured_utility": 16.0,
+    "available_utility": 16.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "limitations_claim_boundary",
+      "method_correctness"
+    ],
+    "decision": false,
+    "mean_score": 0.39999999999999997
+  },
+  {
+    "review_id": "paper_139_review_0",
+    "paper_index": 139,
+    "captured_utility": 12.0,
+    "available_utility": 12.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "method_correctness",
+      "reproducibility_detail"
+    ],
+    "decision": true,
+    "mean_score": 0.6666666666666666
+  },
+  {
+    "review_id": "paper_139_review_1",
+    "paper_index": 139,
+    "captured_utility": 15.0,
+    "available_utility": 15.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "limitations_claim_boundary",
+      "method_correctness"
+    ],
+    "decision": true,
+    "mean_score": 0.6666666666666666
+  },
+  {
+    "review_id": "paper_139_review_2",
+    "paper_index": 139,
+    "captured_utility": 9.0,
+    "available_utility": 9.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "novelty_positioning"
+    ],
+    "decision": true,
+    "mean_score": 0.6666666666666666
+  },
+  {
+    "review_id": "paper_144_review_0",
+    "paper_index": 144,
+    "captured_utility": 3.0,
+    "available_utility": 3.0,
+    "routed_gates": [
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion"
+    ],
+    "decision": true,
+    "mean_score": 0.6111111111111112
+  },
+  {
+    "review_id": "paper_144_review_1",
+    "paper_index": 144,
+    "captured_utility": 14.0,
+    "available_utility": 14.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "evaluation_metric",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.6111111111111112
+  },
+  {
+    "review_id": "paper_144_review_2",
+    "paper_index": 144,
+    "captured_utility": 9.0,
+    "available_utility": 9.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation",
+      "evaluation_metric"
+    ],
+    "decision": true,
+    "mean_score": 0.6111111111111112
+  },
+  {
+    "review_id": "paper_149_review_0",
+    "paper_index": 149,
+    "captured_utility": 10.0,
+    "available_utility": 10.0,
+    "routed_gates": [
+      "claim_calibration",
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric",
+      "limitations_claim_boundary"
+    ],
+    "decision": true,
+    "mean_score": 0.6666666666666666
+  },
+  {
+    "review_id": "paper_149_review_1",
+    "paper_index": 149,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": true,
+    "mean_score": 0.6666666666666666
+  },
+  {
+    "review_id": "paper_149_review_2",
+    "paper_index": 149,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": true,
+    "mean_score": 0.6666666666666666
+  },
+  {
+    "review_id": "paper_154_review_0",
+    "paper_index": 154,
+    "captured_utility": 0.0,
+    "available_utility": 0.0,
+    "routed_gates": [],
+    "selected_categories": [],
+    "decision": false,
+    "mean_score": 0.32
+  },
+  {
+    "review_id": "paper_154_review_1",
+    "paper_index": 154,
+    "captured_utility": 5.0,
+    "available_utility": 5.0,
+    "routed_gates": [
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "clarity_presentation"
+    ],
+    "decision": false,
+    "mean_score": 0.32
+  },
+  {
+    "review_id": "paper_154_review_2",
+    "paper_index": 154,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "scientific_taste_prior"
+    ],
+    "selected_categories": [
+      "novelty_positioning"
+    ],
+    "decision": false,
+    "mean_score": 0.32
+  },
+  {
+    "review_id": "paper_159_review_0",
+    "paper_index": 159,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": false,
+    "mean_score": 0.3703703703703704
+  },
+  {
+    "review_id": "paper_159_review_1",
+    "paper_index": 159,
+    "captured_utility": 6.0,
+    "available_utility": 6.0,
+    "routed_gates": [
+      "evaluator_stress_test"
+    ],
+    "selected_categories": [
+      "evaluation_metric"
+    ],
+    "decision": false,
+    "mean_score": 0.3703703703703704
+  },
+  {
+    "review_id": "paper_159_review_2",
+    "paper_index": 159,
+    "captured_utility": 15.0,
+    "available_utility": 15.0,
+    "routed_gates": [
+      "evaluator_stress_test",
+      "structured_feedback"
+    ],
+    "selected_categories": [
+      "actionable_suggestion",
+      "evaluation_metric",
+      "method_correctness"
+    ],
+    "decision": false,
+    "mean_score": 0.3703703703703704
+  }
+]

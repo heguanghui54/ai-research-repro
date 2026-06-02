@@ -56,6 +56,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | --- | ---: | ---: | ---: | --- |
 | Review utility map | 398 条可行动片段 | 64 条噪声片段 | 共 473 条片段 | 专家评审包含可路由的 taste/insight 信号。 |
 | 门控结构消融 | full IGRE utility capture 1.000 | 最佳单门控 0.369；随机门控均值 0.199；no-gate 0.000 | full 相对最佳单门控 +2359 utility units | 多门控是必要结构，因为评审洞察是异质信号；这是路由证据，不是下游质量证明。 |
+| Held-out review-gate validation | full selected policy utility capture 1.000 | 最佳单门控 0.374；随机类别均值 0.706；no-gate 0.000 | 来自 32 篇论文的 94 条 held-out reviews | 论文级 train/held-out split 降低 review-to-gate 路由的样本复用偏差；不是独立人类标签。 |
 | 门控-结果归因 | full IGRE aligned score 75.17 | 最佳单门控 37.25；随机门控均值 15.26 | full 相对最佳单门控 +37.92 | 基于 6 个 OpenReview pair 的事后下游归因；不是因果证明。 |
 | 单门控产物消融 | 最佳单门控均值 3.6667 | full review-guided 3.5；baseline 2.9166 | 最佳单门控相对 baseline +0.7501 | 因果风格 mini-artifact 消融；小规模 proxy 中 targeted evaluator-stress 可超过 full review guidance。 |
 | OpenReview 再生成，同模型评分 | review-guided 胜 5 次 | baseline 胜 1 次 | mean overall +0.8333 | 正向，但可能受同模型评分和额外上下文影响。 |
@@ -92,6 +93,8 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 最常见的可行动路由是评估器压力测试，共 245 次触发。结构化反馈有 210 次触发，主张校准 140 次，科研品味先验 111 次。从类别看，评价和指标问题出现 205 次，局限性和主张边界问题 140 次，新颖性和定位问题 111 次，可复现性问题 79 次，方法正确性问题 71 次。
 
 随后我们在同一 review-utility map 上运行门控结构消融。no-gate 策略捕获不到可行动路由 utility。最佳单门控是 evaluator stress testing，只能捕获 0.369 的可用 utility；structured feedback 捕获 0.295；claim calibration 捕获 0.187；scientific-taste prior 捕获 0.148。128 个 seed 的随机门控基线平均捕获 0.199。完整 IGRE 保留五类显式门控，因此捕获 1.000。这个消融不证明最终论文一定更好，但它说明 IGRE 的结构动机：人类评审洞察不是一个泛泛审批信号，如果压缩为单一 gate，就会系统性丢失科研品味、评估设计和主张边界信息。
+
+为了降低样本复用偏差，我们进一步运行论文级 held-out validation。系统只在 379 条 train reviews 上选择可行动类别，然后在来自 32 篇论文的 94 条 held-out reviews 上评估所得 gate policy。full selected policy 在 held-out 上捕获 1.000 的确定性 utility，并路由 0.798 的评审，noisy-only routes 为 0。最佳单门控 evaluator stress testing 捕获 0.374 utility；512 个 seed 的随机类别 baseline 平均捕获 0.706。这个实验仍是离线规则式 proxy，不是独立人类标签；但它说明 review-to-gate 映射并不只是同一样本上的拟合产物。
 
 最后，我们使用 6 个等上下文 OpenReview 再生成 pair 运行下游门控-结果归因探针。该探针把每篇论文的 review-derived gate utility 与 GPT 和 Claude 评分器观察到的 review-guided 减 context-control 分数增量相连。完整 IGRE 的 aligned-outcome score 为 75.17；最佳单门控 evaluator stress testing 为 37.25；512 个 seed 的随机单门控基线均值为 15.26。观察到的最强下游对齐来自 evaluator stress testing、structured feedback 和 scientific-taste prior。frontier steering 与 claim calibration 在这个 6 篇子集中没有非零信号，因此这只是事后归因信号，不是五类门控的因果下游证明。
 

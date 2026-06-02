@@ -56,6 +56,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | --- | ---: | ---: | ---: | --- |
 | Review utility map | 398 actionable snippets | 64 noisy snippets | 473 snippets total | Expert reviews contain routeable taste/insight signals. |
 | Gate-structure ablation | full IGRE utility capture 1.000 | best single gate 0.369; random gate mean 0.199; no-gate 0.000 | full vs. best single +2359 utility units | Multi-gate routing is needed because review insight is heterogeneous; this is routing evidence, not downstream quality proof. |
+| Held-out review-gate validation | full selected policy utility capture 1.000 | best single gate 0.374; random category mean 0.706; no-gate 0.000 | 94 held-out reviews from 32 papers | Paper-level train/held-out split reduces sample-reuse bias for review-to-gate routing; not independent human labels. |
 | Gate-outcome attribution | full IGRE aligned score 75.17 | best single gate 37.25; random gate mean 15.26 | full vs. best single +37.92 | Post-hoc downstream attribution over six OpenReview pairs; not causal proof. |
 | Single-gate artifact ablation | best single gate mean 3.6667 | full review-guided 3.5; baseline 2.9166 | best single vs. baseline +0.7501 | Causal-style mini-artifact ablation; targeted evaluator-stress can beat full review guidance in this small proxy. |
 | OpenReview regeneration, same scorer | 5 review-guided wins | 1 baseline win | mean overall +0.8333 | Positive but vulnerable to same-model and extra-context bias. |
@@ -92,6 +93,16 @@ We use the Hugging Face `nhop/OpenReview` dataset through streaming access, avoi
 The most common actionable route is evaluator stress testing, with 245 triggers. Structured feedback receives 210 triggers, claim calibration receives 140, and scientific-taste prior receives 111. At the category level, evaluation and metric issues appear 205 times, limitations and claim-boundary issues 140 times, novelty and positioning 111 times, reproducibility 79 times, and method-correctness 71 times.
 
 We then run a gate-structure ablation on the same review-utility map. A no-gate policy captures no actionable routed utility. The best single-gate policy, evaluator stress testing, captures 0.369 of available utility; structured feedback captures 0.295; claim calibration captures 0.187; scientific-taste prior captures 0.148. A random-gate baseline averaged across 128 seeds captures 0.199. Full IGRE captures 1.000 by preserving all five explicit gates. This ablation does not prove better final papers, but it does establish a structural reason for IGRE: human review insight is not one generic approval signal, so compressing it into a single gate systematically drops useful scientific taste and evaluator-design information.
+
+To reduce sample-reuse bias, we also run a paper-level held-out validation. We
+select actionable categories on 379 train reviews and evaluate the resulting
+gate policy on 94 held-out reviews from 32 papers. The full selected policy
+captures 1.000 of held-out deterministic utility and routes 0.798 of reviews
+with zero noisy-only routes. The best single-gate policy, evaluator stress
+testing, captures 0.374 utility; a 512-seed random category baseline averages
+0.706. This is still an offline rule-based proxy rather than independent human
+labels, but it shows that the review-to-gate mapping is not only a same-sample
+artifact.
 
 Finally, we run a downstream gate-outcome attribution probe using the six equal-context OpenReview regeneration pairs. The probe links each paper's review-derived gate utility to the observed review-guided minus context-control score deltas from GPT and Claude reviewers. Full IGRE obtains aligned-outcome score 75.17, while the best single gate, evaluator stress testing, obtains 37.25 and a 512-seed random single-gate baseline averages 15.26. The strongest observed downstream alignment comes from evaluator stress testing, structured feedback, and scientific-taste prior. Frontier steering and claim calibration have no nonzero signal in this six-paper subset, so this is a post-hoc attribution signal rather than a causal five-gate downstream proof.
 

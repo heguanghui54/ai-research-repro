@@ -1,0 +1,553 @@
+{
+  "run_date": "2026-06-02T09:56:38Z",
+  "script": "scripts/run_heldout_review_gate_validation.py",
+  "source_scored_reviews": "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/scored_reviews.json",
+  "split": {
+    "heldout_mod": 5,
+    "heldout_value": 4,
+    "train_review_count": 379,
+    "heldout_review_count": 94,
+    "train_paper_count": 128,
+    "heldout_paper_count": 32
+  },
+  "selection_rule": {
+    "min_count": 10,
+    "min_actionable_rate": 0.75,
+    "max_noisy_rate": 0.25,
+    "selected_on": "train_split_only"
+  },
+  "selected_categories": [
+    "actionable_suggestion",
+    "clarity_presentation",
+    "evaluation_metric",
+    "limitations_claim_boundary",
+    "method_correctness",
+    "novelty_positioning",
+    "reproducibility_detail"
+  ],
+  "category_to_gate": {
+    "actionable_suggestion": "structured_feedback",
+    "clarity_presentation": "structured_feedback",
+    "evaluation_metric": "evaluator_stress_test",
+    "limitations_claim_boundary": "claim_calibration",
+    "method_correctness": "evaluator_stress_test",
+    "novelty_positioning": "scientific_taste_prior",
+    "reproducibility_detail": "structured_feedback"
+  },
+  "train_category_stats": {
+    "limitations_claim_boundary": {
+      "count": 109,
+      "actionable_count": 109,
+      "noisy_count": 0,
+      "utility_sum": 1341.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 12.3028,
+      "primary_gate": "claim_calibration",
+      "gate_counts": {
+        "claim_calibration": 109,
+        "scientific_taste_prior": 23,
+        "structured_feedback": 48,
+        "evaluator_stress_test": 66
+      }
+    },
+    "novelty_positioning": {
+      "count": 94,
+      "actionable_count": 94,
+      "noisy_count": 0,
+      "utility_sum": 1116.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 11.8723,
+      "primary_gate": "scientific_taste_prior",
+      "gate_counts": {
+        "claim_calibration": 23,
+        "scientific_taste_prior": 94,
+        "evaluator_stress_test": 42,
+        "structured_feedback": 43
+      }
+    },
+    "clarity_presentation": {
+      "count": 66,
+      "actionable_count": 66,
+      "noisy_count": 0,
+      "utility_sum": 877.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 13.2879,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "evaluator_stress_test": 39,
+        "scientific_taste_prior": 24,
+        "structured_feedback": 66,
+        "claim_calibration": 17
+      }
+    },
+    "evaluation_metric": {
+      "count": 163,
+      "actionable_count": 163,
+      "noisy_count": 0,
+      "utility_sum": 1906.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 11.6933,
+      "primary_gate": "evaluator_stress_test",
+      "gate_counts": {
+        "evaluator_stress_test": 163,
+        "scientific_taste_prior": 38,
+        "structured_feedback": 82,
+        "claim_calibration": 48
+      }
+    },
+    "frontier_continuation": {
+      "count": 77,
+      "actionable_count": 0,
+      "noisy_count": 0,
+      "utility_sum": 689.0,
+      "actionable_rate": 0.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 8.9481,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "evaluator_stress_test": 39,
+        "scientific_taste_prior": 19,
+        "structured_feedback": 40,
+        "claim_calibration": 26
+      }
+    },
+    "method_correctness": {
+      "count": 58,
+      "actionable_count": 58,
+      "noisy_count": 0,
+      "utility_sum": 782.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 13.4828,
+      "primary_gate": "evaluator_stress_test",
+      "gate_counts": {
+        "evaluator_stress_test": 58,
+        "structured_feedback": 28,
+        "scientific_taste_prior": 11,
+        "claim_calibration": 25
+      }
+    },
+    "vague_reaction": {
+      "count": 23,
+      "actionable_count": 0,
+      "noisy_count": 23,
+      "utility_sum": 202.0,
+      "actionable_rate": 0.0,
+      "noisy_rate": 1.0,
+      "mean_utility_when_present": 8.7826,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "scientific_taste_prior": 8,
+        "structured_feedback": 12,
+        "claim_calibration": 7,
+        "evaluator_stress_test": 12
+      }
+    },
+    "actionable_suggestion": {
+      "count": 90,
+      "actionable_count": 90,
+      "noisy_count": 0,
+      "utility_sum": 1094.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 12.1556,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "evaluator_stress_test": 53,
+        "structured_feedback": 90,
+        "claim_calibration": 28,
+        "scientific_taste_prior": 14
+      }
+    },
+    "reproducibility_detail": {
+      "count": 70,
+      "actionable_count": 70,
+      "noisy_count": 0,
+      "utility_sum": 938.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 13.4,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "evaluator_stress_test": 39,
+        "structured_feedback": 70,
+        "claim_calibration": 18,
+        "scientific_taste_prior": 23
+      }
+    },
+    "generic_praise": {
+      "count": 26,
+      "actionable_count": 0,
+      "noisy_count": 26,
+      "utility_sum": 308.0,
+      "actionable_rate": 0.0,
+      "noisy_rate": 1.0,
+      "mean_utility_when_present": 11.8462,
+      "primary_gate": "evaluator_stress_test",
+      "gate_counts": {
+        "evaluator_stress_test": 20,
+        "structured_feedback": 19,
+        "scientific_taste_prior": 11,
+        "claim_calibration": 8
+      }
+    }
+  },
+  "heldout_category_stats": {
+    "limitations_claim_boundary": {
+      "count": 31,
+      "actionable_count": 31,
+      "noisy_count": 0,
+      "utility_sum": 356.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 11.4839,
+      "primary_gate": "claim_calibration",
+      "gate_counts": {
+        "claim_calibration": 31,
+        "structured_feedback": 16,
+        "evaluator_stress_test": 14,
+        "scientific_taste_prior": 4
+      }
+    },
+    "reproducibility_detail": {
+      "count": 9,
+      "actionable_count": 9,
+      "noisy_count": 0,
+      "utility_sum": 124.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 13.7778,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "claim_calibration": 2,
+        "structured_feedback": 9,
+        "evaluator_stress_test": 6,
+        "scientific_taste_prior": 2
+      }
+    },
+    "frontier_continuation": {
+      "count": 25,
+      "actionable_count": 0,
+      "noisy_count": 0,
+      "utility_sum": 244.0,
+      "actionable_rate": 0.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 9.76,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "structured_feedback": 14,
+        "evaluator_stress_test": 13,
+        "claim_calibration": 13,
+        "scientific_taste_prior": 5
+      }
+    },
+    "actionable_suggestion": {
+      "count": 21,
+      "actionable_count": 21,
+      "noisy_count": 0,
+      "utility_sum": 256.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 12.1905,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "evaluator_stress_test": 11,
+        "structured_feedback": 21,
+        "claim_calibration": 10,
+        "scientific_taste_prior": 2
+      }
+    },
+    "method_correctness": {
+      "count": 13,
+      "actionable_count": 13,
+      "noisy_count": 0,
+      "utility_sum": 157.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 12.0769,
+      "primary_gate": "evaluator_stress_test",
+      "gate_counts": {
+        "evaluator_stress_test": 13,
+        "structured_feedback": 6,
+        "claim_calibration": 3,
+        "scientific_taste_prior": 1
+      }
+    },
+    "vague_reaction": {
+      "count": 9,
+      "actionable_count": 0,
+      "noisy_count": 9,
+      "utility_sum": 89.0,
+      "actionable_rate": 0.0,
+      "noisy_rate": 1.0,
+      "mean_utility_when_present": 9.8889,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "evaluator_stress_test": 6,
+        "structured_feedback": 7,
+        "claim_calibration": 2,
+        "scientific_taste_prior": 1
+      }
+    },
+    "evaluation_metric": {
+      "count": 42,
+      "actionable_count": 42,
+      "noisy_count": 0,
+      "utility_sum": 482.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 11.4762,
+      "primary_gate": "evaluator_stress_test",
+      "gate_counts": {
+        "claim_calibration": 14,
+        "evaluator_stress_test": 42,
+        "structured_feedback": 18,
+        "scientific_taste_prior": 10
+      }
+    },
+    "clarity_presentation": {
+      "count": 20,
+      "actionable_count": 20,
+      "noisy_count": 0,
+      "utility_sum": 253.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 12.65,
+      "primary_gate": "structured_feedback",
+      "gate_counts": {
+        "claim_calibration": 7,
+        "structured_feedback": 20,
+        "evaluator_stress_test": 12,
+        "scientific_taste_prior": 5
+      }
+    },
+    "novelty_positioning": {
+      "count": 17,
+      "actionable_count": 17,
+      "noisy_count": 0,
+      "utility_sum": 203.0,
+      "actionable_rate": 1.0,
+      "noisy_rate": 0.0,
+      "mean_utility_when_present": 11.9412,
+      "primary_gate": "scientific_taste_prior",
+      "gate_counts": {
+        "evaluator_stress_test": 10,
+        "scientific_taste_prior": 17,
+        "structured_feedback": 6,
+        "claim_calibration": 4
+      }
+    },
+    "generic_praise": {
+      "count": 6,
+      "actionable_count": 0,
+      "noisy_count": 6,
+      "utility_sum": 45.0,
+      "actionable_rate": 0.0,
+      "noisy_rate": 1.0,
+      "mean_utility_when_present": 7.5,
+      "primary_gate": "evaluator_stress_test",
+      "gate_counts": {
+        "claim_calibration": 2,
+        "evaluator_stress_test": 3,
+        "structured_feedback": 3,
+        "scientific_taste_prior": 2
+      }
+    }
+  },
+  "heldout_full_policy": {
+    "review_count": 94,
+    "routed_review_count": 75,
+    "routed_review_rate": 0.7979,
+    "utility_capture": 754.0,
+    "max_available_utility": 754.0,
+    "utility_capture_rate": 1.0,
+    "noisy_only_route_count": 0,
+    "noisy_only_route_rate": 0.0,
+    "accepted_routed": 45,
+    "rejected_routed": 30,
+    "gate_counts": {
+      "structured_feedback": 50,
+      "claim_calibration": 31,
+      "evaluator_stress_test": 55,
+      "scientific_taste_prior": 17
+    },
+    "category_counts": {
+      "reproducibility_detail": 9,
+      "limitations_claim_boundary": 31,
+      "actionable_suggestion": 21,
+      "method_correctness": 13,
+      "evaluation_metric": 42,
+      "clarity_presentation": 20,
+      "novelty_positioning": 17
+    }
+  },
+  "heldout_best_single_gate_policy": {
+    "gate": "evaluator_stress_test",
+    "categories": [
+      "evaluation_metric",
+      "method_correctness"
+    ],
+    "review_count": 94,
+    "routed_review_count": 49,
+    "routed_review_rate": 0.5213,
+    "utility_capture": 282.05,
+    "max_available_utility": 754.0,
+    "utility_capture_rate": 0.3741,
+    "noisy_only_route_count": 0,
+    "noisy_only_route_rate": 0.0,
+    "accepted_routed": 24,
+    "rejected_routed": 25,
+    "gate_counts": {
+      "evaluator_stress_test": 55
+    },
+    "category_counts": {
+      "method_correctness": 13,
+      "evaluation_metric": 42
+    }
+  },
+  "heldout_single_gate_policies": [
+    {
+      "gate": "claim_calibration",
+      "categories": [
+        "limitations_claim_boundary"
+      ],
+      "review_count": 94,
+      "routed_review_count": 31,
+      "routed_review_rate": 0.3298,
+      "utility_capture": 159.1667,
+      "max_available_utility": 754.0,
+      "utility_capture_rate": 0.2111,
+      "noisy_only_route_count": 0,
+      "noisy_only_route_rate": 0.0,
+      "accepted_routed": 23,
+      "rejected_routed": 8,
+      "gate_counts": {
+        "claim_calibration": 31
+      },
+      "category_counts": {
+        "limitations_claim_boundary": 31
+      }
+    },
+    {
+      "gate": "evaluator_stress_test",
+      "categories": [
+        "evaluation_metric",
+        "method_correctness"
+      ],
+      "review_count": 94,
+      "routed_review_count": 49,
+      "routed_review_rate": 0.5213,
+      "utility_capture": 282.05,
+      "max_available_utility": 754.0,
+      "utility_capture_rate": 0.3741,
+      "noisy_only_route_count": 0,
+      "noisy_only_route_rate": 0.0,
+      "accepted_routed": 24,
+      "rejected_routed": 25,
+      "gate_counts": {
+        "evaluator_stress_test": 55
+      },
+      "category_counts": {
+        "method_correctness": 13,
+        "evaluation_metric": 42
+      }
+    },
+    {
+      "gate": "scientific_taste_prior",
+      "categories": [
+        "novelty_positioning"
+      ],
+      "review_count": 94,
+      "routed_review_count": 17,
+      "routed_review_rate": 0.1809,
+      "utility_capture": 86.5,
+      "max_available_utility": 754.0,
+      "utility_capture_rate": 0.1147,
+      "noisy_only_route_count": 0,
+      "noisy_only_route_rate": 0.0,
+      "accepted_routed": 9,
+      "rejected_routed": 8,
+      "gate_counts": {
+        "scientific_taste_prior": 17
+      },
+      "category_counts": {
+        "novelty_positioning": 17
+      }
+    },
+    {
+      "gate": "structured_feedback",
+      "categories": [
+        "actionable_suggestion",
+        "clarity_presentation",
+        "reproducibility_detail"
+      ],
+      "review_count": 94,
+      "routed_review_count": 38,
+      "routed_review_rate": 0.4043,
+      "utility_capture": 226.2833,
+      "max_available_utility": 754.0,
+      "utility_capture_rate": 0.3001,
+      "noisy_only_route_count": 0,
+      "noisy_only_route_rate": 0.0,
+      "accepted_routed": 29,
+      "rejected_routed": 9,
+      "gate_counts": {
+        "structured_feedback": 50
+      },
+      "category_counts": {
+        "reproducibility_detail": 9,
+        "actionable_suggestion": 21,
+        "clarity_presentation": 20
+      }
+    }
+  ],
+  "heldout_random_category_baseline": {
+    "seeds": 512,
+    "mean_utility_capture_rate": 0.7059,
+    "p05_utility_capture_rate": 0.4724,
+    "p95_utility_capture_rate": 0.9124,
+    "mean_utility_capture": 532.2701,
+    "mean_routed_review_rate": 0.7,
+    "best_random_draw": {
+      "selected_categories": [
+        "actionable_suggestion",
+        "clarity_presentation",
+        "evaluation_metric",
+        "limitations_claim_boundary",
+        "method_correctness",
+        "novelty_positioning",
+        "reproducibility_detail"
+      ],
+      "review_count": 94,
+      "routed_review_count": 75,
+      "routed_review_rate": 0.7979,
+      "utility_capture": 754.0,
+      "max_available_utility": 754.0,
+      "utility_capture_rate": 1.0,
+      "noisy_only_route_count": 0,
+      "noisy_only_route_rate": 0.0,
+      "accepted_routed": 45,
+      "rejected_routed": 30,
+      "gate_counts": {
+        "structured_feedback": 50,
+        "claim_calibration": 31,
+        "evaluator_stress_test": 55,
+        "scientific_taste_prior": 17
+      },
+      "category_counts": {
+        "reproducibility_detail": 9,
+        "limitations_claim_boundary": 31,
+        "actionable_suggestion": 21,
+        "method_correctness": 13,
+        "evaluation_metric": 42,
+        "clarity_presentation": 20,
+        "novelty_positioning": 17
+      }
+    }
+  },
+  "claim_boundary": "Held-out validation supports stability of deterministic OpenReview-to-gate routing under a paper-level split. It does not provide independent human labels, does not prove downstream paper-quality improvement, and should be treated as an offline bias-reduction check for the review-derived gate policy."
+}
