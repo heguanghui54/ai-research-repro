@@ -92,8 +92,8 @@ PY
 | Live skill logged gate type | `scientific_taste_prior` |
 | English PDF bytes | 51757 |
 | Chinese PDF bytes | 114561 |
-| Focused English PDF bytes | 26729 |
-| Focused Chinese PDF bytes | 48496 |
+| Focused English PDF bytes | 26972 |
+| Focused Chinese PDF bytes | 48975 |
 | Generated files byte-identical after rebuild | No: derived trace-dataset audit files and PDFs were refreshed by rebuild scripts |
 
 ## Interpretation
