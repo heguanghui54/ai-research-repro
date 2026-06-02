@@ -604,6 +604,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/review_frontier_signal_probe_20260602_214500/README.md",
     "scripts/run_semantic_frontier_judge_probe.py",
     "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/summary.json",
+    "scripts/run_high_tail_power_analysis.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/high_tail_power_analysis_20260602_233000/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/high_tail_power_analysis_20260602_233000/protocol.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/high_tail_power_analysis_20260602_233000/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/semantic_frontier_judge_probe_20260602_223000/raw_model_calls.json",
     "docs/co_pilot_ai_scientist_v3/temporal_frontier_replay_spec.md",
@@ -1515,7 +1519,9 @@
     "semantic_frontier_judge_probe_successful_judgements": 5,
     "semantic_frontier_judge_probe_paper_context_wins": 4,
     "semantic_frontier_judge_probe_review_guided_artifact_wins": 1,
-    "semantic_frontier_judge_probe_delayed_value_candidates": 0
+    "semantic_frontier_judge_probe_delayed_value_candidates": 0,
+    "high_tail_power_analysis_runs": 1,
+    "high_tail_power_analysis_current_delayed_value_cases": 0
   },
   "review_frontier_signal_probe": {
     "status": "completed_negative_lexical_review_signal_probe",
@@ -1580,5 +1586,18 @@
     "citation_delayed_value_cases": 0,
     "semantic_delayed_value_candidates": 0,
     "claim_boundary": "TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. This supports a falsifiable protocol and a measurement boundary, not a positive long-horizon superiority claim."
+  },
+  "high_tail_power_analysis": {
+    "status": "completed_study_design_power_analysis_not_positive_evidence",
+    "script": "scripts/run_high_tail_power_analysis.py",
+    "run_id": "high_tail_power_analysis_20260602_233000",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/high_tail_power_analysis_20260602_233000/summary.json",
+    "protocol": "docs/co_pilot_ai_scientist_v3/experiments/high_tail_power_analysis_20260602_233000/protocol.md",
+    "test": "one_sided_fisher_exact_copilot_tail_rate_greater_than_autonomous",
+    "simulations_per_cell": 5000,
+    "autonomous_5_to_copilot_10_first_n_per_arm_for_80_power": 500,
+    "autonomous_5_to_copilot_15_first_n_per_arm_for_80_power": 150,
+    "current_pilot_delayed_value_cases": 0,
+    "claim_boundary": "This artifact operationalizes the high-tail hypothesis and shows that large matched samples are required. It is not evidence that IGRE has already increased breakthrough probability."
   }
 }

@@ -108,6 +108,21 @@
       "paper_treatment": "Report as negative evidence. The delayed-value hypothesis is important and measurable but unproven."
     },
     {
+      "claim": "The high-tail hypothesis can be statistically tested rather than used as rhetoric.",
+      "status": "supported_study_design_operationalization",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/experiments/high_tail_power_analysis_20260602_233000/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/high_tail_power_analysis_20260602_233000/protocol.md"
+      ],
+      "metrics": {
+        "autonomous_5_to_copilot_10_first_n_per_arm_for_80_power": 500,
+        "autonomous_5_to_copilot_15_first_n_per_arm_for_80_power": 150,
+        "current_tfr_cases": 6,
+        "current_delayed_value_positive_cases": 0
+      },
+      "paper_treatment": "Present as a future-study requirement and sample-size warning, not as evidence that IGRE already improves breakthrough probability."
+    },
+    {
       "claim": "Short-budget human-gated FML-style runs beat autonomous baselines.",
       "status": "not_supported_mixed_or_negative",
       "evidence": [

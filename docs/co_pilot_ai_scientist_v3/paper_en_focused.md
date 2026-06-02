@@ -202,9 +202,22 @@ current small OpenReview sample does not yet provide positive evidence for it.
 
 This makes the paper's application value concrete. The goal is not merely to prove that humans improve paper quality. The goal is to design the best modes of human participation, compare them empirically, and build a workflow in which human taste is used where it has the highest chance of changing the research trajectory.
 
+We therefore add a high-tail power-analysis artifact rather than treating the
+breakthrough hypothesis as rhetoric. A high-tail success is preregistered as an
+artifact that passes a blinded or fixed external quality threshold, survives
+claim calibration, avoids evaluator-stress metric gaming, and, for TFR, aligns
+better with later frontier evidence than both paper-only and shuffled-review
+controls. Under a one-sided Fisher exact test, a Monte Carlo analysis shows why
+the present six-paper probes cannot support rare-breakthrough claims: if the
+autonomous high-tail rate is 5% and human-gated participation raises it to 10%,
+roughly 500 matched runs per arm are needed for about 80% power; even a larger
+increase from 5% to 15% needs roughly 150 runs per arm. This turns the high-tail
+claim into a concrete future experiment and explains why the present paper
+reports protocol readiness rather than breakthrough-probability evidence.
+
 ## 6. Limitations
 
-The current evidence is a pilot package. It does not include independent human expert review of the final IGRE paper or of the paired regenerated artifacts. The live co-pilot trace is a single-author derived metadata corpus, not a population-level dataset of many scientists using the system. OpenReview is offline asynchronous review data, not real-time human intervention inside an AI Scientist-v2 run. The matched-budget FML evidence is underpowered and currently negative or mixed for benchmark performance. The equal-context OpenReview ablation reduces, but does not eliminate, concerns about context confounds because it still relies on model-routed scoring and regenerated mini-artifacts rather than blind expert review. The high-tail hypothesis, that human taste may increase rare breakthrough probability even if average score falls, is conceptually important but not yet statistically operationalized.
+The current evidence is a pilot package. It does not include independent human expert review of the final IGRE paper or of the paired regenerated artifacts. The live co-pilot trace is a single-author derived metadata corpus, not a population-level dataset of many scientists using the system. OpenReview is offline asynchronous review data, not real-time human intervention inside an AI Scientist-v2 run. The matched-budget FML evidence is underpowered and currently negative or mixed for benchmark performance. The equal-context OpenReview ablation reduces, but does not eliminate, concerns about context confounds because it still relies on model-routed scoring and regenerated mini-artifacts rather than blind expert review. The high-tail hypothesis is now statistically operationalized as a power-analysis protocol, but no high-tail or delayed-value positive case has been demonstrated in the current evidence package.
 
 These limitations are also future research directions. To make the next step concrete, the repository includes a prepared and preregistered blind-review packet for the six OpenReview regeneration pairs: reviewers see anonymized A/B artifacts, a fixed rubric, and a score-sheet template, while the condition key and analysis plan are held by the coordinator until ratings are complete. The plan defines useful human taste and insight as review signals that can change research-control decisions, not as generic approval. This packet is not evidence yet because no independent human ratings have been collected. A stronger study would deploy a reusable co-pilot scientist skill to many researchers, collect privacy-preserving gate metadata with consent, run matched autonomous and human-gated trajectories across tasks, and submit paired outputs to blind expert review. At present, such live multi-researcher data is more feasible for major agent or model companies than for a small independent project. IGRE therefore uses OpenReview as a scalable offline proxy and clearly marks the gap.
 

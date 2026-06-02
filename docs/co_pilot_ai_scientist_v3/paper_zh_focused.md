@@ -139,9 +139,11 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 这也让本文的应用意义更具体。目标不是简单证明人类能提高论文质量，而是设计更优的人类参与模式，用实验数据比较这些模式，并构建一种工作流，使人类科研品味在最可能改变科研轨迹的位置发挥作用。
 
+因此，我们进一步加入 high-tail power-analysis artifact，而不是把“突破性成果概率”只当作修辞。我们把 high-tail success 预注册定义为：产物通过盲评或固定外部 evaluator 的顶级质量阈值；通过主张校准 gate，即主张必须被实际证据支持；没有被 evaluator-stress gate 判定为 metric gaming；对于 TFR，还必须比 paper-only 与 shuffled-review control 更接近后来的学科前沿证据。在单侧 Fisher exact test 下，Monte Carlo 功效分析解释了为什么当前 6 篇论文的 probe 无法支持罕见突破概率主张：如果 autonomous 的 high-tail rate 是 5%，人类门控把它提高到 10%，要达到约 80% power 需要约每组 500 个 matched run；即使从 5% 提高到 15%，也需要约每组 150 个 run。这把高尾假设转化为具体的未来实验设计，也说明当前论文只能声称 protocol readiness，而不能声称已经证明突破概率提升。
+
 ## 6. 局限性
 
-当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文或成对再生成产物的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。等上下文 OpenReview 消融降低了额外上下文混淆，但尚未完全消除，因为评分仍来自模型路由评审，产物也只是再生成 mini-artifact，而不是盲审专家评分或真实实验重跑。高尾假设，即人类品味可能增加罕见突破概率、即使平均分下降，在概念上重要，但尚未被统计操作化。
+当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文或成对再生成产物的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。等上下文 OpenReview 消融降低了额外上下文混淆，但尚未完全消除，因为评分仍来自模型路由评审，产物也只是再生成 mini-artifact，而不是盲审专家评分或真实实验重跑。高尾假设现在已经被统计操作化为功效分析协议，但当前证据包仍没有证明任何 high-tail 或 delayed-value 正例。
 
 这些局限也是未来研究方向。为了把下一步做实，仓库已经准备并预注册了 6 对 OpenReview 再生成产物的盲评包：评审者只看到匿名 A/B 产物、固定 rubric 和评分表模板，condition key 与分析计划在评分完成前由协调者隐藏保存。该计划把有用的人类 taste 与 insight 定义为能够改变科研控制决策的评审信号，而不是泛泛认可。这还不是实验证据，因为尚未收集独立人类专家评分。更强的研究应把可复用 co-pilot scientist skill 部署给大量科研人员，在知情同意和隐私保护下收集门控元数据，跨任务运行 matched autonomous 与 human-gated 轨迹，并把成对输出交给盲审专家评估。目前，这种实时多研究者数据更可能由主流 agent 公司或大模型公司完成，而不是小型独立项目。IGRE 因此使用 OpenReview 作为可扩展离线代理，并明确标记这一缺口。
 
