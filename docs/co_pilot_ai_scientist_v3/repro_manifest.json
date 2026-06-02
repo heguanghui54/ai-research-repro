@@ -928,7 +928,10 @@
     "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_multicase_audit.md",
     "scripts/audit_delayed_value_replay_multicase.py",
     "docs/co_pilot_ai_scientist_v3/audits/base_skill_inheritance_audit.json",
-    "docs/co_pilot_ai_scientist_v3/audits/base_skill_inheritance_audit.md"
+    "docs/co_pilot_ai_scientist_v3/audits/base_skill_inheritance_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/prospective_attention_taste_cost_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/prospective_attention_taste_cost_audit.md",
+    "scripts/audit_prospective_attention_taste_cost.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -2014,9 +2017,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "1d6f3a92894d3e4e843f16ad7ba16de26f99e43e",
+    "head": "3a41391402f91e34b81fd797812aae274cd046a6",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 915,
+    "manifest_artifacts": 918,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2341,5 +2344,17 @@
     "base_loop_steps_preserved": true,
     "igre_gates_present": true,
     "claim_boundary": "This audit proves inheritance and packaging alignment: Co-Pilot AI Scientist v3 preserves the user's AI Scientist-v2 research-production loop and adds IGRE gates. It does not prove that the resulting workflow improves paper quality or benchmark performance."
+  },
+  "prospective_attention_taste_cost_audit": {
+    "status": "pass",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/prospective_attention_taste_cost_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/prospective_attention_taste_cost_audit.md",
+    "prospective_packages": 7,
+    "gate_records": 7,
+    "complete_attention_cost_gates": 7,
+    "complete_taste_insight_gates": 7,
+    "total_active_review_minutes": 21.0,
+    "mean_taste_insight_score": 3.447142857142857,
+    "claim_boundary": "This audit supports prospective operator-recorded attention and taste/insight measurement across the matched-budget packages. It is not independent human-subject evidence, does not estimate population-level attention cost, and does not prove that human gates improve paper quality."
   }
 }

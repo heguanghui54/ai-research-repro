@@ -177,7 +177,13 @@
     "model_blind_review_review_guided_wins": 0,
     "model_blind_review_context_control_wins": 7,
     "model_blind_review_ties": 1,
-    "model_blind_review_mean_delta": -1.1458333333333333
+    "model_blind_review_mean_delta": -1.1458333333333333,
+    "prospective_attention_taste_cost_audit_runs": 1,
+    "prospective_attention_taste_cost_gate_records": 7,
+    "prospective_attention_taste_cost_complete_attention_gates": 7,
+    "prospective_attention_taste_cost_complete_taste_gates": 7,
+    "prospective_attention_taste_total_active_review_minutes": 21.0,
+    "prospective_attention_taste_mean_taste_score": 3.447142857142857
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -1443,5 +1449,17 @@
     "base_loop_steps_preserved": true,
     "igre_gates_present": true,
     "claim_boundary": "Skill-lineage evidence only; not performance evidence."
+  },
+  "prospective_attention_taste_cost_audit": {
+    "status": "pass",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/prospective_attention_taste_cost_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/prospective_attention_taste_cost_audit.md",
+    "prospective_packages": 7,
+    "gate_records": 7,
+    "complete_attention_cost_gates": 7,
+    "complete_taste_insight_gates": 7,
+    "total_active_review_minutes": 21.0,
+    "mean_taste_insight_score": 3.447142857142857,
+    "claim_boundary": "This audit supports prospective operator-recorded attention and taste/insight measurement across the matched-budget packages. It is not independent human-subject evidence, does not estimate population-level attention cost, and does not prove that human gates improve paper quality."
   }
 }

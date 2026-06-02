@@ -16,6 +16,22 @@
       "boundary": "Inheritance and packaging evidence only; not proof of paper-quality or benchmark superiority."
     },
     {
+      "claim_id": "prospective_attention_taste_cost",
+      "claim": "Prospective human gates record both attention cost and scientific taste/insight metadata across the matched-budget packages.",
+      "evidence": [
+        "docs/co_pilot_ai_scientist_v3/audits/prospective_attention_taste_cost_audit.json",
+        "docs/co_pilot_ai_scientist_v3/audits/prospective_attention_taste_cost_audit.md"
+      ],
+      "status": "supported_as_operator_recorded_measurement_evidence",
+      "prospective_packages": 7,
+      "gate_records": 7,
+      "complete_attention_cost_gates": 7,
+      "complete_taste_insight_gates": 7,
+      "total_active_review_minutes": 21.0,
+      "mean_taste_insight_score": 3.447142857142857,
+      "boundary": "Operator-recorded prospective measurement only; not independent human-subject or efficiency evidence."
+    },
+    {
       "claim": "IGRE is a distinct algorithmic pattern for inserting human scientific taste into automated research loops.",
       "status": "supported_method_contribution",
       "evidence": [

@@ -1,0 +1,197 @@
+{
+  "audit_date": "2026-06-02T19:27:18Z",
+  "status": "pass",
+  "prospective_packages": 7,
+  "gate_records": 7,
+  "complete_attention_cost_gates": 7,
+  "complete_taste_insight_gates": 7,
+  "gate_type_counts": {
+    "frontier_steering": 5,
+    "evaluator_stress_test": 2
+  },
+  "attention_summary": {
+    "total_active_review_minutes": 21.0,
+    "total_wall_clock_latency_minutes": 21.0,
+    "mean_active_review_minutes": 3.0,
+    "median_active_review_minutes": 3.0,
+    "total_options_reviewed": 14.0,
+    "total_decisions": 7.0,
+    "mean_options_per_gate": 2.0
+  },
+  "taste_summary": {
+    "mean_taste_insight_score": 3.447142857142857,
+    "median_taste_insight_score": 3.57,
+    "min_taste_insight_score": 3.14,
+    "max_taste_insight_score": 3.57,
+    "top_non_metric_factors": [
+      [
+        "ai-scientist-v2-trajectory-relevance",
+        3
+      ],
+      [
+        "negative-results-still-informative",
+        3
+      ],
+      [
+        "mechanistic-branch-interpretability",
+        2
+      ],
+      [
+        "package-shape-validation",
+        2
+      ],
+      [
+        "evaluator-validity",
+        2
+      ],
+      [
+        "class-balance-risk",
+        2
+      ],
+      [
+        "open-data-reproducibility",
+        2
+      ]
+    ]
+  },
+  "rows": [
+    {
+      "package_id": "prospective_matched_fml_causality_20260602_000001",
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/human_gate_logs/frontier_gate_001.json",
+      "gate_id": "prospective_matched_fml_causality_20260602_000001_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "decision": null,
+      "active_review_minutes": 3.0,
+      "wall_clock_latency_minutes": 3.0,
+      "options_reviewed": 2,
+      "artifacts_reviewed_count": 1,
+      "decision_count": 1,
+      "taste_insight_score": 3.57,
+      "non_metric_factors": [
+        "ai-scientist-v2-trajectory-relevance",
+        "negative-results-still-informative"
+      ],
+      "complete_attention_cost": true,
+      "complete_taste_insight": true
+    },
+    {
+      "package_id": "prospective_matched_fml_causality_20260602_010002",
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_010002/human_gate_logs/frontier_gate_001.json",
+      "gate_id": "prospective_matched_fml_causality_20260602_010002_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "decision": null,
+      "active_review_minutes": 3.0,
+      "wall_clock_latency_minutes": 3.0,
+      "options_reviewed": 2,
+      "artifacts_reviewed_count": 1,
+      "decision_count": 1,
+      "taste_insight_score": 3.57,
+      "non_metric_factors": [
+        "ai-scientist-v2-trajectory-relevance",
+        "negative-results-still-informative"
+      ],
+      "complete_attention_cost": true,
+      "complete_taste_insight": true
+    },
+    {
+      "package_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821",
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_fairness-fairlearn_20260602_002821/human_gate_logs/frontier_gate_001.json",
+      "gate_id": "prospective_matched_fml_fairness-fairlearn_20260602_002821_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "decision": null,
+      "active_review_minutes": 3.0,
+      "wall_clock_latency_minutes": 3.0,
+      "options_reviewed": 2,
+      "artifacts_reviewed_count": 1,
+      "decision_count": 1,
+      "taste_insight_score": 3.57,
+      "non_metric_factors": [
+        "ai-scientist-v2-trajectory-relevance",
+        "negative-results-still-informative"
+      ],
+      "complete_attention_cost": true,
+      "complete_taste_insight": true
+    },
+    {
+      "package_id": "prospective_matched_micro_pilot_20260602_000001",
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260602_000001/human_gate_logs/frontier_gate_001.json",
+      "gate_id": "prospective_matched_micro_pilot_20260602_000001_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "decision": null,
+      "active_review_minutes": 2.0,
+      "wall_clock_latency_minutes": 2.0,
+      "options_reviewed": 2,
+      "artifacts_reviewed_count": 1,
+      "decision_count": 1,
+      "taste_insight_score": 3.14,
+      "non_metric_factors": [
+        "mechanistic-branch-interpretability",
+        "package-shape-validation"
+      ],
+      "complete_attention_cost": true,
+      "complete_taste_insight": true
+    },
+    {
+      "package_id": "prospective_matched_micro_pilot_20260603_ssh_maxcut",
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_micro_pilot_20260603_ssh_maxcut/human_gate_logs/frontier_gate_001.json",
+      "gate_id": "prospective_matched_micro_pilot_20260603_ssh_maxcut_frontier_gate_001",
+      "gate_type": "frontier_steering",
+      "decision": null,
+      "active_review_minutes": 2.0,
+      "wall_clock_latency_minutes": 2.0,
+      "options_reviewed": 2,
+      "artifacts_reviewed_count": 1,
+      "decision_count": 1,
+      "taste_insight_score": 3.14,
+      "non_metric_factors": [
+        "mechanistic-branch-interpretability",
+        "package-shape-validation"
+      ],
+      "complete_attention_cost": true,
+      "complete_taste_insight": true
+    },
+    {
+      "package_id": "prospective_matched_open_data_multitask_20260603",
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/human_gate_logs/evaluator_gate_001.json",
+      "gate_id": "prospective_matched_open_data_multitask_20260603_evaluator_gate_001",
+      "gate_type": "evaluator_stress_test",
+      "decision": null,
+      "active_review_minutes": 4.0,
+      "wall_clock_latency_minutes": 4.0,
+      "options_reviewed": 2,
+      "artifacts_reviewed_count": 1,
+      "decision_count": 1,
+      "taste_insight_score": 3.57,
+      "non_metric_factors": [
+        "evaluator-validity",
+        "class-balance-risk",
+        "open-data-reproducibility"
+      ],
+      "complete_attention_cost": true,
+      "complete_taste_insight": true
+    },
+    {
+      "package_id": "prospective_matched_open_data_multitask_holdout_20260603",
+      "source": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/human_gate_logs/evaluator_gate_001.json",
+      "gate_id": "prospective_matched_open_data_multitask_holdout_20260603_evaluator_gate_001",
+      "gate_type": "evaluator_stress_test",
+      "decision": null,
+      "active_review_minutes": 4.0,
+      "wall_clock_latency_minutes": 4.0,
+      "options_reviewed": 2,
+      "artifacts_reviewed_count": 1,
+      "decision_count": 1,
+      "taste_insight_score": 3.57,
+      "non_metric_factors": [
+        "evaluator-validity",
+        "class-balance-risk",
+        "open-data-reproducibility"
+      ],
+      "complete_attention_cost": true,
+      "complete_taste_insight": true
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "This audit supports prospective operator-recorded attention and taste/insight measurement across the matched-budget packages. It is not independent human-subject evidence, does not estimate population-level attention cost, and does not prove that human gates improve paper quality."
+}
