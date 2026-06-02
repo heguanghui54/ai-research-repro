@@ -1,0 +1,42 @@
+```json
+{
+  "recommendation": "IGRE",
+  "scores": {
+    "IGRE": {
+      "evidence_gain": 5,
+      "benchmark_fit": 5,
+      "method_distinctness": 4,
+      "human_taste_visibility": 4,
+      "feasibility": 4,
+      "claim_calibration": 5,
+      "novelty_risk_balance": 3,
+      "overall": 4
+    },
+    "autonomous": {
+      "evidence_gain": 3,
+      "benchmark_fit": 3,
+      "method_distinctness": 4,
+      "human_taste_visibility": 2,
+      "feasibility": 4,
+      "claim_calibration": 3,
+      "novelty_risk_balance": 3,
+      "overall": 3
+    }
+  },
+  "best_IGRE_candidate": "frontier_004",
+  "best_autonomous_candidate": "frontier_001",
+  "rationale": "The IGRE portfolio demonstrates a stronger alignment with structured methodologies that enhance reproducibility and clarity, while the autonomous portfolio lacks the same level of human insight integration, which may limit its effectiveness.",
+  "where_autonomous_is_stronger": [
+    "Method distinctness in exploring fully autonomous processes."
+  ],
+  "where_IGRE_is_stronger": [
+    "Higher evidence gain and benchmark fit due to structured human feedback mechanisms."
+  ],
+  "required_next_evidence": [
+    "Comparative analysis of human feedback impact on hypothesis generation.",
+    "Evaluation of programmatic search effectiveness in experiment selection.",
+    "Assessment of human insights on experimental design clarity."
+  ],
+  "claim_boundary": "The claims are bounded by the effectiveness of structured human feedback and intervention strategies in enhancing research output quality."
+}
+```

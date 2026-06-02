@@ -12,6 +12,11 @@ Run collaborative automated research using Insight-Gated Research Evolution
 scientists intervene as explicit high-variance operators where taste, insight,
 and claim responsibility can reshape the trajectory.
 
+The purpose is to design and compare useful human-participation patterns, not
+to assume that human involvement always improves average benchmark or paper
+quality. Treat each gate as a workflow-design choice that must be supported by
+matched evidence and clear boundary conditions.
+
 ## Use This Skill When
 
 - A user wants to turn a broad research idea into a paper with human guidance.
@@ -36,10 +41,23 @@ and claim responsibility can reshape the trajectory.
      `scripts/run_hypothesis_frontier_smoke.py` after sourcing the private model
      environment. Treat the generated frontier and critique/ranking as
      orchestration evidence, not as a downstream performance result.
+   - To compare the IGRE hypothesis front end with a same-model autonomous
+     AI Scientist-v2-style front end, run
+     `scripts/run_hypothesis_frontend_baseline.py`. Treat this as front-end
+     portfolio evidence only, not as paper-quality or benchmark evidence.
    - If the selected frontier concerns structured human feedback, run
      `scripts/run_structured_feedback_probe.py` to compare informal feedback
      with IGRE-structured feedback on the same base manuscript. Treat the score
      as measurement-readiness evidence, not as independent peer review.
+   - To use public expert-review data as an offline scientific-taste proxy,
+     run `scripts/run_expert_review_taste_prior_probe.py --streaming`. This
+     can support a limited OpenReview-derived taste prior, but it is not live
+     human co-pilot interaction data.
+   - Use the OpenReview-derived proxy as a participation-mode selection
+     benchmark: compare artifacts produced by no-gate, taste-prior,
+     evaluator-stress, structured-feedback, and claim-calibration modes against
+     the same expert-review rubric before deciding which workflow pattern is
+     stronger.
    - Attach evidence, missing evidence, feasibility notes, and risks.
    - Ask the human scientist to select, merge, or rewrite directions using
      field taste, upside asymmetry, and failure value, not only early scores.
@@ -155,6 +173,11 @@ and claim responsibility can reshape the trajectory.
      required-field coverage, claim-boundary check, and secret/raw-log scan
      counts. A passing release audit reduces leakage risk; it does not replace
      human-subject review if the corpus expands beyond the author's own traces.
+   - Do not use the author's single-user trace as the main population evidence
+     for human-guided automated science. A true online co-pilot dataset would
+     require a broadly deployed skill or assistant used by many researchers,
+     consent and de-identification, and prospective logging of interventions,
+     attention cost, artifacts, and downstream outcomes.
    - To check the package shape on a controlled remote computation, run
      `scripts/run_prospective_matched_budget_micro_pilot.py`; treat it only as
      evidence-shape validation, not as AI Scientist-v2 superiority evidence.

@@ -68,6 +68,18 @@ This generates candidate research frontiers and a critique/ranking artifact.
 Treat it as front-end orchestration evidence, not as benchmark or paper-quality
 evidence.
 
+To compare that IGRE front end against a same-model autonomous AI
+Scientist-v2-style hypothesis front end, run:
+
+```bash
+source ~/.codex/env
+python3 scripts/run_hypothesis_frontend_baseline.py \
+  --model gpt-4o-mini
+```
+
+This is a front-end portfolio comparison only. It does not evaluate downstream
+benchmark performance, paper quality, or human expert judgment.
+
 To connect the selected structured-feedback frontier to a downstream
 same-manuscript measurement probe, run:
 
@@ -80,6 +92,22 @@ python3 scripts/run_structured_feedback_probe.py \
 This generates informal feedback, IGRE-structured feedback, two revisions of
 the same base manuscript, and a fixed-rubric model score. Treat the output as
 measurement-readiness evidence only; it is not independent human peer review.
+
+To probe Hugging Face/OpenReview expert-review data as an offline scientific
+taste prior without downloading the full dataset, run:
+
+```bash
+python3 scripts/run_expert_review_taste_prior_probe.py \
+  --streaming \
+  --stream-limit 160
+```
+
+The current probe uses `nhop/OpenReview`, verifies Dataset Viewer metadata, and
+streams a small sample. Treat this as an offline expert-review proxy for
+scientific taste, not as live human co-pilot interaction data. The intended
+experiment is to use the same OpenReview-derived rubric to compare artifacts
+from different participation modes, such as no gate, taste-prior gate,
+evaluator-stress gate, structured-feedback gate, and claim-calibration gate.
 
 For a Monica-routed paper-quality review, source the global environment and run:
 

@@ -38,7 +38,11 @@
     "same_run_online_paired_smokes": 3,
     "same_run_online_no_valid_branch_smokes": 1,
     "live_hypothesis_frontier_smokes": 1,
-    "live_structured_feedback_probes": 1
+    "live_structured_feedback_probes": 1,
+    "live_hypothesis_frontend_baseline_probes": 1,
+    "expert_review_taste_prior_probes": 1,
+    "expert_review_taste_prior_sample_rows": 160,
+    "expert_review_taste_prior_dataset_rows": 34638
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -94,7 +98,7 @@
     "independent_human_subject_timing": false,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Use the complete attention/taste logging protocol during future prospective experiment gates, then scale beyond repeated tiny-budget same-run online smokes with more FML/non-FML tasks, seeds, budgets, independent human paper-quality scoring, measured human timing, and ideally multiple human researchers.",
+  "next_evidence_milestone": "Use OpenReview-derived expert-review proxies as a participation-mode selection benchmark, then run larger matched online trajectories across tasks, seeds, budgets, independent paper-quality scoring, measured human timing, and ideally multiple human researchers.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -293,5 +297,34 @@
     "informal_overall": 4,
     "structured_overall": 5,
     "interpretation": "Same-base-manuscript probe comparing informal feedback to IGRE-structured feedback. Measurement-readiness evidence only; not independent expert review or multi-task paper-quality evidence."
+  },
+  "hypothesis_frontend_baseline_probe": {
+    "status": "live_same_model_front_end_baseline_completed",
+    "run_id": "hypothesis_frontend_baseline_20260602_030500",
+    "path": "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/README.md",
+    "model": "gpt-4o-mini",
+    "recommendation": "IGRE",
+    "igre_overall": 4,
+    "autonomous_overall": 3,
+    "interpretation": "Front-end participation-mode evidence only; not downstream benchmark, paper-quality, or human expert evidence."
+  },
+  "expert_review_taste_prior_probe": {
+    "status": "streaming_data_probe_completed",
+    "run_id": "expert_review_taste_prior_probe_20260602_031800",
+    "path": "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/README.md",
+    "dataset": "nhop/OpenReview",
+    "dataset_rows_from_statistics": 34638,
+    "sample_size": 160,
+    "required_fields_available": true,
+    "sampling_mode": "streaming",
+    "mean_score_available": 160,
+    "mean_score_mean": 0.5349,
+    "mean_reproducibility_available": 0,
+    "interpretation": "Offline expert-review proxy for participation-mode selection; not live human co-pilot interaction data."
+  },
+  "primary_reframing": {
+    "status": "paper_reframed_as_participation_workflow_design",
+    "claim": "The main contribution is designing and comparing human-participation modes that inject scientific taste and insight into automated research, not proving that humans universally improve paper quality.",
+    "evaluation_target": "Use matched experiments and OpenReview-derived expert-review proxies to choose better gate patterns before larger online multi-researcher data exist."
   }
 }

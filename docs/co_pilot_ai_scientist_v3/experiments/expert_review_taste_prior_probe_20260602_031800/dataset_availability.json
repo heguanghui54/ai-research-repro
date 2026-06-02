@@ -1,0 +1,22 @@
+{
+  "is_valid": {
+    "preview": true,
+    "viewer": true,
+    "search": true,
+    "filter": true,
+    "statistics": true,
+    "_url": "https://datasets-server.huggingface.co/is-valid?dataset=nhop%2FOpenReview"
+  },
+  "splits": {
+    "splits": [
+      {
+        "dataset": "nhop/OpenReview",
+        "config": "default",
+        "split": "train"
+      }
+    ],
+    "pending": [],
+    "failed": [],
+    "_url": "https://datasets-server.huggingface.co/splits?dataset=nhop%2FOpenReview"
+  }
+}

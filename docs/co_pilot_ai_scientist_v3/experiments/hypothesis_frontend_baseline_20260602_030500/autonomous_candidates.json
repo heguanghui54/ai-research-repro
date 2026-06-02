@@ -1,0 +1,68 @@
+{
+  "frontier_candidates": [
+    {
+      "id": "frontier_001",
+      "title": "Evaluating the Impact of Structured Human Feedback on Hypothesis Generation",
+      "core_hypothesis": "Structured human feedback can enhance the novelty and relevance of generated hypotheses without compromising exploration diversity.",
+      "why_now": "Understanding the role of structured feedback is crucial for optimizing human intervention points in the research workflow.",
+      "claim_it_tests": "The effectiveness of structured feedback compared to fully autonomous hypothesis generation.",
+      "minimal_experiment": "Conduct a comparative analysis of hypothesis generation quality with and without structured human feedback using expert evaluations.",
+      "benchmark_or_evaluator": "Expert review metrics focusing on novelty and relevance.",
+      "expected_artifacts": [
+        "Hypothesis evaluation reports",
+        "Comparison metrics",
+        "Expert feedback summaries"
+      ],
+      "main_risk": "Structured feedback may not significantly improve hypothesis quality, leading to wasted resources.",
+      "failure_value": "No measurable improvement in hypothesis quality compared to the autonomous baseline."
+    },
+    {
+      "id": "frontier_002",
+      "title": "Optimizing Experiment Selection Through Programmatic Search",
+      "core_hypothesis": "A refined programmatic search can identify more promising experimental directions, reducing budget waste.",
+      "why_now": "Improving experiment selection is critical for maximizing the efficiency of the research process.",
+      "claim_it_tests": "The effectiveness of programmatic search in selecting experiments compared to random or heuristic methods.",
+      "minimal_experiment": "Implement a controlled study comparing programmatic search results against random selection in terms of successful outcomes.",
+      "benchmark_or_evaluator": "Success rate of experiments and budget utilization metrics.",
+      "expected_artifacts": [
+        "Experiment selection logs",
+        "Outcome reports",
+        "Budget utilization analysis"
+      ],
+      "main_risk": "Programmatic search may not yield better results than existing methods, leading to over-engineering.",
+      "failure_value": "No improvement in success rates or budget efficiency compared to random selection."
+    },
+    {
+      "id": "frontier_003",
+      "title": "Assessing the Role of Human Insight in Experiment Design",
+      "core_hypothesis": "Incorporating human insights into experiment design can enhance methodological rigor and clarity.",
+      "why_now": "Exploring the integration of human insights can help identify optimal points for human intervention in the research process.",
+      "claim_it_tests": "The impact of human insights on the clarity and rigor of experimental designs.",
+      "minimal_experiment": "Conduct a study comparing experiments designed with and without human insights, evaluated by experts for clarity and rigor.",
+      "benchmark_or_evaluator": "Expert evaluation metrics focusing on methodological rigor and clarity.",
+      "expected_artifacts": [
+        "Experiment design comparison reports",
+        "Expert evaluation summaries",
+        "Clarity and rigor metrics"
+      ],
+      "main_risk": "Human insights may not significantly enhance experimental designs, leading to inefficiencies.",
+      "failure_value": "No measurable improvement in clarity or rigor compared to autonomous designs."
+    },
+    {
+      "id": "frontier_004",
+      "title": "Evaluating the Efficiency of Human Intervention Points in the Research Workflow",
+      "core_hypothesis": "Strategically placed human intervention points can significantly improve the overall quality of research outputs.",
+      "why_now": "Identifying optimal intervention points is essential for balancing human input with autonomous processes.",
+      "claim_it_tests": "The effectiveness of various human intervention placements on research output quality.",
+      "minimal_experiment": "Perform an ablation study to evaluate different placements of human intervention in the workflow and their impact on paper quality.",
+      "benchmark_or_evaluator": "Quality metrics for research outputs, including novelty and methodological rigor.",
+      "expected_artifacts": [
+        "Ablation study reports",
+        "Quality assessment metrics",
+        "Intervention placement analysis"
+      ],
+      "main_risk": "Identifying suboptimal intervention points may lead to increased latency without improving quality.",
+      "failure_value": "No improvement in research output quality compared to a fully autonomous baseline."
+    }
+  ]
+}

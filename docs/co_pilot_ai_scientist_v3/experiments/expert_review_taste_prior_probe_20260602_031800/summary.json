@@ -1,0 +1,347 @@
+{
+  "run_id": "expert_review_taste_prior_probe_20260602_031800",
+  "timestamp_utc": "2026-06-02T05:04:13Z",
+  "status": "expert_review_taste_prior_data_probe",
+  "dataset": "nhop/OpenReview",
+  "config": "default",
+  "split": "train",
+  "dataset_url": "https://huggingface.co/datasets/nhop/OpenReview",
+  "dataset_viewer_base_url": "https://datasets-server.huggingface.co",
+  "is_valid": {
+    "preview": true,
+    "viewer": true,
+    "search": true,
+    "filter": true,
+    "statistics": true
+  },
+  "splits": [
+    {
+      "dataset": "nhop/OpenReview",
+      "config": "default",
+      "split": "train"
+    }
+  ],
+  "num_examples": 34638,
+  "feature_names": [
+    "abstract",
+    "arxiv_id",
+    "authors",
+    "avg_citations_per_month",
+    "background",
+    "comments",
+    "conclusion",
+    "decision",
+    "decision_text",
+    "experiments_results",
+    "field_of_study",
+    "full_text",
+    "hypothesis",
+    "introduction",
+    "mean_clarity",
+    "mean_confidence",
+    "mean_correctness",
+    "mean_impact",
+    "mean_novelty",
+    "mean_reproducibility",
+    "mean_score",
+    "methodology",
+    "month_since_publication",
+    "n_citations",
+    "n_influential_citations",
+    "n_references",
+    "openreview_submission_id",
+    "paperhash",
+    "publication_date",
+    "references",
+    "reviews",
+    "s2_corpus_id",
+    "summary",
+    "title",
+    "venue"
+  ],
+  "required_fields": [
+    "title",
+    "abstract",
+    "reviews",
+    "decision",
+    "mean_score",
+    "mean_novelty",
+    "mean_clarity",
+    "mean_impact",
+    "mean_reproducibility"
+  ],
+  "required_fields_available": true,
+  "offsets": [
+    0,
+    100,
+    500
+  ],
+  "sampling_mode": "streaming",
+  "stream_limit": 160,
+  "row_pages": [
+    {
+      "mode": "streaming",
+      "num_rows": 160,
+      "stream_limit": 160
+    }
+  ],
+  "sample_size": 160,
+  "score_summary": {
+    "mean_score": {
+      "available": 160,
+      "mean": 0.5349,
+      "min": 0.1389,
+      "max": 1.0
+    },
+    "mean_novelty": {
+      "available": 27,
+      "mean": 0.6284,
+      "min": 0.4375,
+      "max": 0.8333
+    },
+    "mean_correctness": {
+      "available": 106,
+      "mean": 0.6267,
+      "min": 0.0,
+      "max": 1.0
+    },
+    "mean_clarity": {
+      "available": 71,
+      "mean": 0.5968,
+      "min": 0.3333,
+      "max": 0.8333
+    },
+    "mean_impact": {
+      "available": 73,
+      "mean": 0.5459,
+      "min": 0.25,
+      "max": 0.8333
+    },
+    "mean_reproducibility": {
+      "available": 0,
+      "mean": null,
+      "min": null,
+      "max": null
+    },
+    "mean_confidence": {
+      "available": 158,
+      "mean": 0.6373,
+      "min": 0.0,
+      "max": 0.95
+    }
+  },
+  "high_score_examples": [
+    {
+      "title": "Practical Structured Riemannian Optimization with Momentum by using Generalized Normal Coordinates",
+      "venue": "NeurIPS_cc_2022_Workshop_NeurReps",
+      "arxiv_id": null,
+      "decision": true,
+      "decision_text_excerpt": "",
+      "abstract_excerpt": "Adding momentum into Riemannian optimization is computationally challenging due to the intractable ODEs needed to define the exponential and parallel transport maps.\nWe address these issues for Gaussian Fisher-Rao manifolds by proposing new local coordinates to exploit sparse structures and efficiently approximate the ODEs, which results in a numerically stable update scheme.\nOur approach extends the structured natural-gradient descent method of Lin et al. (2021a) by incorporating momentum into it and scaling the method for large-scale applications arising in numerical optimization and deep learning.",
+      "review_snippets": [
+        "{\"clarity\": 0.6666666666666666, \"confidence\": 0.5, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: Not too many limitations are discussed.  I would appreciate more intuitive discussion of the generalized coordinates (e.g. some practical examples), including when we expect them to be possible to obtain.\", \"main_review\": null, \"paper_summary\": \"paper_summary: This abstract describes some variations on Riemannian gradient descent that incorporate momentum.  If I understand properly, these methods are intended to be easier to work with because they need a weaker notion of normal coo",
+        "{\"clarity\": 0.6666666666666666, \"confidence\": 0.75, \"correctness\": 1.0, \"ethics\": null, \"impact\": 1.0, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: The authors adequately addressed limitations of their work. \", \"main_review\": null, \"paper_summary\": \"paper_summary: The authors propose a method to perform optimization on Riemannian manifolds with momentum. The authors introduce a generalization of the Riemannian momentum update to allow for other parameterizations (rather than just the exponential map). They then use an approximation of the corresponding parallel transport map which does not require Christoffel symbols. The proposed method is analyzed for t",
+        "{\"clarity\": 0.0, \"confidence\": 0.25, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": 0.6666666666666666, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": \"limitations: I think these are exciting results! My main comments for improvement are for improving the clarity of the results and the clarity of the problem statement (what you are doing).\", \"main_review\": null, \"paper_summary\": \"paper_summary: The authors propose a new way to perform optimization on manifolds by 1) presenting new local coordinates that simplify calculations and 2) introduce momentum into their local coordinate calculations. Authors show that their local coordinates without momentum perform"
+      ],
+      "mean_score": 1.0,
+      "mean_novelty": null,
+      "mean_correctness": 0.7777777777777777,
+      "mean_clarity": 0.4444444444444444,
+      "mean_impact": 0.7777777777777777,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.5
+    },
+    {
+      "title": "Efficient Bayesian Sampling Using Normalizing Flows to Assist Markov Chain Monte Carlo Methods",
+      "venue": "ICML_cc_2021_Workshop_INNF",
+      "arxiv_id": "2107.08001v1",
+      "decision": true,
+      "decision_text_excerpt": "",
+      "abstract_excerpt": "Normalizing flows can generate complex target distributions and thus show promise in many applications in Bayesian statistics as an alternative or complement to MCMC for sampling posteriors.\nSince no data set from the target posterior distribution is available beforehand, the flow is typically trained using the reverse Kullback-Leibler (KL) divergence that only requires samples from a base distribution. This strategy  may perform poorly when the posterior is complicated and hard to sample with an untrained normalizing flow. \nHere we explore a distinct training strategy, using the direct KL divergence as loss, in which samples from  the posterior are generated by (i) assisting a local MCMC algorithm on the posterior with a normalizing flow to accelerate its mixing rate and (ii) using the data generated this way to train the flow. \nThe method only requires a limited amount of \\textit{a~pri",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: Authors consider the classic problem of Bayesian inference: given the prior distribution, the likelihood function, and some data, we would like to sample from the posterior distribution and/or evaluate its normalizing constant. MCMC methods are a popular solution, but it's difficult to get them to mix well when local transitions are used and/or when the target posterior has disconnected modes. \\n\\nRecently normalizing flows have emerged as a way to parameterize complex distrib",
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: In MCMC, a common strategy to ensure efficient exploration is to perform a combination of small, \\\"local\\\" mutations and large, \\\"global\\\" mutations.\\n\\nIn this work, the authors propose to train a normalizing flow to perform global mutations approximately proportional to the posterior distribution in Bayesian inference. Local mutations are carried out by an arbitrary existing method (e.g. MALA).\\n\\nThe contribution is a combination of (i) training directly from the KL divergen",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper proposes a new method which merges MCMC and normalizing flows. In particular, the flow helps the MCMC generate data which helps train the flow. This is done by alternating between generating a normalizing flow based sample and a MALA sample. Compared to standard reverse-kl training of normalizing flows, the proposed method claims to avoid failure cases such as mode collapse. Experiments are performed on two test tasks: one toy and one with astrophysics applications."
+      ],
+      "mean_score": 1.0,
+      "mean_novelty": null,
+      "mean_correctness": null,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.6666666666666666
+    },
+    {
+      "title": "Unifying semi-supervised and robust learning by mixup",
+      "venue": "ICLR_cc_2019_Workshop_LLD",
+      "arxiv_id": null,
+      "decision": true,
+      "decision_text_excerpt": "",
+      "abstract_excerpt": "Supervised deep learning methods require cleanly labeled large-scale datasets, but collecting such data is difficult and sometimes impossible. There exist two popular frameworks to alleviate this problem: semi-supervised learning and robust learning to label noise. Although these frameworks relax the restriction of supervised learning, they are studied independently. Hence, the training scheme that is suitable when only small cleanly-labeled data are available remains unknown. In this study, we consider learning from bi-quality data as a generalization of these studies, in which a small portion of data is cleanly labeled, and the rest is corrupt. Under this framework, we compare recent algorithms for semi-supervised and robust learning. The results suggest that semi-supervised learning outperforms robust learning with noisy labels. We also propose a training strategy for mixing mixup tec",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Major comments and summary: \\n\\n  Overall, I strongly recommend this paper as a workshop paper, but I think it needs more work to become a great conference paper.  The problem is well-motivated and seems very important to me.  My biggest issue is that I feel like one could go much \\\"further\\\" with this idea - and it shows empirically - the only improvement from using the noisy labels is to go from 89% -> 90%, which I would say is only a small improvement.  If this problem gets solved I think you should",
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The authors start by introducing a formal setting that includes the semi-supervised and the robust learning tasks as special cases and they then proceed by proposing a strategy based on mixup [1] for training a model in this unified setting.\\n\\nMy general impression from this work is firmly positive. The manuscript is clearly written, the experimental setup covers adequately alternative methods and the description of the experiments includes the most important details. The results presented, while in m"
+      ],
+      "mean_score": 0.875,
+      "mean_novelty": null,
+      "mean_correctness": null,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.5
+    },
+    {
+      "title": "​​What learning algorithm is in-context learning? Investigations with linear models",
+      "venue": "ICLR_cc_2023_Conference",
+      "arxiv_id": "2211.15661",
+      "decision": true,
+      "decision_text_excerpt": "This work investigates why transformers can be trained to be in-context learners (ICL) of linear functions. Specifically, the authors provide different perspectives to support the hypothesis that transformers can learn standard learning algorithms and low-lever algorithmic operations in this way. E.g., a bottom-up construction implying that optimization techniques can be \"embedded\" in their forward pass or testing how similar the outputs of transformers are to well-known algorithms.\n\nAll reviewers agreed that the paper tackles an important question, and while not providing a definite answer, brings interesting perspectives that can further boost research in the direction of understanding wha",
+      "abstract_excerpt": "Neural sequence models, especially transformers, exhibit a remarkable capacity for in-context learning. They can construct new predictors from sequences of labeled examples $(x, f(x))$ presented in the input without further parameter updates. We investigate the hypothesis that transformer-based in-context learners implement standard learning algorithms implicitly, by encoding context-specific parametric models in their hidden representations, and updating these implicit models as new examples appear in the context. Using linear regression as a model problem, we offer three sources of evidence for this hypothesis. First, we prove by construction that transformers can implement learning algorithms for linear models based on gradient descent and closed-form computation of regression parameters. Second, we show that trained in-context learners closely match the predictors computed by gradien",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 1.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: **QUALITY:** This is a high-quality submission that tackles an important problem and offers interesting and nontrivial insights. \\n\\n**CLARITY:** The paper is very well-written and clear. Here are a couple additional comments (BUNCH OF REQUESTS): \\n* The first sentence of the second paragraph of the introduction imply that _all_ types of in-context learning can be understood via the framework discussed in the paper. It'd be better if the authors clarify that there exist other types of in-",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: \\nThe work in this paper is novel and of high quality. It is mostly clear but the probe technique leveraged in section 5 could use a lot more description to understand that set of experiments.\\n\\nMinor issues and typos:\\n\\nThe plots and legend in figure 3 are hard to read because there are many methods plotted in the same graph with identical colors.\\n\\nI believe there are some typos in the operator definitions of section 3.1. For instance:\\n\\n1. in the \\\"mov\\\" operator's definition, shou",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.0, \"ethics\": null, \"impact\": null, \"novelty\": 0.0, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper is well-structured, clear and reads easily. The level of technical details provided in the main text is good. The supplementary material provides an extensive and very lengthy details on the derivation of different operators.  The paper has a placeholder link for the code, so I think that the results should be easily reproducible.\\n\", \"paper_summary\": \"paper_summary: The paper investigates the capability of transformer-based in-context learners (ICL) to implicitly implement learning algorithms"
+      ],
+      "mean_score": 0.8000000000000002,
+      "mean_novelty": 0.5,
+      "mean_correctness": 0.4444444444444444,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.75
+    },
+    {
+      "title": "Clinical Features and Physiological Signals Fusion Network for Mechanical Circulatory Support Need Prediction in Pediatric Cardiac ICU",
+      "venue": "IEEE_org_EMBS_BHI_2024_Conference",
+      "arxiv_id": null,
+      "decision": true,
+      "decision_text_excerpt": "",
+      "abstract_excerpt": "We link the hemodynamic response to inotropic agents with outcomes related to Mechanical Circulatory Support (MCS) by analyzing physiological time series and clinical features using a Machine Learning/Deep Learning ensemble approach for multi-modal waveforms in\nthe pediatric cardiac intensive care setting of a quaternary-care hospital. Unlike existing studies that typically process a single feature type or focus on short-term diagnoses from physiological signals, our novel system processes minute-by-minute multi-sensor data to identify the need for MCS in patients admitted with Acute Decompensated Heart Failure. The data used includes tabular clinical features, time series from Intensive Care Unit monitors, and raw waveforms from electrocardiogram and arterial blood pressure signals. Our predictions facilitate early identification of high-risk patients after just two days of admission, w",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: The research paper investigates the prediction of Mechanical Circulatory Support (MCS) needs in pediatric cardiac patients using an ensemble approach that combines physiological time series and clinical features. The study develops five models based on different types of input data, including clinical features, low-frequency time series, and high-frequency waveforms. Evaluation metrics. The study employs K-Fold Cross-validation with 5 folds and 10 repeats to split the data for ",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: In this work an ensemble model has been proposed for predicting the need for mechanical circulatory support in pediatric patients. To this purpose, 48 hours of different signals have been leveraged, together with different classifiers. Outcomes showed that the best configuration is the one where all the information is used and combined by the ensemble of single classifiers.\", \"questions\": \"questions: - please, avoid the use of undefined acronyms within the title.\\n- in Table I",
+        "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": null, \"paper_summary\": \"paper_summary: This paper describes a machine learning approach for predicting Mechanical Circulatory Support (MCS)-related outcomes in Intensive Care Unit (ICU) patients.\", \"questions\": \"questions: 1)\\tHow did you choose the methods for imputing missing values? Advanced methods for imputing missing values exist. You could mention the study in [1] as future work.\\n[1] Jarrett, D., Cebere, B. C., Liu, T., Curth, A., & van der Schaar, M. (2022, June). Hyperimpute: Generalized iterative imputati"
+      ],
+      "mean_score": 0.8000000000000002,
+      "mean_novelty": null,
+      "mean_correctness": null,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.9166666666666666
+    }
+  ],
+  "low_score_examples": [
+    {
+      "title": "KETG: A Knowledge Enhanced Text Generation Framework",
+      "venue": "ICLR_cc_2021_Conference",
+      "arxiv_id": "",
+      "decision": false,
+      "decision_text_excerpt": "While the paper studies an interesting and important problem, namely the language generation, it is poorly written, which makes it difficult to judge its value. The reviewers also expressed concern over the scope of the evaluation and the lack of comparison to SOTA.",
+      "abstract_excerpt": "Embedding logical knowledge information into text generation is a challenging NLP task. In this paper, we propose a knowledge enhanced text generation (KETG) framework, which incorporates both the knowledge and associated text corpus to address logicality and diversity in text generation. Specifically, we validate our framework on rhetorical text generation from our newly built rhetoric knowledge graph. Experiments show that our framework outperforms baseline models such as Transformer and GPT-2, on rhetorical type control, semantic comprehensibility and diversity.",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposes to use a rhetoric knowledge graph for rhetorical text generation. One of its key contributions is to construct a rhetoric knowledge graph by leveraging SOTA NER and relation classification models.  To generate a rhetorical text, the new method starts with sending a keyword to the knowledge graph to retrieve the neighborhood of the keywords as its context words. Both the context words and the original query word are fed into a language model to generate the final word sequence. \\n\\n",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposes a framework that embeds rhetoric knowledge into rhetoric text generation to bring diversity in the output sentences, take both knowledge tuples and their associated sentences as model inputs to emphasize logic relations. Besides, this paper builds the first Chinese rhetoric graph with an innovative mechanism of relationship storage.\\n\\nPros:\\n1.\\tAttempting to address logicality and diversity issues in rhetoric text generation, the author proposes an architecture that incorporates ",
+        "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: summary:\\nThis paper proposes a framework, KETG, to introduce knowledge during language generation, aiming to enhance the logicality and diversity of generated texts. It is able to utilize both the source sentence and its associated knowledge graph tuples for training.\\nThe authors validate their methods on rhetorical text generation. They first construct a rhetoric graph, then extract context vectors with rhetorical information from it to guide text generation.\\n\\npros:\\n1.\\tRhetoric is a stylistic as"
+      ],
+      "mean_score": 0.1388888888888889,
+      "mean_novelty": null,
+      "mean_correctness": null,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.8125
+    },
+    {
+      "title": "Optimizing Data-Flow in Binary Neural Networks",
+      "venue": "ICLR_cc_2023_Conference",
+      "arxiv_id": "",
+      "decision": false,
+      "decision_text_excerpt": "### Decision\n\nThe paper received very low initial scores. The main common point of criticism is that many efficiency improvements would be known to a skilled software engineer. As such there is no sufficient contribution for ICLR. Since there was also no rebuttal, I did not see it necessary to go into details --- the paper is to be rejected.low scores, no rebuttal, lacking a substantial contributionN/A",
+      "abstract_excerpt": "Binary Neural Networks (BNNs) can significantly accelerate the inference time of a neural network by replacing its expensive floating-point arithmetic with bit-wise operations. Most existing solutions, however, do not fully optimize data flow through the BNN layers, and intermediate conversions from 1 to 16/32 bits often further hinder efficiency. We propose a novel training scheme that can increase data flow and parallelism in the BNN pipeline; specifically, we introduce a clipping block that decreases the data-width from 32 bits to 8. Furthermore, we reduce the internal accumulator size of a binary layer, usually kept using 32-bit to prevent data overflow without losing accuracy. Additionally, we provide an optimization of the Batch Normalization layer that both reduces latency and simplifies deployment. Finally, we present an optimized implementation of the Binary Direct Convolution f",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": null, \"novelty\": 0.25, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Overall the paper is easy to follow and most of the details are provided, although a code release would be recommended to allow for full reproducibility. \\n\\nOn somewhat of a technicality, Section 6 and algorithm 2 are not clearly delimitated as appendix.\", \"paper_summary\": \"paper_summary: The paper analyses the effect of the width of the data pipeline on the throughput of binary neural networks advocating for a decrease in the number of bits from 32 to 8. A series of adjustments are made",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: I believe the paper falls short in terms of novelty (see my comments listed as weaknesses). The contribution of this easy to understand but there are some aspects missing such as scaling factor of binarization.\\n\", \"paper_summary\": \"paper_summary: This paper presents a training scheme to increase data pipeline of binary neural networks when implemented on ARM. To this end, a two-step clipping method and 8-bit batch normalization have been proposed. The clipping method insures that the va",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: \\nThe provided methods and solutions are easy to understand.\\n\", \"paper_summary\": \"paper_summary: The paper tries to accelerate the inference of BNNs by:\\n\\n1- Quantizing the BatchNorm layer into 8-bits\\n2- Simplifying the deployment of BN layer non ResNet like networks\\n3- And proposing an optimized assembly implementation of the binary convolution\", \"questions\": null, \"review_summary\": \"review_summary: Due to the lack of novelty I recommend to reject the paper. \", \"strength_weakness\": \""
+      ],
+      "mean_score": 0.2,
+      "mean_novelty": 0.4375,
+      "mean_correctness": 0.5,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.8125
+    },
+    {
+      "title": "Spontaneous Symmetry Breaking in Deep Neural Networks",
+      "venue": "ICLR_cc_2018_Conference",
+      "arxiv_id": "",
+      "decision": false,
+      "decision_text_excerpt": "The paper makes overly strong claims, too weakly supported by a hard to follow and insufficiently rigorous mathematical argument. Connections with a large body of relevant prior literature are missing.",
+      "abstract_excerpt": "We propose a framework to understand the unprecedented performance and robustness of deep neural networks using field theory. Correlations between the weights within the same layer can be described by symmetries in that layer, and networks generalize better if such symmetries are broken to reduce the redundancies of the weights. Using a two parameter field theory, we find that the network can break such symmetries itself towards the end of training in a process commonly known in physics as spontaneous symmetry breaking. This corresponds to a network generalizing itself without any user input layers to break the symmetry, but by communication with adjacent layers. In the layer decoupling limit applicable to residual networks (He et al., 2015), we show that the remnant symmetries that survive the non-linear layers are spontaneously broken based on empirical results. The Lagrangian for the ",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper promises quite a few intriguing connections between information bottleneck, phase transitions and deep learning. While we think that this is a worthwhile bridge to build between machine learning and statistical field theory, the exposition of the paper leaves much to be desired. Had it been a clean straightforward application of QFT, as well-trained theoretical physicists, we would have been able to evaluate the paper.\\nGenerally, it would help the reader to have an overall map and indication",
+        "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper makes a mathematical analogy between deep neural networks and quantum field theory, and claims that this explains a large number of empirically observed phenomena.\\n\\nI have a solid grasp of the relevant mathematics, and a superficial understanding of QFT, but I could not really make sense of this paper. The paper uses mathematics in a very loose manner. This is not always bad (an overly formal treatment can make a paper hard to read), but in this case it is not clear to me that the results a",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: In this paper, an number of very strong (even extraordinary) claims are made:\\n\\n* The abstract promises \\\"a framework to understand the unprecedented performance and robustness of deep neural networks using field theory.\\\"\\n* Page 8 states that this is \\\"This is a first attempt to describe a neural network with a scalar quantum field theory.\\\"\\n* Page 2 promises the use of the \\\"Goldstone theorem\\\" (no less) to understand phase transition in deep learning\\n* It also claim that many \\\"seemingly differ"
+      ],
+      "mean_score": 0.2222222222222222,
+      "mean_novelty": null,
+      "mean_correctness": null,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.5833333333333334
+    },
+    {
+      "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+      "venue": "ICLR_cc_2022_Workshop_OSC",
+      "arxiv_id": "",
+      "decision": false,
+      "decision_text_excerpt": "As highlighted by the reviewers, this is an interesting contribution with high relevance to the workshop. The work is well-motivated and presents a novel contribution. As pointed out by both reviewers, however, the work would benefit from significant improvement in terms of clarity of the presentation to make it more accessible to a wider audience and there were some open questions around technical correctness. Given that there is likely insufficient time until the camera-ready deadline to address the reviewer feedback in full, we recommend submitting this work to a later venue.",
+      "abstract_excerpt": "Goal-directed generation, aiming for solving downstream tasks by generating diverse data, has a potentially wide range of applications in the real world. Previous works tend to formulate goal-directed generation as a purely data-driven problem, which directly approximates the distribution of samples satisfying the goal. However, the generation ability of preexisting work is heavily restricted by inefficient sampling, especially for sparse goals that rarely show up in off-the-shelf datasets. For instance, generating safety-critical traffic scenes with the goal of increasing the risk of collision is critical to evaluate autonomous vehicles, but the rareness of such scenes is the biggest resistance. \nIn this paper, we integrate causality as a prior into the safety-critical scene generation process and propose a flow-based generative framework -- Causal Autoregressive Flow (CausalAF). Causal",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 0.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: If I understand correctly this paper proposes a model which allows goal directed samples (goal defined by a specific behavioural graph) while constraining the model to respect a given causal graph. The method uses flows, together with masks over order or visibiliy to model the edges of the graphs and obtain a distribution which is both easy to sample from as well as respecting the causal constraints and goal.\\nThe method is demonstrated to work well producing samples of driving scenes which are consist",
+        "{\"clarity\": null, \"confidence\": 0.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Summary:\\nThis work tackles the challenge of goal-directed scene generation in the context of generating safety-critical traffic scenes with a high risk of collision. The authors use the causal graphs of three high-risk traffic scenes to condition the scene generation process. This is done by generating a “behavioural graph” BG which represents a single scene, conditioned on an underlying causal graph CG. The generation of a BG follows the causal structure of an underlying CG via the use of masking ope"
+      ],
+      "mean_score": 0.25,
+      "mean_novelty": null,
+      "mean_correctness": null,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.0
+    },
+    {
+      "title": "Generating Images from Sounds Using Multimodal Features and GANs",
+      "venue": "ICLR_cc_2019_Conference",
+      "arxiv_id": "",
+      "decision": false,
+      "decision_text_excerpt": "The work presents a new way to generate images from sounds. The reviewers found the problem ill-defined, the method not well-motivated and the results not compelling. There are a number of missing references and things to compare to, which the authors should change in a follow-up.",
+      "abstract_excerpt": "Although generative adversarial networks (GANs) have enabled us to convert images from one domain to another similar one, converting between different sensory modalities, such as images and sounds, has been difficult. This study aims to propose a network that reconstructs images from sounds. First, video data with both images and sounds are labeled with pre-trained classifiers. Second, image and sound features are extracted from the data using pre-trained classifiers. Third, multimodal layers are introduced to extract features that are common to both the images and sounds. These layers are trained to extract similar features regardless of the input modality, such as images only, sounds only, and both images and sounds. Once the multimodal layers have been trained, features are extracted from input sounds and converted into image features using a feature-to-feature GAN. Finally, the gener",
+      "review_snippets": [
+        "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The authors present a novel method for generating images from sounds using a two parts model composed by a fusion network, aka. multi-modal layers, for learning sound and visual features in a common semantic space, and two conditional GANs for converting sound features into visual features and those into images. To validate their approach they created an ad-hoc dataset, based on Flickr-SoundNet dataset, which contains 104K pairs of sounds and images with matching scene content. Their model was trained ",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: PROS:\\n* The paper was well-written and explained the method and the experiments well\\n\\nCONS:\\n* The problem seems ill-posed to me. Sound is temporal and the problem should probably be sound-to-video conversion not sound-to-image. \\n* A link to generated images from sounds where one could actually evaluate the generations would be useful. Currently the only way to evaluate the results is via labels.\\n* Similarly, a baseline where images are generated given the classification labels of the sounds woul",
+        "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Summary:\\n\\nThis paper addresses the problem of generating images from sound. The general idea is to use conditional GANs. In particular, two stacked conditional autoencoder GANs, where the autoencoders have a U-Net architecture. First, sound features are mapped into multimodal features that contain image feature/class information. Such multimodal features condition the generation of image features with an initial GAN, and the image features condition the generation of the output image with a second G"
+      ],
+      "mean_score": 0.2962962962962963,
+      "mean_novelty": null,
+      "mean_correctness": null,
+      "mean_clarity": null,
+      "mean_impact": null,
+      "mean_reproducibility": null,
+      "mean_confidence": 0.8333333333333334
+    }
+  ],
+  "interpretation": "The public OpenReview dataset exposes enough expert-review fields to build a limited offline scientific-taste prior for IGRE. It can guide hypothesis selection or manuscript revision, but it cannot replace live human co-pilot interventions or prove performance gains.",
+  "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/summary.json",
+  "artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/dataset_availability.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/dataset_statistics_excerpt.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/sample_rows_compact.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/high_score_examples.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/low_score_examples.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/expert_review_taste_prior_protocol.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/expert_review_taste_prior_probe_20260602_031800/README.md"
+  ]
+}

@@ -63,6 +63,17 @@ python3 scripts/run_hypothesis_frontier_smoke.py \
 这个脚本会生成候选 research frontiers，并输出 critique/ranking artifact。
 它只能作为前端编排证据，不能作为 benchmark 或论文质量提升证据。
 
+如果要把这个 IGRE 前端与同模型 autonomous AI Scientist-v2-style hypothesis
+front end 做对照，运行：
+
+```bash
+source ~/.codex/env
+python3 scripts/run_hypothesis_frontend_baseline.py \
+  --model gpt-4o-mini
+```
+
+这个脚本只比较前端研究方向 portfolio，不能作为下游 benchmark、论文质量或人类专家判断的证据。
+
 如果要把被选中的 structured-feedback frontier 接到下游同稿件测量探针，
 运行：
 
@@ -75,6 +86,21 @@ python3 scripts/run_structured_feedback_probe.py \
 该脚本会生成 informal feedback、IGRE-structured feedback、同一份基础稿件的
 两版修订，以及固定 rubric 的模型评分。它只能作为 measurement-readiness
 evidence，不能替代独立人类同行评审。
+
+如果要把 Hugging Face/OpenReview 专家评审数据作为离线科研品味先验来探测，
+并且不下载完整数据集，运行：
+
+```bash
+python3 scripts/run_expert_review_taste_prior_probe.py \
+  --streaming \
+  --stream-limit 160
+```
+
+当前 probe 使用 `nhop/OpenReview`，先验证 Dataset Viewer metadata，再流式抽样。
+它只能作为 offline expert-review proxy for scientific taste，不能当作实时
+human co-pilot interaction data。建议的实验用法是：用同一个 OpenReview-derived
+rubric 比较不同参与模式产生的 artifact，例如 no gate、taste-prior gate、
+evaluator-stress gate、structured-feedback gate 和 claim-calibration gate。
 
 如果要通过 Monica 做论文质量评审，先加载全局环境变量，然后运行：
 

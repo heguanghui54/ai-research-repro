@@ -95,11 +95,25 @@ Expected outputs:
 ## Current Status
 
 This is a working research-production scaffold with preliminary Ubuntu-host
-evidence. It now includes a live AI Co-Scientist-style hypothesis-frontier
+evidence. The current paper should be read primarily as a human-participation
+workflow design study for automated science: the goal is to compare and refine
+participation modes that make human scientific taste and insight usable inside
+AI Scientist-v2-style loops, not to claim that human participation already
+improves every paper-quality or benchmark metric. It now includes a live AI
+Co-Scientist-style hypothesis-frontier
 smoke: two Monica-routed `gpt-4o-mini` calls generated four candidate research
 frontiers, critiqued/ranked them, and selected `frontier_004` (structured human
 feedback mechanisms) as the next-budget candidate. This supports front-end
-orchestration only. The selected frontier is now connected to a same-manuscript
+orchestration only. The same archived IGRE frontier portfolio is now compared
+against an autonomous AI Scientist-v2-style hypothesis front end in
+`experiments/hypothesis_frontend_baseline_20260602_030500/`: two additional
+Monica-routed `gpt-4o-mini` calls generated a no-human-taste autonomous
+portfolio and scored the two portfolios. The scorer preferred the IGRE
+portfolio (`overall 4` vs. `3`) because of stronger evidence gain, benchmark
+fit, claim calibration, and human-taste visibility, while noting that the
+autonomous portfolio is stronger for exploring fully autonomous process
+variants. This is direction-finding evidence only, not downstream benchmark or
+paper-quality evidence. The selected frontier is also connected to a same-manuscript
 structured-feedback probe in
 `experiments/structured_feedback_probe_20260602_022900/`: five Monica-routed
 `gpt-4o-mini` calls generated informal feedback, IGRE-structured feedback, two
@@ -108,6 +122,18 @@ scorer preferred the structured revision (`overall 5` vs. `4`) on clarity,
 claim calibration, evidence grounding, and method distinctness. This is
 measurement-readiness evidence, not independent human expert review or a
 general paper-quality result.
+Finally, `experiments/expert_review_taste_prior_probe_20260602_031800/` uses
+the Hugging Face `nhop/OpenReview` dataset through streaming access as an
+offline expert-review proxy for scientific taste. The probe verifies 34,638
+dataset rows, samples 160 rows without downloading the full dataset, and finds
+usable score fields for overall score, novelty, correctness, clarity, impact,
+and confidence, while noting that reproducibility scores are absent in the
+sample. This can support a limited offline taste-prior experiment; it is not
+live human co-pilot interaction data. Its most useful role is as a
+participation-mode selection benchmark: compare hypotheses, plans, evidence
+summaries, or manuscript revisions produced by different gate patterns against
+the same expert-review proxy before deciding which human-in-the-loop workflow
+is strongest.
 The package also includes OpenEvolve-based program search, direct LLM rewrite
 baselines, richer knapsack and Max-Cut heuristic tasks, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes live

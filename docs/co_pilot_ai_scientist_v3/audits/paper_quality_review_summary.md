@@ -122,6 +122,46 @@ by itself it does not connect the selected hypothesis to a prospective
 experiment, claim-audited manuscript, or autonomous hypothesis-front-end
 baseline.
 
+## Participation-Mode Design Reframing
+
+The paper should now be read primarily as a workflow-design study for
+human-guided automated science. The central target is not a binary proof that
+human participation improves paper quality in all settings. The target is to
+design and compare participation modes that make scientific taste and insight
+usable inside an AI Scientist-v2-style loop: upstream taste-prior selection,
+evaluator stress testing, frontier steering, selective program-search
+escalation, structured manuscript feedback, and claim calibration. Negative
+short-budget results are still useful because they identify where a proposed
+human gate is not worth its cost or where autonomous search should dominate.
+
+## Autonomous Hypothesis Front-End Baseline
+
+The package now includes
+`experiments/hypothesis_frontend_baseline_20260602_030500/`, a same-model
+front-end comparison. The probe reuses the archived IGRE frontier portfolio,
+generates an autonomous AI Scientist-v2-style portfolio with `gpt-4o-mini`, and
+scores both portfolios with a fixed rubric. The scorer prefers IGRE (`overall
+4` vs. autonomous `3`) because the IGRE portfolio has stronger evidence gain,
+benchmark fit, claim calibration, and human-taste visibility. This is useful
+participation-pattern evidence, but it is still front-end planning evidence
+only.
+
+## Expert-Review Taste Prior
+
+The package also includes
+`experiments/expert_review_taste_prior_probe_20260602_031800/`, which uses
+Hugging Face streaming access over `nhop/OpenReview`. The Dataset Viewer
+statistics report 34,638 rows, and the probe samples 160 rows without
+downloading the full dataset. It verifies enough expert-review fields to build
+a limited offline scientific-taste prior, while the sampled rows lack usable
+`mean_reproducibility` values. The right use of this data is to compare
+participation modes under a shared offline expert-review proxy: no human gate,
+taste-prior gate, evaluator-stress gate, structured-feedback gate, and
+claim-calibration gate can each generate artifacts that are scored against
+OpenReview-derived novelty, correctness, clarity, impact, and confidence
+signals. This does not replace live multi-researcher co-pilot interaction data,
+but it can support data-driven workflow selection before such data exists.
+
 ## Structured Feedback Probe
 
 The selected `frontier_004` has now been connected to a small downstream

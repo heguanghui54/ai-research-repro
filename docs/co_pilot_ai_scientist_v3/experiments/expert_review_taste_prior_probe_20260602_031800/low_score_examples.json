@@ -1,0 +1,101 @@
+[
+  {
+    "title": "KETG: A Knowledge Enhanced Text Generation Framework",
+    "venue": "ICLR_cc_2021_Conference",
+    "arxiv_id": "",
+    "decision": false,
+    "decision_text_excerpt": "While the paper studies an interesting and important problem, namely the language generation, it is poorly written, which makes it difficult to judge its value. The reviewers also expressed concern over the scope of the evaluation and the lack of comparison to SOTA.",
+    "abstract_excerpt": "Embedding logical knowledge information into text generation is a challenging NLP task. In this paper, we propose a knowledge enhanced text generation (KETG) framework, which incorporates both the knowledge and associated text corpus to address logicality and diversity in text generation. Specifically, we validate our framework on rhetorical text generation from our newly built rhetoric knowledge graph. Experiments show that our framework outperforms baseline models such as Transformer and GPT-2, on rhetorical type control, semantic comprehensibility and diversity.",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposes to use a rhetoric knowledge graph for rhetorical text generation. One of its key contributions is to construct a rhetoric knowledge graph by leveraging SOTA NER and relation classification models.  To generate a rhetorical text, the new method starts with sending a keyword to the knowledge graph to retrieve the neighborhood of the keywords as its context words. Both the context words and the original query word are fed into a language model to generate the final word sequence. \\n\\n",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: This paper proposes a framework that embeds rhetoric knowledge into rhetoric text generation to bring diversity in the output sentences, take both knowledge tuples and their associated sentences as model inputs to emphasize logic relations. Besides, this paper builds the first Chinese rhetoric graph with an innovative mechanism of relationship storage.\\n\\nPros:\\n1.\\tAttempting to address logicality and diversity issues in rhetoric text generation, the author proposes an architecture that incorporates ",
+      "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: summary:\\nThis paper proposes a framework, KETG, to introduce knowledge during language generation, aiming to enhance the logicality and diversity of generated texts. It is able to utilize both the source sentence and its associated knowledge graph tuples for training.\\nThe authors validate their methods on rhetorical text generation. They first construct a rhetoric graph, then extract context vectors with rhetorical information from it to guide text generation.\\n\\npros:\\n1.\\tRhetoric is a stylistic as"
+    ],
+    "mean_score": 0.1388888888888889,
+    "mean_novelty": null,
+    "mean_correctness": null,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "mean_reproducibility": null,
+    "mean_confidence": 0.8125
+  },
+  {
+    "title": "Optimizing Data-Flow in Binary Neural Networks",
+    "venue": "ICLR_cc_2023_Conference",
+    "arxiv_id": "",
+    "decision": false,
+    "decision_text_excerpt": "### Decision\n\nThe paper received very low initial scores. The main common point of criticism is that many efficiency improvements would be known to a skilled software engineer. As such there is no sufficient contribution for ICLR. Since there was also no rebuttal, I did not see it necessary to go into details --- the paper is to be rejected.low scores, no rebuttal, lacking a substantial contributionN/A",
+    "abstract_excerpt": "Binary Neural Networks (BNNs) can significantly accelerate the inference time of a neural network by replacing its expensive floating-point arithmetic with bit-wise operations. Most existing solutions, however, do not fully optimize data flow through the BNN layers, and intermediate conversions from 1 to 16/32 bits often further hinder efficiency. We propose a novel training scheme that can increase data flow and parallelism in the BNN pipeline; specifically, we introduce a clipping block that decreases the data-width from 32 bits to 8. Furthermore, we reduce the internal accumulator size of a binary layer, usually kept using 32-bit to prevent data overflow without losing accuracy. Additionally, we provide an optimization of the Batch Normalization layer that both reduces latency and simplifies deployment. Finally, we present an optimized implementation of the Binary Direct Convolution f",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": null, \"novelty\": 0.25, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Overall the paper is easy to follow and most of the details are provided, although a code release would be recommended to allow for full reproducibility. \\n\\nOn somewhat of a technicality, Section 6 and algorithm 2 are not clearly delimitated as appendix.\", \"paper_summary\": \"paper_summary: The paper analyses the effect of the width of the data pipeline on the throughput of binary neural networks advocating for a decrease in the number of bits from 32 to 8. A series of adjustments are made",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.3333333333333333, \"ethics\": null, \"impact\": null, \"novelty\": 0.75, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: I believe the paper falls short in terms of novelty (see my comments listed as weaknesses). The contribution of this easy to understand but there are some aspects missing such as scaling factor of binarization.\\n\", \"paper_summary\": \"paper_summary: This paper presents a training scheme to increase data pipeline of binary neural networks when implemented on ARM. To this end, a two-step clipping method and 8-bit batch normalization have been proposed. The clipping method insures that the va",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": 0.6666666666666666, \"ethics\": null, \"impact\": null, \"novelty\": 0.5, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: \\nThe provided methods and solutions are easy to understand.\\n\", \"paper_summary\": \"paper_summary: The paper tries to accelerate the inference of BNNs by:\\n\\n1- Quantizing the BatchNorm layer into 8-bits\\n2- Simplifying the deployment of BN layer non ResNet like networks\\n3- And proposing an optimized assembly implementation of the binary convolution\", \"questions\": null, \"review_summary\": \"review_summary: Due to the lack of novelty I recommend to reject the paper. \", \"strength_weakness\": \""
+    ],
+    "mean_score": 0.2,
+    "mean_novelty": 0.4375,
+    "mean_correctness": 0.5,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "mean_reproducibility": null,
+    "mean_confidence": 0.8125
+  },
+  {
+    "title": "Spontaneous Symmetry Breaking in Deep Neural Networks",
+    "venue": "ICLR_cc_2018_Conference",
+    "arxiv_id": "",
+    "decision": false,
+    "decision_text_excerpt": "The paper makes overly strong claims, too weakly supported by a hard to follow and insufficiently rigorous mathematical argument. Connections with a large body of relevant prior literature are missing.",
+    "abstract_excerpt": "We propose a framework to understand the unprecedented performance and robustness of deep neural networks using field theory. Correlations between the weights within the same layer can be described by symmetries in that layer, and networks generalize better if such symmetries are broken to reduce the redundancies of the weights. Using a two parameter field theory, we find that the network can break such symmetries itself towards the end of training in a process commonly known in physics as spontaneous symmetry breaking. This corresponds to a network generalizing itself without any user input layers to break the symmetry, but by communication with adjacent layers. In the layer decoupling limit applicable to residual networks (He et al., 2015), we show that the remnant symmetries that survive the non-linear layers are spontaneously broken based on empirical results. The Lagrangian for the ",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper promises quite a few intriguing connections between information bottleneck, phase transitions and deep learning. While we think that this is a worthwhile bridge to build between machine learning and statistical field theory, the exposition of the paper leaves much to be desired. Had it been a clean straightforward application of QFT, as well-trained theoretical physicists, we would have been able to evaluate the paper.\\nGenerally, it would help the reader to have an overall map and indication",
+      "{\"clarity\": null, \"confidence\": 0.5, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The paper makes a mathematical analogy between deep neural networks and quantum field theory, and claims that this explains a large number of empirically observed phenomena.\\n\\nI have a solid grasp of the relevant mathematics, and a superficial understanding of QFT, but I could not really make sense of this paper. The paper uses mathematics in a very loose manner. This is not always bad (an overly formal treatment can make a paper hard to read), but in this case it is not clear to me that the results a",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: In this paper, an number of very strong (even extraordinary) claims are made:\\n\\n* The abstract promises \\\"a framework to understand the unprecedented performance and robustness of deep neural networks using field theory.\\\"\\n* Page 8 states that this is \\\"This is a first attempt to describe a neural network with a scalar quantum field theory.\\\"\\n* Page 2 promises the use of the \\\"Goldstone theorem\\\" (no less) to understand phase transition in deep learning\\n* It also claim that many \\\"seemingly differ"
+    ],
+    "mean_score": 0.2222222222222222,
+    "mean_novelty": null,
+    "mean_correctness": null,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "mean_reproducibility": null,
+    "mean_confidence": 0.5833333333333334
+  },
+  {
+    "title": "CausalAF: Causal Autoregressive Flow for Safety-Critical Scenes Generation",
+    "venue": "ICLR_cc_2022_Workshop_OSC",
+    "arxiv_id": "",
+    "decision": false,
+    "decision_text_excerpt": "As highlighted by the reviewers, this is an interesting contribution with high relevance to the workshop. The work is well-motivated and presents a novel contribution. As pointed out by both reviewers, however, the work would benefit from significant improvement in terms of clarity of the presentation to make it more accessible to a wider audience and there were some open questions around technical correctness. Given that there is likely insufficient time until the camera-ready deadline to address the reviewer feedback in full, we recommend submitting this work to a later venue.",
+    "abstract_excerpt": "Goal-directed generation, aiming for solving downstream tasks by generating diverse data, has a potentially wide range of applications in the real world. Previous works tend to formulate goal-directed generation as a purely data-driven problem, which directly approximates the distribution of samples satisfying the goal. However, the generation ability of preexisting work is heavily restricted by inefficient sampling, especially for sparse goals that rarely show up in off-the-shelf datasets. For instance, generating safety-critical traffic scenes with the goal of increasing the risk of collision is critical to evaluate autonomous vehicles, but the rareness of such scenes is the biggest resistance. \nIn this paper, we integrate causality as a prior into the safety-critical scene generation process and propose a flow-based generative framework -- Causal Autoregressive Flow (CausalAF). Causal",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 0.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: If I understand correctly this paper proposes a model which allows goal directed samples (goal defined by a specific behavioural graph) while constraining the model to respect a given causal graph. The method uses flows, together with masks over order or visibiliy to model the edges of the graphs and obtain a distribution which is both easy to sample from as well as respecting the causal constraints and goal.\\nThe method is demonstrated to work well producing samples of driving scenes which are consist",
+      "{\"clarity\": null, \"confidence\": 0.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Summary:\\nThis work tackles the challenge of goal-directed scene generation in the context of generating safety-critical traffic scenes with a high risk of collision. The authors use the causal graphs of three high-risk traffic scenes to condition the scene generation process. This is done by generating a “behavioural graph” BG which represents a single scene, conditioned on an underlying causal graph CG. The generation of a BG follows the causal structure of an underlying CG via the use of masking ope"
+    ],
+    "mean_score": 0.25,
+    "mean_novelty": null,
+    "mean_correctness": null,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "mean_reproducibility": null,
+    "mean_confidence": 0.0
+  },
+  {
+    "title": "Generating Images from Sounds Using Multimodal Features and GANs",
+    "venue": "ICLR_cc_2019_Conference",
+    "arxiv_id": "",
+    "decision": false,
+    "decision_text_excerpt": "The work presents a new way to generate images from sounds. The reviewers found the problem ill-defined, the method not well-motivated and the results not compelling. There are a number of missing references and things to compare to, which the authors should change in a follow-up.",
+    "abstract_excerpt": "Although generative adversarial networks (GANs) have enabled us to convert images from one domain to another similar one, converting between different sensory modalities, such as images and sounds, has been difficult. This study aims to propose a network that reconstructs images from sounds. First, video data with both images and sounds are labeled with pre-trained classifiers. Second, image and sound features are extracted from the data using pre-trained classifiers. Third, multimodal layers are introduced to extract features that are common to both the images and sounds. These layers are trained to extract similar features regardless of the input modality, such as images only, sounds only, and both images and sounds. Once the multimodal layers have been trained, features are extracted from input sounds and converted into image features using a feature-to-feature GAN. Finally, the gener",
+    "review_snippets": [
+      "{\"clarity\": null, \"confidence\": 1.0, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: The authors present a novel method for generating images from sounds using a two parts model composed by a fusion network, aka. multi-modal layers, for learning sound and visual features in a common semantic space, and two conditional GANs for converting sound features into visual features and those into images. To validate their approach they created an ad-hoc dataset, based on Flickr-SoundNet dataset, which contains 104K pairs of sounds and images with matching scene content. Their model was trained ",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: PROS:\\n* The paper was well-written and explained the method and the experiments well\\n\\nCONS:\\n* The problem seems ill-posed to me. Sound is temporal and the problem should probably be sound-to-video conversion not sound-to-image. \\n* A link to generated images from sounds where one could actually evaluate the generations would be useful. Currently the only way to evaluate the results is via labels.\\n* Similarly, a baseline where images are generated given the classification labels of the sounds woul",
+      "{\"clarity\": null, \"confidence\": 0.75, \"correctness\": null, \"ethics\": null, \"impact\": null, \"novelty\": null, \"reproducibility\": null, \"review\": {\"limitations\": null, \"main_review\": \"main_review: Summary:\\n\\nThis paper addresses the problem of generating images from sound. The general idea is to use conditional GANs. In particular, two stacked conditional autoencoder GANs, where the autoencoders have a U-Net architecture. First, sound features are mapped into multimodal features that contain image feature/class information. Such multimodal features condition the generation of image features with an initial GAN, and the image features condition the generation of the output image with a second G"
+    ],
+    "mean_score": 0.2962962962962963,
+    "mean_novelty": null,
+    "mean_correctness": null,
+    "mean_clarity": null,
+    "mean_impact": null,
+    "mean_reproducibility": null,
+    "mean_confidence": 0.8333333333333334
+  }
+]

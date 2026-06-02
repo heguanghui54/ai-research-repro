@@ -1,0 +1,237 @@
+You are a strict research-frontier portfolio auditor. Compare two same-model
+hypothesis-frontier portfolios for the Co-Pilot AI Scientist v3 paper.
+
+Portfolio A is the archived IGRE front end. It explicitly uses human scientific
+taste/insight as a high-variance search prior.
+Portfolio B is an autonomous AI Scientist-v2-style front end. It avoids explicit
+human taste gates and structured human feedback.
+
+Score the portfolios as research-planning artifacts only. Do not infer benchmark
+performance or paper quality beyond the supplied text.
+
+Return strict JSON only:
+{
+  "recommendation": "IGRE" | "autonomous" | "tie",
+  "scores": {
+    "IGRE": {
+      "evidence_gain": 1-5,
+      "benchmark_fit": 1-5,
+      "method_distinctness": 1-5,
+      "human_taste_visibility": 1-5,
+      "feasibility": 1-5,
+      "claim_calibration": 1-5,
+      "novelty_risk_balance": 1-5,
+      "overall": 1-5
+    },
+    "autonomous": {
+      "evidence_gain": 1-5,
+      "benchmark_fit": 1-5,
+      "method_distinctness": 1-5,
+      "human_taste_visibility": 1-5,
+      "feasibility": 1-5,
+      "claim_calibration": 1-5,
+      "novelty_risk_balance": 1-5,
+      "overall": 1-5
+    }
+  },
+  "best_IGRE_candidate": "...",
+  "best_autonomous_candidate": "...",
+  "rationale": "short paragraph",
+  "where_autonomous_is_stronger": ["..."],
+  "where_IGRE_is_stronger": ["..."],
+  "required_next_evidence": ["item 1", "item 2", "item 3"],
+  "claim_boundary": "..."
+}
+
+Portfolio A, IGRE:
+{
+  "run_id": "hypothesis_frontier_smoke_20260602_021500",
+  "timestamp_utc": "2026-06-02T02:07:13Z",
+  "provider": "Monica OpenAI-compatible API",
+  "model": "gpt-4o-mini",
+  "live_model_calls": 2,
+  "generation_latency_seconds": 10.586,
+  "critique_latency_seconds": 6.649,
+  "generation": {
+    "frontier_candidates": [
+      {
+        "id": "frontier_001",
+        "title": "Dynamic Human Gate Optimization",
+        "core_hypothesis": "Introducing a dynamic optimization algorithm for human gate placements will enhance the quality of generated research papers by strategically timing human interventions.",
+        "why_now": "Current human interventions are static and may not align with the most impactful moments in the research process; dynamic optimization could lead to better outcomes.",
+        "claim_it_tests": "The effectiveness of human intervention timing on paper quality metrics.",
+        "minimal_experiment": "Conduct a controlled study comparing static vs. dynamically optimized human gate placements across multiple research tasks.",
+        "benchmark_or_evaluator": "Custom evaluation metric based on expert ratings of paper quality.",
+        "human_taste_role": "Human experts will provide feedback on the timing and relevance of interventions.",
+        "expected_artifacts": [
+          "dynamic_gate_optimization_report.md",
+          "expert_feedback_logs.json"
+        ],
+        "main_risk": "Dynamic optimization may introduce complexity that confuses human operators.",
+        "failure_value": "Increased latency in paper generation without corresponding quality improvement."
+      },
+      {
+        "id": "frontier_002",
+        "title": "Multi-Task Human Insight Integration",
+        "core_hypothesis": "Integrating human insights across multiple research tasks will lead to a more coherent and impactful final manuscript.",
+        "why_now": "Current systems often treat tasks in isolation; leveraging insights from various domains could enhance novelty and significance.",
+        "claim_it_tests": "The impact of multi-task human insights on the coherence and quality of research outputs.",
+        "minimal_experiment": "Run a series of experiments where human insights from different tasks are systematically integrated into the final paper.",
+        "benchmark_or_evaluator": "Coherence and quality metrics based on expert evaluations.",
+        "human_taste_role": "Humans will provide insights that guide the integration process across tasks.",
+        "expected_artifacts": [
+          "multi_task_insight_integration_report.md",
+          "integrated_manuscript_drafts/"
+        ],
+        "main_risk": "Overloading the system with too many insights may lead to confusion and reduced clarity.",
+        "failure_value": "Decreased paper quality due to incoherent integration of insights."
+      },
+      {
+        "id": "frontier_003",
+        "title": "Adaptive Experiment Budget Allocation",
+        "core_hypothesis": "Implementing an adaptive budget allocation strategy for experiments based on real-time feedback will reduce wasted resources and improve research outcomes.",
+        "why_now": "Current fixed budgets may not align with the evolving nature of research tasks; adaptive strategies can optimize resource use.",
+        "claim_it_tests": "The effectiveness of adaptive budget allocation on resource efficiency and paper quality.",
+        "minimal_experiment": "Conduct experiments with fixed vs. adaptive budgets to measure resource usage and paper quality.",
+        "benchmark_or_evaluator": "Resource efficiency metrics and paper quality evaluations.",
+        "human_taste_role": "Humans will provide feedback on the appropriateness of budget allocations and experimental directions.",
+        "expected_artifacts": [
+          "adaptive_budget_allocation_report.md",
+          "resource_usage_logs.json"
+        ],
+        "main_risk": "Adaptive strategies may lead to inconsistent experiment quality if not properly managed.",
+        "failure_value": "Increased resource waste without corresponding improvements in research outcomes."
+      },
+      {
+        "id": "frontier_004",
+        "title": "Structured Human Feedback Mechanism",
+        "core_hypothesis": "Establishing a structured feedback mechanism for human input will enhance the reproducibility and clarity of research papers.",
+        "why_now": "Current feedback is often informal and unstructured, leading to variability in paper quality; a structured approach could standardize improvements.",
+        "claim_it_tests": "The impact of structured feedback on reproducibility and clarity metrics.",
+        "minimal_experiment": "Implement a structured feedback process and compare the resulting manuscripts against those with informal feedback.",
+        "benchmark_or_evaluator": "Reproducibility and clarity metrics based on expert evaluations.",
+        "human_taste_role": "Humans will provide structured feedback using a predefined rubric.",
+        "expected_artifacts": [
+          "structured_feedback_protocol.md",
+          "feedback_comparison_report.md"
+        ],
+        "main_risk": "Over-structuring feedback may stifle creativity and lead to formulaic outputs.",
+        "failure_value": "Reduced novelty and creativity in generated papers due to rigid feedback structures."
+      }
+    ]
+  },
+  "critique": {
+    "ranking": [
+      {
+        "id": "frontier_004",
+        "overall_score": 5,
+        "evidence_gain": 5,
+        "benchmark_fit": 5,
+        "human_taste_visibility": 4,
+        "cost_risk": 3,
+        "reason": "Structured feedback mechanisms can significantly enhance reproducibility and clarity, with clear metrics for evaluation. The risk of stifling creativity is present but manageable."
+      },
+      {
+        "id": "frontier_002",
+        "overall_score": 4,
+        "evidence_gain": 4,
+        "benchmark_fit": 4,
+        "human_taste_visibility": 4,
+        "cost_risk": 3,
+        "reason": "Integrating human insights across tasks can improve coherence and impact. The potential for confusion exists, but the structured approach mitigates this risk."
+      },
+      {
+        "id": "frontier_003",
+        "overall_score": 3,
+        "evidence_gain": 3,
+        "benchmark_fit": 4,
+        "human_taste_visibility": 3,
+        "cost_risk": 4,
+        "reason": "Adaptive budget allocation is promising for resource efficiency but carries risks of inconsistent quality. The human role is less visible compared to other candidates."
+      },
+      {
+        "id": "frontier_001",
+        "overall_score": 2,
+        "evidence_gain": 2,
+        "benchmark_fit": 3,
+        "human_taste_visibility": 3,
+        "cost_risk": 5,
+        "reason": "Dynamic optimization introduces complexity that may confuse operators, leading to potential failures. The evidence gain is uncertain, and the human taste role is less defined."
+      }
+    ],
+    "selected_for_next_budget": "frontier_004",
+    "selection_rationale": "The structured feedback mechanism offers the highest potential for reproducibility and clarity, with a well-defined experimental approach and metrics for evaluation.",
+    "claim_boundary": "The claims are bounded by the effectiveness of structured feedback in enhancing reproducibility and clarity, with a focus on measurable outcomes."
+  },
+  "interpretation": "Live AI Co-Scientist-style generate-critique-rank smoke for IGRE. This is hypothesis-frontier evidence and a protocol check, not a performance result or a human-selection result."
+}
+
+Portfolio B, autonomous:
+{
+  "frontier_candidates": [
+    {
+      "id": "frontier_001",
+      "title": "Evaluating the Impact of Structured Human Feedback on Hypothesis Generation",
+      "core_hypothesis": "Structured human feedback can enhance the novelty and relevance of generated hypotheses without compromising exploration diversity.",
+      "why_now": "Understanding the role of structured feedback is crucial for optimizing human intervention points in the research workflow.",
+      "claim_it_tests": "The effectiveness of structured feedback compared to fully autonomous hypothesis generation.",
+      "minimal_experiment": "Conduct a comparative analysis of hypothesis generation quality with and without structured human feedback using expert evaluations.",
+      "benchmark_or_evaluator": "Expert review metrics focusing on novelty and relevance.",
+      "expected_artifacts": [
+        "Hypothesis evaluation reports",
+        "Comparison metrics",
+        "Expert feedback summaries"
+      ],
+      "main_risk": "Structured feedback may not significantly improve hypothesis quality, leading to wasted resources.",
+      "failure_value": "No measurable improvement in hypothesis quality compared to the autonomous baseline."
+    },
+    {
+      "id": "frontier_002",
+      "title": "Optimizing Experiment Selection Through Programmatic Search",
+      "core_hypothesis": "A refined programmatic search can identify more promising experimental directions, reducing budget waste.",
+      "why_now": "Improving experiment selection is critical for maximizing the efficiency of the research process.",
+      "claim_it_tests": "The effectiveness of programmatic search in selecting experiments compared to random or heuristic methods.",
+      "minimal_experiment": "Implement a controlled study comparing programmatic search results against random selection in terms of successful outcomes.",
+      "benchmark_or_evaluator": "Success rate of experiments and budget utilization metrics.",
+      "expected_artifacts": [
+        "Experiment selection logs",
+        "Outcome reports",
+        "Budget utilization analysis"
+      ],
+      "main_risk": "Programmatic search may not yield better results than existing methods, leading to over-engineering.",
+      "failure_value": "No improvement in success rates or budget efficiency compared to random selection."
+    },
+    {
+      "id": "frontier_003",
+      "title": "Assessing the Role of Human Insight in Experiment Design",
+      "core_hypothesis": "Incorporating human insights into experiment design can enhance methodological rigor and clarity.",
+      "why_now": "Exploring the integration of human insights can help identify optimal points for human intervention in the research process.",
+      "claim_it_tests": "The impact of human insights on the clarity and rigor of experimental designs.",
+      "minimal_experiment": "Conduct a study comparing experiments designed with and without human insights, evaluated by experts for clarity and rigor.",
+      "benchmark_or_evaluator": "Expert evaluation metrics focusing on methodological rigor and clarity.",
+      "expected_artifacts": [
+        "Experiment design comparison reports",
+        "Expert evaluation summaries",
+        "Clarity and rigor metrics"
+      ],
+      "main_risk": "Human insights may not significantly enhance experimental designs, leading to inefficiencies.",
+      "failure_value": "No measurable improvement in clarity or rigor compared to autonomous designs."
+    },
+    {
+      "id": "frontier_004",
+      "title": "Evaluating the Efficiency of Human Intervention Points in the Research Workflow",
+      "core_hypothesis": "Strategically placed human intervention points can significantly improve the overall quality of research outputs.",
+      "why_now": "Identifying optimal intervention points is essential for balancing human input with autonomous processes.",
+      "claim_it_tests": "The effectiveness of various human intervention placements on research output quality.",
+      "minimal_experiment": "Perform an ablation study to evaluate different placements of human intervention in the workflow and their impact on paper quality.",
+      "benchmark_or_evaluator": "Quality metrics for research outputs, including novelty and methodological rigor.",
+      "expected_artifacts": [
+        "Ablation study reports",
+        "Quality assessment metrics",
+        "Intervention placement analysis"
+      ],
+      "main_risk": "Identifying suboptimal intervention points may lead to increased latency without improving quality.",
+      "failure_value": "No improvement in research output quality compared to a fully autonomous baseline."
+    }
+  ]
+}

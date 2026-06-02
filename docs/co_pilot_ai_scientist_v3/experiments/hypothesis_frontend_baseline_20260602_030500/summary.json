@@ -1,0 +1,131 @@
+{
+  "run_id": "hypothesis_frontend_baseline_20260602_030500",
+  "timestamp_utc": "2026-06-02T04:53:12Z",
+  "status": "hypothesis_frontend_baseline_probe",
+  "provider": "Monica OpenAI-compatible API",
+  "model": "gpt-4o-mini",
+  "live_model_calls": 2,
+  "igre_summary": "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontier_smoke_20260602_021500/summary.json",
+  "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/summary.json",
+  "scope_note": "Same-model front-end portfolio comparison between archived IGRE hypothesis generation and an autonomous AI Scientist-v2-style baseline. This is direction-finding evidence only, not downstream benchmark or paper-quality evidence.",
+  "autonomous_generation_latency_seconds": 11.023,
+  "comparison_latency_seconds": 7.043,
+  "autonomous_generation": {
+    "frontier_candidates": [
+      {
+        "id": "frontier_001",
+        "title": "Evaluating the Impact of Structured Human Feedback on Hypothesis Generation",
+        "core_hypothesis": "Structured human feedback can enhance the novelty and relevance of generated hypotheses without compromising exploration diversity.",
+        "why_now": "Understanding the role of structured feedback is crucial for optimizing human intervention points in the research workflow.",
+        "claim_it_tests": "The effectiveness of structured feedback compared to fully autonomous hypothesis generation.",
+        "minimal_experiment": "Conduct a comparative analysis of hypothesis generation quality with and without structured human feedback using expert evaluations.",
+        "benchmark_or_evaluator": "Expert review metrics focusing on novelty and relevance.",
+        "expected_artifacts": [
+          "Hypothesis evaluation reports",
+          "Comparison metrics",
+          "Expert feedback summaries"
+        ],
+        "main_risk": "Structured feedback may not significantly improve hypothesis quality, leading to wasted resources.",
+        "failure_value": "No measurable improvement in hypothesis quality compared to the autonomous baseline."
+      },
+      {
+        "id": "frontier_002",
+        "title": "Optimizing Experiment Selection Through Programmatic Search",
+        "core_hypothesis": "A refined programmatic search can identify more promising experimental directions, reducing budget waste.",
+        "why_now": "Improving experiment selection is critical for maximizing the efficiency of the research process.",
+        "claim_it_tests": "The effectiveness of programmatic search in selecting experiments compared to random or heuristic methods.",
+        "minimal_experiment": "Implement a controlled study comparing programmatic search results against random selection in terms of successful outcomes.",
+        "benchmark_or_evaluator": "Success rate of experiments and budget utilization metrics.",
+        "expected_artifacts": [
+          "Experiment selection logs",
+          "Outcome reports",
+          "Budget utilization analysis"
+        ],
+        "main_risk": "Programmatic search may not yield better results than existing methods, leading to over-engineering.",
+        "failure_value": "No improvement in success rates or budget efficiency compared to random selection."
+      },
+      {
+        "id": "frontier_003",
+        "title": "Assessing the Role of Human Insight in Experiment Design",
+        "core_hypothesis": "Incorporating human insights into experiment design can enhance methodological rigor and clarity.",
+        "why_now": "Exploring the integration of human insights can help identify optimal points for human intervention in the research process.",
+        "claim_it_tests": "The impact of human insights on the clarity and rigor of experimental designs.",
+        "minimal_experiment": "Conduct a study comparing experiments designed with and without human insights, evaluated by experts for clarity and rigor.",
+        "benchmark_or_evaluator": "Expert evaluation metrics focusing on methodological rigor and clarity.",
+        "expected_artifacts": [
+          "Experiment design comparison reports",
+          "Expert evaluation summaries",
+          "Clarity and rigor metrics"
+        ],
+        "main_risk": "Human insights may not significantly enhance experimental designs, leading to inefficiencies.",
+        "failure_value": "No measurable improvement in clarity or rigor compared to autonomous designs."
+      },
+      {
+        "id": "frontier_004",
+        "title": "Evaluating the Efficiency of Human Intervention Points in the Research Workflow",
+        "core_hypothesis": "Strategically placed human intervention points can significantly improve the overall quality of research outputs.",
+        "why_now": "Identifying optimal intervention points is essential for balancing human input with autonomous processes.",
+        "claim_it_tests": "The effectiveness of various human intervention placements on research output quality.",
+        "minimal_experiment": "Perform an ablation study to evaluate different placements of human intervention in the workflow and their impact on paper quality.",
+        "benchmark_or_evaluator": "Quality metrics for research outputs, including novelty and methodological rigor.",
+        "expected_artifacts": [
+          "Ablation study reports",
+          "Quality assessment metrics",
+          "Intervention placement analysis"
+        ],
+        "main_risk": "Identifying suboptimal intervention points may lead to increased latency without improving quality.",
+        "failure_value": "No improvement in research output quality compared to a fully autonomous baseline."
+      }
+    ]
+  },
+  "comparison": {
+    "recommendation": "IGRE",
+    "scores": {
+      "IGRE": {
+        "evidence_gain": 5,
+        "benchmark_fit": 5,
+        "method_distinctness": 4,
+        "human_taste_visibility": 4,
+        "feasibility": 4,
+        "claim_calibration": 5,
+        "novelty_risk_balance": 3,
+        "overall": 4
+      },
+      "autonomous": {
+        "evidence_gain": 3,
+        "benchmark_fit": 3,
+        "method_distinctness": 4,
+        "human_taste_visibility": 2,
+        "feasibility": 4,
+        "claim_calibration": 3,
+        "novelty_risk_balance": 3,
+        "overall": 3
+      }
+    },
+    "best_IGRE_candidate": "frontier_004",
+    "best_autonomous_candidate": "frontier_001",
+    "rationale": "The IGRE portfolio demonstrates a stronger alignment with structured methodologies that enhance reproducibility and clarity, while the autonomous portfolio lacks the same level of human insight integration, which may limit its effectiveness.",
+    "where_autonomous_is_stronger": [
+      "Method distinctness in exploring fully autonomous processes."
+    ],
+    "where_IGRE_is_stronger": [
+      "Higher evidence gain and benchmark fit due to structured human feedback mechanisms."
+    ],
+    "required_next_evidence": [
+      "Comparative analysis of human feedback impact on hypothesis generation.",
+      "Evaluation of programmatic search effectiveness in experiment selection.",
+      "Assessment of human insights on experimental design clarity."
+    ],
+    "claim_boundary": "The claims are bounded by the effectiveness of structured human feedback and intervention strategies in enhancing research output quality."
+  },
+  "artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/autonomous_generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/autonomous_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/autonomous_candidates.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/comparison_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/comparison_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/model_responses.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/hypothesis_frontend_baseline_20260602_030500/README.md"
+  ]
+}
