@@ -1,5 +1,5 @@
 {
-  "status": "setup_accessible_but_unscored",
+  "status": "setup_accessible_with_cached_tiny_compatibility_score",
   "created_at": "2026-06-03T06:40:00Z",
   "purpose": "Assess whether another official MLAgentBench task can be added beyond the scored CIFAR10/debug and OGBN-arxiv official-evaluator paths.",
   "remote_root": "/home/heshi/work/copilotv3-mlagentbench-third-task-probes-20260603",
@@ -32,17 +32,35 @@
           "Used a clearly marked train_compat.py probe copy that removes deprecated transformers telemetry and TPU helper imports.",
           "Changed the default config_name in the probe copy to allow a small from-scratch GPT-2 config override."
         ],
-        "tiny_train_exit_code": 1,
+        "tiny_train_exit_code": 0,
         "tiny_train_command_class": "small from-scratch GPT-2 compatibility run with 96 max train samples, 32 max eval samples, block_size 64, and a two-layer config",
-        "blocking_error": "HuggingFace network is unreachable for gpt2 tokenizer/config assets, causing AutoTokenizer.from_pretrained('gpt2') to fail.",
-        "evidence_class": "official_task_setup_accessible_but_unscored_due_to_huggingface_model_asset_blocker",
+        "cached_tiny_eval": {
+          "manual_eval_exit_code": 0,
+          "eval_loss": 10.65037551522255,
+          "perplexity": 42208.44148555899,
+          "eval_chunks": 64,
+          "block_size": 64,
+          "scope": "tiny_offline_compatibility_eval_not_full_babylm_benchmark"
+        },
+        "remaining_eval_caveat": "The official eval.py path still required compatibility repairs and did not return eval_loss under the current Transformers version. A clearly marked manual offline causal-LM eval was used to score a tiny fixed-size compatibility subset.",
+        "evidence_class": "official_task_setup_accessible_with_cached_tiny_compatibility_score",
         "logs": [
           "logs/babylm_prepare.exit",
           "logs/babylm_prepare.stdout.log",
           "logs/babylm_prepare.stderr.log",
           "logs/babylm_train_tiny.exit",
           "logs/babylm_train_tiny.stdout.log",
-          "logs/babylm_train_tiny.stderr.log"
+          "logs/babylm_train_tiny.stderr.log",
+          "logs/babylm_cached_tiny/train_tiny_cached.exit",
+          "logs/babylm_cached_tiny/train_tiny_cached.stdout.log",
+          "logs/babylm_cached_tiny/train_tiny_cached.stderr.log",
+          "logs/babylm_cached_tiny/eval_tiny_cached.exit",
+          "logs/babylm_cached_tiny/eval_tiny_cached.stdout.log",
+          "logs/babylm_cached_tiny/eval_tiny_cached.stderr.log",
+          "logs/babylm_cached_tiny/manual_eval.exit",
+          "logs/babylm_cached_tiny/manual_eval.stdout.log",
+          "logs/babylm_cached_tiny/manual_eval.stderr.log",
+          "logs/babylm_cached_tiny/manual_eval.py"
         ]
       }
     ],
@@ -90,6 +108,6 @@
       }
     ]
   },
-  "claim_boundary": "This probe does not add a third scored official MLAgentBench task. It adds a concrete inventory showing that BabyLM data preparation is accessible but scoring is blocked by HuggingFace model asset access, while several other official tasks are blocked by Kaggle consent, external LLM/service dependencies, GPU requirements, HuggingFace network, or CPU runtime.",
-  "recommended_next_step": "Either cache the GPT-2 tokenizer/config assets locally and rerun the BabyLM compatibility path, or prioritize matched end-to-end co-pilot/autonomous trajectories instead of counting this as broad official benchmark coverage."
+  "claim_boundary": "This probe adds a third official-task compatibility score only in a narrow tiny BabyLM setting: BabyLM data preparation succeeded, GPT-2 tokenizer/config assets were cached locally, a two-layer from-scratch GPT-2 compatibility run trained on 96 samples, and a manual offline causal-LM eval scored 64 fixed chunks. This is not a full BabyLM benchmark score, not broad MLAgentBench coverage, and not evidence of co-pilot superiority.",
+  "recommended_next_step": "Treat BabyLM as a low-budget compatibility score and stop further scaling for now. A future run should either repair the official eval.py path fully and run a larger BabyLM budget, or prioritize matched end-to-end co-pilot/autonomous trajectories under a separate budget."
 }

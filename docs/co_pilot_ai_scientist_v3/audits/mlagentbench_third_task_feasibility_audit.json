@@ -1,30 +1,52 @@
 {
   "status": "pass",
-  "created_at": "2026-06-02T22:45:25Z",
-  "evidence_class": "mlagentbench_third_task_feasibility_inventory",
+  "created_at": "2026-06-02T23:17:27Z",
+  "evidence_class": "mlagentbench_third_task_feasibility_inventory_with_cached_tiny_score",
   "summary_path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/summary.json",
   "checks": {
-    "summary_marks_unscored": true,
+    "summary_marks_cached_tiny_score": true,
     "babylm_prepare_succeeded": true,
     "babylm_download_logged": true,
-    "tiny_train_failed_as_blocker_not_score": true,
-    "hf_gpt2_blocker_logged": true,
+    "initial_tiny_train_failed_before_cached_assets": true,
+    "cached_tiny_train_succeeded": true,
+    "manual_tiny_eval_succeeded": true,
+    "manual_eval_scope_is_limited": true,
     "compatibility_repairs_recorded": true,
     "all_expected_blocker_categories_present": true,
-    "claim_boundary_says_no_third_score": true
+    "claim_boundary_says_tiny_not_full_benchmark": true
   },
   "babylm": {
     "prepare_exit": "0",
-    "tiny_train_exit": "1",
-    "evidence_class": "official_task_setup_accessible_but_unscored_due_to_huggingface_model_asset_blocker",
-    "blocking_error": "HuggingFace network is unreachable for gpt2 tokenizer/config assets, causing AutoTokenizer.from_pretrained('gpt2') to fail.",
+    "initial_tiny_train_exit": "1",
+    "cached_tiny_train_exit": "0",
+    "manual_eval_exit": "0",
+    "cached_tiny_eval": {
+      "manual_eval_exit_code": 0,
+      "eval_loss": 10.65037551522255,
+      "perplexity": 42208.44148555899,
+      "eval_chunks": 64,
+      "block_size": 64,
+      "scope": "tiny_offline_compatibility_eval_not_full_babylm_benchmark"
+    },
+    "evidence_class": "official_task_setup_accessible_with_cached_tiny_compatibility_score",
+    "remaining_eval_caveat": "The official eval.py path still required compatibility repairs and did not return eval_loss under the current Transformers version. A clearly marked manual offline causal-LM eval was used to score a tiny fixed-size compatibility subset.",
     "logs": [
       "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.exit",
       "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stdout.log",
       "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stderr.log",
       "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.exit",
       "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stdout.log",
-      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stderr.log"
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stderr.log",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/train_tiny_cached.exit",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/train_tiny_cached.stdout.log",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/train_tiny_cached.stderr.log",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/eval_tiny_cached.exit",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/eval_tiny_cached.stdout.log",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/eval_tiny_cached.stderr.log",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/manual_eval.exit",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/manual_eval.stdout.log",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/manual_eval.stderr.log",
+      "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_cached_tiny/manual_eval.py"
     ]
   },
   "blocked_task_categories": [
@@ -34,6 +56,6 @@
     "kaggle_account_cli_or_competition_consent",
     "llm_api_or_external_scholarly_service_task"
   ],
-  "claim_boundary": "This probe does not add a third scored official MLAgentBench task. It adds a concrete inventory showing that BabyLM data preparation is accessible but scoring is blocked by HuggingFace model asset access, while several other official tasks are blocked by Kaggle consent, external LLM/service dependencies, GPU requirements, HuggingFace network, or CPU runtime.",
-  "recommended_next_step": "Either cache the GPT-2 tokenizer/config assets locally and rerun the BabyLM compatibility path, or prioritize matched end-to-end co-pilot/autonomous trajectories instead of counting this as broad official benchmark coverage."
+  "claim_boundary": "This probe adds a third official-task compatibility score only in a narrow tiny BabyLM setting: BabyLM data preparation succeeded, GPT-2 tokenizer/config assets were cached locally, a two-layer from-scratch GPT-2 compatibility run trained on 96 samples, and a manual offline causal-LM eval scored 64 fixed chunks. This is not a full BabyLM benchmark score, not broad MLAgentBench coverage, and not evidence of co-pilot superiority.",
+  "recommended_next_step": "Treat BabyLM as a low-budget compatibility score and stop further scaling for now. A future run should either repair the official eval.py path fully and run a larger BabyLM budget, or prioritize matched end-to-end co-pilot/autonomous trajectories under a separate budget."
 }

@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T22:45:37Z",
+  "audit_date": "2026-06-02T23:19:14Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "4f9bf6118e2f7c2ad0678842ddc48a6be9721efe",
+  "head": "0462e6a768a47d7f6e20001b3c3616a19554f8ca",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -46,7 +46,7 @@
     "focused_english_pdf": {
       "path": "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
       "exists": true,
-      "bytes": 212782,
+      "bytes": 214457,
       "ok": true
     },
     "root_readme": {
@@ -64,13 +64,13 @@
     "top_conference_evidence_roadmap": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
       "exists": true,
-      "bytes": 15929,
+      "bytes": 19747,
       "ok": true
     },
     "top_conference_evidence_roadmap_json": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
       "exists": true,
-      "bytes": 11865,
+      "bytes": 15382,
       "ok": true
     },
     "deep_regeneration_casebook": {
@@ -283,9 +283,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 985,
+  "manifest_artifacts": 989,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "985/985",
+  "manifest_coverage_ratio": "989/989",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -299,7 +299,8 @@
     "Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.",
     "Extend beyond the current three-seed CIFAR10/debug and three-seed OGBN-arxiv official-evaluator paths by adding another accessible official non-FML task or scaling matched end-to-end co-pilot/autonomous trajectories; keep the open-data package labeled as official-like boundary evidence.",
     "Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package.",
-    "Cache GPT-2 tokenizer/config assets or otherwise repair BabyLM before counting it as a third scored official MLAgentBench task; until then, treat the third-task probe as setup/blocker evidence only."
+    "Cache GPT-2 tokenizer/config assets or otherwise repair BabyLM before counting it as a third scored official MLAgentBench task; until then, treat the third-task probe as setup/blocker evidence only.",
+    "Repair the full official BabyLM eval.py path and run a larger BabyLM budget before treating BabyLM as a full third scored MLAgentBench benchmark; the current result is only a tiny compatibility score."
   ],
   "errors": [],
   "warnings": [],

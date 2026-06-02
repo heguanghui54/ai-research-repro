@@ -1,6 +1,6 @@
 # Focused Figure and Table Readiness Audit
 
-- Audit date: `2026-06-02T22:45:05Z`
+- Audit date: `2026-06-02T23:17:28Z`
 - Status: `pass`
 - English paper: `docs/co_pilot_ai_scientist_v3/paper_en_focused.md`
 - Chinese paper: `docs/co_pilot_ai_scientist_v3/paper_zh_focused.md`

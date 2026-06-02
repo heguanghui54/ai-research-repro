@@ -1,9 +1,9 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T22:45:36Z`
+- Audit date: `2026-06-02T23:19:12Z`
 - Status: `pass`
 - FML entries: `2`
-- Non-FML entries: `11`
+- Non-FML entries: `12`
 
 ## Positive Scored Evidence
 
@@ -19,7 +19,7 @@
 - Frozen trigger-policy transfer: discovery selected `class_imbalance_trigger_0_94`; held-out frozen delta `0.003639444256184343` versus held-out always-on delta `0.0025821297988698876`, with held-out losses `0` versus always-on losses `2`.
 - Second non-FML priority package audit: `two_scored_official_mlagentbench_multiseed_paths_plus_official_like_package`; CIFAR10/debug is now scored, while remaining blocked official tasks stay unscored.
 - MLAgentBench OGBN-arxiv setup repair: data download completed `True`, prepare with PyTorch compatibility `pass`, baseline failure `missing_pyg_neighbor_sampler_backend` before the compatibility baseline path was scored.
-- MLAgentBench BabyLM third-task feasibility: prepare exit `0`, tiny train exit `1`, blocker `HuggingFace network is unreachable for gpt2 tokenizer/config assets, causing AutoTokenizer.from_pretrained('gpt2') to fail.`.
+- MLAgentBench BabyLM third-task feasibility: prepare exit `0`, tiny train exit `None`, blocker `None`.
 
 ## Boundary And Blocked Evidence
 
@@ -31,7 +31,7 @@
 - `mlagentbench_clrs_reduced`: `blocked_reduced_cpu_timeout_no_checkpoint`; no official score reported.
 - `mlagentbench_house_price`: `setup_blocked_by_missing_kaggle_cli_and_competition_consent`; no official score reported.
 - `mlagentbench_ogbn_arxiv`: `setup_repaired_data_ready_but_sampler_dependency_blocked`; no official score reported.
-- `mlagentbench_babylm`: `setup_accessible_but_unscored`; no official score reported.
+- `mlagentbench_babylm`: `setup_accessible_with_cached_tiny_compatibility_score`; no official score reported.
 - `scienceagentbench`: `metadata_and_verified_artifacts_not_yet_accessible`; no official score reported.
 - `mlagentbench_cifar10_official`: `pass`; official score reported with delta `0.2679`.
 - `mlagentbench_cifar10_multiseed`: `pass`; `3` official co-pilot-selected seeds with minimum score `0.7709`.
@@ -60,7 +60,7 @@
 - `mlagentbench_cifar10_multiseed_scored`: `pass`
 - `mlagentbench_ogbn_arxiv_official_eval_scored`: `pass`
 - `mlagentbench_ogbn_arxiv_multiseed_scored`: `pass`
-- `mlagentbench_third_task_feasibility_audited_unscored`: `pass`
+- `mlagentbench_third_task_cached_tiny_score_audited`: `pass`
 - `blocked_official_tasks_logged`: `pass`
 - `remaining_blocked_tasks_do_not_report_scores`: `pass`
 - `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`
@@ -80,4 +80,4 @@
 
 ## Claim Boundary
 
-Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored multi-seed OGBN-arxiv official-evaluator compatibility run, a direct-editing boundary condition, a BabyLM third-task feasibility blocker, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.
+Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored multi-seed OGBN-arxiv official-evaluator compatibility run, a narrow BabyLM tiny compatibility score, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.

@@ -1,0 +1,6 @@
+Loading weights:   0%|          | 0/28 [00:00<?, ?it/s]Loading weights: 100%|██████████| 28/28 [00:00<00:00, 6045.53it/s]
+/home/heshi/work/bench-probes/MLAgentBench/.venv/lib/python3.10/site-packages/datasets/load.py:929: FutureWarning: The repository for babyLM_for_hf contains custom code which must be executed to correctly load the dataset. You can inspect the repository content at /home/heshi/work/copilotv3-mlagentbench-third-task-probes-20260603/babylm/env/babyLM_for_hf.py
+You can avoid this message in future by passing the argument `trust_remote_code=True`.
+Passing `trust_remote_code=True` will be mandatory to load this dataset from the next major release of `datasets`.
+  warnings.warn(
+[transformers] `loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.

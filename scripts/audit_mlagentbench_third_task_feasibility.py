@@ -38,6 +38,11 @@ def main() -> None:
     logs_dir = EXP_DIR / "logs"
     prepare_exit = _read(logs_dir / "babylm_prepare.exit").strip()
     train_exit = _read(logs_dir / "babylm_train_tiny.exit").strip()
+    cached_logs_dir = logs_dir / "babylm_cached_tiny"
+    cached_train_exit = _read(cached_logs_dir / "train_tiny_cached.exit").strip()
+    cached_train_stdout = _read(cached_logs_dir / "train_tiny_cached.stdout.log")
+    manual_eval_exit = _read(cached_logs_dir / "manual_eval.exit").strip()
+    manual_eval_stdout = _read(cached_logs_dir / "manual_eval.stdout.log")
     train_stderr = _read(logs_dir / "babylm_train_tiny.stderr.log")
     prepare_stdout = _read(logs_dir / "babylm_prepare.stdout.log")
     prepare_stderr = _read(logs_dir / "babylm_prepare.stderr.log")
@@ -54,32 +59,40 @@ def main() -> None:
     }
 
     checks = {
-        "summary_marks_unscored": summary.get("status") == "setup_accessible_but_unscored",
+        "summary_marks_cached_tiny_score": summary.get("status")
+        == "setup_accessible_with_cached_tiny_compatibility_score",
         "babylm_prepare_succeeded": candidate.get("prepare_exit_code") == 0 and prepare_exit == "0",
         "babylm_download_logged": "babylm_data.zip" in prepare_stdout
         and "github.com/babylm" in prepare_stderr,
-        "tiny_train_failed_as_blocker_not_score": candidate.get("tiny_train_exit_code") == 1
-        and train_exit == "1",
-        "hf_gpt2_blocker_logged": "Network is unreachable" in train_stderr
-        and "gpt2" in train_stderr
-        and "AutoTokenizer.from_pretrained" in train_stderr,
+        "initial_tiny_train_failed_before_cached_assets": train_exit == "1",
+        "cached_tiny_train_succeeded": candidate.get("tiny_train_exit_code") == 0
+        and cached_train_exit == "0"
+        and "train_loss" in cached_train_stdout,
+        "manual_tiny_eval_succeeded": candidate.get("cached_tiny_eval", {}).get("manual_eval_exit_code") == 0
+        and manual_eval_exit == "0"
+        and "perplexity" in manual_eval_stdout,
+        "manual_eval_scope_is_limited": "not_full_babylm_benchmark" in manual_eval_stdout,
         "compatibility_repairs_recorded": len(candidate.get("compatibility_repairs", [])) >= 4,
         "all_expected_blocker_categories_present": expected_blockers.issubset(blocked_types),
-        "claim_boundary_says_no_third_score": "does not add a third scored" in summary.get("claim_boundary", ""),
+        "claim_boundary_says_tiny_not_full_benchmark": "not a full BabyLM benchmark score"
+        in summary.get("claim_boundary", ""),
     }
 
     status = "pass" if all(checks.values()) else "fail"
     audit = {
         "status": status,
         "created_at": _utc_now(),
-        "evidence_class": "mlagentbench_third_task_feasibility_inventory",
+        "evidence_class": "mlagentbench_third_task_feasibility_inventory_with_cached_tiny_score",
         "summary_path": _rel(summary_path),
         "checks": checks,
         "babylm": {
             "prepare_exit": prepare_exit,
-            "tiny_train_exit": train_exit,
+            "initial_tiny_train_exit": train_exit,
+            "cached_tiny_train_exit": cached_train_exit,
+            "manual_eval_exit": manual_eval_exit,
+            "cached_tiny_eval": candidate.get("cached_tiny_eval", {}),
             "evidence_class": candidate.get("evidence_class"),
-            "blocking_error": candidate.get("blocking_error"),
+            "remaining_eval_caveat": candidate.get("remaining_eval_caveat"),
             "logs": [_rel(EXP_DIR / log_path) for log_path in candidate.get("logs", [])],
         },
         "blocked_task_categories": sorted(blocked_types),
@@ -104,9 +117,12 @@ def main() -> None:
                 "## BabyLM Probe",
                 "",
                 f"- Prepare exit: `{prepare_exit}`",
-                f"- Tiny train exit: `{train_exit}`",
+                f"- Initial tiny train exit: `{train_exit}`",
+                f"- Cached tiny train exit: `{cached_train_exit}`",
+                f"- Manual eval exit: `{manual_eval_exit}`",
                 f"- Evidence class: `{candidate.get('evidence_class')}`",
-                f"- Blocker: {candidate.get('blocking_error')}",
+                f"- Cached tiny eval: `{candidate.get('cached_tiny_eval')}`",
+                f"- Remaining caveat: {candidate.get('remaining_eval_caveat')}",
                 "",
                 "## Boundary",
                 "",
@@ -136,9 +152,9 @@ def main() -> None:
     }
     next_required = manifest.setdefault("next_required_evidence", [])
     requirement = (
-        "Cache GPT-2 tokenizer/config assets or otherwise repair BabyLM before "
-        "counting it as a third scored official MLAgentBench task; until then, "
-        "treat the third-task probe as setup/blocker evidence only."
+        "Repair the full official BabyLM eval.py path and run a larger BabyLM "
+        "budget before treating BabyLM as a full third scored MLAgentBench "
+        "benchmark; the current result is only a tiny compatibility score."
     )
     if requirement not in next_required:
         next_required.append(requirement)

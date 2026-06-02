@@ -1,0 +1,7 @@
+{
+  "eval_loss": 10.65037551522255,
+  "perplexity": 42208.44148555899,
+  "eval_chunks": 64,
+  "block_size": 64,
+  "scope": "tiny_offline_compatibility_eval_not_full_babylm_benchmark"
+}

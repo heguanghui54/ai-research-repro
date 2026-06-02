@@ -16,6 +16,14 @@ We propose Insight-Gated Research Evolution (IGRE), the core algorithmic pattern
 
 The primary claim of this paper is therefore deliberately narrow: expert review and human scientific judgement can be operationalized as auditable workflow-control signals, and the usefulness of those signals can be compared experimentally. We do not claim that the current co-pilot system outperforms autonomous AI Scientist-v2. The current paper makes four contributions. First, it defines IGRE as a six-gate architecture for human-guided automated science. Second, it releases a reproducible evidence package with an English manuscript, scripts, logs, gate schemas, audits, and a reusable Codex skill. Third, it introduces Temporal Frontier Replay (TFR), an offline protocol for using historical peer reviews to test whether human insight would have steered automated research toward later field trajectories. Fourth, it reports mixed and negative short-budget results alongside positive workflow probes, keeping the claim boundary explicit: IGRE currently supports workflow design and measurement readiness, not a top-conference-level proof of co-pilot superiority.
 
+This cost-aware positioning is intentional. Large-scale replay of historical
+papers or prospective human-in-the-loop research runs would be expensive and
+potentially wasteful if the participation mode, frontier metric, or leakage
+guard is wrong. We therefore treat the current study as a small but inspectable
+pilot: its purpose is to test whether there are meaningful theoretical and
+empirical signals worth scaling, to expose negative cases early, and to specify
+which future large-scale experiments would actually be informative.
+
 ![Figure 1. Co-Pilot AI Scientist v3 combines AI Co-Scientist-style hypothesis frontiers, AI Scientist-v2-style experiment and paper production, OpenEvolve-style micro-search, and six human insight gates. The lower panel shows why frontier-aware evaluation uses vector movement and metric disagreement rather than a single short-term score.](figures/igre_frontier_main_figure.png)
 
 ## 2. Related Work
@@ -504,6 +512,18 @@ reports protocol readiness rather than breakthrough-probability evidence.
 The current evidence is a pilot package. It does not include independent human expert review of the final IGRE paper or of the paired regenerated artifacts. The live co-pilot trace is a single-author derived metadata corpus, not a population-level dataset of many scientists using the system. OpenReview is offline asynchronous review data, not real-time human intervention inside an AI Scientist-v2 run. The matched-budget FML evidence is underpowered and currently negative or mixed for benchmark performance. The equal-context OpenReview ablation reduces, but does not eliminate, concerns about context confounds because it still relies on model-routed scoring and regenerated mini-artifacts rather than blind expert review. A model-only dry run of the blind-review packet is also negative: across 8 parsed model score rows, review-guided artifacts receive 0 wins, context-control artifacts receive 7 wins, and 1 comparison ties, with mean review-guided minus control score -1.1458. This is not human evidence, but it is a useful warning that simply adding review text can degrade blinded artifact quality when the signal is not routed through appropriate gates. The delayed-value candidate-mining screen and OpenAlex validation prioritize future replay cases, and the three live TFR replays show model-optimism correction rather than positive delayed-value evidence; they do not replace benchmark reruns, human expert judgement, or larger replay samples. The high-tail hypothesis is now statistically operationalized as a power-analysis protocol, but no high-tail or delayed-value positive case has been demonstrated in the current evidence package.
 
 These limitations are also future research directions. To make the next step concrete, the repository includes a prepared and preregistered blind-review packet for the six OpenReview regeneration pairs: reviewers see anonymized A/B artifacts, a fixed rubric, and a score-sheet template, while the condition key and analysis plan are held by the coordinator until ratings are complete. The plan defines useful human taste and insight as review signals that can change research-control decisions, not as generic approval. This packet is not evidence yet because no independent human ratings have been collected. A stronger study would deploy a reusable co-pilot scientist skill to many researchers, collect privacy-preserving gate metadata with consent, run matched autonomous and human-gated trajectories across tasks, and submit paired outputs to blind expert review. At present, such live multi-researcher data is more feasible for major agent or model companies than for a small independent project. IGRE therefore uses OpenReview as a scalable offline proxy and clearly marks the gap.
+
+When OpenReview or Hugging Face datasets expose version-chain metadata such as
+`forum_id`, `note_id`, `cdate`, `tcdate`, `ddate`, `invitation`, `revision`, or
+multiple paper versions, the next high-value pilot is a direct comparison
+between human author revision and automated revision. The required chain is
+`P0` initial submission, `R` reviews, `PH` human-revised paper, `PAI` raw AI
+Scientist revision, `PAI-6G` IGRE-gated revision, and a shuffled or no-review
+control. This is deliberately a small-case protocol at the current budget
+stage: a few deeply documented examples with visible reviews, regenerated
+papers, human revisions, leakage guards, and short- and long-horizon metrics
+are more useful than a blind large-scale replay whose design has not yet been
+validated.
 
 The same boundary applies to engineering adoption. The current release package already includes a standalone IGRE skill scaffold, a local installer, a validator, templates, examples, an isolated install smoke test that installs the package into a temporary `CODEX_SKILLS_DIR`, a global-install reuse smoke, and a clean external temporary reuse smoke that copies the release skill outside the repository and instantiates all six gates on a fresh scientific-visualization topic. This is useful systems evidence: it shows that the six-gate theory can become reusable research infrastructure rather than only a manuscript idea. However, repository stars, forks, quickstart completions, community uptake, or even clean-environment transfer would measure usability and transfer, not scientific superiority. They should complement, not replace, blind expert review and matched benchmark evidence.
 

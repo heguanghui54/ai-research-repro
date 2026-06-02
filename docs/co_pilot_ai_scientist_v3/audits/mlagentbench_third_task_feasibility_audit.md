@@ -4,26 +4,31 @@ Status: `pass`
 
 ## Checks
 
-- `summary_marks_unscored`: True
+- `summary_marks_cached_tiny_score`: True
 - `babylm_prepare_succeeded`: True
 - `babylm_download_logged`: True
-- `tiny_train_failed_as_blocker_not_score`: True
-- `hf_gpt2_blocker_logged`: True
+- `initial_tiny_train_failed_before_cached_assets`: True
+- `cached_tiny_train_succeeded`: True
+- `manual_tiny_eval_succeeded`: True
+- `manual_eval_scope_is_limited`: True
 - `compatibility_repairs_recorded`: True
 - `all_expected_blocker_categories_present`: True
-- `claim_boundary_says_no_third_score`: True
+- `claim_boundary_says_tiny_not_full_benchmark`: True
 
 ## BabyLM Probe
 
 - Prepare exit: `0`
-- Tiny train exit: `1`
-- Evidence class: `official_task_setup_accessible_but_unscored_due_to_huggingface_model_asset_blocker`
-- Blocker: HuggingFace network is unreachable for gpt2 tokenizer/config assets, causing AutoTokenizer.from_pretrained('gpt2') to fail.
+- Initial tiny train exit: `1`
+- Cached tiny train exit: `0`
+- Manual eval exit: `0`
+- Evidence class: `official_task_setup_accessible_with_cached_tiny_compatibility_score`
+- Cached tiny eval: `{'manual_eval_exit_code': 0, 'eval_loss': 10.65037551522255, 'perplexity': 42208.44148555899, 'eval_chunks': 64, 'block_size': 64, 'scope': 'tiny_offline_compatibility_eval_not_full_babylm_benchmark'}`
+- Remaining caveat: The official eval.py path still required compatibility repairs and did not return eval_loss under the current Transformers version. A clearly marked manual offline causal-LM eval was used to score a tiny fixed-size compatibility subset.
 
 ## Boundary
 
-This probe does not add a third scored official MLAgentBench task. It adds a concrete inventory showing that BabyLM data preparation is accessible but scoring is blocked by HuggingFace model asset access, while several other official tasks are blocked by Kaggle consent, external LLM/service dependencies, GPU requirements, HuggingFace network, or CPU runtime.
+This probe adds a third official-task compatibility score only in a narrow tiny BabyLM setting: BabyLM data preparation succeeded, GPT-2 tokenizer/config assets were cached locally, a two-layer from-scratch GPT-2 compatibility run trained on 96 samples, and a manual offline causal-LM eval scored 64 fixed chunks. This is not a full BabyLM benchmark score, not broad MLAgentBench coverage, and not evidence of co-pilot superiority.
 
 ## Next Step
 
-Either cache the GPT-2 tokenizer/config assets locally and rerun the BabyLM compatibility path, or prioritize matched end-to-end co-pilot/autonomous trajectories instead of counting this as broad official benchmark coverage.
+Treat BabyLM as a low-budget compatibility score and stop further scaling for now. A future run should either repair the official eval.py path fully and run a larger BabyLM budget, or prioritize matched end-to-end co-pilot/autonomous trajectories under a separate budget.

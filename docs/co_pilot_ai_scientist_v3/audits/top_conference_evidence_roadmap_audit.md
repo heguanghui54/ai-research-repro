@@ -1,10 +1,10 @@
 # Top-Conference Evidence Roadmap Audit
 
-- Audit date: `2026-06-02T22:45:36Z`
+- Audit date: `2026-06-02T23:19:12Z`
 - Status: `pass`
 - Roadmap JSON: `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
 - Roadmap Markdown: `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
-- Milestones: `7/7`
+- Milestones: `8/7`
 
 ## Milestone Checks
 
@@ -18,11 +18,12 @@
 
 ## Priority Queue Checks
 
-- Priority actions: `5`
+- Priority actions: `6`
 - `official_non_fml_benchmark_scaling`: `pass`
 - `blind_expert_review_packet_collection`: `pass`
 - `matched_multitask_autonomous_vs_human_gated_runs`: `pass`
 - `deep_tfr_replay_cases_from_candidate_queue`: `pass`
+- `human_revision_vs_ai_scientist_revision_version_chain_pilot`: `pass`
 - `external_skill_reuse_beyond_scripted_clean_environments`: `pass`
 
 ## Errors

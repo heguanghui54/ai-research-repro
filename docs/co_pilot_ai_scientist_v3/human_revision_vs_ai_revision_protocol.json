@@ -1,0 +1,63 @@
+{
+  "name": "Human Revision vs AI Scientist Revision Protocol",
+  "status": "protocol_not_yet_empirical_result",
+  "purpose": "Compare human author revision, raw AI Scientist revision, and IGRE six-gate revision under the same OpenReview peer-review signal when version-chain metadata is available.",
+  "required_metadata": [
+    "forum_id",
+    "note_id",
+    "cdate",
+    "tcdate",
+    "ddate",
+    "invitation",
+    "revision",
+    "content_hash_or_pdf_hash"
+  ],
+  "version_chain": {
+    "P0": "Initial submission created before the official review-release or decision period.",
+    "R": "Human peer reviews and decision text released after P0.",
+    "PH": "Human-revised paper or camera-ready version after reviews, rebuttal, or decision.",
+    "PAI": "AI Scientist revision generated from P0 plus R under a fixed budget.",
+    "PAI-6G": "IGRE six-gate revision generated after routing R through the six gates.",
+    "Pcontrol": "No-review or shuffled/unrelated-review control generated from P0."
+  },
+  "eligibility_rules": [
+    "P0, R, and PH must be time-ordered from metadata.",
+    "Review text must be later than P0.",
+    "PH must be later than the review or decision window.",
+    "PH must never be visible to automatic generation arms.",
+    "If the dataset exposes only one paper text with no reliable version metadata, downgrade to review-signal taxonomy or mini-artifact generation.",
+    "If generation is meant to simulate the past, literature and model-access policy should be time-capped to the P0 date; otherwise label the run as retrospective replay."
+  ],
+  "generation_arms": [
+    "P0-only",
+    "raw-review-guided",
+    "six-gate-guided",
+    "shuffled-review-control",
+    "human-author-revision"
+  ],
+  "six_gates_tested": [
+    "scientific_taste_prior",
+    "evaluator_stress_test",
+    "frontier_direction_router",
+    "verifiable_micro_evolution",
+    "structured_feedback",
+    "claim_calibration"
+  ],
+  "metrics": [
+    "review_coverage",
+    "revision_alignment",
+    "scientific_delta",
+    "human_unique_gain",
+    "ai_unique_gain",
+    "six_gate_gain",
+    "frontier_alignment",
+    "claim_calibration",
+    "leakage_flags"
+  ],
+  "primary_comparison": "PH vs PAI vs PAI-6G",
+  "controls": [
+    "P0-only",
+    "shuffled-review-control"
+  ],
+  "claim_boundary": "This is an experimental protocol. It can support future causal revision-chain comparisons only after eligible OpenReview cases are collected and generated artifacts are scored. It is not current evidence that AI or IGRE outperforms human author revision."
+}

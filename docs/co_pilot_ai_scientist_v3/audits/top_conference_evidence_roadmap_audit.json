@@ -1,9 +1,9 @@
 {
-  "audit_date": "2026-06-02T22:45:36Z",
+  "audit_date": "2026-06-02T23:19:12Z",
   "status": "pass",
   "roadmap_json": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
   "roadmap_markdown": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
-  "milestone_count": 7,
+  "milestone_count": 8,
   "required_milestone_count": 7,
   "milestone_checks": {
     "blind_human_expert_review": {
@@ -116,7 +116,7 @@
     }
   },
   "priority_queue_checks": {
-    "count": 5,
+    "count": 6,
     "items": {
       "official_non_fml_benchmark_scaling": {
         "priority": true,
@@ -143,6 +143,14 @@
         "fallback_if_blocked": true
       },
       "deep_tfr_replay_cases_from_candidate_queue": {
+        "priority": true,
+        "action": true,
+        "proof_target": true,
+        "best_near_term_path": true,
+        "blocking_condition": true,
+        "fallback_if_blocked": true
+      },
+      "human_revision_vs_ai_scientist_revision_version_chain_pilot": {
         "priority": true,
         "action": true,
         "proof_target": true,

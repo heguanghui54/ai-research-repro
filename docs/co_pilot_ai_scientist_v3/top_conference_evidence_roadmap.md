@@ -24,6 +24,25 @@ The engineering release track is related but separate. It can demonstrate that
 IGRE is usable as public research infrastructure, but it should not be counted
 as empirical proof that co-pilot science outperforms autonomous science.
 
+## Cost-Aware Pilot Logic
+
+The current paper should be evaluated as a cost-aware pilot and protocol paper,
+not as a completed large-scale benchmark study. The empirical goal is to test
+whether small, inspectable experiments can reveal a promising theory of human
+participation before expensive scaling begins. This avoids a failure mode where
+hundreds of historical paper replays are run blindly, only to discover that the
+participation mode, frontier metric, or leakage guard was poorly specified.
+
+The preferred sequence is therefore:
+
+1. Use low-cost OpenReview probes to identify routeable human taste and insight
+   signals.
+2. Run small but concrete regeneration and version-chain cases with visible
+   reviews, artifacts, metrics, and failure modes.
+3. Use those cases to refine IGRE gates and frontier-alignment metrics.
+4. Scale only the designs that show interpretable signal, or report negative
+   pilot evidence if no design is promising enough to justify large-scale cost.
+
 ## Prioritized Next Evidence Queue
 
 The next experiments should be selected by the weakest claim that can be
@@ -47,8 +66,10 @@ The current priority order is:
    translation rather than the unmodified NeighborLoader starter. Best near-term
    path: add another task or expand matched end-to-end trajectories. A 2026-06-03
    BabyLM feasibility probe shows that BabyLM data preparation is accessible
-   from GitHub, but the tiny compatibility scoring path is blocked until GPT-2
-   tokenizer/config assets are cached or HuggingFace access is restored. Blocking condition:
+   from GitHub, and a cached tiny compatibility path now trains a two-layer
+   from-scratch GPT-2 on 96 samples with train loss `10.5886` and reports a
+   manual 64-chunk eval loss `10.6504` / perplexity `42208.44`. This remains a
+   tiny compatibility score rather than a full BabyLM benchmark. Blocking condition:
    data access, CPU/GPU runtime, or external account consent prevents
    additional official scores. If blocked, report the current official CIFAR
    and OGBN results as two narrow official-evaluator paths only.
@@ -76,7 +97,18 @@ The current priority order is:
    review-guided, shuffled-control, and six-gate artifacts. Blocking condition:
    citation-frontier reconstruction is too thin or match-drift risk is too high.
 
-5. **External skill reuse beyond scripted clean environments.**
+5. **Human Revision vs AI Scientist Revision version-chain pilot.**
+   Proof target: when OpenReview or Hugging Face metadata exposes `forum_id`,
+   `note_id`, `cdate`, `tcdate`, `ddate`, `invitation`, `revision`, or multiple
+   paper versions, compare the human author revision (`PH`) against raw AI
+   Scientist revision (`PAI`) and IGRE six-gate revision (`PAI-6G`) under the
+   same review signal. Best near-term path: run only a few eligible deep cases,
+   showing the concrete reviews, generated artifacts, human-revised paper,
+   leakage guards, and short-term/long-term metrics. Blocking condition:
+   version-chain metadata is missing or cannot prove that `P0`, reviews, and
+   `PH` are temporally ordered.
+
+6. **External skill reuse beyond scripted clean environments.**
    Proof target: show that the release skill can be used by another researcher
    or independently prepared environment to produce a valid gate log. Best
    near-term path: invite one external tester after the release package is
@@ -179,6 +211,31 @@ The current priority order is:
 - If it fails: keep the paper as a workflow/protocol proposal and use the case
   failures to define which human review comments should be downweighted.
 
+## Milestone 4b: Human Revision vs AI Scientist Revision
+
+- Claim tested: when version-chain metadata is available, the same historical
+  peer-review signal can be used to compare human author revision against raw
+  AI Scientist revision and IGRE six-gate revision.
+- Required data: `P0` initial submission, `R` human peer reviews and decision
+  text, `PH` human-revised or camera-ready paper, plus generated `PAI`,
+  `PAI-6G`, and shuffled/no-review controls. Metadata should include
+  `forum_id`, `note_id`, `cdate`, `tcdate`, `ddate`, `invitation`, `revision`,
+  and PDF/content hashes when available.
+- Minimum design: a small number of eligible deep cases is acceptable at the
+  current budget stage, provided each case shows the exact review excerpts,
+  generated artifacts, human-revised paper, version ordering, leakage guards,
+  immediate metrics, and later-frontier alignment evidence.
+- Metrics: review coverage, revision alignment, scientific delta,
+  human-unique gain, AI-unique gain, six-gate gain, frontier alignment, claim
+  calibration, and leakage flags.
+- Upgrade condition: at least one case demonstrates an interpretable difference
+  between human revision and AI/IGRE revision, such as humans adding tacit
+  domain strategy, AI finding a different experiment path, or six-gate routing
+  filtering useful review insight better than raw review prompting.
+- If it fails: report it as a negative pilot showing that version-chain replay
+  needs better metadata, stronger time-capping, or different frontier metrics
+  before large-scale runs are justified.
+
 ## Milestone 5: Live Multi-Researcher Co-Pilot Trace Data
 
 - Claim tested: the gate schema captures real human scientific taste and
@@ -201,9 +258,9 @@ The current priority order is:
   be evaluated on official non-FML MLAgentBench tasks.
 - Required data: the current three-seed scored official CIFAR10/debug run plus
   the three-seed scored OGBN-arxiv official-evaluator compatibility run, plus
-  the BabyLM third-task feasibility audit showing setup success but no score;
-  then another accessible official task or more matched end-to-end trajectories
-  when budget permits.
+  the BabyLM third-task feasibility audit showing setup success and a tiny
+  cached compatibility score; then a full BabyLM run, another accessible
+  official task, or more matched end-to-end trajectories when budget permits.
 - Minimum design: at least one scored official non-FML MLAgentBench task with
   a documented baseline, co-pilot-selected branch, official evaluator output,
   multi-seed robustness when feasible, and a plan to scale beyond one task.
@@ -212,8 +269,8 @@ The current priority order is:
 - Upgrade condition: the official non-FML benchmark shows workflow benefit or
   evaluator-safety benefit and is not treated as broad coverage without scale.
 - If it fails: keep official non-FML claims limited to the three-seed scored
-  CIFAR10/debug task and the three-seed OGBN-arxiv compatibility path; keep
-  BabyLM as setup/blocker evidence and keep broader benchmark claims
+  CIFAR10/debug task, the three-seed OGBN-arxiv compatibility path, and the
+  narrow BabyLM tiny compatibility score; keep broader benchmark claims
   future-facing.
 
 ## Milestone 7: Public Skill Engineering And Community Adoption
@@ -255,6 +312,12 @@ pass, with Milestone 3 providing either positive delayed-value evidence or a
 clear negative result that strengthens the measurement contribution.
 Milestone 7 can strengthen the systems and engineering-impact story, but it
 does not replace blind expert review or matched benchmark evidence.
+
+The present low-budget version can still be useful if it clearly establishes
+which participation patterns are worth scaling and which are not. It should
+therefore emphasize pilot reliability, traceability, and decision value rather
+than pretending that a small number of replays settles the general question of
+human-AI scientific collaboration.
 
 Until then, the correct claim boundary is:
 

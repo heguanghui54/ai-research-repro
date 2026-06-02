@@ -1,0 +1,72 @@
+{
+  "audit_date": "2026-06-02T23:05:08Z",
+  "status": "pass",
+  "protocol_markdown": "docs/co_pilot_ai_scientist_v3/human_revision_vs_ai_revision_protocol.md",
+  "protocol_json": "docs/co_pilot_ai_scientist_v3/human_revision_vs_ai_revision_protocol.json",
+  "metadata_presence": {
+    "forum_id": true,
+    "note_id": true,
+    "cdate": true,
+    "tcdate": true,
+    "ddate": true,
+    "invitation": true,
+    "revision": true
+  },
+  "version_chain_presence": {
+    "P0": true,
+    "R": true,
+    "PH": true,
+    "PAI": true,
+    "PAI-6G": true,
+    "Pcontrol": true
+  },
+  "generation_arm_presence": {
+    "P0-only": true,
+    "raw-review-guided": true,
+    "six-gate-guided": true,
+    "shuffled-review-control": true,
+    "human-author-revision": true
+  },
+  "metric_presence": {
+    "review_coverage": true,
+    "revision_alignment": true,
+    "scientific_delta": true,
+    "human_unique_gain": true,
+    "ai_unique_gain": true,
+    "six_gate_gain": true,
+    "frontier_alignment": true,
+    "claim_calibration": true,
+    "leakage_flags": true
+  },
+  "gate_presence": {
+    "scientific_taste_prior": true,
+    "evaluator_stress_test": true,
+    "frontier_direction_router": true,
+    "verifiable_micro_evolution": true,
+    "structured_feedback": true,
+    "claim_calibration": true
+  },
+  "markdown_term_presence": {
+    "Human Revision vs AI Scientist Revision Protocol": true,
+    "forum_id": true,
+    "note_id": true,
+    "cdate": true,
+    "tcdate": true,
+    "ddate": true,
+    "invitation": true,
+    "revision": true,
+    "P0": true,
+    "PH": true,
+    "PAI-6G": true,
+    "shuffled-review-control": true,
+    "PH must never be visible": true,
+    "time-capped": true,
+    "review_coverage": true,
+    "frontier_alignment": true,
+    "leakage_flags": true,
+    "six-gate": true
+  },
+  "leakage_protection_present": true,
+  "errors": [],
+  "claim_boundary": "This audit verifies that the protocol is complete enough to guide future version-chain experiments. It does not certify that any OpenReview case has been empirically run or that AI/IGRE revision outperforms human author revision."
+}

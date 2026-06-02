@@ -81,6 +81,8 @@
     "docs/co_pilot_ai_scientist_v3/audits/human_expert_blind_review_packet_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/human_revision_vs_ai_revision_protocol_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/human_revision_vs_ai_revision_protocol_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.json",
@@ -519,6 +521,13 @@
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/prepare_torch_compat.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_ogbn_arxiv_setup_probe_20260603/train_baseline.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.exit",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stderr.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stdout.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.exit",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stderr.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stdout.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_baseline/eval.json",
@@ -851,6 +860,8 @@
     "docs/co_pilot_ai_scientist_v3/human_gate_logs/scientific_taste_prior_attention_measurement_001.json",
     "docs/co_pilot_ai_scientist_v3/human_gate_logs/scientific_taste_prior_benchmark_portfolio_001.json",
     "docs/co_pilot_ai_scientist_v3/human_gate_schema.json",
+    "docs/co_pilot_ai_scientist_v3/human_revision_vs_ai_revision_protocol.json",
+    "docs/co_pilot_ai_scientist_v3/human_revision_vs_ai_revision_protocol.md",
     "docs/co_pilot_ai_scientist_v3/literature_matrix.md",
     "docs/co_pilot_ai_scientist_v3/paper_en.md",
     "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
@@ -991,14 +1002,7 @@
     "skills/co-pilot-ai-scientist-v3/SKILL.md",
     "skills/co-pilot-ai-scientist-v3/templates/claim_audit_template.md",
     "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json",
-    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/README.md",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.exit",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stdout.log",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_prepare.stderr.log",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.exit",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stdout.log",
-    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/logs/babylm_train_tiny.stderr.log"
+    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1012,7 +1016,8 @@
     "Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.",
     "Extend beyond the current three-seed CIFAR10/debug and three-seed OGBN-arxiv official-evaluator paths by adding another accessible official non-FML task or scaling matched end-to-end co-pilot/autonomous trajectories; keep the open-data package labeled as official-like boundary evidence.",
     "Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package.",
-    "Cache GPT-2 tokenizer/config assets or otherwise repair BabyLM before counting it as a third scored official MLAgentBench task; until then, treat the third-task probe as setup/blocker evidence only."
+    "Cache GPT-2 tokenizer/config assets or otherwise repair BabyLM before counting it as a third scored official MLAgentBench task; until then, treat the third-task probe as setup/blocker evidence only.",
+    "Repair the full official BabyLM eval.py path and run a larger BabyLM budget before treating BabyLM as a full third scored MLAgentBench benchmark; the current result is only a tiny compatibility score."
   ],
   "model_routing_policy": {
     "routine_coding_and_smoke_tests": "DeepSeek or low-cost Monica-routed model",
@@ -2060,9 +2065,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "4f9bf6118e2f7c2ad0678842ddc48a6be9721efe",
+    "head": "0462e6a768a47d7f6e20001b3c3616a19554f8ca",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 985,
+    "manifest_artifacts": 989,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2687,6 +2692,14 @@
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_third_task_feasibility_audit.md",
     "summary": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_third_task_feasibility_20260603/summary.json",
     "status": "pass",
-    "evidence_class": "mlagentbench_third_task_feasibility_inventory"
+    "evidence_class": "mlagentbench_third_task_feasibility_inventory_with_cached_tiny_score"
+  },
+  "human_revision_vs_ai_revision_protocol": {
+    "status": "pass",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/human_revision_vs_ai_revision_protocol_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/human_revision_vs_ai_revision_protocol_audit.md",
+    "protocol_markdown": "docs/co_pilot_ai_scientist_v3/human_revision_vs_ai_revision_protocol.md",
+    "protocol_json": "docs/co_pilot_ai_scientist_v3/human_revision_vs_ai_revision_protocol.json",
+    "claim_boundary": "This audit verifies that the protocol is complete enough to guide future version-chain experiments. It does not certify that any OpenReview case has been empirically run or that AI/IGRE revision outperforms human author revision."
   }
 }

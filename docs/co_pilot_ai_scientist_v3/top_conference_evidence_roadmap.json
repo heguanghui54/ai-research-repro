@@ -2,6 +2,16 @@
   "status": "roadmap_not_completed",
   "purpose": "Translate top-conference evidence gaps into concrete, auditable experiments.",
   "current_position": "Workflow-design contribution with reproducible pilot evidence; not yet proof of superiority over autonomous AI Scientist-v2.",
+  "cost_aware_pilot_logic": {
+    "rationale": "The current paper should use small, inspectable experiments to test whether a promising theory of human participation exists before expensive large-scale replay or prospective evaluation begins.",
+    "sequence": [
+      "Use low-cost OpenReview probes to identify routeable human taste and insight signals.",
+      "Run small but concrete regeneration and version-chain cases with visible reviews, artifacts, metrics, and failure modes.",
+      "Use those cases to refine IGRE gates and frontier-alignment metrics.",
+      "Scale only designs that show interpretable signal, or report negative pilot evidence if no design justifies large-scale cost."
+    ],
+    "claim_boundary": "Small pilots are used to decide whether large-scale experiments are worth running; they are not presented as settled evidence of broad human-AI collaboration superiority."
+  },
   "milestones": [
     {
       "id": "blind_human_expert_review",
@@ -32,6 +42,15 @@
       "minimum_design": "At least three selected cases from deep_regeneration_casebook.md, each with original paper summary, human review excerpts, regenerated artifacts, runnable experiment code or logs, short-term metrics, later-frontier evidence, and case-level route analysis.",
       "upgrade_condition": "The cases reveal inspectable mechanisms by which review guidance changes benchmarks, methods, failure analysis, or claim boundaries, with at least one case showing nontrivial similarity to a later mainstream research route.",
       "fallback_if_failed": "Keep the paper as a workflow/protocol proposal and use the failures to define which human review comments should be downweighted."
+    },
+    {
+      "id": "human_revision_vs_ai_scientist_revision",
+      "claim_tested": "When version-chain metadata is available, the same historical peer-review signal can be used to compare human author revision against raw AI Scientist revision and IGRE six-gate revision.",
+      "required_data": "P0 initial submission, R human peer reviews and decision text, PH human-revised or camera-ready paper, plus generated PAI, PAI-6G, and shuffled/no-review controls. Metadata should include forum_id, note_id, cdate, tcdate, ddate, invitation, revision, and PDF/content hashes when available.",
+      "minimum_design": "A small number of eligible deep cases is acceptable at the current budget stage, provided each case shows the exact review excerpts, generated artifacts, human-revised paper, version ordering, leakage guards, immediate metrics, and later-frontier alignment evidence.",
+      "metrics": "Review coverage, revision alignment, scientific delta, human-unique gain, AI-unique gain, six-gate gain, frontier alignment, claim calibration, and leakage flags.",
+      "upgrade_condition": "At least one case demonstrates an interpretable difference between human revision and AI/IGRE revision, such as humans adding tacit domain strategy, AI finding a different experiment path, or six-gate routing filtering useful review insight better than raw review prompting.",
+      "fallback_if_failed": "Report it as a negative pilot showing that version-chain replay needs better metadata, stronger time-capping, or different frontier metrics before large-scale runs are justified."
     },
     {
       "id": "live_multi_researcher_copilot_trace_data",
@@ -69,8 +88,8 @@
       "id": "official_non_fml_benchmark_scaling",
       "action": "Official non-FML benchmark scaling",
       "proof_target": "Move from two narrow scored official-evaluator MLAgentBench paths to broader non-FML evidence across either another official task or more end-to-end matched trajectories.",
-      "current_progress": "MLAgentBench vectorization is scored, the open-data sklearn matched package provides official-like held-out trigger-policy evidence, MLAgentBench CIFAR10/debug has a three-seed official run with mean 0.7743 versus starter 0.5103, OGBN-arxiv has a three-seed official-evaluator compatibility path with mean 0.5415 versus compatibility starter 0.02745, and BabyLM data preparation succeeds but remains unscored because HuggingFace GPT-2 tokenizer/config assets are unreachable.",
-      "best_near_term_path": "Cache GPT-2 assets and rerun the BabyLM compatibility path, add another accessible official MLAgentBench task if data and credentials permit, or scale matched end-to-end co-pilot/autonomous trajectories across tasks.",
+      "current_progress": "MLAgentBench vectorization is scored, the open-data sklearn matched package provides official-like held-out trigger-policy evidence, MLAgentBench CIFAR10/debug has a three-seed official run with mean 0.7743 versus starter 0.5103, OGBN-arxiv has a three-seed official-evaluator compatibility path with mean 0.5415 versus compatibility starter 0.02745, and BabyLM now has a cached tiny compatibility path with train loss 10.5886 plus manual 64-chunk eval loss 10.6504 and perplexity 42208.44. BabyLM remains a tiny compatibility score rather than a full benchmark.",
+      "best_near_term_path": "Repair the full official BabyLM eval.py path and run a larger BabyLM budget, add another accessible official MLAgentBench task if data and credentials permit, or scale matched end-to-end co-pilot/autonomous trajectories across tasks.",
       "blocking_condition": "HuggingFace asset access, data access, CPU/GPU runtime, or external account consent prevents additional official scores.",
       "fallback_if_blocked": "Report the current official CIFAR10/debug and OGBN-arxiv evidence as two narrow scored paths only; do not claim broad official benchmark coverage."
     },
@@ -103,6 +122,15 @@
     },
     {
       "priority": 5,
+      "id": "human_revision_vs_ai_scientist_revision_version_chain_pilot",
+      "action": "Human Revision vs AI Scientist Revision version-chain pilot",
+      "proof_target": "Use OpenReview or Hugging Face version metadata to compare PH human author revision against PAI raw AI Scientist revision and PAI-6G IGRE six-gate revision under the same review signal.",
+      "best_near_term_path": "Run only a few eligible deep cases at current budget, showing concrete reviews, generated artifacts, human-revised paper, leakage guards, and short-term/long-term metrics.",
+      "blocking_condition": "Version-chain metadata is missing or cannot prove that P0, reviews, and PH are temporally ordered.",
+      "fallback_if_blocked": "Downgrade to review-signal taxonomy, mini-artifact generation, or delayed-value candidate mining without claiming causal human-vs-AI revision comparison."
+    },
+    {
+      "priority": 6,
       "id": "external_skill_reuse_beyond_scripted_clean_environments",
       "action": "External skill reuse beyond scripted clean environments",
       "proof_target": "Show that the release skill can be used by another researcher or independently prepared environment to produce a valid gate log.",

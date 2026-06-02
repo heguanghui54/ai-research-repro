@@ -222,8 +222,9 @@ def main() -> None:
             "audit_status": third_task_audit.get("status"),
             "evidence_class": third_task_audit.get("evidence_class"),
             "prepare_exit": third_task_audit.get("babylm", {}).get("prepare_exit"),
-            "tiny_train_exit": third_task_audit.get("babylm", {}).get("tiny_train_exit"),
-            "blocking_error": third_task_audit.get("babylm", {}).get("blocking_error"),
+            "cached_tiny_train_exit": third_task_audit.get("babylm", {}).get("cached_tiny_train_exit"),
+            "manual_eval_exit": third_task_audit.get("babylm", {}).get("manual_eval_exit"),
+            "cached_tiny_eval": third_task_audit.get("babylm", {}).get("cached_tiny_eval"),
             "path": _rel(third_task_path),
             "audit_path": _rel(third_task_audit_path),
         },
@@ -337,13 +338,16 @@ def main() -> None:
         and ogbn_multiseed.get("seed_count", 0) >= 3
         and min(ogbn_multiseed.get("seed_scores", [0])) > ogbn_multiseed.get("baseline_score", 1)
         and "compatibility" in ogbn_multiseed.get("claim_boundary", "").lower(),
-        "mlagentbench_third_task_feasibility_audited_unscored": third_task_audit.get("status")
+        "mlagentbench_third_task_cached_tiny_score_audited": third_task_audit.get("status")
         == "pass"
-        and third_task_audit.get("evidence_class") == "mlagentbench_third_task_feasibility_inventory"
-        and third_task.get("status") == "setup_accessible_but_unscored"
+        and third_task_audit.get("evidence_class")
+        == "mlagentbench_third_task_feasibility_inventory_with_cached_tiny_score"
+        and third_task.get("status") == "setup_accessible_with_cached_tiny_compatibility_score"
         and third_task_audit.get("babylm", {}).get("prepare_exit") == "0"
-        and third_task_audit.get("babylm", {}).get("tiny_train_exit") == "1"
-        and "HuggingFace" in third_task_audit.get("babylm", {}).get("blocking_error", ""),
+        and third_task_audit.get("babylm", {}).get("cached_tiny_train_exit") == "0"
+        and third_task_audit.get("babylm", {}).get("manual_eval_exit") == "0"
+        and "not_full_babylm_benchmark"
+        in third_task_audit.get("babylm", {}).get("cached_tiny_eval", {}).get("scope", ""),
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -352,7 +356,7 @@ def main() -> None:
         and clrs_reduced.get("official_score_reported") is False
         and house_price.get("official_score_reported") is False
         and ogbn.get("official_score_reported") is False
-        and third_task.get("status") == "setup_accessible_but_unscored"
+        and "not a full BabyLM benchmark score" in third_task.get("claim_boundary", "")
         and science.get("score_reported") is False,
         "mlagentbench_clrs_dependency_repaired_but_unscored": clrs.get("dependency_status") == "repaired"
         and clrs.get("runner_reached_task_prompt") is True
@@ -537,8 +541,8 @@ def main() -> None:
             "Benchmark coverage now includes FML feasibility evidence, non-FML scored "
             "program-search probes, an open-data multi-task evaluator-stress pilot, "
             "a scored official multi-seed MLAgentBench CIFAR10/debug task, a scored "
-            "multi-seed OGBN-arxiv official-evaluator compatibility run, a direct-editing "
-            "boundary condition, a BabyLM third-task feasibility blocker, and logged "
+            "multi-seed OGBN-arxiv official-evaluator compatibility run, a narrow BabyLM "
+            "tiny compatibility score, a direct-editing boundary condition, and logged "
             "remaining official benchmark blockers. "
             "This supports selective workflow design, not whole-paper "
             "superiority over autonomous AI Scientist-v2."
