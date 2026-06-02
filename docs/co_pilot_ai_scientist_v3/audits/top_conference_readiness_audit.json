@@ -150,8 +150,8 @@
   },
   "clean_clone_reproducibility": {
     "status": "pass_for_current_pushed_artifact_rebuild",
-    "commit": "3a48d462cc0c8619937ec9cfdf43d4ce580bc57f",
-    "clean_clone_path": "/tmp/copilot-v3-clean-clone-3a48d462",
+    "commit": "e43bac0ab158e056e458d7184008ffa228b1164b",
+    "clean_clone_path": "/tmp/copilot-v3-clean-clone-e43bac0ab",
     "clone_mode": "shallow_depth_1_single_branch",
     "manifest_artifacts_checked": 594,
     "missing_manifest_artifacts": 0,
@@ -204,10 +204,11 @@
     "audited_pushed_commit": true,
     "generated_files_byte_identical_after_rebuild": false,
     "generated_file_drift_note": "Rebuilding in the clean clone refreshed derived trace-dataset audit files and four PDFs; scripts completed successfully and all manifest artifacts exist, so this is a source-rebuild pass rather than a byte-for-byte generated-artifact immutability claim.",
-    "note": "Verifies the current pushed paper/skill package at 3a48d462 with a shallow clean clone; shallow clone explains the one-entry commit index. Latest retrospective frontier probes remain negative for delayed-value evidence but are present and internally consistent.",
+    "note": "Verifies the current pushed paper/skill/TFR package at e43bac0ab with a shallow clean clone; shallow clone explains the one-entry commit index. Latest TFR probes remain negative for delayed-value evidence but are present, operationalized, and internally consistent.",
     "tfr_method_text_present": "pass",
     "tfr_skill_instructions_present": "pass",
-    "temporal_frontier_replay_audit_present": true
+    "temporal_frontier_replay_audit_present": true,
+    "temporal_frontier_replay_audit_status": "pass_with_negative_delayed_value_evidence"
   },
   "skill_reuse_smoke": {
     "status": "pass",
@@ -797,8 +798,8 @@
   },
   "clean_clone_reproducibility_audit": {
     "status": "pass_for_current_pushed_artifact_rebuild",
-    "commit": "3a48d462cc0c8619937ec9cfdf43d4ce580bc57f",
-    "clean_clone_path": "/tmp/copilot-v3-clean-clone-3a48d462",
+    "commit": "e43bac0ab158e056e458d7184008ffa228b1164b",
+    "clean_clone_path": "/tmp/copilot-v3-clean-clone-e43bac0ab",
     "clone_mode": "shallow_depth_1_single_branch",
     "manifest_artifacts_checked": 594,
     "missing_manifest_artifacts": 0,
@@ -851,10 +852,11 @@
     "audited_pushed_commit": true,
     "generated_files_byte_identical_after_rebuild": false,
     "generated_file_drift_note": "Rebuilding in the clean clone refreshed derived trace-dataset audit files and four PDFs; scripts completed successfully and all manifest artifacts exist, so this is a source-rebuild pass rather than a byte-for-byte generated-artifact immutability claim.",
-    "note": "Verifies the current pushed paper/skill package at 3a48d462 with a shallow clean clone; shallow clone explains the one-entry commit index. Latest retrospective frontier probes remain negative for delayed-value evidence but are present and internally consistent.",
+    "note": "Verifies the current pushed paper/skill/TFR package at e43bac0ab with a shallow clean clone; shallow clone explains the one-entry commit index. Latest TFR probes remain negative for delayed-value evidence but are present, operationalized, and internally consistent.",
     "tfr_method_text_present": "pass",
     "tfr_skill_instructions_present": "pass",
-    "temporal_frontier_replay_audit_present": true
+    "temporal_frontier_replay_audit_present": true,
+    "temporal_frontier_replay_audit_status": "pass_with_negative_delayed_value_evidence"
   },
   "live_skill_invocation_smoke": {
     "status": "pass",
