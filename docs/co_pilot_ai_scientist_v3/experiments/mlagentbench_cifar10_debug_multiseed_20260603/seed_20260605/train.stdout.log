@@ -1,0 +1,9 @@
+Epoch [1/8], loss: 1.5239, Train Accuracy: 49.42%, Test Accuracy: 48.60%
+Epoch [2/8], loss: 1.2229, Train Accuracy: 65.85%, Test Accuracy: 64.35%
+Epoch [3/8], loss: 1.1171, Train Accuracy: 68.77%, Test Accuracy: 67.32%
+Epoch [4/8], loss: 1.0410, Train Accuracy: 70.80%, Test Accuracy: 70.00%
+Epoch [5/8], loss: 0.9843, Train Accuracy: 73.02%, Test Accuracy: 71.64%
+Epoch [6/8], loss: 0.9421, Train Accuracy: 74.59%, Test Accuracy: 73.16%
+Epoch [7/8], loss: 0.9085, Train Accuracy: 77.97%, Test Accuracy: 76.41%
+Epoch [8/8], loss: 0.8930, Train Accuracy: 78.83%, Test Accuracy: 77.38%
+Done in 966.36s

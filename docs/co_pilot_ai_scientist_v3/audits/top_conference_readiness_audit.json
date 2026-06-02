@@ -1561,5 +1561,16 @@
     "candidate_frontier_scored_reviews": 13,
     "delayed_minus_control_mean_score": 0.064,
     "temporal_frontier_replay_audit_status": "pass_with_negative_delayed_value_evidence"
+  },
+  "mlagentbench_cifar10_multiseed": {
+    "status": "pass",
+    "seed_count": 3,
+    "baseline_score": 0.5103,
+    "mean_score": 0.7743,
+    "min_score": 0.7709,
+    "sample_std": 0.003675595189897806,
+    "mean_delta_vs_baseline": 0.264,
+    "all_seeds_beat_baseline": true,
+    "claim_boundary": "This is a three-seed robustness check for one official MLAgentBench CIFAR10/debug task. It strengthens the non-FML evidence slice but remains one task and does not prove broad co-pilot superiority, paper-quality improvement, or independent human benefit."
   }
 }

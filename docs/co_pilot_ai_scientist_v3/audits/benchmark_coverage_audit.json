@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T20:54:50Z",
+  "audit_date": "2026-06-02T21:35:28Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -21,13 +21,20 @@
     "evaluator_stress_trigger_policy_transfer_validated": true,
     "second_non_fml_priority_package_audited": {
       "audit_path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.json",
+      "multiseed_audit_path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_multiseed_audit.json",
       "task": "MLAgentBench debug / cifar10",
       "metric": "CIFAR10 test accuracy; higher is better",
       "baseline_score": 0.5103,
       "candidate_score": 0.7782,
-      "delta": 0.2679
+      "delta": 0.2679,
+      "seed_count": 3,
+      "mean_score": 0.7743,
+      "min_score": 0.7709,
+      "sample_std": 0.003675595189897806,
+      "mean_delta_vs_baseline": 0.264
     },
     "mlagentbench_cifar10_official_scored": true,
+    "mlagentbench_cifar10_multiseed_scored": true,
     "blocked_official_tasks_logged": true,
     "remaining_blocked_tasks_do_not_report_scores": true,
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,
@@ -55,6 +62,20 @@
       "candidate_score": 0.7782,
       "delta": 0.2679,
       "path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.json"
+    },
+    "mlagentbench_cifar10_multiseed": {
+      "task": "MLAgentBench debug / cifar10",
+      "metric": "CIFAR10 test accuracy; higher is better",
+      "baseline_score": 0.5103,
+      "seed_count": 3,
+      "mean_score": 0.7743,
+      "min_score": 0.7709,
+      "max_score": 0.7782,
+      "sample_std": 0.003675595189897806,
+      "mean_delta_vs_baseline": 0.264,
+      "min_delta_vs_baseline": 0.26060000000000005,
+      "all_seeds_beat_baseline": true,
+      "path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_multiseed_audit.json"
     },
     "algorithmic_program_search": {
       "knapsack_openevolve_score": 0.9994394752555711,
@@ -246,5 +267,5 @@
     "MLAgentBench vectorization speedups are positive but seed-sensitive.",
     "Max-Cut OpenEvolve advantage is small and single-seed."
   ],
-  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official MLAgentBench CIFAR10/debug task, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
+  "claim_boundary": "Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2."
 }

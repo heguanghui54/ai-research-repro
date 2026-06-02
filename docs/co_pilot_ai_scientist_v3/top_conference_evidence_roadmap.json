@@ -43,9 +43,10 @@
     {
       "id": "non_fml_official_benchmark_check",
       "claim_tested": "The workflow is not overfit to FML-Bench-style evidence and can be evaluated on official non-FML MLAgentBench tasks.",
-      "minimum_design": "At least one scored official non-FML MLAgentBench task plus a plan to scale across more seeds or another official task.",
+      "minimum_design": "At least one scored official non-FML MLAgentBench task with documented baseline, co-pilot-selected branch, official evaluator output, multi-seed robustness when feasible, and a plan to scale beyond one task.",
       "upgrade_condition": "The official non-FML benchmark shows workflow benefit or evaluator-safety benefit and is not treated as broad coverage without scale.",
-      "fallback_if_failed": "Limit official non-FML claims to the scored CIFAR10/debug task and keep broader benchmark claims future-facing."
+      "fallback_if_failed": "Keep official non-FML claims limited to the three-seed scored CIFAR10/debug task and keep broader benchmark claims future-facing.",
+      "required_data": "The current three-seed scored official CIFAR10/debug run plus another accessible official task when budget permits."
     },
     {
       "id": "public_skill_engineering_and_community_adoption",

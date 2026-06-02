@@ -98,6 +98,7 @@ def main() -> None:
     benchmark_coverage_audit_path = AUDIT_DIR / "benchmark_coverage_audit.json"
     second_non_fml_priority_audit_path = AUDIT_DIR / "second_non_fml_priority_package_audit.json"
     cifar_official_audit_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
+    cifar_multiseed_audit_path = AUDIT_DIR / "mlagentbench_cifar10_multiseed_audit.json"
     deep_regeneration_cases_audit_path = AUDIT_DIR / "deep_regeneration_cases_audit.json"
     prospective_gate_instrumentation_audit_path = AUDIT_DIR / "prospective_gate_instrumentation_audit.json"
     frontier_taxonomy_path = DOC_DIR / "experiments" / "frontier_alignment_taxonomy_20260602_233000" / "summary.json"
@@ -124,6 +125,7 @@ def main() -> None:
     benchmark_coverage_audit = _load_json(benchmark_coverage_audit_path)
     second_non_fml_priority_audit = _load_json(second_non_fml_priority_audit_path)
     cifar_official_audit = _load_json(cifar_official_audit_path)
+    cifar_multiseed_audit = _load_json(cifar_multiseed_audit_path)
     deep_regeneration_cases_audit = _load_json(deep_regeneration_cases_audit_path)
     prospective_gate_instrumentation_audit = _load_json(prospective_gate_instrumentation_audit_path)
     frontier_taxonomy = _load_json(frontier_taxonomy_path)
@@ -293,6 +295,9 @@ def main() -> None:
         },
         "mlagentbench_cifar10_official_audit_pass": cifar_official_audit.get("status") == "pass"
         and cifar_official_audit.get("candidate_score", 0) > cifar_official_audit.get("baseline_score", 1),
+        "mlagentbench_cifar10_multiseed_audit_pass": cifar_multiseed_audit.get("status") == "pass"
+        and cifar_multiseed_audit.get("seed_count", 0) >= 3
+        and cifar_multiseed_audit.get("all_seeds_beat_baseline") is True,
         "prospective_gate_instrumentation_audit_pass": prospective_gate_instrumentation_audit.get("status")
         == "pass_with_known_historical_gaps",
         "deep_regeneration_cases_audit_pass": deep_regeneration_cases_audit.get("status") == "pass",
@@ -355,7 +360,7 @@ def main() -> None:
     if explicit_requirements["second_non_fml_priority_package_audit_pass"]:
         next_required_evidence = [
             (
-                "Scale the scored official MLAgentBench CIFAR10/debug task across more seeds or add another accessible official non-FML task; keep the open-data package labeled as official-like boundary evidence."
+                "Extend beyond the three-seed official MLAgentBench CIFAR10/debug robustness check by adding another accessible official non-FML task or a larger multi-task/seed slice; keep the open-data package labeled as official-like boundary evidence."
                 if "Extend non-FML evidence beyond the scored MLAgentBench vectorization comparison"
                 in item
                 or "Pursue a true second scored official non-FML benchmark task" in item

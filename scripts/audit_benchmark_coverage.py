@@ -65,6 +65,7 @@ def main() -> None:
     cifar_path = EXP_DIR / "mlagentbench_cifar10_debug_setup_probe" / "summary.json"
     cifar_refresh_path = EXP_DIR / "mlagentbench_cifar10_debug_refresh_probe_20260602" / "summary.json"
     cifar_official_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
+    cifar_multiseed_path = AUDIT_DIR / "mlagentbench_cifar10_multiseed_audit.json"
     imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
     clrs_path = EXP_DIR / "mlagentbench_clrs_baseline_smoke_20260602" / "summary.json"
     clrs_reduced_path = EXP_DIR / "mlagentbench_clrs_reduced_smoke_20260602" / "summary.json"
@@ -110,6 +111,7 @@ def main() -> None:
     cifar = _load_json(cifar_path)
     cifar_refresh = _load_json(cifar_refresh_path)
     cifar_official = _load_json(cifar_official_path)
+    cifar_multiseed = _load_json(cifar_multiseed_path)
     imdb = _load_json(imdb_path)
     clrs = _load_json(clrs_path)
     clrs_reduced = _load_json(clrs_reduced_path)
@@ -286,6 +288,12 @@ def main() -> None:
         "mlagentbench_cifar10_official_scored": cifar_official.get("status") == "pass"
         and cifar_official.get("evidence_class") == "scored_official_mlagentbench_non_fml_task"
         and cifar_official.get("candidate_score", 0) > cifar_official.get("baseline_score", 1),
+        "mlagentbench_cifar10_multiseed_scored": cifar_multiseed.get("status") == "pass"
+        and cifar_multiseed.get("evidence_class")
+        == "scored_official_mlagentbench_non_fml_multiseed_task"
+        and cifar_multiseed.get("seed_count", 0) >= 3
+        and cifar_multiseed.get("all_seeds_beat_baseline") is True
+        and cifar_multiseed.get("min_score", 0) > cifar_multiseed.get("baseline_score", 1),
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -346,6 +354,20 @@ def main() -> None:
                 "candidate_score": cifar_official.get("candidate_score"),
                 "delta": cifar_official.get("delta"),
                 "path": _rel(cifar_official_path),
+            },
+            "mlagentbench_cifar10_multiseed": {
+                "task": cifar_multiseed.get("task"),
+                "metric": cifar_multiseed.get("metric"),
+                "baseline_score": cifar_multiseed.get("baseline_score"),
+                "seed_count": cifar_multiseed.get("seed_count"),
+                "mean_score": cifar_multiseed.get("mean_score"),
+                "min_score": cifar_multiseed.get("min_score"),
+                "max_score": cifar_multiseed.get("max_score"),
+                "sample_std": cifar_multiseed.get("sample_std"),
+                "mean_delta_vs_baseline": cifar_multiseed.get("mean_delta_vs_baseline"),
+                "min_delta_vs_baseline": cifar_multiseed.get("min_delta_vs_baseline"),
+                "all_seeds_beat_baseline": cifar_multiseed.get("all_seeds_beat_baseline"),
+                "path": _rel(cifar_multiseed_path),
             },
             "algorithmic_program_search": {
                 "knapsack_openevolve_score": knapsack_open_score,
@@ -412,7 +434,7 @@ def main() -> None:
         "claim_boundary": (
             "Benchmark coverage now includes FML feasibility evidence, non-FML scored "
             "program-search probes, an open-data multi-task evaluator-stress pilot, "
-            "a scored official MLAgentBench CIFAR10/debug task, a direct-editing "
+            "a scored official multi-seed MLAgentBench CIFAR10/debug task, a direct-editing "
             "boundary condition, and logged remaining official benchmark blockers. "
             "This supports selective workflow design, not whole-paper "
             "superiority over autonomous AI Scientist-v2."
@@ -446,6 +468,14 @@ def main() -> None:
             f"`{cifar_official.get('baseline_score')}` versus co-pilot selected score "
             f"`{cifar_official.get('candidate_score')}`, delta "
             f"`{cifar_official.get('delta')}`."
+        ),
+        (
+            "- MLAgentBench CIFAR10/debug multi-seed official check: "
+            f"`{cifar_multiseed.get('seed_count')}` co-pilot-selected seeds; mean score "
+            f"`{cifar_multiseed.get('mean_score'):.4f}`, min score "
+            f"`{cifar_multiseed.get('min_score'):.4f}`, sample std "
+            f"`{cifar_multiseed.get('sample_std'):.6f}`, mean delta vs baseline "
+            f"`{cifar_multiseed.get('mean_delta_vs_baseline'):.4f}`."
         ),
         (
             "- Program search subproblems: knapsack OpenEvolve "
@@ -508,6 +538,11 @@ def main() -> None:
     lines.append(
         "- `mlagentbench_cifar10_official`: "
         f"`{cifar_official.get('status')}`; official score reported with delta `{cifar_official.get('delta')}`."
+    )
+    lines.append(
+        "- `mlagentbench_cifar10_multiseed`: "
+        f"`{cifar_multiseed.get('status')}`; `{cifar_multiseed.get('seed_count')}` official "
+        f"co-pilot-selected seeds with minimum score `{cifar_multiseed.get('min_score')}`."
     )
     lines.extend(["", "## Checks", ""])
     for name, ok in checks.items():

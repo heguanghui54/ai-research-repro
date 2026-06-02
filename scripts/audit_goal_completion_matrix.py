@@ -106,6 +106,9 @@ def main() -> None:
     remote_branch_pushed = _remote_contains_branch(remote_url, branch)
     benchmark_vector = benchmark_coverage.get("evidence_summary", {}).get("mlagentbench_vectorization", {})
     benchmark_cifar = benchmark_coverage.get("evidence_summary", {}).get("mlagentbench_cifar10_official", {})
+    benchmark_cifar_multiseed = benchmark_coverage.get("evidence_summary", {}).get(
+        "mlagentbench_cifar10_multiseed", {}
+    )
     second_non_fml = benchmark_coverage.get("checks", {}).get("second_non_fml_priority_package_audited")
     second_non_fml_summary = benchmark_coverage.get("evidence_summary", {}).get(
         "open_data_multitask_evaluator_stress", {}
@@ -127,6 +130,11 @@ def main() -> None:
     official_cifar_complete = (
         benchmark_coverage.get("checks", {}).get("mlagentbench_cifar10_official_scored") is True
         and benchmark_cifar.get("candidate_score", 0) > benchmark_cifar.get("baseline_score", 1)
+    )
+    official_cifar_multiseed_complete = (
+        benchmark_coverage.get("checks", {}).get("mlagentbench_cifar10_multiseed_scored") is True
+        and benchmark_cifar_multiseed.get("seed_count", 0) >= 3
+        and benchmark_cifar_multiseed.get("all_seeds_beat_baseline") is True
     )
 
     requirements = [
@@ -190,16 +198,22 @@ def main() -> None:
                 _rel(DOC_DIR / "audits" / "benchmark_coverage_audit.md"),
                 _rel(second_non_fml_audit_path),
                 _rel(DOC_DIR / "audits" / "mlagentbench_cifar10_official_audit.md"),
+                _rel(DOC_DIR / "audits" / "mlagentbench_cifar10_multiseed_audit.md"),
             ],
             (
                 "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, "
                 "all faster than the starter, and a failed direct-rewrite correctness baseline. It now also has a scored official MLAgentBench "
                 f"CIFAR10/debug task with baseline {benchmark_cifar.get('baseline_score')} and co-pilot-selected score {benchmark_cifar.get('candidate_score')}, "
-                f"delta {benchmark_cifar.get('delta')}. The official-like open-data matched package adds 5 sklearn tasks, 5 split seeds, "
+                f"delta {benchmark_cifar.get('delta')}; the three-seed robustness audit has mean {benchmark_cifar_multiseed.get('mean_score')}, "
+                f"minimum {benchmark_cifar_multiseed.get('min_score')}, and sample std {benchmark_cifar_multiseed.get('sample_std')}. "
+                "The official-like open-data matched package adds 5 sklearn tasks, 5 split seeds, "
                 "25 paired selections, and held-out trigger-policy transfer. This supports benchmark-portfolio coverage, but one official task "
                 "and one official-like package do not prove broad top-conference empirical sufficiency."
             )
-            if non_fml_scored_complete and second_non_fml_official_like_complete and official_cifar_complete
+            if non_fml_scored_complete
+            and second_non_fml_official_like_complete
+            and official_cifar_complete
+            and official_cifar_multiseed_complete
             else (
                 "The package now includes a scored non-FML MLAgentBench vectorization comparison with 8/8 correct OpenEvolve-style best programs, "
                 "all faster than the starter, and a failed direct-rewrite correctness baseline. It also has a scored official-like open-data "
@@ -214,7 +228,7 @@ def main() -> None:
             )
             if non_fml_scored_complete
             else "The package considers FML-bench, MLAgentBench, OpenReview, OpenEvolve-style probes, and TFR, but a complete scored non-FML comparison is not yet proven.",
-            "Scale CIFAR10/debug across more seeds or add another scored official task; keep the open-data package labeled as official-like boundary evidence.",
+            "Add another scored official task or scale beyond the current three-seed CIFAR10/debug slice; keep the open-data package labeled as official-like boundary evidence.",
         ),
         _requirement(
             "human_taste_and_insight_theory",

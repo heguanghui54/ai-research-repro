@@ -31,7 +31,7 @@ setup probe becomes a scored run.
 | --- | --- | --- | --- | --- |
 | A | FML-bench | AI Scientist-v2-style ML benchmark search over target code | Branch gate, selected-branch continuation, evaluator failures | Runnable and already used |
 | A | OpenEvolve-controlled tasks | Machine-gradeable program search | AlphaEvolve-style escalation gate and direct-edit ablation | Runnable; function minimization, knapsack, and Max-Cut archived |
-| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug is now a scored official run after pre-caching the official CIFAR10 archive, with starter baseline `0.5103` and co-pilot-selected branch `0.7782`; IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but both the official CPU-only baseline and a reduced feasibility run timed out without a checkpoint; house-price reached the official prepare script but is blocked by Kaggle CLI and likely competition-consent requirements |
+| B | MLAgentBench | End-to-end ML experimentation agents | Broader ML experiment-loop validation beyond FML-bench | Vectorization task now has an eight-seed controlled probe; CIFAR10/debug is now a scored official run after pre-caching the official CIFAR10 archive, with starter baseline `0.5103` and a three-seed co-pilot-selected mean of `0.7743` (min `0.7709`, std `0.003676`); IMDB dependency was repaired but HuggingFace data access is blocked; CLRS dependencies were repaired and the runner entered `train.py`, but both the official CPU-only baseline and a reduced feasibility run timed out without a checkpoint; house-price reached the official prepare script but is blocked by Kaggle CLI and likely competition-consent requirements |
 | B | sklearn diabetes tabular probe | Lightweight supervised-learning model search | Non-FML, non-runtime-only boundary test for direct edit vs program search | Three OpenEvolve seeds and one direct rewrite archived |
 | B | ScienceAgentBench | Data-driven scientific discovery code tasks from publications | Non-FML scientific workflow validation, especially evaluator/claim gates | Code present; HuggingFace metadata and verified artifacts currently unreachable from Ubuntu host |
 | C | MLE-bench Lite | Kaggle-style ML engineering | High-signal, higher-cost end-to-end ML engineering evidence | Stretch benchmark |
@@ -79,7 +79,10 @@ of Co-Pilot AI Scientist v3.
    official prepare completed, and the MLAgentBench `debug` task produced a
    scored official baseline and co-pilot-selected branch: the starter baseline
    scored `0.5103` test accuracy and the co-pilot-selected branch scored
-   `0.7782`, delta `+0.2679`, under the same official evaluator. An additional
+   `0.7782`, delta `+0.2679`, under the same official evaluator. The same
+   branch was then rerun with two additional seeds, scoring `0.7709` and
+   `0.7738`; the three-seed mean is `0.7743`, minimum `0.7709`, and sample std
+   `0.003676`. An additional
    official `imdb` probe repaired the missing `datasets` dependency but failed
    when the Ubuntu host could not reach HuggingFace, so it is still reported as
    setup evidence only. A CLRS probe repaired the earlier dependency gap by installing
@@ -92,8 +95,9 @@ of Co-Pilot AI Scientist v3.
    A house-price setup probe reached the official MLAgentBench prepare script,
    but the task requires the Kaggle CLI and likely Kaggle account/rule consent;
    it is therefore logged as a credential-bound official benchmark blocker, not
-   as a score. The current official CIFAR result is one task and one seed; it
-   should be scaled before claiming broad MLAgentBench coverage.
+   as a score. The current official CIFAR result is still one task, even though
+   it now has three co-pilot-selected seeds; another official task or a larger
+   task portfolio is needed before claiming broad MLAgentBench coverage.
 5. **ScienceAgentBench single task**: first download the verified benchmark
    artifacts on the Ubuntu host. A metadata setup probe confirmed that the
    repository is present but HuggingFace metadata access fails from the Ubuntu

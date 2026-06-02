@@ -1,6 +1,6 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T20:54:50Z`
+- Audit date: `2026-06-02T21:35:28Z`
 - Status: `pass`
 - FML entries: `2`
 - Non-FML entries: `11`
@@ -9,6 +9,7 @@
 
 - MLAgentBench vectorization: `8/8` correct best programs; median runtime `0.024580717086791992` seconds versus starter `3.261186361312866` seconds; direct rewrite correctness `False`.
 - MLAgentBench CIFAR10/debug official task: baseline score `0.5103` versus co-pilot selected score `0.7782`, delta `0.2679`.
+- MLAgentBench CIFAR10/debug multi-seed official check: `3` co-pilot-selected seeds; mean score `0.7743`, min score `0.7709`, sample std `0.003676`, mean delta vs baseline `0.2640`.
 - Program search subproblems: knapsack OpenEvolve `0.9994394752555711` versus direct `0.9952700988954383`; Max-Cut OpenEvolve-minus-direct `0.0085959186678094`.
 - Open-data evaluator-stress pilot: `5` sklearn tasks, `5` split seeds, `25` paired selections, `8` candidates each, co-pilot mean balanced accuracy `0.9264256134480804` versus autonomous `0.9248566268790939`, delta `0.00156898656898655`; selection changed in `4` paired selections.
 - Evaluator-stress trigger policy: best policy `class_imbalance_trigger_0_94` with delta `0.003076923076923066` versus always-on delta `0.00156898656898655`.
@@ -27,6 +28,7 @@
 - `mlagentbench_house_price`: `setup_blocked_by_missing_kaggle_cli_and_competition_consent`; no official score reported.
 - `scienceagentbench`: `metadata_and_verified_artifacts_not_yet_accessible`; no official score reported.
 - `mlagentbench_cifar10_official`: `pass`; official score reported with delta `0.2679`.
+- `mlagentbench_cifar10_multiseed`: `pass`; `3` official co-pilot-selected seeds with minimum score `0.7709`.
 
 ## Checks
 
@@ -49,6 +51,7 @@
 - `evaluator_stress_trigger_policy_transfer_validated`: `pass`
 - `second_non_fml_priority_package_audited`: `pass`
 - `mlagentbench_cifar10_official_scored`: `pass`
+- `mlagentbench_cifar10_multiseed_scored`: `pass`
 - `blocked_official_tasks_logged`: `pass`
 - `remaining_blocked_tasks_do_not_report_scores`: `pass`
 - `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`
@@ -67,4 +70,4 @@
 
 ## Claim Boundary
 
-Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official MLAgentBench CIFAR10/debug task, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.
+Benchmark coverage now includes FML feasibility evidence, non-FML scored program-search probes, an open-data multi-task evaluator-stress pilot, a scored official multi-seed MLAgentBench CIFAR10/debug task, a direct-editing boundary condition, and logged remaining official benchmark blockers. This supports selective workflow design, not whole-paper superiority over autonomous AI Scientist-v2.

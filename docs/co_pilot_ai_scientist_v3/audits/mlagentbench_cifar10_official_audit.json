@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T20:54:50Z",
+  "audit_date": "2026-06-02T21:35:28Z",
   "status": "pass",
-  "head": "fa7269cab5f1b3750c36c5b58b9c5867f002eb44",
+  "head": "df1db1339071e30dd9fd34faf2bb290c079eee12",
   "evidence_class": "scored_official_mlagentbench_non_fml_task",
   "task": "MLAgentBench debug / cifar10",
   "metric": "CIFAR10 test accuracy; higher is better",

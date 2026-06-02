@@ -132,6 +132,7 @@ def main() -> None:
     heldout_trigger_path = EXP_DIR / HELDOUT_PACKAGE / "evaluator_stress_trigger_policy_summary.json"
     transfer_path = EXP_DIR / TRANSFER_PACKAGE / "summary.json"
     cifar_official_path = AUDIT_DIR / "mlagentbench_cifar10_official_audit.json"
+    cifar_multiseed_path = AUDIT_DIR / "mlagentbench_cifar10_multiseed_audit.json"
 
     train_metrics = _load_json(train_metrics_path)
     heldout_metrics = _load_json(heldout_metrics_path)
@@ -139,6 +140,7 @@ def main() -> None:
     heldout_trigger = _load_json(heldout_trigger_path)
     transfer = _load_json(transfer_path)
     cifar_official = _load_json(cifar_official_path)
+    cifar_multiseed = _load_json(cifar_multiseed_path)
 
     train_metric_checks = _metric_checks(train_metrics)
     heldout_metric_checks = _metric_checks(heldout_metrics)
@@ -168,6 +170,10 @@ def main() -> None:
         == "scored_official_mlagentbench_non_fml_task",
         "official_cifar_candidate_beats_baseline": cifar_official.get("candidate_score", 0)
         > cifar_official.get("baseline_score", 1),
+        "official_cifar_multiseed_audit_pass": cifar_multiseed.get("status") == "pass",
+        "official_cifar_multiseed_all_beat_baseline": cifar_multiseed.get("all_seeds_beat_baseline")
+        is True,
+        "official_cifar_multiseed_seed_count": cifar_multiseed.get("seed_count", 0) >= 3,
     }
 
     official_blockers_kept_unscored = all(item["kept_unscored"] for item in official_blockers.values())
@@ -201,11 +207,17 @@ def main() -> None:
         "priority_queue_item": "Second scored non-FML benchmark package",
         "official_mlagentbench_cifar10": {
             "audit_path": _rel(cifar_official_path),
+            "multiseed_audit_path": _rel(cifar_multiseed_path),
             "task": cifar_official.get("task"),
             "metric": cifar_official.get("metric"),
             "baseline_score": cifar_official.get("baseline_score"),
             "candidate_score": cifar_official.get("candidate_score"),
             "delta": cifar_official.get("delta"),
+            "seed_count": cifar_multiseed.get("seed_count"),
+            "mean_score": cifar_multiseed.get("mean_score"),
+            "min_score": cifar_multiseed.get("min_score"),
+            "sample_std": cifar_multiseed.get("sample_std"),
+            "mean_delta_vs_baseline": cifar_multiseed.get("mean_delta_vs_baseline"),
         },
         "official_like_package": {
             "train_package": TRAIN_PACKAGE,
@@ -245,7 +257,7 @@ def main() -> None:
         "claim_boundary": (
             "This closes a low-cost official-like non-FML matched-package gap: "
             "the package is scored, open-data, matched, held-out, and auditable; "
-            "it also adds a scored official MLAgentBench CIFAR10/debug result. "
+            "it also adds a three-seed scored official MLAgentBench CIFAR10/debug result. "
             "The evidence is still one official task plus one official-like package, "
             "not broad AI Scientist-v2 paper-quality superiority."
         ),
@@ -265,6 +277,9 @@ def main() -> None:
         f"- Official MLAgentBench CIFAR10 baseline score: `{audit['official_mlagentbench_cifar10']['baseline_score']}`",
         f"- Official MLAgentBench CIFAR10 co-pilot selected score: `{audit['official_mlagentbench_cifar10']['candidate_score']}`",
         f"- Official MLAgentBench CIFAR10 delta: `{audit['official_mlagentbench_cifar10']['delta']}`",
+        f"- Official MLAgentBench CIFAR10 multi-seed mean score: `{audit['official_mlagentbench_cifar10']['mean_score']}`",
+        f"- Official MLAgentBench CIFAR10 multi-seed min score: `{audit['official_mlagentbench_cifar10']['min_score']}`",
+        f"- Official MLAgentBench CIFAR10 multi-seed sample std: `{audit['official_mlagentbench_cifar10']['sample_std']}`",
         f"- Train package: `{audit['train_package']}`",
         f"- Held-out package: `{audit['heldout_package']}`",
         f"- Selected trigger policy: `{audit['selected_trigger_policy']}`",

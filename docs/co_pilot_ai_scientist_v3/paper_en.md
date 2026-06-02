@@ -418,9 +418,12 @@ MLAgentBench vectorization probe for end-to-end ML experimentation and now add
 one scored official MLAgentBench non-FML task. After pre-caching the official
 CIFAR10 archive, the MLAgentBench CIFAR10/debug starter baseline receives an
 official score of `0.5103`, while the co-pilot-selected branch receives
-`0.7782` under the official CIFAR10 evaluator, a single-task delta of
-`+0.2679`. This strengthens non-FML coverage, but it remains one official task
-and one seed; it is not broad benchmark evidence. The MLAgentBench IMDB probe
+`0.7782` under the official CIFAR10 evaluator in the first run. We then repeat
+the same co-pilot-selected branch for two additional seeds, obtaining official
+scores `0.7709` and `0.7738`; across three seeds, the mean score is `0.7743`,
+the minimum is `0.7709`, and the sample standard deviation is `0.003676`.
+This strengthens non-FML coverage, but it remains one official task; it is not
+broad benchmark evidence. The MLAgentBench IMDB probe
 repaired the missing `datasets` dependency but could not reach HuggingFace from
 the Ubuntu host, and ScienceAgentBench metadata/artifacts were not reachable.
 Higher-cost stretch benchmarks include
@@ -748,7 +751,10 @@ MLAgentBench CIFAR10/debug task. Its setup probe first repaired a missing
 `torch` version; after the official 170 MB CIFAR10 archive was pre-cached, the
 official starter run completed with score `0.5103`, and a co-pilot-selected
 batch-normalized CNN with augmentation, AdamW, cosine learning rate, label
-smoothing, and eight training epochs reached official score `0.7782`. We also
+smoothing, and eight training epochs reached official score `0.7782` in the
+first run. Two additional seeds for the same branch reached `0.7709` and
+`0.7738`, giving a three-seed mean of `0.7743`, minimum of `0.7709`, and sample
+standard deviation of `0.003676`. We also
 probed ScienceAgentBench. The repository was present on the Ubuntu host, and
 its README points to the April 2026 verified split and
 `benchmark_verified.zip`, but the local benchmark directory did not contain the
@@ -757,10 +763,10 @@ verified artifacts and the HuggingFace metadata request failed with
 MLAgentBench `imdb` folder. After installing the missing `datasets` dependency
 required by its official `eval.py`, even a five-example dataset load failed
 with the same HuggingFace network error. We therefore report CIFAR10/debug as a
-scored official non-FML task, while ScienceAgentBench and IMDB remain setup
-artifacts rather than benchmark scores. The next non-FML expansion should scale
-CIFAR10/debug across seeds or add another accessible official task, not retreat
-to FML-bench alone.
+scored official non-FML task with a small three-seed robustness check, while
+ScienceAgentBench and IMDB remain setup artifacts rather than benchmark scores.
+The next non-FML expansion should add another accessible official task or scale
+to a larger official task portfolio, not retreat to FML-bench alone.
 
 ### 4.5 Claim Audit
 

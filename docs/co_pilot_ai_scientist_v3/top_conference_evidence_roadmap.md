@@ -35,13 +35,15 @@ The current priority order is:
    robust non-FML evidence slice. Current progress: MLAgentBench vectorization
    is scored, the open-data sklearn matched package provides official-like
    held-out trigger-policy evidence, and MLAgentBench CIFAR10/debug is now a
-   scored official task after pre-caching the official CIFAR10 archive
-   (`0.5103` starter baseline versus `0.7782` co-pilot-selected branch, delta
-   `+0.2679`). Best near-term path: rerun CIFAR10/debug across additional
-   seeds or repair one more accessible MLAgentBench task with complete gate
-   logs. Blocking condition: data access, CPU/GPU runtime, or external account
-   consent prevents additional official scores. If blocked, report the current
-   official CIFAR result as one-task evidence only.
+   scored official task after pre-caching the official CIFAR10 archive. The
+   starter baseline scores `0.5103`, while the co-pilot-selected branch scores
+   `0.7782`, `0.7709`, and `0.7738` across three seeds, with mean `0.7743`,
+   minimum `0.7709`, sample std `0.003676`, and mean delta `+0.2640`. Best
+   near-term path: repair one more accessible MLAgentBench task with complete
+   gate logs or scale to a larger official task portfolio. Blocking condition:
+   data access, CPU/GPU runtime, or external account consent prevents
+   additional official scores. If blocked, report the current official CIFAR
+   result as one-task evidence only.
 
 2. **Blind expert review packet collection.**
    Proof target: test whether qualified human reviewers prefer IGRE-gated or
@@ -189,17 +191,17 @@ The current priority order is:
 
 - Claim tested: the workflow is not overfit to FML-Bench-style evidence and can
   be evaluated on official non-FML MLAgentBench tasks.
-- Required data: the current scored official CIFAR10/debug run plus additional
-  seeds or another accessible official task when budget permits.
-- Minimum design: at least one scored official non-FML MLAgentBench task, with
+- Required data: the current three-seed scored official CIFAR10/debug run plus
+  another accessible official task when budget permits.
+- Minimum design: at least one scored official non-FML MLAgentBench task with
   a documented baseline, co-pilot-selected branch, official evaluator output,
-  and a plan to scale beyond one task/seed.
+  multi-seed robustness when feasible, and a plan to scale beyond one task.
 - Metrics: official task score, validity, runtime or cost, evaluator-stress
   outcome where applicable, and manuscript/claim quality.
 - Upgrade condition: the official non-FML benchmark shows workflow benefit or
   evaluator-safety benefit and is not treated as broad coverage without scale.
-- If it fails: keep official non-FML claims limited to the scored CIFAR10/debug
-  task and keep broader benchmark claims future-facing.
+- If it fails: keep official non-FML claims limited to the three-seed scored
+  CIFAR10/debug task and keep broader benchmark claims future-facing.
 
 ## Milestone 7: Public Skill Engineering And Community Adoption
 

@@ -87,6 +87,8 @@
     "docs/co_pilot_ai_scientist_v3/audits/lhtg_dvrs_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/mixed_negative_evidence_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/mixed_negative_evidence_audit.md",
+    "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_multiseed_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_multiseed_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.json",
     "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.md",
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
@@ -444,6 +446,15 @@
     "docs/co_pilot_ai_scientist_v3/experiments/maxcut_task/initial_program.py",
     "docs/co_pilot_ai_scientist_v3/experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/metric_gaming_evaluator_stress_smoke_20260602_171500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603/seed_20260603/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603/seed_20260603/train.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603/seed_20260603/train.stdout.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603/seed_20260604/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603/seed_20260604/train.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603/seed_20260604/train.stdout.log",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603/seed_20260605/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603/seed_20260605/train.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603/seed_20260605/train.stdout.log",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_official_20260603/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_official_20260603/baseline/eval.json",
     "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_official_20260603/baseline/eval.stdout.log",
@@ -963,7 +974,7 @@
     "Run at least 5 matched-budget pairs per task across at least 3 tasks, with means, variance, and paired tests before making superiority claims.",
     "Repeat same-run end-to-end co-pilot/autonomous manuscript pairs across more tasks and seeds, then score them with independent reviewers.",
     "Populate attention_cost and taste_insight in all future prospective human gates, then compare downstream outcomes and human effort.",
-    "Scale the scored official MLAgentBench CIFAR10/debug task across more seeds or add another accessible official non-FML task; keep the open-data package labeled as official-like boundary evidence.",
+    "Extend beyond the three-seed official MLAgentBench CIFAR10/debug robustness check by adding another accessible official non-FML task or a larger multi-task/seed slice; keep the open-data package labeled as official-like boundary evidence.",
     "Rewrite the main manuscript into a focused conference-paper structure after stronger evidence is available; keep current version as pilot/reproducibility package."
   ],
   "model_routing_policy": {
@@ -2005,9 +2016,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "fa7269cab5f1b3750c36c5b58b9c5867f002eb44",
+    "head": "df1db1339071e30dd9fd34faf2bb290c079eee12",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 938,
+    "manifest_artifacts": 949,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2352,18 +2363,24 @@
     "claim_boundary": "Engineering release-sync evidence only; not scientific superiority evidence."
   },
   "second_non_fml_priority_package_audit": {
-    "audit_date": "2026-06-02T20:54:50Z",
+    "audit_date": "2026-06-02T21:35:28Z",
     "status": "pass",
-    "head": "fa7269cab5f1b3750c36c5b58b9c5867f002eb44",
+    "head": "df1db1339071e30dd9fd34faf2bb290c079eee12",
     "evidence_class": "scored_official_mlagentbench_non_fml_plus_official_like_package",
     "priority_queue_item": "Second scored non-FML benchmark package",
     "official_mlagentbench_cifar10": {
       "audit_path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_official_audit.json",
+      "multiseed_audit_path": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_multiseed_audit.json",
       "task": "MLAgentBench debug / cifar10",
       "metric": "CIFAR10 test accuracy; higher is better",
       "baseline_score": 0.5103,
       "candidate_score": 0.7782,
-      "delta": 0.2679
+      "delta": 0.2679,
+      "seed_count": 3,
+      "mean_score": 0.7743,
+      "min_score": 0.7709,
+      "sample_std": 0.003675595189897806,
+      "mean_delta_vs_baseline": 0.264
     },
     "official_like_package": {
       "train_package": "prospective_matched_open_data_multitask_20260603",
@@ -2436,7 +2453,10 @@
       "official_cifar_checks": {
         "official_cifar_audit_pass": true,
         "official_cifar_scored": true,
-        "official_cifar_candidate_beats_baseline": true
+        "official_cifar_candidate_beats_baseline": true,
+        "official_cifar_multiseed_audit_pass": true,
+        "official_cifar_multiseed_all_beat_baseline": true,
+        "official_cifar_multiseed_seed_count": true
       },
       "official_blockers_kept_unscored": true
     },
@@ -2479,12 +2499,12 @@
       }
     },
     "errors": [],
-    "claim_boundary": "This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable; it also adds a scored official MLAgentBench CIFAR10/debug result. The evidence is still one official task plus one official-like package, not broad AI Scientist-v2 paper-quality superiority."
+    "claim_boundary": "This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable; it also adds a three-seed scored official MLAgentBench CIFAR10/debug result. The evidence is still one official task plus one official-like package, not broad AI Scientist-v2 paper-quality superiority."
   },
   "mlagentbench_cifar10_official_audit": {
-    "audit_date": "2026-06-02T20:54:50Z",
+    "audit_date": "2026-06-02T21:35:28Z",
     "status": "pass",
-    "head": "fa7269cab5f1b3750c36c5b58b9c5867f002eb44",
+    "head": "df1db1339071e30dd9fd34faf2bb290c079eee12",
     "evidence_class": "scored_official_mlagentbench_non_fml_task",
     "task": "MLAgentBench debug / cifar10",
     "metric": "CIFAR10 test accuracy; higher is better",
@@ -2536,5 +2556,20 @@
     "candidate_frontier_scored_reviews": 13,
     "delayed_minus_control_mean_score": 0.064,
     "temporal_frontier_replay_audit_status": "pass_with_negative_delayed_value_evidence"
+  },
+  "mlagentbench_cifar10_multiseed_audit": {
+    "status": "pass",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_multiseed_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/mlagentbench_cifar10_multiseed_audit.md",
+    "experiment_dir": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_multiseed_20260603",
+    "evidence_class": "scored_official_mlagentbench_non_fml_multiseed_task",
+    "seed_count": 3,
+    "baseline_score": 0.5103,
+    "mean_score": 0.7743,
+    "min_score": 0.7709,
+    "sample_std": 0.003675595189897806,
+    "mean_delta_vs_baseline": 0.264,
+    "all_seeds_beat_baseline": true,
+    "claim_boundary": "Three co-pilot-selected seeds for one official MLAgentBench CIFAR10/debug task; still not broad benchmark coverage, independent human evidence, or paper-quality superiority."
   }
 }

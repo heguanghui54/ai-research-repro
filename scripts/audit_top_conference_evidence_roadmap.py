@@ -50,7 +50,8 @@ REQUIRED_MILESTONES = {
     "non_fml_official_benchmark_check": [
         "non-FML",
         "official",
-        "more seeds",
+        "multi-seed",
+        "beyond one task",
     ],
     "public_skill_engineering_and_community_adoption": [
         "standalone skill README",

@@ -1,0 +1,9 @@
+{
+  "run_dir": "/home/heshi/work/copilotv3-mlagentbench-cifar10-debug-human-gated-seed-20260605-20260603",
+  "task": "MLAgentBench debug / cifar10",
+  "mode": "co_pilot_selected_branch_direct_official_eval_seed_replicate",
+  "seed": 20260605,
+  "official_eval_score": 0.7738,
+  "metric": "CIFAR10 test accuracy; higher is better",
+  "timestamp": "2026-06-02T21:26:38Z"
+}

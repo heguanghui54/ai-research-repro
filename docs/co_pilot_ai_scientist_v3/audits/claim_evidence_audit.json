@@ -246,13 +246,18 @@
     },
     {
       "claim_id": "mlagentbench_cifar10_official_non_fml",
-      "claim": "The benchmark package now includes one scored official MLAgentBench non-FML task.",
-      "evidence": "mlagentbench_cifar10_official_audit.md/json verifies the official MLAgentBench CIFAR10/debug starter baseline score 0.5103, co-pilot-selected score 0.7782, and delta +0.2679; second_non_fml_priority_package_audit.md/json keeps the open-data sklearn package labeled as official-like boundary evidence.",
-      "status": "supported_narrowly_one_official_task_one_seed",
+      "claim": "The benchmark package now includes one scored official MLAgentBench non-FML task with a small multi-seed robustness check.",
+      "evidence": "mlagentbench_cifar10_multiseed_audit.md/json verifies the official MLAgentBench CIFAR10/debug starter baseline score 0.5103 and co-pilot-selected scores 0.7782, 0.7709, and 0.7738 across three seeds, with mean 0.7743, min 0.7709, sample std 0.003676, and mean delta +0.2640; second_non_fml_priority_package_audit.md/json keeps the open-data sklearn package labeled as official-like boundary evidence.",
+      "status": "supported_narrowly_one_official_task_three_seeds",
       "baseline_score": 0.5103,
       "co_pilot_selected_score": 0.7782,
       "delta": 0.2679,
-      "boundary": "Report CIFAR10/debug as stronger non-FML official evidence, but do not claim broad benchmark coverage, multi-seed robustness, or co-pilot superiority."
+      "boundary": "Report CIFAR10/debug as stronger non-FML official evidence, but do not claim broad benchmark coverage, independent human evidence, or co-pilot superiority.",
+      "seed_count": 3,
+      "mean_score": 0.7743,
+      "min_score": 0.7709,
+      "sample_std": 0.003675595189897806,
+      "mean_delta_vs_baseline": 0.264
     }
   ],
   "trigger_policy_analysis": {
@@ -272,5 +277,16 @@
     "co_pilot_selected_score": 0.7782,
     "delta": 0.2679,
     "boundary": "Artifact-level clean-clone audit only; not a fresh remote Ubuntu training rerun, independent human evidence, or broad superiority proof."
+  },
+  "mlagentbench_cifar10_multiseed_audit": {
+    "status": "pass",
+    "seed_count": 3,
+    "baseline_score": 0.5103,
+    "mean_score": 0.7743,
+    "min_score": 0.7709,
+    "sample_std": 0.003675595189897806,
+    "mean_delta_vs_baseline": 0.264,
+    "all_seeds_beat_baseline": true,
+    "boundary": "This is a three-seed robustness check for one official MLAgentBench CIFAR10/debug task. It strengthens the non-FML evidence slice but remains one task and does not prove broad co-pilot superiority, paper-quality improvement, or independent human benefit."
   }
 }
