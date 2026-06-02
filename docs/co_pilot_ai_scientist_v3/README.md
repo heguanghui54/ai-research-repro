@@ -163,6 +163,31 @@ Expected outputs:
 - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
 - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
 
+## External Verification Entry Point
+
+For a quick external check after cloning the pushed GitHub branch, run:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 scripts/audit_long_horizon_taste_gate.py
+python3 scripts/audit_temporal_frontier_replay.py
+python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
+python3 scripts/audit_objective_delivery.py
+python3 scripts/audit_package_consistency.py
+```
+
+The current completed clean-clone audit verifies commit `aaa8127ca` from the
+pushed branch and reports `621/621` manifest artifacts present, LHTG/DVRS status
+`pass_with_no_positive_dvrs`, TFR status
+`pass_with_negative_delayed_value_evidence`, package consistency `pass`, and
+objective delivery `pass_artifact_delivery_with_empirical_gaps`.
+
+The last status phrase is intentional. It means the requested artifact pipeline
+is delivered and auditable, but the original top-conference empirical target is
+not yet satisfied. The remaining evidence gap is independent human expert
+ratings, larger matched autonomous versus human-gated runs, and broader
+end-to-end trajectories on benchmark tasks.
+
 ## Current Status
 
 This is a working research-production scaffold with preliminary Ubuntu-host
