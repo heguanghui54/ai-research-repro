@@ -1,0 +1,12 @@
+{
+  "status": "completed",
+  "iterations": 1,
+  "random_seed": 42,
+  "provider": "deepseek",
+  "model": "deepseek-chat",
+  "api_base_host": "api.deepseek.com",
+  "initial_program": "knapsack_task/initial_program.py",
+  "evaluator": "knapsack_task/evaluator.py",
+  "best_score": 0.9956192018557011,
+  "output_dir": "/home/heshi/work/copilotv3-online-full-gate-smoke-20260602_012208/program_search/knapsack_openevolve_1iter/run"
+}

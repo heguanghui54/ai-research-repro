@@ -225,6 +225,17 @@ python3 scripts/score_matched_manuscripts.py \
 
 这个输出只能作为模型评审的 measurement evidence，不能当作专家同行评审。
 
+如果要汇总所有已经归档的 same-run paired online smokes，运行：
+
+```bash
+python3 scripts/summarize_online_paired_smokes.py --update-manifest
+```
+
+当前 repeated-smoke summary 包含 `2` 条 paired online run，结果是 `0`
+次 co-pilot benchmark 胜、`1` 次 autonomous 胜、`1` 次打平。它只能作为
+在线编排和 manuscript-measurement readiness 证据，不能当作 co-pilot
+benchmark 优越性的证据。
+
 如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
 
 ```bash

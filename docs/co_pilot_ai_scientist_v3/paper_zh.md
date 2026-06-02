@@ -83,7 +83,7 @@ Co-Pilot AI Scientist v3 实现的是洞察门控科研演化。IGRE 包含四�
 
 随后，我们为这条 online smoke 增加了同 FML step 数的 autonomous baseline。该 baseline 使用同一个 Causality 任务和 DeepSeek 模型，运行三步 AI Scientist-v2，但不进行人类 branch gate。它得到验证 MAE `0.354147` 和 held-out test MAE `0.428516`，明显优于 human-gated smoke continuation 的 test MAE `0.862015`。因此，这个配对 smoke 结果对性能提升主张是负证据，但仍支持更窄的“在线 co-pilot 编排可以执行”这一主张。
 
-随后我们又跑了一条 same-continuous-trajectory paired online full-gate smoke，并直接从这条轨迹日志生成完整的 co-pilot 和 autonomous manuscript artifacts。co-pilot 路径选择验证 MAE 为 `0.621461` 的 Causality 分支，继续后得到 held-out test MAE `0.862015`，同时完成一次 OpenEvolve knapsack smoke，best score 为 `0.994177`。同一次 orchestrator invocation 也启动了一个 autonomous AI Scientist-v2 baseline，使用同一 Causality 任务、模型和 provider，test MAE 为 `0.640451`。生成的 co-pilot manuscript 在内部 rubric 上得到 `4.64`，autonomous manuscript comparator 得到 `3.48`。这比 archived matched-budget comparator 更强，因为两篇 manuscript 来自同一条连续在线 smoke；但它仍不能证明 co-pilot 优越性，因为 autonomous benchmark 明显更好、预算极小，而且没有独立论文质量评审。作为 measurement-readiness 检查，我们还让 Monica 路由的两个 reviewer 模型对匿名 A/B manuscript 评分；两个模型都偏好 co-pilot manuscript（`gpt-4o-mini` overall `5` 对 `4`，`claude-3-7-sonnet-latest` overall `4` 对 `3`），理由主要是方法完整性和主张校准更强。这个结果说明 paper-quality evaluation pipeline 可运行，但仍只是单条 smoke trajectory 的模型评审，不是独立专家同行评审。
+随后我们把 same-continuous-trajectory paired online full-gate smoke 模式重复跑了两次，并直接从每条轨迹日志生成完整的 co-pilot 和 autonomous manuscript artifacts。两条 paired smoke 中，co-pilot continuation 的平均 test MAE 为 `0.754120`，同轮 autonomous baseline 的平均 test MAE 为 `0.643337`；在 lower-is-better 的 Causality 指标上，汇总结果是 `0` 次 co-pilot benchmark 胜、`1` 次 autonomous 胜、`1` 次打平。两篇 co-pilot manuscript 的内部 rubric 都为 `4.64`，autonomous manuscript comparator 都为 `3.48`。Monica 路由的 A/B 模型评审在两条轨迹的四次 reviewer call 中都偏好 co-pilot manuscript。这个结果比单条 archived matched-budget comparator 更强，因为 manuscript 来自重复的同轮在线 smoke；但它仍不能证明 co-pilot 优越性，因为 benchmark 汇总偏向 autonomous 或打平，预算极小，而且模型评审不是独立专家论文质量评审。
 
 ## 4. Benchmark 选择与评估计划
 
@@ -184,7 +184,7 @@ taste/insight gate record。这扩展了 benchmark 形态，但让平均性能�
 19. 一个 prospective package 指标汇总表，把通过 audit 的 package 按任务、指标方向、co-pilot 分数、autonomous 分数和 claim implication 汇总；当前结果是 1 个 controlled micro-task 正向结果、2 个 Causality FML-bench 负向结果，以及 1 个 Fairness_fairlearn 无有效 continuation 的失败案例。
 20. 一个 matched mini-manuscript quality probe：为同一个 FML package 生成 autonomous mini-manuscript，并让 Monica 路由的 `gpt-4o-mini` 和 `claude-3-7-sonnet-latest` 对匿名 A/B manuscript 评分；两个模型都偏好 co-pilot package mini-manuscript，overall 为 4 对 3。
 21. 一个 matched full-manuscript generation probe：把同一个已归档 FML evidence package 渲染成两篇完整论文形态的 manuscript，并用确定性内部 rubric 评分；最新 Fairness package 中，co-pilot manuscript 因结构完整、证据绑定、主张校准和方法区分度得到 4.18 overall，autonomous manuscript 得到 4.11 overall，但 autonomous 是唯一拥有有效 FML 标量测试指标的路径。
-22. 一个 same-continuous-trajectory paired online full-gate manuscript-production smoke，从同一次在线 orchestrator run 生成完整 co-pilot manuscript 和 autonomous comparator；co-pilot 内部评分为 4.64、autonomous comparator 为 3.48，但 autonomous benchmark metric 更好（test MAE 0.640451 对 0.862015）。
+22. 一个 repeated same-continuous-trajectory paired online full-gate manuscript-production 汇总，覆盖两条 smoke run；benchmark 汇总为 `0` 次 co-pilot 胜、`1` 次 autonomous 胜、`1` 次打平，而 Monica 路由模型评审在 `4/4` 次 reviewer call 中偏好 co-pilot manuscript。
 23. 一个 Human Co-Pilot Trace Dataset protocol，把本文实际 Codex 使用记录转化为脱敏派生数据集，而不是依赖不匹配的通用 human-AI interaction 数据集。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
@@ -201,11 +201,11 @@ taste/insight gate record。这扩展了 benchmark 形态，但让平均性能�
 
 我们还补了第一个 matched mini-manuscript quality probe。该 probe 从同一个 FML package 的 autonomous baseline 生成一篇 autonomous mini-manuscript，把 co-pilot package manuscript 匿名为 A，把 autonomous manuscript 匿名为 B，并让 Monica 路由的 `gpt-4o-mini` 和 `claude-3-7-sonnet-latest` 按 claim calibration、evidence use、methodological completeness、limitation honesty、clarity 和 overall quality 评分。两个模型都偏好 A，overall 为 4 对 3；理由是 co-pilot mini-manuscript 虽然 benchmark 分数更差，但对主张边界和局限性写得更清楚。这个结果只能说明 manuscript-quality measurement pipeline 可运行，不能证明完整 co-pilot 系统已经能写出更好论文。
 
-这次新增的 full-manuscript probe 只缩小了一个具体缺口，并没有关闭顶会证据缺口。它说明已归档 FML package 中的结构化证据足以生成两篇完整、主张校准的论文形态 manuscript；最新 Fairness probe 中 co-pilot manuscript 的内部 rubric 为 4.18，autonomous manuscript 为 4.11，但 autonomous 是唯一拥有有效 FML 标量测试指标的路径。更新的 online trajectory manuscript smoke 进一步说明 fresh online co-pilot trajectory 可以生成完整论文形态 artifact，并且已经有 same-continuous-trajectory autonomous comparator；co-pilot manuscript 得到 4.64，autonomous comparator 得到 3.48，但 autonomous 的 benchmark 指标更好（0.640451 对 0.862015 test MAE）。Monica 路由的模型 reviewer 在该 paired manuscript probe 中 2/2 偏好 co-pilot manuscript，但这仍只是 measurement-readiness signal，不是独立专家评审。因此 co-pilot 的当前主张必须停留在方法区分度、科学品味记录和高尾部科研搜索空间塑形，而不能说它已经在短预算平均 benchmark 上优于 autonomous AI Scientist-v2。
+这次新增的 full-manuscript probe 只缩小了一个具体缺口，并没有关闭顶会证据缺口。它说明已归档 FML package 中的结构化证据足以生成两篇完整、主张校准的论文形态 manuscript；最新 Fairness probe 中 co-pilot manuscript 的内部 rubric 为 4.18，autonomous manuscript 为 4.11，但 autonomous 是唯一拥有有效 FML 标量测试指标的路径。更新的 repeated same-continuous online smoke summary 进一步说明 fresh online co-pilot trajectory 可以生成完整论文形态 artifact，并且可以同轮生成 autonomous manuscript comparator；但两条 paired smoke 的 benchmark 汇总为 `0` 次 co-pilot 胜、`1` 次 autonomous 胜、`1` 次打平，mean test MAE 为 co-pilot `0.754120`、autonomous `0.643337`。Monica 路由的模型 reviewer 在两条 paired manuscript probe 中 `4/4` 次偏好 co-pilot manuscript，但这仍只是 measurement-readiness signal，不是独立专家评审。因此 co-pilot 的当前主张必须停留在方法区分度、科学品味记录和高尾部科研搜索空间塑形，而不能说它已经在短预算平均 benchmark 上优于 autonomous AI Scientist-v2。
 
 taste/insight 证据目前也只是 logging-readiness 阶段。归档中已有 1 条完整 scientific-taste prior 记录，来自作者要求扩展 benchmark 并突出高尾部科研品味的指令；但它还不能证明该决策改善了下游科研结果。下一轮实验必须前瞻性记录 taste rationale，才能检验人类 insight 是否真的改变了科研搜索分布。
 
-当前实现现在已有 smoke 级别的 same-continuous-trajectory 在线论文生成对照，但规模仍不足以支撑 systems paper 的强主张。下一版 systems paper 至少需要报告多组更大规模的 matched 在线轨迹，覆盖更多任务和随机种子，从假设生成一直到最终 claim-audited manuscripts。
+当前实现现在已有 smoke 级别的 repeated same-continuous-trajectory 在线论文生成对照，但规模仍不足以支撑 systems paper 的强主张。下一版 systems paper 至少需要报告多组更大规模的 matched 在线轨迹，覆盖更多任务和随机种子，从假设生成一直到最终 claim-audited manuscripts。
 
 ## 7. 结论
 

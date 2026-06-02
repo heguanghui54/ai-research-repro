@@ -1,0 +1,65 @@
+{
+  "status": "online_same_run_paired_smoke_summary",
+  "lower_is_better": true,
+  "epsilon_for_tie": 1e-09,
+  "records": [
+    {
+      "trajectory_id": "online_full_gate_smoke_20260602_010521",
+      "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
+      "selected_branch": "step_0001",
+      "selected_branch_val_mae": 0.6214612656533322,
+      "continuation_test_mae": 0.8620153718142042,
+      "same_run_autonomous_test_mae": 0.6404510911628365,
+      "autonomous_minus_copilot_test_mae": -0.22156428065136768,
+      "benchmark_winner": "autonomous",
+      "program_search_best_score": 0.9941773763863808,
+      "co_pilot_manuscript_score": 4.64,
+      "autonomous_manuscript_score": 3.48,
+      "model_review_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.json",
+      "model_review_successful_reviews": 2,
+      "model_review_co_pilot_wins": 2,
+      "model_review_autonomous_wins": 0,
+      "model_review_ties": 0,
+      "interpretation": "same-run autonomous baseline has the lower held-out MAE"
+    },
+    {
+      "trajectory_id": "online_full_gate_smoke_20260602_012208",
+      "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/trajectory.json",
+      "selected_branch": "step_0001",
+      "selected_branch_val_mae": 0.6751721060429053,
+      "continuation_test_mae": 0.6462237240158368,
+      "same_run_autonomous_test_mae": 0.6462237240158367,
+      "autonomous_minus_copilot_test_mae": -1.1102230246251565e-16,
+      "benchmark_winner": "tie",
+      "program_search_best_score": 0.9956192018557011,
+      "co_pilot_manuscript_score": 4.64,
+      "autonomous_manuscript_score": 3.48,
+      "model_review_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_012208/online_manuscript/paper_quality/summary.json",
+      "model_review_successful_reviews": 2,
+      "model_review_co_pilot_wins": 2,
+      "model_review_autonomous_wins": 0,
+      "model_review_ties": 0,
+      "interpretation": "same-run tie on the held-out benchmark metric"
+    }
+  ],
+  "aggregate": {
+    "paired_smoke_count": 2,
+    "co_pilot_benchmark_wins": 0,
+    "autonomous_benchmark_wins": 1,
+    "benchmark_ties": 1,
+    "mean_co_pilot_test_mae": 0.7541195479150204,
+    "mean_autonomous_test_mae": 0.6433374075893366,
+    "mean_autonomous_minus_copilot_test_mae": -0.1107821403256839,
+    "model_review_probe_count": 2,
+    "model_review_successful_reviews": 4,
+    "model_review_co_pilot_wins": 4,
+    "model_review_autonomous_wins": 0,
+    "model_review_ties": 0,
+    "claim_implication": "Repeated same-continuous online smokes support orchestration and manuscript-measurement readiness, but not co-pilot benchmark superiority. Current benchmark aggregate favors autonomous or tie."
+  },
+  "limitations": [
+    "Tiny smoke budgets; not a top-conference empirical result.",
+    "FML Causality MAE does not measure high-tail scientific novelty.",
+    "Model-review probes are not independent human expert peer review."
+  ]
+}

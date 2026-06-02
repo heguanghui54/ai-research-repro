@@ -79,26 +79,22 @@ paper-quality scoring.
 
 ## Online Trajectory Manuscript Probe
 
-We then added a fresh same-continuous-trajectory online full-gate manuscript
-probe. The latest trajectory selects a Causality branch with validation MAE
-`0.621461`, continues to test MAE `0.862015`, runs an OpenEvolve knapsack smoke
-with best score `0.994177`, and generates a complete co-pilot manuscript
-directly from the trajectory log. The same orchestrator invocation also runs an
-autonomous AI Scientist-v2 baseline, which reaches test MAE `0.640451`. The
-internal rubric gives the co-pilot manuscript `4.64` overall and the autonomous
-comparator manuscript `3.48`. This is stronger than archived-evidence
-manuscript generation because both manuscripts come from the same online smoke,
-but it remains a negative tiny-budget performance result without independent
-paper-quality review.
+We then repeated the same-continuous-trajectory online full-gate manuscript
+probe twice. Each trajectory generates a complete co-pilot manuscript and a
+same-run autonomous AI Scientist-v2 manuscript comparator from the same
+orchestrator invocation. The repeated-smoke summary reports `2` paired runs,
+`0` co-pilot benchmark wins, `1` autonomous benchmark win, and `1` tie. Mean
+co-pilot test MAE is `0.754120`, while mean autonomous test MAE is `0.643337`
+on the lower-is-better Causality metric. The internal rubric gives each
+co-pilot manuscript `4.64` overall and each autonomous comparator manuscript
+`3.48`.
 
-We then ran a Monica-routed model-review A/B probe on those same-continuous
-manuscripts. Both reviewer calls completed successfully. `gpt-4o-mini`
-preferred the co-pilot manuscript with overall scores `5` versus `4`;
-`claude-3-7-sonnet-latest` also preferred the co-pilot manuscript with overall
-scores `4` versus `3`. The rationales emphasize methodological completeness,
-claim calibration, and limitation honesty. This is useful measurement-readiness
-evidence, but it is still model review over one smoke trajectory, not human
-expert peer review.
+We also ran Monica-routed model-review A/B probes on both paired manuscript
+sets. All four reviewer calls prefer the co-pilot manuscript (`4/4` wins),
+with rationales emphasizing methodological completeness, claim calibration,
+and limitation honesty. This is useful measurement-readiness evidence, but it
+is still model review over two smoke trajectories, not human expert peer
+review or top-conference empirical support.
 
 ## Human Co-Pilot Trace Dataset
 

@@ -33,7 +33,8 @@
     "derived_trace_gate_records": 29,
     "derived_trace_attention_cost_records": 12,
     "derived_trace_taste_insight_records": 7,
-    "prospective_matched_packages": 3
+    "prospective_matched_packages": 3,
+    "same_run_online_paired_smokes": 2
   },
   "clean_clone_reproducibility": {
     "status": "pass",
@@ -57,7 +58,7 @@
     "real_gate_complete_attention_cost_records": 0,
     "performance_evidence": false
   },
-  "next_evidence_milestone": "Scale beyond the single-author Codex trace and current negative short-budget FML evidence: fresh end-to-end matched trajectories, more FML/non-FML tasks that actually have runnable workspaces, seeds, budgets, paper-quality scoring, independent human timing, and ideally multiple human researchers.",
+  "next_evidence_milestone": "Scale beyond repeated tiny-budget same-run online smokes: more FML/non-FML tasks, seeds, budgets, independent human paper-quality scoring, measured human timing, and ideally multiple human researchers.",
   "prospective_matched_budget_package_audit": {
     "status": "pass_with_mostly_negative_fml_metric_outcomes",
     "manifest_files_checked": 3,
@@ -118,10 +119,10 @@
     },
     "shared_blockers": [
       "more matched tasks/seeds/budgets",
-      "complete end-to-end paper-generating trajectory",
+      "larger same-continuous paper-generating trajectories",
       "human attention/taste measurement in prospective gates",
       "independent paper-quality comparison",
-      "fresh end-to-end matched manuscript trajectories"
+      "high-tail scientific output evaluation beyond short-budget MAE"
     ],
     "matched_mini_manuscript_probe": {
       "status": "weak_positive_single_package_probe",
@@ -192,37 +193,50 @@
     }
   },
   "online_trajectory_manuscript_probe": {
-    "status": "same_continuous_trajectory_smoke_manuscripts_generated",
-    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
-    "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/summary.md",
-    "overall": 4.64,
-    "matched_autonomous_manuscript": true,
-    "matched_continuous_trajectory": true,
-    "limitation": "same-continuous-trajectory smoke only; tiny budget, negative benchmark result, and no independent review"
+    "status": "repeated_same_continuous_trajectory_smoke_manuscripts_generated",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.md",
+    "paired_smoke_count": 2,
+    "co_pilot_internal_score_each_run": 4.64,
+    "autonomous_internal_score_each_run": 3.48,
+    "limitation": "repeated same-continuous smoke only; tiny budget, autonomous-or-tie benchmark aggregate, and no independent human expert review"
   },
   "online_matched_budget_manuscript_comparator": {
-    "status": "same_continuous_trajectory_comparator_generated",
-    "trajectory": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
-    "co_pilot_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/co_pilot_online_full_gate_manuscript.md",
-    "autonomous_manuscript": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/autonomous_online_comparator_manuscript.md",
-    "comparison_summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.md",
-    "co_pilot_internal_score": 4.64,
-    "autonomous_internal_score": 3.48,
-    "co_pilot_test_mae": 0.8620153718142042,
-    "autonomous_test_mae": 0.6404510911628365,
-    "matched_continuous_trajectory": true,
-    "limitation": "Adds a same-run manuscript comparator, but current benchmark result favors autonomous and sample size is one."
+    "status": "repeated_same_continuous_trajectory_comparators_generated",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.md",
+    "paired_smoke_count": 2,
+    "co_pilot_benchmark_wins": 0,
+    "autonomous_benchmark_wins": 1,
+    "benchmark_ties": 1,
+    "mean_co_pilot_test_mae": 0.7541195479150204,
+    "mean_autonomous_test_mae": 0.6433374075893366,
+    "limitation": "Adds repeated same-run manuscript comparators, but current benchmark result does not favor co-pilot and sample size is two."
   },
   "same_continuous_paper_quality_model_review": {
-    "status": "model_review_probe_completed",
-    "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.md",
-    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.json",
-    "probe_id": "online_full_gate_smoke_20260602_010521_same_continuous",
-    "successful_reviews": 2,
-    "review_count": 2,
-    "co_pilot_wins": 2,
+    "status": "repeated_model_review_probe_completed",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.json",
+    "successful_reviews": 4,
+    "review_count": 4,
+    "co_pilot_wins": 4,
     "autonomous_wins": 0,
     "ties": 0,
-    "limitation": "Monica-routed model review over one tiny-budget same-continuous smoke; not independent human expert review."
+    "limitation": "Monica-routed model review over two tiny-budget same-continuous smokes; not independent human expert review."
+  },
+  "online_same_run_paired_smoke_summary": {
+    "status": "repeated_same_continuous_online_smoke_summary",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_same_run_paired_summary.json",
+    "paired_smoke_count": 2,
+    "co_pilot_benchmark_wins": 0,
+    "autonomous_benchmark_wins": 1,
+    "benchmark_ties": 1,
+    "mean_co_pilot_test_mae": 0.7541195479150204,
+    "mean_autonomous_test_mae": 0.6433374075893366,
+    "mean_autonomous_minus_copilot_test_mae": -0.1107821403256839,
+    "model_review_probe_count": 2,
+    "model_review_co_pilot_wins": 4,
+    "model_review_autonomous_wins": 0,
+    "model_review_ties": 0,
+    "limitation": "two tiny-budget same-continuous smokes; benchmark aggregate favors autonomous or tie; model review is not independent expert review"
   }
 }

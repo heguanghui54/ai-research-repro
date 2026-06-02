@@ -206,26 +206,20 @@ human-gated smoke continuation's test MAE `0.862015`. This paired smoke result
 is negative for performance improvement, while still supporting the narrower
 claim that online co-pilot orchestration is executable.
 
-We subsequently ran a same-continuous-trajectory paired online full-gate smoke
-and used its trajectory log to generate complete co-pilot and autonomous
-manuscript artifacts. The co-pilot path selected a Causality branch with
-validation MAE `0.621461`, continued it to held-out test MAE `0.862015`, and
-ran an OpenEvolve knapsack smoke with best score `0.994177`. The same
-orchestrator invocation also launched an autonomous AI Scientist-v2 baseline on
-the same Causality task, model, and provider, reaching test MAE `0.640451`.
-The generated co-pilot manuscript receives an internal rubric score of `4.64`,
-while the autonomous manuscript comparator scores `3.48`. This is stronger
-than the archived matched-budget comparator because both manuscripts are now
-generated from the same continuous online smoke. It still does not prove
-co-pilot superiority: the autonomous benchmark metric is substantially better,
-the budget is tiny, and neither manuscript has independent paper-quality review.
-As a measurement-readiness check, we also ask two Monica-routed reviewer models
-to score the same-continuous paired manuscripts anonymized as A/B. Both prefer
-the co-pilot manuscript for paper quality (`gpt-4o-mini`: overall `5` versus
-`4`; `claude-3-7-sonnet-latest`: overall `4` versus `3`), crediting stronger
-methodological completeness and claim calibration. This result supports the
-feasibility of a paper-quality evaluation pipeline, but it is still model
-review over one smoke trajectory, not independent expert peer review.
+We subsequently repeated the stronger same-continuous-trajectory paired online
+smoke pattern twice. Each run generated complete co-pilot and autonomous
+manuscript artifacts from the same orchestrator invocation. Across the two
+paired smokes, the co-pilot continuation has mean test MAE `0.754120` and the
+same-run autonomous baseline has mean test MAE `0.643337`; lower is better, so
+the benchmark aggregate is `0` co-pilot wins, `1` autonomous win, and `1` tie.
+The generated co-pilot manuscripts receive internal rubric scores of `4.64` in
+both runs, while the autonomous manuscript comparators score `3.48`. Monica-
+routed A/B model-review probes prefer the co-pilot manuscript in all four
+reviewer calls across the two runs. This is stronger than a single archived
+matched-budget comparator because the manuscripts come from repeated same-run
+online smokes. It still does not prove co-pilot superiority: the aggregate
+benchmark metric favors autonomous or tie, the budgets are tiny, and model
+review is not independent expert paper-quality review.
 
 ## 4. Benchmark Selection and Evaluation Plan
 
@@ -673,11 +667,10 @@ The current contributions are:
    overall for structure, grounding, calibration, and method distinctness,
    while the autonomous manuscript scores 4.11 and is the only variant with a
    valid scalar FML test metric in the Fairness package.
-22. A same-continuous-trajectory paired online full-gate
-   manuscript-production smoke that generates complete co-pilot and autonomous
-   manuscripts from one online orchestrator run; the co-pilot manuscript scores
-   `4.64`, the autonomous comparator scores `3.48`, and the autonomous
-   benchmark metric remains better (`0.640451` versus `0.862015` test MAE).
+22. A repeated same-continuous-trajectory paired online full-gate
+   manuscript-production summary over two smoke runs; the benchmark aggregate
+   has `0` co-pilot wins, `1` autonomous win, and `1` tie, while Monica-routed
+   model-review probes prefer the co-pilot manuscript in `4/4` reviewer calls.
 23. A derived Human Co-Pilot Trace Dataset protocol that positions the author's
    real Codex sessions as a single-author longitudinal process corpus after
    privacy-preserving metadata extraction.
@@ -740,15 +733,14 @@ structured evidence to generate two complete, claim-calibrated manuscripts
 under a matched prompt-free template. The latest Fairness probe scores the
 co-pilot manuscript 4.18 and the autonomous manuscript 4.11 on the internal
 rubric, but the autonomous manuscript is the only variant with a valid scalar
-FML test result. The newest online trajectory manuscript smoke shows that a
-fresh online co-pilot trajectory can produce a complete manuscript-shaped
-artifact with an internal score of 4.64, and that a same-continuous-trajectory
-autonomous manuscript comparator can be generated in the same orchestrator run.
-Yet the autonomous metric is better (`0.640451` versus `0.862015` test MAE),
-the budget is tiny, and neither manuscript has independent expert
-paper-quality review. Monica-routed model reviewers prefer the co-pilot
-manuscript (2/2 wins), but this is a measurement-readiness signal rather than
-expert review. This is exactly why the co-pilot claim must remain about method
+FML test result. The repeated same-continuous online smoke summary now shows
+that fresh online co-pilot trajectories can produce complete manuscript-shaped
+artifacts and same-run autonomous manuscript comparators. Across two paired
+smokes, however, benchmark outcomes are `0` co-pilot wins, `1` autonomous win,
+and `1` tie, with mean test MAE `0.754120` for co-pilot and `0.643337` for
+autonomous. Monica-routed model reviewers prefer the co-pilot manuscripts in
+`4/4` calls, but this is a measurement-readiness signal rather than expert
+review. This is exactly why the co-pilot claim must remain about method
 distinctness, scientific taste logging, and high-tail research search rather
 than average short-budget benchmark superiority.
 
@@ -759,11 +751,11 @@ research taste, but it does not yet show that this decision improved downstream
 research outcomes. Future runs must log taste rationales prospectively rather
 than reconstructing them from successful outcomes.
 
-The current implementation now has a smoke-level same-continuous-trajectory
-paper-generating comparison, but it is still too small for a systems-paper
-claim. The next systems-paper draft must report larger matched trajectory pairs
-across tasks and seeds, from hypothesis generation to final claim-audited
-manuscripts.
+The current implementation now has smoke-level repeated same-continuous-
+trajectory paper-generating comparisons, but it is still too small for a
+systems-paper claim. The next systems-paper draft must report larger matched
+trajectory pairs across tasks and seeds, from hypothesis generation to final
+claim-audited manuscripts.
 
 ## 7. Conclusion
 

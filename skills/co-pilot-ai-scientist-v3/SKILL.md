@@ -122,6 +122,11 @@ and claim responsibility can reshape the trajectory.
      `--co-pilot-manuscript`, `--autonomous-manuscript`, and `--output-dir`.
      Treat Monica-routed model reviews as audit evidence; do not call them
      independent human expert review.
+   - After multiple same-run online paired smokes exist, run
+     `scripts/summarize_online_paired_smokes.py --update-manifest`. Report
+     co-pilot benchmark wins, autonomous wins, ties, mean metrics, and
+     manuscript-review probes separately. Do not let positive manuscript-review
+     probes override negative benchmark aggregates.
    - To check whether one archived matched package contains enough evidence for
      complete paper-shaped outputs, run
      `scripts/generate_full_manuscript_probe.py --update-manifest`. Treat this
@@ -274,6 +279,8 @@ Reusable templates are stored next to this skill:
 - online full-gate smoke trajectory logs when remote execution is available;
 - online trajectory manuscript probes when an online full-gate trajectory needs
   to be rendered into a claim-audited manuscript artifact;
+- repeated same-run online paired-smoke summaries when more than one
+  same-continuous online trajectory is available;
 - prospective matched-budget micro-pilot package when remote execution is
   available;
 - matched mini- and full-manuscript generation probes when manuscript evidence

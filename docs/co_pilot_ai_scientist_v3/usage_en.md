@@ -242,6 +242,17 @@ python3 scripts/score_matched_manuscripts.py \
 
 Treat the output as model-review measurement evidence, not expert peer review.
 
+To summarize all archived same-run paired online smokes, run:
+
+```bash
+python3 scripts/summarize_online_paired_smokes.py --update-manifest
+```
+
+The current repeated-smoke summary reports `2` paired online runs, `0`
+co-pilot benchmark wins, `1` autonomous win, and `1` tie. It should be cited as
+orchestration and manuscript-measurement readiness evidence, not as co-pilot
+benchmark superiority.
+
 To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
 
 ```bash
