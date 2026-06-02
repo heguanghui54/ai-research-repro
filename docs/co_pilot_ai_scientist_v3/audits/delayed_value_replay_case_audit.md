@@ -1,6 +1,6 @@
 # Delayed-Value Replay Case Audit
 
-- Audit date: `2026-06-02T15:27:16Z`
+- Audit date: `2026-06-02T15:38:03Z`
 - Status: `pass`
 - Run dir: `docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500`
 - Case ID: `paper_105_review_1`

@@ -1,6 +1,6 @@
 # Delayed-Value Replay Cross-Model Judge Audit
 
-- Audit date: `2026-06-02T15:32:26Z`
+- Audit date: `2026-06-02T15:38:03Z`
 - Status: `pass`
 - Run dir: `docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_cross_model_judge_20260603_001500`
 - Models attempted: `claude-3-7-sonnet-latest, gemini-2.5-flash`
