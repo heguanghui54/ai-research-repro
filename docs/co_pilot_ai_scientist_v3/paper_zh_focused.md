@@ -70,6 +70,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | 深度案例内部六门控评议 | six-gate hybrid 胜 3/3 | raw review-guided 胜 0/3 | 内部平均增量 +1.133 | 闭合当前 3 个具体案例的可复现内部评议流程；这是确定性 rubric proxy，不是人类专家证据。 |
 | 前沿对齐 taxonomy | six-gate hybrid 胜 3/3 | raw review-guided 胜 0/3 | 词汇式前沿对齐平均增量 +3.467 | 使用 ICLR/ICML/ACL 2025 官方获奖论文作为 seed，比较再生成产物与当前前沿主题的对齐，而不只用局部实验分数判断好坏。 |
 | 前沿向量图 | six-gate 平均投影增益 +0.1668 | six-gate 平均 cosine 增益 -0.0641 | 2 个投影正向案例，1 个负向案例 | 将原论文、再生成产物和当前前沿中心表示为 6 维向量；显示词汇前沿增益仍可能包含方向漂移。 |
+| 前沿指标分歧矩阵 | 内部评议和词汇指标均 six-gate 胜 3/3 | 向量投影 six-gate 胜 2/3；cosine six-gate 胜 1/3 | 分歧率 0.6667 | 说明短期评议胜利、词汇前沿覆盖和向量移动衡量的是不同对象。 |
 | 预注册盲评专家评审包 | 已准备 6 对匿名 A/B 产物 | 已完成人类评分 0 行 | 计划 3-5 名评审者 | 仅表示评估就绪，不声称已有人工证据。 |
 | Live skill invocation smoke | 生成 3 个候选方向和一个归档的一版 IGRE gate plan | template-only skill smoke | 2 次真实模型调用，audit recommendation pass | 说明 Codex skill 可在新任务上复用；不是 benchmark 证据。 |
 | Metric-gaming evaluator-stress smoke | evaluator-stress gate 选择 `guardrailed_utility_model` | primary-only 公平性指标选择 `metric_gaming_all_negative` | 减少 1 个合成 metric-gaming 事件 | 将 live skill 任务连接到真实 evaluator；这是受控 toy 证据，不是 FML-bench 结果。 |
@@ -131,6 +132,8 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 3. `a - o` 在 `f - o` 正交方向上的范数，表示不是直接靠近当前前沿、而是横向探索出的新颖性。
 
 这个向量视角比单一标量更稳健。在 3 个深度案例中，词汇式前沿对齐分数显示 six-gate hybrid 全部胜出，平均增量为 +3.467。但向量图给出更细的诊断：six-gate 平均投影增益为 +0.1668，平均 cosine 增益为 -0.0641；其中 2 个案例更沿着原论文到当前前沿的方向移动，1 个案例则偏离该方向。这个混合信号正说明 IGRE 需要前沿感知门控。有用的人类洞察并不只是让下一篇产物得分更高的评论，而是能改变搜索向量、把科研轨迹推向值得追踪的方向，或有意产生正交新颖性并交给后续证据检验的评论。
+
+因此我们进一步加入三例深度案例的指标分歧矩阵。内部评议和词汇式前沿指标都显示 six-gate hybrid 胜出 3/3；但向量投影只显示 six-gate 胜出 2/3，前沿 cosine 只显示 six-gate 胜出 1/3，分歧率为 0.6667。这不是向量图失败，而是本文需要的测量结果：它防止论文把科研品味压缩成单一分数，也让我们看见某些人类引导产物虽然提高了局部质量，却在科研方向移动上变得更复杂。
 
 ### 4.4 短预算人类门控是否优于全自动基线？
 

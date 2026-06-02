@@ -80,6 +80,7 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | Deep-case internal six-gate review | six-gate hybrid wins 3/3 | raw review-guided wins 0/3 | mean internal delta +1.133 | Closes the current reproducible internal review loop for the three concrete cases; deterministic rubric proxy, not human expert evidence. |
 | Frontier-alignment taxonomy | six-gate hybrid wins 3/3 | raw review-guided wins 0/3 | mean lexical frontier-alignment delta +3.467 | Uses ICLR/ICML/ACL 2025 official award-paper seeds to compare regenerated artifacts with current frontier themes, rather than judging them only by local experiment scores. |
 | Frontier vector graph | mean six-gate projection gain +0.1668 | mean six-gate cosine gain -0.0641 | 2 positive projection cases, 1 negative | Represents original papers, regenerated artifacts, and the current frontier centroid as six-dimensional vectors; shows that lexical frontier gain can still include directional drift. |
+| Frontier metric disagreement | internal and lexical metrics favor six-gate 3/3 | vector projection favors six-gate 2/3; cosine favors six-gate 1/3 | disagreement rate 0.6667 | Confirms that short-term review wins, lexical frontier coverage, and vector movement measure different things. |
 | Preregistered blind expert-review packet | 6 anonymized A/B pairs prepared | 0 completed human rows | planned 3-5 raters | Evaluation readiness only; no human evidence is claimed yet. |
 | Live skill invocation smoke | 3 candidate directions and an archived first-version IGRE gate plan generated | template-only skill smoke | 2 live model calls, audit recommendation pass | Shows the Codex skill can be reused on a fresh task; not benchmark evidence. |
 | Metric-gaming evaluator-stress smoke | evaluator-stress gate selects `guardrailed_utility_model` | primary-only fairness metric selects `metric_gaming_all_negative` | 1 synthetic metric-gaming incident reduced | Links the live skill task to an actual evaluator; controlled toy evidence, not FML-bench. |
@@ -174,6 +175,15 @@ frontier-aware gates. A useful human insight is not merely a comment that makes
 the next artifact score higher. It is a comment that changes the search vector
 in a direction worth pursuing, or deliberately creates orthogonal novelty whose
 value should be tested by later evidence.
+
+We therefore add a disagreement matrix across the three deep cases. Internal
+review and lexical frontier metrics favor six-gate hybrid artifacts in all
+three cases, but vector projection favors six-gate in only two cases and
+frontier cosine favors it in only one. The disagreement rate is 0.6667. This is
+not a failure of the vector graph; it is the measurement point. It prevents the
+paper from collapsing scientific taste into a single score and makes visible
+when a human-guided artifact improves local quality while changing the research
+direction in a more ambiguous way.
 
 ### 4.4 Do short-budget human gates beat autonomous baselines?
 

@@ -1,0 +1,81 @@
+{
+  "created_at": "2026-06-02T12:56:06Z",
+  "status": "pass",
+  "case_count": 3,
+  "metric_win_counts": {
+    "internal_review": {
+      "six_gate_hybrid": 3,
+      "raw_review_guided": 0,
+      "tie": 0
+    },
+    "lexical_frontier": {
+      "six_gate_hybrid": 3,
+      "raw_review_guided": 0,
+      "tie": 0
+    },
+    "vector_projection": {
+      "six_gate_hybrid": 2,
+      "raw_review_guided": 1,
+      "tie": 0
+    },
+    "frontier_cosine": {
+      "six_gate_hybrid": 1,
+      "raw_review_guided": 2,
+      "tie": 0
+    }
+  },
+  "disagreement_case_count": 2,
+  "disagreement_rate": 0.6667,
+  "rows": [
+    {
+      "case_id": "openreview_sample_1",
+      "internal_delta_six_minus_raw": 1.6,
+      "lexical_delta_six_minus_raw": 4.65,
+      "projection_delta_six_minus_raw": -2.0466,
+      "cosine_delta_six_minus_raw": -0.0671,
+      "winners": {
+        "internal_review": "six_gate_hybrid",
+        "lexical_frontier": "six_gate_hybrid",
+        "vector_projection": "raw_review_guided",
+        "frontier_cosine": "raw_review_guided"
+      },
+      "agreement_all_metrics": false,
+      "has_short_frontier_disagreement": true,
+      "interpretation": "Metric disagreement: short-term/internal or lexical gains do not fully determine vector-frontier movement."
+    },
+    {
+      "case_id": "openreview_sample_17",
+      "internal_delta_six_minus_raw": 0.2,
+      "lexical_delta_six_minus_raw": 3.45,
+      "projection_delta_six_minus_raw": 0.2644,
+      "cosine_delta_six_minus_raw": 0.0258,
+      "winners": {
+        "internal_review": "six_gate_hybrid",
+        "lexical_frontier": "six_gate_hybrid",
+        "vector_projection": "six_gate_hybrid",
+        "frontier_cosine": "six_gate_hybrid"
+      },
+      "agreement_all_metrics": true,
+      "has_short_frontier_disagreement": false,
+      "interpretation": "All short-term and frontier metrics agree."
+    },
+    {
+      "case_id": "openreview_sample_2",
+      "internal_delta_six_minus_raw": 1.6,
+      "lexical_delta_six_minus_raw": 2.3,
+      "projection_delta_six_minus_raw": 2.2825,
+      "cosine_delta_six_minus_raw": -0.1511,
+      "winners": {
+        "internal_review": "six_gate_hybrid",
+        "lexical_frontier": "six_gate_hybrid",
+        "vector_projection": "six_gate_hybrid",
+        "frontier_cosine": "raw_review_guided"
+      },
+      "agreement_all_metrics": false,
+      "has_short_frontier_disagreement": true,
+      "interpretation": "Metric disagreement: short-term/internal or lexical gains do not fully determine vector-frontier movement."
+    }
+  ],
+  "errors": [],
+  "claim_boundary": "This is a three-case diagnostic over regenerated mini-artifacts. It supports the need for multi-metric frontier-aware evaluation, not a general claim that six-gate regeneration is superior."
+}

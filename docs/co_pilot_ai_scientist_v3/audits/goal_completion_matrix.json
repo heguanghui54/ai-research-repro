@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T12:50:38Z",
+  "audit_date": "2026-06-02T12:56:14Z",
   "status": "pass_with_top_conference_gap",
-  "head": "2686d80d5316d73876d806bc76dcc1a2aecdfc99",
+  "head": "ec8367848afbb9013826c7d09c3d351201c6d7e1",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "remote_branch_pushed": true,
@@ -83,6 +83,7 @@
         "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_review_candidate_mining_20260603_001500/README.md",
         "docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/README.md",
         "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/README.md",
+        "docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/README.md",
         "docs/co_pilot_ai_scientist_v3/paper_en_focused.md"
       ],
       "gap": "The high-tail theory is operationalized, but no positive delayed-value/high-tail case has been demonstrated yet.",
@@ -96,7 +97,8 @@
         "docs/co_pilot_ai_scientist_v3/deep_regeneration_casebook.md",
         "docs/co_pilot_ai_scientist_v3/build/deep_regeneration_cases/summary.json",
         "docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500/summary.json",
-        "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json"
+        "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json",
+        "docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/summary.json"
       ],
       "gap": "Internal review is positive (3/3 six-gate wins, mean delta 1.133), but it is deterministic internal review rather than human expert review.",
       "next_action": "Use the prepared blind packet for future expert validation; keep current result labeled as internal evidence."
@@ -144,7 +146,7 @@
       "evidence": [
         "https://github.com/heguanghui54/ai-research-repro.git",
         "codex/co-pilot-ai-scientist-v3",
-        "2686d80d5316d73876d806bc76dcc1a2aecdfc99"
+        "ec8367848afbb9013826c7d09c3d351201c6d7e1"
       ],
       "gap": "Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate.",
       "next_action": "Create a release or PR only when the user wants a public submission package."

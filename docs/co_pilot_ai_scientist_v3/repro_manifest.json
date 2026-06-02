@@ -691,7 +691,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/openreview_sample_2_vector_graph.svg",
     "docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/openreview_sample_17_vector_graph.svg",
     "docs/co_pilot_ai_scientist_v3/audits/goal_completion_matrix.json",
-    "docs/co_pilot_ai_scientist_v3/audits/goal_completion_matrix.md"
+    "docs/co_pilot_ai_scientist_v3/audits/goal_completion_matrix.md",
+    "scripts/build_frontier_metric_disagreement.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/summary.json"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1716,9 +1719,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "2686d80d5316d73876d806bc76dcc1a2aecdfc99",
+    "head": "ec8367848afbb9013826c7d09c3d351201c6d7e1",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 676,
+    "manifest_artifacts": 679,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   }

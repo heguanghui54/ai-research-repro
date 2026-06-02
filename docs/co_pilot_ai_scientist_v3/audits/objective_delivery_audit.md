@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T12:50:40Z`
+- Audit date: `2026-06-02T12:56:41Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `2686d80d5316d73876d806bc76dcc1a2aecdfc99`
+- HEAD: `ec8367848afbb9013826c7d09c3d351201c6d7e1`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `676`
+- Manifest artifacts: `679`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `676/676`
+- Manifest coverage: `679/679`
 
 ## Explicit Requirements
 
@@ -25,6 +25,7 @@
 - `deep_regeneration_cases_audit_pass`: `pass`
 - `frontier_alignment_taxonomy_pass`: `pass`
 - `frontier_vector_graph_pass`: `pass`
+- `frontier_metric_disagreement_pass`: `pass`
 - `lhtg_operationalized`: `pass`
 - `top_conference_boundary_kept`: `pass`
 - `unsupported_superiority_claims_kept_unsupported`: `pass`
@@ -33,9 +34,9 @@
 
 - `english_pdf`: `pass` (51757 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
 - `chinese_pdf`: `pass` (114561 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
-- `focused_english_pdf`: `pass` (36033 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
-- `focused_chinese_pdf`: `pass` (67255 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
-- `root_readme`: `pass` (9249 bytes) - `README.md`
+- `focused_english_pdf`: `pass` (36452 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `focused_chinese_pdf`: `pass` (67971 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
+- `root_readme`: `pass` (9534 bytes) - `README.md`
 - `english_submission_card`: `pass` (5177 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `chinese_submission_card`: `pass` (5055 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_zh.md`
 - `top_conference_evidence_roadmap`: `pass` (8859 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
@@ -46,6 +47,7 @@
 - `deep_case_internal_review_summary`: `pass` (7494 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/deep_case_internal_review_20260602_224500/summary.json`
 - `frontier_alignment_taxonomy_summary`: `pass` (20036 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/summary.json`
 - `frontier_vector_graph_summary`: `pass` (6376 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json`
+- `frontier_metric_disagreement_summary`: `pass` (2776 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/summary.json`
 - `english_usage`: `pass` (19460 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
 - `chinese_usage`: `pass` (19890 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`
 - `english_runbook`: `pass` (13724 bytes) - `docs/co_pilot_ai_scientist_v3/RUNBOOK_EN.md`

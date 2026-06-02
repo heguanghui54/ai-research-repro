@@ -65,6 +65,11 @@ structured feedback, and claim calibration.
   artifact, and the current frontier centroid. Mean six-gate projection gain is
   `+0.1668`, while mean cosine gain is `-0.0641`, showing that frontier
   alignment needs vector diagnostics rather than a single scalar.
+- `experiments/frontier_metric_disagreement_20260603_003000/`: disagreement
+  matrix comparing internal review, lexical frontier, vector projection, and
+  frontier cosine metrics. It finds disagreement in `2/3` deep cases, showing
+  why IGRE must evaluate human insight with multiple metrics rather than a
+  single short-term score.
 - `build/deep_regeneration_cases/`: viewable PDFs for each selected case,
   including raw human-review-guided and six-gate hybrid-review-guided
   mini-paper artifacts.
