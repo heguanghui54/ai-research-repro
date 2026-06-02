@@ -594,9 +594,14 @@
     "claim_boundary": "Cross-model review reduces same-model scoring bias for regenerated mini-paper artifacts, but it is still model-routed artifact review, not independent human peer review or experiment rerun."
   },
   "focused_paper_quality_review": {
-    "status": "refreshed_after_model_blind_dry_run_integration",
+    "status": "refreshed_after_mixed_negative_evidence_audit",
     "review_date": "2026-06-03",
     "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+    "review_context_updates": [
+      "Focused paper now includes Section 4.6, which maps mixed and negative evidence into IGRE design rules.",
+      "The paper-quality review prompt now includes mixed_negative_evidence_audit.md alongside the prior claim, readiness, TFR, OpenReview, and benchmark artifacts.",
+      "The latest successful Monica-routed reviews are gpt-4o-mini and gemini-2.5-flash; archived claude-3-7-sonnet-latest and gemini-2.0-flash failures remain logged but are not counted."
+    ],
     "successful_reviews": {
       "gpt-4o-mini": {
         "recommendation": "Weak accept",
@@ -605,17 +610,17 @@
           "rigor": 3,
           "clarity": 4,
           "evidence": 3,
-          "reproducibility": 3,
-          "significance": 4
+          "reproducibility": 4,
+          "significance": 3
         },
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md",
         "status_code": 200,
-        "completion_status": "complete_markdown_review"
+        "completion_status": "complete_markdown_review_after_mixed_negative_audit_context"
       },
       "gemini-2.5-flash": {
-        "recommendation": "Borderline",
+        "recommendation": "Weak Reject",
         "scores": {
-          "novelty": 5,
+          "novelty": 4,
           "rigor": 5,
           "clarity": 4,
           "evidence": 3,
@@ -624,7 +629,7 @@
         },
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md",
         "status_code": 200,
-        "completion_status": "complete_markdown_review"
+        "completion_status": "complete_markdown_review_after_mixed_negative_audit_context"
       }
     },
     "failed_or_archived_reviews": {
@@ -639,13 +644,14 @@
         "reason": "Unsupported model route; retained but not counted as current successful review."
       }
     },
-    "aggregate_verdict": "Current successful model reviews are one Weak accept and one Borderline. Both view IGRE/TFR as novel and reproducible, but both keep the work at pilot/method-and-measurement status because independent human ratings, broader matched benchmarks, and system-level superiority evidence remain missing.",
+    "aggregate_verdict": "Current successful model reviews are one Weak accept and one Weak Reject. The added mixed-negative evidence analysis improves rigor and transparency, especially by making failure modes part of the method, but the refreshed Gemini route still judges the paper below strong-venue readiness because empirical scale, independent human validation, and broad matched benchmark gains remain insufficient.",
     "blocking_issues": [
       "No independent human expert ratings have been collected.",
       "System-level empirical superiority over autonomous AI Scientist-v2 remains unproven.",
       "Prospective evidence is small and includes mixed or negative benchmark outcomes despite positive controlled Max-Cut micro-pilots.",
       "The model-only blind packet dry run is negative for ungated review-guided artifacts versus context controls.",
-      "Many results remain probes, smoke tests, model-routed reviews, or controlled micro-tasks."
+      "The latest Gemini route praises rigor and transparency but recommends Weak Reject because top-conference empirical impact remains insufficient.",
+      "Presentation remains dense and needs a clearer abstract, running example, and broader domain/scalability discussion."
     ],
     "claim_boundary": "Model reviews are iteration evidence only. They do not replace independent human expert review, larger matched benchmark runs, or broad multi-researcher traces."
   },
@@ -1040,28 +1046,29 @@
           "rigor": 3,
           "clarity": 4,
           "evidence": 3,
-          "reproducibility": 3,
-          "significance": 4
+          "reproducibility": 4,
+          "significance": 3
         },
-        "completion_status": "complete_markdown_review"
+        "completion_status": "complete_markdown_review_after_mixed_negative_audit_context"
       },
       "gemini-2.5-flash": {
-        "recommendation": "Borderline",
+        "recommendation": "Weak Reject",
         "scores": {
-          "novelty": 5,
+          "novelty": 4,
           "rigor": 5,
           "clarity": 4,
           "evidence": 3,
           "reproducibility": 5,
           "significance": 4
         },
-        "completion_status": "complete_markdown_review"
+        "completion_status": "complete_markdown_review_after_mixed_negative_audit_context"
       }
     },
-    "reason": "Current successful model reviews are one Weak accept and one Borderline after integrating the model-only blind packet negative result. Both reviewers treat IGRE/TFR as novel and reproducible but keep the evidence below top-conference empirical sufficiency because independent human ratings, broader matched benchmarks, and system-level AI Scientist-v2 comparisons remain missing. The model-only blind packet dry run is negative for review-guided artifacts versus context controls, reinforcing that human-review text must be routed and validated rather than assumed useful.",
+    "reason": "Current successful model reviews are one Weak accept and one Weak Reject after adding the mixed-negative evidence audit to the paper and review context. Reviewers agree that IGRE/TFR is novel, transparent, and reproducible, and Gemini explicitly praises the failure-analysis rigor, but they still keep the paper below top-conference empirical sufficiency because independent human ratings, larger matched benchmark evidence, real human-user studies, and system-level AI Scientist-v2 comparisons remain missing.",
     "ssh_maxcut_context": "Positive controlled micro-task result: co-pilot selected local search mean normalized score 0.984419 vs autonomous alternating baseline 0.596214, delta +0.388205.",
     "model_blind_packet_context": "Negative model-only dry run: review-guided wins 0, context-control wins 7, tie 1, mean delta -1.1458 across 8 parsed model score rows.",
-    "boundary": "Treat current paper as a strong pilot/reproducibility package and workflow-design contribution, not a completed top-conference empirical proof."
+    "boundary": "Treat current paper as a strong pilot/reproducibility and workflow-design package. It is not yet a completed top-conference empirical proof.",
+    "mixed_negative_audit_context": "The new mixed_negative_evidence_audit maps seven negative or mixed evidence classes to IGRE design rules: route rather than paste review text, separate local branch wins from system superiority, require deterministic TFR rule checks, and report frontier metric disagreement instead of collapsing scientific taste into one reward."
   },
   "gate_structure_ablation_probe": {
     "status": "pass",

@@ -96,6 +96,11 @@ def _prompt(paper_path: Path, *, compact: bool = False) -> str:
         / "docs/co_pilot_ai_scientist_v3/audits/live_tfr_replay_summary_audit.md",
         900 if compact else 2500,
     )
+    mixed_negative_audit = _read_excerpt(
+        ROOT
+        / "docs/co_pilot_ai_scientist_v3/audits/mixed_negative_evidence_audit.md",
+        1600 if compact else 4500,
+    )
     comparison = _read_excerpt(
         ROOT
         / "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_vectorization_comparison.md",
@@ -204,6 +209,11 @@ Live TFR three-case replay aggregate:
 Live TFR aggregate audit:
 ```markdown
 {live_tfr_audit}
+```
+
+Mixed and negative evidence audit:
+```markdown
+{mixed_negative_audit}
 ```
 
 MLAgentBench comparison:

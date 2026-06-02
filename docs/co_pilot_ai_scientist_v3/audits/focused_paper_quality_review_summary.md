@@ -1,21 +1,21 @@
 # Focused Paper Quality Review Summary
 
-- Status: `refreshed_after_model_blind_dry_run_integration`
+- Status: `refreshed_after_mixed_negative_evidence_audit`
 - Review date: `2026-06-03`
 - Paper path: `docs/co_pilot_ai_scientist_v3/paper_en_focused.md`
 
 ## Context Updates
 
-- Focused paper now includes the model-only blind packet dry run negative result.
-- Model-only blind packet dry run reports review-guided wins `0`, context-control wins `7`, tie `1`, and mean delta `-1.1458` over `8` parsed model score rows.
-- Focused bilingual PDFs were rebuilt after adding this result.
+- Focused paper now includes Section 4.6, which maps mixed and negative evidence into IGRE design rules.
+- The paper-quality review prompt now includes `mixed_negative_evidence_audit.md` alongside the prior claim, readiness, TFR, OpenReview, and benchmark artifacts.
+- The latest successful Monica-routed reviews are `gpt-4o-mini` and `gemini-2.5-flash`; archived `claude-3-7-sonnet-latest` and `gemini-2.0-flash` failures remain logged but are not counted.
 
 ## Current Successful Reviews
 
 | Model | Recommendation | Novelty | Rigor | Clarity | Evidence | Reproducibility | Significance | Completion |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| `gpt-4o-mini` | `Weak accept` | 4 | 3 | 4 | 3 | 3 | 4 | complete |
-| `gemini-2.5-flash` | `Borderline` | 5 | 5 | 4 | 3 | 5 | 4 | complete |
+| `gpt-4o-mini` | `Weak accept` | 4 | 3 | 4 | 3 | 4 | 3 | complete |
+| `gemini-2.5-flash` | `Weak Reject` | 4 | 5 | 4 | 3 | 5 | 4 | complete |
 
 ## Failed Or Archived Routes
 
@@ -24,7 +24,7 @@
 
 ## Aggregate Verdict
 
-Current successful model reviews are one `Weak accept` and one `Borderline`. Both view IGRE/TFR as novel and reproducible, but both keep the work at pilot/method-and-measurement status because independent human ratings, broader matched benchmarks, and system-level superiority evidence remain missing.
+Current successful model reviews are one `Weak accept` and one `Weak Reject`. The added mixed-negative evidence analysis improves rigor and transparency, especially by making failure modes part of the method, but the refreshed Gemini route still judges the paper below strong-venue readiness because empirical scale, independent human validation, and broad matched benchmark gains remain insufficient.
 
 ## Claim Boundary
 
