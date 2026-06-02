@@ -24,6 +24,51 @@ The engineering release track is related but separate. It can demonstrate that
 IGRE is usable as public research infrastructure, but it should not be counted
 as empirical proof that co-pilot science outperforms autonomous science.
 
+## Prioritized Next Evidence Queue
+
+The next experiments should be selected by the weakest claim that can be
+credibly improved under the available budget, not by the easiest script to run.
+The current priority order is:
+
+1. **Second scored non-FML benchmark package.**
+   Proof target: reduce the benchmark-coverage gap by adding one official or
+   official-like non-FML matched package beyond MLAgentBench vectorization.
+   Best near-term path: pre-cache or repair one MLAgentBench task whose setup
+   has already been audited, then run a matched autonomous versus human-gated
+   package with complete gate logs. Blocking condition: data access, CPU/GPU
+   runtime, or external account consent prevents an official score. If blocked,
+   record a scored local surrogate only as boundary evidence.
+
+2. **Blind expert review packet collection.**
+   Proof target: test whether qualified human reviewers prefer IGRE-gated or
+   review-guided artifacts under anonymized scoring. Best near-term path:
+   recruit NUS/school-affiliated ML/AI reviewers after ethics or departmental
+   exemption review. Blocking condition: no qualified reviewers or no ethics
+   clearance. If blocked, keep model-only dry runs as debugging evidence only.
+
+3. **Matched multi-task autonomous versus human-gated runs.**
+   Proof target: test whether co-pilot gates improve valid-run rate,
+   evaluator robustness, or manuscript quality without unacceptable task-score
+   regression. Best near-term path: extend the current prospective package
+   format to at least three task families and five matched pairs per task.
+   Blocking condition: API/compute budget or remote benchmark setup prevents
+   enough paired runs.
+
+4. **Deep TFR replay cases from the candidate queue.**
+   Proof target: find at least one inspectable delayed-value or frontier-route
+   case, or produce a stronger negative result about historical peer-review
+   guidance. Best near-term path: choose cases from the delayed-value candidate
+   queue using the OpenAlex validation score, then generate paper-only,
+   review-guided, shuffled-control, and six-gate artifacts. Blocking condition:
+   citation-frontier reconstruction is too thin or match-drift risk is too high.
+
+5. **External skill reuse beyond scripted clean environments.**
+   Proof target: show that the release skill can be used by another researcher
+   or independently prepared environment to produce a valid gate log. Best
+   near-term path: invite one external tester after the release package is
+   stable. Blocking condition: no external tester; do not substitute repository
+   stars or scripted local reuse for independent adoption evidence.
+
 ## Milestone 1: Blind Human Expert Review
 
 - Claim tested: review-derived and IGRE-gated feedback improves research

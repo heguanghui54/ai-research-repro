@@ -61,5 +61,53 @@
     "pilot_or_system_paper": "Submit only after blind human expert review or matched autonomous-vs-human runs produce positive evidence.",
     "top_conference_empirical_paper": "Submit only after blind human expert review and matched autonomous-vs-human runs both pass, with LHTG/DVRS replay providing either positive delayed-value evidence or a strong negative measurement result."
   },
-  "claim_boundary": "IGRE, LHTG, TFR, and DVRS define an auditable human-participation workflow for automated science; the current package demonstrates reproducible operationalization and pilot signals, but not empirical superiority over autonomous AI Scientist-v2."
+  "claim_boundary": "IGRE, LHTG, TFR, and DVRS define an auditable human-participation workflow for automated science; the current package demonstrates reproducible operationalization and pilot signals, but not empirical superiority over autonomous AI Scientist-v2.",
+  "priority_queue": [
+    {
+      "priority": 1,
+      "id": "second_scored_non_fml_benchmark_package",
+      "action": "Second scored non-FML benchmark package",
+      "proof_target": "Reduce the benchmark-coverage gap by adding one official or official-like non-FML matched package beyond MLAgentBench vectorization.",
+      "best_near_term_path": "Pre-cache or repair one MLAgentBench task whose setup has already been audited, then run a matched autonomous versus human-gated package with complete gate logs.",
+      "blocking_condition": "Data access, CPU/GPU runtime, or external account consent prevents an official score.",
+      "fallback_if_blocked": "Record a scored local surrogate only as boundary evidence and keep official non-FML benchmark claims incomplete."
+    },
+    {
+      "priority": 2,
+      "id": "blind_expert_review_packet_collection",
+      "action": "Blind expert review packet collection",
+      "proof_target": "Test whether qualified human reviewers prefer IGRE-gated or review-guided artifacts under anonymized scoring.",
+      "best_near_term_path": "Recruit NUS or school-affiliated ML/AI reviewers after ethics or departmental exemption review.",
+      "blocking_condition": "No qualified reviewers are available or ethics/exemption review is not cleared.",
+      "fallback_if_blocked": "Use model-only dry runs only to debug the packet, not as human evidence."
+    },
+    {
+      "priority": 3,
+      "id": "matched_multitask_autonomous_vs_human_gated_runs",
+      "action": "Matched multi-task autonomous versus human-gated runs",
+      "proof_target": "Test whether co-pilot gates improve valid-run rate, evaluator robustness, or manuscript quality without unacceptable task-score regression.",
+      "best_near_term_path": "Extend the current prospective package format to at least three task families and five matched pairs per task.",
+      "blocking_condition": "API budget, compute budget, or remote benchmark setup prevents enough paired runs.",
+      "fallback_if_blocked": "Keep current pilot evidence and report power limitations instead of upgrading superiority claims."
+    },
+    {
+      "priority": 4,
+      "id": "deep_tfr_replay_cases_from_candidate_queue",
+      "action": "Deep TFR replay cases from the candidate queue",
+      "proof_target": "Find at least one inspectable delayed-value or frontier-route case, or produce a stronger negative result about historical peer-review guidance.",
+      "best_near_term_path": "Choose cases from the delayed-value candidate queue using the OpenAlex validation score, then generate paper-only, review-guided, shuffled-control, and six-gate artifacts.",
+      "blocking_condition": "Citation-frontier reconstruction is too thin or match-drift risk is too high.",
+      "fallback_if_blocked": "Report the candidate as unscored or drift-risk rather than treating review text as a taste oracle."
+    },
+    {
+      "priority": 5,
+      "id": "external_skill_reuse_beyond_scripted_clean_environments",
+      "action": "External skill reuse beyond scripted clean environments",
+      "proof_target": "Show that the release skill can be used by another researcher or independently prepared environment to produce a valid gate log.",
+      "best_near_term_path": "Invite one external tester after the release package is stable.",
+      "blocking_condition": "No external tester is available.",
+      "fallback_if_blocked": "Do not substitute repository stars or scripted local reuse for independent adoption evidence."
+    }
+  ],
+  "next_experiment_selection_rule": "Choose the highest-priority item whose blocking condition is not active; if it is blocked, archive the blocker and move to the next item without upgrading claims."
 }

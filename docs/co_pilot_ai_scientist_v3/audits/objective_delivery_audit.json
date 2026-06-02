@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T19:51:12Z",
+  "audit_date": "2026-06-02T19:55:09Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "2d37a34ab3ead441edb105e29888bb68e6d821af",
+  "head": "24e66c02fb3f8eb28a1698c739421ce5d1809a6d",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -60,13 +60,13 @@
     "top_conference_evidence_roadmap": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
       "exists": true,
-      "bytes": 11753,
+      "bytes": 14410,
       "ok": true
     },
     "top_conference_evidence_roadmap_json": {
       "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
       "exists": true,
-      "bytes": 6898,
+      "bytes": 10621,
       "ok": true
     },
     "deep_regeneration_casebook": {

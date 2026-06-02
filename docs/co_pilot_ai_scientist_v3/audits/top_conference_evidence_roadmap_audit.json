@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T19:41:45Z",
+  "audit_date": "2026-06-02T19:55:08Z",
   "status": "pass",
   "roadmap_json": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
   "roadmap_markdown": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
@@ -114,6 +114,60 @@
       "ok": true
     }
   },
+  "priority_queue_checks": {
+    "count": 5,
+    "items": {
+      "second_scored_non_fml_benchmark_package": {
+        "priority": true,
+        "action": true,
+        "proof_target": true,
+        "best_near_term_path": true,
+        "blocking_condition": true,
+        "fallback_if_blocked": true
+      },
+      "blind_expert_review_packet_collection": {
+        "priority": true,
+        "action": true,
+        "proof_target": true,
+        "best_near_term_path": true,
+        "blocking_condition": true,
+        "fallback_if_blocked": true
+      },
+      "matched_multitask_autonomous_vs_human_gated_runs": {
+        "priority": true,
+        "action": true,
+        "proof_target": true,
+        "best_near_term_path": true,
+        "blocking_condition": true,
+        "fallback_if_blocked": true
+      },
+      "deep_tfr_replay_cases_from_candidate_queue": {
+        "priority": true,
+        "action": true,
+        "proof_target": true,
+        "best_near_term_path": true,
+        "blocking_condition": true,
+        "fallback_if_blocked": true
+      },
+      "external_skill_reuse_beyond_scripted_clean_environments": {
+        "priority": true,
+        "action": true,
+        "proof_target": true,
+        "best_near_term_path": true,
+        "blocking_condition": true,
+        "fallback_if_blocked": true
+      }
+    }
+  },
+  "priority_term_presence": {
+    "Second scored non-FML benchmark package": true,
+    "Blind expert review packet collection": true,
+    "Matched multi-task autonomous versus human-gated runs": true,
+    "Deep TFR replay cases from the candidate queue": true,
+    "External skill reuse beyond scripted clean environments": true,
+    "proof_target": true,
+    "blocking_condition": true
+  },
   "submission_decision_rule_present": true,
   "md_term_presence": {
     "Milestone 1: Blind Human Expert Review": true,
@@ -123,6 +177,12 @@
     "Milestone 5: Live Multi-Researcher Co-Pilot Trace Data": true,
     "Milestone 6: Non-FML Official Benchmark Check": true,
     "Milestone 7: Public Skill Engineering And Community Adoption": true,
+    "Prioritized Next Evidence Queue": true,
+    "Second scored non-FML benchmark package": true,
+    "Blind expert review packet collection": true,
+    "Matched multi-task autonomous versus human-gated runs": true,
+    "Deep TFR replay cases from the candidate queue": true,
+    "External skill reuse beyond scripted clean environments": true,
     "Decision Rule For The Paper": true,
     "not empirical superiority over autonomous AI Scientist-v2": true
   },

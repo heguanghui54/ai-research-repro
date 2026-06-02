@@ -59,6 +59,16 @@ REQUIRED_MILESTONES = {
     ],
 }
 
+REQUIRED_PRIORITY_QUEUE_TERMS = [
+    "Second scored non-FML benchmark package",
+    "Blind expert review packet collection",
+    "Matched multi-task autonomous versus human-gated runs",
+    "Deep TFR replay cases from the candidate queue",
+    "External skill reuse beyond scripted clean environments",
+    "proof_target",
+    "blocking_condition",
+]
+
 
 def _utc_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
@@ -119,6 +129,36 @@ def main() -> None:
     if "not empirical superiority over autonomous AI Scientist-v2" not in roadmap.get("claim_boundary", ""):
         errors.append("claim boundary does not preserve non-superiority statement")
 
+    priority_queue = roadmap.get("priority_queue", [])
+    priority_checks: dict[str, Any] = {
+        "count": len(priority_queue),
+        "items": {},
+    }
+    if len(priority_queue) < 5:
+        errors.append("priority queue has fewer than five next evidence actions")
+    for index, item in enumerate(priority_queue, start=1):
+        item_id = item.get("id", f"item_{index}")
+        field_presence = {
+            field: bool(item.get(field))
+            for field in [
+                "priority",
+                "action",
+                "proof_target",
+                "best_near_term_path",
+                "blocking_condition",
+                "fallback_if_blocked",
+            ]
+        }
+        priority_checks["items"][item_id] = field_presence
+        for field, present in field_presence.items():
+            if not present:
+                errors.append(f"priority queue item {item_id} missing field: {field}")
+    priority_blob = json.dumps(priority_queue, ensure_ascii=False)
+    priority_term_presence = {term: term in priority_blob for term in REQUIRED_PRIORITY_QUEUE_TERMS}
+    for term, present in priority_term_presence.items():
+        if not present:
+            errors.append(f"priority queue missing term: {term}")
+
     required_md_terms = [
         "Milestone 1: Blind Human Expert Review",
         "Milestone 2: Matched Autonomous Versus Human-Gated Runs",
@@ -127,6 +167,12 @@ def main() -> None:
         "Milestone 5: Live Multi-Researcher Co-Pilot Trace Data",
         "Milestone 6: Non-FML Official Benchmark Check",
         "Milestone 7: Public Skill Engineering And Community Adoption",
+        "Prioritized Next Evidence Queue",
+        "Second scored non-FML benchmark package",
+        "Blind expert review packet collection",
+        "Matched multi-task autonomous versus human-gated runs",
+        "Deep TFR replay cases from the candidate queue",
+        "External skill reuse beyond scripted clean environments",
         "Decision Rule For The Paper",
         "not empirical superiority over autonomous AI Scientist-v2",
     ]
@@ -146,6 +192,8 @@ def main() -> None:
         "milestone_count": len(roadmap.get("milestones", [])),
         "required_milestone_count": len(REQUIRED_MILESTONES),
         "milestone_checks": milestone_checks,
+        "priority_queue_checks": priority_checks,
+        "priority_term_presence": priority_term_presence,
         "submission_decision_rule_present": bool(decision_rule),
         "md_term_presence": md_term_presence,
         "errors": errors,
@@ -175,6 +223,11 @@ def main() -> None:
     ]
     for milestone_id, check in milestone_checks.items():
         lines.append(f"- `{milestone_id}`: `{'pass' if check.get('ok') else 'fail'}`")
+    lines.extend(["", "## Priority Queue Checks", ""])
+    lines.append(f"- Priority actions: `{priority_checks['count']}`")
+    for item_id, checks in priority_checks["items"].items():
+        ok = all(checks.values())
+        lines.append(f"- `{item_id}`: `{'pass' if ok else 'fail'}`")
     lines.extend(["", "## Errors", ""])
     lines.extend([f"- {error}" for error in errors] or ["- None"])
     lines.extend(["", "## Warnings", ""])
