@@ -78,6 +78,7 @@ TFR 不是额外搬来的 benchmark，而是 co-pilot 问题本身要求的方�
 | 前沿向量图 | six-gate 平均投影增益 +0.1668 | six-gate 平均 cosine 增益 -0.0641 | 2 个投影正向案例，1 个负向案例 | 将原论文、再生成产物和当前前沿中心表示为 6 维向量；显示词汇前沿增益仍可能包含方向漂移。 |
 | 前沿指标分歧矩阵 | 内部评议和词汇指标均 six-gate 胜 3/3 | 向量投影 six-gate 胜 2/3；cosine six-gate 胜 1/3 | 分歧率 0.6667 | 说明短期评议胜利、词汇前沿覆盖和向量移动衡量的是不同对象。 |
 | 预注册盲评专家评审包 | 已准备 6 对匿名 A/B 产物 | 已完成人类评分 0 行 | 计划 3-5 名评审者 | 仅表示评估就绪，不声称已有人工证据。 |
+| 模型-only 盲评包 dry run | review-guided 胜 0 次 | context-control 胜 7 次，平 1 次 | review-guided 减 control 均值 -1.1458 | 验证盲评包和统计流程，同时暴露负结果：未经过合适门控路由的评审文本可能在盲评中明显变差；这不是人类证据。 |
 | Live skill invocation smoke | 生成 3 个候选方向和一个归档的一版 IGRE gate plan | template-only skill smoke | 2 次真实模型调用，audit recommendation pass | 说明 Codex skill 可在新任务上复用；不是 benchmark 证据。 |
 | Standalone skill install smoke | public release scaffold 安装到隔离 `CODEX_SKILLS_DIR` 并通过 installed validator | release files without install execution | 检查 14 个 required files；install smoke pass | 工程迁移性证据，说明 IGRE skill 包可安装和自验证；不是科学优越性证据。 |
 | Metric-gaming evaluator-stress smoke | evaluator-stress gate 选择 `guardrailed_utility_model` | primary-only 公平性指标选择 `metric_gaming_all_negative` | 减少 1 个合成 metric-gaming 事件 | 将 live skill 任务连接到真实 evaluator；这是受控 toy 证据，不是 FML-bench 结果。 |
@@ -191,7 +192,7 @@ OpenReview 实验给出了实践路径。真实评审意见可以用于发现哪
 
 ## 6. 局限性
 
-当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文或成对再生成产物的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。等上下文 OpenReview 消融降低了额外上下文混淆，但尚未完全消除，因为评分仍来自模型路由评审，产物也只是再生成 mini-artifact，而不是盲审专家评分或真实实验重跑。delayed-value 候选挖掘和 OpenAlex 验证只能排序未来 replay 个案，三条 live TFR replay 显示的是模型乐观判断被规则纠正，而不是正向 delayed-value 证据；它们不能替代 benchmark 重跑、人类专家判断或更大规模 replay 样本。高尾假设现在已经被统计操作化为功效分析协议，但当前证据包仍没有证明任何 high-tail 或 delayed-value 正例。
+当前证据仍是 pilot package。它尚未包含独立人类专家对最终 IGRE 论文或成对再生成产物的评审。实时 co-pilot 轨迹是单作者派生元数据语料，而不是许多科研人员共同使用系统后的总体数据。OpenReview 是离线异步评审数据，不是 AI Scientist-v2 运行中的实时人类干预。matched-budget FML 证据样本量不足，而且目前对 benchmark 表现是负向或混合结果。等上下文 OpenReview 消融降低了额外上下文混淆，但尚未完全消除，因为评分仍来自模型路由评审，产物也只是再生成 mini-artifact，而不是盲审专家评分或真实实验重跑。盲评包的模型-only dry run 也是负结果：8 条可解析模型评分行中，review-guided 产物 0 胜，context-control 产物 7 胜，1 次平局，review-guided 减 control 的平均分为 -1.1458。这不是人类证据，但它是一个有用警告：如果评审文本没有经过合适 gate 路由，单纯加入评论可能会降低盲评产物质量。delayed-value 候选挖掘和 OpenAlex 验证只能排序未来 replay 个案，三条 live TFR replay 显示的是模型乐观判断被规则纠正，而不是正向 delayed-value 证据；它们不能替代 benchmark 重跑、人类专家判断或更大规模 replay 样本。高尾假设现在已经被统计操作化为功效分析协议，但当前证据包仍没有证明任何 high-tail 或 delayed-value 正例。
 
 这些局限也是未来研究方向。为了把下一步做实，仓库已经准备并预注册了 6 对 OpenReview 再生成产物的盲评包：评审者只看到匿名 A/B 产物、固定 rubric 和评分表模板，condition key 与分析计划在评分完成前由协调者隐藏保存。该计划把有用的人类 taste 与 insight 定义为能够改变科研控制决策的评审信号，而不是泛泛认可。这还不是实验证据，因为尚未收集独立人类专家评分。更强的研究应把可复用 co-pilot scientist skill 部署给大量科研人员，在知情同意和隐私保护下收集门控元数据，跨任务运行 matched autonomous 与 human-gated 轨迹，并把成对输出交给盲审专家评估。目前，这种实时多研究者数据更可能由主流 agent 公司或大模型公司完成，而不是小型独立项目。IGRE 因此使用 OpenReview 作为可扩展离线代理，并明确标记这一缺口。
 

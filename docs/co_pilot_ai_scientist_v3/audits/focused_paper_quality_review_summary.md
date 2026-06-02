@@ -1,44 +1,30 @@
 # Focused Paper Quality Review Summary
 
-Review date: 2026-06-03
+- Status: `refreshed_after_model_blind_dry_run_integration`
+- Review date: `2026-06-03`
+- Paper path: `docs/co_pilot_ai_scientist_v3/paper_en_focused.md`
 
-Manuscript reviewed:
+## Context Updates
 
-- `docs/co_pilot_ai_scientist_v3/paper_en_focused.md`
+- Focused paper now includes the model-only blind packet dry run negative result.
+- Model-only blind packet dry run reports review-guided wins `0`, context-control wins `7`, tie `1`, and mean delta `-1.1458` over `8` parsed model score rows.
+- Focused bilingual PDFs were rebuilt after adding this result.
 
-## Current Review Context
+## Current Successful Reviews
 
-This refresh reviews the focused paper after integrating the SSH Ubuntu `prospective_matched_micro_pilot_20260603_ssh_maxcut` result. The prospective matched package summary now covers 5 packages: 2 co-pilot or human-selected wins and 3 autonomous/tie/invalid outcomes. The SSH Max-Cut package reports autonomous mean normalized score `0.596214`, co-pilot selected local-search mean normalized score `0.984419`, and delta `+0.388205`.
+| Model | Recommendation | Novelty | Rigor | Clarity | Evidence | Reproducibility | Significance | Completion |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `gpt-4o-mini` | `Weak accept` | 4 | 3 | 4 | 3 | 3 | 4 | complete |
+| `gemini-2.5-flash` | `Borderline` | 5 | 5 | 4 | 3 | 5 | 4 | complete |
 
-## Reviewer Routes
+## Failed Or Archived Routes
 
-- Monica OpenAI-compatible `gpt-4o-mini`: successful current review.
-- Monica OpenAI-compatible `gemini-2.5-flash`: successful current route with verdict and rubric present; output ended by `finish_reason=length` during required revisions, so it is counted as partial-successful rather than a full long-form review.
-- Monica OpenAI-compatible `claude-3-7-sonnet-latest`: archived `504 Gateway Time-out`; logged but not counted as current successful review.
-- Monica OpenAI-compatible `gemini-2.0-flash`: archived unsupported-model `412`; logged but not counted as current successful review.
+- `claude-3-7-sonnet-latest`: `504 Gateway Time-out`; retained but not counted as current successful review.
+- `gemini-2.0-flash`: unsupported-model `412`; retained but not counted as current successful review.
 
 ## Aggregate Verdict
 
-Both successful current reviewers recommend `Weak accept` under conservative framing. They agree that IGRE is strongest as a systems-method and measurement paper: it operationalizes human scientific taste as auditable control signals, releases a reusable and reproducible artifact package, and keeps mixed or negative evidence visible rather than claiming broad superiority. The SSH Max-Cut micro-pilot improves the evidence shape because it is a real SSH matched-budget machine-gradeable run, but it does not close the top-conference empirical gap.
-
-| Reviewer | Recommendation | Novelty | Rigor | Clarity | Evidence | Reproducibility | Significance |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `gpt-4o-mini` | Weak accept | 4 | 3 | 4 | 3 | 4 | 3 |
-| `gemini-2.5-flash` | Weak accept | 4 | 5 | 4 | 3 | 5 | 4 |
-
-## What Improved
-
-- The latest manuscript now connects the SSH Max-Cut micro-pilot to the prospective matched-budget evidence table and Section 4.4.
-- The paper distinguishes the positive controlled micro-task result from the still mixed or negative FML evidence.
-- The reviewer routes continue to recognize the reproducibility package, six-gate IGRE architecture, and explicit claim bounding as major strengths.
-
-## Remaining Blocking Issues
-
-- Independent human expert ratings are still missing.
-- System-level superiority over autonomous AI Scientist-v2 remains unproven.
-- The positive SSH Max-Cut result is a small controlled subproblem, not a paper-quality benchmark.
-- Prospective evidence remains underpowered and mixed across FML-style tasks.
-- Scientific taste routing still needs expert-labeled or live multi-researcher validation.
+Current successful model reviews are one `Weak accept` and one `Borderline`. Both view IGRE/TFR as novel and reproducible, but both keep the work at pilot/method-and-measurement status because independent human ratings, broader matched benchmarks, and system-level superiority evidence remain missing.
 
 ## Claim Boundary
 

@@ -171,7 +171,13 @@
     "prospective_matched_package_autonomous_or_tie_wins": 3,
     "prospective_matched_package_complete_attention_gates": 5,
     "prospective_matched_package_complete_taste_gates": 5,
-    "prospective_matched_package_total_active_review_minutes": 13.0
+    "prospective_matched_package_total_active_review_minutes": 13.0,
+    "model_blind_review_dry_runs": 1,
+    "model_blind_review_valid_rows": 8,
+    "model_blind_review_review_guided_wins": 0,
+    "model_blind_review_context_control_wins": 7,
+    "model_blind_review_ties": 1,
+    "model_blind_review_mean_delta": -1.1458333333333333
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -588,7 +594,7 @@
     "claim_boundary": "Cross-model review reduces same-model scoring bias for regenerated mini-paper artifacts, but it is still model-routed artifact review, not independent human peer review or experiment rerun."
   },
   "focused_paper_quality_review": {
-    "status": "refreshed_after_ssh_maxcut_integration",
+    "status": "refreshed_after_model_blind_dry_run_integration",
     "review_date": "2026-06-03",
     "paper_path": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
     "successful_reviews": {
@@ -599,17 +605,17 @@
           "rigor": 3,
           "clarity": 4,
           "evidence": 3,
-          "reproducibility": 4,
-          "significance": 3
+          "reproducibility": 3,
+          "significance": 4
         },
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gpt-4o-mini.md",
         "status_code": 200,
         "completion_status": "complete_markdown_review"
       },
       "gemini-2.5-flash": {
-        "recommendation": "Weak accept",
+        "recommendation": "Borderline",
         "scores": {
-          "novelty": 4,
+          "novelty": 5,
           "rigor": 5,
           "clarity": 4,
           "evidence": 3,
@@ -618,28 +624,28 @@
         },
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.5-flash.md",
         "status_code": 200,
-        "completion_status": "partial_markdown_review_finish_reason_length_but_verdict_and_scores_present"
+        "completion_status": "complete_markdown_review"
       }
     },
     "failed_or_archived_reviews": {
       "claude-3-7-sonnet-latest": {
         "status_code": 504,
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/claude-3-7-sonnet-latest.md",
-        "reason": "Gateway timeout from archived route; retained but not counted as current successful review."
+        "reason": "Gateway timeout from Monica route; retained but not counted as current successful review."
       },
       "gemini-2.0-flash": {
         "status_code": 412,
         "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md",
-        "reason": "Unsupported model route from archived attempt; retained but not counted as current successful review."
+        "reason": "Unsupported model route; retained but not counted as current successful review."
       }
     },
-    "aggregate_verdict": "Both successful current reviewers recommend Weak accept under conservative framing, while emphasizing that the paper remains a pilot/method-and-measurement contribution rather than top-conference empirical proof of co-pilot superiority.",
+    "aggregate_verdict": "Current successful model reviews are one Weak accept and one Borderline. Both view IGRE/TFR as novel and reproducible, but both keep the work at pilot/method-and-measurement status because independent human ratings, broader matched benchmarks, and system-level superiority evidence remain missing.",
     "blocking_issues": [
       "No independent human expert ratings have been collected.",
       "System-level empirical superiority over autonomous AI Scientist-v2 remains unproven.",
-      "Prospective evidence is still small and includes mixed or negative FML outcomes despite the positive SSH Max-Cut micro-pilot.",
-      "Many results remain probes, smoke tests, model-routed reviews, or controlled micro-tasks.",
-      "Scientific taste operationalization needs larger live human or expert-validated data."
+      "Prospective evidence is small and includes mixed or negative benchmark outcomes despite positive controlled Max-Cut micro-pilots.",
+      "The model-only blind packet dry run is negative for ungated review-guided artifacts versus context controls.",
+      "Many results remain probes, smoke tests, model-routed reviews, or controlled micro-tasks."
     ],
     "claim_boundary": "Model reviews are iteration evidence only. They do not replace independent human expert review, larger matched benchmark runs, or broad multi-researcher traces."
   },
@@ -1034,26 +1040,27 @@
           "rigor": 3,
           "clarity": 4,
           "evidence": 3,
-          "reproducibility": 4,
-          "significance": 3
+          "reproducibility": 3,
+          "significance": 4
         },
         "completion_status": "complete_markdown_review"
       },
       "gemini-2.5-flash": {
-        "recommendation": "Weak accept",
+        "recommendation": "Borderline",
         "scores": {
-          "novelty": 4,
+          "novelty": 5,
           "rigor": 5,
           "clarity": 4,
           "evidence": 3,
           "reproducibility": 5,
           "significance": 4
         },
-        "completion_status": "partial_markdown_review_finish_reason_length_but_verdict_and_scores_present"
+        "completion_status": "complete_markdown_review"
       }
     },
-    "reason": "Both current successful model reviewers weakly accept the focused draft after SSH Max-Cut integration, but the evidence remains too small, mixed, and model-reviewed to support top-conference-level empirical claims. Independent human expert ratings, broader matched benchmarks, and system-level AI Scientist-v2 comparisons remain missing.",
+    "reason": "Current successful model reviews are one Weak accept and one Borderline after integrating the model-only blind packet negative result. Both reviewers treat IGRE/TFR as novel and reproducible but keep the evidence below top-conference empirical sufficiency because independent human ratings, broader matched benchmarks, and system-level AI Scientist-v2 comparisons remain missing. The model-only blind packet dry run is negative for review-guided artifacts versus context controls, reinforcing that human-review text must be routed and validated rather than assumed useful.",
     "ssh_maxcut_context": "Positive controlled micro-task result: co-pilot selected local search mean normalized score 0.984419 vs autonomous alternating baseline 0.596214, delta +0.388205.",
+    "model_blind_packet_context": "Negative model-only dry run: review-guided wins 0, context-control wins 7, tie 1, mean delta -1.1458 across 8 parsed model score rows.",
     "boundary": "Treat current paper as a strong pilot/reproducibility package and workflow-design contribution, not a completed top-conference empirical proof."
   },
   "gate_structure_ablation_probe": {
@@ -1288,5 +1295,28 @@
     "candidate_queue_size": 120,
     "candidate_frontier_delta": 0.064,
     "claim_boundary": "LHTG/DVRS is operationalized as a routing and replay policy, but the current archived evidence validates only candidate prioritization and negative/weak TFR boundaries. It does not prove that human reviews improve long-horizon discovery."
+  },
+  "model_blind_review_dry_run": {
+    "status": "model_only_dry_run_not_human_evidence",
+    "score_csv": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/model_score_sheet.csv",
+    "analysis_json": "docs/co_pilot_ai_scientist_v3/experiments/human_expert_blind_review_packet_20260602_143000/model_blind_review_dry_run_20260603/analysis/summary.json",
+    "target_condition": "review_guided",
+    "comparator_condition": "context_control_unrelated_reviews",
+    "valid_rows": 8,
+    "independent_model_raters": 2,
+    "win_counts": {
+      "review_guided": 0,
+      "context_control_unrelated_reviews": 7,
+      "tie": 1,
+      "other_condition": 0
+    },
+    "mean_delta": {
+      "mean": -1.1458333333333333,
+      "ci95_low": -1.6666666666666667,
+      "ci95_high": -0.7083333333333333,
+      "n": 8
+    },
+    "positive_evidence_threshold_met": false,
+    "claim_boundary": "Model-only blind packet dry run; validates collection and summarization pipeline, but is not independent human expert evidence."
   }
 }

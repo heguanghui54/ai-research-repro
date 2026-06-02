@@ -1,8 +1,8 @@
 # Package Consistency Audit
 
-- Audit date: `2026-06-02T17:23:41Z`
+- Audit date: `2026-06-02T17:32:24Z`
 - Status: `pass`
-- HEAD: `228654ea8baf0115d2c3e1340e664331e31b2502`
+- HEAD: `706906fb09becbbc23e5d7c27bd8cc7f566b1098`
 - Clean-clone audited commit: `fb3e666b6f75e1342a59289aa24ee61552356bd8`
 - Clean-clone commit is HEAD ancestor: `True`
 - Manifest artifacts: `875`
@@ -13,7 +13,7 @@
 
 ## PDF Bytes
 
-- `focused_en`: `202669`
+- `focused_en`: `203136`
 
 ## Errors
 
