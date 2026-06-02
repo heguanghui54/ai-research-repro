@@ -1,9 +1,9 @@
 {
-  "audit_date": "2026-06-02T11:36:32Z",
+  "audit_date": "2026-06-02T11:40:14Z",
   "status": "pass",
-  "head": "36b90bdb01d8c7c7d83ea752481ba23daab0aca9",
-  "clean_clone_audited_commit": "aaa8127cae1c39e3a062eb2e04997ab95f80dfaf",
-  "clean_clone_commit_is_head": false,
+  "head": "7badd8f35a9208ae55a6fa6ea9393869fef897b2",
+  "clean_clone_audited_commit": "7badd8f35a9208ae55a6fa6ea9393869fef897b2",
+  "clean_clone_commit_is_head": true,
   "clean_clone_commit_is_head_ancestor": true,
   "git_repository_is_shallow": false,
   "manifest_artifacts": 629,
@@ -30,25 +30,22 @@
       "候选-前沿验证": true
     },
     "docs/co_pilot_ai_scientist_v3/audits/top_conference_readiness_audit.md": {
-      "aaa8127ca": true,
-      "621/621": true,
+      "7badd8f35": true,
+      "629/629": true,
       "+0.064": true
     },
     "docs/co_pilot_ai_scientist_v3/audits/claim_evidence_audit.md": {
-      "621/621": true,
+      "629/629": true,
       "candidate-frontier validation": true
     },
     "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md": {
-      "36b90bdb0": true,
+      "7badd8f35": true,
       "629/629": true,
       "top-conference empirical target remains incomplete": true
     }
   },
   "stale_token_hits": {},
   "errors": [],
-  "warnings": [
-    "clean-clone manifest_artifacts_checked does not match manifest current_artifacts length because clean-clone audit targets an ancestor commit",
-    "readiness clean-clone manifest count is stale because clean-clone audit targets an ancestor commit"
-  ],
+  "warnings": [],
   "claim_boundary": "This audit checks package consistency, not scientific correctness or top-conference sufficiency. A pass means the artifact metadata agree."
 }
