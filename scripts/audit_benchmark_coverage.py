@@ -55,6 +55,7 @@ def main() -> None:
     imdb_path = EXP_DIR / "mlagentbench_imdb_setup_probe" / "summary.json"
     clrs_path = EXP_DIR / "mlagentbench_clrs_baseline_smoke_20260602" / "summary.json"
     clrs_reduced_path = EXP_DIR / "mlagentbench_clrs_reduced_smoke_20260602" / "summary.json"
+    house_price_path = EXP_DIR / "mlagentbench_house_price_setup_probe" / "summary.json"
     science_path = EXP_DIR / "scienceagentbench_metadata_setup_probe" / "summary.json"
 
     matrix = _load_json(matrix_path)
@@ -72,6 +73,7 @@ def main() -> None:
     imdb = _load_json(imdb_path)
     clrs = _load_json(clrs_path)
     clrs_reduced = _load_json(clrs_reduced_path)
+    house_price = _load_json(house_price_path)
     science = _load_json(science_path)
 
     vector_agg = vector.get("aggregate", {})
@@ -138,6 +140,12 @@ def main() -> None:
             "direct_eval_error": clrs_reduced.get("direct_eval_error"),
             "path": _rel(clrs_reduced_path),
         },
+        "mlagentbench_house_price": {
+            "status": house_price.get("status"),
+            "official_score_reported": house_price.get("official_score_reported"),
+            "blocker": house_price.get("blocker", {}),
+            "path": _rel(house_price_path),
+        },
         "scienceagentbench": {
             "status": science.get("status"),
             "score_reported": science.get("score_reported"),
@@ -175,6 +183,7 @@ def main() -> None:
         and imdb.get("official_score_reported") is False
         and clrs.get("official_score_reported") is False
         and clrs_reduced.get("official_score_reported") is False
+        and house_price.get("official_score_reported") is False
         and science.get("score_reported") is False,
         "mlagentbench_clrs_dependency_repaired_but_unscored": clrs.get("dependency_status") == "repaired"
         and clrs.get("runner_reached_task_prompt") is True
@@ -188,6 +197,11 @@ def main() -> None:
         and clrs_reduced.get("checkpoint_produced") is False
         and clrs_reduced.get("spec_list_produced") is False
         and clrs_reduced.get("official_score_reported") is False,
+        "mlagentbench_house_price_credential_blocker_logged": house_price.get("status")
+        == "setup_blocked_by_missing_kaggle_cli_and_competition_consent"
+        and house_price.get("official_score_reported") is False
+        and house_price.get("blocker", {}).get("missing_tool") == "kaggle"
+        and house_price.get("blocker", {}).get("requires_kaggle_competition_consent") is True,
         "stretch_targets_kept_future": _contains_any(matrix_text, ["MLE-bench Lite", "PaperBench", "AIRS-Bench"])
         and "Not run in the current budget" in matrix_text,
     }

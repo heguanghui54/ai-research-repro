@@ -1,0 +1,22 @@
+{
+  "probe": "mlagentbench_house_price_setup_probe",
+  "benchmark": "MLAgentBench",
+  "task": "house-price",
+  "status": "setup_blocked_by_missing_kaggle_cli_and_competition_consent",
+  "official_score_reported": false,
+  "host": "ubuntu-heshi",
+  "attempted_command": "cd /home/heshi/work/bench-probes/MLAgentBench && . .venv/bin/activate && printf \"\\n\" | python -u -m MLAgentBench.prepare_task house-price \"$(which python)\"",
+  "observed_output_excerpt": [
+    "Running prepare.py ...",
+    "Consent to the competition at https://www.kaggle.com/competitions/home-data-for-ml-course/data; Press any key",
+    "FileNotFoundError: [Errno 2] No such file or directory: 'kaggle'",
+    "prepare.py failed"
+  ],
+  "blocker": {
+    "missing_tool": "kaggle",
+    "requires_kaggle_competition_consent": true,
+    "requires_account_or_credentials": "likely",
+    "credential_free_official_run_available": false
+  },
+  "interpretation": "The official MLAgentBench task code is present, but this task requires Kaggle tooling and likely account/rule consent. No official score is reported. The package therefore uses the credential-free sklearn diabetes probe only as a non-official modeling boundary condition."
+}

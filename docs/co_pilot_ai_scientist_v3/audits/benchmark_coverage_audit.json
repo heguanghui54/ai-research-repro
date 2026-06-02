@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T15:06:48Z",
+  "audit_date": "2026-06-02T17:58:40Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -19,6 +19,7 @@
     "blocked_tasks_do_not_report_scores": true,
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,
     "mlagentbench_clrs_reduced_kept_non_official_and_unscored": true,
+    "mlagentbench_house_price_credential_blocker_logged": true,
     "stretch_targets_kept_future": true
   },
   "evidence_summary": {
@@ -111,6 +112,17 @@
         "spec_list_produced": false,
         "direct_eval_error": "FileNotFoundError for checkpoints/spec_list.pkl",
         "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/summary.json"
+      },
+      "mlagentbench_house_price": {
+        "status": "setup_blocked_by_missing_kaggle_cli_and_competition_consent",
+        "official_score_reported": false,
+        "blocker": {
+          "missing_tool": "kaggle",
+          "requires_kaggle_competition_consent": true,
+          "requires_account_or_credentials": "likely",
+          "credential_free_official_run_available": false
+        },
+        "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_house_price_setup_probe/summary.json"
       },
       "scienceagentbench": {
         "status": "metadata_and_verified_artifacts_not_yet_accessible",

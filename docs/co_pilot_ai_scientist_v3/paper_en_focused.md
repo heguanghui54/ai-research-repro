@@ -130,6 +130,18 @@ The main quantitative evidence is summarized below. The table intentionally mixe
 | MLAgentBench vectorization | correct search in 8/8 seeds, median 0.024581 s | starter 3.261186 s; direct rewrite failed correctness | large runtime gain | Micro-evolution helps on a correctness-gated code subproblem. |
 | Sklearn diabetes tabular probe | OpenEvolve median RMSE 55.895460 | direct rewrite RMSE 55.895460 | no search advantage | Direct editing can be enough on simple modeling tasks. |
 
+The non-FML benchmark expansion is deliberately reported with blocked setup
+attempts rather than hidden. Beyond the scored MLAgentBench vectorization task,
+we attempted official MLAgentBench CIFAR10/debug, IMDB, CLRS, and house-price
+setups. CIFAR10 reached the official data source but was too slow for the
+interactive budget, IMDB was blocked by Hugging Face network access, CLRS
+reached `train.py` but timed out on CPU without a checkpoint, and house-price
+reached the official prepare script but required Kaggle tooling and likely
+competition consent. These are not scores, but they are useful benchmark
+selection evidence: IGRE's current positive non-FML result is narrow, and the
+paper should not imply broad official benchmark coverage until a second scored
+official task is completed.
+
 The resulting claim-to-evidence map is deliberately conservative.
 
 | Paper claim | Evidence status | Claim boundary |
