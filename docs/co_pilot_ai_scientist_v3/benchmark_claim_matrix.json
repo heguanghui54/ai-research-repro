@@ -25,10 +25,10 @@
     },
     {
       "claim_family": "Evaluator-stress trigger-policy design",
-      "benchmark_or_probe": "Post-hoc trigger-policy analysis over the open-data multi-seed pilot",
-      "current_evidence": "evaluator_stress_trigger_policy_summary.json compares autonomous-only, always-on evaluator-stress, class-imbalance triggers, validation-gap trigger, and hybrid trigger policies over the same 25 paired selections. Always-on gate obtains mean balanced accuracy 0.926426, delta +0.001569, 2 wins, 2 losses, and 21 ties. The best parsimonious trigger, class_imbalance_trigger_0_94, obtains mean 0.927934, delta +0.003077, 2 wins, 0 losses, 23 ties, and only 5 trigger events.",
-      "supports": "Human/evaluator participation should be trigger-conditioned: a simple evaluator-risk trigger preserves the imbalance benefit while avoiding clean-task overreach in this pilot.",
-      "does_not_prove": "Prospective causal proof, broad benchmark superiority, or a universally optimal trigger threshold."
+      "benchmark_or_probe": "Trigger-policy analysis over train and held-out open-data split seeds",
+      "current_evidence": "evaluator_stress_trigger_policy_summary.json compares autonomous-only, always-on evaluator-stress, class-imbalance triggers, validation-gap trigger, and hybrid trigger policies. On the first 25 paired selections, always-on gate obtains delta +0.001569 with 2 wins and 2 losses, while the best parsimonious trigger, class_imbalance_trigger_0_94, obtains delta +0.003077 with 2 wins, 0 losses, 23 ties, and 5 trigger events. On 25 held-out split-seed selections, the same trigger remains best: always-on obtains delta +0.002582 with 2 losses, while the trigger obtains delta +0.003639 with 2 wins, 0 losses, 23 ties, and 5 trigger events.",
+      "supports": "Human/evaluator participation should be trigger-conditioned: a simple evaluator-risk trigger preserves the imbalance benefit while avoiding clean-task overreach across held-out data splits in this pilot.",
+      "does_not_prove": "Prospective causal proof across new tasks, broad benchmark superiority, or a universally optimal trigger threshold."
     },
     {
       "claim_family": "Human taste/insight gate structure",

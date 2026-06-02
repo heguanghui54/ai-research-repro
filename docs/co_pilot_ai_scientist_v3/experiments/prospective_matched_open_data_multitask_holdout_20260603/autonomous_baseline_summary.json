@@ -1,0 +1,5 @@
+{
+  "policy": "validation_accuracy_only_selector",
+  "mean_normalized_score": 0.9206806523225606,
+  "mean_test_balanced_accuracy": 0.9206806523225606
+}

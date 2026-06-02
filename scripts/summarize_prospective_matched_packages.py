@@ -49,9 +49,11 @@ def _update_manifest(summary: dict[str, Any], json_out: Path, markdown_out: Path
         "complete_taste_gates": summary["complete_taste_gates"],
         "total_active_review_minutes": summary["total_active_review_minutes"],
         "interpretation": (
-            "six passing prospective packages; controlled Max-Cut is positive and "
-            "open-data evaluator-stress is mixed but narrowly positive in aggregate, "
-            "while FML pilots remain negative or invalid; superiority_not_supported"
+            f"{summary['package_count']} passing prospective packages; controlled "
+            "Max-Cut is positive and open-data evaluator-stress is mixed but "
+            "narrowly positive in aggregate, including held-out split validation "
+            "for the trigger policy, while FML pilots remain negative or invalid; "
+            "superiority_not_supported"
         ),
     }
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -195,12 +197,21 @@ def summarize_manifest(path: Path) -> dict[str, Any]:
 
     if "open_data_multitask" in package_id:
         metrics = _open_data_metrics(trajectory)
-        claim_implication = (
-            "Positive but narrow open-data evaluator-stress result: the gate changes "
-            "selection on evaluator-risk cases across open-data splits and improves mean "
-            "balanced accuracy when the aggregate is positive. This supports selective "
-            "gate triggering, not broad superiority."
-        )
+        if "holdout" in package_id:
+            claim_implication = (
+                "Held-out split validation for the evaluator-stress trigger policy: "
+                "the open-data gate remains mixed as always-on evidence, but the "
+                "class-imbalance trigger keeps positive evaluator-risk cases while "
+                "avoiding clean-task losses. This supports trigger-policy design, "
+                "not broad superiority."
+            )
+        else:
+            claim_implication = (
+                "Positive but narrow open-data evaluator-stress result: the gate changes "
+                "selection on evaluator-risk cases across open-data splits and improves mean "
+                "balanced accuracy when the aggregate is positive. This supports selective "
+                "gate triggering, not broad superiority."
+            )
     elif "fml" in package_id:
         metrics = _fml_metrics(trajectory, baseline)
         claim_implication = (

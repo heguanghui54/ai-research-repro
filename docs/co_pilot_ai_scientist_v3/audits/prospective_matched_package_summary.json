@@ -1,12 +1,12 @@
 {
   "status": "summary_only",
-  "package_count": 6,
-  "co_pilot_wins": 3,
+  "package_count": 7,
+  "co_pilot_wins": 4,
   "autonomous_or_tie_wins": 3,
-  "gate_count": 6,
-  "complete_attention_gates": 6,
-  "complete_taste_gates": 6,
-  "total_active_review_minutes": 17.0,
+  "gate_count": 7,
+  "complete_attention_gates": 7,
+  "complete_taste_gates": 7,
+  "total_active_review_minutes": 21.0,
   "packages": [
     {
       "package_id": "prospective_matched_fml_causality_20260602_000001",
@@ -235,6 +235,56 @@
         "mean_taste_insight_score": 3.57
       },
       "claim_implication": "Positive but narrow open-data evaluator-stress result: the gate changes selection on evaluator-risk cases across open-data splits and improves mean balanced accuracy when the aggregate is positive. This supports selective gate triggering, not broad superiority.",
+      "limitations": [
+        "Open-data branch-selection pilot only.",
+        "No full AI Scientist-v2 tree-search or paper-writing loop.",
+        "No independent human-subject timing.",
+        "Does not evaluate final paper quality."
+      ]
+    },
+    {
+      "package_id": "prospective_matched_open_data_multitask_holdout_20260603",
+      "manifest": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/prospective_manifest.json",
+      "status": "prospective_pilot",
+      "matched_budget": {
+        "same_task": true,
+        "same_model_family": true,
+        "same_step_budget": true,
+        "same_tool_access": true,
+        "split_seeds": [
+          67,
+          71,
+          83,
+          97,
+          101
+        ],
+        "notes": "Both variants used the same built-in datasets, matched stratified split seeds, candidate portfolio, and sklearn execution environment; no LLM calls were used in this open-data pilot."
+      },
+      "metrics": {
+        "task": "open_data_multitask_sklearn_evaluator_stress",
+        "benchmark_family": "open_data_sklearn_builtin",
+        "metric": "test_balanced_accuracy",
+        "metric_direction": "higher",
+        "co_pilot_score": 0.9232627821214304,
+        "autonomous_score": 0.9206806523225606,
+        "co_pilot_minus_autonomous": 0.0025821297988698477,
+        "winner": "co_pilot",
+        "dataset_count": 5,
+        "split_count": 5,
+        "total_dataset_split_evaluations": 25,
+        "co_pilot_dataset_wins": 2,
+        "autonomous_dataset_wins": 2,
+        "dataset_ties": 21,
+        "selection_changed_count": 4
+      },
+      "gate_summary": {
+        "gate_count": 1,
+        "complete_attention_gates": 1,
+        "complete_taste_gates": 1,
+        "total_active_review_minutes": 4.0,
+        "mean_taste_insight_score": 3.57
+      },
+      "claim_implication": "Held-out split validation for the evaluator-stress trigger policy: the open-data gate remains mixed as always-on evidence, but the class-imbalance trigger keeps positive evaluator-risk cases while avoiding clean-task losses. This supports trigger-policy design, not broad superiority.",
       "limitations": [
         "Open-data branch-selection pilot only.",
         "No full AI Scientist-v2 tree-search or paper-writing loop.",

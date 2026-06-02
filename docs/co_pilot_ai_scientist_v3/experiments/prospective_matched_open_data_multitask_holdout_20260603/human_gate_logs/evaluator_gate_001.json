@@ -1,0 +1,81 @@
+{
+  "gate_id": "prospective_matched_open_data_multitask_holdout_20260603_evaluator_gate_001",
+  "gate_type": "evaluator_stress_test",
+  "timestamp_utc": "2026-06-02T18:53:12Z",
+  "research_task_id": "prospective_matched_open_data_multitask_holdout_20260603",
+  "options": [
+    {
+      "option_id": "autonomous_accuracy_selector",
+      "summary": "Select branches by validation accuracy only.",
+      "score": 0.9206806523225606,
+      "evidence": [
+        "Simple primary-metric selector.",
+        "May be brittle under class imbalance or asymmetric error costs."
+      ],
+      "risks": [
+        "Can choose branches that look good under raw accuracy while under-serving minority classes."
+      ]
+    },
+    {
+      "option_id": "balanced_accuracy_guardrail_selector",
+      "summary": "Select branches by balanced accuracy with a macro-F1 guardrail.",
+      "score": 0.9232627821214304,
+      "evidence": [
+        "5 open-data sklearn tasks across 5 split seeds (25 paired selections).",
+        "selection_changed_count=4",
+        "delta_mean_test_balanced_accuracy=0.002582"
+      ],
+      "risks": [
+        "Still a deterministic open-data pilot, not an end-to-end AI Scientist-v2 benchmark."
+      ]
+    }
+  ],
+  "human_decision": "balanced_accuracy_guardrail_selector",
+  "rationale": "Select the guardrailed evaluator because the research question is not only whether a branch has high raw accuracy, but whether the selector remains robust across class balance and multi-class tasks. This is a human-taste choice about evaluator validity, not a claim that every human gate wins.",
+  "affected_artifacts": [
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/remote_metrics.json"
+  ],
+  "downstream_budget": {
+    "open_data_tasks": 5,
+    "split_count": 5,
+    "total_dataset_split_evaluations": 25,
+    "candidate_count_per_task": 8,
+    "same_candidate_portfolio_as_autonomous": true,
+    "same_data_splits_as_autonomous": true
+  },
+  "attention_cost": {
+    "human_actor": "codex_operator_for_author",
+    "interaction_mode": "async_review",
+    "prompted_at_utc": "2026-06-02T18:49:12Z",
+    "decision_at_utc": "2026-06-02T18:53:12Z",
+    "active_review_minutes": 4.0,
+    "wall_clock_latency_minutes": 4.0,
+    "options_reviewed": 2,
+    "artifacts_reviewed_count": 1,
+    "decision_count": 1,
+    "notes": "Prospective operator-recorded open-data evaluator gate; not independent human-subject timing."
+  },
+  "taste_insight": {
+    "rubric_version": "2026-06-02",
+    "scores": {
+      "problem_depth": 3,
+      "novelty_potential": 2,
+      "mechanistic_value": 4,
+      "failure_informativeness": 5,
+      "benchmark_taste": 5,
+      "claim_significance": 3,
+      "risk_asymmetry": 4
+    },
+    "taste_insight_score": 3.57,
+    "qualitative_rationale": "The gate has modest novelty but strong evaluator-design value: it tests whether IGRE can replace a brittle primary-metric selector with a guardrailed criterion on open, reproducible tasks.",
+    "non_metric_factors": [
+      "evaluator-validity",
+      "class-balance-risk",
+      "open-data-reproducibility"
+    ]
+  },
+  "follow_up_checks": [
+    "Do not report this as AI Scientist-v2 paper-quality superiority.",
+    "Compare with larger official benchmarks when data access permits."
+  ]
+}

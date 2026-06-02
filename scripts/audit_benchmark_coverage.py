@@ -67,6 +67,16 @@ def main() -> None:
         / "prospective_matched_open_data_multitask_20260603"
         / "evaluator_stress_trigger_policy_summary.json"
     )
+    open_data_holdout_path = (
+        EXP_DIR
+        / "prospective_matched_open_data_multitask_holdout_20260603"
+        / "remote_metrics.json"
+    )
+    trigger_policy_holdout_path = (
+        EXP_DIR
+        / "prospective_matched_open_data_multitask_holdout_20260603"
+        / "evaluator_stress_trigger_policy_summary.json"
+    )
 
     matrix = _load_json(matrix_path)
     selection_text = _read(selection_path)
@@ -87,6 +97,8 @@ def main() -> None:
     science = _load_json(science_path)
     open_data = _load_json(open_data_path)
     trigger_policy = _load_json(trigger_policy_path)
+    open_data_holdout = _load_json(open_data_holdout_path)
+    trigger_policy_holdout = _load_json(trigger_policy_holdout_path)
     open_data_total = open_data.get("total_dataset_split_evaluations")
     open_data_expected_total = (
         open_data.get("dataset_count", 0) * open_data.get("split_count", 0)
@@ -220,6 +232,20 @@ def main() -> None:
         > trigger_policy.get("policies", {})
         .get("always_on_evaluator_stress", {})
         .get("delta_vs_autonomous_mean", 0),
+        "evaluator_stress_trigger_policy_heldout_scored": trigger_policy_holdout.get("status")
+        == "pass"
+        and open_data_holdout.get("total_dataset_split_evaluations") == 25
+        and trigger_policy_holdout.get("best_policy") == "class_imbalance_trigger_0_94"
+        and trigger_policy_holdout.get("policies", {})
+        .get("class_imbalance_trigger_0_94", {})
+        .get("losses_vs_autonomous")
+        == 0
+        and trigger_policy_holdout.get("policies", {})
+        .get("class_imbalance_trigger_0_94", {})
+        .get("delta_vs_autonomous_mean", 0)
+        > trigger_policy_holdout.get("policies", {})
+        .get("always_on_evaluator_stress", {})
+        .get("delta_vs_autonomous_mean", 0),
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -312,6 +338,17 @@ def main() -> None:
                 ),
                 "path": _rel(trigger_policy_path),
             },
+            "evaluator_stress_trigger_policy_holdout": {
+                "best_policy": trigger_policy_holdout.get("best_policy"),
+                "open_data_delta": open_data_holdout.get("delta_mean_test_balanced_accuracy"),
+                "always_on": trigger_policy_holdout.get("policies", {}).get(
+                    "always_on_evaluator_stress"
+                ),
+                "best_policy_summary": trigger_policy_holdout.get("policies", {}).get(
+                    trigger_policy_holdout.get("best_policy", "")
+                ),
+                "path": _rel(trigger_policy_holdout_path),
+            },
             "official_setup_blockers": official_blockers,
         },
         "errors": errors,
@@ -370,6 +407,13 @@ def main() -> None:
             f"`{trigger_policy.get('policies', {}).get(trigger_policy.get('best_policy', ''), {}).get('delta_vs_autonomous_mean')}` "
             "versus always-on delta "
             f"`{trigger_policy.get('policies', {}).get('always_on_evaluator_stress', {}).get('delta_vs_autonomous_mean')}`."
+        ),
+        (
+            "- Held-out trigger-policy validation: best policy "
+            f"`{trigger_policy_holdout.get('best_policy')}` with delta "
+            f"`{trigger_policy_holdout.get('policies', {}).get(trigger_policy_holdout.get('best_policy', ''), {}).get('delta_vs_autonomous_mean')}` "
+            "versus held-out always-on delta "
+            f"`{trigger_policy_holdout.get('policies', {}).get('always_on_evaluator_stress', {}).get('delta_vs_autonomous_mean')}`."
         ),
         "",
         "## Boundary And Blocked Evidence",

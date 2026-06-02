@@ -7,12 +7,12 @@ negative, or only a format/feasibility signal.
 
 ## Aggregate
 
-- Packages summarized: 6
-- Co-pilot wins: 3
+- Packages summarized: 7
+- Co-pilot wins: 4
 - Autonomous or tied wins: 3
-- Complete attention gates: 6/6
-- Complete taste/insight gates: 6/6
-- Total recorded active review minutes: 17.00
+- Complete attention gates: 7/7
+- Complete taste/insight gates: 7/7
+- Total recorded active review minutes: 21.00
 
 ## Packages
 
@@ -24,6 +24,7 @@ negative, or only a format/feasibility signal.
 | `prospective_matched_micro_pilot_20260602_000001` | controlled_micro_task | mean_normalized_score | higher | 0.984419 | 0.596214 | 0.388205 | co_pilot | Positive controlled micro-task result; supports evidence-shape and mechanistic feasibility, not paper-quality or general superiority. |
 | `prospective_matched_micro_pilot_20260603_ssh_maxcut` | controlled_micro_task | mean_normalized_score | higher | 0.984419 | 0.596214 | 0.388205 | co_pilot | Positive controlled micro-task result; supports evidence-shape and mechanistic feasibility, not paper-quality or general superiority. |
 | `prospective_matched_open_data_multitask_20260603` | open_data_sklearn_builtin | test_balanced_accuracy | higher | 0.926426 | 0.924857 | 0.001569 | co_pilot | Positive but narrow open-data evaluator-stress result: the gate changes selection on evaluator-risk cases across open-data splits and improves mean balanced accuracy when the aggregate is positive. This supports selective gate triggering, not broad superiority. |
+| `prospective_matched_open_data_multitask_holdout_20260603` | open_data_sklearn_builtin | test_balanced_accuracy | higher | 0.923263 | 0.920681 | 0.002582 | co_pilot | Held-out split validation for the evaluator-stress trigger policy: the open-data gate remains mixed as always-on evidence, but the class-imbalance trigger keeps positive evaluator-risk cases while avoiding clean-task losses. This supports trigger-policy design, not broad superiority. |
 
 ## Interpretation
 

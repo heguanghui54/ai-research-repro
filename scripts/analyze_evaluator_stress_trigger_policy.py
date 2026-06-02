@@ -9,6 +9,7 @@ override the autonomous selector, but when it should be triggered.
 from __future__ import annotations
 
 import json
+import argparse
 from pathlib import Path
 from statistics import mean
 from typing import Any
@@ -16,7 +17,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DOC_DIR = ROOT / "docs" / "co_pilot_ai_scientist_v3"
-PACKAGE_DIR = DOC_DIR / "experiments" / "prospective_matched_open_data_multitask_20260603"
+DEFAULT_PACKAGE_ID = "prospective_matched_open_data_multitask_20260603"
 AUDIT_DIR = DOC_DIR / "audits"
 
 
@@ -146,7 +147,7 @@ def _dataset_summary(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return out
 
 
-def _update_manifest(summary_path: Path, md_path: Path) -> None:
+def _update_manifest(summary_path: Path, md_path: Path, package_id: str, best_policy: str) -> None:
     manifest_path = DOC_DIR / "repro_manifest.json"
     if not manifest_path.exists():
         return
@@ -156,21 +157,33 @@ def _update_manifest(summary_path: Path, md_path: Path) -> None:
         rel = _rel(path)
         if rel not in artifacts:
             artifacts.append(rel)
-    manifest["evaluator_stress_trigger_policy_analysis"] = {
+    key = "evaluator_stress_trigger_policy_analysis"
+    existing = manifest.get(key)
+    if not isinstance(existing, dict) or "packages" not in existing:
+        existing = {"packages": {}}
+    manifest[key] = existing
+    manifest[key][package_id] = {
         "status": "pass",
         "script": "scripts/analyze_evaluator_stress_trigger_policy.py",
         "summary": _rel(md_path),
         "json": _rel(summary_path),
+        "best_policy": best_policy,
         "claim_boundary": (
-            "trigger-policy design evidence from an existing open-data pilot; "
-            "not a new independent benchmark run"
+            "trigger-policy design evidence from open-data split validation; "
+            "not broad benchmark superiority"
         ),
     }
+    manifest[key]["packages"][package_id] = manifest[key].pop(package_id)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def main() -> None:
-    metrics = _load_json(PACKAGE_DIR / "remote_metrics.json")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--package-id", default=DEFAULT_PACKAGE_ID)
+    args = parser.parse_args()
+
+    package_dir = DOC_DIR / "experiments" / args.package_id
+    metrics = _load_json(package_dir / "remote_metrics.json")
     dataset_results = metrics["dataset_results"]
     policies = [
         "autonomous_accuracy_only",
@@ -196,7 +209,8 @@ def main() -> None:
     best = policy_summaries[best_policy]
     summary = {
         "status": "pass",
-        "source_metrics": _rel(PACKAGE_DIR / "remote_metrics.json"),
+        "package_id": args.package_id,
+        "source_metrics": _rel(package_dir / "remote_metrics.json"),
         "dataset_count": metrics["dataset_count"],
         "split_count": metrics["split_count"],
         "total_dataset_split_evaluations": metrics["total_dataset_split_evaluations"],
@@ -219,8 +233,8 @@ def main() -> None:
         ),
     }
 
-    json_path = PACKAGE_DIR / "evaluator_stress_trigger_policy_summary.json"
-    md_path = PACKAGE_DIR / "evaluator_stress_trigger_policy_summary.md"
+    json_path = package_dir / "evaluator_stress_trigger_policy_summary.json"
+    md_path = package_dir / "evaluator_stress_trigger_policy_summary.md"
     _write_json(json_path, summary)
 
     lines = [
@@ -299,7 +313,7 @@ def main() -> None:
         ]
     )
     md_path.write_text("\n".join(lines), encoding="utf-8")
-    _update_manifest(json_path, md_path)
+    _update_manifest(json_path, md_path, args.package_id, best_policy)
     print(json.dumps({"json": _rel(json_path), "markdown": _rel(md_path), "best_policy": best_policy}, indent=2))
 
 

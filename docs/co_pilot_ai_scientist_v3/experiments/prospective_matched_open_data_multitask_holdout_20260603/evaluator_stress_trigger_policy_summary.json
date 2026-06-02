@@ -1,13 +1,13 @@
 {
   "status": "pass",
-  "package_id": "prospective_matched_open_data_multitask_20260603",
-  "source_metrics": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/remote_metrics.json",
+  "package_id": "prospective_matched_open_data_multitask_holdout_20260603",
+  "source_metrics": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/remote_metrics.json",
   "dataset_count": 5,
   "split_count": 5,
   "total_dataset_split_evaluations": 25,
   "policies": {
     "autonomous_accuracy_only": {
-      "mean_test_balanced_accuracy": 0.9248566268790939,
+      "mean_test_balanced_accuracy": 0.9206806523225606,
       "delta_vs_autonomous_mean": 0.0,
       "wins_vs_autonomous": 0,
       "losses_vs_autonomous": 0,
@@ -15,40 +15,40 @@
       "triggered_count": 0
     },
     "always_on_evaluator_stress": {
-      "mean_test_balanced_accuracy": 0.9264256134480804,
-      "delta_vs_autonomous_mean": 0.00156898656898655,
+      "mean_test_balanced_accuracy": 0.9232627821214304,
+      "delta_vs_autonomous_mean": 0.0025821297988698876,
       "wins_vs_autonomous": 2,
       "losses_vs_autonomous": 2,
       "ties_vs_autonomous": 21,
       "triggered_count": 4
     },
     "class_imbalance_trigger_0_90": {
-      "mean_test_balanced_accuracy": 0.927933549956017,
-      "delta_vs_autonomous_mean": 0.003076923076923066,
+      "mean_test_balanced_accuracy": 0.9243200965787449,
+      "delta_vs_autonomous_mean": 0.003639444256184343,
       "wins_vs_autonomous": 2,
       "losses_vs_autonomous": 0,
       "ties_vs_autonomous": 23,
       "triggered_count": 10
     },
     "class_imbalance_trigger_0_94": {
-      "mean_test_balanced_accuracy": 0.927933549956017,
-      "delta_vs_autonomous_mean": 0.003076923076923066,
+      "mean_test_balanced_accuracy": 0.9243200965787449,
+      "delta_vs_autonomous_mean": 0.003639444256184343,
       "wins_vs_autonomous": 2,
       "losses_vs_autonomous": 0,
       "ties_vs_autonomous": 23,
       "triggered_count": 5
     },
     "validation_balanced_gap_trigger_0_02": {
-      "mean_test_balanced_accuracy": 0.9263950884175554,
-      "delta_vs_autonomous_mean": 0.001538461538461533,
+      "mean_test_balanced_accuracy": 0.9214193849555663,
+      "delta_vs_autonomous_mean": 0.0007387326330057631,
       "wins_vs_autonomous": 1,
       "losses_vs_autonomous": 0,
       "ties_vs_autonomous": 24,
       "triggered_count": 1
     },
     "hybrid_imbalance_or_gap_trigger": {
-      "mean_test_balanced_accuracy": 0.927933549956017,
-      "delta_vs_autonomous_mean": 0.003076923076923066,
+      "mean_test_balanced_accuracy": 0.9243200965787449,
+      "delta_vs_autonomous_mean": 0.003639444256184343,
       "wins_vs_autonomous": 2,
       "losses_vs_autonomous": 0,
       "ties_vs_autonomous": 23,
@@ -87,7 +87,7 @@
     {
       "dataset": "synthetic_imbalanced_stress",
       "split_count": 5,
-      "delta_vs_autonomous_mean": 0.01538461538461533,
+      "delta_vs_autonomous_mean": 0.018197221280921716,
       "wins": 2,
       "losses": 0,
       "ties": 3,
@@ -107,20 +107,20 @@
     {
       "dataset": "breast_cancer",
       "split_count": 5,
-      "delta_vs_autonomous_mean": -0.00753968253968258,
-      "wins": 0,
-      "losses": 2,
-      "ties": 3,
-      "triggered_count": 2
-    },
-    {
-      "dataset": "digits",
-      "split_count": 5,
       "delta_vs_autonomous_mean": 0.0,
       "wins": 0,
       "losses": 0,
       "ties": 5,
       "triggered_count": 0
+    },
+    {
+      "dataset": "digits",
+      "split_count": 5,
+      "delta_vs_autonomous_mean": -0.0005246675246675103,
+      "wins": 0,
+      "losses": 1,
+      "ties": 4,
+      "triggered_count": 1
     },
     {
       "dataset": "digits_zero_vs_rest",
@@ -134,7 +134,7 @@
     {
       "dataset": "synthetic_imbalanced_stress",
       "split_count": 5,
-      "delta_vs_autonomous_mean": 0.01538461538461533,
+      "delta_vs_autonomous_mean": 0.018197221280921716,
       "wins": 2,
       "losses": 0,
       "ties": 3,
@@ -143,11 +143,11 @@
     {
       "dataset": "wine",
       "split_count": 5,
-      "delta_vs_autonomous_mean": 0.0,
+      "delta_vs_autonomous_mean": -0.0047619047619047675,
       "wins": 0,
-      "losses": 0,
-      "ties": 5,
-      "triggered_count": 0
+      "losses": 1,
+      "ties": 4,
+      "triggered_count": 1
     }
   ],
   "overreach_reduction": {
@@ -155,8 +155,8 @@
     "best_policy_losses": 0,
     "always_on_triggered_count": 4,
     "best_policy_triggered_count": 5,
-    "always_on_delta_vs_autonomous_mean": 0.00156898656898655,
-    "best_policy_delta_vs_autonomous_mean": 0.003076923076923066
+    "always_on_delta_vs_autonomous_mean": 0.0025821297988698876,
+    "best_policy_delta_vs_autonomous_mean": 0.003639444256184343
   },
   "claim_boundary": "This is a post-hoc trigger-policy analysis over one archived pilot. It supports a design rule for future prospective evaluator gates, not a broad performance claim."
 }
