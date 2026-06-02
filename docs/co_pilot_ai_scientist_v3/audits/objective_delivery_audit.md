@@ -1,8 +1,8 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T13:16:12Z`
+- Audit date: `2026-06-02T13:18:20Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `c5e4a1d0eeae119f7207ea13d488f53e19b97e25`
+- HEAD: `44ab785cbf892cb29517766d77f5deb8322000a1`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
 - Manifest artifacts: `687`
@@ -36,8 +36,8 @@
 
 - `english_pdf`: `pass` (51757 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
 - `chinese_pdf`: `pass` (114561 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
-- `focused_english_pdf`: `pass` (188847 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
-- `focused_chinese_pdf`: `pass` (225106 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
+- `focused_english_pdf`: `pass` (188978 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `focused_chinese_pdf`: `pass` (225395 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
 - `root_readme`: `pass` (9744 bytes) - `README.md`
 - `english_submission_card`: `pass` (5177 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `chinese_submission_card`: `pass` (5055 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_zh.md`
@@ -50,7 +50,7 @@
 - `frontier_alignment_taxonomy_summary`: `pass` (20036 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_alignment_taxonomy_20260602_233000/summary.json`
 - `frontier_vector_graph_summary`: `pass` (6376 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_vector_graph_20260602_234500/summary.json`
 - `frontier_metric_disagreement_summary`: `pass` (2776 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/frontier_metric_disagreement_20260603_003000/summary.json`
-- `end_to_end_paired_trajectory_audit`: `pass` (3023 bytes) - `docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.json`
+- `end_to_end_paired_trajectory_audit`: `pass` (4011 bytes) - `docs/co_pilot_ai_scientist_v3/audits/end_to_end_paired_trajectory_audit.json`
 - `main_paper_figure`: `pass` (146516 bytes) - `docs/co_pilot_ai_scientist_v3/figures/igre_frontier_main_figure.png`
 - `english_usage`: `pass` (19460 bytes) - `docs/co_pilot_ai_scientist_v3/usage_en.md`
 - `chinese_usage`: `pass` (19890 bytes) - `docs/co_pilot_ai_scientist_v3/usage_zh.md`

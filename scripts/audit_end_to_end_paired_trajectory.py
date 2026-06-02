@@ -52,10 +52,13 @@ def main() -> None:
     online_summary_md_path = ONLINE_DIR / "summary.md"
     comparison_path = ONLINE_DIR / "matched_budget_comparison_summary.json"
     comparison_md_path = ONLINE_DIR / "matched_budget_comparison_summary.md"
+    paper_quality_path = ONLINE_DIR / "paper_quality" / "summary.json"
+    paper_quality_md_path = ONLINE_DIR / "paper_quality" / "summary.md"
 
     trajectory = _load_json(trajectory_path)
     comparison = _load_json(comparison_path)
     online_summary = _load_json(online_summary_path)
+    paper_quality = _load_json(paper_quality_path)
 
     gates = trajectory.get("gates", [])
     gate_types = {gate.get("gate_type") for gate in gates}
@@ -93,6 +96,8 @@ def main() -> None:
         "online_summary_md": _exists(online_summary_md_path),
         "comparison_json": _exists(comparison_path),
         "comparison_md": _exists(comparison_md_path),
+        "paper_quality_json": _exists(paper_quality_path),
+        "paper_quality_md": _exists(paper_quality_md_path),
     }
 
     errors: list[str] = []
@@ -109,6 +114,15 @@ def main() -> None:
         errors.append("online manuscript summary does not mark matched autonomous manuscript")
 
     superiority_supported = metric_winner == "co_pilot" and manuscript_score_winner == "co_pilot"
+    model_review_successful = int(paper_quality.get("successful_reviews", 0) or 0)
+    model_review_count = int(paper_quality.get("review_count", 0) or 0)
+    model_review_winner = (
+        "co_pilot"
+        if paper_quality.get("co_pilot_wins", 0) > paper_quality.get("autonomous_wins", 0)
+        else "autonomous"
+        if paper_quality.get("autonomous_wins", 0) > paper_quality.get("co_pilot_wins", 0)
+        else "tie"
+    )
     audit = {
         "audit_date": _utc_now(),
         "status": "pass_same_run_smoke_pair" if not errors else "fail",
@@ -126,15 +140,26 @@ def main() -> None:
         "co_pilot_manuscript_internal_score": co_score,
         "autonomous_manuscript_internal_score": auto_score,
         "manuscript_score_winner": manuscript_score_winner,
+        "model_review": {
+            "status": paper_quality.get("status"),
+            "successful_reviews": model_review_successful,
+            "review_count": model_review_count,
+            "co_pilot_wins": paper_quality.get("co_pilot_wins"),
+            "autonomous_wins": paper_quality.get("autonomous_wins"),
+            "ties": paper_quality.get("ties"),
+            "winner": model_review_winner,
+            "scope_note": paper_quality.get("scope_note"),
+        },
         "superiority_supported": superiority_supported,
         "errors": errors,
         "claim_boundary": (
             "This is a same-run smoke pair from gate orchestration to manuscript "
             "production. In this pair the autonomous baseline wins the benchmark "
             "metric while the co-pilot manuscript wins the internal manuscript "
-            "structure/claim-calibration score. It supports workflow completion "
-            "and comparison readiness, not empirical superiority over autonomous "
-            "AI Scientist-v2."
+            "structure/claim-calibration score and a two-model manuscript-quality "
+            "probe. The model review is an audit aid, not human expert peer "
+            "review. The result supports workflow completion and comparison "
+            "readiness, not empirical superiority over autonomous AI Scientist-v2."
         ),
     }
 
@@ -155,6 +180,7 @@ def main() -> None:
         f"- Gate count: `{audit['gate_count']}`",
         f"- Metric winner: `{audit['metric_winner']}`",
         f"- Manuscript internal-score winner: `{audit['manuscript_score_winner']}`",
+        f"- Model-review winner: `{audit['model_review']['winner']}`",
         f"- Superiority supported: `{audit['superiority_supported']}`",
         "",
         "## Metrics",
@@ -164,6 +190,10 @@ def main() -> None:
         f"- Lower is better: `{audit['lower_is_better']}`",
         f"- Co-pilot manuscript internal score: `{audit['co_pilot_manuscript_internal_score']}`",
         f"- Autonomous manuscript internal score: `{audit['autonomous_manuscript_internal_score']}`",
+        f"- Model reviewer calls: `{model_review_successful}/{model_review_count}`",
+        f"- Model review co-pilot wins: `{paper_quality.get('co_pilot_wins')}`",
+        f"- Model review autonomous wins: `{paper_quality.get('autonomous_wins')}`",
+        f"- Model review ties: `{paper_quality.get('ties')}`",
         "",
         "## Errors",
         "",
@@ -191,6 +221,8 @@ def main() -> None:
         online_summary_md_path,
         comparison_path,
         comparison_md_path,
+        paper_quality_path,
+        paper_quality_md_path,
     ]:
         rel = _rel(path)
         if rel not in manifest["current_artifacts"]:

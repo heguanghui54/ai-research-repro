@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T13:16:09Z",
+  "audit_date": "2026-06-02T13:18:17Z",
   "status": "pass_same_run_smoke_pair",
   "evidence_level": "same_run_smoke_pair",
   "artifacts": {
@@ -50,6 +50,18 @@
       "exists": true,
       "bytes": 1068,
       "ok": true
+    },
+    "paper_quality_json": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.json",
+      "exists": true,
+      "bytes": 5369,
+      "ok": true
+    },
+    "paper_quality_md": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.md",
+      "exists": true,
+      "bytes": 1341,
+      "ok": true
     }
   },
   "trajectory_id": "online_full_gate_smoke_20260602_010521",
@@ -70,7 +82,17 @@
   "co_pilot_manuscript_internal_score": 4.64,
   "autonomous_manuscript_internal_score": 3.48,
   "manuscript_score_winner": "co_pilot",
+  "model_review": {
+    "status": "matched_manuscript_quality_probe",
+    "successful_reviews": 2,
+    "review_count": 2,
+    "co_pilot_wins": 2,
+    "autonomous_wins": 0,
+    "ties": 0,
+    "winner": "co_pilot",
+    "scope_note": "This is a model-review quality probe over same-continuous-trajectory paired online smoke manuscripts. It is not human expert peer review or top-conference evidence."
+  },
   "superiority_supported": false,
   "errors": [],
-  "claim_boundary": "This is a same-run smoke pair from gate orchestration to manuscript production. In this pair the autonomous baseline wins the benchmark metric while the co-pilot manuscript wins the internal manuscript structure/claim-calibration score. It supports workflow completion and comparison readiness, not empirical superiority over autonomous AI Scientist-v2."
+  "claim_boundary": "This is a same-run smoke pair from gate orchestration to manuscript production. In this pair the autonomous baseline wins the benchmark metric while the co-pilot manuscript wins the internal manuscript structure/claim-calibration score and a two-model manuscript-quality probe. The model review is an audit aid, not human expert peer review. The result supports workflow completion and comparison readiness, not empirical superiority over autonomous AI Scientist-v2."
 }
