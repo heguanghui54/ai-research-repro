@@ -2,8 +2,8 @@
   "audit_date": "2026-06-02",
   "repository_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "branch": "codex/co-pilot-ai-scientist-v3",
-  "commit": "b06933c319f1f86521fb66b29a04c308096ba0d0",
-  "clean_clone_path": "/tmp/copilot-v3-clean-clone-latest",
+  "commit": "eb63cb4b5ea12636abbddf4bb92b2cc8957ea8f0",
+  "clean_clone_path": "/tmp/copilot-v3-clean-clone-structured-feedback",
   "checks": {
     "github_branch_cloned": "pass",
     "requirements_installed": "pass",
@@ -12,22 +12,25 @@
     "human_copilot_trace_dataset_rebuilt": "pass",
     "human_copilot_trace_dataset_audit": "pass",
     "bilingual_pdfs_rebuilt": "pass",
-    "manifest_artifacts_checked": 409,
+    "manifest_artifacts_checked": 431,
     "missing_manifest_artifacts": 0,
     "taste_gate_records_audited": 39,
     "complete_taste_insight_records": 2,
     "attention_gate_records_audited": 39,
     "complete_attention_cost_records": 1,
     "trace_gate_records": 52,
-    "trace_commit_index_entries": 58,
+    "trace_commit_index_entries": 61,
     "trace_secret_pattern_hits": 0,
     "trace_raw_log_marker_hits": 0,
     "skill_reuse_smoke_reran": "pass",
     "skill_smoke_status": "pass",
     "skill_required_terms_present": 9,
-    "english_pdf_bytes": 40706,
-    "chinese_pdf_bytes": 88743,
-    "manifest_status": "pilot_package_with_attention_taste_priority_gate"
+    "structured_feedback_probe_present": "pass",
+    "structured_feedback_recommendation": "structured",
+    "structured_feedback_live_model_calls": 5,
+    "english_pdf_bytes": 42638,
+    "chinese_pdf_bytes": 93750,
+    "manifest_status": "pilot_package_with_structured_feedback_probe"
   },
-  "interpretation": "The pushed GitHub branch at b06933c31 is self-contained for rebuilding the current bilingual PDFs, rerunning gate-coverage audits, rebuilding and auditing the derived trace dataset, validating the reusable skill, and finding all 409 manifest artifacts. This does not rerun remote Ubuntu experiments or prove top-conference performance claims."
+  "interpretation": "The pushed GitHub branch at eb63cb4b5 is self-contained for rebuilding the current bilingual PDFs, rerunning gate-coverage audits, rebuilding and auditing the derived trace dataset, validating the reusable skill, finding all 431 manifest artifacts, and verifying the structured-feedback probe artifact. This does not rerun remote Ubuntu experiments or prove top-conference performance claims."
 }
