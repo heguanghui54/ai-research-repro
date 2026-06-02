@@ -25,9 +25,9 @@
     "Top-conference-level empirical support"
   ],
   "current_counts": {
-    "human_gate_records_audited": 18,
+    "human_gate_records_audited": 38,
     "standalone_human_gate_logs": 8,
-    "embedded_trajectory_gates": 10,
+    "embedded_trajectory_gates": 30,
     "complete_taste_insight_records": 1,
     "complete_attention_cost_records": 0,
     "derived_trace_gate_records": 29,
@@ -39,11 +39,20 @@
   },
   "clean_clone_reproducibility": {
     "status": "pass",
-    "commit": "6dfbdc8ee3fef693bdb6ee01910a901fe8e35de1",
-    "manifest_artifacts_checked": 266,
+    "commit": "af00a57d74ea7ce35b3b26cc2072aae15709bb90",
+    "clean_clone_path": "/tmp/copilot-v3-clean-clone-latest",
+    "manifest_artifacts_checked": 406,
     "missing_manifest_artifacts": 0,
     "pdfs_rebuilt": 2,
-    "skill_reuse_smoke_reran": true
+    "english_pdf_bytes": 40559,
+    "chinese_pdf_bytes": 88342,
+    "taste_gate_records_audited": 38,
+    "complete_taste_insight_records": 1,
+    "attention_gate_records_audited": 38,
+    "complete_attention_cost_records": 0,
+    "skill_reuse_smoke_reran": true,
+    "skill_smoke_status": "pass",
+    "manifest_status": "pilot_package_with_cross_task_failure_mode_online_smoke"
   },
   "skill_reuse_smoke": {
     "status": "pass",

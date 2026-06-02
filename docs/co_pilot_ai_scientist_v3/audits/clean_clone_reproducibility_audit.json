@@ -1,24 +1,27 @@
 {
-  "audit_date": "2026-06-01",
+  "audit_date": "2026-06-02",
   "repository_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "branch": "codex/co-pilot-ai-scientist-v3",
-  "commit": "6dfbdc8ee3fef693bdb6ee01910a901fe8e35de1",
-  "clean_clone_path": "/tmp/copilot-v3-clean-clone",
+  "commit": "af00a57d74ea7ce35b3b26cc2072aae15709bb90",
+  "clean_clone_path": "/tmp/copilot-v3-clean-clone-latest",
   "checks": {
     "github_branch_cloned": "pass",
     "requirements_installed": "pass",
     "taste_insight_audit_reran": "pass",
     "attention_cost_audit_reran": "pass",
     "bilingual_pdfs_rebuilt": "pass",
-    "manifest_artifacts_checked": 266,
+    "manifest_artifacts_checked": 406,
     "missing_manifest_artifacts": 0,
-    "taste_gate_records_audited": 18,
+    "taste_gate_records_audited": 38,
     "complete_taste_insight_records": 1,
-    "attention_gate_records_audited": 18,
+    "attention_gate_records_audited": 38,
     "complete_attention_cost_records": 0,
     "skill_reuse_smoke_reran": "pass",
     "skill_smoke_status": "pass",
-    "skill_required_terms_present": 9
+    "skill_required_terms_present": 9,
+    "english_pdf_bytes": 40559,
+    "chinese_pdf_bytes": 88342,
+    "manifest_status": "pilot_package_with_cross_task_failure_mode_online_smoke"
   },
-  "interpretation": "The pushed GitHub branch is self-contained for rebuilding the current pilot PDFs and audit artifacts, and reruns the reusable-skill smoke test. This does not rerun remote Ubuntu experiments or prove top-conference performance claims."
+  "interpretation": "The pushed GitHub branch at af00a57d7 is self-contained for rebuilding the current bilingual PDFs, rerunning gate-coverage audits, validating the reusable skill, and finding all 406 manifest artifacts. This does not rerun remote Ubuntu experiments or prove top-conference performance claims."
 }

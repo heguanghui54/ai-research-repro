@@ -1,22 +1,22 @@
 # Clean-Clone Reproducibility Audit
 
-Audit date: 2026-06-01
+Audit date: 2026-06-02
 
 Repository source:
 
 - URL: `https://github.com/heguanghui54/ai-research-repro.git`
 - Branch: `codex/co-pilot-ai-scientist-v3`
-- Commit: `6dfbdc8ee3fef693bdb6ee01910a901fe8e35de1`
-- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone`
+- Commit: `af00a57d74ea7ce35b3b26cc2072aae15709bb90`
+- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone-latest`
 
 ## Commands Run
 
 ```bash
-rm -rf /tmp/copilot-v3-clean-clone
+rm -rf /tmp/copilot-v3-clean-clone-latest
 git clone --depth 1 --branch codex/co-pilot-ai-scientist-v3 \
   https://github.com/heguanghui54/ai-research-repro.git \
-  /tmp/copilot-v3-clean-clone
-cd /tmp/copilot-v3-clean-clone
+  /tmp/copilot-v3-clean-clone-latest
+cd /tmp/copilot-v3-clean-clone-latest
 python3 -m pip install -q -r requirements.txt
 python3 scripts/audit_taste_insight_coverage.py
 python3 scripts/audit_human_gate_attention_cost.py
@@ -34,9 +34,9 @@ assert not missing, missing
 taste = json.loads(Path("docs/co_pilot_ai_scientist_v3/audits/taste_insight_coverage_audit.json").read_text())
 attention = json.loads(Path("docs/co_pilot_ai_scientist_v3/audits/human_gate_attention_cost_audit.json").read_text())
 skill = json.loads(Path("docs/co_pilot_ai_scientist_v3/audits/skill_reuse_smoke_audit.json").read_text())
-assert taste["gate_records_audited"] == 18
+assert taste["gate_records_audited"] == 38
 assert taste["complete_taste_insight_records"] == 1
-assert attention["gate_records_audited"] == 18
+assert attention["gate_records_audited"] == 38
 assert attention["complete_attention_cost_logs"] == 0
 assert skill["overall_status"] == "pass"
 assert skill["required_terms_present"] == 9
@@ -59,19 +59,24 @@ PY
 | Attention-cost audit reran | Pass |
 | Skill reuse smoke audit reran | Pass |
 | English and Chinese PDFs rebuilt | Pass |
-| Manifest artifacts found | Pass: 266/266 |
+| Manifest artifacts found | Pass: 406/406 |
 | Missing manifest artifacts | 0 |
-| Taste/insight gate records audited | 18 |
+| Manifest status | `pilot_package_with_cross_task_failure_mode_online_smoke` |
+| Taste/insight gate records audited | 38 |
 | Complete taste/insight records | 1 |
-| Attention-cost gate records audited | 18 |
+| Attention-cost gate records audited | 38 |
 | Complete attention-cost records | 0 |
+| English PDF bytes | 40559 |
+| Chinese PDF bytes | 88342 |
 
 ## Interpretation
 
-This clean-clone audit verifies that the pushed GitHub branch contains a
-self-contained reproducibility package for the current pilot artifacts. A fresh
-clone can rebuild the bilingual PDFs, rerun the gate-coverage audits, and find
-every artifact listed in the reproducibility manifest.
+This clean-clone audit verifies that the pushed GitHub branch at commit
+`af00a57d74ea7ce35b3b26cc2072aae15709bb90` contains a self-contained
+reproducibility package for the current pilot artifacts. A fresh clone can
+rebuild the bilingual PDFs, rerun the gate-coverage audits, validate the
+reusable Codex skill, and find all 406 artifacts listed in the reproducibility
+manifest.
 
 This audit does not rerun the remote Ubuntu experiments or prove the central
 performance claims. It strengthens the artifact-delivery and reproducibility
