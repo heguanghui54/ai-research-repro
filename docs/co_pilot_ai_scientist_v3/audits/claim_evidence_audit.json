@@ -216,5 +216,10 @@
       ],
       "paper_treatment": "Present as a strong pilot and reproducibility package with explicit next evidence requirements."
     }
-  ]
+  ],
+  "trigger_policy_analysis": {
+    "best_policy": "class_imbalance_trigger_0_94",
+    "best_policy_delta_vs_autonomous_mean": 0.003076923076923066,
+    "claim_boundary": "post-hoc design evidence"
+  }
 }

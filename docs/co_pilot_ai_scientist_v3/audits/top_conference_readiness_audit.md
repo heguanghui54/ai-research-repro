@@ -98,3 +98,7 @@ evidence shape can be generated on an AI Scientist-v2-style benchmark; they
 currently argue against short-budget average-performance superiority and do not
 prove paper-quality gains, attention efficiency, or superiority over autonomous
 AI Scientist-v2.
+
+## Trigger-Policy Clean-Clone Refresh
+
+Latest audited pushed commit `e9defdde0` has clean-clone verification for the evaluator-stress trigger-policy analysis with `898/898` manifest artifacts. The best policy is `class_imbalance_trigger_0_94` with mean balanced accuracy `0.927934`, delta `+0.003077`, and wins/losses/ties `2`/`0`/`23`. Candidate-frontier validation remains `13` scored reviews with delayed-control delta `+0.064`; TFR remains `pass_with_negative_delayed_value_evidence`.
