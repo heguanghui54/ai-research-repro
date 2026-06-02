@@ -177,6 +177,16 @@ structured feedback, and claim calibration.
 - `audits/delayed_value_replay_specs_audit.md`: audit verifying that the
   replay-spec package has three cases, four conditions per case, prompt files,
   and explicit non-execution claim boundaries.
+- `experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/`:
+  first live four-condition delayed-value replay execution on the E2ENet
+  medical-segmentation case. Monica-routed `gpt-4o-mini` generated four
+  mini-paper artifacts and scored them. The raw judge labeled the case
+  positive, but the strict preregistered rule relabels it
+  `mixed_or_inconclusive` because guided artifacts did not have lower
+  short-term score than paper-only.
+- `audits/delayed_value_replay_case_audit.md`: audit verifying the live replay
+  files, two model calls, four condition artifacts, and strict delayed-value
+  label correction.
 - `experiments/human_expert_blind_review_packet_20260602_143000/`: prepared
   blind expert-review packet for the regenerated OpenReview pairs, including
   reviewer index, instructions, anonymized A/B pair files, score-sheet
@@ -269,6 +279,8 @@ python3 scripts/run_delayed_value_candidate_frontier_validation.py
 python3 scripts/build_delayed_value_deep_case_triage.py
 python3 scripts/build_delayed_value_replay_specs.py
 python3 scripts/audit_delayed_value_replay_specs.py
+python3 scripts/run_delayed_value_replay_case.py --case-id paper_105_review_1
+python3 scripts/audit_delayed_value_replay_case.py
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/summarize_human_expert_blind_reviews.py --update-manifest

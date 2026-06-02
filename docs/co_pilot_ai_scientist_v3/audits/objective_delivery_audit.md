@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T15:20:38Z`
+- Audit date: `2026-06-02T15:27:18Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `98652e3950b09033cbb3f606b89b095032717bdc`
+- HEAD: `5ab29d860fb7ba7ec35d25fb341dd031378e950b`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `747`
+- Manifest artifacts: `763`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `747/747`
+- Manifest coverage: `763/763`
 
 ## Explicit Requirements
 

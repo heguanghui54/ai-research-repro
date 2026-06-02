@@ -81,6 +81,7 @@ def main() -> None:
         / "delayed_value_deep_case_triage_20260602_232000"
         / "summary.json"
     )
+    executed_replay_audit_path = AUDIT_DIR / "delayed_value_replay_case_audit.json"
 
     errors: list[str] = []
     warnings: list[str] = []
@@ -95,6 +96,7 @@ def main() -> None:
         candidate_path,
         validation_path,
         triage_path,
+        executed_replay_audit_path,
     ]
     for path in required_paths:
         if not path.exists():
@@ -117,6 +119,7 @@ def main() -> None:
         candidate_mining = _load_json(candidate_path)
         candidate_validation = _load_json(validation_path)
         deep_case_triage = _load_json(triage_path)
+        executed_replay_audit = _load_json(executed_replay_audit_path)
 
         for condition in ["paper_only", "review_guided", "shuffled_review_control"]:
             if condition not in spec.get("required_conditions", []):
@@ -174,6 +177,7 @@ def main() -> None:
                 "delayed_value_candidate_mining": _rel(candidate_path),
                 "delayed_value_candidate_frontier_validation": _rel(validation_path),
                 "delayed_value_deep_case_triage": _rel(triage_path),
+                "executed_delayed_value_replay_case": _rel(executed_replay_audit_path),
             },
             "required_conditions_present": not errors,
             "delayed_value_definition_complete": not any(
@@ -261,15 +265,24 @@ def main() -> None:
                 "selected_cases": deep_case_triage.get("selected_cases", []),
                 "claim_boundary": deep_case_triage.get("claim_boundary"),
             },
+            "executed_delayed_value_replay_case": {
+                "case_id": executed_replay_audit.get("case_id"),
+                "live_model_calls": executed_replay_audit.get("live_model_calls"),
+                "model_delayed_value_label": executed_replay_audit.get("model_delayed_value_label"),
+                "strict_delayed_value_label": executed_replay_audit.get("strict_delayed_value_label"),
+                "winner_short_term": executed_replay_audit.get("winner_short_term"),
+                "winner_frontier": executed_replay_audit.get("winner_frontier"),
+                "claim_boundary": executed_replay_audit.get("claim_boundary"),
+            },
             "claim_boundary": (
                 "TFR is operationalized and auditable, but the archived probes are negative for "
                 "delayed-value human-review evidence. Candidate mining can prioritize which "
                 "historical comments should enter expensive replay, a small OpenAlex validation "
                 "shows weak positive candidate-vs-control frontier alignment, and the deep-case "
                 "triage queue now selects three concrete cases for future expensive replay. These "
-                "candidates are still not positive delayed-value cases until paper-only, "
-                "raw-review-guided, six-gate-hybrid-guided, and shuffled controls are judged "
-                "against later frontier evidence."
+                "the first live four-condition replay is mixed rather than positive under the "
+                "strict preregistered rule. These artifacts still do not prove delayed-value "
+                "human-review efficacy without benchmark reruns or independent expert judgement."
             ),
             "errors": errors,
             "warnings": warnings,
@@ -300,6 +313,7 @@ def main() -> None:
         candidates = audit["delayed_value_candidate_mining"]
         validation = audit["delayed_value_candidate_frontier_validation"]
         triage = audit["delayed_value_deep_case_triage"]
+        executed = audit["executed_delayed_value_replay_case"]
         lines.extend(
             [
                 "",
@@ -346,6 +360,15 @@ def main() -> None:
             )
         lines.extend(
             [
+                "",
+                "## Executed Replay Case",
+                "",
+                f"- Case ID: `{executed['case_id']}`",
+                f"- Live model calls: `{executed['live_model_calls']}`",
+                f"- Model delayed-value label: `{executed['model_delayed_value_label']}`",
+                f"- Strict delayed-value label: `{executed['strict_delayed_value_label']}`",
+                f"- Winner short-term: `{executed['winner_short_term']}`",
+                f"- Winner frontier: `{executed['winner_frontier']}`",
                 "",
                 "## Claim Boundary",
                 "",

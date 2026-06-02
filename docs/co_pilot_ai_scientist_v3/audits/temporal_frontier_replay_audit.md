@@ -1,6 +1,6 @@
 # Temporal Frontier Replay Audit
 
-Audit date: `2026-06-02T15:20:53Z`
+Audit date: `2026-06-02T15:27:16Z`
 
 Status: `pass_with_negative_delayed_value_evidence`
 
@@ -50,9 +50,18 @@ Status: `pass_with_negative_delayed_value_evidence`
 - `paper_105_review_1` `delayed_value_replay_candidate` triage `7.946`: E2ENet: Dynamic Sparse Feature Fusion for Accurate and Efficient 3D Medical Image Segmentation
 - `paper_37_review_1` `long_horizon_positive_candidate` triage `7.5753`: Learning Weighted Representations for Generalization Across Designs
 
+## Executed Replay Case
+
+- Case ID: `paper_105_review_1`
+- Live model calls: `2`
+- Model delayed-value label: `positive`
+- Strict delayed-value label: `mixed_or_inconclusive`
+- Winner short-term: `tie`
+- Winner frontier: `tie`
+
 ## Claim Boundary
 
-TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment, and the deep-case triage queue now selects three concrete cases for future expensive replay. These candidates are still not positive delayed-value cases until paper-only, raw-review-guided, six-gate-hybrid-guided, and shuffled controls are judged against later frontier evidence.
+TFR is operationalized and auditable, but the archived probes are negative for delayed-value human-review evidence. Candidate mining can prioritize which historical comments should enter expensive replay, a small OpenAlex validation shows weak positive candidate-vs-control frontier alignment, and the deep-case triage queue now selects three concrete cases for future expensive replay. These the first live four-condition replay is mixed rather than positive under the strict preregistered rule. These artifacts still do not prove delayed-value human-review efficacy without benchmark reruns or independent expert judgement.
 
 ## Warnings
 

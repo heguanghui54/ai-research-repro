@@ -1,0 +1,53 @@
+{
+  "case_id": "paper_105_review_1",
+  "per_condition": {
+    "paper_only": {
+      "short_term_score": 4.0,
+      "frontier_alignment_score": 4.0,
+      "actionability_score": 4.0,
+      "specificity_score": 4.0,
+      "claim_calibration_score": 4.0,
+      "overall": 4.0,
+      "rationale": "The paper-only artifact presents a well-structured hypothesis and method, with a clear experimental plan and expected outcomes. It aligns well with frontier trends in 3D medical segmentation, but lacks some specificity in addressing deployment constraints."
+    },
+    "raw_review_guided": {
+      "short_term_score": 4.0,
+      "frontier_alignment_score": 5.0,
+      "actionability_score": 4.0,
+      "specificity_score": 4.0,
+      "claim_calibration_score": 4.0,
+      "overall": 4.0,
+      "rationale": "This artifact effectively incorporates review signals and aligns closely with frontier trends. It provides actionable insights and maintains a good balance between efficiency and accuracy, though it could further clarify deployment considerations."
+    },
+    "six_gate_hybrid_guided": {
+      "short_term_score": 4.0,
+      "frontier_alignment_score": 5.0,
+      "actionability_score": 5.0,
+      "specificity_score": 4.0,
+      "claim_calibration_score": 4.0,
+      "overall": 4.0,
+      "rationale": "The six-gate hybrid guided artifact excels in actionability and frontier alignment, providing a comprehensive approach to addressing efficiency in segmentation. It effectively outlines the need for empirical evidence in claims, though it shares similar limitations regarding deployment specifics."
+    },
+    "shuffled_review_control": {
+      "short_term_score": 3.0,
+      "frontier_alignment_score": 3.0,
+      "actionability_score": 3.0,
+      "specificity_score": 3.0,
+      "claim_calibration_score": 3.0,
+      "overall": 3.0,
+      "rationale": "The shuffled review control artifact presents a generic approach with less specificity and alignment to frontier trends. While it outlines a valid hypothesis and method, it lacks the depth and actionable insights found in the other artifacts."
+    }
+  },
+  "winner_short_term": "tie",
+  "winner_frontier": "tie",
+  "delayed_value_label": "mixed_or_inconclusive",
+  "delayed_value_rationale": "The artifacts demonstrate a clear understanding of the research goals and align well with frontier trends in 3D medical image segmentation, particularly in efficiency and accuracy.",
+  "best_review_signal": "none",
+  "failure_modes_observed": [
+    "overfitting",
+    "insufficient consideration of deployment constraints"
+  ],
+  "claim_boundary": "No completed benchmark result is claimed.",
+  "model_delayed_value_label": "positive",
+  "deterministic_label_note": "strict preregistered delayed-value rule not satisfied; guided conditions did not have lower short-term score than paper_only while beating paper_only and shuffled_control on frontier alignment"
+}

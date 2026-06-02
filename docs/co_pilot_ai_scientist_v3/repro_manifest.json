@@ -760,7 +760,23 @@
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/replay_spec.json",
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/replay_spec.md",
     "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/shuffled_review_control_prompt.txt",
-    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/six_gate_hybrid_guided_prompt.txt"
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_specs_20260602_234500/paper_37_review_1/six_gate_hybrid_guided_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/generation_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/generation_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/generated_artifacts.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/scoring_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/scoring_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/condition_scores.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/paper_only_artifact.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/raw_review_guided_artifact.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/six_gate_hybrid_guided_artifact.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/shuffled_review_control_artifact.md",
+    "scripts/run_delayed_value_replay_case.py",
+    "scripts/audit_delayed_value_replay_case.py",
+    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_case_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_case_audit.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1785,9 +1801,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "98652e3950b09033cbb3f606b89b095032717bdc",
+    "head": "5ab29d860fb7ba7ec35d25fb341dd031378e950b",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 747,
+    "manifest_artifacts": 763,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -1858,5 +1874,19 @@
       "shuffled_review_control"
     ],
     "claim_boundary": "Replay specs are preregistration artifacts, not executed delayed-value evidence."
+  },
+  "delayed_value_replay_case_execution": {
+    "run_id": "delayed_value_replay_case_paper_105_review_1_20260602_235500",
+    "case_id": "paper_105_review_1",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/delayed_value_replay_case_paper_105_review_1_20260602_235500/summary.json",
+    "audit": "docs/co_pilot_ai_scientist_v3/audits/delayed_value_replay_case_audit.json",
+    "generation_model": "gpt-4o-mini",
+    "judge_model": "gpt-4o-mini",
+    "live_model_calls": 2,
+    "model_delayed_value_label": "positive",
+    "strict_delayed_value_label": "mixed_or_inconclusive",
+    "winner_short_term": "tie",
+    "winner_frontier": "tie",
+    "claim_boundary": "A pass means one live four-condition replay case was generated and scored, with the delayed-value label checked against the preregistered rule. It does not mean benchmark experiments or human expert ratings were run."
   }
 }
