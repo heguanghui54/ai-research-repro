@@ -24,6 +24,13 @@
       "does_not_prove": "Full AI Scientist-v2 paper-quality superiority, independent human evidence, or broad benchmark performance."
     },
     {
+      "claim_family": "Evaluator-stress trigger-policy design",
+      "benchmark_or_probe": "Post-hoc trigger-policy analysis over the open-data multi-seed pilot",
+      "current_evidence": "evaluator_stress_trigger_policy_summary.json compares autonomous-only, always-on evaluator-stress, class-imbalance triggers, validation-gap trigger, and hybrid trigger policies over the same 25 paired selections. Always-on gate obtains mean balanced accuracy 0.926426, delta +0.001569, 2 wins, 2 losses, and 21 ties. The best parsimonious trigger, class_imbalance_trigger_0_94, obtains mean 0.927934, delta +0.003077, 2 wins, 0 losses, 23 ties, and only 5 trigger events.",
+      "supports": "Human/evaluator participation should be trigger-conditioned: a simple evaluator-risk trigger preserves the imbalance benefit while avoiding clean-task overreach in this pilot.",
+      "does_not_prove": "Prospective causal proof, broad benchmark superiority, or a universally optimal trigger threshold."
+    },
+    {
       "claim_family": "Human taste/insight gate structure",
       "benchmark_or_probe": "OpenReview-derived review utility map plus gate-structure ablation",
       "current_evidence": "review_utility_map_probe_20260602_071500 maps 473 review snippets into actionable and noisy signals; gate_structure_ablation_probe_20260602_183000 compares no-gate, single-gate, random-gate, and full IGRE policies. Full IGRE captures utility rate 1.000, best single gate 0.369, random gate mean 0.199, and no-gate 0.000.",

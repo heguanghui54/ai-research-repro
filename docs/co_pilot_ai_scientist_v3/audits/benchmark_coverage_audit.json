@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T18:34:21Z",
+  "audit_date": "2026-06-02T18:43:26Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -16,6 +16,7 @@
     "maxcut_openevolve_beats_direct": true,
     "sklearn_boundary_direct_matches_or_beats_openevolve": true,
     "open_data_multitask_evaluator_stress_scored": true,
+    "evaluator_stress_trigger_policy_scored": true,
     "blocked_official_tasks_logged": true,
     "blocked_tasks_do_not_report_scores": true,
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,
@@ -25,7 +26,7 @@
   },
   "evidence_summary": {
     "fml_entry_count": 2,
-    "non_fml_entry_count": 10,
+    "non_fml_entry_count": 11,
     "mlagentbench_vectorization": {
       "num_seeds": 8,
       "num_correct_best_programs": 8,
@@ -65,6 +66,26 @@
       "dataset_ties": 21,
       "selection_changed_count": 4,
       "path": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/remote_metrics.json"
+    },
+    "evaluator_stress_trigger_policy": {
+      "best_policy": "class_imbalance_trigger_0_94",
+      "always_on": {
+        "mean_test_balanced_accuracy": 0.9264256134480804,
+        "delta_vs_autonomous_mean": 0.00156898656898655,
+        "wins_vs_autonomous": 2,
+        "losses_vs_autonomous": 2,
+        "ties_vs_autonomous": 21,
+        "triggered_count": 4
+      },
+      "best_policy_summary": {
+        "mean_test_balanced_accuracy": 0.927933549956017,
+        "delta_vs_autonomous_mean": 0.003076923076923066,
+        "wins_vs_autonomous": 2,
+        "losses_vs_autonomous": 0,
+        "ties_vs_autonomous": 23,
+        "triggered_count": 5
+      },
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/evaluator_stress_trigger_policy_summary.json"
     },
     "official_setup_blockers": {
       "mlagentbench_cifar10": {

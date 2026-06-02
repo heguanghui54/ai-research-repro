@@ -908,7 +908,10 @@
     "skills/co-pilot-ai-scientist-v3/SKILL.md",
     "skills/co-pilot-ai-scientist-v3/templates/claim_audit_template.md",
     "skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json",
-    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md"
+    "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/evaluator_stress_trigger_policy_summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/evaluator_stress_trigger_policy_summary.md",
+    "scripts/analyze_evaluator_stress_trigger_policy.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1987,9 +1990,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "4180584845efcc1bcc5ddc6bebc8b18dad222699",
+    "head": "44aa15148c2cdf2c18f9d66c8158fa00d7701dd6",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 895,
+    "manifest_artifacts": 898,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2279,5 +2282,12 @@
     "independent_human_expert_ratings_collected": false,
     "full_pdfs_rebuilt_in_this_audit": false,
     "claim_boundary": "Latest pushed verification package is clean-clone reproducible for local artifact, LHTG/DVRS, TFR, roadmap, human-expert packet readiness, benchmark coverage including multi-seed open-data evaluator stress, prospective package summary, global skill engineering chain, focused accessibility revision, focused-PDF, package-consistency, goal-completion, and objective-delivery checks. This still does not rerun remote Ubuntu experiments or provide independent human expert evidence."
+  },
+  "evaluator_stress_trigger_policy_analysis": {
+    "status": "pass",
+    "script": "scripts/analyze_evaluator_stress_trigger_policy.py",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/evaluator_stress_trigger_policy_summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/evaluator_stress_trigger_policy_summary.json",
+    "claim_boundary": "trigger-policy design evidence from an existing open-data pilot; not a new independent benchmark run"
   }
 }

@@ -1,15 +1,16 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T18:34:21Z`
+- Audit date: `2026-06-02T18:43:26Z`
 - Status: `pass`
 - FML entries: `2`
-- Non-FML entries: `10`
+- Non-FML entries: `11`
 
 ## Positive Scored Evidence
 
 - MLAgentBench vectorization: `8/8` correct best programs; median runtime `0.024580717086791992` seconds versus starter `3.261186361312866` seconds; direct rewrite correctness `False`.
 - Program search subproblems: knapsack OpenEvolve `0.9994394752555711` versus direct `0.9952700988954383`; Max-Cut OpenEvolve-minus-direct `0.0085959186678094`.
 - Open-data evaluator-stress pilot: `5` sklearn tasks, `5` split seeds, `25` paired selections, `8` candidates each, co-pilot mean balanced accuracy `0.9264256134480804` versus autonomous `0.9248566268790939`, delta `0.00156898656898655`; selection changed in `4` paired selections.
+- Evaluator-stress trigger policy: best policy `class_imbalance_trigger_0_94` with delta `0.003076923076923066` versus always-on delta `0.00156898656898655`.
 
 ## Boundary And Blocked Evidence
 
@@ -38,6 +39,7 @@
 - `maxcut_openevolve_beats_direct`: `pass`
 - `sklearn_boundary_direct_matches_or_beats_openevolve`: `pass`
 - `open_data_multitask_evaluator_stress_scored`: `pass`
+- `evaluator_stress_trigger_policy_scored`: `pass`
 - `blocked_official_tasks_logged`: `pass`
 - `blocked_tasks_do_not_report_scores`: `pass`
 - `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`
