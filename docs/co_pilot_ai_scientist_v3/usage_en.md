@@ -214,12 +214,15 @@ To generate a manuscript from an online full-gate trajectory, run:
 ```bash
 python3 scripts/generate_online_trajectory_manuscript.py \
   --trajectory-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json \
+  --autonomous-summary-json docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/autonomous_baseline_summary.json \
   --update-manifest
 ```
 
 The archived `online_full_gate_smoke_20260602_004933` run is a fresh online
-smoke trajectory with manuscript production, but it still lacks a matched
-autonomous manuscript baseline.
+smoke trajectory with manuscript production. Passing `--autonomous-summary-json`
+also writes `online_manuscript/autonomous_online_comparator_manuscript.md` and
+`online_manuscript/matched_budget_comparison_summary.md`. This is a
+matched-budget comparator, not a same-continuous-trajectory autonomous run.
 
 To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
 

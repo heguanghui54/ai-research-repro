@@ -83,7 +83,7 @@ Co-Pilot AI Scientist v3 实现的是洞察门控科研演化。IGRE 包含四�
 
 随后，我们为这条 online smoke 增加了同 FML step 数的 autonomous baseline。该 baseline 使用同一个 Causality 任务和 DeepSeek 模型，运行三步 AI Scientist-v2，但不进行人类 branch gate。它得到验证 MAE `0.354147` 和 held-out test MAE `0.428516`，明显优于 human-gated smoke continuation 的 test MAE `0.862015`。因此，这个配对 smoke 结果对性能提升主张是负证据，但仍支持更窄的“在线 co-pilot 编排可以执行”这一主张。
 
-随后我们又跑了一条更新的 fresh online full-gate smoke trajectory，并直接从这条轨迹日志生成完整的 claim-calibrated manuscript artifact。该运行选择验证 MAE 为 `0.627837` 的 Causality 分支，继续后得到 held-out test MAE `0.646224`，同时完成一次 OpenEvolve knapsack smoke，best score 为 `0.995619`。生成的 online manuscript 在内部 rubric 上得到 `4.64`，评分维度包括章节完整性、gate 覆盖、证据绑定、主张校准和 fresh trajectory 证据。这个结果缩小了一个明确缺口：新鲜在线轨迹现在可以产出完整论文形态的 manuscript。但它还没有关闭科学证据缺口，因为同一条 fresh trajectory 下还没有 matched autonomous manuscript，也没有独立论文质量评审。
+随后我们又跑了一条更新的 fresh online full-gate smoke trajectory，并直接从这条轨迹日志生成完整的 claim-calibrated manuscript artifact。该运行选择验证 MAE 为 `0.627837` 的 Causality 分支，继续后得到 held-out test MAE `0.646224`，同时完成一次 OpenEvolve knapsack smoke，best score 为 `0.995619`。生成的 online manuscript 在内部 rubric 上得到 `4.64`，评分维度包括章节完整性、gate 覆盖、证据绑定、主张校准和 fresh trajectory 证据。我们还从同一 Causality benchmark 和 DeepSeek 模型族的一条 archived autonomous AI Scientist-v2 summary 生成 matched-budget autonomous manuscript comparator，内部评分为 `3.48`；但 autonomous 的 benchmark test MAE 更好（`0.624703` 对 `0.646224`，越低越好）。这个结果缩小了一个明确缺口：新鲜在线轨迹现在可以产出完整论文形态的 manuscript，并且已有 matched-budget manuscript comparator。但它还没有关闭科学证据缺口，因为 autonomous comparator 不是同一条 fresh trajectory 中生成的连续对照，也没有独立论文质量评审。
 
 ## 4. Benchmark 选择与评估计划
 
@@ -157,7 +157,7 @@ taste/insight gate record。这扩展了 benchmark 形态，但让平均性能�
 
 在完成这些 pilot 实验后，我们做了一次 claim-evidence audit。通过 Monica 路由的 `gpt-4o-mini` 审稿式检查认为：本文的架构贡献是合理的，但当前实验证据还不足以支持“人类 gate 提高论文质量”或“完整 co-pilot 系统优于 autonomous AI Scientist-v2”这类宽泛结论。因此，本文把这些表述保留为 evaluation protocol 要检验的假设，而不是已经证明的结论。当前 audit 只支持较窄的实证主张：OpenEvolve-style search 可以在部分机器可评分子问题上有效，但在极小预算下存在 seed sensitivity；direct editing 在简单 tabular modeling probe 上可以匹配 OpenEvolve；branch gate 可以插入 AI Scientist-v2 风格日志轨迹；evaluator gate 必须在 continuation 前拒绝无法执行以及指标投机的分支；两组 matched Causality 对照给出的是混合证据，而不是稳定的人类 gate 优势。第一次把 online branch gate 扩展到 `Fairness_fairlearn` 时，两条候选都在 validation 阶段失败，因此本文只把它作为 failure-mode evidence 归档，而不计入 matched-budget performance evidence。后续 evaluator-gate repair probe 进一步暴露了这个问题：一个修复 API 后可运行的公平性候选在 demographic parity difference 上反而更差，test 指标为 0.317603，而 baseline 为 0.173030；一个退化的全负类预测器虽然把目标公平性指标做到 0.000000，却把 balanced accuracy 降到 0.500000。因此，在公平性任务中，gate 不能只看单一 fairness metric，还必须同时检查代码可执行性和最低效用下限。
 
-在加入 prospective matched-budget 指标汇总后，我们又通过 Monica 路由刷新了两次 paper-quality review。`gpt-4o-mini` 给出 weak-accept 建议，认为新颖性和可复现性较强，但严谨性和证据仍只有中等水平。`claude-3-7-sonnet-latest` 更严格，认为如果目标是强 ML/NLP systems venue，当前版本应被拒，因为核心 human-gating 和 paper-quality 主张仍未被证明，最强的 FML-bench prospective package 对 co-pilot performance 是负结果，而且系统还缺少完整 paper-generating end-to-end 对照。两个模型的共同结论是：下一版必须在更多任务和随机种子上比较 autonomous AI Scientist-v2 与 human-gated variants，记录人类注意力成本，并更清楚地区分已经完成的系统证据和 future work。
+在加入 prospective matched-budget 指标汇总后，我们又通过 Monica 路由刷新了两次 paper-quality review。`gpt-4o-mini` 给出 weak-accept 建议，认为新颖性和可复现性较强，但严谨性和证据仍只有中等水平。`claude-3-7-sonnet-latest` 更严格，认为如果目标是强 ML/NLP systems venue，当前版本应被拒，因为核心 human-gating 和 paper-quality 主张仍未被证明，最强的 FML-bench prospective package 对 co-pilot performance 是负结果，而且系统仍缺少 same-continuous-trajectory 的 paper-generating 对照。两个模型的共同结论是：下一版必须在更多任务和随机种子上比较 autonomous AI Scientist-v2 与 human-gated variants，记录人类注意力成本，并更清楚地区分已经完成的系统证据和 future work。
 
 ## 5. 当前贡献与尚未证明的主张
 
@@ -184,7 +184,7 @@ taste/insight gate record。这扩展了 benchmark 形态，但让平均性能�
 19. 一个 prospective package 指标汇总表，把通过 audit 的 package 按任务、指标方向、co-pilot 分数、autonomous 分数和 claim implication 汇总；当前结果是 1 个 controlled micro-task 正向结果、2 个 Causality FML-bench 负向结果，以及 1 个 Fairness_fairlearn 无有效 continuation 的失败案例。
 20. 一个 matched mini-manuscript quality probe：为同一个 FML package 生成 autonomous mini-manuscript，并让 Monica 路由的 `gpt-4o-mini` 和 `claude-3-7-sonnet-latest` 对匿名 A/B manuscript 评分；两个模型都偏好 co-pilot package mini-manuscript，overall 为 4 对 3。
 21. 一个 matched full-manuscript generation probe：把同一个已归档 FML evidence package 渲染成两篇完整论文形态的 manuscript，并用确定性内部 rubric 评分；最新 Fairness package 中，co-pilot manuscript 因结构完整、证据绑定、主张校准和方法区分度得到 4.18 overall，autonomous manuscript 得到 4.11 overall，但 autonomous 是唯一拥有有效 FML 标量测试指标的路径。
-22. 一个 fresh online full-gate manuscript-production smoke trajectory，从新执行的在线轨迹生成完整 co-pilot manuscript，并用同一内部 rubric 得到 4.64；但该证据明确缺少 matched fresh autonomous manuscript baseline。
+22. 一个 fresh online full-gate manuscript-production smoke trajectory，从新执行的在线轨迹生成完整 co-pilot manuscript，并用同一内部 rubric 得到 4.64；同时新增 matched-budget autonomous manuscript comparator，内部评分为 3.48，但 autonomous benchmark metric 更好（test MAE 0.624703 对 0.646224），而且 comparator 不是 same-continuous-trajectory autonomous run。
 23. 一个 Human Co-Pilot Trace Dataset protocol，把本文实际 Codex 使用记录转化为脱敏派生数据集，而不是依赖不匹配的通用 human-AI interaction 数据集。
 
 当前证据还不能证明人类 gate 能提升论文质量，也不能证明完整 co-pilot 系统优于 autonomous AI Scientist-v2。这些仍是下一阶段 benchmark 要验证的目标主张。
@@ -201,11 +201,11 @@ taste/insight gate record。这扩展了 benchmark 形态，但让平均性能�
 
 我们还补了第一个 matched mini-manuscript quality probe。该 probe 从同一个 FML package 的 autonomous baseline 生成一篇 autonomous mini-manuscript，把 co-pilot package manuscript 匿名为 A，把 autonomous manuscript 匿名为 B，并让 Monica 路由的 `gpt-4o-mini` 和 `claude-3-7-sonnet-latest` 按 claim calibration、evidence use、methodological completeness、limitation honesty、clarity 和 overall quality 评分。两个模型都偏好 A，overall 为 4 对 3；理由是 co-pilot mini-manuscript 虽然 benchmark 分数更差，但对主张边界和局限性写得更清楚。这个结果只能说明 manuscript-quality measurement pipeline 可运行，不能证明完整 co-pilot 系统已经能写出更好论文。
 
-这次新增的 full-manuscript probe 只缩小了一个具体缺口，并没有关闭顶会证据缺口。它说明已归档 FML package 中的结构化证据足以生成两篇完整、主张校准的论文形态 manuscript；最新 Fairness probe 中 co-pilot manuscript 的内部 rubric 为 4.18，autonomous manuscript 为 4.11，但 autonomous 是唯一拥有有效 FML 标量测试指标的路径。更新的 online trajectory manuscript smoke 进一步说明 fresh online co-pilot trajectory 可以生成完整论文形态 artifact，并得到 4.64 的内部评分；但它仍只是 smoke run，缺少同一 fresh trajectory 下的 autonomous manuscript 对照，也不能替代独立专家论文质量评审。因此 co-pilot 的当前主张必须停留在方法区分度、科学品味记录和高尾部科研搜索空间塑形，而不能说它已经在短预算平均 benchmark 上优于 autonomous AI Scientist-v2。
+这次新增的 full-manuscript probe 只缩小了一个具体缺口，并没有关闭顶会证据缺口。它说明已归档 FML package 中的结构化证据足以生成两篇完整、主张校准的论文形态 manuscript；最新 Fairness probe 中 co-pilot manuscript 的内部 rubric 为 4.18，autonomous manuscript 为 4.11，但 autonomous 是唯一拥有有效 FML 标量测试指标的路径。更新的 online trajectory manuscript smoke 进一步说明 fresh online co-pilot trajectory 可以生成完整论文形态 artifact，并得到 4.64 的内部评分；新增 matched-budget autonomous comparator 得到 3.48，但 autonomous 的 benchmark 指标更好（0.624703 对 0.646224 test MAE），且 comparator 不是同一连续轨迹中的 autonomous manuscript，也不能替代独立专家论文质量评审。因此 co-pilot 的当前主张必须停留在方法区分度、科学品味记录和高尾部科研搜索空间塑形，而不能说它已经在短预算平均 benchmark 上优于 autonomous AI Scientist-v2。
 
 taste/insight 证据目前也只是 logging-readiness 阶段。归档中已有 1 条完整 scientific-taste prior 记录，来自作者要求扩展 benchmark 并突出高尾部科研品味的指令；但它还不能证明该决策改善了下游科研结果。下一轮实验必须前瞻性记录 taste rationale，才能检验人类 insight 是否真的改变了科研搜索分布。
 
-当前实现现在已有 smoke 级别的在线论文生成演示，但还缺少 systems paper 所需的 matched autonomous manuscript trajectory。下一版 systems paper 至少需要报告一组更大规模的 matched 在线轨迹，从假设生成一直到最终 claim-audited manuscripts。
+当前实现现在已有 smoke 级别的在线论文生成演示和 matched-budget autonomous manuscript comparator，但还缺少 systems paper 所需的 same-continuous-trajectory autonomous manuscript。下一版 systems paper 至少需要报告一组更大规模的 matched 在线轨迹，从假设生成一直到最终 claim-audited manuscripts。
 
 ## 7. 结论
 

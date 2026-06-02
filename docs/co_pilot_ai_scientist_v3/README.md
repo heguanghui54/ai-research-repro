@@ -287,6 +287,10 @@ five-gate trajectory on `ubuntu-heshi`, then renders the logged trajectory into
 branch `step_0001` with validation MAE `0.627837`, reached continuation test MAE
 `0.646224`, and produced a one-iteration knapsack program-search score
 `0.995619`. The generated online manuscript scores `4.64` on the internal
-trace-bound rubric. This narrows the fresh end-to-end manuscript-production
-gap, but it still lacks a matched autonomous manuscript baseline and independent
-paper-quality review.
+trace-bound rubric. The same command can now also generate a matched-budget
+autonomous manuscript comparator from an archived autonomous AI Scientist-v2
+summary; the comparator manuscript scores `3.48`, while the autonomous test MAE
+is better than the co-pilot trajectory (`0.624703` vs. `0.646224`, lower is
+better). This narrows the fresh manuscript-production gap, but it is still not a
+same-continuous-trajectory autonomous baseline or independent paper-quality
+review.

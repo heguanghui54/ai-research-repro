@@ -199,12 +199,15 @@ trajectory，也不是独立专家评审。
 ```bash
 python3 scripts/generate_online_trajectory_manuscript.py \
   --trajectory-json docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_004933/trajectory.json \
+  --autonomous-summary-json docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_fml_causality_20260602_000001/autonomous_baseline_summary.json \
   --update-manifest
 ```
 
 归档的 `online_full_gate_smoke_20260602_004933` 是 fresh online smoke
-trajectory，并且已经生成 manuscript；但它仍然缺少 matched autonomous
-manuscript baseline。
+trajectory，并且已经生成 manuscript。传入 `--autonomous-summary-json` 后还会写出
+`online_manuscript/autonomous_online_comparator_manuscript.md` 和
+`online_manuscript/matched_budget_comparison_summary.md`。这只是
+matched-budget comparator，不是同一连续轨迹中的 autonomous run。
 
 如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
 

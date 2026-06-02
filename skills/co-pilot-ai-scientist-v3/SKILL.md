@@ -120,6 +120,12 @@ and claim responsibility can reshape the trajectory.
      `scripts/generate_full_manuscript_probe.py --update-manifest`. Treat this
      as archived-evidence manuscript generation, not as a fresh end-to-end
      research trajectory or independent paper-quality proof.
+   - To generate a manuscript from a fresh online full-gate trajectory, run
+     `scripts/generate_online_trajectory_manuscript.py` with `--trajectory-json`.
+     When an autonomous summary is available, also pass
+     `--autonomous-summary-json` to create a matched-budget autonomous
+     manuscript comparator. Report this as a comparator artifact unless the
+     autonomous manuscript comes from the same continuous online trajectory.
    - To turn real Codex project usage into a privacy-preserving process
      dataset, run `scripts/build_human_copilot_trace_dataset.py`. Treat the
      resulting `human_copilot_trace_dataset.md/json` as a single-author

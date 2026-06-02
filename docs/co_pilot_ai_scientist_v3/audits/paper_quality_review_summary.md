@@ -84,10 +84,13 @@ trajectory selects a Causality branch with validation MAE `0.627837`, continues
 to test MAE `0.646224`, runs an OpenEvolve knapsack smoke with best score
 `0.995619`, and generates a complete co-pilot manuscript directly from the
 trajectory log. The internal rubric gives this online manuscript `4.64`
-overall. This is stronger than archived-evidence manuscript generation because
-the manuscript comes from a newly executed trajectory, but it is still a smoke
-artifact: it has no matched fresh autonomous manuscript and no independent
-paper-quality review.
+overall. We then generate a matched-budget autonomous manuscript comparator
+from an archived autonomous AI Scientist-v2 summary on the same Causality task.
+The autonomous comparator manuscript scores `3.48`, while its benchmark metric
+is better than the co-pilot trajectory (`0.624703` versus `0.646224` test MAE;
+lower is better). This is stronger than judging the online manuscript alone,
+but it is still a smoke artifact: the comparator is not a same-continuous-
+trajectory autonomous run and there is no independent paper-quality review.
 
 ## Human Co-Pilot Trace Dataset
 
