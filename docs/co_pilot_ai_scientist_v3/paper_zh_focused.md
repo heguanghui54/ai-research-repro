@@ -22,7 +22,7 @@
 
 AI Scientist-v2 代表全自动科研智能体路线：生成想法、执行实验、撰写论文并评估输出。它的优势是端到端自动化，但人类科研品味并不是其算法中的一等对象。AI Co-Scientist 式工作强调假设生成、批判、排序和演化，与 IGRE 同样把科研看成前沿搜索；但 IGRE 增加了显式人类门控、注意力成本日志和主张校准。
 
-另一条实践路线是把学术劳动封装成可复用的 research skill 或 manuscript-copilot workflow。PaperOrchestra 提出多智能体论文写作框架，并在人工评估中报告相对全自动写作基线的优势；`academic-research-skills` 与 `Claude-Code-Skills-for-Academics` 等公开 skill bundle 则把文献综述、论文写作、论文评审、引用检查、数据 profiling、代码审计、修订流程和会话管理拆成可复用模块。这条线很重要，因为它说明科研辅助可以成为稳定工作流资产，而不只是一次性 prompt。IGRE 参考这类系统的工程组织方式，但算法对象不同：它不把“写作技能”或“pipeline stage”作为核心单位，而是把 human-insight gate 作为核心单位，判断科研先验、evaluator、前沿分支、微演化任务、反馈结构或主张边界是否应该被改变。换言之，manuscript-copilot skills 帮助生产和审计科研产物；IGRE 研究的是哪些人类科研品味应该控制产生这些产物的科学搜索。
+另一条实践路线是把学术劳动封装成可复用的 research skill 或 manuscript-copilot workflow。PaperOrchestra 提出多智能体论文写作框架，并在人工评估中报告相对全自动写作基线的优势；`academic-research-skills` 与 `Claude-Code-Skills-for-Academics` 等公开 skill bundle 则把文献综述、论文写作、论文评审、引用检查、数据 profiling、代码审计、修订流程和会话管理拆成可复用模块。在这条线上，PaperOrchestra 不只是并列的论文写作系统，也是 `academic-research-skills` 这类学术 skill bundle 的理论来源之一：后者把多智能体论文写作、验证与修订思想工程化为持久工作流模块。这条线很重要，因为它说明科研辅助可以成为稳定工作流资产，而不只是一次性 prompt。IGRE 参考这类系统的工程组织方式，但算法对象不同：它不把“写作技能”或“pipeline stage”作为核心单位，而是把 human-insight gate 作为核心单位，判断科研先验、evaluator、前沿分支、微演化任务、反馈结构或主张边界是否应该被改变。换言之，manuscript-copilot skills 帮助生产和审计科研产物；IGRE 研究的是哪些人类科研品味应该控制产生这些产物的科学搜索。
 
 AlphaEvolve 和 OpenEvolve 启发了 IGRE 的可验证微演化门控。它们表明，语言模型生成的代码修改可以通过自动评估进行演化。IGRE 对此采取选择性使用：只有当目标可机器评分且额外搜索成本合理时，才触发微演化，而不是把程序搜索当作所有问题的通用替代。
 

@@ -20,8 +20,9 @@ Reviewer routes:
 The refreshed focused review includes the three-case live Temporal Frontier
 Replay aggregate, the deterministic TFR audit, the focused reference audit with
 the Schmidhuber/OOPS/Godel Machine/POWERPLAY self-improvement lineage, and the
-new research-skill/manuscript-copilot related-work line covering
-PaperOrchestra, `academic-research-skills`, and
+new research-skill/manuscript-copilot related-work line that treats
+PaperOrchestra as a multi-agent paper-writing theory source for skill bundles
+such as `academic-research-skills`, alongside
 `Claude-Code-Skills-for-Academics`.
 
 Both successful model reviewers recommend weak accept under conservative
@@ -41,7 +42,8 @@ delayed-value evidence are still missing.
 ## What Improved
 
 - The related-work section now separates manuscript-copilot skill bundles from
-  autonomous discovery systems and positions IGRE as a gate-control theory
+  autonomous discovery systems, identifies PaperOrchestra as a theory source
+  for `academic-research-skills`, and positions IGRE as a gate-control theory
   rather than another writing pipeline.
 - The paper explicitly includes the Schmidhuber self-referential learning and
   code self-improvement lineage, including OOPS, Godel Machine, POWERPLAY,

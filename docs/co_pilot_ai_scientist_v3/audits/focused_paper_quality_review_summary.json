@@ -4,7 +4,7 @@
   "evidence_context": [
     "three-case live TFR aggregate and deterministic TFR audit",
     "focused reference coverage audit including Schmidhuber, OOPS, Godel Machine, POWERPLAY, Darwin Godel Machine, and Huxley-Godel Machine",
-    "research-skill and manuscript-copilot related-work line covering PaperOrchestra, academic-research-skills, and Claude-Code-Skills-for-Academics",
+    "research-skill and manuscript-copilot related-work line treating PaperOrchestra as a multi-agent paper-writing theory source for academic-research-skills and related skill bundles",
     "goal-completion matrix with benchmark-selection status and top-conference gap",
     "controlled metric-gaming evaluator-stress smoke",
     "OpenReview equal-context ablation",
@@ -51,7 +51,7 @@
       "path": "docs/co_pilot_ai_scientist_v3/audits/focused_paper_quality_reviews/gemini-2.0-flash.md"
     }
   },
-  "aggregate_conclusion": "Both successful model reviewers recommend weak accept under conservative framing. They support IGRE as a systems-method and measurement paper, not as proof of broad human-gated superiority. The new related-work line positions academic research skills and manuscript copilots as workflow engineering references while preserving IGRE's distinct contribution: human scientific taste is represented as an auditable gate that can change research priors, evaluators, frontiers, micro-evolution tasks, feedback structures, and claim boundaries.",
+  "aggregate_conclusion": "Both successful model reviewers recommend weak accept under conservative framing. They support IGRE as a systems-method and measurement paper, not as proof of broad human-gated superiority. The new related-work line positions PaperOrchestra as a multi-agent paper-writing theory source for academic-research-skills and related manuscript-copilot skill bundles while preserving IGRE's distinct contribution: human scientific taste is represented as an auditable gate that can change research priors, evaluators, frontiers, micro-evolution tasks, feedback structures, and claim boundaries.",
   "remaining_blocking_issues": [
     "mixed or negative empirical evidence for broad human-gated superiority",
     "zero strict delayed-value positives in three live TFR replays",
