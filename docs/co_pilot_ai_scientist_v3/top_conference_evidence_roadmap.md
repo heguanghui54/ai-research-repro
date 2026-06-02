@@ -1,0 +1,120 @@
+# Top-Conference Evidence Roadmap
+
+This roadmap translates the current evidence gaps into concrete experiments.
+It is deliberately stricter than the present pilot package: passing the package
+audits means the artifacts are reproducible, not that the paper has reached a
+top-conference empirical bar.
+
+## Current Position
+
+Co-Pilot AI Scientist v3 is strongest as a workflow-design contribution. The
+current artifacts support the claim that human scientific taste and insight can
+be operationalized as auditable gates inside AI Scientist-v2-style research
+loops. They do not yet prove that human-gated automation beats autonomous AI
+Scientist-v2 on average, improves final paper quality under independent human
+review, or increases high-tail scientific breakthroughs.
+
+Boundary phrase for audits: not empirical superiority over autonomous AI Scientist-v2.
+
+The next version should move from "mode design and pilot evidence" to
+"matched empirical evidence." Every experiment below should be preregistered
+before the generated manuscripts are scored.
+
+## Milestone 1: Blind Human Expert Review
+
+- Claim tested: review-derived and IGRE-gated feedback improves research
+  artifacts in ways recognized by qualified human reviewers.
+- Required data: the prepared blind A/B packet in
+  `experiments/human_expert_blind_review_packet_20260602_143000/`.
+- Minimum design: 3-5 qualified reviewers; all reviewers score the same six
+  anonymized pairs when feasible.
+- Metrics: condition win rate, mean delta on novelty, rigor, clarity,
+  significance, evidence grounding, and useful taste/insight comments.
+- Required analysis: exact binomial win test excluding ties, bootstrap
+  confidence intervals for mean deltas, inter-rater agreement when enough
+  overlapping ratings exist, and qualitative coding of comments that would
+  change a research-control decision.
+- Upgrade condition: review-guided or gate-routed artifacts win a majority of
+  non-tied comparisons with positive mean deltas on novelty or rigor.
+- If it fails: keep the claim at "offline review signals are routeable," and
+  remove any statement implying human-reviewed paper-quality improvement.
+
+## Milestone 2: Matched Autonomous Versus Human-Gated Runs
+
+- Claim tested: Co-Pilot AI Scientist v3 improves the distribution of outcomes
+  relative to an autonomous AI Scientist-v2 baseline under the same budget.
+- Required tasks: at least 3 tasks spanning FML-Bench or AI Scientist-v2-style
+  ML tasks, one MLAgentBench-style implementation task, and one automatically
+  scored program-search subproblem.
+- Minimum design: at least 5 matched pairs per task; same model family, same
+  tool access, same step budget, same task, and preregistered stopping rules.
+- Metrics: task score, valid-run rate, evaluator-gaming failures, paper-quality
+  proxy score, and claim-calibration violations.
+- Upgrade condition: the human-gated condition should improve either valid
+  high-quality manuscript rate or evaluator-robustness rate without a large
+  average task-score regression.
+- If it fails: frame IGRE as a safety and workflow-control architecture rather
+  than a performance-improving system.
+
+## Milestone 3: Long-Horizon Taste Gate / DVRS Replay
+
+- Claim tested: some human review comments that are not immediately helpful can
+  nevertheless guide past research toward later frontier developments.
+- Required data: delayed-value candidate queue from
+  `experiments/delayed_value_review_candidate_mining_20260603_001500/`,
+  plus the OpenAlex/Semantic Scholar future-frontier reconstruction pipeline.
+- Minimum design: replay at least 30 delayed-value candidates and 30 matched
+  controls after title-overlap and field-match drift guards.
+- Metrics: immediate artifact quality, later-frontier alignment, delayed-value
+  indicator, and reviewer-comment category.
+- Upgrade condition: at least one clear delayed-value positive case, plus an
+  aggregate advantage over matched controls under semantic or expert frontier
+  judging.
+- If it fails: keep LHTG/DVRS as a falsifiable measurement protocol and report
+  negative evidence, not as a proven source of breakthrough guidance.
+
+## Milestone 4: Live Multi-Researcher Co-Pilot Trace Data
+
+- Claim tested: the gate schema captures real human scientific taste and
+  attention cost beyond a single-author Codex trace.
+- Required data: consented, privacy-protected traces from multiple researchers
+  using the reusable Codex skill or a derived co-pilot workflow.
+- Minimum design: at least 20 prospective gates from at least 5 researchers,
+  with both `attention_cost` and `taste_insight` fields complete.
+- Metrics: gate type distribution, attention minutes, downstream decision
+  changes, accepted/rejected branch quality, and qualitative non-metric factors.
+- Upgrade condition: the dataset shows that humans intervene for reasons not
+  reducible to scalar metric improvement, and those interventions can be linked
+  to downstream search-control changes.
+- If it fails: describe the schema as single-author prototype tooling and mark
+  population-level claims as future work.
+
+## Milestone 5: Non-FML Official Benchmark Check
+
+- Claim tested: the workflow is not overfit to FML-Bench-style evidence.
+- Required data: at least one scored official non-FML benchmark, preferably
+  MLAgentBench, ScienceAgentBench, or another task where AI Scientist-v2-style
+  agents can be compared under matched budgets.
+- Minimum design: one scored matched package with complete autonomous and
+  human-gated trajectories, plus an evaluator-stress gate.
+- Metrics: official task score, validity, runtime or cost, evaluator-stress
+  outcome, and manuscript/claim quality.
+- Upgrade condition: at least one non-FML benchmark shows a clear workflow
+  benefit or a concrete evaluator-safety benefit.
+- If it fails: keep benchmark claims explicitly limited to the current pilot
+  tasks and program-search subproblems.
+
+## Decision Rule For The Paper
+
+The paper should be submitted as a strong pilot/system paper only after
+Milestone 1 or Milestone 2 produces positive evidence. It should be submitted
+as a top-conference empirical paper only after Milestone 1 and Milestone 2 both
+pass, with Milestone 3 providing either positive delayed-value evidence or a
+clear negative result that strengthens the measurement contribution.
+
+Until then, the correct claim boundary is:
+
+> IGRE, LHTG, TFR, and DVRS define an auditable human-participation workflow for
+> automated science. The current package demonstrates reproducible
+> operationalization and pilot signals, but not empirical superiority over
+> autonomous AI Scientist-v2.

@@ -30,6 +30,9 @@ claim calibration.
 - `benchmark_selection.md`: tiered benchmark strategy beyond FML-bench.
 - `benchmark_claim_matrix.md`: claim-to-benchmark matrix recording what each
   benchmark can and cannot prove.
+- `top_conference_evidence_roadmap.md/json`: strict next-evidence roadmap
+  converting the remaining top-conference blockers into preregistered
+  experiments and decision rules.
 - `retrospective_frontier_alignment_protocol.md`: proposed protocol for using
   historical reviews and later field evolution to identify which review comments
   genuinely carried future-relevant scientific taste or insight.

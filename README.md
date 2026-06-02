@@ -17,6 +17,8 @@ Start here:
   [docs/co_pilot_ai_scientist_v3/submission_card_en.md](docs/co_pilot_ai_scientist_v3/submission_card_en.md)
 - Chinese submission card:
   [docs/co_pilot_ai_scientist_v3/submission_card_zh.md](docs/co_pilot_ai_scientist_v3/submission_card_zh.md)
+- Top-conference evidence roadmap:
+  [docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md](docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md)
 - Focused English paper:
   [docs/co_pilot_ai_scientist_v3/paper_en_focused.md](docs/co_pilot_ai_scientist_v3/paper_en_focused.md)
 - Focused Chinese paper:

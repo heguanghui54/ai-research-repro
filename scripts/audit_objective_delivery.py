@@ -104,6 +104,8 @@ def main() -> None:
         "root_readme": ROOT / "README.md",
         "english_submission_card": DOC_DIR / "submission_card_en.md",
         "chinese_submission_card": DOC_DIR / "submission_card_zh.md",
+        "top_conference_evidence_roadmap": DOC_DIR / "top_conference_evidence_roadmap.md",
+        "top_conference_evidence_roadmap_json": DOC_DIR / "top_conference_evidence_roadmap.json",
         "english_usage": DOC_DIR / "usage_en.md",
         "chinese_usage": DOC_DIR / "usage_zh.md",
         "english_runbook": DOC_DIR / "RUNBOOK_EN.md",
@@ -145,6 +147,7 @@ def main() -> None:
                 "Co-Pilot AI Scientist v3",
                 "submission_card_en.md",
                 "submission_card_zh.md",
+                "top_conference_evidence_roadmap.md",
                 "External Verification Entry Point",
                 "pass_artifact_delivery_with_empirical_gaps",
                 "top-conference empirical target is not yet satisfied",
@@ -174,6 +177,17 @@ def main() -> None:
                 "OpenEvolve",
                 "不能声称",
                 "外部复现入口",
+            ],
+        ),
+        _rel(docs["top_conference_evidence_roadmap"]): _contains(
+            docs["top_conference_evidence_roadmap"],
+            [
+                "Blind Human Expert Review",
+                "Matched Autonomous Versus Human-Gated Runs",
+                "Long-Horizon Taste Gate",
+                "Live Multi-Researcher Co-Pilot Trace Data",
+                "Non-FML Official Benchmark Check",
+                "not empirical superiority over autonomous AI Scientist-v2",
             ],
         ),
         _rel(docs["reusable_skill"]): _contains(
@@ -305,6 +319,8 @@ def main() -> None:
         docs["root_readme"],
         docs["english_submission_card"],
         docs["chinese_submission_card"],
+        docs["top_conference_evidence_roadmap"],
+        docs["top_conference_evidence_roadmap_json"],
     ]:
         rel = _rel(path)
         if rel not in manifest["current_artifacts"]:

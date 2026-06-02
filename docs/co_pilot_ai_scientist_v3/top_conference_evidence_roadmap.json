@@ -1,0 +1,48 @@
+{
+  "status": "roadmap_not_completed",
+  "purpose": "Translate top-conference evidence gaps into concrete, auditable experiments.",
+  "current_position": "Workflow-design contribution with reproducible pilot evidence; not yet proof of superiority over autonomous AI Scientist-v2.",
+  "milestones": [
+    {
+      "id": "blind_human_expert_review",
+      "claim_tested": "Review-derived and IGRE-gated feedback improves research artifacts under qualified human review.",
+      "minimum_design": "3-5 qualified reviewers score the same six anonymized pairs when feasible.",
+      "upgrade_condition": "Gate-routed or review-guided artifacts win a majority of non-tied comparisons with positive novelty or rigor deltas.",
+      "fallback_if_failed": "Keep the claim at offline review signals are routeable; remove paper-quality improvement claims."
+    },
+    {
+      "id": "matched_autonomous_vs_human_gated_runs",
+      "claim_tested": "Co-Pilot AI Scientist v3 improves the outcome distribution relative to autonomous AI Scientist-v2 under the same budget.",
+      "minimum_design": "At least 3 tasks and 5 matched pairs per task with same model family, tool access, step budget, task, and stopping rules.",
+      "upgrade_condition": "Human-gated runs improve high-quality manuscript rate or evaluator-robustness rate without a large average task-score regression.",
+      "fallback_if_failed": "Frame IGRE as safety and workflow control rather than performance improvement."
+    },
+    {
+      "id": "lhtg_dvrs_replay",
+      "claim_tested": "Some short-term-unhelpful human review comments can guide past research toward later frontier developments.",
+      "minimum_design": "Replay at least 30 delayed-value candidates and 30 matched controls after match-drift guards.",
+      "upgrade_condition": "At least one clear positive delayed-value case plus aggregate advantage over controls under semantic or expert judging.",
+      "fallback_if_failed": "Keep LHTG/DVRS as a falsifiable measurement protocol and report negative evidence."
+    },
+    {
+      "id": "live_multi_researcher_copilot_trace_data",
+      "claim_tested": "The gate schema captures real human taste and attention cost beyond a single-author trace.",
+      "minimum_design": "At least 20 prospective gates from at least 5 researchers with complete attention_cost and taste_insight fields.",
+      "upgrade_condition": "Human interventions include non-metric reasons and can be linked to downstream search-control changes.",
+      "fallback_if_failed": "Describe the schema as single-author prototype tooling."
+    },
+    {
+      "id": "non_fml_official_benchmark_check",
+      "claim_tested": "The workflow is not overfit to FML-Bench-style evidence.",
+      "minimum_design": "At least one scored official non-FML matched package with autonomous and human-gated trajectories.",
+      "upgrade_condition": "A non-FML benchmark shows workflow benefit or evaluator-safety benefit.",
+      "fallback_if_failed": "Limit benchmark claims to current pilot tasks and program-search subproblems."
+    }
+  ],
+  "submission_decision_rule": {
+    "pilot_or_system_paper": "Submit only after blind human expert review or matched autonomous-vs-human runs produce positive evidence.",
+    "top_conference_empirical_paper": "Submit only after blind human expert review and matched autonomous-vs-human runs both pass, with LHTG/DVRS replay providing either positive delayed-value evidence or a strong negative measurement result."
+  },
+  "claim_boundary": "IGRE, LHTG, TFR, and DVRS define an auditable human-participation workflow for automated science; the current package demonstrates reproducible operationalization and pilot signals, but not empirical superiority over autonomous AI Scientist-v2."
+}
+

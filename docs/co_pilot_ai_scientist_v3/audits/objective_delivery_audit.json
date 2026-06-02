@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T11:27:47Z",
+  "audit_date": "2026-06-02T11:31:45Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "ab2ffc9a2af9a83dcb2b0703c54983471201e669",
+  "head": "93cf91f9d83d2341ce66918ac455d773a1f48713",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -45,7 +45,7 @@
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 7063,
+      "bytes": 7233,
       "ok": true
     },
     "english_submission_card": {
@@ -58,6 +58,18 @@
       "path": "docs/co_pilot_ai_scientist_v3/submission_card_zh.md",
       "exists": true,
       "bytes": 4033,
+      "ok": true
+    },
+    "top_conference_evidence_roadmap": {
+      "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
+      "exists": true,
+      "bytes": 6603,
+      "ok": true
+    },
+    "top_conference_evidence_roadmap_json": {
+      "path": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
+      "exists": true,
+      "bytes": 3762,
       "ok": true
     },
     "english_usage": {
@@ -126,6 +138,7 @@
       "Co-Pilot AI Scientist v3": true,
       "submission_card_en.md": true,
       "submission_card_zh.md": true,
+      "top_conference_evidence_roadmap.md": true,
       "External Verification Entry Point": true,
       "pass_artifact_delivery_with_empirical_gaps": true,
       "top-conference empirical target is not yet satisfied": true
@@ -150,6 +163,14 @@
       "不能声称": true,
       "外部复现入口": true
     },
+    "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md": {
+      "Blind Human Expert Review": true,
+      "Matched Autonomous Versus Human-Gated Runs": true,
+      "Long-Horizon Taste Gate": true,
+      "Live Multi-Researcher Co-Pilot Trace Data": true,
+      "Non-FML Official Benchmark Check": true,
+      "not empirical superiority over autonomous AI Scientist-v2": true
+    },
     "skills/co-pilot-ai-scientist-v3/SKILL.md": {
       "AI Scientist-v2": true,
       "AI Co-Scientist": true,
@@ -158,9 +179,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 624,
+  "manifest_artifacts": 626,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "624/624",
+  "manifest_coverage_ratio": "626/626",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",
