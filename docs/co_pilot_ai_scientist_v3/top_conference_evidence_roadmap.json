@@ -68,6 +68,7 @@
       "id": "second_scored_non_fml_benchmark_package",
       "action": "Second scored non-FML benchmark package",
       "proof_target": "Reduce the benchmark-coverage gap by adding one official or official-like non-FML matched package beyond MLAgentBench vectorization.",
+      "current_progress": "The open-data sklearn matched package provides a scored official-like non-FML package with held-out trigger-policy transfer; it is a low-cost benchmark-ladder step, not a second scored official MLAgentBench or ScienceAgentBench result.",
       "best_near_term_path": "Pre-cache or repair one MLAgentBench task whose setup has already been audited, then run a matched autonomous versus human-gated package with complete gate logs.",
       "blocking_condition": "Data access, CPU/GPU runtime, or external account consent prevents an official score.",
       "fallback_if_blocked": "Record a scored local surrogate only as boundary evidence and keep official non-FML benchmark claims incomplete."

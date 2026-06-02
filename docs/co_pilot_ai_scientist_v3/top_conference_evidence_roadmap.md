@@ -33,6 +33,10 @@ The current priority order is:
 1. **Second scored non-FML benchmark package.**
    Proof target: reduce the benchmark-coverage gap by adding one official or
    official-like non-FML matched package beyond MLAgentBench vectorization.
+   Current progress: the open-data sklearn matched package now provides a
+   scored official-like non-FML package with held-out trigger-policy transfer;
+   it should be reported as a low-cost benchmark-ladder step, not as a second
+   scored official MLAgentBench/ScienceAgentBench result.
    Best near-term path: pre-cache or repair one MLAgentBench task whose setup
    has already been audited, then run a matched autonomous versus human-gated
    package with complete gate logs. Blocking condition: data access, CPU/GPU

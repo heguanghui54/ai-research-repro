@@ -1,0 +1,37 @@
+# Second Non-FML Priority Package Audit
+
+- Audit date: `2026-06-02T20:00:23Z`
+- Status: `pass`
+- Evidence class: `scored_official_like_non_fml_matched_package_not_official_benchmark`
+- Priority queue item: `Second scored non-FML benchmark package`
+- Train package: `prospective_matched_open_data_multitask_20260603`
+- Held-out package: `prospective_matched_open_data_multitask_holdout_20260603`
+- Selected trigger policy: `class_imbalance_trigger_0_94`
+
+## Train Summary
+
+- Mean delta: `0.00156898656898655`
+- Wins/losses/ties: `2` / `2` / `21`
+- Selection changes: `4`
+
+## Held-Out Frozen Policy
+
+- Frozen-policy delta: `0.003639444256184343`
+- Wins/losses/ties: `2` / `0` / `23`
+
+## Official Benchmark Boundary
+
+- `mlagentbench_cifar10_refresh`: status `blocked_slow_data_download`, score reported `False`
+- `mlagentbench_imdb`: status `setup_blocked_by_huggingface_network`, score reported `False`
+- `mlagentbench_clrs`: status `blocked_cpu_timeout_no_checkpoint`, score reported `False`
+- `mlagentbench_clrs_reduced`: status `blocked_reduced_cpu_timeout_no_checkpoint`, score reported `False`
+- `mlagentbench_house_price`: status `setup_blocked_by_missing_kaggle_cli_and_competition_consent`, score reported `False`
+- `scienceagentbench`: status `metadata_and_verified_artifacts_not_yet_accessible`, score reported `False`
+
+## Errors
+
+- None
+
+## Claim Boundary
+
+This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable. It is still not a second scored official MLAgentBench or ScienceAgentBench benchmark, and it does not prove full AI Scientist-v2 paper-quality superiority.

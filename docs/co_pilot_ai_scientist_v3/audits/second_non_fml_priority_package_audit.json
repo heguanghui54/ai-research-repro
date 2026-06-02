@@ -1,0 +1,112 @@
+{
+  "audit_date": "2026-06-02T20:00:23Z",
+  "status": "pass",
+  "head": "2baceba1538251ea72f7578bf164e3b3882eec74",
+  "evidence_class": "scored_official_like_non_fml_matched_package_not_official_benchmark",
+  "priority_queue_item": "Second scored non-FML benchmark package",
+  "train_package": "prospective_matched_open_data_multitask_20260603",
+  "heldout_package": "prospective_matched_open_data_multitask_holdout_20260603",
+  "transfer_package": "evaluator_trigger_policy_transfer_20260603",
+  "train_metrics_path": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_20260603/remote_metrics.json",
+  "heldout_metrics_path": "docs/co_pilot_ai_scientist_v3/experiments/prospective_matched_open_data_multitask_holdout_20260603/remote_metrics.json",
+  "selected_trigger_policy": "class_imbalance_trigger_0_94",
+  "train_summary": {
+    "mean_delta": 0.00156898656898655,
+    "wins": 2,
+    "losses": 2,
+    "ties": 21,
+    "selection_changed_count": 4
+  },
+  "heldout_transfer_summary": {
+    "frozen_policy_delta": 0.003639444256184343,
+    "frozen_policy_wins": 2,
+    "frozen_policy_losses": 0,
+    "frozen_policy_ties": 23
+  },
+  "checks": {
+    "train_metric_checks": {
+      "five_open_datasets": true,
+      "five_split_seeds": true,
+      "twenty_five_paired_selections": true,
+      "all_outcomes_accounted": true,
+      "eight_shared_candidates": true,
+      "matched_selectors_present": true,
+      "numeric_delta_present": true,
+      "selection_changes_present": true
+    },
+    "heldout_metric_checks": {
+      "five_open_datasets": true,
+      "five_split_seeds": true,
+      "twenty_five_paired_selections": true,
+      "all_outcomes_accounted": true,
+      "eight_shared_candidates": true,
+      "matched_selectors_present": true,
+      "numeric_delta_present": true,
+      "selection_changes_present": true
+    },
+    "train_trigger_checks": {
+      "summary_pass": true,
+      "total_matches_metrics": true,
+      "selected_policy_matches": true,
+      "selected_policy_has_no_losses": true,
+      "selected_delta_beats_always_on": true,
+      "selected_policy_triggers_nonzero": true
+    },
+    "heldout_trigger_checks": {
+      "summary_pass": true,
+      "total_matches_metrics": true,
+      "selected_policy_matches": true,
+      "selected_policy_has_no_losses": true,
+      "selected_delta_beats_always_on": true,
+      "selected_policy_triggers_nonzero": true
+    },
+    "transfer_checks": {
+      "transfer_pass": true,
+      "selected_policy_frozen": true,
+      "heldout_frozen_policy_has_no_losses": true,
+      "heldout_delta_beats_always_on": true,
+      "heldout_delta_positive": true
+    },
+    "official_blockers_kept_unscored": true
+  },
+  "official_blockers": {
+    "mlagentbench_cifar10_refresh": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_cifar10_debug_refresh_probe_20260602/summary.json",
+      "status": "blocked_slow_data_download",
+      "score_reported": false,
+      "kept_unscored": true
+    },
+    "mlagentbench_imdb": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_imdb_setup_probe/summary.json",
+      "status": "setup_blocked_by_huggingface_network",
+      "score_reported": false,
+      "kept_unscored": true
+    },
+    "mlagentbench_clrs": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_baseline_smoke_20260602/summary.json",
+      "status": "blocked_cpu_timeout_no_checkpoint",
+      "score_reported": false,
+      "kept_unscored": true
+    },
+    "mlagentbench_clrs_reduced": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_clrs_reduced_smoke_20260602/summary.json",
+      "status": "blocked_reduced_cpu_timeout_no_checkpoint",
+      "score_reported": false,
+      "kept_unscored": true
+    },
+    "mlagentbench_house_price": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/mlagentbench_house_price_setup_probe/summary.json",
+      "status": "setup_blocked_by_missing_kaggle_cli_and_competition_consent",
+      "score_reported": false,
+      "kept_unscored": true
+    },
+    "scienceagentbench": {
+      "path": "docs/co_pilot_ai_scientist_v3/experiments/scienceagentbench_metadata_setup_probe/summary.json",
+      "status": "metadata_and_verified_artifacts_not_yet_accessible",
+      "score_reported": false,
+      "kept_unscored": true
+    }
+  },
+  "errors": [],
+  "claim_boundary": "This closes a low-cost official-like non-FML matched-package gap: the package is scored, open-data, matched, held-out, and auditable. It is still not a second scored official MLAgentBench or ScienceAgentBench benchmark, and it does not prove full AI Scientist-v2 paper-quality superiority."
+}

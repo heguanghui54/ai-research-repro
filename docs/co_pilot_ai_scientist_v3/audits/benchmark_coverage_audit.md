@@ -1,6 +1,6 @@
 # Benchmark Coverage Audit
 
-- Audit date: `2026-06-02T19:00:16Z`
+- Audit date: `2026-06-02T20:02:59Z`
 - Status: `pass`
 - FML entries: `2`
 - Non-FML entries: `11`
@@ -13,6 +13,7 @@
 - Evaluator-stress trigger policy: best policy `class_imbalance_trigger_0_94` with delta `0.003076923076923066` versus always-on delta `0.00156898656898655`.
 - Held-out trigger-policy validation: best policy `class_imbalance_trigger_0_94` with delta `0.003639444256184343` versus held-out always-on delta `0.0025821297988698876`.
 - Frozen trigger-policy transfer: discovery selected `class_imbalance_trigger_0_94`; held-out frozen delta `0.003639444256184343` versus held-out always-on delta `0.0025821297988698876`, with held-out losses `0` versus always-on losses `2`.
+- Second non-FML priority package audit: `scored_official_like_non_fml_matched_package_not_official_benchmark`; official blocked tasks remain unscored.
 
 ## Boundary And Blocked Evidence
 
@@ -44,6 +45,7 @@
 - `evaluator_stress_trigger_policy_scored`: `pass`
 - `evaluator_stress_trigger_policy_heldout_scored`: `pass`
 - `evaluator_stress_trigger_policy_transfer_validated`: `pass`
+- `second_non_fml_priority_package_audited`: `pass`
 - `blocked_official_tasks_logged`: `pass`
 - `blocked_tasks_do_not_report_scores`: `pass`
 - `mlagentbench_clrs_dependency_repaired_but_unscored`: `pass`

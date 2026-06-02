@@ -1,5 +1,5 @@
 {
-  "audit_date": "2026-06-02T19:00:16Z",
+  "audit_date": "2026-06-02T20:02:59Z",
   "status": "pass",
   "checks": {
     "benchmark_claim_matrix_has_entries": true,
@@ -19,6 +19,7 @@
     "evaluator_stress_trigger_policy_scored": true,
     "evaluator_stress_trigger_policy_heldout_scored": true,
     "evaluator_stress_trigger_policy_transfer_validated": true,
+    "second_non_fml_priority_package_audited": true,
     "blocked_official_tasks_logged": true,
     "blocked_tasks_do_not_report_scores": true,
     "mlagentbench_clrs_dependency_repaired_but_unscored": true,

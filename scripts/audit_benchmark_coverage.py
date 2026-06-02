@@ -9,6 +9,7 @@ conditions, and blocked official setups as different kinds of evidence.
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -38,6 +39,17 @@ def _read(path: Path) -> str:
 
 def _contains_any(text: str, needles: list[str]) -> bool:
     return any(needle in text for needle in needles)
+
+
+def _mentions_fml_benchmark(entry: dict[str, Any]) -> bool:
+    joined = " ".join(
+        [
+            entry.get("claim_family", ""),
+            entry.get("benchmark_or_probe", ""),
+            entry.get("current_evidence", ""),
+        ]
+    )
+    return re.search(r"(?<![Nn]on-)FML(?:-bench|_|\b)", joined) is not None
 
 
 def main() -> None:
@@ -82,6 +94,7 @@ def main() -> None:
         / "evaluator_trigger_policy_transfer_20260603"
         / "summary.json"
     )
+    second_non_fml_priority_path = AUDIT_DIR / "second_non_fml_priority_package_audit.json"
 
     matrix = _load_json(matrix_path)
     selection_text = _read(selection_path)
@@ -105,6 +118,7 @@ def main() -> None:
     open_data_holdout = _load_json(open_data_holdout_path)
     trigger_policy_holdout = _load_json(trigger_policy_holdout_path)
     trigger_policy_transfer = _load_json(trigger_policy_transfer_path)
+    second_non_fml_priority = _load_json(second_non_fml_priority_path)
     open_data_total = open_data.get("total_dataset_split_evaluations")
     open_data_expected_total = (
         open_data.get("dataset_count", 0) * open_data.get("split_count", 0)
@@ -128,17 +142,8 @@ def main() -> None:
     sklearn_direct = sklearn.get("direct_deepseek_rewrite", {}).get("mean_rmse")
     sklearn_median = sklearn.get("openevolve_3iter", {}).get("median_rmse")
 
-    fml_entries = [
-        entry
-        for entry in entries
-        if "FML" in entry.get("benchmark_or_probe", "") or "FML" in entry.get("current_evidence", "")
-    ]
-    non_fml_entries = [
-        entry
-        for entry in entries
-        if "FML" not in entry.get("benchmark_or_probe", "")
-        and "FML" not in entry.get("current_evidence", "")
-    ]
+    fml_entries = [entry for entry in entries if _mentions_fml_benchmark(entry)]
+    non_fml_entries = [entry for entry in entries if not _mentions_fml_benchmark(entry)]
 
     official_blockers = {
         "mlagentbench_cifar10": {
@@ -265,6 +270,11 @@ def main() -> None:
         is True
         and trigger_policy_transfer.get("heldout_transfer_checks", {}).get("always_on_has_losses")
         is True,
+        "second_non_fml_priority_package_audited": second_non_fml_priority.get("status") == "pass"
+        and second_non_fml_priority.get("evidence_class")
+        == "scored_official_like_non_fml_matched_package_not_official_benchmark"
+        and second_non_fml_priority.get("official_blockers")
+        and "not a second scored official" in second_non_fml_priority.get("claim_boundary", ""),
         "blocked_official_tasks_logged": all(
             official_blockers[name].get("status") for name in official_blockers
         ),
@@ -453,6 +463,11 @@ def main() -> None:
             f"`{trigger_policy_transfer.get('heldout_frozen_policy', {}).get('losses_vs_autonomous')}` "
             "versus always-on losses "
             f"`{trigger_policy_transfer.get('heldout_always_on', {}).get('losses_vs_autonomous')}`."
+        ),
+        (
+            "- Second non-FML priority package audit: "
+            f"`{second_non_fml_priority.get('evidence_class')}`; "
+            "official blocked tasks remain unscored."
         ),
         "",
         "## Boundary And Blocked Evidence",
