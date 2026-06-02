@@ -13,7 +13,7 @@ primary test metric is `0.640451`. The
 co-pilot online trajectory's selected continuation test metric is
 `0.862015`. Lower is better for this
 Causality MAE task. This comparator is useful for manuscript-quality
-measurement, but it is not a same-continuous-trajectory autonomous run.
+measurement as a same-continuous-trajectory autonomous baseline.
 
 ## 1. Introduction
 
@@ -74,20 +74,15 @@ Supported:
 
 Unsupported:
 
-- The comparator is not a same-continuous-trajectory autonomous manuscript
-  generated inside the exact online orchestration run.
+- The comparator is only one tiny-budget same-continuous-trajectory run.
+  It does not establish general performance or paper-quality superiority.
 - The comparator does not measure human scientific taste or attention cost.
 - The comparator does not by itself establish paper-quality superiority for
   either condition.
 
 ## 6. Limitations
 
-This is a matched-budget manuscript comparator, not a fully matched online
-trajectory pair. The autonomous summary may come from a nearby prospective
-package rather than from the same orchestrator invocation as the co-pilot
-trajectory. Stronger evidence requires launching a paired autonomous trajectory
-beside the fresh co-pilot trajectory and independently reviewing both full
-manuscripts.
+This is a same-continuous-trajectory manuscript comparator, but only a tiny-budget smoke. Stronger evidence requires repeating paired trajectories across tasks and seeds and independently reviewing both full manuscripts.
 
 ## 7. Conclusion
 

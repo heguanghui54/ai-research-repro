@@ -292,4 +292,7 @@ The generated co-pilot manuscript scores `4.64` on the internal trace-bound
 rubric, while the autonomous comparator manuscript scores `3.48`. This closes
 the narrow same-continuous-trajectory manuscript-comparator gap, but it remains
 a tiny-budget negative performance smoke without independent paper-quality
-review.
+review. A Monica-routed A/B model-review probe over the same paired manuscripts
+has both reviewer models prefer the co-pilot manuscript for paper quality
+(`gpt-4o-mini`: `5` vs. `4`; `claude-3-7-sonnet-latest`: `4` vs. `3`), which is
+recorded as measurement-readiness evidence rather than expert peer review.

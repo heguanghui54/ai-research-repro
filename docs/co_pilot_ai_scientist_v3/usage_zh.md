@@ -211,6 +211,20 @@ trajectory，并且包含同次运行的 autonomous baseline。传入 `--autonom
 `online_manuscript/autonomous_online_comparator_manuscript.md` 和
 `online_manuscript/matched_budget_comparison_summary.md`。
 
+如果要对这组 paired manuscripts 运行 Monica 路由的 A/B 模型评审 probe，运行：
+
+```bash
+set -a; . ~/.codex/env; set +a
+python3 scripts/score_matched_manuscripts.py \
+  --co-pilot-manuscript docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/co_pilot_online_full_gate_manuscript.md \
+  --autonomous-manuscript docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/autonomous_online_comparator_manuscript.md \
+  --output-dir docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality \
+  --probe-id online_full_gate_smoke_20260602_010521_same_continuous \
+  --probe-kind full-manuscripts
+```
+
+这个输出只能作为模型评审的 measurement evidence，不能当作专家同行评审。
+
 如果要在 `ubuntu-heshi` 上重新生成 controlled micro-pilot package 形状，运行：
 
 ```bash

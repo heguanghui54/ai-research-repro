@@ -181,6 +181,32 @@ def _autonomous_manuscript(
 ) -> str:
     summary = trajectory.get("summary", {})
     task_config = autonomous_summary.get("task_config") or {}
+    matched_continuous = bool(summary.get("same_run_autonomous_enabled"))
+    comparator_scope = (
+        "a same-continuous-trajectory autonomous baseline"
+        if matched_continuous
+        else "a matched-budget comparator"
+    )
+    unsupported_scope = (
+        "- The comparator is only one tiny-budget same-continuous-trajectory run.\n"
+        "  It does not establish general performance or paper-quality superiority."
+        if matched_continuous
+        else "- The comparator is not a same-continuous-trajectory autonomous manuscript\n"
+        "  generated inside the exact online orchestration run."
+    )
+    limitation_scope = (
+        "This is a same-continuous-trajectory manuscript comparator, but only a "
+        "tiny-budget smoke. Stronger evidence requires repeating paired "
+        "trajectories across tasks and seeds and independently reviewing both "
+        "full manuscripts."
+        if matched_continuous
+        else "This is a matched-budget manuscript comparator, not a fully "
+        "matched online trajectory pair. The autonomous summary may come from "
+        "a nearby prospective package rather than from the same orchestrator "
+        "invocation as the co-pilot trajectory. Stronger evidence requires "
+        "launching a paired autonomous trajectory beside the fresh co-pilot "
+        "trajectory and independently reviewing both full manuscripts."
+    )
     return f"""# Autonomous AI Scientist-v2 Manuscript Comparator for an Online IGRE Smoke
 
 ## Abstract
@@ -196,7 +222,7 @@ primary test metric is `{_fmt(_primary_metric(autonomous_summary))}`. The
 co-pilot online trajectory's selected continuation test metric is
 `{_fmt(summary.get('continuation_test_mae'))}`. Lower is better for this
 Causality MAE task. This comparator is useful for manuscript-quality
-measurement, but it is not a same-continuous-trajectory autonomous run.
+measurement as {comparator_scope}.
 
 ## 1. Introduction
 
@@ -257,20 +283,14 @@ Supported:
 
 Unsupported:
 
-- The comparator is not a same-continuous-trajectory autonomous manuscript
-  generated inside the exact online orchestration run.
+{unsupported_scope}
 - The comparator does not measure human scientific taste or attention cost.
 - The comparator does not by itself establish paper-quality superiority for
   either condition.
 
 ## 6. Limitations
 
-This is a matched-budget manuscript comparator, not a fully matched online
-trajectory pair. The autonomous summary may come from a nearby prospective
-package rather than from the same orchestrator invocation as the co-pilot
-trajectory. Stronger evidence requires launching a paired autonomous trajectory
-beside the fresh co-pilot trajectory and independently reviewing both full
-manuscripts.
+{limitation_scope}
 
 ## 7. Conclusion
 

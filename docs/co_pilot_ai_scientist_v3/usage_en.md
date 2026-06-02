@@ -227,6 +227,21 @@ smoke trajectory with a same-run autonomous baseline. Passing
 `online_manuscript/autonomous_online_comparator_manuscript.md` and
 `online_manuscript/matched_budget_comparison_summary.md`.
 
+To run the Monica-routed A/B model-review probe on those paired manuscripts,
+run:
+
+```bash
+set -a; . ~/.codex/env; set +a
+python3 scripts/score_matched_manuscripts.py \
+  --co-pilot-manuscript docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/co_pilot_online_full_gate_manuscript.md \
+  --autonomous-manuscript docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/autonomous_online_comparator_manuscript.md \
+  --output-dir docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality \
+  --probe-id online_full_gate_smoke_20260602_010521_same_continuous \
+  --probe-kind full-manuscripts
+```
+
+Treat the output as model-review measurement evidence, not expert peer review.
+
 To regenerate the controlled micro-pilot package shape on `ubuntu-heshi`, run:
 
 ```bash

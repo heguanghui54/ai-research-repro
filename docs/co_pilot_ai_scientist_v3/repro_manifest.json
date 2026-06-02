@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_same_continuous_online_manuscript_comparator",
+  "status": "pilot_package_with_same_continuous_online_model_review",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -381,7 +381,13 @@
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/branch_frontier_summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/program_search_summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/selected_continuation_summary.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json"
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/trajectory.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/claude-3-7-sonnet-latest.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/claude-3-7-sonnet-latest.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/gpt-4o-mini.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/gpt-4o-mini.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.md"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -623,5 +629,17 @@
     "interpretation": "This adds an autonomous manuscript comparator to the online trajectory manuscript probe. It is a same-continuous-trajectory baseline when generated from the same online run; it still needs more tasks, seeds, and independent paper-quality review before supporting final paper-quality claims.",
     "markdown": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.md",
     "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/matched_budget_comparison_summary.json"
+  },
+  "same_continuous_paper_quality_model_review": {
+    "status": "model_review_probe_completed",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.json",
+    "probe_id": "online_full_gate_smoke_20260602_010521_same_continuous",
+    "successful_reviews": 2,
+    "review_count": 2,
+    "co_pilot_wins": 2,
+    "autonomous_wins": 0,
+    "ties": 0,
+    "limitation": "Monica-routed model review over one tiny-budget same-continuous smoke; not independent human expert review."
   }
 }

@@ -212,5 +212,17 @@
     "autonomous_test_mae": 0.6404510911628365,
     "matched_continuous_trajectory": true,
     "limitation": "Adds a same-run manuscript comparator, but current benchmark result favors autonomous and sample size is one."
+  },
+  "same_continuous_paper_quality_model_review": {
+    "status": "model_review_probe_completed",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.md",
+    "json": "docs/co_pilot_ai_scientist_v3/experiments/online_full_gate_smoke_20260602_010521/online_manuscript/paper_quality/summary.json",
+    "probe_id": "online_full_gate_smoke_20260602_010521_same_continuous",
+    "successful_reviews": 2,
+    "review_count": 2,
+    "co_pilot_wins": 2,
+    "autonomous_wins": 0,
+    "ties": 0,
+    "limitation": "Monica-routed model review over one tiny-budget same-continuous smoke; not independent human expert review."
   }
 }

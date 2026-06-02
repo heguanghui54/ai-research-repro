@@ -117,6 +117,11 @@ and claim responsibility can reshape the trajectory.
      `scripts/score_matched_manuscripts.py` to create a matched autonomous
      mini-manuscript and score anonymized A/B manuscript quality. Treat this as
      measurement-readiness unless full end-to-end manuscripts are scored.
+   - For paired online full manuscripts, run
+     `scripts/score_matched_manuscripts.py` with explicit
+     `--co-pilot-manuscript`, `--autonomous-manuscript`, and `--output-dir`.
+     Treat Monica-routed model reviews as audit evidence; do not call them
+     independent human expert review.
    - To check whether one archived matched package contains enough evidence for
      complete paper-shaped outputs, run
      `scripts/generate_full_manuscript_probe.py --update-manifest`. Treat this

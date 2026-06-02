@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Score matched co-pilot and autonomous mini-manuscripts.
+"""Score matched co-pilot and autonomous manuscripts.
 
-This is a narrow paper-quality probe. It does not evaluate a full generated
-paper. It only compares same-package mini-manuscripts derived from one
-prospective matched-budget package, so the output must be treated as pilot
-evidence rather than a top-conference claim.
+By default this runs the original narrow mini-manuscript package probe. It can
+also compare arbitrary co-pilot/autonomous manuscripts with explicit paths.
+All outputs must be treated as pilot audit evidence rather than a
+top-conference claim.
 """
 
 from __future__ import annotations
@@ -91,10 +91,10 @@ and manuscript comparator for the current prospective pilot.
     return path
 
 
-def _prompt(manuscript_a: str, manuscript_b: str) -> str:
+def _prompt(manuscript_a: str, manuscript_b: str, probe_kind: str) -> str:
     return f"""You are a strict ML systems paper-quality judge.
 
-Compare two anonymized mini-manuscripts from the same matched-budget pilot.
+Compare two anonymized {probe_kind} from the same matched setting.
 Score manuscript quality only. Do not reward a manuscript merely because its
 reported method has a better benchmark number; reward clear claims, faithful use
 of evidence, honest limitations, methodological completeness, and readability.
@@ -191,15 +191,13 @@ def _parse_jsonish(content: str) -> dict[str, Any] | None:
 
 def _markdown(summary: dict[str, Any]) -> str:
     lines = [
-        "# Matched Mini-Manuscript Quality Score",
+        f"# {summary['title']}",
         "",
-        "This is a narrow quality probe over two mini-manuscripts from one",
-        "prospective matched-budget package. It is not evidence that the full",
-        "Co-Pilot AI Scientist v3 system writes better papers.",
+        summary["scope_note"],
         "",
-        "## Package",
+        "## Probe",
         "",
-        f"- Package: `{summary['package_id']}`",
+        f"- Probe ID: `{summary['probe_id']}`",
         f"- Co-pilot manuscript: `{summary['co_pilot_manuscript']}`",
         f"- Autonomous manuscript: `{summary['autonomous_manuscript']}`",
         "",
@@ -241,45 +239,37 @@ def _markdown(summary: dict[str, Any]) -> str:
             "## Interpretation",
             "",
             "The manuscripts are intentionally anonymized as A and B during scoring.",
-            "In this run, A is the co-pilot package manuscript and B is the matched",
-            "autonomous baseline manuscript. The score should be used only as a",
-            "measurement-readiness artifact: a future strong claim requires full",
-            "manuscripts from complete end-to-end trajectories, multiple tasks, and",
-            "independent expert scoring.",
+            "In this run, A is the co-pilot manuscript and B is the matched",
+            "autonomous manuscript. The score should be used only as a",
+            "measurement-readiness artifact: a future strong claim requires",
+            "multiple tasks, multiple seeds, and independent expert scoring.",
             "",
         ]
     )
     return "\n".join(lines)
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--package-dir", default=str(DEFAULT_PACKAGE))
-    parser.add_argument(
-        "--models",
-        nargs="+",
-        default=["gpt-4o-mini", "claude-3-7-sonnet-latest"],
-    )
-    parser.add_argument("--max-tokens", type=int, default=2200)
-    args = parser.parse_args()
-
-    package_dir = Path(args.package_dir)
-    if not package_dir.is_absolute():
-        package_dir = ROOT / package_dir
-    manifest = _load_json(package_dir / "prospective_manifest.json")
-    co_pilot_manuscript = package_dir / "manuscript.md"
-    autonomous_manuscript = _write_autonomous_manuscript(package_dir)
-
+def _review_pair(
+    *,
+    co_pilot_manuscript: Path,
+    autonomous_manuscript: Path,
+    output_dir: Path,
+    models: list[str],
+    max_tokens: int,
+    probe_id: str,
+    probe_kind: str,
+    scope_note: str,
+) -> dict[str, Any]:
     prompt = _prompt(
         co_pilot_manuscript.read_text(encoding="utf-8"),
         autonomous_manuscript.read_text(encoding="utf-8"),
+        probe_kind,
     )
-    output_dir = package_dir / "paper_quality"
     output_dir.mkdir(parents=True, exist_ok=True)
 
     reviews = []
-    for model in args.models:
-        result = _call_model(model, prompt, args.max_tokens)
+    for model in models:
+        result = _call_model(model, prompt, max_tokens)
         safe_name = model.replace("/", "_").replace(":", "_")
         raw_content = _content(result)
         parsed = _parse_jsonish(raw_content)
@@ -287,7 +277,7 @@ def main() -> None:
         md_path = output_dir / f"{safe_name}.md"
         json_path.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         md_path.write_text(
-            f"# Matched Mini-Manuscript Quality Review: {model}\n\n"
+            f"# Matched Manuscript Quality Review: {model}\n\n"
             f"Reviewer route: Monica OpenAI-compatible API\n\n"
             f"```json\n{json.dumps(parsed, indent=2, ensure_ascii=False) if parsed else raw_content}\n```\n",
             encoding="utf-8",
@@ -312,8 +302,11 @@ def main() -> None:
 
     successful = [review for review in reviews if review["status_code"] == 200 and review["parsed"]]
     summary = {
-        "package_id": manifest["package_id"],
-        "status": "mini_manuscript_quality_probe",
+        "probe_id": probe_id,
+        "status": "matched_manuscript_quality_probe",
+        "title": "Matched Manuscript Quality Score",
+        "scope_note": scope_note,
+        "probe_kind": probe_kind,
         "co_pilot_manuscript": _rel(co_pilot_manuscript),
         "autonomous_manuscript": _rel(autonomous_manuscript),
         "review_count": len(reviews),
@@ -323,10 +316,9 @@ def main() -> None:
         "ties": sum(1 for review in successful if review["parsed"].get("recommendation") == "tie"),
         "reviews": reviews,
         "limitations": [
-            "Scores mini-manuscripts, not complete generated papers.",
-            "Single task and single prospective package.",
-            "A is co-pilot and B is autonomous; anonymized to reviewers but not randomized.",
             "Model review is an audit aid, not human expert peer review.",
+            "A is co-pilot and B is autonomous; anonymized to reviewers but not randomized.",
+            "A strong claim requires broader matched trajectories and independent review.",
         ],
     }
     summary_json = output_dir / "summary.json"
@@ -334,6 +326,87 @@ def main() -> None:
     summary_json.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     summary_md.write_text(_markdown(summary), encoding="utf-8")
     print(json.dumps({"summary": _rel(summary_json), "markdown": _rel(summary_md)}, indent=2))
+    return summary
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--package-dir", default=str(DEFAULT_PACKAGE))
+    parser.add_argument("--co-pilot-manuscript", type=Path)
+    parser.add_argument("--autonomous-manuscript", type=Path)
+    parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--probe-id")
+    parser.add_argument("--probe-kind", default="manuscripts")
+    parser.add_argument(
+        "--scope-note",
+        default=(
+            "This is a pilot quality probe over matched manuscripts. It is not "
+            "evidence that the full Co-Pilot AI Scientist v3 system writes "
+            "better papers."
+        ),
+    )
+    parser.add_argument(
+        "--models",
+        nargs="+",
+        default=["gpt-4o-mini", "claude-3-7-sonnet-latest"],
+    )
+    parser.add_argument("--max-tokens", type=int, default=2200)
+    args = parser.parse_args()
+
+    if args.co_pilot_manuscript or args.autonomous_manuscript:
+        if not (args.co_pilot_manuscript and args.autonomous_manuscript and args.output_dir):
+            raise SystemExit(
+                "--co-pilot-manuscript, --autonomous-manuscript, and --output-dir "
+                "must be provided together"
+            )
+        co_pilot_manuscript = args.co_pilot_manuscript
+        autonomous_manuscript = args.autonomous_manuscript
+        output_dir = args.output_dir
+        if not co_pilot_manuscript.is_absolute():
+            co_pilot_manuscript = ROOT / co_pilot_manuscript
+        if not autonomous_manuscript.is_absolute():
+            autonomous_manuscript = ROOT / autonomous_manuscript
+        if not output_dir.is_absolute():
+            output_dir = ROOT / output_dir
+        _review_pair(
+            co_pilot_manuscript=co_pilot_manuscript,
+            autonomous_manuscript=autonomous_manuscript,
+            output_dir=output_dir,
+            models=args.models,
+            max_tokens=args.max_tokens,
+            probe_id=args.probe_id or output_dir.parent.name,
+            probe_kind=args.probe_kind,
+            scope_note=args.scope_note,
+        )
+        return
+
+    package_dir = Path(args.package_dir)
+    if not package_dir.is_absolute():
+        package_dir = ROOT / package_dir
+    manifest = _load_json(package_dir / "prospective_manifest.json")
+    co_pilot_manuscript = package_dir / "manuscript.md"
+    autonomous_manuscript = _write_autonomous_manuscript(package_dir)
+
+    output_dir = package_dir / "paper_quality"
+    summary = _review_pair(
+        co_pilot_manuscript=co_pilot_manuscript,
+        autonomous_manuscript=autonomous_manuscript,
+        output_dir=output_dir,
+        models=args.models,
+        max_tokens=args.max_tokens,
+        probe_id=manifest["package_id"],
+        probe_kind="mini-manuscripts",
+        scope_note=(
+            "This is a narrow quality probe over two mini-manuscripts from one "
+            "prospective matched-budget package. It is not evidence that the full "
+            "Co-Pilot AI Scientist v3 system writes better papers."
+        ),
+    )
+    summary["status"] = "mini_manuscript_quality_probe"
+    (output_dir / "summary.json").write_text(
+        json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+    (output_dir / "summary.md").write_text(_markdown(summary), encoding="utf-8")
 
 
 if __name__ == "__main__":

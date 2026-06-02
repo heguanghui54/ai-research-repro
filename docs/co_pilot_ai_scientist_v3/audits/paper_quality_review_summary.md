@@ -91,6 +91,15 @@ manuscript generation because both manuscripts come from the same online smoke,
 but it remains a negative tiny-budget performance result without independent
 paper-quality review.
 
+We then ran a Monica-routed model-review A/B probe on those same-continuous
+manuscripts. Both reviewer calls completed successfully. `gpt-4o-mini`
+preferred the co-pilot manuscript with overall scores `5` versus `4`;
+`claude-3-7-sonnet-latest` also preferred the co-pilot manuscript with overall
+scores `4` versus `3`. The rationales emphasize methodological completeness,
+claim calibration, and limitation honesty. This is useful measurement-readiness
+evidence, but it is still model review over one smoke trajectory, not human
+expert peer review.
+
 ## Human Co-Pilot Trace Dataset
 
 The paper now includes `human_copilot_trace_dataset.md/json`, a derived metadata

@@ -219,6 +219,13 @@ than the archived matched-budget comparator because both manuscripts are now
 generated from the same continuous online smoke. It still does not prove
 co-pilot superiority: the autonomous benchmark metric is substantially better,
 the budget is tiny, and neither manuscript has independent paper-quality review.
+As a measurement-readiness check, we also ask two Monica-routed reviewer models
+to score the same-continuous paired manuscripts anonymized as A/B. Both prefer
+the co-pilot manuscript for paper quality (`gpt-4o-mini`: overall `5` versus
+`4`; `claude-3-7-sonnet-latest`: overall `4` versus `3`), crediting stronger
+methodological completeness and claim calibration. This result supports the
+feasibility of a paper-quality evaluation pipeline, but it is still model
+review over one smoke trajectory, not independent expert peer review.
 
 ## 4. Benchmark Selection and Evaluation Plan
 
@@ -739,9 +746,11 @@ artifact with an internal score of 4.64, and that a same-continuous-trajectory
 autonomous manuscript comparator can be generated in the same orchestrator run.
 Yet the autonomous metric is better (`0.640451` versus `0.862015` test MAE),
 the budget is tiny, and neither manuscript has independent expert
-paper-quality review. This is exactly why the co-pilot claim must remain about
-method distinctness, scientific taste logging, and high-tail research search
-rather than average short-budget benchmark superiority.
+paper-quality review. Monica-routed model reviewers prefer the co-pilot
+manuscript (2/2 wins), but this is a measurement-readiness signal rather than
+expert review. This is exactly why the co-pilot claim must remain about method
+distinctness, scientific taste logging, and high-tail research search rather
+than average short-budget benchmark superiority.
 
 The taste/insight evidence is also only at the logging-readiness stage. The
 archive now contains one complete scientific-taste prior record, grounded in
