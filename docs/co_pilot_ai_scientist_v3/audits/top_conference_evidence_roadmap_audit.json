@@ -1,0 +1,99 @@
+{
+  "audit_date": "2026-06-02T11:33:37Z",
+  "status": "pass",
+  "roadmap_json": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json",
+  "roadmap_markdown": "docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md",
+  "milestone_count": 5,
+  "required_milestone_count": 5,
+  "milestone_checks": {
+    "blind_human_expert_review": {
+      "exists": true,
+      "field_presence": {
+        "claim_tested": true,
+        "minimum_design": true,
+        "upgrade_condition": true,
+        "fallback_if_failed": true
+      },
+      "term_presence": {
+        "qualified reviewers": true,
+        "anonymized pairs": true,
+        "majority": true
+      },
+      "ok": true
+    },
+    "matched_autonomous_vs_human_gated_runs": {
+      "exists": true,
+      "field_presence": {
+        "claim_tested": true,
+        "minimum_design": true,
+        "upgrade_condition": true,
+        "fallback_if_failed": true
+      },
+      "term_presence": {
+        "At least 3 tasks": true,
+        "5 matched pairs": true,
+        "same model family": true
+      },
+      "ok": true
+    },
+    "lhtg_dvrs_replay": {
+      "exists": true,
+      "field_presence": {
+        "claim_tested": true,
+        "minimum_design": true,
+        "upgrade_condition": true,
+        "fallback_if_failed": true
+      },
+      "term_presence": {
+        "30 delayed-value candidates": true,
+        "30 matched controls": true,
+        "positive delayed-value case": true
+      },
+      "ok": true
+    },
+    "live_multi_researcher_copilot_trace_data": {
+      "exists": true,
+      "field_presence": {
+        "claim_tested": true,
+        "minimum_design": true,
+        "upgrade_condition": true,
+        "fallback_if_failed": true
+      },
+      "term_presence": {
+        "20 prospective gates": true,
+        "5 researchers": true,
+        "attention_cost": true,
+        "taste_insight": true
+      },
+      "ok": true
+    },
+    "non_fml_official_benchmark_check": {
+      "exists": true,
+      "field_presence": {
+        "claim_tested": true,
+        "minimum_design": true,
+        "upgrade_condition": true,
+        "fallback_if_failed": true
+      },
+      "term_presence": {
+        "non-FML": true,
+        "matched package": true,
+        "evaluator-safety": true
+      },
+      "ok": true
+    }
+  },
+  "submission_decision_rule_present": true,
+  "md_term_presence": {
+    "Milestone 1: Blind Human Expert Review": true,
+    "Milestone 2: Matched Autonomous Versus Human-Gated Runs": true,
+    "Milestone 3: Long-Horizon Taste Gate / DVRS Replay": true,
+    "Milestone 4: Live Multi-Researcher Co-Pilot Trace Data": true,
+    "Milestone 5: Non-FML Official Benchmark Check": true,
+    "Decision Rule For The Paper": true,
+    "not empirical superiority over autonomous AI Scientist-v2": true
+  },
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "A pass means the roadmap is actionable and preserves the current evidence boundary. It does not mean the top-conference evidence milestones have been completed."
+}

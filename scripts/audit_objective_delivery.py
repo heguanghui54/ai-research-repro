@@ -82,6 +82,7 @@ def main() -> None:
     prospective_path = AUDIT_DIR / "prospective_matched_budget_package_audit.json"
     package_path = AUDIT_DIR / "package_consistency_audit.json"
     focused_review_path = AUDIT_DIR / "focused_paper_quality_review_summary.json"
+    roadmap_audit_path = AUDIT_DIR / "top_conference_evidence_roadmap_audit.json"
 
     manifest = _load_json(manifest_path)
     readiness = _load_json(readiness_path)
@@ -90,6 +91,7 @@ def main() -> None:
     prospective = _load_json(prospective_path)
     package = _load_json(package_path)
     focused_review = _load_json(focused_review_path)
+    roadmap_audit = _load_json(roadmap_audit_path)
 
     current_artifacts = manifest.get("current_artifacts", [])
     missing_manifest = [path for path in current_artifacts if not (ROOT / path).exists()]
@@ -211,6 +213,7 @@ def main() -> None:
         "manifest_complete": len(current_artifacts) > 0 and not missing_manifest,
         "package_consistency_pass": package.get("status") == "pass",
         "prospective_package_audit_pass": prospective.get("overall_status") == "pass",
+        "top_conference_roadmap_audit_pass": roadmap_audit.get("status") == "pass",
         "lhtg_operationalized": lhtg.get("status") == "pass_with_no_positive_dvrs"
         and lhtg.get("reusable_workflow_terms_present") is True,
         "top_conference_boundary_kept": readiness.get("top_conference_empirical_support", {}).get("status")
@@ -316,6 +319,9 @@ def main() -> None:
         json_path,
         md_path,
         Path(__file__),
+        ROOT / "scripts" / "audit_top_conference_evidence_roadmap.py",
+        AUDIT_DIR / "top_conference_evidence_roadmap_audit.json",
+        AUDIT_DIR / "top_conference_evidence_roadmap_audit.md",
         docs["root_readme"],
         docs["english_submission_card"],
         docs["chinese_submission_card"],

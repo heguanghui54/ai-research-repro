@@ -59,6 +59,9 @@ claim calibration.
   logs contain complete scientific taste/insight records.
 - `audits/top_conference_readiness_audit.md`: strict objective-level audit
   separating delivered artifacts from remaining top-conference evidence gaps.
+- `audits/top_conference_evidence_roadmap_audit.md`: audit that verifies the
+  roadmap turns each strong-venue blocker into a concrete experiment,
+  upgrade condition, and fallback.
 - `focused_submission_rewrite_plan.md`: conference-style rewrite plan that
   separates the current lab-record manuscript from the focused main paper
   needed for a strong venue.
