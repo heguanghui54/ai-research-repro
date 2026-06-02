@@ -141,6 +141,8 @@ def main() -> None:
     focused_zh = DOC_DIR / "paper_zh_focused.md"
     readiness_md = AUDIT_DIR / "top_conference_readiness_audit.md"
     claim_md = AUDIT_DIR / "claim_evidence_audit.md"
+    clean_short = audited_commit[:9] if audited_commit else ""
+    manifest_ratio = f"{manifest_count}/{manifest_count}"
     stale_tokens = ["dc8f35be7", "dc8f35be", "603/603", '"manifest_artifacts_checked": 603']
     stale_scan_paths = [
         manifest_path,
@@ -160,8 +162,8 @@ def main() -> None:
     text_checks = {
         _rel(focused_en): _contains(focused_en, ["+0.064", "Candidate-frontier validation"]),
         _rel(focused_zh): _contains(focused_zh, ["+0.064", "候选-前沿验证"]),
-        _rel(readiness_md): _contains(readiness_md, ["c2d3beefe", "612/612", "+0.064"]),
-        _rel(claim_md): _contains(claim_md, ["612/612", "candidate-frontier validation"]),
+        _rel(readiness_md): _contains(readiness_md, [clean_short, manifest_ratio, "+0.064"]),
+        _rel(claim_md): _contains(claim_md, [manifest_ratio, "candidate-frontier validation"]),
     }
     for path, checks in text_checks.items():
         for needle, present in checks.items():

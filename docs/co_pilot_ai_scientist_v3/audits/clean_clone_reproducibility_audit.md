@@ -6,26 +6,28 @@ Repository source:
 
 - URL: `https://github.com/heguanghui54/ai-research-repro.git`
 - Branch: `codex/co-pilot-ai-scientist-v3`
-- Commit: `c2d3beefe05cbe7b5611843fd8ed9ca427bd9a94`
-- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone-c2d3beefe`
+- Commit: `25efc86f07892a945979c11c011fe036d63b1577`
+- Clean clone path used for audit: `/tmp/copilot-v3-clean-clone-25efc86f`
 - Clone mode: shallow depth-1 single-branch clone
 
 ## Commands Run
 
 ```bash
-rm -rf /tmp/copilot-v3-clean-clone-c2d3beefe
+rm -rf /tmp/copilot-v3-clean-clone-25efc86f
 git clone --depth 1 --single-branch --branch codex/co-pilot-ai-scientist-v3 \
   https://github.com/heguanghui54/ai-research-repro.git \
-  /tmp/copilot-v3-clean-clone-c2d3beefe
-cd /tmp/copilot-v3-clean-clone-c2d3beefe
+  /tmp/copilot-v3-clean-clone-25efc86f
+cd /tmp/copilot-v3-clean-clone-25efc86f
 python3 -m pip install -q -r requirements.txt
 python3 scripts/run_delayed_value_candidate_frontier_validation.py \
   --per-label 4 --citation-limit 15 --frontier-terms 20
 python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
+python3 scripts/audit_package_consistency.py
 python3 - <<'PY'
 # Validate manifest coverage, candidate-frontier validation metrics,
-# Temporal Frontier Replay audit status, and focused PDF rebuilds.
+# Temporal Frontier Replay audit status, package consistency status,
+# and focused PDF rebuilds.
 PY
 ```
 
@@ -34,12 +36,13 @@ PY
 | Check | Result |
 | --- | --- |
 | GitHub branch shallow-cloned from scratch | Pass |
-| Checked-out commit | `c2d3beefe05cbe7b5611843fd8ed9ca427bd9a94` |
+| Checked-out commit | `25efc86f07892a945979c11c011fe036d63b1577` |
 | Python dependencies installed from `requirements.txt` | Pass |
 | Candidate-frontier validation reran | Pass |
 | Temporal Frontier Replay audit reran | Pass |
 | Focused English and focused Chinese PDFs rebuilt | Pass |
-| Manifest artifacts found | Pass: 612/612 |
+| Package consistency audit reran | Pass |
+| Manifest artifacts found | Pass: 615/615 |
 | Missing manifest artifacts | 0 |
 | Candidate-frontier attempted reviews | 16 |
 | Candidate-frontier scored reviews | 13 |
@@ -48,17 +51,18 @@ PY
 | Control mean review signal | 0.176 |
 | Delayed minus control mean score | 0.064 |
 | Temporal Frontier Replay audit status | `pass_with_negative_delayed_value_evidence` |
+| Package consistency audit status | `pass` |
 | Focused English PDF bytes | 32051 |
 | Focused Chinese PDF bytes | 60383 |
 
 ## Interpretation
 
 This clean-clone audit verifies that the pushed GitHub branch at commit
-`c2d3beefe05cbe7b5611843fd8ed9ca427bd9a94` contains the candidate-frontier
-validation addition and can reproduce the current TFR-focused artifact set from
-a fresh shallow clone. The clean clone reran the OpenAlex-backed validation,
-regenerated the TFR audit, rebuilt the focused bilingual PDFs, and found all
-612 artifacts listed in the reproducibility manifest.
+`25efc86f07892a945979c11c011fe036d63b1577` contains the package-consistency-aware candidate-frontier validation
+artifact set and can reproduce it from a fresh shallow clone. The clean clone
+reran the OpenAlex-backed validation, regenerated the TFR audit, rebuilt the
+focused bilingual PDFs, reran package consistency, and found all 615 artifacts
+listed in the reproducibility manifest.
 
 The result is useful but bounded. The candidate-frontier validation gives a
 weak positive screening signal: delayed-value replay candidates score 0.064
