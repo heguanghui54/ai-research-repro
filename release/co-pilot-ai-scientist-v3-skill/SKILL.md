@@ -169,6 +169,14 @@ evidence supports it, and make the final paper match the experiment log.
      Do not accept a branch on a single primary metric if a degenerate solution
      can game it; require a utility floor such as balanced accuracy or task
      success before continuation.
+   - When evaluator-stress evidence is mixed, compare always-on and triggered
+     participation policies instead of assuming the gate should always fire.
+     For the current open-data package, run
+     `scripts/analyze_evaluator_stress_trigger_policy.py` on the discovery and
+     held-out packages, then run
+     `scripts/validate_evaluator_stress_trigger_policy_transfer.py` to select a
+     policy on discovery splits and freeze it on held-out splits. Treat this as
+     participation-mode design evidence, not broad benchmark superiority.
    - Trigger `evaluator_stress_test` before expensive runs.
 
 4. **Steer The Frontier**

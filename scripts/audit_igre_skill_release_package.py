@@ -97,6 +97,9 @@ def main() -> None:
         "Engineering adoption is not scientific superiority",
         "Do not add fabricated benchmark numbers",
         "model-only reviews",
+        "always-on and triggered",
+        "analyze_evaluator_stress_trigger_policy.py",
+        "validate_evaluator_stress_trigger_policy_transfer.py",
     ]
     positioning_blob = "\n".join(
         [
