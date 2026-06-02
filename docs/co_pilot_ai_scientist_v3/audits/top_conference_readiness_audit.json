@@ -48,7 +48,12 @@
     "review_insight_taxonomy_probes": 1,
     "openreview_guided_regeneration_selected_papers": 3,
     "openreview_guided_regeneration_review_guided_wins": 3,
-    "review_insight_taxonomy_review_cases": 32
+    "review_insight_taxonomy_review_cases": 32,
+    "review_utility_map_probes": 1,
+    "review_utility_map_papers": 160,
+    "review_utility_map_snippets": 473,
+    "review_utility_map_actionable_snippets": 398,
+    "review_utility_map_noisy_snippets": 64
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -377,5 +382,72 @@
       "Metric and Evaluation Issues": "evaluator_stress_test"
     },
     "claim_boundary": "Taxonomy of actionable review signals; not causal proof of final paper improvement."
+  },
+  "review_utility_map_probe": {
+    "status": "completed_deterministic_review_utility_map_probe",
+    "run_id": "review_utility_map_probe_20260602_071500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/summary.json",
+    "paper_count": 160,
+    "review_count": 473,
+    "reviews_with_actionable_signal": 398,
+    "reviews_with_noisy_signal": 64,
+    "gate_counts": {
+      "claim_calibration": 140,
+      "scientific_taste_prior": 111,
+      "evaluator_stress_test": 245,
+      "structured_feedback": 210
+    },
+    "top_actionable_categories": [
+      {
+        "category": "evaluation_metric",
+        "count": 205,
+        "low_score_count": 137,
+        "gate": "evaluator_stress_test",
+        "actionability": 5
+      },
+      {
+        "category": "limitations_claim_boundary",
+        "count": 140,
+        "low_score_count": 103,
+        "gate": "claim_calibration",
+        "actionability": 5
+      },
+      {
+        "category": "novelty_positioning",
+        "count": 111,
+        "low_score_count": 71,
+        "gate": "scientific_taste_prior",
+        "actionability": 5
+      },
+      {
+        "category": "actionable_suggestion",
+        "count": 111,
+        "low_score_count": 70,
+        "gate": "structured_feedback",
+        "actionability": 4
+      },
+      {
+        "category": "reproducibility_detail",
+        "count": 79,
+        "low_score_count": 52,
+        "gate": "structured_feedback",
+        "actionability": 4
+      },
+      {
+        "category": "method_correctness",
+        "count": 71,
+        "low_score_count": 49,
+        "gate": "evaluator_stress_test",
+        "actionability": 5
+      },
+      {
+        "category": "clarity_presentation",
+        "count": 86,
+        "low_score_count": 47,
+        "gate": "structured_feedback",
+        "actionability": 4
+      }
+    ],
+    "claim_boundary": "Deterministic map from OpenReview comments to workflow-control signals; not causal proof of final paper improvement."
   }
 }

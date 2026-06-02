@@ -128,6 +128,17 @@ python3 scripts/run_review_insight_taxonomy_probe.py \
   --review-limit 32
 ```
 
+如果要在更大的 OpenReview 样本上构造确定性的 review utility map，并且不增加
+模型调用，运行：
+
+```bash
+python3 scripts/run_review_utility_map_probe.py
+```
+
+该脚本会把 review snippets 映射到可行动的 gate 控制信号，并区分真正有用的
+evaluation concerns、claim-boundary issues、novelty positioning、
+reproducibility details、concrete suggestions 与泛泛表扬、模糊反应。
+
 如果要通过 Monica 做论文质量评审，先加载全局环境变量，然后运行：
 
 ```bash

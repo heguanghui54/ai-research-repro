@@ -103,6 +103,8 @@ Co-Pilot AI Scientist v3 实现的是洞察门控科研演化。IGRE 包含四�
 
 最后，`run_review_insight_taxonomy_probe.py` 从 32 条 OpenReview review cases 中归纳哪些评审意见最适合作为自动科研控制信号。模型路由 taxonomy 把 novelty concerns 与 limitations/weaknesses 标为高 actionability（`5/5`），分别主要映射到 scientific-taste-prior gate 和 claim-calibration gate；clarity issues 的 actionability 为 `4/5`，映射到 structured feedback；metric/evaluation issues 的 actionability 为 `4/5`，映射到 evaluator-stress gate。这个 taxonomy 使 IGRE 的人类 taste/insight 更具体：真正有用的评审意见，是能改变 agent 该追踪什么问题、该补什么证据、该削弱哪些主张，以及该如何更清楚呈现研究贡献的意见。
 
+为了把这个小样本 taxonomy 扩展成更可复现的信号图谱，我们又运行了 `run_review_utility_map_probe.py`。该脚本在 160 篇 OpenReview 样本上抽取 473 条 review snippets，并用确定性规则判断每类评审意见能否路由到具体 IGRE gate。结果显示，398 条 snippet 至少包含一个可行动信号，64 条包含低行动性的噪声信号。最强的 gate pressure 不是泛泛的赞同或反对：245 条触发 evaluator-stress testing，210 条触发 structured feedback，140 条触发 claim calibration，111 条触发 scientific-taste prior。最高效用类别包括 evaluation/metric concerns（205 条）、limitations and claim-boundary issues（140 条）、novelty/positioning issues（111 条）、actionable suggestions（111 条）、reproducibility details（79 条）、method-correctness issues（71 条）以及 clarity/presentation issues（86 条）。这进一步支持本文的核心工作流主张：真正有用的人类 taste 和 insight，不是所有人类评论，而是那些能改变搜索方向、evaluator 设计、稿件结构或主张边界的评审信号；泛泛表扬和模糊反应只有在被拆解为这些可行动控制信号之后才有价值。
+
 ## 4. Benchmark 选择与评估计划
 
 我们计划比较六种系统版本：完全自动 baseline、仅创意节点介入、仅分支节点介入、仅评估器节点介入、仅论文主张审计介入，以及完整 co-pilot v3。Benchmark 不应只局限于 FML-bench，而应根据论文主张分层选择。对于 AI Scientist-v2 风格的实验搜索，FML-bench 是近期最合适的载体，因为它已经能在 Ubuntu 环境中跑通，并且能产生分支级日志。对于机器可评分的算法子问题，我们使用 OpenEvolve-controlled tasks，例如函数最小化、0/1 knapsack 启发式搜索和加权 Max-Cut。对于 FML-bench 之外的更广泛证据，本文已加入一个 MLAgentBench vectorization 小实验来测试端到端 ML 实验能力，并进一步记录了 MLAgentBench CIFAR10/debug、MLAgentBench IMDB 与 ScienceAgentBench 的 setup probes。当前证据还没有第二个已打分的官方非 FML benchmark：CIFAR10/debug 被慢速数据下载阻塞，IMDB 在补齐 `datasets` 依赖后仍因 Ubuntu 主机无法访问 HuggingFace 而失败，ScienceAgentBench 的元数据和 verified artifacts 也暂时不可达。更高成本的 stretch benchmark 包括 MLE-bench Lite、PaperBench 和 AIRS-Bench：前者测试 Kaggle 风格 ML engineering，PaperBench 测试从论文到代码复现与层级 rubric 评分，AIRS-Bench 则更接近完整 ML research lifecycle。
@@ -188,7 +190,7 @@ taste/insight gate record。这扩展了 benchmark 形态，但让平均性能�
 5. 一个基于 Hugging Face `nhop/OpenReview` 的 offline expert-review taste-prior data probe，通过 streaming 方式从 34,638 行专家评审数据中抽样 160 行，证明它可以支持有限的科研品味先验实验。
 6. 一个 participation-mode selection probe，使用 OpenReview-conditioned scoring 比较 no-gate、taste-prior、evaluator-stress、structured-feedback 和 claim-calibration 五种模式，当前把 structured-feedback 与 claim-calibration 识别为 top pair。
 7. 一个 OpenReview-guided regeneration probe，选择 3 篇 ML/AI 论文，用真实评审意见引导 mini-paper artifact 再生成；review-guided 版本在 `3/3` 个 pair 中胜出，mean overall 从 `3.0` 提升到 `4.0`。
-8. 一个 review-insight taxonomy probe，从 32 条 OpenReview review cases 中把 novelty concerns、limitations/weaknesses、clarity issues 和 metric/evaluation issues 映射到 IGRE gates。
+8. 一个 review-insight taxonomy probe 和一个 deterministic review-utility map：前者从 32 条 OpenReview review cases 中归纳评审意见类型，后者在 160 篇论文的 473 条 review snippets 上统计哪些评论真正可行动；二者共同把 novelty、evaluation、claim-boundary、clarity、reproducibility 和 correctness signals 映射到 IGRE gates，并区分 actionable review insight 与泛泛表扬或模糊反应。
 9. 一个 same-manuscript structured-feedback probe，将 `frontier_004` 操作化，并通过两版修订与固定 rubric 模型评分比较 informal feedback 和 IGRE-structured feedback。
 10. 一条 retrospective full-gate trajectory，展示 idea、evaluator、branch、program-search 和 claim-audit gate 都可以用同一 schema 记录。
 11. 一个可重新运行的 full-gate trace 脚本，可以从已归档实验摘要中重新计算 gate chain，并明确把输出标记为 artifact replay。
@@ -230,7 +232,7 @@ taste/insight gate record。这扩展了 benchmark 形态，但让平均性能�
 
 taste/insight 证据目前也只是 logging-readiness 阶段。归档中已有 2 条完整 scientific-taste prior 记录：一条来自作者要求扩展 benchmark 并突出高尾部科研品味的指令，另一条来自本轮 operator-recorded 决策，即优先补 attention/taste 测量，而不是继续堆弱 benchmark 运行。但这两条记录都还不能证明该决策改善了下游科研结果。下一轮实验必须前瞻性记录 taste rationale，才能检验人类 insight 是否真的改变了科研搜索分布。
 
-作者自己的 Codex 科研轨迹只能作为单作者 ecological/process case，数据量和主体多样性都太小，不应该作为主要实证数据来证明“人类参与自动科研会提升结果”。OpenReview/Hugging Face 专家评审数据则确实是人类科研 taste 和 insight 的真实文本化数据，但它是离线、异步的评审数据，而不是实时 co-pilot 交互轨迹。它可以用于 artifact regeneration、participation-mode selection 和 review-insight taxonomy，本文新增的三个 OpenReview probes 就是在做这件事；但它还不包含人在自动科研过程中实时改变搜索前沿的行为。真正有力的在线 human-guided automated-science 数据需要一个被大量科研人员长期使用的 skill 或科研 assistant，在取得同意和脱敏后前瞻性记录人类介入、attention cost、artifact links、后续 benchmark 和论文质量结果。现阶段这类数据更可能由主流 agent 公司或大模型平台通过大规模产品化系统收集；本文只能把它作为重要 future work，而不是当前已完成证据。
+作者自己的 Codex 科研轨迹只能作为单作者 ecological/process case，数据量和主体多样性都太小，不应该作为主要实证数据来证明“人类参与自动科研会提升结果”。OpenReview/Hugging Face 专家评审数据则确实是人类科研 taste 和 insight 的真实文本化数据，但它是离线、异步的评审数据，而不是实时 co-pilot 交互轨迹。它可以用于 artifact regeneration、participation-mode selection、review-insight taxonomy 和 review-utility mapping，本文新增的四个 OpenReview probes 就是在做这件事；但它还不包含人在自动科研过程中实时改变搜索前沿的行为。真正有力的在线 human-guided automated-science 数据需要一个被大量科研人员长期使用的 skill 或科研 assistant，在取得同意和脱敏后前瞻性记录人类介入、attention cost、artifact links、后续 benchmark 和论文质量结果。现阶段这类数据更可能由主流 agent 公司或大模型平台通过大规模产品化系统收集；本文只能把它作为重要 future work，而不是当前已完成证据。
 
 当前实现现在已有 smoke 级别的 repeated same-continuous-trajectory 在线论文生成对照，但规模仍不足以支撑 systems paper 的强主张。下一版 systems paper 至少需要报告多组更大规模的 matched 在线轨迹，覆盖更多任务和随机种子，从假设生成一直到最终 claim-audited manuscripts。
 

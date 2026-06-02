@@ -351,6 +351,24 @@ more concrete rule: human review text is most useful when it changes what the
 agent should pursue, what evidence it must gather, what claims it may safely
 make, or how clearly the manuscript communicates the result.
 
+To move from a small taxonomy to a larger reproducible signal map, we then ran
+`run_review_utility_map_probe.py` over the 160-paper OpenReview sample. This
+deterministic probe extracts 473 review snippets and classifies review patterns
+by whether they can be routed to a concrete IGRE gate. It finds 398 snippets
+with at least one actionable signal and 64 snippets with noisy low-actionability
+signals. The strongest gate pressure is not generic approval: 245 snippets
+trigger evaluator-stress testing, 210 trigger structured feedback, 140 trigger
+claim calibration, and 111 trigger scientific-taste priors. The highest-utility
+categories are evaluation/metric concerns (205 snippets), limitations and claim
+boundary issues (140), novelty/positioning issues (111), actionable suggestions
+(111), reproducibility details (79), method-correctness issues (71), and
+clarity/presentation issues (86). This gives a more data-grounded version of
+the paper's central workflow claim: useful human taste and insight are not all
+human comments, but the subset of review signals that can change search
+direction, evaluator design, manuscript structure, or claim boundaries. Generic
+praise and vague reactions are useful only after decomposition into one of
+these actionable control signals.
+
 ## 4. Benchmark Selection and Evaluation Plan
 
 We evaluate six variants: autonomous baseline, idea gate only, branch gate only,
@@ -766,9 +784,11 @@ The current contributions are:
    real review comments improve review-guided mini-paper artifacts over
    title/abstract-only baselines in `3/3` pairs, with mean overall score
    increasing from `3.0` to `4.0`.
-8. A review-insight taxonomy probe over 32 OpenReview review cases that maps
-   novelty concerns, limitations/weaknesses, clarity issues, and
-   metric/evaluation issues to IGRE gates.
+8. A review-insight taxonomy probe over 32 OpenReview review cases and a
+   deterministic review-utility map over 473 review snippets from 160 sampled
+   papers; together they map novelty, evaluation, claim-boundary, clarity,
+   reproducibility, and correctness signals to IGRE gates while separating
+   actionable review insight from generic praise or vague reactions.
 9. A same-manuscript structured-feedback probe that operationalizes
    `frontier_004` and compares informal feedback with IGRE-structured feedback
    through two revisions and a fixed-rubric model score.
@@ -892,9 +912,10 @@ human-subject review if the dataset is later expanded to multiple researchers.
 The OpenReview/Hugging Face expert-review evidence is therefore a legitimate
 source of human scientific taste and insight, but it is an offline and
 asynchronous source rather than a live co-pilot trajectory. It can guide
-artifact regeneration, participation-mode selection, and review-insight
-taxonomy construction, as shown by the three OpenReview probes above. What it
-does not contain is real-time human decisions inside a co-pilot
+artifact regeneration, participation-mode selection, review-insight taxonomy
+construction, and deterministic review-utility mapping, as shown by the four
+OpenReview probes above. What it does not contain is real-time human decisions
+inside a co-pilot
 automated-research loop. A true online human-guided
 automated-science dataset would require a broadly deployed skill or research
 assistant used by many scientists, with consent, de-identification, artifact

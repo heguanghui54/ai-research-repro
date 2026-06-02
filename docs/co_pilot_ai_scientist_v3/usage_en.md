@@ -137,6 +137,18 @@ python3 scripts/run_review_insight_taxonomy_probe.py \
   --review-limit 32
 ```
 
+To build a deterministic utility map from a larger OpenReview sample without
+additional model calls, run:
+
+```bash
+python3 scripts/run_review_utility_map_probe.py
+```
+
+This maps review snippets to actionable gate controls and separates useful
+signals such as evaluation concerns, claim-boundary issues, novelty
+positioning, reproducibility details, and concrete suggestions from generic
+praise or vague reactions.
+
 For a Monica-routed paper-quality review, source the global environment and run:
 
 ```bash

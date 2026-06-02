@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_review_insight_taxonomy_probe",
+  "status": "pilot_package_with_review_utility_map_probe",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -486,7 +486,12 @@
     "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/taxonomy_raw_response.txt",
     "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/review_insight_taxonomy_probe_20260602_064500/README.md",
-    "scripts/run_review_insight_taxonomy_probe.py"
+    "scripts/run_review_insight_taxonomy_probe.py",
+    "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/scored_reviews.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/category_utility_table.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/README.md",
+    "scripts/run_review_utility_map_probe.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -834,5 +839,19 @@
       "Limitations and Weaknesses"
     ],
     "claim_boundary": "OpenReview-derived actionable-review taxonomy only; not causal proof."
+  },
+  "review_utility_map_probe": {
+    "run_id": "review_utility_map_probe_20260602_071500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/review_utility_map_probe_20260602_071500/summary.json",
+    "review_count": 473,
+    "paper_count": 160,
+    "reviews_with_actionable_signal": 398,
+    "gate_counts": {
+      "claim_calibration": 140,
+      "scientific_taste_prior": 111,
+      "evaluator_stress_test": 245,
+      "structured_feedback": 210
+    },
+    "claim_boundary": "Deterministic OpenReview utility map; not causal proof of final paper improvement."
   }
 }

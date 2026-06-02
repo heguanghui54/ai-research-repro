@@ -198,6 +198,25 @@ metric/evaluation issues to `evaluator_stress_test`. This taxonomy is useful
 because it separates review comments that can control automated research from
 generic praise or vague reactions.
 
+## Review Utility Map
+
+The package now includes
+`experiments/review_utility_map_probe_20260602_071500/`, a deterministic
+large-sample complement to the model-routed taxonomy. It analyzes 473 review
+snippets from the 160-paper OpenReview sample and classifies whether each
+snippet can be routed to a concrete IGRE gate. The map finds 398 snippets with
+actionable gate signals and 64 with noisy low-actionability signals. The
+strongest gate pressure is evaluator stress testing (245 actionable triggers),
+structured feedback (210), claim calibration (140), and scientific taste prior
+(111). Category counts show that evaluation/metric concerns (205 snippets),
+limitations and claim-boundary issues (140), novelty/positioning issues (111),
+actionable suggestions (111), reproducibility details (79), method-correctness
+issues (71), and clarity/presentation issues (86) are the review patterns most
+directly useful for workflow control. This makes the taste/insight claim more
+specific: useful human review is not all human opinion, but review text that
+can change the agent's search direction, evaluator design, manuscript
+structure, or claim boundary.
+
 ## Structured Feedback Probe
 
 The selected `frontier_004` has now been connected to a small downstream

@@ -66,6 +66,13 @@ matched evidence and clear boundary conditions.
    - Run `scripts/run_review_insight_taxonomy_probe.py` to mine which kinds of
      review comments are actionable for each IGRE gate. Treat the resulting
      taxonomy as workflow-design guidance, not as causal proof.
+   - Run `scripts/run_review_utility_map_probe.py` to deterministically map a
+     larger OpenReview sample into actionable and noisy review categories. Use
+     this when deciding which human review signals should become gate controls:
+     evaluation/metric and correctness concerns route to evaluator stress
+     tests, claim-boundary concerns route to claim calibration, novelty/
+     positioning signals route to scientific taste priors, and clarity/
+     reproducibility/actionable suggestions route to structured feedback.
    - Attach evidence, missing evidence, feasibility notes, and risks.
    - Ask the human scientist to select, merge, or rewrite directions using
      field taste, upside asymmetry, and failure value, not only early scores.

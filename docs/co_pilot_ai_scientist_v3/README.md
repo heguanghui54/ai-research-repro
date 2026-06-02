@@ -133,7 +133,7 @@ live human co-pilot interaction data. Its most useful role is as a
 participation-mode selection benchmark: compare hypotheses, plans, evidence
 summaries, or manuscript revisions produced by different gate patterns against
 the same expert-review proxy before deciding which human-in-the-loop workflow
-is strongest. Three new probes now exercise that idea. The
+is strongest. Four new probes now exercise that idea. The
 `participation_mode_selection_probe_20260602_060500/` artifact compares
 no-gate, taste-prior, evaluator-stress, structured-feedback, and
 claim-calibration modes under an OpenReview-conditioned model scorer; it places
@@ -146,7 +146,14 @@ mean overall score from `3.0` to `4.0`. The
 and maps actionable review patterns to IGRE gates: novelty concerns to
 scientific taste prior, limitations/weaknesses to claim calibration, clarity
 issues to structured feedback, and metric/evaluation issues to evaluator stress
-testing.
+testing. The `review_utility_map_probe_20260602_071500/` artifact then applies
+a deterministic utility map to 473 review snippets from the same 160-paper
+sample. It finds 398 snippets with actionable gate signals and 64 with noisy
+low-actionability signals; evaluator-stress, structured-feedback, claim
+calibration, and scientific-taste-prior gates receive 245, 210, 140, and 111
+actionable triggers respectively. This supports the workflow claim that useful
+human taste/insight is the subset of review feedback that can alter search
+direction, evaluator design, manuscript structure, or claim boundaries.
 The package also includes OpenEvolve-based program search, direct LLM rewrite
 baselines, richer knapsack and Max-Cut heuristic tasks, and retrospective branch-gate
 replay over prior AI Scientist-v2/FML-bench runs. It now also includes live
