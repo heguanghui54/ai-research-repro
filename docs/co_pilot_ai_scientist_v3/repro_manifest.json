@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_updated_quality_review_and_focused_rewrite_plan",
+  "status": "pilot_package_with_focused_conference_manuscript",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -11,7 +11,9 @@
     "Runnable experiment logs from Ubuntu host",
     "Human gate logs",
     "Reusable Codex skill",
-    "GitHub repository push"
+    "GitHub repository push",
+    "Focused English conference-style PDF paper",
+    "Focused Chinese conference-style PDF paper"
   ],
   "current_artifacts": [
     "docs/co_pilot_ai_scientist_v3/problem_statement.md",
@@ -507,7 +509,11 @@
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/README.md",
     "scripts/run_openreview_regeneration_cross_model_review.py",
-    "docs/co_pilot_ai_scientist_v3/focused_submission_rewrite_plan.md"
+    "docs/co_pilot_ai_scientist_v3/focused_submission_rewrite_plan.md",
+    "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+    "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md",
+    "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf",
+    "docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -893,6 +899,8 @@
     "claude_recommendation": "Reject",
     "summary": "docs/co_pilot_ai_scientist_v3/audits/paper_quality_review_summary.md",
     "focused_rewrite_plan": "docs/co_pilot_ai_scientist_v3/focused_submission_rewrite_plan.md",
-    "claim_boundary": "Current package remains a pilot workflow-design/reproducibility package, not a top-conference empirical result."
+    "claim_boundary": "Focused draft frames IGRE as workflow design and measurement readiness, not co-pilot superiority.",
+    "focused_rewrite": "docs/co_pilot_ai_scientist_v3/paper_en_focused.md",
+    "focused_rewrite_zh": "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md"
   }
 }

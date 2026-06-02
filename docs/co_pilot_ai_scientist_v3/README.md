@@ -38,6 +38,8 @@ claim calibration.
   human attention efficiency, or paper-quality gains.
 - `paper_en.md`: English manuscript draft.
 - `paper_zh.md`: Chinese manuscript draft.
+- `paper_en_focused.md`: focused conference-style English main-paper draft.
+- `paper_zh_focused.md`: focused conference-style Chinese main-paper draft.
 - `references.bib`: citation seed file for later LaTeX/PDF generation.
 - `RUNBOOK_EN.md`: English reproduction and continuation runbook.
 - `RUNBOOK_ZH.md`: Chinese reproduction and continuation runbook.
@@ -88,12 +90,15 @@ The local machine does not need LaTeX. Install the Python dependencies and run:
 ```bash
 python3 -m pip install -r requirements.txt
 python3 scripts/build_copilot_v3_pdfs.py --language both
+python3 scripts/build_copilot_v3_pdfs.py --language both --variant focused
 ```
 
 Expected outputs:
 
 - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
 - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_zh.pdf`
+- `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
+- `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_zh.pdf`
 
 ## Current Status
 

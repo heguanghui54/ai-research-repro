@@ -213,13 +213,35 @@ def build_pdf(markdown_path: Path, output_path: Path, language: str) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build Co-Pilot AI Scientist v3 PDFs.")
     parser.add_argument("--language", choices=["en", "zh", "both"], default="both")
+    parser.add_argument(
+        "--variant",
+        choices=["full", "focused", "all"],
+        default="full",
+        help="Which manuscript variant to render.",
+    )
     args = parser.parse_args()
 
     jobs = []
-    if args.language in {"en", "both"}:
+    if args.variant in {"full", "all"} and args.language in {"en", "both"}:
         jobs.append(("en", DOC_DIR / "paper_en.md", OUT_DIR / "co_pilot_ai_scientist_v3_en.pdf"))
-    if args.language in {"zh", "both"}:
+    if args.variant in {"full", "all"} and args.language in {"zh", "both"}:
         jobs.append(("zh", DOC_DIR / "paper_zh.md", OUT_DIR / "co_pilot_ai_scientist_v3_zh.pdf"))
+    if args.variant in {"focused", "all"} and args.language in {"en", "both"}:
+        jobs.append(
+            (
+                "en",
+                DOC_DIR / "paper_en_focused.md",
+                OUT_DIR / "co_pilot_ai_scientist_v3_focused_en.pdf",
+            )
+        )
+    if args.variant in {"focused", "all"} and args.language in {"zh", "both"}:
+        jobs.append(
+            (
+                "zh",
+                DOC_DIR / "paper_zh_focused.md",
+                OUT_DIR / "co_pilot_ai_scientist_v3_focused_zh.pdf",
+            )
+        )
 
     for language, source, output in jobs:
         build_pdf(source, output, language)
@@ -228,4 +250,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
