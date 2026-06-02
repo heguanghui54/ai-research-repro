@@ -1,11 +1,11 @@
 {
-  "audit_date": "2026-06-02T12:56:14Z",
+  "audit_date": "2026-06-02T12:57:39Z",
   "status": "pass_with_top_conference_gap",
-  "head": "ec8367848afbb9013826c7d09c3d351201c6d7e1",
+  "head": "90989437b544fedcab7ed2a35be514bb4dcf388b",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "remote_branch_pushed": true,
-  "manifest_artifacts": 676,
+  "manifest_artifacts": 679,
   "missing_manifest_artifacts": 0,
   "requirement_count": 15,
   "status_counts": {
@@ -146,7 +146,7 @@
       "evidence": [
         "https://github.com/heguanghui54/ai-research-repro.git",
         "codex/co-pilot-ai-scientist-v3",
-        "ec8367848afbb9013826c7d09c3d351201c6d7e1"
+        "90989437b544fedcab7ed2a35be514bb4dcf388b"
       ],
       "gap": "Branch is pushed if remote branch lookup succeeds; publication as a PR/release is separate.",
       "next_action": "Create a release or PR only when the user wants a public submission package."
