@@ -876,7 +876,10 @@
     "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/README.md",
     "docs/co_pilot_ai_scientist_v3/experiments/global_skill_metric_gaming_evaluator_20260603/summary.json",
     "docs/co_pilot_ai_scientist_v3/experiments/global_skill_metric_gaming_evaluator_20260603/README.md",
-    "scripts/run_global_skill_metric_gaming_evaluator.py"
+    "scripts/run_global_skill_metric_gaming_evaluator.py",
+    "docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.json",
+    "docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.md",
+    "scripts/audit_global_skill_engineering_chain.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -1901,9 +1904,9 @@
     "status": "pass_artifact_delivery_with_empirical_gaps",
     "json": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.json",
     "markdown": "docs/co_pilot_ai_scientist_v3/audits/objective_delivery_audit.md",
-    "head": "a50612225b4ac9b2b08ff19c9523034d0ec64bc2",
+    "head": "b806104f62a98541c1e89a3ee0d3f481671b3c75",
     "branch": "codex/co-pilot-ai-scientist-v3",
-    "manifest_artifacts": 863,
+    "manifest_artifacts": 866,
     "missing_manifest_artifacts": 0,
     "claim_boundary": "The requested artifact pipeline is delivered and auditable, but the original top-conference empirical target remains incomplete until independent human ratings, larger matched benchmark runs, and broader end-to-end trajectories are collected."
   },
@@ -2067,5 +2070,13 @@
     "source_global_skill_reuse_smoke": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/summary.json",
     "metric_gaming_incidents_reduced": 1,
     "claim_boundary": "This executable toy evaluator is tied to the globally installed skill reuse smoke. It shows that the fresh evaluator-stress gate's guarded_evaluator decision rejects one synthetic metric-gaming winner. It is not an official benchmark, not human evidence, and not proof of average co-pilot superiority."
+  },
+  "global_skill_engineering_chain_audit": {
+    "status": "pass",
+    "json": "docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.json",
+    "markdown": "docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.md",
+    "steps_passed": 5,
+    "steps_checked": 5,
+    "claim_boundary": "This audit verifies the engineering chain from standalone release scaffold through isolated install, global install, fresh global-skill reuse, and one toy evaluator-stress smoke. It is usability and reproducibility evidence, not independent human evidence, not an official benchmark result, and not proof that Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2."
   }
 }

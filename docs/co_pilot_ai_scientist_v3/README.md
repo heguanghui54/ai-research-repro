@@ -151,6 +151,11 @@ does not replace the paper's empirical evidence requirements.
   selects a synthetic degenerate candidate, while the evaluator-stress gate's
   guarded evaluator rejects it. This is controlled evaluator evidence only,
   not an official benchmark result.
+- `audits/global_skill_engineering_chain_audit.md`: chain-level audit linking
+  the standalone release scaffold, isolated install smoke, real global install,
+  fresh global-skill reuse smoke, and toy evaluator-stress smoke. This is
+  engineering reuse evidence only, not independent human evidence or
+  scientific-superiority evidence.
 - `release/co-pilot-ai-scientist-v3-skill/`: standalone release scaffold for a
   public GitHub skill. It packages `SKILL.md`, templates, examples, quickstart,
   manifest, and a local validator so the engineering track can progress
@@ -335,6 +340,11 @@ python3 scripts/audit_temporal_frontier_replay.py
 python3 scripts/audit_top_conference_evidence_roadmap.py
 python3 scripts/summarize_human_expert_blind_reviews.py --update-manifest
 python3 scripts/audit_human_expert_blind_review_packet.py
+python3 scripts/run_igre_skill_install_smoke.py --update-manifest
+python3 scripts/install_and_audit_global_copilot_skill.py --update-manifest
+python3 scripts/run_global_skill_reuse_smoke.py --update-manifest
+python3 scripts/run_global_skill_metric_gaming_evaluator.py --update-manifest
+python3 scripts/audit_global_skill_engineering_chain.py --update-manifest
 python3 scripts/audit_benchmark_coverage.py
 python3 scripts/build_deep_regeneration_cases.py
 python3 scripts/build_six_gate_hybrid_review_cases.py
@@ -349,15 +359,12 @@ python3 scripts/audit_objective_delivery.py
 python3 scripts/audit_package_consistency.py
 ```
 
-The latest completed clean-clone audit currently targets ancestor commit
-`fb3e666b6` from the pushed branch and reports `632/632` manifest artifacts
-present, LHTG/DVRS status `pass_with_no_positive_dvrs`, TFR status
-`pass_with_negative_delayed_value_evidence`, roadmap audit `pass`, human expert
-blind-review packet audit `pass_prepared_no_human_ratings`, package consistency
-`pass`, and objective delivery `pass_artifact_delivery_with_empirical_gaps`.
-The current working package adds the benchmark coverage audit and reports
-`635/635` local manifest coverage; the clean-clone audit should be refreshed
-after the next push.
+The latest objective-delivery and package-consistency audits report the current
+manifest coverage and commit target. The engineering chain audit should report
+`pass` after verifying the standalone release scaffold, isolated install smoke,
+real global Codex install, fresh installed-skill reuse smoke, and toy
+evaluator-stress smoke. These engineering checks are intentionally separated
+from the scientific evidence requirements.
 
 The last status phrase is intentional. It means the requested artifact pipeline
 is delivered and auditable, but the original top-conference empirical target is

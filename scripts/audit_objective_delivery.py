@@ -97,6 +97,7 @@ def main() -> None:
     global_skill_metric_evaluator_path = (
         DOC_DIR / "experiments" / "global_skill_metric_gaming_evaluator_20260603" / "summary.json"
     )
+    global_skill_engineering_chain_path = AUDIT_DIR / "global_skill_engineering_chain_audit.json"
 
     manifest = _load_json(manifest_path)
     readiness = _load_json(readiness_path)
@@ -118,6 +119,7 @@ def main() -> None:
     global_skill_install_audit = _load_json(global_skill_install_audit_path)
     global_skill_reuse_smoke = _load_json(global_skill_reuse_smoke_path)
     global_skill_metric_evaluator = _load_json(global_skill_metric_evaluator_path)
+    global_skill_engineering_chain = _load_json(global_skill_engineering_chain_path)
 
     current_artifacts = manifest.get("current_artifacts", [])
     missing_manifest = [path for path in current_artifacts if not (ROOT / path).exists()]
@@ -151,6 +153,7 @@ def main() -> None:
         "global_skill_install_audit": global_skill_install_audit_path,
         "global_skill_reuse_smoke": global_skill_reuse_smoke_path,
         "global_skill_metric_evaluator": global_skill_metric_evaluator_path,
+        "global_skill_engineering_chain_audit": global_skill_engineering_chain_path,
         "task_template": ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "task_spec_template.md",
         "gate_template": ROOT / "skills" / "co-pilot-ai-scientist-v3" / "templates" / "human_gate_log_template.json",
     }
@@ -187,6 +190,7 @@ def main() -> None:
                 "frontier_metric_disagreement_20260603_003000",
                 "figures/igre_frontier_main_figure.png",
                 "External Verification Entry Point",
+                "audit_global_skill_engineering_chain.py",
                 "audit_top_conference_evidence_roadmap.py",
                 "summarize_human_expert_blind_reviews.py",
                 "audit_human_expert_blind_review_packet.py",
@@ -253,6 +257,9 @@ def main() -> None:
         and global_skill_reuse_smoke.get("generated_from_global_install") is True,
         "global_codex_skill_metric_evaluator_smoke": global_skill_metric_evaluator.get("status") == "pass"
         and global_skill_metric_evaluator.get("metric_gaming_incidents_reduced") == 1,
+        "global_codex_skill_engineering_chain_audit": global_skill_engineering_chain.get("status") == "pass"
+        and global_skill_engineering_chain.get("steps_passed") == global_skill_engineering_chain.get("steps_checked")
+        and global_skill_engineering_chain.get("steps_checked") == 5,
         "github_branch_pushed": _remote_contains_branch("origin", branch),
         "author_recorded": manifest.get("author") == "He Shi, School of Computing, National University of Singapore",
         "manifest_complete": len(current_artifacts) > 0 and not missing_manifest,
@@ -412,8 +419,11 @@ def main() -> None:
         ROOT / "scripts" / "build_copilot_v3_main_figure.py",
         ROOT / "scripts" / "audit_end_to_end_paired_trajectory.py",
         ROOT / "scripts" / "audit_goal_completion_matrix.py",
+        ROOT / "scripts" / "audit_global_skill_engineering_chain.py",
         AUDIT_DIR / "end_to_end_paired_trajectory_audit.json",
         AUDIT_DIR / "end_to_end_paired_trajectory_audit.md",
+        AUDIT_DIR / "global_skill_engineering_chain_audit.json",
+        AUDIT_DIR / "global_skill_engineering_chain_audit.md",
         ROOT / "scripts" / "audit_deep_regeneration_cases.py",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.json",
         AUDIT_DIR / "top_conference_evidence_roadmap_audit.md",

@@ -1,0 +1,104 @@
+{
+  "audit_date": "2026-06-02T17:04:16Z",
+  "status": "pass",
+  "steps": {
+    "standalone_release_scaffold": true,
+    "isolated_install_smoke": true,
+    "global_install_audit": true,
+    "global_reuse_smoke": true,
+    "toy_evaluator_stress_link": true
+  },
+  "steps_checked": 5,
+  "steps_passed": 5,
+  "release_required_files": [
+    "README.md",
+    "QUICKSTART.md",
+    "MIGRATION.md",
+    "POSITIONING.md",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "RELEASE_NOTES.md",
+    "SKILL.md",
+    "templates/task_spec_template.md",
+    "templates/human_gate_log_template.json",
+    "templates/claim_audit_template.md",
+    "examples/toy_task_spec.md",
+    "examples/example_gate_log.json",
+    "scripts/validate_release.py",
+    "scripts/install_local.sh"
+  ],
+  "release_required_file_checks": {
+    "README.md": true,
+    "QUICKSTART.md": true,
+    "MIGRATION.md": true,
+    "POSITIONING.md": true,
+    "CONTRIBUTING.md": true,
+    "LICENSE": true,
+    "RELEASE_NOTES.md": true,
+    "SKILL.md": true,
+    "templates/task_spec_template.md": true,
+    "templates/human_gate_log_template.json": true,
+    "templates/claim_audit_template.md": true,
+    "examples/toy_task_spec.md": true,
+    "examples/example_gate_log.json": true,
+    "scripts/validate_release.py": true,
+    "scripts/install_local.sh": true
+  },
+  "global_required_file_checks": {
+    "README.md": true,
+    "QUICKSTART.md": true,
+    "MIGRATION.md": true,
+    "POSITIONING.md": true,
+    "CONTRIBUTING.md": true,
+    "LICENSE": true,
+    "RELEASE_NOTES.md": true,
+    "SKILL.md": true,
+    "templates/task_spec_template.md": true,
+    "templates/human_gate_log_template.json": true,
+    "templates/claim_audit_template.md": true,
+    "examples/toy_task_spec.md": true,
+    "examples/example_gate_log.json": true,
+    "scripts/validate_release.py": true,
+    "scripts/install_local.sh": true
+  },
+  "lineage_checks": {
+    "release/co-pilot-ai-scientist-v3-skill/SKILL.md": {
+      "ai-scientist-v2": true,
+      "Base Skill Relationship": true,
+      "evaluator_stress_test": true,
+      "claim_calibration": true
+    },
+    "release/co-pilot-ai-scientist-v3-skill/MIGRATION.md": {
+      "Migrating From `ai-scientist-v2`": true,
+      "scientific_taste_prior": true,
+      "verifiable_micro_evolution": true
+    },
+    "/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3/SKILL.md": {
+      "ai-scientist-v2": true,
+      "Base Skill Relationship": true,
+      "evaluator_stress_test": true,
+      "claim_calibration": true
+    },
+    "/Users/hgh54913/.codex/skills/co-pilot-ai-scientist-v3/MIGRATION.md": {
+      "Migrating From `ai-scientist-v2`": true,
+      "scientific_taste_prior": true,
+      "verifiable_micro_evolution": true
+    }
+  },
+  "source_artifacts": {
+    "release_manifest": "release/co-pilot-ai-scientist-v3-skill/MANIFEST.json",
+    "release_audit": "docs/co_pilot_ai_scientist_v3/audits/igre_skill_release_package_audit.json",
+    "isolated_install_smoke": "docs/co_pilot_ai_scientist_v3/experiments/igre_skill_install_smoke_20260603/summary.json",
+    "global_install_audit": "docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.json",
+    "global_reuse_smoke": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/summary.json",
+    "toy_evaluator_stress": "docs/co_pilot_ai_scientist_v3/experiments/global_skill_metric_gaming_evaluator_20260603/summary.json"
+  },
+  "toy_evaluator_summary": {
+    "primary_only_winner": "metric_gaming_all_negative",
+    "evaluator_stress_winner": "guardrailed_utility_model",
+    "metric_gaming_incidents_reduced": 1
+  },
+  "errors": [],
+  "warnings": [],
+  "claim_boundary": "This audit verifies the engineering chain from standalone release scaffold through isolated install, global install, fresh global-skill reuse, and one toy evaluator-stress smoke. It is usability and reproducibility evidence, not independent human evidence, not an official benchmark result, and not proof that Co-Pilot AI Scientist v3 outperforms autonomous AI Scientist-v2."
+}

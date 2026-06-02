@@ -63,6 +63,7 @@ python3 scripts/run_igre_skill_install_smoke.py --update-manifest
 python3 scripts/install_and_audit_global_copilot_skill.py --update-manifest
 python3 scripts/run_global_skill_reuse_smoke.py --update-manifest
 python3 scripts/run_global_skill_metric_gaming_evaluator.py --update-manifest
+python3 scripts/audit_global_skill_engineering_chain.py --update-manifest
 python3 scripts/audit_igre_skill_release_package.py
 python3 scripts/audit_benchmark_coverage.py
 python3 scripts/audit_prospective_gate_instrumentation.py
@@ -92,6 +93,7 @@ Current objective-delivery status:
 - roadmap audit: `pass`
 - human expert blind-review packet audit: `pass_prepared_no_human_ratings`
 - global Codex skill install audit: `pass`
+- global skill engineering chain audit: `pass`
 - benchmark coverage audit: `pass`
 - prospective gate instrumentation audit: `pass_with_known_historical_gaps`
 - package consistency: `pass`

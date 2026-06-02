@@ -1,13 +1,13 @@
 # Objective Delivery Audit
 
-- Audit date: `2026-06-02T16:56:20Z`
+- Audit date: `2026-06-02T17:04:59Z`
 - Status: `pass_artifact_delivery_with_empirical_gaps`
-- HEAD: `a50612225b4ac9b2b08ff19c9523034d0ec64bc2`
+- HEAD: `b806104f62a98541c1e89a3ee0d3f481671b3c75`
 - Branch: `codex/co-pilot-ai-scientist-v3`
 - Remote: `https://github.com/heguanghui54/ai-research-repro.git`
-- Manifest artifacts: `863`
+- Manifest artifacts: `866`
 - Missing manifest artifacts: `0`
-- Manifest coverage: `863/863`
+- Manifest coverage: `866/866`
 
 ## Explicit Requirements
 
@@ -17,6 +17,7 @@
 - `global_codex_skill_installed`: `pass`
 - `global_codex_skill_reuse_smoke`: `pass`
 - `global_codex_skill_metric_evaluator_smoke`: `pass`
+- `global_codex_skill_engineering_chain_audit`: `pass`
 - `github_branch_pushed`: `pass`
 - `author_recorded`: `pass`
 - `manifest_complete`: `pass`
@@ -41,7 +42,7 @@
 
 - `english_pdf`: `pass` (53210 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_en.pdf`
 - `focused_english_pdf`: `pass` (201962 bytes) - `docs/co_pilot_ai_scientist_v3/build/co_pilot_ai_scientist_v3_focused_en.pdf`
-- `root_readme`: `pass` (10810 bytes) - `README.md`
+- `root_readme`: `pass` (10931 bytes) - `README.md`
 - `english_submission_card`: `pass` (5476 bytes) - `docs/co_pilot_ai_scientist_v3/submission_card_en.md`
 - `top_conference_evidence_roadmap`: `pass` (10796 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.md`
 - `top_conference_evidence_roadmap_json`: `pass` (5396 bytes) - `docs/co_pilot_ai_scientist_v3/top_conference_evidence_roadmap.json`
@@ -65,6 +66,7 @@
 - `global_skill_install_audit`: `pass` (2722 bytes) - `docs/co_pilot_ai_scientist_v3/audits/global_copilot_skill_install_audit.json`
 - `global_skill_reuse_smoke`: `pass` (1187 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/global_skill_reuse_smoke_20260603/summary.json`
 - `global_skill_metric_evaluator`: `pass` (2733 bytes) - `docs/co_pilot_ai_scientist_v3/experiments/global_skill_metric_gaming_evaluator_20260603/summary.json`
+- `global_skill_engineering_chain_audit`: `pass` (4029 bytes) - `docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.json`
 - `task_template`: `pass` (2899 bytes) - `skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md`
 - `gate_template`: `pass` (1789 bytes) - `skills/co-pilot-ai-scientist-v3/templates/human_gate_log_template.json`
 

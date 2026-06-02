@@ -1,7 +1,7 @@
 {
-  "audit_date": "2026-06-02T16:56:20Z",
+  "audit_date": "2026-06-02T17:04:59Z",
   "status": "pass_artifact_delivery_with_empirical_gaps",
-  "head": "a50612225b4ac9b2b08ff19c9523034d0ec64bc2",
+  "head": "b806104f62a98541c1e89a3ee0d3f481671b3c75",
   "branch": "codex/co-pilot-ai-scientist-v3",
   "remote_url": "https://github.com/heguanghui54/ai-research-repro.git",
   "explicit_requirements": {
@@ -11,6 +11,7 @@
     "global_codex_skill_installed": true,
     "global_codex_skill_reuse_smoke": true,
     "global_codex_skill_metric_evaluator_smoke": true,
+    "global_codex_skill_engineering_chain_audit": true,
     "github_branch_pushed": true,
     "author_recorded": true,
     "manifest_complete": true,
@@ -47,7 +48,7 @@
     "root_readme": {
       "path": "README.md",
       "exists": true,
-      "bytes": 10810,
+      "bytes": 10931,
       "ok": true
     },
     "english_submission_card": {
@@ -188,6 +189,12 @@
       "bytes": 2733,
       "ok": true
     },
+    "global_skill_engineering_chain_audit": {
+      "path": "docs/co_pilot_ai_scientist_v3/audits/global_skill_engineering_chain_audit.json",
+      "exists": true,
+      "bytes": 4029,
+      "ok": true
+    },
     "task_template": {
       "path": "skills/co-pilot-ai-scientist-v3/templates/task_spec_template.md",
       "exists": true,
@@ -227,6 +234,7 @@
       "frontier_metric_disagreement_20260603_003000": true,
       "figures/igre_frontier_main_figure.png": true,
       "External Verification Entry Point": true,
+      "audit_global_skill_engineering_chain.py": true,
       "audit_top_conference_evidence_roadmap.py": true,
       "summarize_human_expert_blind_reviews.py": true,
       "audit_human_expert_blind_review_packet.py": true,
@@ -271,9 +279,9 @@
       "human": true
     }
   },
-  "manifest_artifacts": 863,
+  "manifest_artifacts": 866,
   "missing_manifest_artifacts": 0,
-  "manifest_coverage_ratio": "863/863",
+  "manifest_coverage_ratio": "866/866",
   "top_conference_empirical_support_status": "not_supported_yet",
   "unverified_claims": [
     "Human gates improve paper quality.",
