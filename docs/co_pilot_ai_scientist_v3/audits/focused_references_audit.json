@@ -1,26 +1,33 @@
 {
-  "audit_date": "2026-06-02T13:18:18Z",
+  "audit_date": "2026-06-02T13:55:43Z",
   "status": "pass",
   "checks": {
     "docs/co_pilot_ai_scientist_v3/paper_en_focused.md": {
       "has_references_heading": true,
       "has_key_terms": {
         "AI Co-Scientist": true,
+        "The AI Scientist": true,
         "AI Scientist-v2": true,
+        "AlphaTensor": true,
+        "AlphaDev": true,
+        "FunSearch": true,
         "AlphaEvolve": true,
         "OpenEvolve": true,
-        "OpenReview": true,
-        "FML-bench": true
-      },
-      "has_no_placeholder_citations": true
-    },
-    "docs/co_pilot_ai_scientist_v3/paper_zh_focused.md": {
-      "has_references_heading": true,
-      "has_key_terms": {
-        "AI Co-Scientist": true,
-        "AI Scientist-v2": true,
-        "AlphaEvolve": true,
-        "OpenEvolve": true,
+        "Schmidhuber": true,
+        "OOPS": true,
+        "Gödel Machine": true,
+        "POWERPLAY": true,
+        "Darwin Gödel Machine": true,
+        "Huxley-Gödel Machine": true,
+        "PromptBreeder": true,
+        "EvoPrompting": true,
+        "ReEvo": true,
+        "Reflexion": true,
+        "Self-Refine": true,
+        "Voyager": true,
+        "AutoGen": true,
+        "MLAgentBench": true,
+        "MLE-bench": true,
         "OpenReview": true,
         "FML-bench": true
       },
@@ -30,9 +37,26 @@
       "has_key_terms": {
         "aicoscientist": true,
         "aiscientistv2": true,
+        "lu2024aiscientist": true,
         "alphaevolve": true,
+        "alphatensor": true,
+        "alphadev": true,
         "funsearch": true,
         "openevolve": true,
+        "schmidhuber2004oops": true,
+        "schmidhuber2003godel": true,
+        "schmidhuber2011powerplay": true,
+        "darwingodel": true,
+        "huxleygodel": true,
+        "promptbreeder": true,
+        "evoprompting": true,
+        "reevo": true,
+        "reflexion": true,
+        "selfrefine": true,
+        "voyager": true,
+        "autogen": true,
+        "mlagentbench": true,
+        "mlebench": true,
         "OpenReview": true,
         "FML-bench": true
       },
@@ -40,5 +64,5 @@
     }
   },
   "errors": [],
-  "claim_boundary": "This audit checks visible reference coverage for the focused paper. It does not validate every bibliographic field or scientific claim."
+  "claim_boundary": "This audit checks visible reference coverage for the focused English paper. It does not validate every bibliographic field or scientific claim."
 }

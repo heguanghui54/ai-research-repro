@@ -1,14 +1,33 @@
 # Focused References Audit
 
-- Audit date: `2026-06-02T13:18:18Z`
+- Audit date: `2026-06-02T13:55:43Z`
 - Status: `pass`
 
 ## Key Terms
 
 - `AI Co-Scientist`
+- `The AI Scientist`
 - `AI Scientist-v2`
+- `AlphaTensor`
+- `AlphaDev`
+- `FunSearch`
 - `AlphaEvolve`
 - `OpenEvolve`
+- `Schmidhuber`
+- `OOPS`
+- `Gödel Machine`
+- `POWERPLAY`
+- `Darwin Gödel Machine`
+- `Huxley-Gödel Machine`
+- `PromptBreeder`
+- `EvoPrompting`
+- `ReEvo`
+- `Reflexion`
+- `Self-Refine`
+- `Voyager`
+- `AutoGen`
+- `MLAgentBench`
+- `MLE-bench`
 - `OpenReview`
 - `FML-bench`
 
@@ -18,4 +37,4 @@
 
 ## Claim Boundary
 
-This audit checks visible reference coverage for the focused paper. It does not validate every bibliographic field or scientific claim.
+This audit checks visible reference coverage for the focused English paper. It does not validate every bibliographic field or scientific claim.

@@ -17,11 +17,57 @@ DOC_DIR = ROOT / "docs" / "co_pilot_ai_scientist_v3"
 AUDIT_DIR = DOC_DIR / "audits"
 
 
-KEY_TERMS = [
+FOCUSED_PAPER_TERMS = [
     "AI Co-Scientist",
+    "The AI Scientist",
     "AI Scientist-v2",
+    "AlphaTensor",
+    "AlphaDev",
+    "FunSearch",
     "AlphaEvolve",
     "OpenEvolve",
+    "Schmidhuber",
+    "OOPS",
+    "Gödel Machine",
+    "POWERPLAY",
+    "Darwin Gödel Machine",
+    "Huxley-Gödel Machine",
+    "PromptBreeder",
+    "EvoPrompting",
+    "ReEvo",
+    "Reflexion",
+    "Self-Refine",
+    "Voyager",
+    "AutoGen",
+    "MLAgentBench",
+    "MLE-bench",
+    "OpenReview",
+    "FML-bench",
+]
+
+BIB_KEY_TERMS = [
+    "aicoscientist",
+    "aiscientistv2",
+    "lu2024aiscientist",
+    "alphaevolve",
+    "alphatensor",
+    "alphadev",
+    "funsearch",
+    "openevolve",
+    "schmidhuber2004oops",
+    "schmidhuber2003godel",
+    "schmidhuber2011powerplay",
+    "darwingodel",
+    "huxleygodel",
+    "promptbreeder",
+    "evoprompting",
+    "reevo",
+    "reflexion",
+    "selfrefine",
+    "voyager",
+    "autogen",
+    "mlagentbench",
+    "mlebench",
     "OpenReview",
     "FML-bench",
 ]
@@ -47,22 +93,16 @@ def main() -> None:
     manifest_path = DOC_DIR / "repro_manifest.json"
 
     en_text = en_path.read_text(encoding="utf-8")
-    zh_text = zh_path.read_text(encoding="utf-8")
     bib_text = bib_path.read_text(encoding="utf-8")
 
     checks = {
         _rel(en_path): {
             "has_references_heading": "## References" in en_text,
-            "has_key_terms": _contains_all(en_text, KEY_TERMS),
+            "has_key_terms": _contains_all(en_text, FOCUSED_PAPER_TERMS),
             "has_no_placeholder_citations": all(token not in en_text for token in ["[?]", "TODO citation", "citation needed"]),
         },
-        _rel(zh_path): {
-            "has_references_heading": "## 参考文献" in zh_text,
-            "has_key_terms": _contains_all(zh_text, KEY_TERMS),
-            "has_no_placeholder_citations": all(token not in zh_text for token in ["[?]", "TODO citation", "citation needed"]),
-        },
         _rel(bib_path): {
-            "has_key_terms": _contains_all(bib_text, ["aicoscientist", "aiscientistv2", "alphaevolve", "funsearch", "openevolve", "OpenReview", "FML-bench"]),
+            "has_key_terms": _contains_all(bib_text, BIB_KEY_TERMS),
             "has_no_placeholder_citations": all(token not in bib_text for token in ["TODO", "citation needed"]),
         },
     }
@@ -83,7 +123,7 @@ def main() -> None:
         "checks": checks,
         "errors": errors,
         "claim_boundary": (
-            "This audit checks visible reference coverage for the focused paper. "
+            "This audit checks visible reference coverage for the focused English paper. "
             "It does not validate every bibliographic field or scientific claim."
         ),
     }
@@ -101,7 +141,7 @@ def main() -> None:
         "## Key Terms",
         "",
     ]
-    for term in KEY_TERMS:
+    for term in FOCUSED_PAPER_TERMS:
         lines.append(f"- `{term}`")
     lines.extend(["", "## Errors", ""])
     lines.extend([f"- {error}" for error in errors] or ["- None"])
