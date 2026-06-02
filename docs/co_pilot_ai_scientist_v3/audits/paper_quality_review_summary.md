@@ -191,6 +191,17 @@ single baseline win is useful evidence that review guidance is not
 automatically beneficial. The probe still does not rerun the original
 experiments or constitute independent expert re-review.
 
+The package now also includes
+`experiments/openreview_regeneration_cross_model_review_20260602_081500/`,
+which re-scores the same six generated pairs with Monica-routed
+`claude-3-7-sonnet-latest` rather than the generation/scoring model. Claude is
+stricter: review-guided artifacts win `3/6`, baseline wins `1/6`, and `2`
+pairs tie, with mean delta `+0.1667`. This reduces same-model scoring bias and
+sharpens the conclusion. Human review text helps when it adds concrete method
+details, experiment specificity, or limitation/claim calibration; it does not
+help when it remains generic or causes the artifact to lose the original
+technical framing.
+
 ## Review Insight Taxonomy
 
 The package now includes

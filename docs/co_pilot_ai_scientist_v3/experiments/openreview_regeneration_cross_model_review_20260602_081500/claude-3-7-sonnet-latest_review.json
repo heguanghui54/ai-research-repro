@@ -1,0 +1,177 @@
+{
+  "per_paper": [
+    {
+      "paper_id": "openreview_sample_1",
+      "winner": "review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 4,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 4
+        }
+      },
+      "rationale": "The review-guided artifact adds meaningful specificity: it names the three preference pair types (correct/refuse, refuse/incorrect, correct/incorrect), which is a concrete method design detail absent in the baseline. It also grounds experiments in arithmetic tasks specifically. These are genuine improvements in method framing, not just paraphrasing.",
+      "risk": "Both artifacts remain vague on how 'knowledge feedback' is operationalized and how rejection thresholds are set."
+    },
+    {
+      "paper_id": "openreview_sample_2",
+      "winner": "review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 4,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "rationale": "The review-guided version adds the SDE mathematical framework and molecular datasets as a concrete experimental domain, and honestly flags the unclear motivation/related-work comparison as a limitation. These are modest but real improvements in experiment specificity and limitation honesty.",
+      "risk": "Neither artifact addresses the low correctness scores from reviewers or explains why forking is theoretically justified over standard conditioning."
+    },
+    {
+      "paper_id": "openreview_sample_17",
+      "winner": "review_guided",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 4,
+          "experiment_quality": 3,
+          "limitation_honesty": 4,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "rationale": "The review-guided version specifies gradient ascent on the unlikelihood objective (a concrete algorithmic detail), frames the privacy-accuracy trade-off as the central experimental question, and honestly flags the weak baseline/metric justification. These are genuine improvements over the baseline's vaguer framing.",
+      "risk": "Neither artifact addresses what 'empirical privacy guarantees' means precisely or how they are measured, which is a key gap reviewers noted."
+    },
+    {
+      "paper_id": "openreview_sample_34",
+      "winner": "baseline",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "rationale": "The baseline is more concrete: it explicitly names linear regression as the model problem and the hidden-representation hypothesis, which are the actual technical contributions. The review-guided version becomes vaguer ('various perspectives', 'standard learning algorithms') and loses the specific linear model framing. The review insight about probe clarity is acknowledged but not acted upon constructively.",
+      "risk": "Both artifacts fail to describe the probe technique or how transformer outputs are compared to known algorithms, which is the core methodological gap."
+    },
+    {
+      "paper_id": "openreview_sample_49",
+      "winner": "tie",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 3,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "rationale": "Both artifacts are nearly identical in substance. The review-guided version adds 'focusing on the balance between clean and noisy data' as a minor experimental detail and acknowledges modest improvements, but neither adds meaningful method design specificity or deeper experiment planning. The differences are cosmetic.",
+      "risk": "Neither artifact specifies the formal unified setting, the mixup interpolation scheme, or how robustness is measured, leaving the core contribution underspecified."
+    },
+    {
+      "paper_id": "openreview_sample_64",
+      "winner": "tie",
+      "scores": {
+        "baseline": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        },
+        "review_guided": {
+          "novelty": 3,
+          "correctness": 3,
+          "clarity": 3,
+          "experiment_quality": 2,
+          "limitation_honesty": 3,
+          "claim_calibration": 3,
+          "overall": 3
+        }
+      },
+      "rationale": "Both artifacts are nearly identical. The review-guided version slightly reframes the contribution as 'goal-directed' generation and emphasizes causal structure compliance, but adds no new method detail, experiment specificity, or honest limitation beyond what the baseline already states. The review insights used are generic.",
+      "risk": "Neither artifact explains how the causal graph is specified, how masks enforce causal order in the flow, or how 'safety-critical' is operationally defined for evaluation."
+    }
+  ],
+  "design_lessons": [
+    "Review-guided artifacts win when they translate review insights into concrete method details (e.g., specific preference pair types, named optimization objectives, specific dataset domains) rather than just rephrasing the abstract.",
+    "When review insights are generic ('clarity needs improvement', 'well-motivated'), the review-guided artifact tends to produce only cosmetic differences from the baseline, yielding ties rather than wins.",
+    "Baseline artifacts can outperform review-guided ones when the review insights cause the artifact to become vaguer or more abstract, losing specific technical anchors present in the original title/abstract framing."
+  ],
+  "claim_boundary": "Across these six papers, both artifact types consistently under-specify core algorithmic mechanisms, evaluation metrics, and baseline comparisons. Review-guided artifacts provide genuine improvements primarily when review snippets contain specific technical critiques (missing algorithmic details, specific dataset gaps, concrete methodological weaknesses) that can be directly incorporated. When review snippets are high-level or evaluative ('well-written', 'needs clarity'), the review-guided artifact gains no substantive advantage. Neither artifact type adequately addresses the gap between stated contributions and the experimental evidence needed to support them, and both tend toward safe, hedged claim boundaries that do not distinguish strong from weak contributions.",
+  "model": "claude-3-7-sonnet-latest",
+  "aggregate": {
+    "review_guided_wins": 3,
+    "baseline_wins": 1,
+    "ties": 2,
+    "mean_baseline_overall": 3.0,
+    "mean_review_guided_overall": 3.1667,
+    "mean_delta_review_guided_minus_baseline": 0.1667
+  },
+  "latency_seconds": 31.721,
+  "attempts": 1
+}

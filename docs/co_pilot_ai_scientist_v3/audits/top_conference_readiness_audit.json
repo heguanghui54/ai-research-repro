@@ -55,7 +55,12 @@
     "review_utility_map_actionable_snippets": 398,
     "review_utility_map_noisy_snippets": 64,
     "openreview_guided_regeneration_baseline_wins": 1,
-    "openreview_guided_regeneration_ties": 0
+    "openreview_guided_regeneration_ties": 0,
+    "openreview_regeneration_cross_model_reviews": 1,
+    "openreview_regeneration_cross_model_review_pairs": 6,
+    "openreview_regeneration_cross_model_review_review_guided_wins": 3,
+    "openreview_regeneration_cross_model_review_baseline_wins": 1,
+    "openreview_regeneration_cross_model_review_ties": 2
   },
   "hypothesis_frontier_smoke": {
     "status": "live_front_end_smoke_completed",
@@ -459,5 +464,20 @@
       }
     ],
     "claim_boundary": "Deterministic map from OpenReview comments to workflow-control signals; not causal proof of final paper improvement."
+  },
+  "openreview_regeneration_cross_model_review": {
+    "status": "completed_claude_cross_model_review",
+    "run_id": "openreview_regeneration_cross_model_review_20260602_081500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/summary.json",
+    "source_summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
+    "models": [
+      "claude-3-7-sonnet-latest"
+    ],
+    "pair_count": 6,
+    "review_guided_wins": 3,
+    "baseline_wins": 1,
+    "ties": 2,
+    "mean_delta_across_models": 0.1667,
+    "claim_boundary": "Cross-model review reduces same-model scoring bias for regenerated mini-paper artifacts, but it is still model-routed artifact review, not independent human peer review or experiment rerun."
   }
 }

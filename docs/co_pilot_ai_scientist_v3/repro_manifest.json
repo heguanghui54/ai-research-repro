@@ -1,7 +1,7 @@
 {
   "project": "co-pilot-ai-scientist-v3",
   "author": "He Shi, School of Computing, National University of Singapore",
-  "status": "pilot_package_with_expanded_openreview_guided_regeneration_probe",
+  "status": "pilot_package_with_cross_model_openreview_regeneration_review",
   "created_for": "Human-in-the-loop upgrade to AI Scientist-v2",
   "required_final_artifacts": [
     "English PDF paper",
@@ -499,7 +499,14 @@
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/scoring_prompt.txt",
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/scoring_raw_response.txt",
     "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/summary.json",
-    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/README.md"
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_guided_regeneration_probe_20260602_073500/README.md",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/source_compact.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/review_prompt.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/claude-3-7-sonnet-latest_raw_response.txt",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/claude-3-7-sonnet-latest_review.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/summary.json",
+    "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/README.md",
+    "scripts/run_openreview_regeneration_cross_model_review.py"
   ],
   "unverified_claims": [
     "Human gates improve paper quality.",
@@ -861,5 +868,18 @@
       "structured_feedback": 210
     },
     "claim_boundary": "Deterministic OpenReview utility map; not causal proof of final paper improvement."
+  },
+  "openreview_regeneration_cross_model_review": {
+    "run_id": "openreview_regeneration_cross_model_review_20260602_081500",
+    "summary": "docs/co_pilot_ai_scientist_v3/experiments/openreview_regeneration_cross_model_review_20260602_081500/summary.json",
+    "models": [
+      "claude-3-7-sonnet-latest"
+    ],
+    "pair_count": 6,
+    "review_guided_wins": 3,
+    "baseline_wins": 1,
+    "ties": 2,
+    "mean_delta_across_models": 0.1667,
+    "claim_boundary": "Cross-model review reduces same-model scoring bias for regenerated mini-paper artifacts, but it is still model-routed artifact review, not independent human peer review or experiment rerun."
   }
 }

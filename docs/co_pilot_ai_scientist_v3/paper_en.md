@@ -346,6 +346,18 @@ improves paper-shaped regenerations, but not always. The claim remains bounded
 because the experiment does not rerun the original methods or obtain
 independent expert review.
 
+To reduce same-model scoring bias, we then reran the six generated pairs
+through `run_openreview_regeneration_cross_model_review.py`, using
+`claude-3-7-sonnet-latest` as an independent Monica-routed reviewer. The
+stricter cross-model review gives review-guided artifacts `3/6` wins, baseline
+`1/6` win, and `2` ties, with a smaller mean overall delta of `+0.1667`. The
+per-paper rationales are informative: review text helps when it adds concrete
+method details, experimental specificity, or limitation/claim calibration; it
+does not help when it merely restates generic concerns or causes the artifact
+to lose the original technical framing. We therefore interpret the regeneration
+results as evidence for workflow selection and review-signal utility, not as a
+stable proof that adding review text always improves generated papers.
+
 Finally, `run_review_insight_taxonomy_probe.py` mines 32 OpenReview review
 cases to identify which kinds of review comments are most useful as automated
 research control signals. The model-routed taxonomy marks novelty concerns and
@@ -788,8 +800,9 @@ The current contributions are:
    structured-feedback and claim-calibration as the current top pair.
 7. An OpenReview-guided regeneration probe whose initial three-paper run gives
    `3/3` review-guided wins and whose expanded six-paper run gives `5/6`
-   review-guided wins, with mean overall score increasing from `3.0` to
-   `3.8333`.
+   review-guided wins under the generating model's scorer, with a stricter
+   Claude cross-model review giving `3/6` review-guided wins, `1/6` baseline
+   win, and `2` ties.
 8. A review-insight taxonomy probe over 32 OpenReview review cases and a
    deterministic review-utility map over 473 review snippets from 160 sampled
    papers; together they map novelty, evaluation, claim-boundary, clarity,

@@ -145,6 +145,12 @@ in `5/6` pairs, increasing mean overall score from `3.0` to `3.8333`. The one
 baseline win is retained as evidence that review text is useful only when it
 can be converted into clearer problem framing, experiments, limitations, or
 claim calibration. The
+`openreview_regeneration_cross_model_review_20260602_081500/` artifact then
+re-scores the same six generated pairs with Monica-routed
+`claude-3-7-sonnet-latest`; this stricter cross-model review gives
+review-guided `3/6` wins, baseline `1/6` win, and `2` ties, with a smaller
+mean delta of `+0.1667`. This makes the claim more conservative: review text is
+an actionable workflow signal, not an automatic quality booster. The
 `review_insight_taxonomy_probe_20260602_064500/` artifact mines 32 review cases
 and maps actionable review patterns to IGRE gates: novelty concerns to
 scientific taste prior, limitations/weaknesses to claim calibration, clarity
