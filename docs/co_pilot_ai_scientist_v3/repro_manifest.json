@@ -677,14 +677,17 @@
     "required_comparison": "direct LLM edit baseline under the same evaluator and iteration budget"
   },
   "clean_clone_reproducibility_audit": {
-    "status": "pass_for_current_pushed_package_consistency_rebuild",
-    "commit": "25efc86f07892a945979c11c011fe036d63b1577",
-    "clean_clone_path": "/tmp/copilot-v3-clean-clone-25efc86f",
+    "status": "pass_for_current_pushed_lhtg_dvrs_rebuild",
+    "commit": "38dc8c8f7baecf85b47de3f1f45b14836b3d9ec4",
+    "clean_clone_path": "/tmp/copilot-v3-clean-clone-38dc8c8f",
     "clone_mode": "shallow_depth_1_single_branch",
-    "manifest_artifacts_checked": 615,
+    "manifest_artifacts_checked": 618,
     "missing_manifest_artifacts": 0,
-    "focused_english_pdf_bytes": 32051,
-    "focused_chinese_pdf_bytes": 60383,
+    "focused_english_pdf_bytes": 32998,
+    "focused_chinese_pdf_bytes": 61838,
+    "lhtg_dvrs_audit_reran": "pass",
+    "lhtg_dvrs_audit_status": "pass_with_no_positive_dvrs",
+    "lhtg_delayed_value_positive_cases": 0,
     "candidate_frontier_validation_reran": "pass",
     "candidate_frontier_scored_reviews": 13,
     "delayed_minus_control_mean_score": 0.064,
@@ -692,7 +695,7 @@
     "package_consistency_audit_reran": "pass",
     "package_consistency_audit_status": "pass",
     "remote_ubuntu_experiments_rerun": false,
-    "claim_boundary": "Candidate-frontier validation weakly supports replay prioritization but does not prove positive delayed-value evidence; package consistency checks metadata agreement, not scientific correctness."
+    "claim_boundary": "LHTG/DVRS is operationalized and clean-clone reproducible, but current evidence still has 0 positive delayed-value cases and supports only replay prioritization plus negative/weak TFR boundaries."
   },
   "skill_reuse_smoke_audit": {
     "status": "pass",

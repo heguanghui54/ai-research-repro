@@ -1,9 +1,9 @@
 # Package Consistency Audit
 
-- Audit date: `2026-06-02T10:53:07Z`
+- Audit date: `2026-06-02T10:57:40Z`
 - Status: `pass`
-- HEAD: `a0f60bd390d1e84b39f8406f1302c7687b91ed2c`
-- Clean-clone audited commit: `25efc86f07892a945979c11c011fe036d63b1577`
+- HEAD: `38dc8c8f7baecf85b47de3f1f45b14836b3d9ec4`
+- Clean-clone audited commit: `38dc8c8f7baecf85b47de3f1f45b14836b3d9ec4`
 - Clean-clone commit is HEAD ancestor: `True`
 - Manifest artifacts: `618`
 - Missing manifest artifacts: `0`
@@ -22,8 +22,7 @@
 
 ## Warnings
 
-- clean-clone manifest_artifacts_checked does not match manifest current_artifacts length because clean-clone audit targets an ancestor commit
-- readiness clean-clone manifest count is stale because clean-clone audit targets an ancestor commit
+- None
 
 ## Claim Boundary
 
