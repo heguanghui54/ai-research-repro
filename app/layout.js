@@ -1,8 +1,8 @@
 import "./styles.css";
 
 export const metadata = {
-  title: "健身气功短视频人工编码平台",
-  description: "用于健身气功短视频传播延异研究的多人协同人工编码平台",
+  title: "Lumine 论文中文动画解读",
+  description: "ByteDance Seed Lumine 论文的中文可视化解读：3D开放世界通用智能体、训练配方、实时推理和跨游戏泛化。",
 };
 
 export default function RootLayout({ children }) {
