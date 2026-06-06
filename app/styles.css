@@ -31,6 +31,11 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
 }
 
+button,
+input {
+  font: inherit;
+}
+
 a {
   color: inherit;
 }
@@ -290,6 +295,137 @@ p {
 
 .metricStrip span {
   color: var(--muted);
+}
+
+.voiceBlog {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 28px;
+  background:
+    linear-gradient(135deg, rgba(77, 163, 255, 0.12), rgba(76, 228, 214, 0.08)),
+    rgba(255, 255, 255, 0.04);
+}
+
+.voiceHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 20px;
+  align-items: center;
+}
+
+.voiceHeader h2 {
+  margin-bottom: 12px;
+}
+
+.voiceHeader p:last-child {
+  margin-bottom: 0;
+}
+
+.voiceMeter {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+.voiceMeter span {
+  position: relative;
+  z-index: 2;
+  font-size: 34px;
+  font-weight: 900;
+}
+
+.voiceMeter i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--progress);
+  background: linear-gradient(0deg, rgba(76, 228, 214, 0.62), rgba(77, 163, 255, 0.24));
+  transition: height 0.25s ease;
+}
+
+.voiceControls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(110px, auto)) minmax(220px, 1fr);
+  gap: 10px;
+  margin: 22px 0;
+  align-items: center;
+}
+
+.voiceControls button,
+.scriptList button {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.voiceControls button {
+  min-height: 44px;
+  padding: 10px 14px;
+  font-weight: 800;
+}
+
+.voiceControls button:first-child {
+  color: #061018;
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--cyan), var(--blue));
+}
+
+.voiceControls button:disabled,
+.scriptList button:disabled {
+  opacity: 0.46;
+  cursor: not-allowed;
+}
+
+.voiceControls label {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+}
+
+.voiceControls input {
+  width: 100%;
+  accent-color: var(--cyan);
+}
+
+.ttsWarning {
+  margin: 0 0 14px;
+  color: var(--amber);
+}
+
+.scriptList {
+  display: grid;
+  gap: 10px;
+}
+
+.scriptList button {
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 14px;
+  text-align: left;
+  line-height: 1.7;
+}
+
+.scriptList button span {
+  color: var(--cyan);
+  font-weight: 900;
+}
+
+.scriptList button.active {
+  border-color: rgba(76, 228, 214, 0.72);
+  background: rgba(76, 228, 214, 0.12);
+  box-shadow: 0 0 0 1px rgba(76, 228, 214, 0.2);
 }
 
 .section {
@@ -607,6 +743,8 @@ p {
   .stageRail,
   .abilityGrid,
   .comparison,
+  .voiceHeader,
+  .voiceControls,
   .introGrid,
   .split,
   .limits {
@@ -615,6 +753,10 @@ p {
 
   .metricStrip {
     padding-bottom: 30px;
+  }
+
+  .voiceControls label {
+    grid-template-columns: auto 1fr auto;
   }
 
   .section {
@@ -640,6 +782,23 @@ p {
 
   .sourceRow a {
     width: 100%;
+  }
+
+  .voiceBlog {
+    padding: 18px;
+  }
+
+  .voiceMeter {
+    min-height: 96px;
+  }
+
+  .voiceControls button {
+    width: 100%;
+  }
+
+  .scriptList button {
+    grid-template-columns: 34px 1fr;
+    padding: 12px;
   }
 
   .flowCard {

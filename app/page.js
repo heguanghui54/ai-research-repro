@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useMemo, useRef, useState } from "react";
+
 const sources = [
   ["arXiv", "https://arxiv.org/abs/2511.08892"],
   ["项目页", "https://www.lumine-ai.org/"],
@@ -45,6 +47,19 @@ const limits = [
   "实时推理依赖多 GPU 加速，推理延迟仍是系统扩展、在线 RL 和真实交互部署的关键瓶颈。",
 ];
 
+const voiceScript = [
+  "欢迎收听这期中文语音博客。今天我们解读 ByteDance Seed 的论文 Lumine：一个面向三维开放世界的通用智能体训练配方。",
+  "这篇论文的重点，不是简单地做一个游戏脚本。Lumine 试图回答一个更基础的问题：视觉语言模型能不能像人类玩家一样，看屏幕、理解目标、规划路线，并用键盘鼠标完成连续数小时的复杂任务。",
+  "Lumine 的底座是 Qwen2-VL-7B。它每两百毫秒读取一帧屏幕，也就是五赫兹的视觉输入；同时输出三十赫兹的键鼠动作，覆盖移动、点击、长按、角色切换和界面操作。",
+  "论文最关键的设计是混合推理。模型不是每一步都长篇思考，而是在任务完成、目标变化、环境突发变化、路线丢失这类关键节点，才生成类似人类内心独白的推理，然后继续输出动作。",
+  "训练配方分三步。第一步，用一千七百三十一小时人类游玩数据做行为预训练，让模型掌握基础动作和环境反应。第二步，用两百小时指令跟随数据，把动作和自然语言目标对齐。第三步，用十五小时人工标注的推理数据，让模型学会在长任务中主动思考和修正计划。",
+  "评测也不是只看演示视频。论文构建了一百四十一个语言条件任务，覆盖采集、战斗、NPC 交互和解谜。Lumine 在简单任务上达到超过八成成功率，并能完成蒙德主线第一幕。",
+  "更值得注意的是跨游戏泛化。Lumine 只用原神数据训练，却能零微调迁移到鸣潮和崩坏：星穹铁道。它会犯错，比如误读按键提示，或者把新游戏角色叫成原神里的名字，但仍然展示了可迁移的三维导航、GUI 操作和任务执行能力。",
+  "这篇论文的研究价值在于，它给出了一个完整工程样板：环境选择、数据采集、轨迹过滤、动作表示、语言对齐、推理标注、上下文管理和实时推理优化。这些环节组合起来，比单个模型结构创新更重要。",
+  "但结论也要克制。Lumine 还不是完全通用智能体。它的预训练主要集中在蒙德区域，长期记忆机制仍然简单，实时推理依赖多 GPU 加速，并且仍存在领域偏置和幻觉。",
+  "如果用一句话总结：Lumine 证明了，一个中等规模视觉语言模型，只要训练配方设计得足够完整，就有可能从看图说话，走向看屏幕、想目标、按键鼠、完成长任务。这对未来具身智能体和通用 GUI Agent 都有直接启发。",
+];
+
 function FlowAnimation() {
   return (
     <div className="flowCard" aria-label="Lumine perception reasoning action animation">
@@ -71,6 +86,141 @@ function FlowAnimation() {
         ))}
       </div>
     </div>
+  );
+}
+
+function VoiceBlog() {
+  const [supported, setSupported] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [rate, setRate] = useState(0.92);
+  const cancelRef = useRef(false);
+
+  const progress = useMemo(() => Math.round(((current + (playing ? 1 : 0)) / voiceScript.length) * 100), [current, playing]);
+
+  useEffect(() => {
+    setSupported(typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window);
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
+  function pickChineseVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    return voices.find((voice) => voice.lang?.toLowerCase().startsWith("zh")) || voices.find((voice) => /chinese|mandarin|中文/i.test(voice.name)) || null;
+  }
+
+  function speakFrom(index) {
+    if (!supported) return;
+    window.speechSynthesis.cancel();
+    cancelRef.current = false;
+    setPlaying(true);
+    setCurrent(index);
+
+    const speakNext = (nextIndex) => {
+      if (cancelRef.current || nextIndex >= voiceScript.length) {
+        setPlaying(false);
+        setCurrent(Math.min(nextIndex, voiceScript.length - 1));
+        return;
+      }
+      setCurrent(nextIndex);
+      const utterance = new SpeechSynthesisUtterance(voiceScript[nextIndex]);
+      utterance.lang = "zh-CN";
+      utterance.rate = rate;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      const voice = pickChineseVoice();
+      if (voice) utterance.voice = voice;
+      utterance.onend = () => speakNext(nextIndex + 1);
+      utterance.onerror = () => {
+        setPlaying(false);
+      };
+      window.speechSynthesis.speak(utterance);
+    };
+
+    speakNext(index);
+  }
+
+  function pause() {
+    if (!supported) return;
+    window.speechSynthesis.pause();
+    setPlaying(false);
+  }
+
+  function resume() {
+    if (!supported) return;
+    window.speechSynthesis.resume();
+    setPlaying(true);
+  }
+
+  function stop() {
+    if (!supported) return;
+    cancelRef.current = true;
+    window.speechSynthesis.cancel();
+    setPlaying(false);
+    setCurrent(0);
+  }
+
+  return (
+    <section className="section voiceBlog" id="voice-blog">
+      <div className="voiceHeader">
+        <div>
+          <p className="eyebrow">中文语音博客 · Browser TTS</p>
+          <h2>点击播放，用中文听完这篇论文的核心逻辑</h2>
+          <p>
+            这里集成的是浏览器内置中文 TTS。它不需要服务器端语音模型或 API key，移动端也能播放；不同设备会使用各自系统可用的中文声音。
+          </p>
+        </div>
+        <div className="voiceMeter" aria-label={`播放进度 ${progress}%`}>
+          <span>{progress}%</span>
+          <i style={{ "--progress": `${progress}%` }} />
+        </div>
+      </div>
+
+      <div className="voiceControls">
+        <button type="button" onClick={() => speakFrom(0)} disabled={!supported}>
+          从头播放
+        </button>
+        <button type="button" onClick={playing ? pause : resume} disabled={!supported}>
+          {playing ? "暂停" : "继续"}
+        </button>
+        <button type="button" onClick={stop} disabled={!supported}>
+          停止
+        </button>
+        <label>
+          语速
+          <input
+            aria-label="语速"
+            type="range"
+            min="0.75"
+            max="1.2"
+            step="0.05"
+            value={rate}
+            onChange={(event) => setRate(Number(event.target.value))}
+          />
+          <span>{rate.toFixed(2)}x</span>
+        </label>
+      </div>
+
+      {!supported && <p className="ttsWarning">当前浏览器不支持 Web Speech TTS。建议使用 Chrome、Safari 或 Edge 打开。</p>}
+
+      <div className="scriptList">
+        {voiceScript.map((line, index) => (
+          <button
+            type="button"
+            className={index === current ? "active" : ""}
+            key={line}
+            onClick={() => speakFrom(index)}
+            disabled={!supported}
+          >
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            {line}
+          </button>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -102,6 +252,8 @@ export default function Page() {
         <div><strong>30 Hz</strong><span>键鼠动作</span></div>
         <div><strong>141</strong><span>语言条件任务</span></div>
       </section>
+
+      <VoiceBlog />
 
       <section className="section introGrid">
         <div>
